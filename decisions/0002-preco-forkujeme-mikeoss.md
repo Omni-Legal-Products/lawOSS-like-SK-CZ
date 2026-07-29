@@ -55,6 +55,9 @@ flowchart LR
 > [!WARNING]
 > Argument „známy → preto bude dlho maintainovaný" je **slabý spoj**: 3-členné jadro a spomaľujúce tempo = riziko, že upstream o pol roka zamrzne. **Mitigácia:** keďže aj tak forkujeme a adaptujeme si to sami, na upstreame *nezávisíme* — „priebežné pullovanie" je bonus, nie základ. Rozhodnutie opierame o *„forkujeme, lebo si to prispôsobíme"*, nie o *„bude maintainované"*.
 
+> [!NOTE]
+> **Aktualizácia 2026-07-29:** pribudol tretí kandidát — **[LegalWork](https://github.com/eigenweltlabs/legalwork)** (MIT, desktop app, MCP/skills, beží lokálne), ktorý je **~10× aktívnejšie vyvíjaný než mikeOSS** (62 vs 6 commitov / 4 týždne). Porovnanie už nie je dvojka, ale trojka → [research/inspiracie/](../research/inspiracie/). Toto rozhodnutie ostáva v platnosti, ale **voľba základu sa reotvára** — pozri ďalšie kroky.
+
 ### mikeOSS vs Stella — porovnať pred zabetónovaním
 
 | | **mikeOSS** | **Stella** |
@@ -96,7 +99,9 @@ Ak áno → forkujeme. Ak nie → vieme to skôr, než sme investovali.
 
 ## Ďalšie kroky
 
-- [ ] 30-min porovnanie mikeOSS vs Stella ako základ ([research/inspiracie/](../research/inspiracie/))
+- [ ] 30-min porovnanie **mikeOSS vs Stella vs LegalWork** ako základ ([research/inspiracie/](../research/inspiracie/))
+- [ ] Otestovať, či LegalWork podporuje **existujúcu subscription** (nie len API kľúče) — kľúčové pre BYO zámer
+- [ ] Skúsiť pripojiť jeden náš SK MCP server do LegalWork Extensions
 - [ ] Over licenciu Stelly (Apache-2.0?)
 - [ ] Najlacnejší test na 1 reálnom spise
 - [ ] Potvrdenie ADR: MF, IR

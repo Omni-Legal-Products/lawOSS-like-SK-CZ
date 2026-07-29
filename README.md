@@ -122,11 +122,19 @@ mikeOSS-SLOVAKIA/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
+│   │   ├── audio/
+│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
 │   │   └── report.html
+│   ├── idey/
+│   │   ├── 2026-07-29-build-open-vs-buy-closed.md
+│   │   ├── 2026-07-29-orchestrator-transkripcia-byo-subscriptions.md
+│   │   └── README.md
 │   ├── inspiracie/
+│   │   ├── porovnanie.html
+│   │   └── README.md
 │   ├── mcp-servery/
 │   ├── mikeoss/
 │   ├── pravny-ramec/
@@ -171,10 +179,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**34 commitov** · **33 súborov**
+**35 commitov** · **33 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `201b1bb` | 2026-07-10 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `d7c9729` | 2026-07-10 | Marián Čuprík | docs(ADR): 0002 — prečo forkujeme mikeOSS (rich markdown + HTML) |
 | `e6560fa` | 2026-07-10 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `4bc3c74` | 2026-07-10 | Marián Čuprík | docs: regenerácia README po merge |
@@ -182,12 +191,11 @@ flowchart LR
 | `ecd57c3` | 2026-07-10 | Marián Čuprík | docs: odkaz na deep-research (report, živý HTML, audio) v hlavnom README |
 | `3b431a3` | 2026-07-10 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `f8a11e0` | 2026-07-10 | Marián Čuprík | chore: .nojekyll — GitHub Pages servuje HTML report priamo |
-| `8699349` | 2026-07-10 | github-actions[bot] | docs: auto-update README [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-10 14:16 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-29 16:50 UTC<!-- /AUTO:UPDATED --></sub>
 </div>

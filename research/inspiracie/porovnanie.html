@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kandidáti na základ — mikeOSS · Stella · LegalWork</title>
+<style>
+  :root{--navy:#0d1b2a;--navy2:#13243a;--gold:#c9a24a;--gold-soft:#e4c979;
+    --ink:#1a2233;--muted:#5b6577;--line:#e4e7ec;--bg:#f6f7f9;--card:#fff;
+    --green:#1f9d55;--amber:#c98a1a;--red:#c0392b;--violet:#7c3aed}
+  @media (prefers-color-scheme:dark){:root{--ink:#e8ecf3;--muted:#9aa6b8;--line:#25324a;--bg:#0b131f;--card:#111c2e}}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+  .hero{background:radial-gradient(1100px 380px at 75% -10%,rgba(201,162,74,.22),transparent),
+    linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;padding:46px 0 38px;border-bottom:3px solid var(--gold)}
+  .kicker{letter-spacing:.26em;text-transform:uppercase;font-size:12px;color:var(--gold-soft);font-weight:700}
+  .hero h1{margin:.3em 0 .15em;font-size:clamp(25px,4.4vw,38px);line-height:1.12;font-weight:800}
+  .hero p{color:#c7d0de;margin:.2em 0 0;max-width:640px}
+  section{margin:34px 0}
+  h2{font-size:20px;font-weight:800;margin:0 0 12px;display:flex;align-items:center;gap:9px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.cards{grid-template-columns:1fr}}
+  .c{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 4px 14px rgba(13,27,42,.05);position:relative;overflow:hidden}
+  .c.new{border:1.5px solid var(--gold)}
+  .c .flag{font-size:22px}
+  .c h3{margin:6px 0 2px;font-size:18px}
+  .c .sub{color:var(--muted);font-size:13px;margin-bottom:12px}
+  .kv{display:flex;justify-content:space-between;gap:8px;font-size:13.5px;padding:5px 0;border-bottom:1px dashed var(--line)}
+  .kv:last-child{border:none}
+  .kv b{font-weight:700}
+  .ribbon{position:absolute;top:12px;right:-30px;background:var(--gold);color:var(--navy);font-size:11px;font-weight:800;
+    padding:3px 34px;transform:rotate(35deg);letter-spacing:.05em}
+  .act{font-weight:800}
+  .hi{color:var(--green)}.lo{color:var(--red)}.mid{color:var(--amber)}
+  table{width:100%;border-collapse:collapse;font-size:14px;border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line)}
+  th{background:var(--navy);color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+  @media(prefers-color-scheme:dark){th{background:#0a1524}}
+  tr:last-child td{border-bottom:none}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .note{border-left:4px solid var(--gold);background:rgba(201,162,74,.08);padding:12px 16px;border-radius:0 10px 10px 0;margin:12px 0;font-size:14.5px}
+  .note.warn{border-color:var(--amber);background:rgba(201,138,26,.10)}
+  .note.imp{border-color:var(--violet);background:rgba(124,58,237,.08)}
+  ul.check{list-style:none;padding:0;margin:0}
+  ul.check li{padding:9px 9px 9px 34px;position:relative;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--card);font-size:14.5px}
+  ul.check li::before{content:"☐";position:absolute;left:12px;top:9px;color:var(--gold);font-size:16px}
+  .bar{height:9px;border-radius:100px;background:rgba(127,127,127,.18);overflow:hidden;margin-top:5px}
+  .bar i{display:block;height:100%;border-radius:100px}
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 46px;color:var(--muted);font-size:13px;text-align:center}
+  code{background:rgba(127,127,127,.14);padding:1px 6px;border-radius:5px;font-size:.9em}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="kicker">⚖️ MikeOSS Slovakia · Inšpirácie</div>
+  <h1>Kandidáti na základ</h1>
+  <p>mikeOSS · Stella · LegalWork — čo si z čoho zobrať. Fakty overené cez GitHub API k <b>29. 7. 2026</b>.</p>
+</div></header>
+
+<div class="wrap">
+
+  <section>
+    <div class="cards">
+      <div class="c">
+        <div class="flag">🇺🇸</div>
+        <h3>mikeOSS</h3>
+        <div class="sub"><code>Open-Legal-Products/mike</code></div>
+        <div class="kv"><span>Licencia</span><b>AGPL-3.0</b></div>
+        <div class="kv"><span>Hviezdy</span><b>3 924 ⭐</b></div>
+        <div class="kv"><span>Prispievatelia</span><b>3</b></div>
+        <div class="kv"><span>Commity/mes.</span><b class="lo">6</b></div>
+        <div class="kv"><span>Forma</span><b>web app</b></div>
+        <div style="margin-top:10px;font-size:12.5px;color:var(--muted)">Aktivita<div class="bar"><i style="width:10%;background:var(--red)"></i></div></div>
+      </div>
+
+      <div class="c">
+        <div class="flag">🇨🇿</div>
+        <h3>Stella</h3>
+        <div class="sub">Česko</div>
+        <div class="kv"><span>Licencia</span><b>Apache-2.0*</b></div>
+        <div class="kv"><span>Anonymizácia</span><b class="hi">✅ WASM</b></div>
+        <div class="kv"><span>Forma</span><b>workspace</b></div>
+        <div class="kv"><span>Blízkosť SK</span><b class="hi">vysoká</b></div>
+        <div class="kv"><span>Overenie</span><b class="mid">licenciu doveriť</b></div>
+        <div style="margin-top:10px;font-size:12.5px;color:var(--muted)">Hodnota: <b>anonymizácia</b><div class="bar"><i style="width:85%;background:var(--green)"></i></div></div>
+      </div>
+
+      <div class="c new">
+        <div class="ribbon">NOVÝ</div>
+        <div class="flag">🧭</div>
+        <h3>LegalWork</h3>
+        <div class="sub"><code>eigenweltlabs/legalwork</code></div>
+        <div class="kv"><span>Licencia</span><b>MIT</b></div>
+        <div class="kv"><span>Hviezdy</span><b>81 ⭐</b></div>
+        <div class="kv"><span>Prispievatelia</span><b>2</b></div>
+        <div class="kv"><span>Commity/mes.</span><b class="hi act">62</b></div>
+        <div class="kv"><span>Forma</span><b>desktop app</b></div>
+        <div style="margin-top:10px;font-size:12.5px;color:var(--muted)">Aktivita<div class="bar"><i style="width:100%;background:var(--green)"></i></div></div>
+      </div>
+    </div>
+    <div class="note imp">
+      🔑 <b>Kľúčové zistenie:</b> LegalWork je <b>~10× aktívnejšie vyvíjaný</b> než mikeOSS (62 vs 6 commitov za 4 týždne, posledný push dnes). Otvorená otázka z ADR 0002 sa mení z „mikeOSS vs Stella" na <b>trojku</b>.
+    </div>
+  </section>
+
+  <section>
+    <h2>🧭 Čo vie LegalWork</h2>
+    <div class="card">
+      <ul style="margin:0;padding-left:20px">
+        <li><b>Review &amp; redline</b> zmlúv ako <i>tracked changes priamo vo Worde</i> — advokátsky workflow</li>
+        <li><b>Tabular review</b> — extrakcia podmienok naprieč dokumentmi do citovanej mriežky</li>
+        <li><b>Draft</b> — podania, memá, zmluvy, engagement letters</li>
+        <li><b>Bring your own model</b> — AWS Bedrock, Azure OpenAI, „akýkoľvek provider"</li>
+        <li><b>Beží lokálne</b> na tvojom stroji → sedí na dátovú suverenitu</li>
+        <li><b>Rozšíriteľné cez skills, pluginy a MCP konektory</b> → sem by šli naše SK MCP</li>
+        <li>Telemetria: anonymná, EU-hosted, <b>vypnuteľná</b>; dev buildy neposielajú nič</li>
+      </ul>
+    </div>
+    <div class="note warn">
+      ⚠️ <b>Overiť pred rozhodnutím:</b><br>
+      1. <b>Subscription podpora</b> — README hovorí „bring your own model" (Bedrock/Azure/provider), ale <b>nespomína consumer subscription</b> (ChatGPT/Claude Pro). Keďže vyžaduje <code>opencode</code> CLI, <i>pravdepodobne</i> dedí jeho auth — <b>neoverené</b>, a pre náš BYO-subscription zámer je to kľúčové.<br>
+      2. <b>Free modely</b> — README varuje, že free-tier je logovaný: nepoužívať s klientskymi dátami. Pre advokáta = <b>len vlastný model</b>.<br>
+      3. Nie je to GitHub fork opencode, ale kód je <i>derived from upstream MIT source</i> a beží nad <code>opencode</code> CLI.
+    </div>
+  </section>
+
+  <section>
+    <h2>🧩 Čo si z čoho zobrať</h2>
+    <div class="card" style="overflow-x:auto">
+      <table>
+        <tr><th>Potreba</th><th>Odkiaľ</th></tr>
+        <tr><td>🛡️ Anonymizácia SK/CZ</td><td><b>Stella</b> (Apache-2.0 → dá sa priamo použiť) + MasKIT</td></tr>
+        <tr><td>💻 Desktop UX pre netechnického advokáta</td><td><b>LegalWork</b> (hotové inštalátory macOS/Win/Linux)</td></tr>
+        <tr><td>📝 Redline vo Worde / tracked changes</td><td><b>LegalWork</b></td></tr>
+        <tr><td>🔌 Miesto pre naše SK MCP servery</td><td><b>LegalWork</b> (Extensions) alebo mikeOSS</td></tr>
+        <tr><td>⭐ Komunita / meno</td><td><b>mikeOSS</b> (3 924 ⭐)</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>✓ Ďalšie kroky</h2>
+    <ul class="check">
+      <li>Otestovať LegalWork: podporuje <b>existujúcu subscription</b> (ChatGPT/Claude Pro), alebo len API kľúče?</li>
+      <li>Overiť licenciu Stelly (Apache-2.0?)</li>
+      <li>Skúsiť pripojiť <b>jeden náš SK MCP server</b> (Slov-Lex) do LegalWork Extensions — ak to ide, je to najrýchlejšia cesta k v1</li>
+      <li>Aktualizovať ADR 0002 podľa výsledku</li>
+    </ul>
+  </section>
+
+  <footer>
+    Inšpirácie · MikeOSS Slovakia · 2026-07-29 · <a href="./README.md">Markdown verzia</a> ·
+    <a href="../idey/README.md">Idey a poznámky</a> · <a href="../../decisions/0002-preco-forkujeme-mikeoss.html">ADR 0002</a>
+    <br><span style="font-size:12px">* licencia Stelly z rešerše, neoverená priamo v repe</span>
+  </footer>
+</div>
+</body>
+</html>
