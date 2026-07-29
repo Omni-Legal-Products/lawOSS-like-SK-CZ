@@ -186,23 +186,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**47 commitov** · **49 súborov**
+**49 commitov** · **49 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `4508928` | 2026-07-29 | Marián Čuprík | docs: zdokumentovaná ochrana vetvy main (zákaz force-push a mazania) |
+| `7fb4353` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `cda4439` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `eae4e7b` | 2026-07-29 | Marián Čuprík | docs: pravidlá spolupráce — AGENTS.md prepísaný, CONTRIBUTING.md, PR šablóna |
 | `063cf95` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `828cb55` | 2026-07-29 | Marián Čuprík | feat: evidencia návrhov funkcií (MČ · MF · IR) + hybrid routing ako návrh MČ |
 | `156ff1f` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `542808b` | 2026-07-29 | Marián Čuprík | research: hĺbková analýza LegalWork — subscription overená v kóde (ToS problém) |
-| `38b7f0b` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `39f79d8` | 2026-07-29 | Marián Čuprík | docs: grafický HTML prehľad features v1 + OKF ide von ako OSS (rozhodnuté) |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-29 17:23 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-29 17:24 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
