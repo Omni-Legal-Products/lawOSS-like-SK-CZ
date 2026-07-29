@@ -25,7 +25,7 @@ Traja slovenskí advokáti (**Marián Čuprík**, **Martin Friedrich**, **Igor R
 | ❌ Nikdy | Prečo |
 |---|---|
 | **Needituj AUTO sekcie v `README.md`** (medzi `<!-- AUTO:X -->`) | generuje ich GitHub Action, tvoje zmeny sa prepíšu |
-| **Nerob `git push --force` ani prepis histórie** | pracujú tu traja, zmažeš cudziu prácu |
+| **Nerob `git push --force` ani prepis histórie** | pracujú tu traja, zmažeš cudziu prácu — **`main` to aj technicky blokuje** |
 | **Neprepisuj cudzie autorstvo** návrhov a rozhodnutí | evidencia v [`specs/navrhy.md`](specs/navrhy.md) musí sedieť |
 | **Nemeň cudzí ADR** — namiesto toho pridaj nový, ktorý ten starý nahrádza | rozhodnutia sú záznam v čase |
 | **Nepíš fakty „z hlavy"** — over ich (GitHub API, web, MCP) a označ, čo je overené a čo dohad | staviame na tom právne rozhodnutia |
@@ -54,6 +54,18 @@ git push
 ```
 
 Ak push aj tak zlyhá → `git pull --no-rebase` a push znova. **Nikdy to nerieš force-pushom.**
+
+### 🔒 Ochrana vetvy `main`
+
+Na `main` je zapnutá ochrana *(platí aj pre adminov)*:
+
+| | |
+|---|---|
+| ❌ **force-push** | zablokovaný |
+| ❌ **zmazanie vetvy** | zablokované |
+| ✅ **bežný push** | funguje normálne — **žiadny povinný PR review**, aby vás to nezdržovalo |
+
+Ak ti git odmietne push, **nikdy to nerieš `--force`** (aj tak neprejde) — urob `git pull --no-rebase` a push znova.
 
 ### Kedy priamo do `main` a kedy branch + PR
 
