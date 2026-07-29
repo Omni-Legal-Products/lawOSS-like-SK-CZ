@@ -39,6 +39,40 @@ Druhý problém: uzavreté appky **šetria na modeloch** (lacnejší model = ni�
 | Kritické (podania, zmluvy) | **prémiový** — racionálne zaplatiť |
 | Nízkorizikové (OCR, prepis, sumár) | **lacné / lokálne** (napr. Mistral OCR na PDF→Markdown) |
 
+---
+
+## 🔀 Hybrid routing — rozdelenie podľa vrstvy
+
+> **Navrhol:** Marián Čuprík · 2026-07-29 · *stav: na prerokovanie (MF, IR)*
+
+Namiesto jedného globálneho modelu **routovať podľa vrstvy** — kritérium nie je len cena, ale **kde sú klientske dáta**.
+
+| Vrstva | Aké dáta obsahuje | Model | Prečo |
+|---|---|---|---|
+| **OKF operácie** — zakladanie spisov, názvy, presuny, zápis do `_STATUS.md` | 🔴 najviac identifikujúcich údajov (mená, IČO, spisové značky) | **lokálny** | mechanické, vysoký objem, nízke nároky na reasoning — a dáta neopustia počítač |
+| **Právna rešerš** — „aká je premlčacia doba pri…" | 🟢 často abstraktná, bez klientskych údajov | **prémiový / subscription** | tu sa oplatí najlepší reasoning |
+| **Posúdenie prípadu (assessment)** | 🔴 obsahuje skutkový stav veci | ⚠️ **až po anonymizácii, inak lokálny** | viď nižšie |
+
+```mermaid
+flowchart TB
+    U["👩‍⚖️ Advokát"] --> R{"Aká vrstva?"}
+    R -->|"OKF operácie<br/>(spis, názvy, status)"| L["🔒 Lokálny model<br/>dáta neopustia stroj"]
+    R -->|"právna rešerš<br/>(abstraktná otázka)"| P["☁️ Prémiový / subscription"]
+    R -->|"posúdenie prípadu<br/>(skutkový stav)"| A["🛡️ Anonymizácia"]
+    A -->|"ak úspešná"| P
+    A -->|"ak nie"| L
+    classDef sec fill:#0d1b2a,stroke:#c9a24a,color:#fff
+    class L,A sec
+```
+
+> [!IMPORTANT]
+> **„Rešerš" a „assessment" nie sú to isté.** Rešerš vieš položiť abstraktne (bez klienta). Posúdenie prípadu obsahuje fakty veci → do cloudu len cez sanitizačný filter, inak je to problém s mlčanlivosťou (3-fázový test SAK).
+
+**Súvislosť s ToS:** ak by subscription niesla práve rešeršnú vrstvu, je to zároveň vrstva, ktorú budeme učiť na workshopoch — a tá má [ToS varovanie](#-tos-subscriptions--čiastočne-zodpovedané-2026-07-29). Preto subscription držať ako **voľbu používateľa**, nie ako odporúčaný default vo výučbe.
+
+### Realizovateľnosť
+V LegalWork/opencode nie je hotové per-feature routing v UI, ale **skill/agent si vie určiť vlastný model** (`.opencode/skills`) → cesta vedie cez skills, nie cez prepínač v nastaveniach. *(overené 2026-07-29)*
+
 ## ⚠️ ToS subscriptions — čiastočne zodpovedané (2026-07-29)
 
 Overili sme to na [LegalWork](../research/inspiracie/legalwork.md), ktorý *Claude Pro/Max* sign-in **má implementovaný** — a zároveň k nemu zobrazuje varovanie:

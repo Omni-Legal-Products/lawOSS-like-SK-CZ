@@ -1,0 +1,62 @@
+name: 💡 Návrh funkcie
+description: Navrhni funkciu do MikeOSS Slovakia (netreba nič programovať)
+title: "[Návrh]: "
+labels: ["návrh funkcie"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Vyplň, čo vieš — nič nie je povinné okrem prvých dvoch polí.
+        Po prerokovaní to prepíšeme do `specs/` a zapíšeme do [evidencie návrhov](../blob/main/specs/navrhy.md).
+
+  - type: input
+    id: navrhol
+    attributes:
+      label: Kto navrhuje
+      description: Meno alebo skratka (MČ / MF / IR)
+      placeholder: napr. Martin Friedrich
+    validations:
+      required: true
+
+  - type: textarea
+    id: co
+    attributes:
+      label: Čo by mal nástroj vedieť
+      description: Popíš to normálnou rečou, technicky to netreba
+      placeholder: |
+        napr. „Keď mi príde uznesenie súdu, nech mi automaticky vytiahne lehotu
+        a zapíše ju do spisu, aby mi neušla."
+    validations:
+      required: true
+
+  - type: textarea
+    id: preco
+    attributes:
+      label: Aký problém to rieši
+      description: Čo ťa dnes zdržuje alebo štve? Koľko času by to ušetrilo?
+      placeholder: napr. „Lehoty si prepisujem ručne do kalendára, občas niečo prehliadnem."
+
+  - type: dropdown
+    id: priorita
+    attributes:
+      label: Ako veľmi to treba
+      options:
+        - "Nice to have — pokojne neskôr"
+        - "Užitočné — chcel by som to v dohľadnej dobe"
+        - "Kritické — bez toho to nemá zmysel používať"
+
+  - type: dropdown
+    id: citlive
+    attributes:
+      label: Pracuje to s dôvernými klientskymi údajmi?
+      description: Dôležité kvôli mlčanlivosti — určí, či to môže ísť do cloudu alebo musí bežať lokálne
+      options:
+        - "Áno — obsahuje údaje klienta / spisu"
+        - "Nie — je to všeobecná/abstraktná úloha"
+        - "Neviem posúdiť"
+
+  - type: textarea
+    id: poznamky
+    attributes:
+      label: Čokoľvek ďalšie
+      description: Príklad, screenshot, odkaz na nástroj, ktorý to už vie…

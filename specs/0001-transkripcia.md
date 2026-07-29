@@ -1,6 +1,7 @@
 # Spec 0001: Transkripcia (hovory, stretnutia, diktát)
 
 - **Stav:** návrh
+- **Navrhol:** Marián Čuprík (MČ) · 2026-07-29
 - **Zdroj:** [research/idey/](../research/idey/2026-07-29-orchestrator-transkripcia-byo-subscriptions.md)
 - **Súvisiace:** [0003 prompt layer](0003-prompt-layer.md) · [0002 OKF](0002-okf-operacny-system-praxe.md)
 

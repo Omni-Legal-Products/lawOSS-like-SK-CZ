@@ -1,6 +1,7 @@
 # Spec 0004: SK MCP konektory (judikatúra, registre, legislatíva)
 
 - **Stav:** návrh · *veľká časť už existuje*
+- **Navrhol:** Marián Čuprík (MČ) · 2026-07-29
 - **Súvisiace:** [0002 OKF](0002-okf-operacny-system-praxe.md) · [research/inspiracie](../research/inspiracie/)
 
 > [!NOTE]

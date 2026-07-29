@@ -1,6 +1,7 @@
 # Spec 0002: OKF — operačný systém advokátskej praxe
 
 - **Stav:** návrh · **priorita: vysoká** (diferenciátor)
+- **Navrhol:** Marián Čuprík (MČ) · 2026-07-29
 - **Zdroj:** existujúca implementácia — skill `novy-spis` (OKF v0.1) v legal plugine
 - **Súvisiace:** [0001 transkripcia](0001-transkripcia.md) · [0004 MCP](0004-mcp-sk-konektory.md)
 

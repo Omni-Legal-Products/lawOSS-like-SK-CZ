@@ -7,13 +7,14 @@ Kandidáti na **v1** — evidencia nápadov, ktoré dozreli z brainstormingu
 </div>
 
 > 🌐 **Grafický prehľad:** [prehlad.html](prehlad.html) — [živá verzia](https://originalmagneto.github.io/mikeOSS-SLOVAKIA/specs/prehlad.html)
+> 💡 **Evidencia návrhov (kto čo navrhol):** [navrhy.md](navrhy.md) · [**podať nový návrh →**](https://github.com/originalmagneto/mikeOSS-SLOVAKIA/issues/new?template=feature-navrh.yml)
 
-| # | Spec | Stav | Poznámka |
-|---|---|---|---|
-| 0001 | [Transkripcia](0001-transkripcia.md) | návrh | hovory, porady, diktát → priamo do spisu |
-| 0002 | [**OKF — operačný systém praxe**](0002-okf-operacny-system-praxe.md) | návrh · **vysoká priorita** | ⭐ jadro odlíšenia; veľká časť už existuje (`novy-spis`) |
-| 0003 | [Prompt layer](0003-prompt-layer.md) | návrh | žiadny black box, plná kontrola + voľba modelu |
-| 0004 | [SK MCP konektory](0004-mcp-sk-konektory.md) | návrh | judikatúra, Slov-Lex, registre — väčšina už beží |
+| # | Spec | Navrhol | Stav | Poznámka |
+|---|---|---|---|---|
+| 0001 | [Transkripcia](0001-transkripcia.md) | MČ | návrh | hovory, porady, diktát → priamo do spisu |
+| 0002 | [**OKF — operačný systém praxe**](0002-okf-operacny-system-praxe.md) | MČ | návrh · **vysoká priorita** | ⭐ jadro odlíšenia; veľká časť už existuje (`novy-spis`) |
+| 0003 | [Prompt layer](0003-prompt-layer.md) | MČ | návrh | žiadny black box + [hybrid routing](0003-prompt-layer.md#-hybrid-routing--rozdelenie-podľa-vrstvy) |
+| 0004 | [SK MCP konektory](0004-mcp-sk-konektory.md) | MČ | návrh | judikatúra, Slov-Lex, registre — väčšina už beží |
 
 ## Ako to spolu drží
 
