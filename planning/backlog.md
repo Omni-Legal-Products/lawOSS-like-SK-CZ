@@ -27,5 +27,6 @@ Dozreté položky majú vlastnú špecifikáciu v [specs/](../specs/).
 
 ## Rozhodnúť
 
+- [ ] ⚠️ **Vybrať licenciu a doplniť súbor `LICENSE`** — repo je verejné, ale **bez licencie platí „all rights reserved"**, čo je v rozpore s deklarovaným open-source. Voľba súvisí so základom (mikeOSS = AGPL-3.0 → odvodené dielo musí byť tiež AGPL; LegalWork/Stella = permisívne)
 - [ ] Názov projektu *(„mikeOSS Slovakia" je pracovný)*
 - [ ] Voľba základu: mikeOSS / Stella / LegalWork → [inspiracie](../research/inspiracie/)

@@ -3,43 +3,63 @@
 # ⚖️ MikeOSS Slovakia
 
 **Open-source právny asistent pre slovenských advokátov**
-*Fork projektu [MikeOSS](https://github.com/Open-Legal-Products/mike), špecializovaný pre slovenské právo a jurisdikciu SR*
+*Operačný systém advokátskej praxe — organizácia spisov, AI rešerš a slovenské registre v jednom*
 
 [![Status](https://img.shields.io/badge/f%C3%A1za-pr%C3%ADprava%20%26%20pl%C3%A1novanie-blue)](planning/roadmap.md)
-[![Upstream](https://img.shields.io/badge/upstream-Open--Legal--Products%2Fmike-black?logo=github)](https://github.com/Open-Legal-Products/mike)
-[![License](https://img.shields.io/badge/licencia-open--source-green)](LICENSE)
+[![Základ](https://img.shields.io/badge/z%C3%A1klad-vo%C4%BEba%20otvoren%C3%A1-orange)](research/inspiracie/)
+[![License](https://img.shields.io/badge/licencia-nevybrat%C3%A1-lightgrey)](planning/backlog.md)
 [![Jurisdiction](https://img.shields.io/badge/jurisdikcia-%F0%9F%87%B8%F0%9F%87%B0%20Slovensko-red)](docs/vision.md)
 
 </div>
 
 > [!NOTE]
-> Toto repo **zatiaľ neobsahuje kód forku**. Slúži na brainstorming, rešerše, plánovanie a spoločnú evidenciu podkladov (vrátane `AGENTS.md` / `CLAUDE.md`) pred založením samotného fork repozitára.
+> Toto repo **zatiaľ neobsahuje kód produktu**. Slúži na brainstorming, rešerše, plánovanie a spoločnú evidenciu podkladov (vrátane `AGENTS.md` / `CLAUDE.md`) pred založením samotného vývojového repozitára.
 
 ---
 
 ## 🎯 Vízia
 
-Priniesť slovenským advokátom **užitočný open-source nástroj úplne zadarmo** — postavený na MikeOSS, obohatený o slovenské pluginy a MCP servery (Slov-Lex, ORSR, RPVS, judikatúra…), prispôsobený slovenskému právu, s možnosťou neskoršieho rozšírenia o ďalšie krajiny.
+Priniesť slovenským advokátom **užitočný open-source nástroj úplne zadarmo** — postavený na zrelom open-source základe, obohatený o slovenské skills a MCP servery (Slov-Lex, ORSR, RPVS, judikatúra…), prispôsobený slovenskému právu, s možnosťou neskoršieho rozšírenia o ďalšie krajiny.
+
+Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advokátskej praxe (OKF)](specs/0002-okf-operacny-system-praxe.md)** — appka zakladá spisy, generuje riadiace súbory a stráži poriadok; AI je násobič, nie základ.
 
 | | |
 |---|---|
 | 👥 **Tím** | Marián Čuprík · Martin Friedrich · Igor Ribár (advokáti SAK, pracovná skupina pre elektronizáciu advokácie) |
-| 💰 **Model** | Nástroj zadarmo, open-source. Monetizácia výhradne cez workshopy a školenia. |
-| 🔄 **Stratégia forku** | Slovenské úpravy ako pluginy/overlay vrstva → priebežné pull-ovanie upstream aktualizácií bez konfliktov |
+| 💰 **Model** | Nástroj zadarmo, open-source. Monetizácia výhradne cez workshopy a školenia — [ADR 0002](decisions/0002-preco-forkujeme-mikeoss.md) |
+| 🧩 **Základ** | ⚠️ **voľba otvorená** — [mikeOSS · Stella · LegalWork](research/inspiracie/) |
+| 🔄 **Stratégia** | Slovenské úpravy ako **skills / pluginy / MCP** mimo jadra → priebežné pull-ovanie upstreamu bez konfliktov |
 | 💬 **Komunikácia** | Telegram skupina + GitHub Issues/Discussions |
 
-## 🏗️ Architektúra forku (návrh)
+## 🧩 Voľba základu — otvorená
+
+Rozhodnutie **[ADR 0002](decisions/0002-preco-forkujeme-mikeoss.md)** (forkujeme zrelý OSS projekt, nestaviame od nuly) platí. Otvorené ostáva **ktorý** projekt.
+
+| Kandidát | Hlavná výhoda | Poznámka |
+|---|---|---|
+| **[LegalWork](research/inspiracie/legalwork.md)** 🇩🇪 | 🔑 **Prihlásenie cez OpenAI / Anthropic účet** — používateľ vie priamo využiť **svoje existujúce predplatné**, nemusí riešiť API kľúče. Navyše MIT, desktop app, beží lokálne, hotová on-device transkripcia, MCP rozšírenia. | najaktívnejší vývoj *(62 vs 6 commitov/mes.)* |
+| **[mikeOSS](https://github.com/Open-Legal-Products/mike)** 🇺🇸 | 📣 **Marketingové spojenie a známosť mena** (3 924 ⭐) — ťaháme na tom pozornosť pri promovaní projektu | AGPL-3.0; menšia vývojová aktivita |
+| **Stella** 🇨🇿 | 🛡️ **Hotová anonymizácia** pre CZ/SK text, permisívna licencia | zdroj komponentov aj pri inej voľbe |
+
+> [!IMPORTANT]
+> **Prečo je to zámerne otvorené:** LegalWork má silnejší technický argument (subscription auth + lokálny beh), mikeOSS silnejší marketingový (meno, komunita). Rozhodneme na stretku — a nie je vylúčené **kombinovať**: základ od jedného, komponenty od druhého.
+>
+> ⚠️ K subscription: prihlásenie predplatným **je implementované**, ale poskytovateľ ho môže obmedziť svojimi podmienkami — detail a odporúčanie v [spec 0003](specs/0003-prompt-layer.md#-tos-subscriptions--čiastočne-zodpovedané-2026-07-29).
+
+## 🏗️ Architektúra (návrh)
 
 ```mermaid
 flowchart TB
-    subgraph upstream["🌍 Upstream"]
-        MIKE["MikeOSS<br/>Open-Legal-Products/mike"]
+    ADVOKAT(["👩‍⚖️ Advokát"]) --> SK
+
+    subgraph SK["🇸🇰 Náš projekt"]
+        OKF["📁 OKF — organizácia praxe<br/><i>spisy · riadiace súbory · poriadok</i>"]
+        SKILLS["SK skills a šablóny"]
+        PROMPT["🔓 Otvorený prompt layer"]
     end
 
-    subgraph fork["🇸🇰 MikeOSS Slovakia"]
-        CORE["Jadro MikeOSS<br/><i>nedotknuté – čisté pull-ovanie</i>"]
-        OVERLAY["SK overlay / konfigurácia"]
-        PLUGINS["SK pluginy"]
+    subgraph base["🧩 OSS základ (voľba otvorená)"]
+        B["mikeOSS · Stella · LegalWork<br/><i>jadro nedotknuté → čisté pull-ovanie</i>"]
     end
 
     subgraph mcp["🔌 Slovenské MCP servery"]
@@ -50,11 +70,15 @@ flowchart TB
         OV["Obchodný vestník,<br/>FS, ÚVO…"]
     end
 
-    MIKE -- "git pull (priebežne)" --> CORE
-    CORE --> OVERLAY --> PLUGINS
-    PLUGINS --> SLOVLEX & ORSR & RPVS & JUD & OV
+    subgraph model["🤖 Modely — voľba používateľa"]
+        SUB["predplatné<br/>(OpenAI / Anthropic)"]
+        API["vlastný API kľúč"]
+        LOC["🔒 lokálny model<br/>(dôverné dáta)"]
+    end
 
-    ADVOKAT(["👩‍⚖️ Advokát"]) --> fork
+    B -- "upstream" --> SK
+    SK --> mcp
+    PROMPT --> model
 ```
 
 ## 🎨 Vizuálny koncept
@@ -91,7 +115,7 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 <!-- AUTO:PROGRESS -->
 | Súbor | Progress | Hotovo |
 |---|---|---|
-| [`backlog.md`](planning/backlog.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/15 (0 %) |
+| [`backlog.md`](planning/backlog.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/16 (0 %) |
 | [`roadmap.md`](planning/roadmap.md) | `██░░░░░░░░░░░░░░░░░░` | 2/17 (12 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
@@ -122,6 +146,8 @@ mikeOSS-SLOVAKIA/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
+│   │   ├── audio/
+│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -186,23 +212,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**47 commitov** · **49 súborov**
+**49 commitov** · **49 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `4508928` | 2026-07-29 | Marián Čuprík | docs: zdokumentovaná ochrana vetvy main (zákaz force-push a mazania) |
+| `7fb4353` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `cda4439` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `eae4e7b` | 2026-07-29 | Marián Čuprík | docs: pravidlá spolupráce — AGENTS.md prepísaný, CONTRIBUTING.md, PR šablóna |
 | `063cf95` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `828cb55` | 2026-07-29 | Marián Čuprík | feat: evidencia návrhov funkcií (MČ · MF · IR) + hybrid routing ako návrh MČ |
 | `156ff1f` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `542808b` | 2026-07-29 | Marián Čuprík | research: hĺbková analýza LegalWork — subscription overená v kóde (ToS problém) |
-| `38b7f0b` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `39f79d8` | 2026-07-29 | Marián Čuprík | docs: grafický HTML prehľad features v1 + OKF ide von ako OSS (rozhodnuté) |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-29 17:23 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-29 19:07 UTC<!-- /AUTO:UPDATED --></sub>
 </div>

@@ -13,7 +13,7 @@ Traja slovenskí advokáti (**Marián Čuprík**, **Martin Friedrich**, **Igor R
 |---|---|
 | **Toto repo** | prípravné a plánovacie — **neobsahuje kód** produktu. Brainstorming, rešerše, rozhodnutia, plánovanie. |
 | **Monetizácia** | výhradne **školenia a workshopy**. Nepredávame softvér ani službu (SaaS) — to by z advokáta spravilo poskytovateľa. Viď [ADR 0002](decisions/0002-preco-forkujeme-mikeoss.md). |
-| **Voľba základu** | ⚠️ **otvorená** — mikeOSS / Stella / LegalWork. Viď [research/inspiracie/](research/inspiracie/). Nepíš nikde, že je to rozhodnuté. |
+| **Voľba základu** | ⚠️ **otvorená** — mikeOSS / Stella / LegalWork ([porovnanie](research/inspiracie/)). **Nepíš nikde, že je to rozhodnuté.** Trade-off: *LegalWork* = technická výhoda (prihlásenie cez OpenAI/Anthropic predplatné, lokálny beh, MIT) · *mikeOSS* = marketingová výhoda (známe meno, 3 924 ⭐, ťaháme naň pozornosť) · *Stella* = hotová anonymizácia. Kombinácia nie je vylúčená. |
 | **Názov** | „MikeOSS Slovakia" je **pracovný**, nie finálny. |
 
 **Začni čítaním:** [`decisions/`](decisions/) (čo je rozhodnuté a prečo) → [`specs/`](specs/) (čo staviame) → [`planning/roadmap.md`](planning/roadmap.md) (kde sme).
@@ -36,7 +36,7 @@ Traja slovenskí advokáti (**Marián Čuprík**, **Martin Friedrich**, **Igor R
 
 ## 🔀 Git a spolupráca — ako sa neprebíjať
 
-> **Toto je najdôležitejšia sekcia.** Repo je verejné, `main` nie je chránený, a **beží nad ním bot**, ktorý sám commituje.
+> **Toto je najdôležitejšia sekcia.** Repo je verejné, `main` je chránený proti force-pushu, a **beží nad ním bot**, ktorý sám commituje.
 
 ### ⚠️ Pozor: auto-README bot commituje do `main`
 
