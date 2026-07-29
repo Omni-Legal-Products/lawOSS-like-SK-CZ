@@ -44,6 +44,7 @@
   .note{border-left:4px solid var(--gold);background:rgba(201,162,74,.08);padding:12px 16px;border-radius:0 10px 10px 0;margin:12px 0;font-size:14.5px}
   .note.warn{border-color:var(--amber);background:rgba(201,138,26,.10)}
   .note.imp{border-color:var(--violet);background:rgba(124,58,237,.08)}
+  .note.ok{border-color:var(--green);background:rgba(31,157,85,.09)}
   ul.check{list-style:none;padding:0;margin:0}
   ul.check li{padding:9px 9px 9px 34px;position:relative;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--card);font-size:14.5px}
   ul.check li::before{content:"☐";position:absolute;left:12px;top:9px;color:var(--gold);font-size:16px}
@@ -120,10 +121,15 @@
       </ul>
     </div>
     <div class="note warn">
-      ⚠️ <b>Overiť pred rozhodnutím:</b><br>
-      1. <b>Subscription podpora</b> — README hovorí „bring your own model" (Bedrock/Azure/provider), ale <b>nespomína consumer subscription</b> (ChatGPT/Claude Pro). Keďže vyžaduje <code>opencode</code> CLI, <i>pravdepodobne</i> dedí jeho auth — <b>neoverené</b>, a pre náš BYO-subscription zámer je to kľúčové.<br>
-      2. <b>Free modely</b> — README varuje, že free-tier je logovaný: nepoužívať s klientskymi dátami. Pre advokáta = <b>len vlastný model</b>.<br>
-      3. Nie je to GitHub fork opencode, ale kód je <i>derived from upstream MIT source</i> a beží nad <code>opencode</code> CLI.
+      ⚠️ <b>Kľúčové zistenie — subscription má ToS problém.</b> Claude Pro/Max sign-in <b>je</b> implementovaný, ale appka sama varuje:
+      <i>„Anthropic's Consumer Terms limit this OAuth to Claude Code and claude.ai, so third-party use may violate those terms and can be blocked without notice."</i>
+      → <b>API kľúč ako default</b>, subscription len ako informovaná voľba. Nestavať na tom produkt.
+    </div>
+    <div class="note ok">
+      ✅ <b>Overené v kóde (2026-07-29):</b> pôvod <b>Berlín 🇩🇪</b> (nie Taliansko) · <b>on-device transkripcia už hotová</b> (whisper.cpp, parakeet, systémový diktát) ·
+      MCP sekcia v nastaveniach · lokálne modely (Ollama, LM Studio, llama.cpp, vLLM) · <b>open-core</b> (firm deployment platený) ·
+      <b>slovenčina chýba</b> → príležitosť prispieť.
+      <br><b>Plná analýza: <a href="./legalwork.md">legalwork.md</a></b>
     </div>
   </section>
 

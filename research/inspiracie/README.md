@@ -54,11 +54,15 @@ flowchart TB
 - **Rozšíriteľné cez skills, pluginy a MCP konektory** (*Settings → Extensions*) → sem by šli naše SK MCP
 - Telemetria: anonymná, EU-hosted PostHog, **vypnuteľná**; dev buildy neposielajú nič
 
-> [!WARNING]
-> **Dve veci na overenie pred rozhodnutím:**
-> 1. **Subscription podpora** — README uvádza *„bring your own model"* (Bedrock/Azure/provider), ale **nikde explicitne nespomína ChatGPT/Claude consumer subscription**. Keďže LegalWork vyžaduje `opencode` CLI na PATH, *pravdepodobne* dedí opencode auth (Claude Pro/Max, Copilot) — **ale to som neoveril**. Pre náš BYO-subscription zámer je to kľúčové → otestovať.
-> 2. **Free modely** — README varuje, že free-tier usage je logovaný: *„nepoužívať s privilegovanými/klientskymi dátami, len testovanie"*. Pre advokáta = **len s vlastným modelom**.
-> 3. Nie je to GitHub fork opencode (`fork: false`), ale kód je *derived from upstream MIT source* (Different AI, Inc.) a beží nad `opencode` CLI.
+> [!TIP]
+> **✅ OVERENÉ (2026-07-29)** — plná analýza vrátane čítania zdrojového kódu: **[legalwork.md](legalwork.md)**
+>
+> 1. **Subscription podpora: ÁNO** — *Claude Pro/Max* sign-in je implementovaný. **ALE** appka sama varuje, že Anthropic Consumer Terms obmedzujú ten OAuth na Claude Code/claude.ai → *„third-party use may violate those terms and can be blocked without notice"*. **Nestavať na tom produkt.**
+> 2. **Pôvod: Berlín 🇩🇪**, nie Taliansko. Pre nás lepšie — EU jurisdikcia.
+> 3. **Transkripcia už existuje** — on-device (whisper.cpp, parakeet), vrátane systémového diktátu = náš [spec 0001](../../specs/0001-transkripcia.md).
+> 4. **Free modely sú logované** → pre advokáta iba vlastný model.
+> 5. **Open-core**: zadarmo pre jednotlivcov; *firm deployment* (audit log, správa prístupov) je platený.
+> 6. **Slovenčina chýba** (12 jazykov, SK/CZ nie) → príležitosť prispieť do upstreamu.
 
 ## Čo si z čoho zobrať
 
@@ -72,7 +76,9 @@ flowchart TB
 
 ## Ďalšie kroky
 
-- [ ] Otestovať LegalWork: podporuje **existujúcu subscription** (ChatGPT/Claude Pro), alebo len API kľúče?
+- [x] ~~Otestovať LegalWork: podporuje existujúcu subscription?~~ → **overené, viď [legalwork.md](legalwork.md)**
+- [ ] Stiahnuť desktop build a otestovať na reálnom (anonymizovanom) spise
+- [ ] Otestovať kvalitu transkripcie v **slovenčine** (whisper-small / parakeet) s právnou terminológiou
 - [ ] Overiť licenciu Stelly (Apache-2.0?)
 - [ ] Skúsiť pripojiť **jeden náš SK MCP server** (Slov-Lex) do LegalWork Extensions — ak to ide, je to najrýchlejšia cesta k v1
 - [ ] Aktualizovať [ADR 0002](../../decisions/0002-preco-forkujeme-mikeoss.md) podľa výsledku

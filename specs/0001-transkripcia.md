@@ -41,6 +41,9 @@ flowchart LR
 | **Zápis do spisu** | Prepis automaticky do správneho OKF priečinka + záznam v `_STATUS.md` |
 | **Nadväzné spracovanie** | Sumár, extrakcia úloh a lehôt → podľa PROTOKOLU ZÁPISU do `spis.md` / `MEMORY.md` |
 
+> [!TIP]
+> **Nemusíme to stavať od nuly.** [LegalWork](../research/inspiracie/legalwork.md) má on-device transkripciu **už hotovú** — `whisper.cpp`, `whisper-small/tiny`, `parakeet`, vrátane **systémového diktátu** a nahrávania porád, všetko lokálne. Ak pôjdeme touto cestou, náš príspevok je **kvalita v slovenčine + naviazanie na OKF spis**, nie samotná transkripcia.
+
 ## Otvorené otázky
 
 - [ ] Kvalita Whisper na slovenčine s právnou terminológiou — otestovať na reálnej nahrávke

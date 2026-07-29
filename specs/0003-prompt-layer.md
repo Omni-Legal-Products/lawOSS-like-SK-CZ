@@ -39,9 +39,20 @@ Druhý problém: uzavreté appky **šetria na modeloch** (lacnejší model = ni�
 | Kritické (podania, zmluvy) | **prémiový** — racionálne zaplatiť |
 | Nízkorizikové (OCR, prepis, sumár) | **lacné / lokálne** (napr. Mistral OCR na PDF→Markdown) |
 
+## ⚠️ ToS subscriptions — čiastočne zodpovedané (2026-07-29)
+
+Overili sme to na [LegalWork](../research/inspiracie/legalwork.md), ktorý *Claude Pro/Max* sign-in **má implementovaný** — a zároveň k nemu zobrazuje varovanie:
+
+> *„Anthropic's Consumer Terms limit this OAuth to Claude Code and claude.ai, so **third-party use may violate those terms and can be blocked without notice**. For reliable, permitted access, use an API key instead."*
+
+**Dôsledok pre nás:** téza *„research za ~20 €/mes. cez subscription namiesto stoviek € cez API"* technicky funguje, ale stojí na tenkom ľade — poskytovateľ to môže kedykoľvek zablokovať a je to na hrane jeho podmienok.
+
+> [!IMPORTANT]
+> **Odporúčanie:** **API kľúč / lokálny model = default.** Subscription ponúknuť ako *informovanú voľbu používateľa* s rovnakým varovaním. Ako advokáti nemôžeme kolegom odporúčať postup, ktorý porušuje ToS tretej strany — a už vôbec nie na workshope, kde za to nesieme reputačnú zodpovednosť.
+
 ## Otvorené otázky
 
-- [ ] **ToS subscriptions** — sprostredkované používanie ChatGPT Team/Pro cez našu appku: kde je hranica? Neobchádzať podmienky. *(Sme advokáti — mali by sme si to vedieť posúdiť sami.)*
+- [ ] Preveriť to isté pre **OpenAI/ChatGPT** podmienky (Anthropic máme overený)
 - [ ] Zdieľanie prompt knižnice v komunite (kancelárie si vymieňajú overené prompty?)
 - [ ] Ako spraviť prompt editor použiteľný pre netechnického advokáta — nie textové pole s XML
 - [ ] Default prompty: dodáme „dobré východisko", ale musí byť zrejmé, že sa dá zmeniť

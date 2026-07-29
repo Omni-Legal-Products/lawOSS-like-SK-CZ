@@ -122,6 +122,8 @@ mikeOSS-SLOVAKIA/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
+│   │   ├── audio/
+│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -131,6 +133,7 @@ mikeOSS-SLOVAKIA/
 │   │   ├── 2026-07-29-orchestrator-transkripcia-byo-subscriptions.md
 │   │   └── README.md
 │   ├── inspiracie/
+│   │   ├── legalwork.md
 │   │   ├── porovnanie.html
 │   │   └── README.md
 │   ├── mcp-servery/
@@ -183,10 +186,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**40 commitov** · **44 súborov**
+**41 commitov** · **44 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `38b7f0b` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `39f79d8` | 2026-07-29 | Marián Čuprík | docs: grafický HTML prehľad features v1 + OKF ide von ako OSS (rozhodnuté) |
 | `44a4a1d` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `4b88b10` | 2026-07-29 | Marián Čuprík | specs: 4 kandidáti na v1 — transkripcia, OKF, prompt layer, SK MCP |
@@ -194,12 +198,11 @@ flowchart LR
 | `9d6957f` | 2026-07-29 | Marián Čuprík | research: LegalWork ako tretí kandidát + strategické idey (BYO subscriptions, orchestrátor) |
 | `201b1bb` | 2026-07-10 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `d7c9729` | 2026-07-10 | Marián Čuprík | docs(ADR): 0002 — prečo forkujeme mikeOSS (rich markdown + HTML) |
-| `e6560fa` | 2026-07-10 | github-actions[bot] | docs: auto-update README [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-29 17:02 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-29 17:08 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
