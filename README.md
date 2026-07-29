@@ -122,8 +122,6 @@ mikeOSS-SLOVAKIA/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
-│   │   ├── audio/
-│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -187,10 +185,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**43 commitov** · **45 súborov**
+**44 commitov** · **47 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `828cb55` | 2026-07-29 | Marián Čuprík | feat: evidencia návrhov funkcií (MČ · MF · IR) + hybrid routing ako návrh MČ |
 | `156ff1f` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `542808b` | 2026-07-29 | Marián Čuprík | research: hĺbková analýza LegalWork — subscription overená v kóde (ToS problém) |
 | `38b7f0b` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
@@ -198,7 +197,6 @@ flowchart LR
 | `44a4a1d` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `4b88b10` | 2026-07-29 | Marián Čuprík | specs: 4 kandidáti na v1 — transkripcia, OKF, prompt layer, SK MCP |
 | `40ed27b` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `9d6957f` | 2026-07-29 | Marián Čuprík | research: LegalWork ako tretí kandidát + strategické idey (BYO subscriptions, orchestrátor) |
 <!-- /AUTO:ACTIVITY -->
 
 ---
