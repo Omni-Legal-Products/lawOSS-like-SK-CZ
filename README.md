@@ -122,8 +122,6 @@ mikeOSS-SLOVAKIA/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
-│   │   ├── audio/
-│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -188,10 +186,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**45 commitov** · **47 súborov**
+**46 commitov** · **49 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `eae4e7b` | 2026-07-29 | Marián Čuprík | docs: pravidlá spolupráce — AGENTS.md prepísaný, CONTRIBUTING.md, PR šablóna |
 | `063cf95` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `828cb55` | 2026-07-29 | Marián Čuprík | feat: evidencia návrhov funkcií (MČ · MF · IR) + hybrid routing ako návrh MČ |
 | `156ff1f` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
@@ -199,7 +198,6 @@ flowchart LR
 | `38b7f0b` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `39f79d8` | 2026-07-29 | Marián Čuprík | docs: grafický HTML prehľad features v1 + OKF ide von ako OSS (rozhodnuté) |
 | `44a4a1d` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `4b88b10` | 2026-07-29 | Marián Čuprík | specs: 4 kandidáti na v1 — transkripcia, OKF, prompt layer, SK MCP |
 <!-- /AUTO:ACTIVITY -->
 
 ---
