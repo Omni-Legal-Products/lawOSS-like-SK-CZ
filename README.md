@@ -146,8 +146,6 @@ mikeOSS-SLOVAKIA/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
-│   │   ├── audio/
-│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -212,18 +210,18 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**50 commitov** · **49 súborov**
+**52 commitov** · **49 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `b9a4b53` | 2026-07-29 | Marián Čuprík | Merge branch 'main' of https://github.com/originalmagneto/mikeOSS-SLOVAKIA |
 | `7775505` | 2026-07-29 | Marián Čuprík | docs: README a vízia prepísané — základ ako otvorená voľba s pomenovaným trade-offom |
+| `841859f` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `4508928` | 2026-07-29 | Marián Čuprík | docs: zdokumentovaná ochrana vetvy main (zákaz force-push a mazania) |
 | `7fb4353` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `cda4439` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `eae4e7b` | 2026-07-29 | Marián Čuprík | docs: pravidlá spolupráce — AGENTS.md prepísaný, CONTRIBUTING.md, PR šablóna |
 | `063cf95` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `828cb55` | 2026-07-29 | Marián Čuprík | feat: evidencia návrhov funkcií (MČ · MF · IR) + hybrid routing ako návrh MČ |
-| `156ff1f` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
