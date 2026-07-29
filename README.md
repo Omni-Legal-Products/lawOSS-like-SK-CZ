@@ -212,10 +212,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**49 commitov** · **49 súborov**
+**50 commitov** · **49 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `7775505` | 2026-07-29 | Marián Čuprík | docs: README a vízia prepísané — základ ako otvorená voľba s pomenovaným trade-offom |
 | `4508928` | 2026-07-29 | Marián Čuprík | docs: zdokumentovaná ochrana vetvy main (zákaz force-push a mazania) |
 | `7fb4353` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `cda4439` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
@@ -223,7 +224,6 @@ flowchart LR
 | `063cf95` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `828cb55` | 2026-07-29 | Marián Čuprík | feat: evidencia návrhov funkcií (MČ · MF · IR) + hybrid routing ako návrh MČ |
 | `156ff1f` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `542808b` | 2026-07-29 | Marián Čuprík | research: hĺbková analýza LegalWork — subscription overená v kóde (ToS problém) |
 <!-- /AUTO:ACTIVITY -->
 
 ---

@@ -3,3 +3,6 @@ research/deep-research/audio/
 *.m4a
 *.mp3
 *.mp4
+
+# macOS
+.DS_Store
