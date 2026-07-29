@@ -6,6 +6,8 @@ Kandidáti na **v1** — evidencia nápadov, ktoré dozreli z brainstormingu
 
 </div>
 
+> 🌐 **Grafický prehľad:** [prehlad.html](prehlad.html) — [živá verzia](https://originalmagneto.github.io/mikeOSS-SLOVAKIA/specs/prehlad.html)
+
 | # | Spec | Stav | Poznámka |
 |---|---|---|---|
 | 0001 | [Transkripcia](0001-transkripcia.md) | návrh | hovory, porady, diktát → priamo do spisu |

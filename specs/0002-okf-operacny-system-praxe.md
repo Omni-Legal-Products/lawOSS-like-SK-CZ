@@ -57,8 +57,14 @@ flowchart TB
 3. **Predajné na workshopoch** — „naučíme vás poriadok v praxi" je vzdelávací produkt, ktorý stojí na vlastných nohách (a je to náš monetizačný model podľa [ADR 0002](../decisions/0002-preco-forkujeme-mikeoss.md)).
 4. **Nekopírovateľné narýchlo** — Harvey ani Legora vám neusporiada prax podľa slovenských zvyklostí.
 
+## Rozhodnuté
+
+> [!NOTE]
+> **OKF ide von ako open-source — bez obmedzení.** `novy-spis` je Mariánova implementácia OKF systému; dáva ju k dispozícii celú, vrátane ďalšieho vývoja a vylepšovania. *(rozhodnuté 2026-07-29)*
+
+Dôsledok: OKF môže byť zároveň **implementácia aj dokumentovaný štandard** — a stáva sa tým prirodzeným základom v1.
+
 ## Otvorené otázky
 
-- [ ] Licencia a forma zverejnenia OKF (je to Mariánova existujúca práca — dať do OSS celé, alebo len špecifikáciu?)
-- [ ] OKF ako **štandard** (dokumentovaná špecifikácia) vs len implementácia?
 - [ ] Multi-user: ako to funguje, keď v spise pracujú traja ľudia naraz?
+- [ ] Publikovať OKF špecifikáciu samostatne (aby ju vedel implementovať aj niekto iný)?
