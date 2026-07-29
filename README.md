@@ -122,8 +122,6 @@ mikeOSS-SLOVAKIA/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
-│   │   ├── audio/
-│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -185,10 +183,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**39 commitov** · **43 súborov**
+**40 commitov** · **44 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `39f79d8` | 2026-07-29 | Marián Čuprík | docs: grafický HTML prehľad features v1 + OKF ide von ako OSS (rozhodnuté) |
 | `44a4a1d` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `4b88b10` | 2026-07-29 | Marián Čuprík | specs: 4 kandidáti na v1 — transkripcia, OKF, prompt layer, SK MCP |
 | `40ed27b` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
@@ -196,7 +195,6 @@ flowchart LR
 | `201b1bb` | 2026-07-10 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `d7c9729` | 2026-07-10 | Marián Čuprík | docs(ADR): 0002 — prečo forkujeme mikeOSS (rich markdown + HTML) |
 | `e6560fa` | 2026-07-10 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `4bc3c74` | 2026-07-10 | Marián Čuprík | docs: regenerácia README po merge |
 <!-- /AUTO:ACTIVITY -->
 
 ---
