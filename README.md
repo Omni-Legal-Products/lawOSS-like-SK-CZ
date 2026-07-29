@@ -122,8 +122,6 @@ mikeOSS-SLOVAKIA/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
-│   │   ├── audio/
-│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -179,10 +177,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**35 commitov** · **33 súborov**
+**36 commitov** · **38 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `9d6957f` | 2026-07-29 | Marián Čuprík | research: LegalWork ako tretí kandidát + strategické idey (BYO subscriptions, orchestrátor) |
 | `201b1bb` | 2026-07-10 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `d7c9729` | 2026-07-10 | Marián Čuprík | docs(ADR): 0002 — prečo forkujeme mikeOSS (rich markdown + HTML) |
 | `e6560fa` | 2026-07-10 | github-actions[bot] | docs: auto-update README [skip ci] |
@@ -190,7 +189,6 @@ flowchart LR
 | `699ea51` | 2026-07-10 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/mikeOSS-SLOVAKIA |
 | `ecd57c3` | 2026-07-10 | Marián Čuprík | docs: odkaz na deep-research (report, živý HTML, audio) v hlavnom README |
 | `3b431a3` | 2026-07-10 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `f8a11e0` | 2026-07-10 | Marián Čuprík | chore: .nojekyll — GitHub Pages servuje HTML report priamo |
 <!-- /AUTO:ACTIVITY -->
 
 ---
