@@ -91,7 +91,7 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 <!-- AUTO:PROGRESS -->
 | Súbor | Progress | Hotovo |
 |---|---|---|
-| [`backlog.md`](planning/backlog.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/5 (0 %) |
+| [`backlog.md`](planning/backlog.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/15 (0 %) |
 | [`roadmap.md`](planning/roadmap.md) | `██░░░░░░░░░░░░░░░░░░` | 2/17 (12 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
@@ -122,6 +122,8 @@ mikeOSS-SLOVAKIA/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
+│   │   ├── audio/
+│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -138,6 +140,11 @@ mikeOSS-SLOVAKIA/
 │   ├── pravny-ramec/
 │   └── sk-datove-zdroje/
 ├── specs/
+│   ├── 0001-transkripcia.md
+│   ├── 0002-okf-operacny-system-praxe.md
+│   ├── 0003-prompt-layer.md
+│   ├── 0004-mcp-sk-konektory.md
+│   ├── README.md
 │   └── template.md
 ├── AGENTS.md
 ├── CLAUDE.md
@@ -177,10 +184,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**36 commitov** · **38 súborov**
+**37 commitov** · **38 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `40ed27b` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `9d6957f` | 2026-07-29 | Marián Čuprík | research: LegalWork ako tretí kandidát + strategické idey (BYO subscriptions, orchestrátor) |
 | `201b1bb` | 2026-07-10 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `d7c9729` | 2026-07-10 | Marián Čuprík | docs(ADR): 0002 — prečo forkujeme mikeOSS (rich markdown + HTML) |
@@ -188,12 +196,11 @@ flowchart LR
 | `4bc3c74` | 2026-07-10 | Marián Čuprík | docs: regenerácia README po merge |
 | `699ea51` | 2026-07-10 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/mikeOSS-SLOVAKIA |
 | `ecd57c3` | 2026-07-10 | Marián Čuprík | docs: odkaz na deep-research (report, živý HTML, audio) v hlavnom README |
-| `3b431a3` | 2026-07-10 | github-actions[bot] | docs: auto-update README [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-29 16:50 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-29 16:58 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
