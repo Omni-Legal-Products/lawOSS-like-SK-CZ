@@ -163,7 +163,7 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 <!-- AUTO:PROGRESS -->
 | Súbor | Progress | Hotovo |
 |---|---|---|
-| [`backlog.md`](planning/backlog.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/16 (0 %) |
+| [`backlog.md`](planning/backlog.md) | `█░░░░░░░░░░░░░░░░░░░` | 1/19 (5 %) |
 | [`roadmap.md`](planning/roadmap.md) | `██░░░░░░░░░░░░░░░░░░` | 2/17 (12 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
@@ -197,6 +197,8 @@ lawOSS-like-SK-CZ/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
+│   │   ├── audio/
+│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -218,6 +220,7 @@ lawOSS-like-SK-CZ/
 │   ├── 0002-okf-operacny-system-praxe.md
 │   ├── 0003-prompt-layer.md
 │   ├── 0004-mcp-sk-konektory.md
+│   ├── 0005-lehoty-timeline.md
 │   ├── navrhy.md
 │   ├── prehlad.html
 │   ├── README.md
@@ -261,23 +264,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**70 commitov** · **52 súborov**
+**73 commitov** · **53 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `08c6b72` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
+| `5a86429` | 2026-07-30 | Marián Čuprík | specs: 0005 Lehoty & timeline (MF, Issue #1) + zúžený alfa scope |
+| `5404609` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `e46789d` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
 | `0bb2d72` | 2026-07-30 | Marián Čuprík | specs: zaevidovaný návrh MF — Attorney workflow MVP (Issue #1) |
 | `8fde62e` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `dc82a58` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
 | `f91cf7b` | 2026-07-30 | Marián Čuprík | assets: logo, mockup a moodboard LAWOSS |
-| `9c51bf0` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `340c7b6` | 2026-07-30 | Marián Čuprík | chore: regenerácia README po merge |
-| `e04647c` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 15:57 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 16:08 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
