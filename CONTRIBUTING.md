@@ -5,8 +5,8 @@
 ## Rýchly štart
 
 ```bash
-git clone https://github.com/originalmagneto/mikeOSS-SLOVAKIA.git
-cd mikeOSS-SLOVAKIA
+git clone https://github.com/originalmagneto/lawOSS-like-SK-CZ.git
+cd lawOSS-like-SK-CZ
 ```
 
 Potom si **prečítaj [`AGENTS.md`](AGENTS.md)** — je to jediný súbor, ktorý potrebuješ.
@@ -22,7 +22,7 @@ Ak používaš AI agenta (Claude Code, Codex…), načíta si ho sám (`CLAUDE.m
 
 Netreba písať markdown ani robiť PR:
 
-👉 **[Podaj návrh cez formulár](https://github.com/originalmagneto/mikeOSS-SLOVAKIA/issues/new?template=feature-navrh.yml)**
+👉 **[Podaj návrh cez formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)**
 
 Po prerokovaní ho prepíšeme do [`specs/`](specs/) a zapíšeme do [`specs/navrhy.md`](specs/navrhy.md) s tvojím menom.
 

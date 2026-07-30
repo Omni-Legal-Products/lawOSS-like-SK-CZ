@@ -7,7 +7,7 @@ Kto čo navrhol, v akom je to stave a kde to žije
 </div>
 
 > [!TIP]
-> **Chceš podať návrh?** Najjednoduchšie cez GitHub — [**Nový návrh funkcie →**](https://github.com/originalmagneto/mikeOSS-SLOVAKIA/issues/new?template=feature-navrh.yml)
+> **Chceš podať návrh?** Najjednoduchšie cez GitHub — [**Nový návrh funkcie →**](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)
 > Netreba nič programovať, je to formulár. Dá sa aj z mobilu. Po prerokovaní ho prepíšeme do `specs/`.
 
 ## Kto je kto
@@ -32,7 +32,7 @@ Kto čo navrhol, v akom je to stave a kde to žije
 
 | Stav | Význam |
 |---|---|
-| 💭 nápad | surový, ešte nediskutovaný (patrí do [Issues](https://github.com/originalmagneto/mikeOSS-SLOVAKIA/issues)) |
+| 💭 nápad | surový, ešte nediskutovaný (patrí do [Issues](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues)) |
 | 📝 návrh | rozpísaný v `specs/`, čaká na prerokovanie |
 | ✅ schválené | zhoda všetkých troch → ide do v1 |
 | ⏸️ odložené | dobrý nápad, ale nie teraz |
@@ -50,7 +50,7 @@ flowchart LR
     S --> A["✅ Schválené → v1"]
 ```
 
-1. **Nápad** hoď do Telegramu alebo rovno ako [GitHub Issue](https://github.com/originalmagneto/mikeOSS-SLOVAKIA/issues/new?template=feature-navrh.yml).
+1. **Nápad** hoď do Telegramu alebo rovno ako [GitHub Issue](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml).
 2. **Prerokujeme** traja (Telegram / stretko).
 3. Ak je zhoda → **rozpíše sa ako spec** v `specs/` a pridá riadok do tabuľky vyššie.
 4. Autorstvo sa **vždy uvádza** — v specu aj tu. Aj pri zamietnutých návrhoch (aby sa nevracali dokola).

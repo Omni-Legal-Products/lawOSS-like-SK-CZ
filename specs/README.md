@@ -6,8 +6,8 @@ Kandidáti na **v1** — evidencia nápadov, ktoré dozreli z brainstormingu
 
 </div>
 
-> 🌐 **Grafický prehľad:** [prehlad.html](prehlad.html) — [živá verzia](https://originalmagneto.github.io/mikeOSS-SLOVAKIA/specs/prehlad.html)
-> 💡 **Evidencia návrhov (kto čo navrhol):** [navrhy.md](navrhy.md) · [**podať nový návrh →**](https://github.com/originalmagneto/mikeOSS-SLOVAKIA/issues/new?template=feature-navrh.yml)
+> 🌐 **Grafický prehľad:** [prehlad.html](prehlad.html) — [živá verzia](https://originalmagneto.github.io/lawOSS-like-SK-CZ/specs/prehlad.html)
+> 💡 **Evidencia návrhov (kto čo navrhol):** [navrhy.md](navrhy.md) · [**podať nový návrh →**](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)
 
 | # | Spec | Navrhol | Stav | Poznámka |
 |---|---|---|---|---|

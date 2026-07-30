@@ -135,7 +135,7 @@ assets/       obrázky, diagramy, brand
 |---|---|---|
 | **Auto-README** | [`.github/workflows/update-readme.yml`](.github/workflows/update-readme.yml) | po pushi prepíše AUTO sekcie (progress, strom, aktivita) a **sám commitne** |
 | **Telegram notifikácie** | [`.github/workflows/telegram-notify.yml`](.github/workflows/telegram-notify.yml) | push/issue/PR/release → topic *SK Mike GH*. Secrets: `TELEGRAM_TOKEN`, `TELEGRAM_CHAT_ID`; premenná `TELEGRAM_TOPIC_ID` |
-| **GitHub Pages** | z `main`, root, `.nojekyll` | HTML dokumenty sú živé na `originalmagneto.github.io/mikeOSS-SLOVAKIA/...` |
+| **GitHub Pages** | z `main`, root, `.nojekyll` | HTML dokumenty sú živé na `originalmagneto.github.io/lawOSS-like-SK-CZ/...` |
 
 **Lokálne si vieš README pregenerovať:** `python3 .github/scripts/update_readme.py`
 
@@ -155,7 +155,7 @@ assets/       obrázky, diagramy, brand
 
 ## 🔗 Odkazy
 
-- **Repo:** https://github.com/originalmagneto/mikeOSS-SLOVAKIA
+- **Repo:** https://github.com/originalmagneto/lawOSS-like-SK-CZ
 - **Kandidáti na základ:** [mikeOSS](https://github.com/Open-Legal-Products/mike) · Stella (CZ) · [LegalWork](https://github.com/eigenweltlabs/legalwork)
-- **Podať návrh funkcie:** [formulár](https://github.com/originalmagneto/mikeOSS-SLOVAKIA/issues/new?template=feature-navrh.yml)
+- **Podať návrh funkcie:** [formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)
 - **Komunikácia:** Telegram *MikeOSS (SLOVAKIA) + AI Frontier Labs* — topics: General CHAT · SK Mike GH · DESIGN · Research · AI Frontier Labs

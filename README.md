@@ -92,8 +92,8 @@ Ranný náčrt značky a produktu — logo (monogram „M" s váhami spravodlivo
 Prvý **deep-research** balík (NotebookLM, 245 zdrojov, 6 kôl) o open-source AI pre slovenskú advokáciu — MCP servery, anonymizácia (MasKIT/Stella), integrácia vlastného a lokálneho API (BYOK), a compliance (SAK 2025, EU AI Act).
 
 - 📊 **Grafický report (rich markdown):** [research/deep-research/](research/deep-research/)
-- 🌐 **Živý HTML report:** [originalmagneto.github.io/mikeOSS-SLOVAKIA/research/deep-research/report.html](https://originalmagneto.github.io/mikeOSS-SLOVAKIA/research/deep-research/report.html)
-- 🎧 **Audio podcast (SK):** [Releases](https://github.com/originalmagneto/mikeOSS-SLOVAKIA/releases/tag/research-2026-07-10)
+- 🌐 **Živý HTML report:** [originalmagneto.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html](https://originalmagneto.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html)
+- 🎧 **Audio podcast (SK):** [Releases](https://github.com/originalmagneto/lawOSS-like-SK-CZ/releases/tag/research-2026-07-10)
 
 ## 🗺️ Roadmapa
 
@@ -212,23 +212,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**50 commitov** · **49 súborov**
+**52 commitov** · **49 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `b9a4b53` | 2026-07-29 | Marián Čuprík | Merge branch 'main' of https://github.com/originalmagneto/mikeOSS-SLOVAKIA |
 | `7775505` | 2026-07-29 | Marián Čuprík | docs: README a vízia prepísané — základ ako otvorená voľba s pomenovaným trade-offom |
+| `841859f` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `4508928` | 2026-07-29 | Marián Čuprík | docs: zdokumentovaná ochrana vetvy main (zákaz force-push a mazania) |
 | `7fb4353` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `cda4439` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `eae4e7b` | 2026-07-29 | Marián Čuprík | docs: pravidlá spolupráce — AGENTS.md prepísaný, CONTRIBUTING.md, PR šablóna |
 | `063cf95` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `828cb55` | 2026-07-29 | Marián Čuprík | feat: evidencia návrhov funkcií (MČ · MF · IR) + hybrid routing ako návrh MČ |
-| `156ff1f` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-29 19:07 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 11:23 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
