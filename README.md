@@ -197,8 +197,6 @@ lawOSS-like-SK-CZ/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
-│   │   ├── audio/
-│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -264,10 +262,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**73 commitov** · **53 súborov**
+**74 commitov** · **53 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `f5f2d96` | 2026-07-30 | Marián Čuprík | chore: regenerácia README |
 | `08c6b72` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
 | `5a86429` | 2026-07-30 | Marián Čuprík | specs: 0005 Lehoty & timeline (MF, Issue #1) + zúžený alfa scope |
 | `5404609` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
@@ -275,12 +274,11 @@ flowchart LR
 | `0bb2d72` | 2026-07-30 | Marián Čuprík | specs: zaevidovaný návrh MF — Attorney workflow MVP (Issue #1) |
 | `8fde62e` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `dc82a58` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
-| `f91cf7b` | 2026-07-30 | Marián Čuprík | assets: logo, mockup a moodboard LAWOSS |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 16:08 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 16:09 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
