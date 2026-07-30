@@ -260,18 +260,18 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**59 commitov** · **49 súborov**
+**63 commitov** · **49 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `e04647c` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
+| `e37c329` | 2026-07-30 | Marián Čuprík | feat: rebrand na LAWOSS (Czechia · Slovakia) + MikeOSS featured ako inšpirácia |
+| `357fa8c` | 2026-07-30 | Marián Čuprík | feat: rebrand na LAWOSS (Czechia · Slovakia) + MikeOSS featured ako inšpirácia |
+| `9a20480` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `cf8df93` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
 | `832e673` | 2026-07-30 | Marián Čuprík | fix: generátor README berie názov repa z git remote (prežije premenovanie) |
 | `482e25a` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `cd6d2f5` | 2026-07-30 | Marián Čuprík | chore: regenerácia README po merge |
-| `3d1ff06` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
-| `2b61c4d` | 2026-07-30 | Marián Čuprík | fix: aktualizované URL po premenovaní repa na lawOSS-like-SK-CZ |
-| `672545b` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `b9a4b53` | 2026-07-29 | Marián Čuprík | Merge branch 'main' of https://github.com/originalmagneto/mikeOSS-SLOVAKIA |
 <!-- /AUTO:ACTIVITY -->
 
 ---
