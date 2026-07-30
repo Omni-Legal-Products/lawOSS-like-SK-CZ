@@ -29,6 +29,13 @@ Dva prvky, ktoré priamo napĺňajú specy:
 - **`Lokálny · Cloud · Auto`** prepínač pri AI asistentovi → [hybrid routing](../specs/0003-prompt-layer.md#-hybrid-routing--rozdelenie-podľa-vrstvy)
 - **OKF status „Validovaná štruktúra 92 %"** so zoznamom riadiacich súborov (`spis.md`, `_STATUS.md`, `AGENTS.md`, `MEMORY.md`) → [spec 0002](../specs/0002-okf-operacny-system-praxe.md)
 
+## Moodboard
+
+<img src="../assets/brand/moodboard.png" alt="LAWOSS — moodboard" width="100%" />
+
+> [!NOTE]
+> Moodboard je **starší variant** — nesie wordmark „LAWOSS SLOVAKIA" (bez *Czechia*) a odkaz `t.me/LawOSS_Slovakia`. Aktuálny je logo odznak s **CZECHIA · SLOVAKIA**. Moodboard drží paletu a atmosféru, nie presné znenie značky.
+
 ## Farebná paleta
 
 | Farba | Použitie | Hex (orientačne) |
