@@ -26,6 +26,7 @@ Kto čo navrhol, v akom je to stave a kde to žije
 | 2 | OKF — operačný systém advokátskej praxe | **MČ** | 2026-07-29 | 📝 návrh · ⭐ vysoká priorita | [spec 0002](0002-okf-operacny-system-praxe.md) |
 | 3 | Otvorený prompt layer (žiadny black box) | **MČ** | 2026-07-29 | 📝 návrh | [spec 0003](0003-prompt-layer.md) |
 | 4 | SK MCP konektory (judikatúra, Slov-Lex, registre) | **MČ** | 2026-07-29 | 📝 návrh | [spec 0004](0004-mcp-sk-konektory.md) |
+| 6 | **Attorney workflow MVP** — lehoty a povinnosti, conflict check, research ledger s overením citácií, dokumentový workflow (OCR/DOCX/redline), control plane pre mlčanlivosť | **MF** | 2026-07-30 | 💭 na prerokovanie | [Issue #1](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/1) |
 | 5 | **Hybrid routing** — lokálny model pre OKF, subscription pre rešerš, anonymizácia pred assessmentom | **MČ** | 2026-07-29 | 📝 na prerokovanie | [spec 0003 §hybrid](0003-prompt-layer.md#-hybrid-routing--rozdelenie-podľa-vrstvy) |
 
 ### Legenda stavov
@@ -56,4 +57,4 @@ flowchart LR
 4. Autorstvo sa **vždy uvádza** — v specu aj tu. Aj pri zamietnutých návrhoch (aby sa nevracali dokola).
 
 > [!NOTE]
-> Zatiaľ sú všetky návrhy od MČ, lebo repo vzniklo dnes. Martin a Igor — pridávajte cez ten formulár, alebo len napíšte do Telegramu a zapíšeme to.
+> Prvý návrh mimo MČ prišiel **30. 7. 2026 od MF** cez formulár ([Issue #1](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/1)) — presne takto to má fungovať. Igor, pridávaj rovnako, alebo napíš do Telegramu a zapíšeme to.
