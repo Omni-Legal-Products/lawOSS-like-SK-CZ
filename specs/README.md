@@ -15,6 +15,7 @@ Kandidáti na **v1** — evidencia nápadov, ktoré dozreli z brainstormingu
 | 0002 | [**OKF — operačný systém praxe**](0002-okf-operacny-system-praxe.md) | MČ | návrh · **vysoká priorita** | ⭐ jadro odlíšenia; veľká časť už existuje (`novy-spis`) |
 | 0003 | [Prompt layer](0003-prompt-layer.md) | MČ | návrh | žiadny black box + [hybrid routing](0003-prompt-layer.md#-hybrid-routing--rozdelenie-podľa-vrstvy) |
 | 0004 | [SK MCP konektory](0004-mcp-sk-konektory.md) | MČ | návrh | judikatúra, Slov-Lex, registre — väčšina už beží |
+| 0005 | [**Lehoty & timeline spisu**](0005-lehoty-timeline.md) | MF *(+MČ)* | rozpracované | ⭐ kandidát na alfu #1 — povinné potvrdenie advokátom |
 
 ## Ako to spolu drží
 

@@ -3,6 +3,12 @@
 Surové nápady patria do GitHub Issues/Discussions — sem sa dostáva to, čo prežilo diskusiu.
 Dozreté položky majú vlastnú špecifikáciu v [specs/](../specs/).
 
+## 🚀 Alfa — vydať ASAP (zúžený scope)
+
+- [ ] ⏰ **Lehoty + kalendár** → [spec 0005](../specs/0005-lehoty-timeline.md) *(MF; kandidát #1)*
+- [ ] 📁 **OKF + prijatie veci s conflict checkom** (ORSR/RPO MCP už bežia)
+- [ ] 📄 **OCR ingest → markdown** — Mistral OCR quick win (existujúca Quick Action MČ)
+
 ## Kandidáti na v1 (majú spec)
 
 - [ ] 📁 **OKF — operačný systém advokátskej praxe** → [spec 0002](../specs/0002-okf-operacny-system-praxe.md) *(vysoká priorita, jadro odlíšenia)*
@@ -23,7 +29,7 @@ Dozreté položky majú vlastnú špecifikáciu v [specs/](../specs/).
 
 - [ ] Anonymizácia / sanitizačný filter pred LLM (MasKIT + SK regex: rodné číslo, IBAN)
 - [ ] SK šablóny podaní a zmlúv
-- [ ] Mistral OCR — PDF → Markdown pre naskenované spisy
+- [x] Mistral OCR — PDF → Markdown: presunuté do alfy (quick win, existujúca Quick Action)
 
 ## Rozhodnúť
 
