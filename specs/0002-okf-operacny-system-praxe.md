@@ -18,7 +18,7 @@ Appka **presadzuje a učí** štruktúru — zakladá priečinky, generuje riadi
 
 ```mermaid
 flowchart TB
-    U["👩‍⚖️ „Nový spis: Novák ⁄ rozvod"] --> APP["MikeOSS SK"]
+    U["👩‍⚖️ „Nový spis: Novák ⁄ rozvod"] --> APP["LAWOSS"]
     APP --> V["🔍 Overenie subjektov<br/>ORSR / RPO cez MCP<br/><i>žiadne údaje z hlavy</i>"]
     V --> F["📁 Založí OKF štruktúru"]
     F --> K["klient.md / spis.md<br/>(karta veci)"]

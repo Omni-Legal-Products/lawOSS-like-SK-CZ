@@ -1,23 +1,33 @@
-# Vizuálny koncept — MIKE OSS Slovakia
+# Vizuálny koncept — LAWOSS
 
 > [!NOTE]
-> Ide o **ranný vizuálny koncept / moodboard**, nie o schválený finálny dizajn. Slúži ako smerovanie značky a UI. Záväzné rozhodnutia o brandingu patria do [ADR](../decisions/).
-
-## Moodboard
-
-<!-- Nahrajte obrázok moodboardu do assets/brand/moodboard.png a zobrazí sa tu automaticky. -->
-![MIKE OSS Slovakia — moodboard](../assets/brand/moodboard.png)
+> Vizuálny koncept a smerovanie značky. Logo je **aktuálne** (2026-07-29); rozhranie je **koncept, nie finálny dizajn**. Záväzné rozhodnutia o brandingu patria do [ADR](../decisions/).
 
 ## Značka
 
-<!-- Nahrajte logo do assets/brand/logo.png a zobrazí sa tu. -->
-<img src="../assets/brand/logo.png" alt="MIKE OSS Slovakia — logo" width="220" align="right" />
+<img src="../assets/brand/logo.png" alt="LAWOSS — logo" width="200" align="right" />
 
-- **Názov:** MIKE OSS SLOVAKIA
-- **Logo:** okrúhly odznak — monogram „M" v tvare koruny, so symbolom váh spravodlivosti hore a antickým stĺpom v strede; zlatá na tmavo-námorníckom podklade so zlatým lemom.
-- **Claim v logu:** *KOMUNITA PRE ADVOKÁTOV*
-- **Podtitul:** *Telegram komunita pre advokátov* — `t.me/mikeoss_slovakia`
-- **Positioning:** *„Navrhnuté advokátmi pre advokátov"* — otvorená komunita advokátov a právnych profesionálov, ktorí zdieľajú vedomosti a moderné nástroje pre efektívnu právnu prax.
+- **Názov:** **LAWOSS** — *Czechia · Slovakia*
+- **Claim v logu:** `AI · KOMUNITA · KNOW-HOW`
+- **Tagline:** *AI nástroje pre moderného advokáta*
+- **Podtitul:** *Poriadok v spise. Overené právo. AI pod kontrolou.*
+- **Logo:** okrúhly odznak so zlatým lemom na tmavo-námorníckom podklade. V strede **hexagonálny štít** obopínajúci **váhy spravodlivosti** a **antický stĺp** (symbol práva a stability). Pod wordmarkom **štítky s českou a slovenskou vlajkou** — dvojjurisdikčný záber.
+- **Wordmark:** `LAW` biely + `OSS` zlatý — zdôrazňuje open-source podstatu.
+- **Positioning:** open-source nástroj a komunita advokátov v ČR a SR; *dáta zostávajú u advokáta*.
+
+> [!TIP]
+> Rozdelenie `LAW` (biele) / `OSS` (zlaté) je nosný prvok značky — používaj ho konzistentne aj v textových logách a prezentáciách.
+
+## Rozhranie — koncept
+
+<!-- Nahrajte mockup do assets/brand/mockup.png -->
+<img src="../assets/brand/mockup.png" alt="LAWOSS — koncept rozhrania" width="100%" />
+
+**Moduly v koncepte:** Prehľad · Spisy · Rešerš · Transkripcia · Dokumenty · Úlohy · Kalendár · Klienti · **Prompty** · **Konektory** · AI Asistent *(BETA)* · Nastavenia
+
+Dva prvky, ktoré priamo napĺňajú specy:
+- **`Lokálny · Cloud · Auto`** prepínač pri AI asistentovi → [hybrid routing](../specs/0003-prompt-layer.md#-hybrid-routing--rozdelenie-podľa-vrstvy)
+- **OKF status „Validovaná štruktúra 92 %"** so zoznamom riadiacich súborov (`spis.md`, `_STATUS.md`, `AGENTS.md`, `MEMORY.md`) → [spec 0002](../specs/0002-okf-operacny-system-praxe.md)
 
 ## Farebná paleta
 

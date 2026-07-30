@@ -7,14 +7,16 @@
 
 ## 🎯 O projekte v 30 sekundách
 
-Traja slovenskí advokáti (**Marián Čuprík**, **Martin Friedrich**, **Igor Ribár** — SAK, pracovná skupina pre elektronizáciu advokácie) staviajú **open-source AI nástroj pre slovenských advokátov, zadarmo**.
+Traja slovenskí advokáti (**Marián Čuprík**, **Martin Friedrich**, **Igor Ribár** — SAK, pracovná skupina pre elektronizáciu advokácie) staviajú **LAWOSS** — open-source AI nástroj pre **českých a slovenských** advokátov, zadarmo.
 
 | | |
 |---|---|
 | **Toto repo** | prípravné a plánovacie — **neobsahuje kód** produktu. Brainstorming, rešerše, rozhodnutia, plánovanie. |
 | **Monetizácia** | výhradne **školenia a workshopy**. Nepredávame softvér ani službu (SaaS) — to by z advokáta spravilo poskytovateľa. Viď [ADR 0002](decisions/0002-preco-forkujeme-mikeoss.md). |
 | **Voľba základu** | ⚠️ **otvorená** — mikeOSS / Stella / LegalWork ([porovnanie](research/inspiracie/)). **Nepíš nikde, že je to rozhodnuté.** Trade-off: *LegalWork* = technická výhoda (prihlásenie cez OpenAI/Anthropic predplatné, lokálny beh, MIT) · *mikeOSS* = marketingová výhoda (známe meno, 3 924 ⭐, ťaháme naň pozornosť) · *Stella* = hotová anonymizácia. Kombinácia nie je vylúčená. |
-| **Názov** | „MikeOSS Slovakia" je **pracovný**, nie finálny. |
+| **Názov** | **LAWOSS** — *Czechia · Slovakia* (od 2026-07-29; predtým pracovne „MikeOSS Slovakia"). Značka: `LAW` biele + `OSS` zlaté. |
+| **Záber** | 🇨🇿 **ČR + 🇸🇰 SR** — dvojjurisdikčný. Pri rešeršiach a specoch mysli na obe. |
+| **MikeOSS** | featurujeme ako **inšpiráciu** (marketingové spojenie) — *nie* ako potvrdený základ. |
 
 **Začni čítaním:** [`decisions/`](decisions/) (čo je rozhodnuté a prečo) → [`specs/`](specs/) (čo staviame) → [`planning/roadmap.md`](planning/roadmap.md) (kde sme).
 

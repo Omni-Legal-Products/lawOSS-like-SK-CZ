@@ -9,7 +9,7 @@ Workflow [`.github/workflows/telegram-notify.yml`](../.github/workflows/telegram
 
 ### 1. Vytvorte bota
 1. V Telegrame otvorte [@BotFather](https://t.me/BotFather).
-2. `/newbot` → zadajte názov (napr. `MikeOSS SK`) a username (musí končiť na `bot`, napr. `mikeoss_sk_bot`).
+2. `/newbot` → zadajte názov (napr. `LAWOSS`) a username (musí končiť na `bot`, napr. `mikeoss_sk_bot`).
 3. BotFather vám vypíše **token** v tvare `123456789:AAE...` — uschovajte ho.
 
 ### 2. Pridajte bota do skupiny

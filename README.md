@@ -1,14 +1,21 @@
 <div align="center">
 
-# ⚖️ MikeOSS Slovakia
+<img src="assets/brand/logo.png" alt="LAWOSS — Czechia · Slovakia" width="200" />
 
-**Open-source právny asistent pre slovenských advokátov**
-*Operačný systém advokátskej praxe — organizácia spisov, AI rešerš a slovenské registre v jednom*
+# LAWOSS
+
+### Czechia · Slovakia
+
+**AI nástroje pre moderného advokáta**
+*Poriadok v spise. Overené právo. AI pod kontrolou.*
+
+`AI · KOMUNITA · KNOW-HOW`
 
 [![Status](https://img.shields.io/badge/f%C3%A1za-pr%C3%ADprava%20%26%20pl%C3%A1novanie-blue)](planning/roadmap.md)
+[![Inšpirované](https://img.shields.io/badge/%E2%9C%A8%20insp.%20by-MikeOSS-black?logo=github)](#-postavené-na-myšlienke-mikeoss)
 [![Základ](https://img.shields.io/badge/z%C3%A1klad-vo%C4%BEba%20otvoren%C3%A1-orange)](research/inspiracie/)
 [![License](https://img.shields.io/badge/licencia-nevybrat%C3%A1-lightgrey)](planning/backlog.md)
-[![Jurisdiction](https://img.shields.io/badge/jurisdikcia-%F0%9F%87%B8%F0%9F%87%B0%20Slovensko-red)](docs/vision.md)
+[![Jurisdikcia](https://img.shields.io/badge/jurisdikcia-%F0%9F%87%A8%F0%9F%87%BF%20CZ%20%2B%20%F0%9F%87%B8%F0%9F%87%B0%20SK-red)](docs/vision.md)
 
 </div>
 
@@ -17,19 +24,59 @@
 
 ---
 
+## ✨ Postavené na myšlienke MikeOSS
+
+<table>
+<tr>
+<td width="120" align="center">
+
+### 🍴
+**MikeOSS**
+
+</td>
+<td>
+
+**[MikeOSS](https://github.com/Open-Legal-Products/mike)** ukázal, že právny AI asistent nemusí byť uzavretý enterprise produkt za tisíce eur — môže byť **open-source a slobodný**. Tú myšlienku berieme a prinášame ju do **česko-slovenského** právneho prostredia.
+
+LAWOSS je pokračovaním tejto línie: otvorený kód, žiadne black-box prompty, dáta u advokáta. To, čo MikeOSS začal pre svet, my dokončujeme pre CZ + SK jurisdikciu — so Slov-Lexom, judikatúrou, ORSR a slovenskou aj českou realitou advokátskej praxe.
+
+</td>
+</tr>
+</table>
+
 ## 🎯 Vízia
 
-Priniesť slovenským advokátom **užitočný open-source nástroj úplne zadarmo** — postavený na zrelom open-source základe, obohatený o slovenské skills a MCP servery (Slov-Lex, ORSR, RPVS, judikatúra…), prispôsobený slovenskému právu, s možnosťou neskoršieho rozšírenia o ďalšie krajiny.
+Priniesť českým a slovenským advokátom **užitočný open-source nástroj úplne zadarmo** — postavený na zrelom open-source základe, obohatený o lokálne skills a MCP servery (Slov-Lex, ORSR, RPVS, judikatúra…), prispôsobený nášmu právu.
 
 Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advokátskej praxe (OKF)](specs/0002-okf-operacny-system-praxe.md)** — appka zakladá spisy, generuje riadiace súbory a stráži poriadok; AI je násobič, nie základ.
+
+### Päť pilierov
+
+| | |
+|---|---|
+| 📂 **Inteligentné spisy a úlohy** | OKF štruktúra, validácia, lehoty pod kontrolou |
+| 🎙️ **Transkripcia a zápisy z porád** | on-device, prepis rovno do spisu |
+| ⚖️ **Overené právne zdroje SK/CZ** | Slov-Lex, judikatúra, registre — proti halucináciám |
+| 🔓 **Otvorený prompt layer** | žiadny black box, verzované prompty, štýlový profil advokáta |
+| 🔒 **Lokálne dáta, maximálna bezpečnosť** | *Bezpečné. Súkromné. Vaše.* |
 
 | | |
 |---|---|
 | 👥 **Tím** | Marián Čuprík · Martin Friedrich · Igor Ribár (advokáti SAK, pracovná skupina pre elektronizáciu advokácie) |
 | 💰 **Model** | Nástroj zadarmo, open-source. Monetizácia výhradne cez workshopy a školenia — [ADR 0002](decisions/0002-preco-forkujeme-mikeoss.md) |
 | 🧩 **Základ** | ⚠️ **voľba otvorená** — [mikeOSS · Stella · LegalWork](research/inspiracie/) |
-| 🔄 **Stratégia** | Slovenské úpravy ako **skills / pluginy / MCP** mimo jadra → priebežné pull-ovanie upstreamu bez konfliktov |
+| 🔄 **Stratégia** | Lokálne úpravy ako **skills / pluginy / MCP** mimo jadra → priebežné pull-ovanie upstreamu bez konfliktov |
 | 💬 **Komunikácia** | Telegram skupina + GitHub Issues/Discussions |
+
+## 🖥️ Ako to má vyzerať
+
+<div align="center">
+<img src="assets/brand/mockup.png" alt="LAWOSS — koncept rozhrania" width="100%" />
+<sub><i>Koncept rozhrania — nie finálny dizajn. Prehľad · Spisy · Rešerš · Transkripcia · Prompty · Konektory · AI Asistent</i></sub>
+</div>
+
+> [!TIP]
+> Všimni si v mockupe **prepínač `Lokálny · Cloud · Auto`** pri AI asistentovi — to je [hybrid routing](specs/0003-prompt-layer.md#-hybrid-routing--rozdelenie-podľa-vrstvy), a **OKF status „Validovaná štruktúra 92 %"** so zoznamom riadiacich súborov (`spis.md`, `_STATUS.md`, `AGENTS.md`, `MEMORY.md`) — to je [spec 0002](specs/0002-okf-operacny-system-praxe.md).
 
 ## 🧩 Voľba základu — otvorená
 
@@ -146,6 +193,8 @@ lawOSS-like-SK-CZ/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
+│   │   ├── audio/
+│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -210,23 +259,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**56 commitov** · **49 súborov**
+**59 commitov** · **49 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `cf8df93` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
+| `832e673` | 2026-07-30 | Marián Čuprík | fix: generátor README berie názov repa z git remote (prežije premenovanie) |
+| `482e25a` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `cd6d2f5` | 2026-07-30 | Marián Čuprík | chore: regenerácia README po merge |
 | `3d1ff06` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
 | `2b61c4d` | 2026-07-30 | Marián Čuprík | fix: aktualizované URL po premenovaní repa na lawOSS-like-SK-CZ |
 | `672545b` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `b9a4b53` | 2026-07-29 | Marián Čuprík | Merge branch 'main' of https://github.com/originalmagneto/mikeOSS-SLOVAKIA |
-| `7775505` | 2026-07-29 | Marián Čuprík | docs: README a vízia prepísané — základ ako otvorená voľba s pomenovaným trade-offom |
-| `841859f` | 2026-07-29 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `4508928` | 2026-07-29 | Marián Čuprík | docs: zdokumentovaná ochrana vetvy main (zákaz force-push a mazania) |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 11:24 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 11:41 UTC<!-- /AUTO:UPDATED --></sub>
 </div>

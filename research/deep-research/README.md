@@ -2,7 +2,7 @@
 
 # 🔬 Deep Research: Open-source AI pre slovenskú advokáciu
 
-**Podklad pre MikeOSS Slovakia** · NotebookLM deep research · 2026-07-10
+**Podklad pre LAWOSS** · NotebookLM deep research · 2026-07-10
 
 ![Zdroje](https://img.shields.io/badge/zdroje-245-blue)
 ![Kolá](https://img.shields.io/badge/deep_research-6_k%C3%B4l-8A2BE2)
@@ -30,7 +30,7 @@
 
 ```mermaid
 mindmap
-  root((MikeOSS SK<br/>AI pre advokáciu))
+  root((LAWOSS<br/>AI pre advokáciu))
     Open-source riešenia
       MikeOSS - dokumentový asistent
       Stella - právny workspace
@@ -60,7 +60,7 @@ mindmap
 
 ```mermaid
 flowchart TB
-    ADV(["👩‍⚖️ Advokát"]) --> UI["MikeOSS SK<br/>workspace + skills"]
+    ADV(["👩‍⚖️ Advokát"]) --> UI["LAWOSS<br/>workspace + skills"]
     UI --> SAN{"🛡️ Sanitizačný filter<br/>MasKIT (anonymizácia)"}
     SAN --> GW["🔀 LLM Gateway<br/>LiteLLM / OpenRouter (BYOK)"]
 
@@ -157,7 +157,7 @@ flowchart TD
 
 ---
 
-## ✅ Odporúčania pre MikeOSS Slovakia
+## ✅ Odporúčania pre LAWOSS
 
 1. **Local-first indexácia** — vyhľadávanie stavať tak, aby index vznikal lokálne/offline.
 2. **Slov-Lex MCP wrapper** — vlastný konektor pre SK legislatívu, sémantické vyhľadávanie + verifikácia citácií.
@@ -166,5 +166,5 @@ flowchart TD
 5. **Audit-ready logy** každého agentického kroku — splnenie EU AI Act aj SAK 2025.
 
 <div align="center">
-<sub>Vygenerované z NotebookLM notebooku „MikeOSS SK — Research" (245 zdrojov). Over projekty označené ⚠️ pred zaradením do plánu.</sub>
+<sub>Vygenerované z NotebookLM notebooku „LAWOSS — Research" (245 zdrojov). Over projekty označené ⚠️ pred zaradením do plánu.</sub>
 </div>

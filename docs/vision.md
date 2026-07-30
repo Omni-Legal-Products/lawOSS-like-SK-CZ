@@ -1,8 +1,8 @@
 # Vízia
 
-**Open-source nástroj pre slovenských advokátov, zadarmo** — postavený na zrelom open-source základe *(voľba základu je [otvorená](../research/inspiracie/): mikeOSS · Stella · LegalWork)*.
+**LAWOSS** — open-source nástroj pre **českých a slovenských** advokátov, zadarmo — postavený na zrelom open-source základe *(voľba základu je [otvorená](../research/inspiracie/): mikeOSS · Stella · LegalWork)*.
 
-Nie „ďalší AI editor dokumentov", ale **operačný systém advokátskej praxe**: organizácia spisov a poriadok v praxi ([OKF](../specs/0002-okf-operacny-system-praxe.md)), doplnený o slovenské skills, MCP konektory na SK registre a AI, ktorá je násobičom — nie základom.
+Nie „ďalší AI editor dokumentov", ale **operačný systém advokátskej praxe**: organizácia spisov a poriadok v praxi ([OKF](../specs/0002-okf-operacny-system-praxe.md)), doplnený o lokálne skills, MCP konektory na SK/CZ registre a AI, ktorá je násobičom — nie základom.
 
 ## Čím sa odlišujeme
 
@@ -11,7 +11,7 @@ Nie „ďalší AI editor dokumentov", ale **operačný systém advokátskej pra
 | 📁 **Organizácia praxe** | štruktúra spisov má hodnotu aj bez AI |
 | 🔓 **Žiadny black box** | prompty sú viditeľné a editovateľné — advokátovi ostáva jeho podpis |
 | 🔒 **Dátová suverenita** | voľba modelu podľa citlivosti; dôverné veci lokálne |
-| 🇸🇰 **Slovenské zdroje** | Slov-Lex, ORSR, RPVS, judikatúra — proti halucináciám |
+| 🇸🇰🇨🇿 **Overené zdroje SK/CZ** | Slov-Lex, ORSR, RPVS, judikatúra — proti halucináciám |
 
 ## Non-goals
 
