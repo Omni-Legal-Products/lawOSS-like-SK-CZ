@@ -20,8 +20,16 @@ def git(*args: str) -> str:
     return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True).stdout.strip()
 
 
+def repo_name() -> str:
+    """Názov repa z git remote — prežije premenovanie repozitára."""
+    url = git("remote", "get-url", "origin")
+    if url:
+        return url.rstrip("/").removesuffix(".git").rsplit("/", 1)[-1]
+    return ROOT.name
+
+
 def build_tree() -> str:
-    lines = ["```text", "mikeOSS-SLOVAKIA/"]
+    lines = ["```text", f"{repo_name()}/"]
 
     def walk(d: Path, prefix: str = "") -> None:
         entries = sorted(
