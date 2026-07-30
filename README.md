@@ -194,8 +194,6 @@ lawOSS-like-SK-CZ/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
-│   │   ├── audio/
-│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -260,10 +258,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**63 commitov** · **49 súborov**
+**64 commitov** · **49 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `340c7b6` | 2026-07-30 | Marián Čuprík | chore: regenerácia README po merge |
 | `e04647c` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
 | `e37c329` | 2026-07-30 | Marián Čuprík | feat: rebrand na LAWOSS (Czechia · Slovakia) + MikeOSS featured ako inšpirácia |
 | `357fa8c` | 2026-07-30 | Marián Čuprík | feat: rebrand na LAWOSS (Czechia · Slovakia) + MikeOSS featured ako inšpirácia |
@@ -271,12 +270,11 @@ flowchart LR
 | `cf8df93` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
 | `832e673` | 2026-07-30 | Marián Čuprík | fix: generátor README berie názov repa z git remote (prežije premenovanie) |
 | `482e25a` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `cd6d2f5` | 2026-07-30 | Marián Čuprík | chore: regenerácia README po merge |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 11:41 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 11:42 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
