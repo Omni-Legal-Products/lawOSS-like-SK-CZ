@@ -261,23 +261,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**67 commitov** · **52 súborov**
+**70 commitov** · **52 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `e46789d` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
+| `0bb2d72` | 2026-07-30 | Marián Čuprík | specs: zaevidovaný návrh MF — Attorney workflow MVP (Issue #1) |
+| `8fde62e` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `dc82a58` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
 | `f91cf7b` | 2026-07-30 | Marián Čuprík | assets: logo, mockup a moodboard LAWOSS |
 | `9c51bf0` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `340c7b6` | 2026-07-30 | Marián Čuprík | chore: regenerácia README po merge |
 | `e04647c` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
-| `e37c329` | 2026-07-30 | Marián Čuprík | feat: rebrand na LAWOSS (Czechia · Slovakia) + MikeOSS featured ako inšpirácia |
-| `357fa8c` | 2026-07-30 | Marián Čuprík | feat: rebrand na LAWOSS (Czechia · Slovakia) + MikeOSS featured ako inšpirácia |
-| `9a20480` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 11:44 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 15:57 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
