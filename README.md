@@ -175,6 +175,9 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 lawOSS-like-SK-CZ/
 ├── assets/
 │   └── brand/
+│       ├── logo.png
+│       ├── mockup.png
+│       ├── moodboard.png
 │       └── README.md
 ├── decisions/
 │   ├── 0002-preco-forkujeme-mikeoss.html
@@ -258,23 +261,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**64 commitov** · **49 súborov**
+**67 commitov** · **52 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `dc82a58` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
+| `f91cf7b` | 2026-07-30 | Marián Čuprík | assets: logo, mockup a moodboard LAWOSS |
+| `9c51bf0` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `340c7b6` | 2026-07-30 | Marián Čuprík | chore: regenerácia README po merge |
 | `e04647c` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
 | `e37c329` | 2026-07-30 | Marián Čuprík | feat: rebrand na LAWOSS (Czechia · Slovakia) + MikeOSS featured ako inšpirácia |
 | `357fa8c` | 2026-07-30 | Marián Čuprík | feat: rebrand na LAWOSS (Czechia · Slovakia) + MikeOSS featured ako inšpirácia |
 | `9a20480` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `cf8df93` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
-| `832e673` | 2026-07-30 | Marián Čuprík | fix: generátor README berie názov repa z git remote (prežije premenovanie) |
-| `482e25a` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 11:42 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 11:44 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
