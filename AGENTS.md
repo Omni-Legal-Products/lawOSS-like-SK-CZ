@@ -7,16 +7,17 @@
 
 ## 🎯 O projekte v 30 sekundách
 
-Traja slovenskí advokáti (**Marián Čuprík**, **Martin Friedrich**, **Igor Ribár** — SAK, pracovná skupina pre elektronizáciu advokácie) staviajú **LAWOSS** — open-source AI nástroj pre **českých a slovenských** advokátov, zadarmo.
+Traja slovenskí advokáti (**Marián Čuprík**, **Martin Friedrich**, **Igor Ribár** — SAK, pracovná skupina pre elektronizáciu advokácie) a od 2026-08-06 aj český kolega **Vojta Říha** staviajú **LAWOSS** — open-source AI nástroj pre **českých a slovenských** advokátov, zadarmo.
 
 | | |
 |---|---|
 | **Toto repo** | prípravné a plánovacie — **neobsahuje kód** produktu. Brainstorming, rešerše, rozhodnutia, plánovanie. |
 | **Monetizácia** | výhradne **školenia a workshopy**. Nepredávame softvér ani službu (SaaS) — to by z advokáta spravilo poskytovateľa. Viď [ADR 0002](decisions/0002-preco-forkujeme-mikeoss.md). |
-| **Voľba základu** | ⚠️ **otvorená** — mikeOSS / Stella / LegalWork ([porovnanie](research/inspiracie/)). **Nepíš nikde, že je to rozhodnuté.** Trade-off: *LegalWork* = technická výhoda (prihlásenie cez OpenAI/Anthropic predplatné, lokálny beh, MIT) · *mikeOSS* = marketingová výhoda (známe meno, 3 924 ⭐, ťaháme naň pozornosť) · *Stella* = hotová anonymizácia. Kombinácia nie je vylúčená. |
+| **Voľba základu** | ✅ **rozhodnuté 2026-08-06: [LegalWork](https://github.com/eigenweltlabs/legalwork)** (MIT) → [ADR 0003](decisions/0003-legal-work-ako-zaklad.md), nahrádza ADR 0002. Rozhodli MČ · IR · VŘ na [calle](meetings/2026-08-06-sync-call-volba-zakladu.md); **čaká na potvrdenie MF**. Hlavný dôvod: open-code harness ([opencode](https://github.com/sst/opencode)) v pozadí + MIT. mikeOSS zamietnutý (AGPL-3.0 + chýbajúci harness), Stella sa do užšieho výberu nedostala. ⚠️ **Otvorené:** *ako* forknúť — klasický fork ruší výhodu upstreamu. |
+| **Licencia** | **MIT** — vyplýva z voľby základu. Súbor `LICENSE` v tomto repe ešte **chýba** (úloha MČ). |
 | **Názov** | **LAWOSS** — *Czechia · Slovakia* (od 2026-07-29; predtým pracovne „MikeOSS Slovakia"). Značka: `LAW` biele + `OSS` zlaté. |
 | **Záber** | 🇨🇿 **ČR + 🇸🇰 SR** — dvojjurisdikčný. Pri rešeršiach a specoch mysli na obe. |
-| **MikeOSS** | featurujeme ako **inšpiráciu** (marketingové spojenie) — *nie* ako potvrdený základ. |
+| **MikeOSS** | ❌ **zamietnutý ako základ** (2026-08-06, [ADR 0003](decisions/0003-legal-work-ako-zaklad.md)) — AGPL-3.0 a chýbajúci harness. Naďalej ho featurujeme len ako **inšpiráciu**. |
 
 **Začni čítaním:** [`decisions/`](decisions/) (čo je rozhodnuté a prečo) → [`specs/`](specs/) (čo staviame) → [`planning/roadmap.md`](planning/roadmap.md) (kde sme).
 
@@ -158,6 +159,6 @@ assets/       obrázky, diagramy, brand
 ## 🔗 Odkazy
 
 - **Repo:** https://github.com/originalmagneto/lawOSS-like-SK-CZ
-- **Kandidáti na základ:** [mikeOSS](https://github.com/Open-Legal-Products/mike) · Stella (CZ) · [LegalWork](https://github.com/eigenweltlabs/legalwork)
+- **Základ projektu:** [LegalWork](https://github.com/eigenweltlabs/legalwork) (MIT) nad [opencode](https://github.com/sst/opencode) — [ADR 0003](decisions/0003-legal-work-ako-zaklad.md). Zamietnutí kandidáti: [mikeOSS](https://github.com/Open-Legal-Products/mike), Stella (CZ).
 - **Podať návrh funkcie:** [formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)
 - **Komunikácia:** Telegram *MikeOSS (SLOVAKIA) + AI Frontier Labs* — topics: General CHAT · SK Mike GH · DESIGN · Research · AI Frontier Labs

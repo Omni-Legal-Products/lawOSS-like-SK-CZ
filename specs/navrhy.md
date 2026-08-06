@@ -17,6 +17,7 @@ Kto čo navrhol, v akom je to stave a kde to žije
 | **MČ** | Marián Čuprík |
 | **MF** | Martin Friedrich |
 | **IR** | Igor Ribár |
+| **VŘ** | Vojta Říha 🇨🇿 *(pridal sa 2026-08-06)* |
 
 ## Evidencia návrhov
 
@@ -30,6 +31,16 @@ Kto čo navrhol, v akom je to stave a kde to žije
 | 7 | **Lehoty & timeline spisu** — extrakcia lehôt s povinným potvrdením + vizuálna chronológia veci (mermaid/excalidraw) | **MF** *(+MČ timeline)* | 2026-07-30 | 📝 návrh · ⭐ kandidát na alfu #1 | [spec 0005](0005-lehoty-timeline.md) |
 | 8 | **OCR ingest → markdown** — Mistral OCR quick win (existujúca Quick Action MČ), markdown-first namiesto DOCX-centrizmu | **MČ** | 2026-07-30 | 📝 návrh · quick win do alfy | [backlog](../planning/backlog.md) |
 | 5 | **Hybrid routing** — lokálny model pre OKF, subscription pre rešerš, anonymizácia pred assessmentom | **MČ** | 2026-07-29 | 📝 na prerokovanie | [spec 0003 §hybrid](0003-prompt-layer.md#-hybrid-routing--rozdelenie-podľa-vrstvy) |
+| 9 | **Orchestrátor a subagenti** — kto riadi workflow, oprávnenia agentov, human gates, auditná stopa | **MF** | 2026-08-04 | 📝 návrh · PR otvorený | [PR #2](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/2) |
+| 10 | **Digitálna sekretárka** — založenie spisu → priečinky → workflow písaných aj diktovaných zápiskov → markdown do spisu | **MČ** | 2026-08-06 | 💭 nápad · spája 0001 + 0002 | [call 6. 8.](../meetings/2026-08-06-sync-call-volba-zakladu.md) |
+| 11 | **UI/CLI prepínač** — UI ako default, CLI ako voliteľný režim | **MČ** *(podnet VŘ)* | 2026-08-06 | ✅ schválené na calle | [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md) |
+| 12 | **Markdown/Obsidian interoperabilita** — markdown ako primárny formát, žiadny vendor lock-in | **MČ** *(s VŘ)* | 2026-08-06 | ✅ schválené na calle | [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md) |
+| 13 | **MCP Salvia** — CZ judikatúra ako voliteľný modul (~10 € / 3 000 dotazov, lepšia indexácia než Codexis) | **VŘ** | 2026-08-06 | 💭 nápad · overiť licenčné podmienky | [call 6. 8.](../meetings/2026-08-06-sync-call-volba-zakladu.md) |
+| 14 | **Špecializovaní agenti podľa právneho odvetvia** — všeobecný agent spotrebuje priveľa dotazov | **VŘ** | 2026-08-06 | 💭 nápad | [call 6. 8.](../meetings/2026-08-06-sync-call-volba-zakladu.md) |
+| 15 | **Poľské rozšírenie (PL)** — voľne prístupné poľské právne dáta a judikatúra, evaluácia cez kontakty v PL | **VŘ** | 2026-08-06 | ✅ schválené na calle | [call 6. 8.](../meetings/2026-08-06-sync-call-volba-zakladu.md) |
+| 16 | **Modulové rozhranie plug-and-play** — moduly ako LEGO nad jednotným základom, bezpečnostné hranice | **MČ** *(spracúva IR)* | 2026-08-06 | 📝 návrh · IR do 2026-08-19 | [call 6. 8.](../meetings/2026-08-06-sync-call-volba-zakladu.md) |
+| 17 | **Rešeršný workflow „one-click"** — dotaz → rešerš → projektové artefakty, cez NotebookLM CLI | **MČ** | 2026-08-06 | 💭 nápad | [call 6. 8.](../meetings/2026-08-06-sync-call-volba-zakladu.md) |
+| 18 | **Google Workspace integrácia** — e-maily a marketingový outreach cez harness | **MČ** | 2026-08-06 | 💭 nápad · nízka priorita | [call 6. 8.](../meetings/2026-08-06-sync-call-volba-zakladu.md) |
 
 ### Legenda stavov
 
@@ -46,7 +57,7 @@ Kto čo navrhol, v akom je to stave a kde to žije
 ```mermaid
 flowchart LR
     N["💭 Nápad<br/>(Telegram / Issue)"] --> I["📋 GitHub Issue<br/>formulár"]
-    I --> D{"Prerokovanie<br/>MČ · MF · IR"}
+    I --> D{"Prerokovanie<br/>MČ · MF · IR · VŘ"}
     D -->|zhoda| S["📝 Spec v specs/<br/>+ zápis sem"]
     D -->|treba preveriť| R["🔍 Rešerš"]
     R --> D
@@ -54,7 +65,7 @@ flowchart LR
 ```
 
 1. **Nápad** hoď do Telegramu alebo rovno ako [GitHub Issue](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml).
-2. **Prerokujeme** traja (Telegram / stretko).
+2. **Prerokujeme** spoločne (Telegram / stretko / týždenný stredajší sync call).
 3. Ak je zhoda → **rozpíše sa ako spec** v `specs/` a pridá riadok do tabuľky vyššie.
 4. Autorstvo sa **vždy uvádza** — v specu aj tu. Aj pri zamietnutých návrhoch (aby sa nevracali dokola).
 

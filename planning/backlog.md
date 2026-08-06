@@ -25,6 +25,24 @@ Dozreté položky majú vlastnú špecifikáciu v [specs/](../specs/).
 - [ ] Verifikácia citácií (§ a spisové značky) — anti-halucinačná poistka
 - [ ] Integrácia na slovensko.sk *(pozor: zápisové úkony = vysoké riziko, viď [spec 0004](../specs/0004-mcp-sk-konektory.md))*
 
+## 🆕 Z callu 6. 8. 2026
+
+Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md) · evidencia v [navrhy.md](../specs/navrhy.md)
+
+- [ ] 🗂️ **Digitálna sekretárka** — založenie spisu → priečinky → workflow písaných aj diktovaných zápiskov → markdown do spisu *(MČ; spája [spec 0001](../specs/0001-transkripcia.md) + [spec 0002](../specs/0002-okf-operacny-system-praxe.md))*
+- [ ] 🖥️ **UI/CLI prepínač** — UI ako default, CLI ako voliteľný režim *(MČ, podnet VŘ)*
+- [ ] 📄 **Markdown/Obsidian interoperabilita** — žiadny vendor lock-in, rešpektovať existujúce systémy používateľov *(MČ s VŘ)*
+- [ ] 🧩 **Modulové rozhranie plug-and-play** — moduly ako LEGO, konfigurácia, bezpečnostné hranice *(IR do 2026-08-19)*
+- [ ] ⚖️ **MCP Salvia** — CZ judikatúra ako voliteľný modul *(VŘ; ~10 € / 3 000 dotazov — **overiť licenčné podmienky pre komunitné zdieľanie**)*
+- [ ] 🎯 **Špecializovaní agenti podľa právneho odvetvia** — všeobecný agent spotrebuje priveľa dotazov *(VŘ)*
+- [ ] 🇵🇱 **Poľské rozšírenie** — mapovanie voľne dostupných PL zdrojov *(VŘ do 2026-08-20)*
+- [ ] 🌍 **Jurisdikčne neutrálny intake** pre SK/CZ/PL *(MČ do 2026-08-18)*
+- [ ] 🔍 **Rešeršný workflow „one-click"** cez NotebookLM CLI *(MČ)*
+- [ ] 📦 **Balíček „Community Skills"** — OKF, rešerše, judikatúra + dokumentácia *(MČ do 2026-08-15)*
+- [ ] 💾 **Publikovať legálne použiteľné datasety** na GitHub, nech nemusí každý scrapovať od nuly *(MČ do 2026-08-10)*
+- [ ] 📧 **Google Workspace integrácia** — e-maily, outreach *(MČ; nízka priorita)*
+- [ ] 🔬 **Analýza repozitára Determo** — prenositeľné koncepty a bezpečnostné vzory *(VŘ do 2026-08-12)*
+
 ## Ďalšie nápady (bez specu)
 
 - [ ] Anonymizácia / sanitizačný filter pred LLM (MasKIT + SK regex: rodné číslo, IBAN)
@@ -33,6 +51,9 @@ Dozreté položky majú vlastnú špecifikáciu v [specs/](../specs/).
 
 ## Rozhodnúť
 
-- [ ] ⚠️ **Vybrať licenciu a doplniť súbor `LICENSE`** — repo je verejné, ale **bez licencie platí „all rights reserved"**, čo je v rozpore s deklarovaným open-source. Voľba súvisí so základom (mikeOSS = AGPL-3.0 → odvodené dielo musí byť tiež AGPL; LegalWork/Stella = permisívne)
-- [ ] Názov projektu *(„mikeOSS Slovakia" je pracovný)*
-- [ ] Voľba základu: mikeOSS / Stella / LegalWork → [inspiracie](../research/inspiracie/)
+- [x] ✅ **Voľba základu — rozhodnuté 2026-08-06: LegalWork** → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md) *(nahrádza [ADR 0002](../decisions/0002-preco-forkujeme-mikeoss.md); čaká na potvrdenie MF)*
+- [x] ✅ **Licencia — MIT**, vyplýva z voľby základu (LegalWork je MIT) → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
+- [ ] ⚠️ **Doplniť súbory `LICENSE`, `NOTICE`, `CONTRIBUTING`** — repo je verejné, ale **bez `LICENSE` platí „all rights reserved"** *(MČ do 2026-08-08)*
+- [ ] ⚠️ **Ako presne „forknúť" LegalWork** — fork s overlayom / downstream nadstavba / extension pack. Klasický fork ruší výhodu upstreamu, kvôli ktorej sme LegalWork zvolili. **Rozhodnúť pred založením fork repozitára.** → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
+- [ ] Ktorá verzia LegalWork sa forkne (tag/commit)?
+- [ ] Čím nahradiť marketingovú expozíciu po upustení od Mikea *(názov LAWOSS zostáva)*
