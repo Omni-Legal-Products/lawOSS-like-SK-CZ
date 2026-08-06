@@ -16,8 +16,20 @@ Vizuálne podklady značky **LAWOSS** *(Czechia · Slovakia)*.
 > [!WARNING]
 > **Keyvisualy sú vizuálne koncepty, nie snímky hotového produktu.** Dáta v nich (mená klientov, spisové značky, sumy) sú **vymyslené**. Pri prezentovaní projektu to treba uviesť, nech to nevyzerá ako funkčná appka.
 
-> [!NOTE]
-> **Nezrovnalosť na opravu:** `keyvisual-mobile.png` má v logu podpis **„SLOVAKIA"**, ostatné majú **„CZECHIA · SLOVAKIA"**. Projekt je dvojjurisdikčný — pri ďalšej iterácii zjednotiť.
+## 🔴 Pravidlo značky: vždy CZECHIA · SLOVAKIA
+
+**Wordmark musí byť všade s podpisom „CZECHIA · SLOVAKIA".** Projekt je dvojjurisdikčný a od 2026-08-06 je v tíme aj český kolega — samotné „SLOVAKIA" je vecne nesprávne a treba ho odstrániť zo všetkých materiálov.
+
+| Súbor | Stav | Akcia |
+|---|---|---|
+| `logo.png` | ✅ CZECHIA · SLOVAKIA | — |
+| `keyvisual-hero.png` | ✅ CZECHIA · SLOVAKIA | — |
+| `keyvisual-dashboard.png` | ✅ CZECHIA · SLOVAKIA | — |
+| `keyvisual-mobile.png` | ❌ len „SLOVAKIA" | **pregenerovať** |
+| `moodboard.png` | ❌ „LAWOSS SLOVAKIA" + starý odkaz `t.me/LawOSS_Slovakia` | **pregenerovať** *(už evidované v [brand-concept](../../docs/brand-concept.md))* |
+
+> [!IMPORTANT]
+> Pri objednávaní alebo generovaní ďalších vizuálov to treba uviesť v zadaní. Kontrola pred nasadením: **wordmark + podpis CZECHIA · SLOVAKIA, žiadne staré odkazy.**
 
 ## Farby značky
 

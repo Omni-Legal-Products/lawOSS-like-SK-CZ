@@ -60,3 +60,4 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 - [ ] ⚠️ **Štruktúra repozitárov** — koordinácia oddelene od kódu → **[ADR 0005](../decisions/0005-struktura-repozitarov.md)** *(návrh napísaný; zahŕňa GitHub organizáciu a zverejnenie `judikaty-mcp`)*
 - [ ] Ktorá verzia LegalWork sa forkne (tag/commit)?
 - [ ] Čím nahradiť marketingovú expozíciu po upustení od Mikea *(názov LAWOSS zostáva)*
+- [ ] 🎨 **Zjednotiť wordmark — všade „CZECHIA · SLOVAKIA"** — pregenerovať `keyvisual-mobile.png` (má len „SLOVAKIA") a `moodboard.png` (starý wordmark + odkaz `t.me/LawOSS_Slovakia`) → [pravidlo v assets/brand](../assets/brand/README.md)

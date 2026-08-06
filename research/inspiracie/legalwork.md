@@ -99,6 +99,11 @@ flowchart TD
 > [!WARNING]
 > **Toto je priamo relevantné pre [spec 0003](../../specs/0003-prompt-layer.md).** Naše poznámky stavali na téze *„research za 20 €/mes. cez subscription namiesto stoviek € cez API"*. Technicky to ide — ale **poskytovateľ to môže kedykoľvek zablokovať a je to na hrane jeho podmienok**. Ako advokáti by sme nemali stavať odporúčaný postup pre kolegov na niečom, čo porušuje ToS tretej strany. Odporúčanie: **API kľúč ako default, subscription ako informovaná voľba používateľa s tým istým varovaním.**
 
+> [!NOTE]
+> **Praktické overenie MČ, 2026-08-06.** Prihlásenie vlastným predplatným **reálne funguje**, a to naprieč providermi — otestované **OpenAI (ChatGPT)**, **Anthropic (Claude)** aj **xAI (Grok)**; v ponuke sú aj ďalšie.
+>
+> Upresnenie k varovaniu vyššie: **ToS výhrada sa týka konkrétne Anthropicu** — ich Consumer Terms viažu ten OAuth na Claude Code a claude.ai, a appka to používateľovi sama zobrazí. Nie je to teda dôvod subscription neodporúčať ako celok, ale dôvod nechať to na **informovanú voľbu používateľa**. Pre advokáta, ktorý už predplatné má, je to podstatná úspora oproti API.
+
 ---
 
 ## 📦 Čo LegalWork vie (overený zoznam funkcií)

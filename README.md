@@ -85,7 +85,8 @@ Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advoká
 
 <img src="assets/brand/keyvisual-mobile.png" alt="LAWOSS — mobilné a desktopové rozhranie" width="100%" />
 
-<sub><i>Advokátska prax pod kontrolou, kdekoľvek — mobil aj desktop</i></sub>
+<sub><i>Advokátska prax pod kontrolou, kdekoľvek — mobil aj desktop</i><br/>
+<i>⚠️ Tento vizuál má v logu ešte starý podpis „SLOVAKIA" — čaká na pregenerovanie s <b>CZECHIA · SLOVAKIA</b>.</i></sub>
 
 </div>
 
@@ -107,14 +108,16 @@ Hlavný dôvod je **open-code harness v pozadí**: LegalWork nie je samostatný 
 
 | Kandidát | Výsledok |
 |---|---|
-| **[LegalWork](research/inspiracie/legalwork.md)** 🇩🇪 | ✅ **zvolený** — MIT, opencode harness, desktop app, lokálny beh, MCP rozšírenia |
+| **[LegalWork](research/inspiracie/legalwork.md)** 🇩🇪 | ✅ **zvolený** — MIT, opencode harness, desktop app, lokálny beh, MCP rozšírenia, **prihlásenie vlastným predplatným** (OpenAI · Anthropic · xAI a ďalšie) |
 | **[mikeOSS](https://github.com/Open-Legal-Products/mike)** 🇺🇸 | ❌ zamietnutý — **AGPL-3.0** (nezlučiteľné s požiadavkou na permisívnu licenciu) a chýbajúci harness. Zostáva ako **inšpirácia**. |
 | **Stella** 🇨🇿 | ❌ nedostala sa do užšieho výberu — zostáva možným zdrojom komponentov pre anonymizáciu |
 
 **Ako ho rozšírime:** forkujeme pod vlastným brandingom do vlastného repozitára a čo dáva zmysel posielame do upstreamu — [ADR 0004](decisions/0004-ako-rozsirit-legalwork.md). Koordinácia (toto repo) a kód zostávajú oddelene — [ADR 0005](decisions/0005-struktura-repozitarov.md).
 
-> [!WARNING]
-> **Neodporúčame prihlásenie cez consumer predplatné.** LegalWork ho podporuje, ale Consumer Terms Anthropicu ten OAuth obmedzujú na Claude Code a claude.ai — použitie treťou stranou môže byť zablokované bez oznámenia. **Default je vlastný API kľúč.** Detail v [analýze LegalWork](research/inspiracie/legalwork.md) a [spec 0003](specs/0003-prompt-layer.md).
+> [!TIP]
+> **Prihlásenie vlastným predplatným funguje.** Overené 2026-08-06 na **OpenAI (ChatGPT)**, **Anthropic (Claude)** aj **xAI (Grok)** — advokát vie využiť predplatné, ktoré už má, bez riešenia API kľúčov. To je pri cene rešeršnej práce podstatný rozdiel.
+>
+> Pri Anthropicu appka zobrazuje upozornenie, že ich Consumer Terms obmedzujú tento OAuth na Claude Code a claude.ai. Berieme to ako **informovanú voľbu používateľa**; kto chce mať istotu, použije vlastný API kľúč. Detail v [analýze LegalWork](research/inspiracie/legalwork.md) a [spec 0003](specs/0003-prompt-layer.md).
 
 ## 🏗️ Architektúra (návrh)
 
