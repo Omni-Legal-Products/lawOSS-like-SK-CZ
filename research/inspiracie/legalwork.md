@@ -10,13 +10,61 @@
 ![Overené](https://img.shields.io/badge/overen%C3%A9-v%20k%C3%B3de-blue)
 
 *Analýza k 2026-07-29 — fakty z webu, README a **priamo zo zdrojového kódu***
+*Doplnené 2026-08-04 (architektúra jadra) a 2026-08-06 (LegalWork prijatý ako základ — [ADR 0003](../../decisions/0003-legal-work-ako-zaklad.md))*
 
 </div>
 
 > [!IMPORTANT]
-> **Dve faktické opravy oproti pôvodnému predpokladu:**
+> **Tri faktické opravy oproti pôvodnému predpokladu:**
 > 1. **Nie je taliansky — je z Berlína** 🇩🇪 (Eigenwelt Labs). Pre nás to je *lepšie*: EU jurisdikcia, GDPR-native, blízko našej regulácii.
 > 2. **Áno, podporuje consumer subscription** (Claude Pro/Max) — ale s podstatnou výhradou, ktorú si sami zapísali do kódu. Viď nižšie.
+> 3. **Nie je to fork opencode.** Volá ho ako externý engine pinnutý na verziu. *(doplnené 2026-08-04)* Viď hneď nasledujúcu sekciu.
+
+---
+
+## 🏗️ Kľúčové zistenie: LegalWork nie je fork opencode
+
+*Overené 2026-08-04 čítaním repozitára.*
+
+Pôvodne sme predpokladali, že LegalWork je fork [opencode](https://github.com/sst/opencode). **Nie je.** Drží ho ako **pinnutú externú závislosť**.
+
+**Dôkazy priamo z repa:**
+
+| Dôkaz | Kde |
+|---|---|
+| Vyžaduje **„the `opencode` CLI on PATH"** | `README.md`, sekcia *Develop* |
+| `{"opencodeVersion": "v1.17.18"}` — jadro **pinnuté na verziu** | `constants.json` |
+| **Jediný patch v repe je na `@solidjs/router`**, na opencode žiadny | `patches/` |
+| GitHub repo neeviduje ako fork | GitHub API |
+| *„We thank the teams at Different AI and Opencode for previous work."* | `README.md`, Acknowledgements |
+
+**Štruktúra:** `apps/` = app · desktop · **opencode-router** · **orchestrator** · server · `packages/` = handsfree · legalwork-ui-mcp · types · ui.
+Ich `orchestrator` je publikovaný na npm ako `legalwork-orchestrator` a spúšťa opencode + LegalWork server + router.
+
+```mermaid
+flowchart LR
+    UI["🖥️ LegalWork<br/>desktop · UI · orchestrator"]
+    OC["⚙️ opencode CLI<br/>v1.17.18 — PINNUTÉ<br/>MIT · 193k ⭐"]
+    UP["⬆️ Upgrade jadra<br/>= bump verzie<br/>v constants.json"]
+    UI -->|"spúšťa ako<br/>externý proces"| OC
+    UP -.-> OC
+    classDef key fill:#0b4f2a,stroke:#3ad98b,color:#fff
+    class OC key
+```
+
+### Prečo je to pre nás dôležité
+
+| Fork | Pinnutý engine |
+|---|---|
+| Každý upstream release = merge konflikt | Upgrade = zmena jedného reťazca |
+| Treba rozumieť cudziemu kódu | Netreba doňho vôbec siahnuť |
+| Divergencia rastie v čase | Divergencia je nulová |
+
+opencode podporuje **natívne a čisto konfiguračne** (bez zásahu do zdrojáku): MCP servery, agentov a subagentov, Agent Skills, pluginy cez SDK, custom commands a rules. **Naše SK MCP konektory sa teda napoja registráciou v configu**, nie zásahom do jadra.
+
+> [!WARNING]
+> **Dôsledok pre naše rozhodnutie.** [ADR 0003](../../decisions/0003-legal-work-ako-zaklad.md) hovorí, že LegalWork „forkneme". Lenže argument, prečo sme ho zvolili, bol *„cez upstream to môžeš udržiavať"* — a klasický fork túto výhodu ruší práve na vrstve, ktorú chceme meniť.
+> Sám LegalWork sa tomu vyhýba práve vyššie popísaným spôsobom. **Ako presne „forkneme" je otvorený bod**, ktorý treba rozhodnúť pred založením fork repozitára.
 
 ---
 
@@ -50,6 +98,11 @@ flowchart TD
 
 > [!WARNING]
 > **Toto je priamo relevantné pre [spec 0003](../../specs/0003-prompt-layer.md).** Naše poznámky stavali na téze *„research za 20 €/mes. cez subscription namiesto stoviek € cez API"*. Technicky to ide — ale **poskytovateľ to môže kedykoľvek zablokovať a je to na hrane jeho podmienok**. Ako advokáti by sme nemali stavať odporúčaný postup pre kolegov na niečom, čo porušuje ToS tretej strany. Odporúčanie: **API kľúč ako default, subscription ako informovaná voľba používateľa s tým istým varovaním.**
+
+> [!NOTE]
+> **Praktické overenie MČ, 2026-08-06.** Prihlásenie vlastným predplatným **reálne funguje**, a to naprieč providermi — otestované **OpenAI (ChatGPT)**, **Anthropic (Claude)** aj **xAI (Grok)**; v ponuke sú aj ďalšie.
+>
+> Upresnenie k varovaniu vyššie: **ToS výhrada sa týka konkrétne Anthropicu** — ich Consumer Terms viažu ten OAuth na Claude Code a claude.ai, a appka to používateľovi sama zobrazí. Nie je to teda dôvod subscription neodporúčať ako celok, ale dôvod nechať to na **informovanú voľbu používateľa**. Pre advokáta, ktorý už predplatné má, je to podstatná úspora oproti API.
 
 ---
 

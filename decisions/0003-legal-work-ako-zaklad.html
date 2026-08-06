@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADR 0003 — LegalWork ako základ projektu</title>
+<style>
+  :root{
+    --navy:#0d1b2a;--navy2:#13243a;--gold:#c9a24a;--gold-soft:#e4c979;
+    --ink:#1a2233;--muted:#5b6577;--line:#e4e7ec;--bg:#f6f7f9;--card:#fff;
+    --green:#1f9d55;--amber:#c98a1a;--red:#c0392b;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--ink:#e8ecf3;--muted:#9aa6b8;--line:#25324a;--bg:#0b131f;--card:#111c2e}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  .hero{background:radial-gradient(1100px 380px at 75% -10%,rgba(201,162,74,.22),transparent),
+    linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;padding:48px 0 40px;border-bottom:3px solid var(--gold)}
+  .kicker{letter-spacing:.26em;text-transform:uppercase;font-size:12px;color:var(--gold-soft);font-weight:700}
+  .hero h1{margin:.3em 0 .1em;font-size:clamp(26px,4.6vw,40px);line-height:1.12;font-weight:800}
+  .hero p{margin:.4em 0 0;color:#c8d2e0;font-size:15px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{background:rgba(255,255,255,.08);border:1px solid rgba(201,162,74,.4);color:#fff;padding:5px 12px;border-radius:100px;font-size:12.5px;font-weight:600}
+  .chip b{color:var(--gold-soft)}
+  section{margin:34px 0}
+  h2{font-size:20px;font-weight:800;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+  h2 .n{background:var(--navy);color:var(--gold);width:28px;height:28px;border-radius:8px;display:inline-grid;place-items:center;font-size:13px;flex:none}
+  @media(prefers-color-scheme:dark){h2 .n{background:#0a1524}}
+  h3{font-size:15px;margin:.2em 0 .5em}
+  .decision{background:linear-gradient(135deg,rgba(201,162,74,.14),rgba(201,162,74,.05));border:1.5px solid var(--gold);
+    border-radius:16px;padding:20px 22px;font-size:17px;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:0 4px 14px rgba(13,27,42,.05)}
+  table{width:100%;border-collapse:collapse;font-size:14px;border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+  @media(prefers-color-scheme:dark){th{background:#0a1524}}
+  tr:last-child td{border-bottom:none}
+  .tbl-wrap{overflow-x:auto}
+  .no{color:var(--red);font-weight:700}
+  .yes{color:var(--green);font-weight:700}
+  .stack{display:grid;gap:10px;margin:6px 0}
+  .layer{border-radius:12px;padding:14px 18px;border:1px solid var(--line);background:var(--card)}
+  .layer .t{font-weight:800;font-size:15px}
+  .layer .s{color:var(--muted);font-size:13.5px;margin-top:3px}
+  .layer.ours{background:linear-gradient(135deg,rgba(31,157,85,.16),rgba(31,157,85,.05));border:1.5px solid var(--green)}
+  .arrow{text-align:center;color:var(--muted);font-size:18px;line-height:1}
+  .pin{display:inline-block;background:rgba(201,162,74,.16);border:1px solid var(--gold);color:var(--ink);
+    padding:2px 9px;border-radius:100px;font-size:12px;font-weight:700;margin-left:6px}
+  .warn{border-left:4px solid var(--amber);background:var(--card);border-radius:0 12px 12px 0;padding:16px 18px;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .warn h3{color:var(--amber);margin-top:0}
+  .bad{border-left-color:var(--red)}.bad h3{color:var(--red)}
+  ul{margin:.4em 0;padding-left:1.2em}li{margin:.3em 0}
+  footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 50px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Architecture Decision Record</div>
+    <h1>ADR 0003 — LegalWork ako základ projektu</h1>
+    <p>Nahrádza ADR 0002 (fork mikeOSS). Rozhodnuté na sync calle 6. augusta 2026.</p>
+    <div class="meta">
+      <span class="chip"><b>Dátum:</b> 2026-08-06</span>
+      <span class="chip"><b>Stav:</b> prijaté — čaká na MF</span>
+      <span class="chip"><b>Rozhodli:</b> MČ · IR · VŘ</span>
+      <span class="chip"><b>Licencia:</b> MIT</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <h2><span class="n">1</span>Rozhodnutie</h2>
+  <div class="decision">
+    Berieme <a href="https://github.com/eigenweltlabs/legalwork">LegalWork</a> (MIT) ako základ projektu.
+    Hlavný dôvod je <b>open-code harness v pozadí</b> — LegalWork nie je samostatný agent, ale desktopová
+    nadstavba nad <a href="https://github.com/sst/opencode">opencode</a>, ktorý natívne a konfiguračne
+    podporuje MCP servery, agentov a subagentov, skills, pluginy a rules.
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">2</span>Ako to do seba zapadá</h2>
+  <div class="stack">
+    <div class="layer ours">
+      <div class="t">🇸🇰🇨🇿 Naša vrstva</div>
+      <div class="s">skills · prompty · workflowy · MCP konektory · OKF šablóny · SK/CZ lokalizácia</div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="layer">
+      <div class="t">LegalWork <span class="pin">MIT</span></div>
+      <div class="s">UI · Office add-iny s tracked changes · on-device transkripcia · tabular review</div>
+    </div>
+    <div class="arrow">↓ <span style="font-size:12px">pinnutá závislosť (constants.json)</span></div>
+    <div class="layer">
+      <div class="t">opencode <span class="pin">MIT · 193k ★</span></div>
+      <div class="s">harness: MCP servery · agenti a subagenti · skills · pluginy · rules</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">3</span>Kontext — čo sa zmenilo od ADR 0002</h2>
+  <div class="card">
+    <ul>
+      <li><b>MČ prakticky otestoval LegalWork</b> na reálnom priečinku — Codex aj Groq fungovali, dojem „veľmi som bol impressed“.</li>
+      <li><b>Vyšlo najavo, že mikeOSS je AGPL-3.0</b>, čo je v rozpore s požiadavkou na permisívnu licenciu. LegalWork je MIT (overené).</li>
+      <li><b>Pribudol Vojta Říha (CZ)</b> so skúsenosťou z prototypu Determo a s MCP Salvia.</li>
+    </ul>
+    <p style="margin-bottom:0">Obmedzenia z ADR 0002 zostávajú v platnosti: robíme to popri praxi,
+    <b>nepredávame softvér ani službu</b>, monetizácia je cez vzdelávanie, výstup je open source.
+    Pribudol piaty princíp — <b>nezávislosť a prenositeľnosť</b>.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">4</span>Zvažované alternatívy — a prečo NIE</h2>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Alternatíva</th><th>Prečo nie</th></tr>
+    <tr>
+      <td><b>mikeOSS</b><br><span style="color:var(--muted);font-size:13px">pôvodné ADR 0002</span></td>
+      <td><span class="no">AGPL-3.0</span> → odvodené dielo musí byť tiež AGPL. VŘ ho hodnotí ako „spíš hype“ bez prepojenia na reálne veci; MČ: „nemá ten agresívny harness“. Marketingová výhoda nevyvažuje technické nevýhody.</td>
+    </tr>
+    <tr>
+      <td><b>Determo</b><br><span style="color:var(--muted);font-size:13px">prototyp VŘ</span></td>
+      <td>Work in progress na starších modeloch, nie je funkčný. Prepája Evolution cez Azure. Berieme <b>koncepty a bezpečnostné vzory, nie kód</b>.</td>
+    </tr>
+    <tr><td><b>Stella</b></td><td>Nedostala sa do užšieho výberu.</td></tr>
+    <tr>
+      <td><b>oh-my-pi / Pi</b></td>
+      <td>Technicky silné (MIT), ale sú to <b>coding agenty</b> s veľkým privilege surface. Nikto nad nimi nepostavil právnu desktopovú aplikáciu, ktorú by sme mohli prevziať.</td>
+    </tr>
+    <tr><td><b>Vlastná aplikácia od nuly</b></td><td>Nie sme programátori; neutiahneme to.</td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">5</span>Dôsledky</h2>
+  <div class="card" style="margin-bottom:14px">
+    <h3 class="yes">Pozitívne</h3>
+    <ul>
+      <li>Licencia <b>MIT</b> → maximálna sloboda pre nás aj komunitu; rieši otvorený bod „vybrať licenciu“.</li>
+      <li>Dedíme hotové veci: Office add-iny s tracked changes, on-device transkripciu, tabular review, model-agnostickú architektúru.</li>
+      <li>MCP konektory (judikatúra, Slov-Lex, ORSR, RPO, RPVS) sa napájajú <b>konfiguráciou, bez zásahu do jadra</b>.</li>
+      <li>Slovenčina ani čeština v LegalWorku zatiaľ nie sú → <b>lokalizácia je čistý, viditeľný príspevok do upstreamu</b>.</li>
+    </ul>
+  </div>
+
+  <div class="warn bad" style="margin-bottom:14px">
+    <h3>⚠️ Otvorený architektonický bod: ako presne „forkneme“</h3>
+    <p style="margin:0">Argument pre LegalWork bol, že „cez upstream to môžeš udržiavať“ — ale klasický fork túto výhodu
+    <b>ruší práve na vrstve, ktorú chceme meniť</b>. Sám LegalWork si tento problém rieši tak, že opencode drží ako
+    pinnutú externú závislosť, nie ako fork.</p>
+    <p style="margin:.6em 0 0">Zvážiť: <b>(a)</b> fork s disciplinovaným overlayom · <b>(b)</b> downstream nadstavba nad
+    nezmeneným LegalWorkom · <b>(c)</b> extension pack cez Settings → Extensions.
+    <b>Rozhodnúť pred založením fork repozitára.</b></p>
+  </div>
+
+  <div class="warn">
+    <h3>Ostatné riziká</h3>
+    <ul>
+      <li>Viažeme sa na roadmapu Eigenwelt Labs (Berlín). Mitigácia: naša vrstva musí zostať prenositeľná.</li>
+      <li><b>Free modely od Eigenweltu sú logované</b> — ich vlastné README hovorí, že sa nesmú používať na privilegované, klientske ani spisové dáta. Pre advokáta: <b>iba vlastný model alebo vlastný kľúč</b>.</li>
+      <li>Telemetria v oficiálnych buildoch (anonymná, EU PostHog, vypnuteľná) — treba to advokátom povedať.</li>
+      <li><b>Anthropic subscription cez OAuth je na hrane Consumer Terms</b> — default musí byť API kľúč.</li>
+      <li>Otvorené: ktorá verzia (tag/commit) sa forkne.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    Zdroj: <a href="../meetings/2026-08-06-sync-call-volba-zakladu.md">zápis zo sync callu 6. 8. 2026</a> ·
+    <a href="../meetings/2026-08-04-brainstorming-zaklad-a-prenositelnost.md">brainstorming 4. 8.</a> ·
+    <a href="../research/inspiracie/legalwork.md">analýza LegalWork</a> ·
+    <a href="0002-preco-forkujeme-mikeoss.html">ADR 0002 (nahradené)</a><br>
+    Fakty o repozitároch overené cez GitHub API 2026-08-04 a 2026-08-06.
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
