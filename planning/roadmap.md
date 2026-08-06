@@ -6,20 +6,25 @@
 
 - [x] Založiť plánovacie repo a štruktúru
 - [x] Nastaviť auto-aktualizované README
-- [ ] Analýza architektúry upstreamu MikeOSS (plugin API, release cyklus)
-- [ ] ADR 0001: stratégia forku (overlay vs. vendor vs. plugin vrstva)
-- [ ] ADR 0002: licencia
+- [x] **Analýza architektúry základu** — LegalWork stojí na pinnutom [opencode](https://github.com/sst/opencode); MCP, agenti a skills sú konfiguračné → [analýza](../research/inspiracie/legalwork.md)
+- [x] **ADR 0003: voľba základu — LegalWork** *(nahrádza ADR 0002)* → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
+- [x] **Licencia: MIT** — vyplýva z voľby základu → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
+- [ ] ⚠️ **Doplniť `LICENSE`, `NOTICE`, `CONTRIBUTING`** do tohto repa *(MČ)*
+- [ ] ⚠️ **ADR 0004: ako forknúť LegalWork** — overlay / downstream nadstavba / extension pack. **Blokuje založenie fork repozitára.**
 - [ ] Zmapovať SK dátové zdroje (Slov-Lex, ORSR, RPVS, judikatúra, OV, FS)
 - [ ] Zmapovať existujúce slovenské MCP servery
+- [ ] Zmapovať CZ zdroje *(VŘ)* a PL zdroje *(VŘ)*
 - [ ] Právny rámec: GDPR, predpisy SAK, mlčanlivosť, AI Act
+- [ ] Potvrdenie ADR 0003 od MF *(nezúčastnil sa callu 6. 8.)*
 
 ## Fáza 1 — Fork & MVP (Q4 2026)
 
-- [ ] Založiť fork repozitár
-- [ ] Nastaviť upstream sync (automatické pull-ovanie)
-- [ ] SK lokalizácia rozhrania
-- [ ] Prvý SK MCP server integrovaný
-- [ ] Interné testovanie (traja partneri)
+- [ ] Založiť fork repozitár *(čaká na ADR 0004)*
+- [ ] Nastaviť upstream sync z [eigenweltlabs/legalwork](https://github.com/eigenweltlabs/legalwork)
+- [ ] **SK + CZ lokalizácia rozhrania** — ani jeden z 12 podporovaných jazykov; čistý príspevok do upstreamu
+- [ ] Prvý SK MCP server integrovaný *(registrácia v configu, bez zásahu do jadra)*
+- [ ] UI/CLI prepínač *(VŘ)*
+- [ ] Interné testovanie (MČ · MF · IR · VŘ)
 
 ## Fáza 2 — Pilot a komunita (2027)
 
