@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADR 0005 — Štruktúra repozitárov</title>
+<style>
+  :root{--navy:#0d1b2a;--navy2:#13243a;--gold:#c9a24a;--gold-soft:#e4c979;
+    --ink:#1a2233;--muted:#5b6577;--line:#e4e7ec;--bg:#f6f7f9;--card:#fff;
+    --green:#1f9d55;--amber:#c98a1a;--red:#c0392b}
+  @media (prefers-color-scheme:dark){:root{--ink:#e8ecf3;--muted:#9aa6b8;--line:#25324a;--bg:#0b131f;--card:#111c2e}}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  .hero{background:radial-gradient(1100px 380px at 75% -10%,rgba(201,162,74,.22),transparent),
+    linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;padding:48px 0 40px;border-bottom:3px solid var(--gold)}
+  .kicker{letter-spacing:.26em;text-transform:uppercase;font-size:12px;color:var(--gold-soft);font-weight:700}
+  .hero h1{margin:.3em 0 .1em;font-size:clamp(26px,4.6vw,40px);line-height:1.12;font-weight:800}
+  .hero p{margin:.4em 0 0;color:#c8d2e0;font-size:15px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{background:rgba(255,255,255,.08);border:1px solid rgba(201,162,74,.4);color:#fff;padding:5px 12px;border-radius:100px;font-size:12.5px;font-weight:600}
+  .chip b{color:var(--gold-soft)}
+  section{margin:34px 0}
+  h2{font-size:20px;font-weight:800;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+  h2 .n{background:var(--navy);color:var(--gold);width:28px;height:28px;border-radius:8px;display:inline-grid;place-items:center;font-size:13px;flex:none}
+  @media(prefers-color-scheme:dark){h2 .n{background:#0a1524}}
+  h3{font-size:15px;margin:.2em 0 .5em}
+  .decision{background:linear-gradient(135deg,rgba(201,162,74,.14),rgba(201,162,74,.05));border:1.5px solid var(--gold);
+    border-radius:16px;padding:20px 22px;font-size:17px;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:0 4px 14px rgba(13,27,42,.05)}
+  table{width:100%;border-collapse:collapse;font-size:14px;border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+  @media(prefers-color-scheme:dark){th{background:#0a1524}}
+  tr:last-child td{border-bottom:none}
+  .tbl-wrap{overflow-x:auto}
+  code{background:rgba(125,140,170,.16);padding:1px 6px;border-radius:5px;font-size:13px}
+  .repos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.repos{grid-template-columns:1fr}}
+  .repo{border-radius:12px;padding:15px 17px;border:1px solid var(--line);background:var(--card);border-top:4px solid var(--gold)}
+  .repo.new{border-top-color:var(--green)}
+  .repo .t{font-weight:800;font-size:14px;word-break:break-word}
+  .repo .s{color:var(--muted);font-size:13px;margin-top:5px}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:100px;margin-top:8px;
+    background:rgba(201,162,74,.18);border:1px solid var(--gold)}
+  .tag.g{background:rgba(31,157,85,.16);border-color:var(--green)}
+  .warn{border-left:4px solid var(--amber);background:var(--card);border-radius:0 12px 12px 0;padding:16px 18px;
+    border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .warn h3{color:var(--amber);margin-top:0}
+  .ok{border-left-color:var(--green)}.ok h3{color:var(--green)}
+  ul{margin:.4em 0;padding-left:1.2em}li{margin:.3em 0}
+  footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 50px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Architecture Decision Record — návrh</div>
+    <h1>ADR 0005 — Štruktúra repozitárov</h1>
+    <p>Koordináciu oddelene od kódu. Nie vo vetvách jedného repa.</p>
+    <div class="meta">
+      <span class="chip"><b>Dátum:</b> 2026-08-06</span>
+      <span class="chip"><b>Stav:</b> 📝 návrh — na stredajší call</span>
+      <span class="chip"><b>Navrhol:</b> MČ</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <h2><span class="n">1</span>Kontext</h2>
+  <div class="card">
+    <p style="margin-top:0">Toto repo je <b>výhradne koordinačné</b> — nápady, rozhodnutia, rešerše, projektové riadenie. Neobsahuje kód produktu a nemá ho obsahovať.</p>
+    <p style="margin-bottom:0">Zvažovalo sa riešenie <b>v tomto repe cez druhú vetvu</b>: <code>main</code> na koordináciu, samostatná vetva na appku. Cieľ za tým je správny — <b>jedno miesto, jeden odkaz, nízka réžia</b>. Nižšie je návrh, ako ho dosiahnuť bez nevýhod vetvy.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">2</span>Návrh rozhodnutia</h2>
+  <div class="decision" style="margin-bottom:18px">
+    Koordináciu a kód držať v oddelených repozitároch, združených pod jednou GitHub organizáciou.
+  </div>
+  <div class="repos">
+    <div class="repo">
+      <div class="t">lawOSS-like-SK-CZ</div>
+      <div class="s">Koordinácia — rozhodnutia, specy, plánovanie. <b>Bez kódu.</b> Zostáva presne ako je.</div>
+      <span class="tag">existuje</span>
+    </div>
+    <div class="repo new">
+      <div class="t">Balík vrstvy A</div>
+      <div class="s">Skills, prompty, MCP configy, OKF šablóny, workflowy. Inštaluje sa do LegalWorku.</div>
+      <span class="tag g">nové · MIT</span>
+    </div>
+    <div class="repo">
+      <div class="t">MCP servery</div>
+      <div class="s"><code>judikaty-mcp</code> a ďalšie. Registrujú sa v LegalWorku cez UI.</div>
+      <span class="tag">už samostatné</span>
+    </div>
+  </div>
+  <p style="margin-top:16px">Podľa <a href="0004-ako-rozsirit-legalwork.html">ADR 0004</a> <b>fork LegalWorku zatiaľ nevzniká</b>. Ak neskôr vznikne ako núdzová eskalácia, bude to <b>samostatné repo založené ako GitHub fork</b> — inak nefunguje upstream sync.</p>
+</section>
+
+<section>
+  <h2><span class="n">3</span>Prečo nie vetva v tomto repe</h2>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Dôvod</th><th>Vysvetlenie</th></tr>
+    <tr><td><b>Fork potrebuje vlastné repo</b></td><td>Upstream sync vyžaduje <code>upstream</code> remote. Histórie tohto repa a LegalWorku sú nesúvisiace — spájali by sa cez <code>--allow-unrelated-histories</code>, hack, ktorý sa pri každom ďalšom pulle rozsype. <b>Zabilo by to presne tú vlastnosť, kvôli ktorej sme LegalWork zvolili.</b></td></tr>
+    <tr><td><b>Vetvy sa majú zlievať</b></td><td>Vetva s úplne iným stromom, ktorá sa nikdy nemergne do <code>main</code>, nie je vetva — je to druhé repo schované v prvom. <code>git merge main</code> by miešal dokumentáciu do kódu.</td></tr>
+    <tr><td><b>Licencia</b></td><td>Kód odvodený od LegalWorku musí niesť jeho MIT licenciu a atribúciu. Koordinačné repo je iné dielo. V jednom repe by bolo nejednoznačné, čo je pod čím — zbytočné riziko pre advokátov publikujúcich open source.</td></tr>
+    <tr><td><b>Issues, PR a releases</b></td><td>Jeden tracker pre „diskusia o roadmape“ aj „appka padá pri OCR“. Appka bude potrebovať verzované buildy, koordinačné repo nie.</td></tr>
+    <tr><td><b>Skúsenosť prispievateľa</b></td><td>Kolega, ktorý chce appku vyskúšať, by si klonoval zápisy zo stretnutí.</td></tr>
+  </table>
+  </div>
+  <div class="warn ok" style="margin-top:16px">
+    <h3>Jeden argument, ktorý NEPLATÍ</h3>
+    <p style="margin:0">Automatizácie by problém nespôsobili — <code>update-readme.yml</code> aj <code>telegram-notify.yml</code> majú <code>branches: [main]</code>, takže na inej vetve sa nespustia. <i>(Overené 2026-08-06.)</i></p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">4</span>Ako splniť pôvodný cieľ „jedno miesto“</h2>
+  <div class="card">
+    <p style="margin-top:0"><b>GitHub organizácia.</b> Dá jednu landing stránku, jeden názov, spoločné členstvo a práva naprieč repami — presne to, čo vetva sľubovala, ale bez jej nevýhod.</p>
+    <ul>
+      <li>Názov v súlade so značkou: <b>LAWOSS</b>. <i>(Dostupnosť <code>lawoss</code> na GitHube neoverená — treba skontrolovať.)</i></li>
+      <li>Presun existujúceho repa je <b>bezpečný</b> — GitHub drží presmerovanie zo starých URL. Pozor len na GitHub Pages: URL sa zmení.</li>
+      <li>Vhodná príležitosť presunúť pod organizáciu aj <code>judikaty-mcp</code>, ktorý je dnes <b>private a bez licencie</b> — a tým blokuje komunitnú časť projektu.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">5</span>Dôsledky</h2>
+  <div class="card">
+    <ul style="margin-top:0">
+      <li>Toto repo sa <b>nemení</b> — zostáva koordinačné.</li>
+      <li>Vzniká jedno nové repo (balík vrstvy A), zatiaľ <b>bez forku</b>.</li>
+      <li>Treba rozhodnúť, či zakladáme organizáciu hneď, alebo až keď bude kód.</li>
+      <li>Do každého README patrí odkaz na to druhé repo.</li>
+    </ul>
+    <p style="margin-bottom:0;color:var(--red);font-weight:700">Nič z toho ešte nie je vytvorené. Založenie organizácie, forku aj nového repa čaká na odsúhlasenie tímom.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    Súvisí: <a href="0004-ako-rozsirit-legalwork.html">ADR 0004</a> · <a href="0003-legal-work-ako-zaklad.html">ADR 0003</a><br>
+    Fakty overené 2026-08-06.
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

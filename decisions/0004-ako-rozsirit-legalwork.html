@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADR 0004 — Ako rozšíriť LegalWork</title>
+<style>
+  :root{--navy:#0d1b2a;--navy2:#13243a;--gold:#c9a24a;--gold-soft:#e4c979;
+    --ink:#1a2233;--muted:#5b6577;--line:#e4e7ec;--bg:#f6f7f9;--card:#fff;
+    --green:#1f9d55;--amber:#c98a1a;--red:#c0392b}
+  @media (prefers-color-scheme:dark){:root{--ink:#e8ecf3;--muted:#9aa6b8;--line:#25324a;--bg:#0b131f;--card:#111c2e}}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  .hero{background:radial-gradient(1100px 380px at 75% -10%,rgba(201,162,74,.22),transparent),
+    linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;padding:48px 0 40px;border-bottom:3px solid var(--gold)}
+  .kicker{letter-spacing:.26em;text-transform:uppercase;font-size:12px;color:var(--gold-soft);font-weight:700}
+  .hero h1{margin:.3em 0 .1em;font-size:clamp(26px,4.6vw,40px);line-height:1.12;font-weight:800}
+  .hero p{margin:.4em 0 0;color:#c8d2e0;font-size:15px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{background:rgba(255,255,255,.08);border:1px solid rgba(201,162,74,.4);color:#fff;padding:5px 12px;border-radius:100px;font-size:12.5px;font-weight:600}
+  .chip b{color:var(--gold-soft)}
+  section{margin:34px 0}
+  h2{font-size:20px;font-weight:800;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+  h2 .n{background:var(--navy);color:var(--gold);width:28px;height:28px;border-radius:8px;display:inline-grid;place-items:center;font-size:13px;flex:none}
+  @media(prefers-color-scheme:dark){h2 .n{background:#0a1524}}
+  h3{font-size:15px;margin:.2em 0 .5em}
+  .decision{background:linear-gradient(135deg,rgba(201,162,74,.14),rgba(201,162,74,.05));border:1.5px solid var(--gold);
+    border-radius:16px;padding:20px 22px;font-size:17px;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:0 4px 14px rgba(13,27,42,.05)}
+  table{width:100%;border-collapse:collapse;font-size:14px;border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+  @media(prefers-color-scheme:dark){th{background:#0a1524}}
+  tr:last-child td{border-bottom:none}
+  .tbl-wrap{overflow-x:auto}
+  code{background:rgba(125,140,170,.16);padding:1px 6px;border-radius:5px;font-size:13px}
+  .yes{color:var(--green);font-weight:700}.no{color:var(--red);font-weight:700}
+  .layers{display:grid;gap:12px}
+  .lay{border-radius:12px;padding:15px 18px;border:1px solid var(--line);background:var(--card)}
+  .lay.a{background:linear-gradient(135deg,rgba(31,157,85,.16),rgba(31,157,85,.05));border:1.5px solid var(--green)}
+  .lay.b{background:linear-gradient(135deg,rgba(201,162,74,.14),rgba(201,162,74,.04));border:1.5px solid var(--gold)}
+  .lay.f{background:linear-gradient(135deg,rgba(192,57,43,.13),rgba(192,57,43,.04));border:1.5px solid var(--red)}
+  .lay .t{font-weight:800;font-size:15px}.lay .s{color:var(--muted);font-size:13.5px;margin-top:3px}
+  .warn{border-left:4px solid var(--amber);background:var(--card);border-radius:0 12px 12px 0;padding:16px 18px;
+    border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .warn h3{color:var(--amber);margin-top:0}
+  ul{margin:.4em 0;padding-left:1.2em}li{margin:.3em 0}
+  footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 50px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Architecture Decision Record — návrh</div>
+    <h1>ADR 0004 — Ako rozšíriť LegalWork</h1>
+    <p>Fork, nadstavba, alebo balík? Blokuje založenie fork repozitára.</p>
+    <div class="meta">
+      <span class="chip"><b>Dátum:</b> 2026-08-06</span>
+      <span class="chip"><b>Stav:</b> 📝 návrh — na stredajší call</span>
+      <span class="chip"><b>Navrhol:</b> MČ</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <h2><span class="n">1</span>Problém</h2>
+  <div class="card">
+    <p style="margin-top:0"><a href="0003-legal-work-ako-zaklad.html">ADR 0003</a> určil LegalWork ako základ, ale nechal otvorené <b>ako presne</b> ho rozšírime. Ten rozpor je vecný:</p>
+    <ul>
+      <li>Argument pre LegalWork bol, že „cez upstream to môžeš udržiavať, oni to updateujú“.</li>
+      <li><b>Klasický fork túto výhodu ruší</b> — práve na vrstve, ktorú chceme meniť.</li>
+      <li>Sám LegalWork sa tomu vyhýba: opencode drží ako <b>pinnutú závislosť</b> (<code>constants.json</code> → <code>v1.17.18</code>).</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">2</span>Čo sa dá rozšíriť zvonku — overené v zdrojáku</h2>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Vrstva</th><th>Bez zásahu do ich repa?</th><th>Dôkaz</th></tr>
+    <tr><td><b>MCP servery</b></td><td class="yes">✅ áno — používateľ cez UI</td><td><code>add-mcp-modal.tsx</code>, <code>mcp-connector-setup-modal.tsx</code></td></tr>
+    <tr><td><b>Agent Skills</b></td><td class="yes">✅ áno — súborové</td><td>README: „Extend it with skills, plugins, and MCP connectors“</td></tr>
+    <tr><td><b>Prompty, workflowy, OKF šablóny</b></td><td class="yes">✅ áno — obyčajné súbory</td><td>—</td></tr>
+    <tr><td><b>opencode pluginy</b></td><td class="yes">✅ áno — cez SDK</td><td>opencode docs</td></tr>
+    <tr><td><b>LegalWork „extensions“</b></td><td class="no">❌ nie — hard-coded</td><td><code>apps/server/src/extensions/index.ts</code> — statické pole + dispatch cez <code>if (extensionId === …)</code></td></tr>
+    <tr><td><b>UI, lokalizácia, branding</b></td><td class="no">❌ nie</td><td>zdrojáky <code>apps/app/</code></td></tr>
+  </table>
+  </div>
+  <p style="color:var(--muted);font-size:13.5px">Overené čítaním zdrojáku 2026-08-06. <b>Dôsledok:</b> väčšina našej plánovanej hodnoty sa dá dodať zvonku.</p>
+</section>
+
+<section>
+  <h2><span class="n">3</span>Návrh rozhodnutia</h2>
+  <div class="decision" style="margin-bottom:16px">
+    Rozdeliť našu prácu na dve vrstvy a forkovať až vtedy, keď to inak nepôjde.
+  </div>
+  <div class="layers">
+    <div class="lay a">
+      <div class="t">✅ Vrstva A — prenosný balík (bez forku)</div>
+      <div class="s">SK/CZ MCP konektory · skills a dynamické prompty · OKF šablóny · workflowy podľa odvetví<br>
+      Žiadny maintenance jadra. <b>Funguje aj mimo LegalWorku</b> (opencode, Claude Code) → splnený princíp prenositeľnosti.</div>
+    </div>
+    <div class="lay b">
+      <div class="t">⬆️ Vrstva B — upstream PR do LegalWorku</div>
+      <div class="s">SK a CZ lokalizácia UI · právne špecifické úpravy rozhrania<br>
+      Lokalizácia je pre nich <b>žiadaná</b> — majú 12 jazykov a SK ani CZ medzi nimi nie sú. Čistý vstup do komunity bez dlhu.</div>
+    </div>
+    <div class="lay f">
+      <div class="t">🍴 Fork — núdzová eskalácia</div>
+      <div class="s">Spúšťač definovaný vopred: <i>upstream odmietne alebo mesiace nerieši niečo, bez čoho produkt nedáva zmysel.</i> Vtedy sa ADR reviduje.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">4</span>Zvažované alternatívy — a prečo NIE</h2>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Alternatíva</th><th>Prečo nie</th></tr>
+    <tr><td><b>(a) Fork s overlayom</b></td><td>Každý upstream release = merge, konflikty presne tam, kde editujeme. Vyžaduje niekoho, kto vie riešiť konflikty v TypeScripte — <b>to v tíme nemáme</b>. Zabíja prenositeľnosť.</td></tr>
+    <tr><td><b>(b) Downstream nadstavba</b></td><td>LegalWork je desktopová aplikácia (Tauri), nie knižnica. Na npm je len <code>opencode-router</code>; <code>legalwork-orchestrator</code> tam <b>nemá publikovanú verziu</b> (overené 2026-08-06).</td></tr>
+    <tr><td><b>(c) Čistý balík bez upstream PR</b></td><td>Nepokryje lokalizáciu ani UI — bez SK/CZ rozhrania je produkt pre cieľovú skupinu polovičný.</td></tr>
+    <tr><td><b>Fork hneď, „nech máme kontrolu“</b></td><td>Kontrola, ktorú nevieme uniesť. Fork sa dá spraviť kedykoľvek neskôr; <b>nedá sa lacno vrátiť späť</b>.</td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">5</span>Dôsledky</h2>
+  <div class="card" style="margin-bottom:14px">
+    <h3 class="yes">Pozitívne</h3>
+    <ul>
+      <li>Nulový maintenance jadra — upgrade LegalWorku = stiahnuť novú verziu.</li>
+      <li>Vrstva A je prenositeľná — keď o rok bude lepší harness, presťahujeme sa.</li>
+      <li>Distribúcia komunite je triviálna: balík súborov, nie aplikácia na zostavenie.</li>
+      <li>Upstream PR s lokalizáciou dá viditeľnosť v projekte s reálnym financovaním.</li>
+    </ul>
+  </div>
+  <div class="warn">
+    <h3>Na doriešenie</h3>
+    <ul>
+      <li><b>Nemáme kontrolu nad UI ani brandingom.</b> Používateľ bude vidieť LegalWork, nie LAWOSS. Buď to vedome prijmeme, alebo to znamená fork.</li>
+      <li>Sme závislí od toho, či a ako rýchlo Eigenwelt merguje. <b>Osloviť ich vopred</b>, či o SK/CZ lokalizáciu stoja.</li>
+      <li>Overiť, či sa dá centrálne vypnúť telemetria a free modely pre celý tím.</li>
+    </ul>
+    <p style="margin-bottom:0"><b>Praktický prvý krok, ktorý nič nepredurčuje:</b> zabaliť existujúce SK MCP konektory a OKF skilly ako vrstvu A a otestovať v LegalWorku. Ak to zafunguje, väčšina otázky o forku je zodpovedaná praxou.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    Súvisí: <a href="0003-legal-work-ako-zaklad.html">ADR 0003</a> ·
+    <a href="0005-struktura-repozitarov.html">ADR 0005</a> ·
+    <a href="../research/inspiracie/legalwork.md">analýza LegalWork</a><br>
+    Fakty overené priamo v zdrojáku <a href="https://github.com/eigenweltlabs/legalwork">eigenweltlabs/legalwork</a> a cez npm registry, 2026-08-06.
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

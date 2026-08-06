@@ -54,6 +54,7 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 - [x] ✅ **Voľba základu — rozhodnuté 2026-08-06: LegalWork** → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md) *(nahrádza [ADR 0002](../decisions/0002-preco-forkujeme-mikeoss.md); čaká na potvrdenie MF)*
 - [x] ✅ **Licencia — MIT**, vyplýva z voľby základu (LegalWork je MIT) → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [ ] ⚠️ **Doplniť súbory `LICENSE`, `NOTICE`, `CONTRIBUTING`** — repo je verejné, ale **bez `LICENSE` platí „all rights reserved"** *(MČ do 2026-08-08)*
-- [ ] ⚠️ **Ako presne „forknúť" LegalWork** — fork s overlayom / downstream nadstavba / extension pack. Klasický fork ruší výhodu upstreamu, kvôli ktorej sme LegalWork zvolili. **Rozhodnúť pred založením fork repozitára.** → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
+- [ ] ⚠️ **Ako presne rozšíriť LegalWork** → **[ADR 0004](../decisions/0004-ako-rozsirit-legalwork.md)** *(návrh napísaný — odporúča vrstvu A bez forku + upstream PR na lokalizáciu; **blokuje založenie fork repozitára**)*
+- [ ] ⚠️ **Štruktúra repozitárov** — koordinácia oddelene od kódu → **[ADR 0005](../decisions/0005-struktura-repozitarov.md)** *(návrh napísaný; zahŕňa GitHub organizáciu a zverejnenie `judikaty-mcp`)*
 - [ ] Ktorá verzia LegalWork sa forkne (tag/commit)?
 - [ ] Čím nahradiť marketingovú expozíciu po upustení od Mikea *(názov LAWOSS zostáva)*

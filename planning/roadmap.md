@@ -10,7 +10,8 @@
 - [x] **ADR 0003: voľba základu — LegalWork** *(nahrádza ADR 0002)* → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [x] **Licencia: MIT** — vyplýva z voľby základu → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [ ] ⚠️ **Doplniť `LICENSE`, `NOTICE`, `CONTRIBUTING`** do tohto repa *(MČ)*
-- [ ] ⚠️ **ADR 0004: ako forknúť LegalWork** — overlay / downstream nadstavba / extension pack. **Blokuje založenie fork repozitára.**
+- [ ] ⚠️ **[ADR 0004: ako rozšíriť LegalWork](../decisions/0004-ako-rozsirit-legalwork.md)** — napísaný ako **návrh**, čaká na prerokovanie. **Blokuje založenie fork repozitára.**
+- [ ] ⚠️ **[ADR 0005: štruktúra repozitárov](../decisions/0005-struktura-repozitarov.md)** — koordinácia oddelene od kódu; návrh na prerokovanie
 - [ ] Zmapovať SK dátové zdroje (Slov-Lex, ORSR, RPVS, judikatúra, OV, FS)
 - [ ] Zmapovať existujúce slovenské MCP servery
 - [ ] Zmapovať CZ zdroje *(VŘ)* a PL zdroje *(VŘ)*
