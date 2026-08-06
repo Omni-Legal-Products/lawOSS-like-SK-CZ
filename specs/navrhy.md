@@ -41,6 +41,8 @@ Kto čo navrhol, v akom je to stave a kde to žije
 | 16 | **Modulové rozhranie plug-and-play** — moduly ako LEGO nad jednotným základom, bezpečnostné hranice | **MČ** *(spracúva IR)* | 2026-08-06 | 📝 návrh · IR do 2026-08-19 | [call 6. 8.](../meetings/2026-08-06-sync-call-volba-zakladu.md) |
 | 17 | **Rešeršný workflow „one-click"** — dotaz → rešerš → projektové artefakty, cez NotebookLM CLI | **MČ** | 2026-08-06 | 💭 nápad | [call 6. 8.](../meetings/2026-08-06-sync-call-volba-zakladu.md) |
 | 18 | **Google Workspace integrácia** — e-maily a marketingový outreach cez harness | **MČ** | 2026-08-06 | 💭 nápad · nízka priorita | [call 6. 8.](../meetings/2026-08-06-sync-call-volba-zakladu.md) |
+| 19 | **Natívna autorizácia PDF a XML podľa eIDAS** — QES + QTS, advokátske preukazy, české elektronické podpisy, dôveryhodná služba vytvárania podpisov, časová pečiatka | **MČ** | 2026-08-06 | ⚠️ **propagované vo vizuáloch, ale bez specu** — treba rozpísať | [keyvisualy](../assets/brand/) |
+| 20 | **Fakturácia a výkazy času** — v rozhraní na vizuáloch (Fakturácia, Výkazy času, Šablóny) | **MČ** | 2026-08-06 | 💭 nápad · bez specu | [keyvisualy](../assets/brand/) |
 
 ### Legenda stavov
 

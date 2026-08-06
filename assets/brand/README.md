@@ -7,9 +7,10 @@ Vizuálne podklady značky **LAWOSS** *(Czechia · Slovakia)*.
 | Súbor | Čo to je | Kde sa zobrazí |
 |---|---|---|
 | `logo.png` | okrúhly odznak LAWOSS (hexagonálny štít, váhy, stĺp, CZ+SK vlajky) | [README repa](../../README.md), [brand-concept](../../docs/brand-concept.md), avatar Telegram skupiny |
-| `keyvisual-hero.png` | hlavný keyvisual — *„AI nástroje pre moderného advokáta"*, mobil + desktop na podstavci | [README repa](../../README.md) — hlavička |
-| `keyvisual-dashboard.png` | desktopové rozhranie — *„Poriadok v spise. Overené právo. AI pod kontrolou."* | [README repa](../../README.md) — sekcia *Ako to má vyzerať* |
-| `keyvisual-mobile.png` | mobil + desktop — *„Advokátska prax pod kontrolou, kdekoľvek"* | [README repa](../../README.md) — sekcia *Ako to má vyzerať* |
+| `keyvisual-hero.png` | hlavný keyvisual — *„Poriadok v spise. Overené právo. AI pod kontrolou."* + dashboard a eIDAS panel | [README repa](../../README.md) — hlavička |
+| `keyvisual-dashboard.png` | *„AI nástroje pre moderného advokáta"* — dashboard a zoznam funkcií | [README repa](../../README.md) — sekcia *Ako to má vyzerať* |
+| `keyvisual-features.png` | šesť funkcií v detaile — prehľad spisu, výskum s citáciami, transkripcia, editor promptov, AI asistent, autorizácia PDF/XML | [README repa](../../README.md) — sekcia *Ako to má vyzerať* |
+| `keyvisual-mobile.png` | mobil + desktop — *„Poriadok v spise. AI pod kontrolou."* | [README repa](../../README.md) — sekcia *Ako to má vyzerať* |
 | `mockup.png` | starší koncept rozhrania *(nahradený keyvisualmi; ponechaný pre históriu)* | [brand-concept](../../docs/brand-concept.md) |
 | `moodboard.png` | moodboard značky | [brand-concept](../../docs/brand-concept.md) |
 
@@ -25,7 +26,8 @@ Vizuálne podklady značky **LAWOSS** *(Czechia · Slovakia)*.
 | `logo.png` | ✅ CZECHIA · SLOVAKIA | — |
 | `keyvisual-hero.png` | ✅ CZECHIA · SLOVAKIA | — |
 | `keyvisual-dashboard.png` | ✅ CZECHIA · SLOVAKIA | — |
-| `keyvisual-mobile.png` | ❌ len „SLOVAKIA" | **pregenerovať** |
+| `keyvisual-features.png` | ✅ CZECHIA · SLOVAKIA | — |
+| `keyvisual-mobile.png` | ✅ CZECHIA · SLOVAKIA *(pregenerované 2026-08-06)* | — |
 | `moodboard.png` | ❌ „LAWOSS SLOVAKIA" + starý odkaz `t.me/LawOSS_Slovakia` | **pregenerovať** *(už evidované v [brand-concept](../../docs/brand-concept.md))* |
 
 > [!IMPORTANT]

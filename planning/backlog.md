@@ -60,4 +60,7 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 - [ ] ⚠️ **Štruktúra repozitárov** — koordinácia oddelene od kódu → **[ADR 0005](../decisions/0005-struktura-repozitarov.md)** *(návrh napísaný; zahŕňa GitHub organizáciu a zverejnenie `judikaty-mcp`)*
 - [ ] Ktorá verzia LegalWork sa forkne (tag/commit)?
 - [ ] Čím nahradiť marketingovú expozíciu po upustení od Mikea *(názov LAWOSS zostáva)*
-- [ ] 🎨 **Zjednotiť wordmark — všade „CZECHIA · SLOVAKIA"** — pregenerovať `keyvisual-mobile.png` (má len „SLOVAKIA") a `moodboard.png` (starý wordmark + odkaz `t.me/LawOSS_Slovakia`) → [pravidlo v assets/brand](../assets/brand/README.md)
+- [x] ✅ **Zjednotiť wordmark — keyvisualy pregenerované 2026-08-06** so správnym „CZECHIA · SLOVAKIA" → [pravidlo v assets/brand](../assets/brand/README.md)
+- [ ] 🎨 Pregenerovať `moodboard.png` — stále nesie starý wordmark „LAWOSS SLOVAKIA" a odkaz `t.me/LawOSS_Slovakia`
+- [ ] ⚠️ **Spec pre autorizáciu PDF/XML podľa eIDAS (QES + QTS)** — [návrh #19](../specs/navrhy.md). **Vizuály to už propagujú ako „Novinku v LAWOSS", ale v repe o tom nie je ani riadok.** Dotýka sa advokátskych preukazov, českých el. podpisov a kvalifikovanej časovej pečiatky — pozor na väzbu na [spec 0004](../specs/0004-mcp-sk-konektory.md), ktorý zápisové úkony pod kvalifikovaným podpisom označuje za najvyššie riziko.
+- [ ] 💰 **Fakturácia a výkazy času** — [návrh #20](../specs/navrhy.md); v rozhraní na vizuáloch, bez specu
