@@ -2,17 +2,22 @@
 
 Vizuálne podklady značky **LAWOSS** *(Czechia · Slovakia)*.
 
-## Očakávané súbory
+## Súbory
 
 | Súbor | Čo to je | Kde sa zobrazí |
 |---|---|---|
 | `logo.png` | okrúhly odznak LAWOSS (hexagonálny štít, váhy, stĺp, CZ+SK vlajky) | [README repa](../../README.md), [brand-concept](../../docs/brand-concept.md), avatar Telegram skupiny |
-| `mockup.png` | koncept rozhrania (dashboard, spis, transkripcia, rešerš, prompty) | [README repa](../../README.md), [brand-concept](../../docs/brand-concept.md) |
+| `keyvisual-hero.png` | hlavný keyvisual — *„AI nástroje pre moderného advokáta"*, mobil + desktop na podstavci | [README repa](../../README.md) — hlavička |
+| `keyvisual-dashboard.png` | desktopové rozhranie — *„Poriadok v spise. Overené právo. AI pod kontrolou."* | [README repa](../../README.md) — sekcia *Ako to má vyzerať* |
+| `keyvisual-mobile.png` | mobil + desktop — *„Advokátska prax pod kontrolou, kdekoľvek"* | [README repa](../../README.md) — sekcia *Ako to má vyzerať* |
+| `mockup.png` | starší koncept rozhrania *(nahradený keyvisualmi; ponechaný pre históriu)* | [brand-concept](../../docs/brand-concept.md) |
+| `moodboard.png` | moodboard značky | [brand-concept](../../docs/brand-concept.md) |
 
-> [!IMPORTANT]
-> Ak sa obrázky v README nezobrazujú, tieto súbory ešte **nie sú nahraté**. Nahraj ich presne pod týmito názvami do `assets/brand/` — odkazy sú už pripravené.
->
-> Najrýchlejšie cez GitHub: *Add file → Upload files* do priečinka `assets/brand/`.
+> [!WARNING]
+> **Keyvisualy sú vizuálne koncepty, nie snímky hotového produktu.** Dáta v nich (mená klientov, spisové značky, sumy) sú **vymyslené**. Pri prezentovaní projektu to treba uviesť, nech to nevyzerá ako funkčná appka.
+
+> [!NOTE]
+> **Nezrovnalosť na opravu:** `keyvisual-mobile.png` má v logu podpis **„SLOVAKIA"**, ostatné majú **„CZECHIA · SLOVAKIA"**. Projekt je dvojjurisdikčný — pri ďalšej iterácii zjednotiť.
 
 ## Farby značky
 
