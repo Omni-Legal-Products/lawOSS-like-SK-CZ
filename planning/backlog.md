@@ -62,5 +62,5 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 - [ ] Čím nahradiť marketingovú expozíciu po upustení od Mikea *(názov LAWOSS zostáva)*
 - [x] ✅ **Zjednotiť wordmark — keyvisualy pregenerované 2026-08-06** so správnym „CZECHIA · SLOVAKIA" → [pravidlo v assets/brand](../assets/brand/README.md)
 - [ ] 🎨 Pregenerovať `moodboard.png` — stále nesie starý wordmark „LAWOSS SLOVAKIA" a odkaz `t.me/LawOSS_Slovakia`
-- [ ] ⚠️ **Spec pre autorizáciu PDF/XML podľa eIDAS (QES + QTS)** — [návrh #19](../specs/navrhy.md). **Vizuály to už propagujú ako „Novinku v LAWOSS", ale v repe o tom nie je ani riadok.** Dotýka sa advokátskych preukazov, českých el. podpisov a kvalifikovanej časovej pečiatky — pozor na väzbu na [spec 0004](../specs/0004-mcp-sk-konektory.md), ktorý zápisové úkony pod kvalifikovaným podpisom označuje za najvyššie riziko.
-- [ ] 💰 **Fakturácia a výkazy času** — [návrh #20](../specs/navrhy.md); v rozhraní na vizuáloch, bez specu
+- [ ] 🔏 **Autorizácia PDF/XML podľa eIDAS (QES + QTS)** — [návrh #19](../specs/navrhy.md), zatiaľ **dizajnový prieskum** (MČ, Telegram topic *DESIGN*, zapracované do mockupov). Ak sa do toho pôjde, potrebuje spec — dotýka sa advokátskych preukazov, českých el. podpisov a kvalifikovanej časovej pečiatky, a väzbu má na [spec 0004](../specs/0004-mcp-sk-konektory.md), ktorý úkony pod kvalifikovaným podpisom označuje za najrizikovejšiu oblasť *(podpis spúšťa advokát — treba explicitnú human gate)*.
+- [ ] 💰 **Fakturácia a výkazy času** — [návrh #20](../specs/navrhy.md); dizajnový prieskum, bez specu

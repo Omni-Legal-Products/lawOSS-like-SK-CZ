@@ -85,7 +85,7 @@ Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advoká
 
 <img src="assets/brand/keyvisual-features.png" alt="LAWOSS — šesť hlavných funkcií" width="100%" />
 
-<sub><i>Prehľad spisu · Právny výskum s citáciami · Transkripcia · Editor promptov · AI Asistent · Autorizácia PDF a XML</i></sub>
+<sub><i>Detail hlavných funkcií — prehľad spisu, právny výskum s citáciami, transkripcia, editor promptov a AI asistent</i></sub>
 
 <br><br>
 
@@ -104,8 +104,10 @@ Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advoká
 | **Transkripcia** naviazaná na konkrétny spis, s úlohami a lehotami | [spec 0001](specs/0001-transkripcia.md) + [lehoty a timeline](specs/0005-lehoty-timeline.md) |
 | **Prompty** ako vlastné AI postupy | [otvorený prompt layer](specs/0003-prompt-layer.md) |
 | **Konektory** na e-súdy, registre a služby tretích strán | [spec 0004](specs/0004-mcp-sk-konektory.md) |
-| **Autorizácia PDF a XML podľa eIDAS** (QES + QTS) | ⚠️ **zatiaľ bez specu** — [návrh #19](specs/navrhy.md) |
 | **Lokálne spracovanie dát** | dáta zostávajú u advokáta — mlčanlivosť a GDPR |
+
+> [!NOTE]
+> Vo vizuáloch sa objavujú aj funkcie, ktoré sú zatiaľ **v štádiu prieskumu** a nemajú špecifikáciu — evidujeme ich v [navrhy.md](specs/navrhy.md).
 
 ## 🧩 Základ — rozhodnuté
 
