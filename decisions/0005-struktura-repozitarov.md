@@ -21,24 +21,28 @@ Cieľ za tým návrhom je správny — **jedno miesto, jeden odkaz, nízka réž
 flowchart TD
     subgraph ORG["🏛️ GitHub organizácia (napr. lawoss)"]
         K["📋 lawOSS-like-SK-CZ<br/>KOORDINÁCIA<br/>rozhodnutia · specy · plánovanie<br/><i>bez kódu</i>"]
-        P["📦 SK/CZ balík — vrstva A<br/>skills · prompty · MCP configy<br/>OKF šablóny · workflowy"]
+        F["🍴 LAWOSS<br/>FORK LegalWorku<br/>appka · branding · SK/CZ locale<br/>OKF šablóny · skills · prompty"]
         M["🔌 MCP servery<br/>judikaty-mcp · slovlex · orsr…"]
     end
-    EW["🖥️ eigenweltlabs/legalwork<br/><i>cudzie repo</i>"]
-    P -.->|"inštaluje sa do"| EW
-    M -.->|"registruje sa v"| EW
-    K -->|"upstream PR:<br/>SK/CZ lokalizácia"| EW
+    EW["🖥️ eigenweltlabs/legalwork<br/><i>upstream</i>"]
+    EW -->|"sync pri release"| F
+    F -->|"upstream PR"| EW
+    M -.->|"registrujú sa v"| F
+    K -.->|"riadi"| F
     classDef ours fill:#0b4f2a,stroke:#3ad98b,color:#fff
-    class P,M ours
+    class F,M ours
 ```
 
 | Repo | Obsah | Licencia |
 |---|---|---|
-| **`lawOSS-like-SK-CZ`** *(toto)* | koordinácia — zostáva presne ako je | MIT *(doplniť)* |
-| **balík vrstvy A** *(nové)* | skills, prompty, MCP configy, OKF šablóny, workflowy | MIT |
+| **`lawOSS-like-SK-CZ`** *(toto)* | koordinácia — zostáva presne ako je, bez kódu | MIT *(doplniť)* |
+| **LAWOSS** *(nové — GitHub fork)* | samotná aplikácia: branding, SK/CZ lokalizácia, naša doména vo vlastných priečinkoch | MIT *(zdedená)* |
 | **MCP servery** *(už existujú samostatne)* | `judikaty-mcp` a ďalšie | MIT *(doplniť)* |
 
-Podľa [ADR 0004](0004-ako-rozsirit-legalwork.md) **fork LegalWorku zatiaľ nevzniká.** Ak neskôr vznikne ako núdzová eskalácia, bude to **samostatné repo založené ako GitHub fork** — inak nefunguje upstream sync.
+Podľa [ADR 0004](0004-ako-rozsirit-legalwork.md) sa LegalWork **forkuje pod vlastným brandingom**. Fork **musí vzniknúť cez GitHub** (tlačidlo *Fork*), nie kopírovaním zdrojákov — inak nefunguje *Sync fork* ani `upstream` remote, a zdedený build pipeline by prišiel o väzbu na pôvodné repo.
+
+> [!TIP]
+> **MCP servery nechať oddelene, aj keď appku forkujeme.** Sú to samostatné procesy, ktoré sa v appke len registrujú — držať ich mimo forku znamená, že zostávajú použiteľné aj v opencode či Claude Code a nekomplikujú merge s upstreamom.
 
 ## Prečo nie vetva v tomto repe
 
@@ -72,9 +76,10 @@ Podľa [ADR 0004](0004-ako-rozsirit-legalwork.md) **fork LegalWorku zatiaľ nevz
 ## Dôsledky
 
 - Toto repo sa **nemení** — zostáva koordinačné, tak ako doteraz.
-- Vzniká jedno nové repo (balík vrstvy A), zatiaľ **bez forku**.
-- Treba rozhodnúť, či zakladáme organizáciu hneď, alebo až keď bude kód.
+- Vzniká **fork LegalWorku** ako samostatné repo, založené cez GitHub *Fork*.
+- Treba rozhodnúť, či zakladáme organizáciu hneď, alebo až keď bude kód. **Ak ju chceme, je lepšie ju založiť pred forkom** — presúvať fork neskôr znamená zbytočnú robotu s remote URL a CI tajomstvami.
 - Do každého README patrí odkaz na to druhé repo, nech je väzba zrejmá.
+- Vo forku musí zostať **atribúcia Eigenwelt Labs a pôvodná MIT licencia** — MIT to vyžaduje a je to aj slušnosť voči upstreamu, s ktorým chceme spolupracovať.
 
 > [!WARNING]
 > **Nič z toho ešte nie je vytvorené.** Založenie organizácie, forku aj nového repa čaká na odsúhlasenie tímom.

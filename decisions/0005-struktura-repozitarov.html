@@ -91,17 +91,21 @@
       <span class="tag">existuje</span>
     </div>
     <div class="repo new">
-      <div class="t">Balík vrstvy A</div>
-      <div class="s">Skills, prompty, MCP configy, OKF šablóny, workflowy. Inštaluje sa do LegalWorku.</div>
-      <span class="tag g">nové · MIT</span>
+      <div class="t">LAWOSS — fork LegalWorku</div>
+      <div class="s">Samotná aplikácia: branding, SK/CZ lokalizácia, naša doména vo vlastných priečinkoch.</div>
+      <span class="tag g">nové · GitHub fork · MIT</span>
     </div>
     <div class="repo">
       <div class="t">MCP servery</div>
-      <div class="s"><code>judikaty-mcp</code> a ďalšie. Registrujú sa v LegalWorku cez UI.</div>
+      <div class="s"><code>judikaty-mcp</code> a ďalšie. Registrujú sa v appke cez UI.</div>
       <span class="tag">už samostatné</span>
     </div>
   </div>
-  <p style="margin-top:16px">Podľa <a href="0004-ako-rozsirit-legalwork.html">ADR 0004</a> <b>fork LegalWorku zatiaľ nevzniká</b>. Ak neskôr vznikne ako núdzová eskalácia, bude to <b>samostatné repo založené ako GitHub fork</b> — inak nefunguje upstream sync.</p>
+  <p style="margin-top:16px">Podľa <a href="0004-ako-rozsirit-legalwork.html">ADR 0004</a> sa LegalWork <b>forkuje pod vlastným brandingom</b>. Fork <b>musí vzniknúť cez GitHub</b> (tlačidlo <i>Fork</i>), nie kopírovaním zdrojákov — inak nefunguje <i>Sync fork</i> ani <code>upstream</code> remote, a zdedený build pipeline by prišiel o väzbu na pôvodné repo.</p>
+  <div class="warn ok" style="margin-top:14px">
+    <h3>MCP servery nechať oddelene, aj keď appku forkujeme</h3>
+    <p style="margin:0">Sú to samostatné procesy, ktoré sa v appke len registrujú. Držať ich mimo forku znamená, že zostávajú použiteľné aj v opencode či Claude Code a <b>nekomplikujú merge s upstreamom</b>.</p>
+  </div>
 </section>
 
 <section>
@@ -139,9 +143,10 @@
   <div class="card">
     <ul style="margin-top:0">
       <li>Toto repo sa <b>nemení</b> — zostáva koordinačné.</li>
-      <li>Vzniká jedno nové repo (balík vrstvy A), zatiaľ <b>bez forku</b>.</li>
-      <li>Treba rozhodnúť, či zakladáme organizáciu hneď, alebo až keď bude kód.</li>
+      <li>Vzniká <b>fork LegalWorku</b> ako samostatné repo, založené cez GitHub <i>Fork</i>.</li>
+      <li>Treba rozhodnúť, či zakladáme organizáciu hneď. <b>Ak ju chceme, je lepšie ju založiť pred forkom</b> — presúvať fork neskôr znamená robotu s remote URL a CI tajomstvami.</li>
       <li>Do každého README patrí odkaz na to druhé repo.</li>
+      <li>Vo forku musí zostať <b>atribúcia Eigenwelt Labs a pôvodná MIT licencia</b> — MIT to vyžaduje a je to aj slušnosť voči upstreamu, s ktorým chceme spolupracovať.</li>
     </ul>
     <p style="margin-bottom:0;color:var(--red);font-weight:700">Nič z toho ešte nie je vytvorené. Založenie organizácie, forku aj nového repa čaká na odsúhlasenie tímom.</p>
   </div>
