@@ -236,9 +236,11 @@ lawOSS-like-SK-CZ/
 │   └── vision.md
 ├── meetings/
 │   ├── 2026-08-04-brainstorming-zaklad-a-prenositelnost.md
-│   └── 2026-08-06-sync-call-volba-zakladu.md
+│   ├── 2026-08-06-sync-call-volba-zakladu.md
+│   └── 2026-08-12-agenda-mvp.md
 ├── planning/
 │   ├── backlog.md
+│   ├── napady.md
 │   ├── roadmap.md
 │   ├── timeline.md
 │   └── workshopy.md
@@ -311,23 +313,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**89 commitov** · **67 súborov**
+**91 commitov** · **69 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `4f1c6a8` | 2026-08-07 | Majo Cuprik | planning: zberný kôš nápadov + agenda na rozhodnutie o MVP (12. 8.) |
+| `317bbd5` | 2026-08-07 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `1c48d93` | 2026-08-07 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
 | `a4fcbf0` | 2026-08-07 | Majo Cuprik | specs: 0007 podpisovanie QES/QTS a zaručená konverzia cez Autogram |
 | `77aef05` | 2026-08-07 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `c30e396` | 2026-08-07 | Majo Cuprik | research: spracovaný Telegram topic Feature IDEAS (31 správ, 29. 7. – 7. 8.) |
 | `82b6087` | 2026-08-06 | Majo Cuprik | Merge pull request #7 from originalmagneto/docs/keyvisualy-readme |
 | `8e5d7ae` | 2026-08-06 | Majo Cuprik | docs: eIDAS von z README, evidencia preformulovaná na dizajnový prieskum |
-| `ae8e749` | 2026-08-06 | Majo Cuprik | docs: pregenerované keyvisualy (CZECHIA · SLOVAKIA) + evidencia eIDAS funkcie |
-| `7addf66` | 2026-08-06 | Majo Cuprik | fix: oprava tvrdenia o predplatnom + pravidlo CZECHIA · SLOVAKIA |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-07 15:41 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-07 15:50 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
