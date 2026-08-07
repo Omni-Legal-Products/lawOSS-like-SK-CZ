@@ -198,7 +198,7 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 <!-- AUTO:PROGRESS -->
 | Súbor | Progress | Hotovo |
 |---|---|---|
-| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 5/50 (10 %) |
+| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 5/52 (10 %) |
 | [`roadmap.md`](planning/roadmap.md) | `████░░░░░░░░░░░░░░░░` | 6/28 (21 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
@@ -267,6 +267,7 @@ lawOSS-like-SK-CZ/
 │   ├── 0003-prompt-layer.md
 │   ├── 0004-mcp-sk-konektory.md
 │   ├── 0005-lehoty-timeline.md
+│   ├── 0007-podpisovanie-a-zarucena-konverzia.md
 │   ├── navrhy.md
 │   ├── prehlad.html
 │   ├── README.md
@@ -310,23 +311,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**86 commitov** · **66 súborov**
+**89 commitov** · **67 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `1c48d93` | 2026-08-07 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
+| `a4fcbf0` | 2026-08-07 | Majo Cuprik | specs: 0007 podpisovanie QES/QTS a zaručená konverzia cez Autogram |
+| `77aef05` | 2026-08-07 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `c30e396` | 2026-08-07 | Majo Cuprik | research: spracovaný Telegram topic Feature IDEAS (31 správ, 29. 7. – 7. 8.) |
 | `82b6087` | 2026-08-06 | Majo Cuprik | Merge pull request #7 from originalmagneto/docs/keyvisualy-readme |
 | `8e5d7ae` | 2026-08-06 | Majo Cuprik | docs: eIDAS von z README, evidencia preformulovaná na dizajnový prieskum |
 | `ae8e749` | 2026-08-06 | Majo Cuprik | docs: pregenerované keyvisualy (CZECHIA · SLOVAKIA) + evidencia eIDAS funkcie |
 | `7addf66` | 2026-08-06 | Majo Cuprik | fix: oprava tvrdenia o predplatnom + pravidlo CZECHIA · SLOVAKIA |
-| `5cda6d2` | 2026-08-06 | Majo Cuprik | docs: nové keyvisualy do brand assetov + zosúladenie README s ADR 0003–0005 |
-| `23f12ea` | 2026-08-06 | Majo Cuprik | decisions: ADR 0004 prepísaný na rozhodnutie — forkujeme pod vlastným brandingom |
-| `0182298` | 2026-08-06 | Majo Cuprik | decisions: ADR 0004 (ako rozšíriť LegalWork) + ADR 0005 (štruktúra repozitárov) |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-07 15:32 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-07 15:41 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
