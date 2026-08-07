@@ -7,6 +7,13 @@
 > [!IMPORTANT]
 > **Autogram je EUPL-1.2 — reciproká licencia.** Nesmie sa vendorovať ani forkovať do našej MIT aplikácie. Integrácia ide **výhradne cez rozhrania samostatného procesu** — CLI alebo lokálne HTTP API. Overené cez GitHub API 2026-08-07.
 
+> [!NOTE]
+> **Zaradenie do verzií — rozhodnutie MČ 2026-08-07:**
+> - **Podpisovanie QES + QTS** *(návrh #19)* → kandidát na **V2**, hneď po MVP
+> - **Zaručená konverzia** *(návrh #26)* → **ďalšia verzia, nie teraz.** Je to regulovaná činnosť a právne náležitosti musia byť vyriešené skôr, než sa čokoľvek implementuje. MČ si na ňu zatiaľ stavia samostatnú aplikáciu.
+>
+> Spec pokrýva oboje, lebo zdieľajú ten istý engine a tie isté bezpečnostné hranice. Viď [zberný kôš](../planning/napady.md).
+
 ## Problém
 
 Advokát bežne potrebuje dve veci, ktoré dnes robí mimo akéhokoľvek AI nástroja:

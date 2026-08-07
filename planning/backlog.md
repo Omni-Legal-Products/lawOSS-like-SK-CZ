@@ -1,7 +1,12 @@
 # Backlog
 
-Surové nápady patria do GitHub Issues/Discussions — sem sa dostáva to, čo prežilo diskusiu.
+Surové nápady patria do **[zberného koša](napady.md)** — sem sa dostáva to, čo prežilo diskusiu.
 Dozreté položky majú vlastnú špecifikáciu v [specs/](../specs/).
+
+> [!TIP]
+> **Máš nový nápad?** Nepíš ho sem — hoď ho do Telegram topicu *Feature IDEAS*, cez [formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml), alebo do [zberného koša](napady.md). Odtiaľ ho po prerokovaní presunieme.
+>
+> **Scope V1 sa rozhoduje v stredu 12. 8.** → [agenda a návrh MVP](../meetings/2026-08-12-agenda-mvp.md)
 
 ## 🚀 Alfa — vydať ASAP (zúžený scope)
 
