@@ -62,8 +62,10 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 - [ ] Čím nahradiť marketingovú expozíciu po upustení od Mikea *(názov LAWOSS zostáva)*
 - [x] ✅ **Zjednotiť wordmark — keyvisualy pregenerované 2026-08-06** so správnym „CZECHIA · SLOVAKIA" → [pravidlo v assets/brand](../assets/brand/README.md)
 - [ ] 🎨 Pregenerovať `moodboard.png` — stále nesie starý wordmark „LAWOSS SLOVAKIA" a odkaz `t.me/LawOSS_Slovakia`
-- [ ] 🔏 **Autorizácia PDF/XML podľa eIDAS (QES + QTS)** — [návrh #19](../specs/navrhy.md), zatiaľ **dizajnový prieskum**. Cesta vedie cez [Autogram](https://github.com/slovensko-digital/autogram) — ⚠️ **je EUPL-1.2, čiže volať ako externý proces (CLI/API), nevendorovať do MIT appky**. Ak sa do toho pôjde, potrebuje spec s explicitnou human gate — väzba na [spec 0004](../specs/0004-mcp-sk-konektory.md).
-- [ ] 🔎 Preskúmať **API Autogramu** ako alternatívu k forku *(MČ)*
+- [ ] 🔏 **Podpisovanie QES + QTS a zaručená konverzia** → **[spec 0007](../specs/0007-podpisovanie-a-zarucena-konverzia.md)** *(návrhy [#19 a #26](../specs/navrhy.md))*. Cez [Autogram](https://github.com/slovensko-digital/autogram) ako externý proces — CLI aj HTTP API na `localhost:37200`. ⚠️ EUPL-1.2 → nevendorovať.
+- [ ] 💳 Overiť v praxi, či **slovenský advokátsky preukaz** funguje v Autograme cez PKCS#11 *(MČ)*
+- [ ] 🇨🇿 Potvrdiť **český rámec autorizovanej konverze** *(VŘ)*
+- [ ] 🤔 Rozhodnúť, či LAWOSS volá **Autogram priamo, alebo vlastnú konverznú appku MČ** — nech nevzniknú dve cesty
 - [ ] 💰 **Fakturácia a výkazy času** — [návrh #20](../specs/navrhy.md); dizajnový prieskum, bez specu
 
 ## 💡 Z Telegram topicu Feature IDEAS
