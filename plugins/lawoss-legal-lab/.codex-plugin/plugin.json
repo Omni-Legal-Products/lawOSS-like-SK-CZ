@@ -1,0 +1,21 @@
+{
+  "name": "lawoss-legal-lab",
+  "version": "0.1.0",
+  "description": "Experimental, source-traceable legal workflow proposals for LAWOSS.",
+  "author": {
+    "name": "LAWOSS"
+  },
+  "repository": "https://github.com/originalmagneto/lawOSS-like-SK-CZ",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "LAWOSS Legal Lab",
+    "shortDescription": "Capture and test reusable legal workflow proposals.",
+    "longDescription": "LAWOSS Legal Lab turns anonymized legal workflow ideas into source-traceable proposals for review and later promotion into the stable LAWOSS plugin.",
+    "developerName": "LAWOSS",
+    "category": "Legal research",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": "Capture this legal workflow idea as an anonymized, source-traceable proposal with a human review gate."
+  }
+}
