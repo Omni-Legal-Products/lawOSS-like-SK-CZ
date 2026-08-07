@@ -12,6 +12,7 @@ Vstupy pre koncept **„mikeOSS Slovakia"** *(pracovný názov — finálny náz
 |---|---|
 | [Build-open vs. Buy-closed](2026-07-29-build-open-vs-buy-closed.md) | Verdikt o právnickom AI stacku — prečo otvorený modulárny stack namiesto uzavretých legal-AI black boxov |
 | [Orchestrátor + BYO subscriptions](2026-07-29-orchestrator-transkripcia-byo-subscriptions.md) | Návrh open-source orchestrátora: dvojkoľajka transkripcia + research cez existujúce subscriptions |
+| [Feature IDEAS — spracovanie Telegram topicu](2026-08-07-feature-ideas-telegram.md) | 31 správ z topicu *Feature IDEAS* (29. 7. – 7. 8.) rozobraných na návrhy #19–25, konkurenciu a licenčné zistenia — vrátane toho, že **Autogram je EUPL-1.2** |
 
 ## Čo z toho berieme (destilát)
 

@@ -62,5 +62,18 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 - [ ] Čím nahradiť marketingovú expozíciu po upustení od Mikea *(názov LAWOSS zostáva)*
 - [x] ✅ **Zjednotiť wordmark — keyvisualy pregenerované 2026-08-06** so správnym „CZECHIA · SLOVAKIA" → [pravidlo v assets/brand](../assets/brand/README.md)
 - [ ] 🎨 Pregenerovať `moodboard.png` — stále nesie starý wordmark „LAWOSS SLOVAKIA" a odkaz `t.me/LawOSS_Slovakia`
-- [ ] 🔏 **Autorizácia PDF/XML podľa eIDAS (QES + QTS)** — [návrh #19](../specs/navrhy.md), zatiaľ **dizajnový prieskum** (MČ, Telegram topic *DESIGN*, zapracované do mockupov). Ak sa do toho pôjde, potrebuje spec — dotýka sa advokátskych preukazov, českých el. podpisov a kvalifikovanej časovej pečiatky, a väzbu má na [spec 0004](../specs/0004-mcp-sk-konektory.md), ktorý úkony pod kvalifikovaným podpisom označuje za najrizikovejšiu oblasť *(podpis spúšťa advokát — treba explicitnú human gate)*.
+- [ ] 🔏 **Autorizácia PDF/XML podľa eIDAS (QES + QTS)** — [návrh #19](../specs/navrhy.md), zatiaľ **dizajnový prieskum**. Cesta vedie cez [Autogram](https://github.com/slovensko-digital/autogram) — ⚠️ **je EUPL-1.2, čiže volať ako externý proces (CLI/API), nevendorovať do MIT appky**. Ak sa do toho pôjde, potrebuje spec s explicitnou human gate — väzba na [spec 0004](../specs/0004-mcp-sk-konektory.md).
+- [ ] 🔎 Preskúmať **API Autogramu** ako alternatívu k forku *(MČ)*
 - [ ] 💰 **Fakturácia a výkazy času** — [návrh #20](../specs/navrhy.md); dizajnový prieskum, bez specu
+
+## 💡 Z Telegram topicu Feature IDEAS
+
+Spracované 2026-08-07 → [celý rozbor](../research/idey/2026-08-07-feature-ideas-telegram.md)
+
+- [ ] 🧠 **Tiered memory s compaction** — [návrh #21](../specs/navrhy.md); denné → týždenné → mesačné + sumarizácie na úrovni klienta. **Najsilnejší kandidát na vlajkovú funkciu alfy** — MČ aj VŘ sa na tom zhodli nezávisle. Stavať nad [OKF](../specs/0002-okf-operacny-system-praxe.md), nie replikovať LegalMemory.
+- [ ] 📨 **Zjednotenie komunikačných kanálov do spisu** — [návrh #22](../specs/navrhy.md); jediný explicitne pomenovaný nevyriešený problém z praxe *(VŘ)*
+- [ ] 🔄 **Self-healing a self-updating integrácie** — [návrh #23](../specs/navrhy.md); otvorené: čo pri breaking change a rollbacku
+- [ ] 🧬 **Self-evolving / self-correcting systém** — [návrh #24](../specs/navrhy.md); nerozvinuté
+- [ ] 📋 **CMR a case audit systém** — [návrh #25](../specs/navrhy.md); zatiaľ len heslo
+- [ ] 🔍 Preskúmať konkurenciu: **forlegal.ai** *(CZ, platený)*, **legaltools.cz**, **buzz.xyz**
+- [ ] ❓ Doplniť, o aký „jednotný štandard" išlo v odkaze na OpenAI devs
