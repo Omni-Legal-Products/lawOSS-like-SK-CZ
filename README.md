@@ -198,8 +198,8 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 <!-- AUTO:PROGRESS -->
 | Súbor | Progress | Hotovo |
 |---|---|---|
-| [`backlog.md`](planning/backlog.md) | `█░░░░░░░░░░░░░░░░░░░` | 1/19 (5 %) |
-| [`roadmap.md`](planning/roadmap.md) | `██░░░░░░░░░░░░░░░░░░` | 2/17 (12 %) |
+| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 5/50 (10 %) |
+| [`roadmap.md`](planning/roadmap.md) | `████░░░░░░░░░░░░░░░░` | 6/28 (21 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -210,6 +210,10 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 lawOSS-like-SK-CZ/
 ├── assets/
 │   └── brand/
+│       ├── keyvisual-dashboard.png
+│       ├── keyvisual-features.png
+│       ├── keyvisual-hero.png
+│       ├── keyvisual-mobile.png
 │       ├── logo.png
 │       ├── mockup.png
 │       ├── moodboard.png
@@ -217,6 +221,12 @@ lawOSS-like-SK-CZ/
 ├── decisions/
 │   ├── 0002-preco-forkujeme-mikeoss.html
 │   ├── 0002-preco-forkujeme-mikeoss.md
+│   ├── 0003-legal-work-ako-zaklad.html
+│   ├── 0003-legal-work-ako-zaklad.md
+│   ├── 0004-ako-rozsirit-legalwork.html
+│   ├── 0004-ako-rozsirit-legalwork.md
+│   ├── 0005-struktura-repozitarov.html
+│   ├── 0005-struktura-repozitarov.md
 │   └── template.md
 ├── docs/
 │   ├── brand-concept.md
@@ -225,6 +235,8 @@ lawOSS-like-SK-CZ/
 │   ├── telegram-notifikacie.md
 │   └── vision.md
 ├── meetings/
+│   ├── 2026-08-04-brainstorming-zaklad-a-prenositelnost.md
+│   └── 2026-08-06-sync-call-volba-zakladu.md
 ├── planning/
 │   ├── backlog.md
 │   ├── roadmap.md
@@ -239,6 +251,7 @@ lawOSS-like-SK-CZ/
 │   ├── idey/
 │   │   ├── 2026-07-29-build-open-vs-buy-closed.md
 │   │   ├── 2026-07-29-orchestrator-transkripcia-byo-subscriptions.md
+│   │   ├── 2026-08-07-feature-ideas-telegram.md
 │   │   └── README.md
 │   ├── inspiracie/
 │   │   ├── legalwork.md
@@ -297,23 +310,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**74 commitov** · **53 súborov**
+**86 commitov** · **66 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
-| `f5f2d96` | 2026-07-30 | Marián Čuprík | chore: regenerácia README |
-| `08c6b72` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
-| `5a86429` | 2026-07-30 | Marián Čuprík | specs: 0005 Lehoty & timeline (MF, Issue #1) + zúžený alfa scope |
-| `5404609` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `e46789d` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
-| `0bb2d72` | 2026-07-30 | Marián Čuprík | specs: zaevidovaný návrh MF — Attorney workflow MVP (Issue #1) |
-| `8fde62e` | 2026-07-30 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `dc82a58` | 2026-07-30 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
+| `c30e396` | 2026-08-07 | Majo Cuprik | research: spracovaný Telegram topic Feature IDEAS (31 správ, 29. 7. – 7. 8.) |
+| `82b6087` | 2026-08-06 | Majo Cuprik | Merge pull request #7 from originalmagneto/docs/keyvisualy-readme |
+| `8e5d7ae` | 2026-08-06 | Majo Cuprik | docs: eIDAS von z README, evidencia preformulovaná na dizajnový prieskum |
+| `ae8e749` | 2026-08-06 | Majo Cuprik | docs: pregenerované keyvisualy (CZECHIA · SLOVAKIA) + evidencia eIDAS funkcie |
+| `7addf66` | 2026-08-06 | Majo Cuprik | fix: oprava tvrdenia o predplatnom + pravidlo CZECHIA · SLOVAKIA |
+| `5cda6d2` | 2026-08-06 | Majo Cuprik | docs: nové keyvisualy do brand assetov + zosúladenie README s ADR 0003–0005 |
+| `23f12ea` | 2026-08-06 | Majo Cuprik | decisions: ADR 0004 prepísaný na rozhodnutie — forkujeme pod vlastným brandingom |
+| `0182298` | 2026-08-06 | Majo Cuprik | decisions: ADR 0004 (ako rozšíriť LegalWork) + ADR 0005 (štruktúra repozitárov) |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-07-30 16:09 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-07 15:32 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
