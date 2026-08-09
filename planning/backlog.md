@@ -59,7 +59,7 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 - [x] ✅ **Voľba základu — rozhodnuté 2026-08-06: LegalWork** → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md) *(nahrádza [ADR 0002](../decisions/0002-preco-forkujeme-mikeoss.md); MF potvrdené 2026-08-09)*
 - [x] ✅ **Licencia — MIT**, vyplýva z voľby základu (LegalWork je MIT) → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [ ] ⚠️ **Doplniť súbory `LICENSE`, `NOTICE`, `CONTRIBUTING`** — repo je verejné, ale **bez `LICENSE` platí „all rights reserved"** *(MČ do 2026-08-08)*
-- [x] ✅ **Ako rozšíriť LegalWork — rozhodnuté: forkujeme pod vlastným brandingom** → [ADR 0004](../decisions/0004-ako-rozsirit-legalwork.md) *(rozhodol MČ; na potvrdenie tímom)*
+- [x] ✅ **Ako rozšíriť LegalWork — rozhodnuté: forkujeme pod vlastným brandingom** → [ADR 0004](../decisions/0004-ako-rozsirit-legalwork.md) *(rozhodol MČ; MF podmienečne podporil 2026-08-09; IR · VŘ čakajú)*
 - [ ] ⚠️ **Kto rieši merge konflikty pri upstream syncu** — v tíme dnes nikto; overiť, či to zvládne AI asistencia
 - [ ] ⚠️ **Apple Developer účet a podpisovanie** — bez notarizácie Gatekeeper macOS build zablokuje
 - [ ] ⚠️ **Štruktúra repozitárov** — koordinácia oddelene od kódu → **[ADR 0005](../decisions/0005-struktura-repozitarov.md)** *(návrh napísaný; zahŕňa GitHub organizáciu a zverejnenie `judikaty-mcp`)*
