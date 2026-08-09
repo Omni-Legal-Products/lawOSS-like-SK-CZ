@@ -56,7 +56,7 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 
 ## Rozhodnúť
 
-- [x] ✅ **Voľba základu — rozhodnuté 2026-08-06: LegalWork** → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md) *(nahrádza [ADR 0002](../decisions/0002-preco-forkujeme-mikeoss.md); čaká na potvrdenie MF)*
+- [x] ✅ **Voľba základu — rozhodnuté 2026-08-06: LegalWork** → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md) *(nahrádza [ADR 0002](../decisions/0002-preco-forkujeme-mikeoss.md); MF potvrdené 2026-08-09)*
 - [x] ✅ **Licencia — MIT**, vyplýva z voľby základu (LegalWork je MIT) → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [ ] ⚠️ **Doplniť súbory `LICENSE`, `NOTICE`, `CONTRIBUTING`** — repo je verejné, ale **bez `LICENSE` platí „all rights reserved"** *(MČ do 2026-08-08)*
 - [x] ✅ **Ako rozšíriť LegalWork — rozhodnuté: forkujeme pod vlastným brandingom** → [ADR 0004](../decisions/0004-ako-rozsirit-legalwork.md) *(rozhodol MČ; na potvrdenie tímom)*
