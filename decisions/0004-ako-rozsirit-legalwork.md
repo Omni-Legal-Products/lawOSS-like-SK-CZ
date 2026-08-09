@@ -1,7 +1,7 @@
 # ADR 0004: Forkujeme LegalWork pod vlastným brandingom
 
 - **Dátum:** 2026-08-06
-- **Stav:** prijaté — **rozhodol MČ** *(na potvrdenie: MF · IR · VŘ na stredajšom sync calle)*
+- **Stav:** prijaté — **rozhodol MČ; MF podmienečne podporil 2026-08-09** *(na potvrdenie: IR · VŘ; ADR 0005 na prerokovanie)*
 - **Súvisí s:** [ADR 0003](0003-legal-work-ako-zaklad.md) · [ADR 0005](0005-struktura-repozitarov.md) · [analýza LegalWork](../research/inspiracie/legalwork.md)
 
 ## Kontext
