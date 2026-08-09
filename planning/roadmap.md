@@ -10,7 +10,7 @@
 - [x] **ADR 0003: voľba základu — LegalWork** *(nahrádza ADR 0002)* → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [x] **Licencia: MIT** — vyplýva z voľby základu → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [ ] ⚠️ **Doplniť `LICENSE`, `NOTICE`, `CONTRIBUTING`** do tohto repa *(MČ)*
-- [x] **[ADR 0004: forkujeme LegalWork pod vlastným brandingom](../decisions/0004-ako-rozsirit-legalwork.md)** *(rozhodol MČ; na potvrdenie MF · IR · VŘ)*
+- [x] **[ADR 0004: forkujeme LegalWork pod vlastným brandingom](../decisions/0004-ako-rozsirit-legalwork.md)** *(rozhodol MČ; MF podmienečne podporil 2026-08-09; IR · VŘ čakajú)*
 - [ ] ⚠️ **[ADR 0005: štruktúra repozitárov](../decisions/0005-struktura-repozitarov.md)** — koordinácia oddelene od kódu; návrh na prerokovanie
 - [ ] Rozhodnúť, či zakladáme **GitHub organizáciu** — ak áno, **pred forkom**
 - [ ] Zriadiť **Apple Developer účet** pre notarizáciu macOS buildov
