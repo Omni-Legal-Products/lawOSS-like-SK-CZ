@@ -164,3 +164,47 @@ Pred pilotom treba pripraviť anonymizované testovacie scenáre pre:
 
 > [!NOTE]
 > Odporúčaný rozsah alfy je **jeden orchestrátor + ingest/triage, OKF, lehoty/timeline, research a verifier**. Drafting, redlining, compliance automatizácia a eID majú zostať samostatnými neskoršími krokmi.
+
+## 9. Umiestnenie v architektúre projektu
+
+Tento dokument je koordinačný návrh a zostáva v tomto planning repozitári. Neobsahuje implementáciu orchestrátora ani aplikačný kód.
+
+### Koordinačné repo
+
+Obsahuje:
+
+- rozhodnutia, specy, testovacie scenáre a acceptance criteria;
+- prenositeľné workflow kontrakty;
+- odkazy na schválené MCP a skills;
+- riziká, licenčné hranice a rozhodnutia tímu.
+
+### Budúce LAWOSS aplikačné repo
+
+Implementácia patrí do samostatného GitHub forku LegalWorku podľa ADR 0004 a ADR 0005:
+
+- orchestrátor a jeho stavový runtime;
+- OKF worker a konkrétne capability schémy;
+- UI/CLI review obrazovka;
+- Markdown/OKF zápis a ICS export;
+- aplikačné testy, CI, branding a release pipeline.
+
+### Prenositeľná vrstva
+
+Skills, prompty, právne source-routing pravidlá a samostatné MCP servery nemajú byť natvrdo skopírované do orchestrátora. Majú zostať použiteľné aj mimo forku, napríklad v Codexe alebo inom kompatibilnom harnessi.
+
+Orchestrátor iba deklaruje, ktoré workflow a capability potrebuje; konkrétne konektory a provider routing sa registrujú konfiguráciou. Tým sa zachováva prenositeľnosť a zmenšuje merge konflikt s upstreamom.
+
+LegalMemory AGPL integrácia nie je súčasťou tohto návrhu. Ak by sa niekedy zvažovala, potrebuje samostatné licenčné a architektonické rozhodnutie.
+
+## 10. Alfa handoff medzi specmi
+
+Prvý implementačný scenár má prejsť cez tieto kontrakty:
+
+1. Spec 0005 dodá kandidátnu lehotu, provenance, calculation trace a stav needs_review alebo candidate.
+2. Orchestrátor podľa tohto specu zabezpečí minimálny kontext, idempotenciu, human gate a audit.
+3. Advokát potvrdí alebo odmietne kandidáta.
+4. OKF worker zapíše iba potvrdenú verziu a ICS exporter vytvorí lokálny kalendárový výstup.
+5. Verifier skontroluje source locator, časovú verziu a konzistenciu výstupu.
+6. Neúspešný krok zachová stav partial alebo failed; nesmie sa označiť ako completed.
+
+Pred implementáciou musia tím a budúce aplikačné repo schváliť capability schémy, stavový model, umiestnenie auditných udalostí a testovaciu sadu.
