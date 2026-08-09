@@ -18,7 +18,7 @@
 - [ ] Zmapovať existujúce slovenské MCP servery
 - [ ] Zmapovať CZ zdroje *(VŘ)* a PL zdroje *(VŘ)*
 - [ ] Právny rámec: GDPR, predpisy SAK, mlčanlivosť, AI Act
-- [ ] Potvrdenie ADR 0003 od MF *(nezúčastnil sa callu 6. 8.)*
+- [x] Potvrdenie ADR 0003 od MF — potvrdené 2026-08-09 komentárom k PR #5
 
 ## Fáza 1 — Fork & MVP (Q4 2026)
 
