@@ -1,6 +1,6 @@
 # LAWOSS Agent Plugin
 
-LAWOSS provides a read-only Codex plugin with source-coverage, specification-review, and judiciary-citation workflows.
+LAWOSS provides a read-only Codex plugin with source-coverage, specification-review, workflow-routing, law-drift, citation, and judiciary-citation workflows.
 
 ## Install from GitHub
 
@@ -16,7 +16,7 @@ codex plugin add lawoss-legal-lab --marketplace <marketplace-name>
 
 For testing a branch, replace `main` with the branch name. For reproducible legal workflows, prefer a reviewed tag or commit SHA over an unpinned moving branch.
 
-In the Codex desktop app, restart the app after adding or changing a local/repository marketplace, open Plugins, select **LAWOSS Plugins**, and install **LAWOSS Legal**.
+In the Codex desktop app, restart the app after adding or changing a local/repository marketplace, open Plugins, select **LAWOSS Plugins**, and install **LAWOSS Legal**. Install **LAWOSS Legal Lab** only when you are testing an anonymized proposal.
 
 ## Scope
 
@@ -30,9 +30,26 @@ The skills require:
 - visible uncertainty and index limitations;
 - human review before a legal conclusion or final pleading.
 
+## Reusable workflows
+
+The stable **LAWOSS Legal** plugin now includes:
+
+- **lawoss-workflow-router**: maps the request to the narrowest registered legal workflow and defines its inputs, phases, source plan, output, and human gate;
+- **lawoss-law-drift**: compares law or authority across relevant dates and preserves version identity, effective intervals, locators, and uncertainty;
+- **lawoss-citations**: audits and normalizes legal and academic citations without inventing missing metadata;
+- **lawoss-source-coverage**: records source availability, provenance, fallback boundaries, and human review;
+- **lawoss-spec-review**: checks proposals and specifications for scope, evidence, safety, and testability;
+- **judikatura-citation-builder**: builds source-traceable judiciary citations.
+
+The router follows the registered Gravity workflow catalogue. When the canonical Gravity tooling is available, use `legal-cli workflow list` and `legal-cli workflow init`; the repository does not bundle connector logic and does not assume a separate `legalflow` executable.
+
+Keep `legal-research`, `legal-source-routing`, and the canonical connectors in Gravity. LAWOSS skills describe the workflow contract and hand source selection to those global tools.
+
 ## Experimental lab
 
 Use **LAWOSS Legal Lab** for new workflow and research-method suggestions. It is intentionally separate from the stable plugin.
+
+The lab includes **lawoss-paper-research**, which structures an anonymized legal-science research question into research questions, method, source map, evidence, citation handoff, paper outline, and a synthetic test.
 
 The recommended promotion flow is:
 
@@ -43,7 +60,7 @@ The recommended promotion flow is:
 5. Submit the proposal for LAWOSS review.
 6. Promote it into **LAWOSS Legal** only after review and acceptance.
 
-The lab must not contain confidential client information, privileged material, credentials, bearer tokens, unpublished case material, or matter-specific deadlines. The capture skill does not open GitHub issues, modify repositories, or create legal conclusions automatically.
+The lab must not contain confidential client information, privileged material, credentials, bearer tokens, unpublished case material, or matter-specific deadlines. Lab skills do not open GitHub issues, modify repositories, or create legal conclusions automatically.
 
 Legal-methodology proposals belong in LAWOSS review. Agent Plugins upstream is appropriate for portable-format, interoperability, or cross-client concerns.
 
