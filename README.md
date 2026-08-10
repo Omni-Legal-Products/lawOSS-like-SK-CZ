@@ -330,23 +330,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**91 commitov** · **69 súborov**
+**93 commitov** · **69 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `445c88d` | 2026-08-10 | Majo Cuprik | docs: zosúladenie prehľadov funkcií s aktuálnym stavom návrhov |
+| `c2589a2` | 2026-08-07 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `4f1c6a8` | 2026-08-07 | Majo Cuprik | planning: zberný kôš nápadov + agenda na rozhodnutie o MVP (12. 8.) |
 | `317bbd5` | 2026-08-07 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `1c48d93` | 2026-08-07 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
 | `a4fcbf0` | 2026-08-07 | Majo Cuprik | specs: 0007 podpisovanie QES/QTS a zaručená konverzia cez Autogram |
 | `77aef05` | 2026-08-07 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `c30e396` | 2026-08-07 | Majo Cuprik | research: spracovaný Telegram topic Feature IDEAS (31 správ, 29. 7. – 7. 8.) |
-| `82b6087` | 2026-08-06 | Majo Cuprik | Merge pull request #7 from originalmagneto/docs/keyvisualy-readme |
-| `8e5d7ae` | 2026-08-06 | Majo Cuprik | docs: eIDAS von z README, evidencia preformulovaná na dizajnový prieskum |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-07 15:50 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-10 12:47 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
