@@ -70,6 +70,23 @@ Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advoká
 | 🔄 **Stratégia** | **Fork pod vlastným brandingom** vo vlastnom repozitári; čo dáva zmysel posielame do upstreamu — [ADR 0004](decisions/0004-ako-rozsirit-legalwork.md) |
 | 💬 **Komunikácia** | Telegram skupina + GitHub Issues/Discussions |
 
+## 📦 Čo staviame ako prvé
+
+> [!IMPORTANT]
+> **Scope V1 (MVP) sa odklepáva v stredu 12. 8. 2026** → [agenda a odôvodnenie](meetings/2026-08-12-agenda-mvp.md)
+
+Základ [LegalWork](decisions/0003-legal-work-ako-zaklad.md) už dáva chat, agenta, Office add-iny, transkripciu aj UI na MCP servery. **MVP je preto to, čo z neho spraví nástroj pre slovenského a českého advokáta:**
+
+| Kandidát na V1 | Prečo |
+|---|---|
+| 🇸🇰🇨🇿 **SK/CZ lokalizácia** | bez nej to advokát nepoužije; nové súbory locale = nulový merge konflikt |
+| 📁 **[OKF — spisy a štruktúra](specs/0002-okf-operacny-system-praxe.md)** | jadro odlíšenia, veľká časť už existuje |
+| 🔌 **[MCP: judikatúra + Slov-Lex](specs/0004-mcp-sk-konektory.md)** | najviditeľnejšia hodnota, servery bežia, read-only |
+| ⏰ **[Lehoty a timeline](specs/0005-lehoty-timeline.md)** | zmeškaná lehota = najčastejší dôvod zodpovednosti advokáta |
+| 📄 **OCR ingest → markdown** | quick win, hotová Quick Action |
+
+🗃️ **Všetkých 26 nápadov aj s tým, kam mieria:** [zberný kôš](planning/napady.md) · [grafický prehľad funkcií](https://originalmagneto.github.io/lawOSS-like-SK-CZ/specs/prehlad.html)
+
 ## 🖥️ Ako to má vyzerať
 
 > [!NOTE]

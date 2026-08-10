@@ -104,7 +104,8 @@ Konflikt v markdowne rieš **ručne a obe strany zachovaj** (nie „moja verzia 
 decisions/    ADR — rozhodnutia: čo, prečo, aké alternatívy sme zvážili
 specs/        špecifikácie funkcií (+ navrhy.md = evidencia, kto čo navrhol)
 research/     rešerše — deep-research/, inspiracie/, idey/, sk-datove-zdroje/…
-planning/     roadmap, timeline, backlog, workshopy (checkboxy → progress v README)
+planning/     roadmap, timeline, backlog, napady.md (zberný kôš), workshopy
+              (checkboxy → progress v README)
 meetings/     zápisky zo stretnutí, RRRR-MM-DD.md, na konci VŽDY akčné body
 docs/         vízia, princípy, glosár, návody
 assets/       obrázky, diagramy, brand
@@ -113,12 +114,13 @@ assets/       obrázky, diagramy, brand
 **Pravidlá pre obsah:**
 
 1. **Rozhodnutie** → ADR do `decisions/` podľa [`template.md`](decisions/template.md). Vždy uveď **zvažované alternatívy a prečo NIE**.
-2. **Návrh funkcie** → spec do `specs/` **+ riadok do [`specs/navrhy.md`](specs/navrhy.md)**.
+2. **Surový nápad** → [`planning/napady.md`](planning/napady.md) (zberný kôš) alebo Telegram topic *Feature IDEAS*. Odtiaľ sa po prerokovaní zaradí do verzie. **Nič sa nezahadzuje** — aj zamietnuté tam zostávajú aj s dôvodom.
+3. **Návrh funkcie** → spec do `specs/` **+ riadok do [`specs/navrhy.md`](specs/navrhy.md)**.
    Hlavička specu musí obsahovať `- **Navrhol:** <Meno> (<skratka>) · <dátum>`.
-   Skratky: **MČ** = Marián Čuprík · **MF** = Martin Friedrich · **IR** = Igor Ribár.
+   Skratky: **MČ** = Marián Čuprík · **MF** = Martin Friedrich · **IR** = Igor Ribár · **VŘ** = Vojta Říha.
    *Autorstvo nevymýšľaj — ak nevieš, kto návrh podal, spýtaj sa.*
-3. **Úloha** → checkbox `- [ ]` v `planning/`. README z nich sám počíta progress.
-4. **Rešerš** → `research/<oblasť>/`. Uveď **dátum a spôsob overenia**.
+4. **Úloha** → checkbox `- [ ]` v `planning/`. README z nich sám počíta progress.
+5. **Rešerš** → `research/<oblasť>/`. Uveď **dátum a spôsob overenia**.
 
 ---
 
