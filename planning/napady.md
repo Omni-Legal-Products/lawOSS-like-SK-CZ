@@ -4,8 +4,8 @@
 
 **Všetko, čo by sme raz mohli integrovať — na jednom mieste**
 
-![Nápadov](https://img.shields.io/badge/n%C3%A1padov-26-blue)
-![Aktualizované](https://img.shields.io/badge/aktualizovan%C3%A9-2026--08--07-green)
+![Nápadov](https://img.shields.io/badge/n%C3%A1padov-27-blue)
+![Aktualizované](https://img.shields.io/badge/aktualizovan%C3%A9-2026--08--11-green)
 
 </div>
 
@@ -61,6 +61,7 @@ flowchart LR
 | 17 | Rešeršný workflow „one-click" | |
 | **19** | **Podpisovanie QES + QTS cez Autogram** → [spec 0007](../specs/0007-podpisovanie-a-zarucena-konverzia.md) | Advokáti s tým reálne pracujú. Regulované — potrebuje human gate a právne náležitosti. |
 | 14 | Špecializovaní agenti podľa právneho odvetvia | |
+| **27** | **Reconcile — učenie z úprav advokáta** → [spec 0008](../specs/0008-reconcile-ucenie-z-uprav.md) | Mechanizmus učenia, ktorý chýbal #21: draft vs. finál → najmenšia zmena inštrukcií, umiestnenie po rebríku OKF. 🟢 čistý skill. |
 
 ---
 
