@@ -1,4 +1,4 @@
-# Spec 0008: Reconcile — učenie z úprav advokáta
+# Spec 0009: Reconcile — učenie z úprav advokáta
 
 - **Stav:** návrh · **V2 kandidát — vedome NIE V1** (scope V1 sa klepe 12. 8., toto doň nepatrí)
 - **Navrhol:** Marián Čuprík (MČ) · 2026-08-11
@@ -42,6 +42,9 @@ flowchart TB
 ### Adaptácia 2: anonymizačná brána pri povýšení
 
 Učenie extrahované zo spisu **nesmie niesť klientske údaje**, keď stúpa na vyššiu úroveň. Pravidlo: na úrovni spisu môže učenie odkazovať na vec; od úrovne kancelárie vyššie musí byť formulované všeobecne (žiadne mená, spisové značky, sumy). Pri povýšení na komunitnú úroveň kontrola človekom povinná — je to verejný PR.
+
+> [!NOTE]
+> **Nadväzuje na návrh MF #27** — [lokálny anonymizačný privacy gate](0008-anonymizacia-a-privacy-gate.md) ([PR #17](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/17)). Táto brána je jeho prirodzený spotrebiteľ: povýšenie učenia by malo prejsť tým istým lokálnym gate-om (candidate → verified → confirmed), nie vlastnou paralelnou implementáciou. Prepojiť pri prerokovaní oboch specov.
 
 ### Adaptácia 3: citlivosť dát a beh
 

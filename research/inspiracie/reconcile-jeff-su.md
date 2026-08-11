@@ -32,7 +32,7 @@ Agent skill **reconcile** od Jeffa Su (Cowork Academy, ex-Google, ~2M odberateľ
 
 - **Konkretizuje #21 (tiered memory)** — reconcile je presne ten *mechanizmus učenia*, ktorý nápadu #21 chýbal: definuje, ČO sa do pamäti zapisuje a kedy.
 - **Kŕmi spec 0003 (prompt layer)** — učenia menia prompty; otvorený prompt layer je miesto, kam sa zapisujú.
-- **Sedí na OKF (spec 0002)** — originál je zámerne standalone („nevyžaduj štruktúru"); my štruktúru máme, takže umiestnenie učení dostáva prirodzený rebrík (spis → kancelária → komunita). **Presne v tom je celá naša adaptácia** → [spec 0008](../../specs/0008-reconcile-ucenie-z-uprav.md).
+- **Sedí na OKF (spec 0002)** — originál je zámerne standalone („nevyžaduj štruktúru"); my štruktúru máme, takže umiestnenie učení dostáva prirodzený rebrík (spis → kancelária → komunita). **Presne v tom je celá naša adaptácia** → [spec 0009](../../specs/0009-reconcile-ucenie-z-uprav.md).
 
 ---
 
