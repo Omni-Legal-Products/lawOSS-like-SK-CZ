@@ -67,6 +67,34 @@ Preberáme poistky originálu a pridávame jednu vlastnú:
 | **Verzie markdownu v spise** | OKF spisy sú markdown — draft a finál sú dve verzie súboru, porovnanie je triviálne |
 | **PROTOKOL ZÁPISU** | OKF už má disciplínu „kam čo patrí" — učenia dostanú vlastný typ záznamu (návrh: `R-XXX` v `MEMORY.md`) |
 
+## Architektúra: skill NAD OKF — nie súčasť jadra, nie black box
+
+Odpoveď na otázku „custom skill, alebo súčasť OKF?": **oboje, vo vrstvách.**
+
+| Vrstva | Čo je | Kto ju môže meniť |
+|---|---|---|
+| **Proces** | `reconcile` = opencode Agent Skill v `lawoss/skills/` — **obyčajný markdown s inštrukciami** | ktokoľvek — princíp *„žiadny black box: prompty sú viditeľné a editovateľné"* platí aj tu |
+| **Dáta** | učenia žijú v OKF súboroch (`MEMORY.md`, `AGENTS.md`, prompt layer) — čistý markdown u advokáta | advokát priamo, aj bez skillu |
+| **Nastavenia** | režim + úrovne v konfigurácii kancelárie | advokát/kancelária |
+
+Dôsledky: skill funguje aj **mimo LegalWorku** (Claude Code, čistý opencode) — prenositeľnosť vrstvy LAWOSS zostáva; a advokát môže učenia kedykoľvek ručne upraviť, zmazať alebo dopísať — reconcile je pomocník nad jeho súbormi, nie vlastník dát.
+
+## Vzťah k self-learning / self-healing (#23, #24)
+
+Reconcile je **konkrétna implementácia self-learning časti** nápadov #23/#24 — učenie z vlastných chýb s ľudskou kontrolou. **Self-healing (#23) je sesterská slučka** — udržiavanie integrácií (MCP, skills, CLI) v chode — a rieši sa samostatne. Spolu tvoria pilier „systém, ktorý sa zlepšuje sám"; reconcile je jeho prvý uchopiteľný kus, lebo signál (úpravy advokáta) vzniká sám pri bežnej práci.
+
+## Režimy behu — automatizované, ale vždy editovateľné
+
+Tri režimy (voľba v nastaveniach kancelárie), human gate platí vo všetkých:
+
+| Režim | Správanie | Pre koho |
+|---|---|---|
+| `manual` | advokát spustí porovnanie sám („reconcile") | konzervatívny štart |
+| `assisted` *(navrhovaný default)* | po uložení finálnej verzie do spisu skill **sám ponúkne** porovnanie; zápis až po schválení | bežná prax |
+| `auto-stage` | učenia sa automaticky zapisujú ako **čakajúce návrhy** do fronty v spise (napr. sekcia *Na schválenie* v `MEMORY.md`); advokát ich hromadne schváli/zamietne raz za čas | pokročilí — maximum automatizácie bez straty kontroly |
+
+Ďalšie nastavenia: maximálna úroveň, kam smú učenia stúpať (len spis / až kancelária) · citlivostný routing modelu (#5) · per-jurisdikcia vetvenie SK/CZ. **Žiadny režim nezapisuje do inštrukcií bez schválenia** — automatizuje sa zber a návrh, nie rozhodnutie.
+
 ## Zaradenie a zóna
 
 - **V2 kandidát** — konkretizuje [#21 tiered memory](navrhy.md) (je to mechanizmus učenia, ktorý tomu nápadu chýbal) a kŕmi [spec 0003](0003-prompt-layer.md). Do V1 nepatrí a nenavrhuje sa to.
@@ -74,7 +102,7 @@ Preberáme poistky originálu a pridávame jednu vlastnú:
 
 ## Otvorené otázky
 
-- [ ] Spúšťanie: manuálne („reconcile" po odoslaní dokumentu) vs. automatická ponuka pri uložení finálu do spisu?
-- [ ] Formát záznamu učení: `R-XXX` v `MEMORY.md` spisu + rozšírenie PROTOKOLU ZÁPISU — odsúhlasiť v rámci OKF v0.2?
+- [ ] Ako `assisted` režim technicky zistí „finál bol uložený do spisu" (file watcher? hook v OKF skille? manuálny príkaz s pripomienkou?)
+- [ ] Formát záznamu učení: `R-XXX` v `MEMORY.md` spisu + sekcia *Na schválenie* pre `auto-stage` frontu + rozšírenie PROTOKOLU ZÁPISU — odsúhlasiť v rámci OKF v0.2?
 - [ ] Metrika zlepšovania: klesá počet materiálnych úprav na draft v čase? (jediný poctivý dôkaz, že sa systém učí)
 - [ ] CZ variant: kde sa štýl podaní SK/CZ líši, učenia sa vetvia per jurisdikcia — potvrdiť s VŘ
