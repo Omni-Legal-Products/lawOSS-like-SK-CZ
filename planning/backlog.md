@@ -50,7 +50,7 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 
 ## Ďalšie nápady (bez specu)
 
-- [ ] Anonymizácia / sanitizačný filter pred LLM (MasKIT + SK regex: rodné číslo, IBAN)
+- [ ] **Lokálny anonymizačný gate pred externým LLM** → [spec 0008](../specs/0008-anonymizacia-a-privacy-gate.md) · [Issue #15](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/15) — architektonický P0 privacy boundary; implementácia kandidát V1.1/P1; licencia, OS packaging a sidecar kontrakt pred kódom
 - [ ] SK šablóny podaní a zmlúv
 - [x] Mistral OCR — PDF → Markdown: presunuté do alfy (quick win, existujúca Quick Action)
 
