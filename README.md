@@ -244,6 +244,7 @@ lawOSS-like-SK-CZ/
 │   ├── 0004-ako-rozsirit-legalwork.md
 │   ├── 0005-struktura-repozitarov.html
 │   ├── 0005-struktura-repozitarov.md
+│   ├── 0006-anonymizacia-ako-lokalny-privacy-gate.md
 │   └── template.md
 ├── docs/
 │   ├── brand-concept.md
@@ -287,6 +288,7 @@ lawOSS-like-SK-CZ/
 │   ├── 0004-mcp-sk-konektory.md
 │   ├── 0005-lehoty-timeline.md
 │   ├── 0007-podpisovanie-a-zarucena-konverzia.md
+│   ├── 0008-anonymizacia-a-privacy-gate.md
 │   ├── navrhy.md
 │   ├── prehlad.html
 │   ├── README.md
@@ -330,23 +332,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**95 commitov** · **69 súborov**
+**97 commitov** · **71 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `7996296` | 2026-08-11 | BiggusDicckkus | specs: pridať lokálny anonymizačný privacy gate (#17) |
+| `0d34de7` | 2026-08-11 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `b2b93f5` | 2026-08-11 | Majo Cuprik | docs: kontakty tímu do tabuľky Kto je kto (e-maily z kalendárovej pozvánky) |
 | `27801dc` | 2026-08-10 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `445c88d` | 2026-08-10 | Majo Cuprik | docs: zosúladenie prehľadov funkcií s aktuálnym stavom návrhov |
 | `c2589a2` | 2026-08-07 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `4f1c6a8` | 2026-08-07 | Majo Cuprik | planning: zberný kôš nápadov + agenda na rozhodnutie o MVP (12. 8.) |
 | `317bbd5` | 2026-08-07 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `1c48d93` | 2026-08-07 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
-| `a4fcbf0` | 2026-08-07 | Majo Cuprik | specs: 0007 podpisovanie QES/QTS a zaručená konverzia cez Autogram |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-11 12:51 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-11 13:22 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
