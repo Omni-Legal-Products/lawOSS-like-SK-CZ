@@ -12,12 +12,14 @@ Kto čo navrhol, v akom je to stave a kde to žije
 
 ## Kto je kto
 
-| Skratka | Meno |
-|---|---|
-| **MČ** | Marián Čuprík |
-| **MF** | Martin Friedrich |
-| **IR** | Igor Ribár |
-| **VŘ** | Vojta Říha 🇨🇿 *(pridal sa 2026-08-06)* |
+| Skratka | Meno | E-mail | GitHub | Telegram |
+|---|---|---|---|---|
+| **MČ** | Marián Čuprík | cuprik@achz.sk | [originalmagneto](https://github.com/originalmagneto) | @originalmagneto |
+| **MF** | Martin Friedrich | martin@friedrich.sk | — | *(bez username)* |
+| **IR** | Igor Ribár | igor.ribar@rs-p.digital | — | *(bez username)* |
+| **VŘ** | Vojta Říha 🇨🇿 *(pridal sa 2026-08-06)* | riha.vojtech@gmail.com | — | @Groover89 |
+
+<sub>E-maily doplnené 2026-08-11 (zdroj: kalendárová pozvánka na sync cally). GitHub účty MF/IR/VŘ doplniť, keď si ich potvrdia.</sub>
 
 ## Evidencia návrhov
 
