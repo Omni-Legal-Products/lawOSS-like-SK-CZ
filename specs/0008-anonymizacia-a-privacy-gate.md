@@ -66,6 +66,19 @@ Záväzné pravidlá:
 - každá zmena kandidáta zneplatní predchádzajúce overenie a vyžaduje nové overenie;
 - publikovanie vykoná iba lokálny proces po splnení oboch brán.
 
+## Dávkové spracovanie a čiastočné zlyhania
+
+Pri dávkovom requeste sa rozlišuje validácia celého requestu od spracovania jednotlivých dokumentov:
+
+- agregované limity a vstupná validácia (napr. limit strán PDF) zostávajú fail-closed pre celý request;
+- chyba detektora, OCR, verifiera, workeru alebo per-document limitu odmietne iba príslušný dokument, odstráni jeho dočasné artefakty a batch pokračuje;
+- úspešné dokumenty zostávajú dostupné na ľudské review; zlyhanie jedného dokumentu nesmie označiť nasledujúce dokumenty ako `run_aborted`;
+- výsledok batchu musí obsahovať `processed_count`, `failed_count` a `total_findings`, pričom položky používajú iba bezpečné `error_code` hodnoty;
+- ZIP artefakt a `batch-summary.json` môžu obsahovať iba úspešné kandidáty a bezpečné počty/chybové kódy; ak je `processed_count == 0`, batch sa nepublikuje;
+- efektívny profil a režim použité workerom sa musia preniesť do review session a bezpečného reportu.
+
+Tým sa zachová fail-closed hranica pre každý chybný dokument bez straty už overených kandidátov z toho istého batchu.
+
 ## Redakčné profily pre SK/CZ
 
 Profil je explicitná policy, nie voľný formulárový prepínač. Detektory ho musia dostať cez validovaný konfiguračný objekt.
