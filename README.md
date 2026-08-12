@@ -245,6 +245,7 @@ lawOSS-like-SK-CZ/
 │   ├── 0005-struktura-repozitarov.html
 │   ├── 0005-struktura-repozitarov.md
 │   ├── 0006-anonymizacia-ako-lokalny-privacy-gate.md
+│   ├── 0008-sprava-mcp-repozitarov.md
 │   └── template.md
 ├── docs/
 │   ├── brand-concept.md
@@ -332,23 +333,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**101 commitov** · **71 súborov**
+**104 commitov** · **72 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `ba3983f` | 2026-08-12 | Majo Cuprik | Merge pull request #21 from originalmagneto/docs/mcp-repository-governance |
+| `dfe1d78` | 2026-08-12 | Majo Cuprik | decisions: upraviť správu MCP repozitárov |
+| `8d3f5d8` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `b7c1cad` | 2026-08-12 | Majo Cuprik | meetings: doplniť do agendy smerový bod ADR 0007 a faktické opravy |
 | `714deb7` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `51a9a53` | 2026-08-12 | Majo Cuprik | meetings: doplnok k agende 12. 8. — stav podkladov a fakty ráno pred callom |
 | `fc24f7b` | 2026-08-11 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `7996296` | 2026-08-11 | BiggusDicckkus | specs: pridať lokálny anonymizačný privacy gate (#17) |
-| `0d34de7` | 2026-08-11 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `b2b93f5` | 2026-08-11 | Majo Cuprik | docs: kontakty tímu do tabuľky Kto je kto (e-maily z kalendárovej pozvánky) |
-| `27801dc` | 2026-08-10 | github-actions[bot] | docs: auto-update README [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 09:05 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 16:28 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
