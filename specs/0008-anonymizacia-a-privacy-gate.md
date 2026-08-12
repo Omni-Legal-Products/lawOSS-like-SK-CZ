@@ -1,8 +1,8 @@
 # Spec 0008: Lokálny anonymizačný gate pred externým LLM
 
-- **Stav:** návrh
+- **Stav:** odložené · nice to have · neimplementovať v aktuálnej fáze
 - **Navrhol:** Martin Friedrich (MF) · 2026-08-11
-- **Zaradenie:** architektonický P0 privacy gate · implementačný kandidát V1.1/P1
+- **Zaradenie:** budúci voliteľný modul alebo add-on, mimo prvej verzie
 - **Súvisiace:** [Issue #15](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/15) · [Issue #1](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/1) · [0002 OKF](0002-okf-operacny-system-praxe.md) · [0003 Prompt layer](0003-prompt-layer.md) · [0006 Orchestrátor](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/2)
 
 > [!IMPORTANT]
@@ -10,6 +10,9 @@
 
 > [!NOTE]
 > Tento dokument patrí do koordinačného repozitára. Nevendoruje Python runtime ani klientské dáta. Lokálny prototyp anonymizera je vstupný implementačný podklad; jeho redistribučná licencia, OS packaging a integračný kontrakt musia byť vyriešené pred kódovou integráciou.
+
+> [!WARNING]
+> **Rozhodnutie z callu 2026-08-12:** anonymizácia sa v aktuálnej fáze nebude implementovať. Komplikuje pamäť, identitu subjektov a agentické workflow. Spec sa zachováva ako podklad pre budúci voliteľný modul a nemení autorstvo návrhu MF.
 
 ## Problém
 
@@ -187,9 +190,9 @@ Acceptance corpus musí obsahovať minimálne:
 
 Každý povinný `must_redact` údaj musí mať po publikovaní nulový reziduálny výskyt v príslušných kontrolovaných kanáloch. Protected negatives musia zostať podľa profilu zachované.
 
-## Otázky na rozhodnutie tímu
+## Otázky pred prípadným obnovením práce
 
-1. Prijímame anonymizáciu ako povinnú architektonickú hranicu a implementačný kandidát V1.1/P1?
+1. Aké nové produktové, právne alebo technické podmienky musia nastať, aby sa anonymizácia vrátila do aktívnej roadmapy?
 2. Je prvý pilot oprávnené obmedziť na macOS, kým sa certifikuje Windows a Linux packaging?
 3. Kto poskytne a schváli redistribučnú licenciu anonymizera?
 4. Má byť prvý adaptér CLI/JSON sidecar, alebo má fork najprv rozšíriť LegalWork local-service extension manifest?
