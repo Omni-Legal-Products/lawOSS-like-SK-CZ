@@ -224,9 +224,9 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 | Súbor | Progress | Hotovo |
 |---|---|---|
 | [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
-| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 5/52 (10 %) |
+| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 7/56 (12 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
-| [`roadmap.md`](planning/roadmap.md) | `████░░░░░░░░░░░░░░░░` | 6/32 (19 %) |
+| [`roadmap.md`](planning/roadmap.md) | `██████░░░░░░░░░░░░░░` | 11/35 (31 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -241,6 +241,7 @@ lawOSS-like-SK-CZ/
 │       ├── keyvisual-features.png
 │       ├── keyvisual-hero.png
 │       ├── keyvisual-mobile.png
+│       ├── logo sub 1M.png
 │       ├── logo.png
 │       ├── mockup.png
 │       ├── moodboard.png
@@ -289,6 +290,8 @@ lawOSS-like-SK-CZ/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
+│   │   ├── audio/
+│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -357,10 +360,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**133 commitov** · **82 súborov**
+**134 commitov** · **82 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `ad7f4d7` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `19c489e` | 2026-08-12 | Majo Cuprik | merge: produktová doktrína a návrh otvorených formátov |
 | `f2db995` | 2026-08-12 | Majo Cuprik | fix: spresniť architektúru formátov |
 | `f9396ef` | 2026-08-12 | Majo Cuprik | planning: navrhnúť otvorené formáty |
@@ -368,12 +372,11 @@ flowchart LR
 | `34e5b9b` | 2026-08-12 | Majo Cuprik | docs: preniesť doktrínu do verejného vstupu |
 | `4d3cd25` | 2026-08-12 | Majo Cuprik | planning: otvoriť otázku produktovej doktríny |
 | `79166fe` | 2026-08-12 | Majo Cuprik | docs: ukotviť víziu kontroly nad AI |
-| `7e3daac` | 2026-08-12 | Majo Cuprik | decisions: navrhnúť produktovú doktrínu LAWOSS |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 19:16 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 19:24 UTC<!-- /AUTO:UPDATED --></sub>
 </div>

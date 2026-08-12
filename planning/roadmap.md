@@ -11,18 +11,20 @@
 - [x] **Licencia: MIT** — vyplýva z voľby základu → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [ ] ⚠️ **Doplniť `LICENSE`, `NOTICE`, `CONTRIBUTING`** do tohto repa *(MČ)*
 - [x] **[ADR 0004: forkujeme LegalWork pod vlastným brandingom](../decisions/0004-ako-rozsirit-legalwork.md)** *(rozhodol MČ; na potvrdenie MF · IR · VŘ)*
-- [ ] ⚠️ **[ADR 0005: štruktúra repozitárov](../decisions/0005-struktura-repozitarov.md)** — koordinácia oddelene od kódu; návrh na prerokovanie
-- [ ] Rozhodnúť, či zakladáme **GitHub organizáciu** — ak áno, **pred forkom**
+- [x] **Založiť organizáciu [Omni Legal Products](https://github.com/Omni-Legal-Products)** a oddeliť koordináciu od produktového kódu
+- [x] **Založiť verejný fork [Omni-Legal-Products/lawoss](https://github.com/Omni-Legal-Products/lawoss)** z `eigenweltlabs/legalwork`, default vetva `dev`
+- [ ] ⚠️ **Potvrdiť [ADR 0005: štruktúra repozitárov](../decisions/0005-struktura-repozitarov.md)** tímom a zosúladiť ho so skutočným stavom organizácie
 - [ ] Zriadiť **Apple Developer účet** pre notarizáciu macOS buildov
 - [ ] Zmapovať SK dátové zdroje (Slov-Lex, ORSR, RPVS, judikatúra, OV, FS)
-- [ ] Zmapovať existujúce slovenské MCP servery
+- [x] Zmapovať existujúce slovenské MCP servery → [inventár](mcp-repository-inventory.md)
+- [x] Vytvoriť 14 private organizačných MCP forkov a jeden private mirror s topics `mcp-server`, `majo-mcp`, `lawoss`, `legaltech`
 - [ ] Zmapovať CZ zdroje *(VŘ)* a PL zdroje *(VŘ)*
 - [ ] Právny rámec: GDPR, predpisy SAK, mlčanlivosť, AI Act
 - [ ] Potvrdenie ADR 0003 od MF *(nezúčastnil sa callu 6. 8.)*
 
 ## Fáza 1 — Fork & MVP (Q4 2026)
 
-- [ ] **Založiť fork** cez GitHub *Fork* z [eigenweltlabs/legalwork](https://github.com/eigenweltlabs/legalwork) *(kandidát na tag: `v0.1.13`)*
+- [x] **Založiť fork** [Omni-Legal-Products/lawoss](https://github.com/Omni-Legal-Products/lawoss) z [eigenweltlabs/legalwork](https://github.com/eigenweltlabs/legalwork)
 - [ ] Nastaviť `upstream` remote a rytmus synchronizácie pri ich releasoch
 - [ ] Založiť `PATCHES.md` — evidencia každého zásahu do upstream súborov
 - [ ] Rebranding: `tauri.conf.json` + `productName` + ikona *(overené: iba 2 miesta)*
@@ -35,6 +37,7 @@
 - [ ] **Onboarding spisu a subjektov** - conflict check, AML, sankcie, diskvalifikácie a registre cez MCP
 - [ ] **Základné skills pre spis** - zápis, kontrola čerstvosti, periodická konsolidácia a rollback
 - [ ] **Anonymizácia odložená** - neimplementovať v aktuálnej fáze; zachovať ako budúci voliteľný modul
+- [ ] **Tímové rozhodnutia Q01 až Q25** - MF, IR a VŘ prejdú otázky cez svojich agentov; Q24 rieši produktovú doktrínu, Q25 nezáväzný návrh otvorených formátov
 
 ## Fáza 2 — Pilot a komunita (2027)
 
