@@ -112,7 +112,7 @@ Projekt prešiel adverzariálnou oponentúrou (`/roast`, režim TECH): šesť ne
 
 ## 4️⃣ Je to udržateľné? — fork, upstream, náklady
 
-### Upstream — overené fakty (GitHub API, 2026-08-10)
+### Upstream — overené fakty (GitHub API, 2026-08-12)
 
 | Fakt | Hodnota | Dôsledok |
 |---|---|---|
@@ -269,4 +269,4 @@ Workshopy (s inštaláciou v cene) · GitHub Pages ako živá vizitka · odborn�
 
 ---
 
-<sub>Pripravil MČ s AI asistenciou, 2026-08-10. Oponentúra: rada 6 nezávislých person (`/roast`, režim TECH), 2026-08-10. Fakty o upstreame overené cez GitHub API k 2026-08-10 (vznik repa 2026-06-23, 90 ⭐, 17 forkov, 2 prispievatelia, release v0.1.13). Počty advokátov SAK/ČAK a poplatok Apple Developer sú orientačné a neoverené. Odkazy z rešerše prior-art persony (fork-drift, konkurencia) preberáme z oponentúry — pred externým použitím overiť. Kapitoly 6–7 sú návrh na potvrdenie tímom, rola IR na potvrdenie IR osobne.</sub>
+<sub>Pripravil MČ s AI asistenciou, 2026-08-10. Oponentúra: rada 6 nezávislých person (`/roast`, režim TECH), 2026-08-10. Fakty o upstreame overené cez GitHub API k 2026-08-12 (vznik repa 2026-06-23, 90 ⭐, 17 forkov, 2 prispievatelia, release v0.1.13). Počty advokátov SAK/ČAK a poplatok Apple Developer sú orientačné a neoverené. Odkazy z rešerše prior-art persony (fork-drift, konkurencia) preberáme z oponentúry — pred externým použitím overiť. Kapitoly 6–7 sú návrh na potvrdenie tímom, rola IR na potvrdenie IR osobne.</sub>
