@@ -341,23 +341,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**117 commitov** · **76 súborov**
+**119 commitov** · **77 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `72288bf` | 2026-08-12 | Majo Cuprik | Merge pull request #25 from originalmagneto/codex/call-2026-08-12-decisions |
+| `70a629d` | 2026-08-12 | Majo Cuprik | docs: zapísať priority z callu 12. augusta |
 | `39d7b3b` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `82d8aeb` | 2026-08-12 | Majo Cuprik | Merge pull request #24 from originalmagneto/codex/mcp-rollout-execution |
 | `81abda3` | 2026-08-12 | Majo Cuprik | docs: zaznamenať limit ochrany private vetiev |
 | `21a0c88` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `1880765` | 2026-08-12 | Majo Cuprik | Merge pull request #23 from originalmagneto/codex/mcp-rollout-execution |
 | `8192f70` | 2026-08-12 | Majo Cuprik | docs: zaznamenať rollout MCP repozitárov |
-| `c28616f` | 2026-08-12 | Majo Cuprik | docs: pridať šablónu pravidiel pre MCP repozitáre |
-| `f3a3e3f` | 2026-08-12 | Majo Cuprik | planning: pridať inventár MCP repozitárov |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 17:56 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 17:59 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
