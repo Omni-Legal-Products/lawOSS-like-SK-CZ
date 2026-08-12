@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Premietnuť schválenú základnú produktovú doktrínu LAWOSS do rozhodnutí, vízie, princípov, verejného README, tímových otázok a pracovných šablón.
+**Goal:** Premietnuť návrh základnej produktovej doktríny schválený MČ a čakajúci na potvrdenie tímom do rozhodnutí, vízie, princípov, verejného README, tímových otázok a pracovných šablón.
 
 **Architecture:** Jeden nový ADR bude autoritatívnym záznamom rozhodnutia. Vízia a princípy budú stručné interpretačné vrstvy, README bude verejný vstup a šablóny zavedú opakovateľný produktový test. Otázka pre tím zostane označená ako otvorená, kým sa nevyjadria MF, IR a VŘ.
 
@@ -27,6 +27,7 @@
 
 **Files:**
 - Create: `decisions/0009-zakladna-produktova-doktrina.md`
+- Create: `decisions/0009-zakladna-produktova-doktrina.html`
 - Reference: `decisions/template.md`
 - Reference: `docs/superpowers/specs/2026-08-12-lawoss-zakladna-produktova-doktrina-design.md`
 
@@ -34,7 +35,7 @@
 - Consumes: schválený návrh MČ zo specu
 - Produces: stabilný odkaz na rozhodnutie, jeho dôsledky a proces výnimiek
 
-- [ ] **Step 1: Prečítať šablónu ADR a schválený spec**
+- [x] **Step 1: Prečítať šablónu ADR a schválený spec**
 
 Run:
 
@@ -45,7 +46,7 @@ sed -n '1,240p' docs/superpowers/specs/2026-08-12-lawoss-zakladna-produktova-dok
 
 Expected: štruktúra ADR a všetky záväzné formulácie sú dostupné pred písaním.
 
-- [ ] **Step 2: Vytvoriť ADR 0009**
+- [x] **Step 2: Vytvoriť ADR 0009 a jeho HTML dvojníka**
 
 ADR musí obsahovať:
 
@@ -58,21 +59,22 @@ ADR musí obsahovať:
 - pravidlo, že výnimka potrebuje nový ADR s odôvodnením, mitigáciou a časovým obmedzením,
 - vetu `Your law. Your models. Your knowledge. Your agents.`
 
-- [ ] **Step 3: Overiť úplnosť ADR**
+- [x] **Step 3: Overiť úplnosť ADR a HTML dvojníka**
 
 Run:
 
 ```bash
 rg -n "kontrol|individual|agent|black box|výnim|alternat|Your law" decisions/0009-zakladna-produktova-doktrina.md
 rg -n '\x{2014}|\x{2013}|T[B]D|T[O]DO' decisions/0009-zakladna-produktova-doktrina.md
+rg -n '<!doctype html>|@media|prefers-color-scheme|#0d1b2a|#c9a24a' decisions/0009-zakladna-produktova-doktrina.html
 ```
 
 Expected: prvý príkaz nájde všetky jadrové témy, druhý nevráti nič.
 
-- [ ] **Step 4: Commitnúť ADR**
+- [x] **Step 4: Commitnúť ADR**
 
 ```bash
-git add decisions/0009-zakladna-produktova-doktrina.md
+git add decisions/0009-zakladna-produktova-doktrina.md decisions/0009-zakladna-produktova-doktrina.html
 git commit -m "decisions: navrhnúť produktovú doktrínu LAWOSS"
 ```
 
@@ -86,11 +88,11 @@ git commit -m "decisions: navrhnúť produktovú doktrínu LAWOSS"
 - Consumes: `decisions/0009-zakladna-produktova-doktrina.md`
 - Produces: zrozumiteľný interný a verejný výklad doktríny
 
-- [ ] **Step 1: Prepísať zastaraný úvod vízie**
+- [x] **Step 1: Prepísať zastaraný úvod vízie**
 
 V `docs/vision.md` odstrániť tvrdenie, že voľba základu je otvorená. Uviesť LegalWork ako zvolený MIT základ a odkázať na ADR 0003.
 
-- [ ] **Step 2: Doplniť jadro vízie**
+- [x] **Step 2: Doplniť jadro vízie**
 
 Úvod musí jasne povedať:
 
@@ -100,7 +102,7 @@ LAWOSS dáva právnikom úplnú kontrolu nad ich AI.
 
 Nasledujúce sekcie vysvetlia dva piliere, rozsah používateľovej kontroly, agent-first pracovné prostredie a právnika ako supervízora.
 
-- [ ] **Step 3: Rozšíriť princípy**
+- [x] **Step 3: Rozšíriť princípy**
 
 `docs/principles.md` musí obsahovať najmenej:
 
@@ -115,7 +117,7 @@ Nasledujúce sekcie vysvetlia dva piliere, rozsah používateľovej kontroly, ag
 9. overovanie tvrdení o konkurencii,
 10. výnimky iba cez ADR.
 
-- [ ] **Step 4: Overiť súlad oboch dokumentov**
+- [x] **Step 4: Overiť súlad oboch dokumentov**
 
 Run:
 
@@ -126,7 +128,7 @@ rg -n '\x{2014}|\x{2013}|T[B]D|T[O]DO' docs/vision.md docs/principles.md
 
 Expected: jadrové pojmy sú prítomné a zakázané alebo nedokončené formulácie chýbajú.
 
-- [ ] **Step 5: Commitnúť víziu a princípy**
+- [x] **Step 5: Commitnúť víziu a princípy**
 
 ```bash
 git add docs/vision.md docs/principles.md
@@ -142,7 +144,7 @@ git commit -m "docs: ukotviť víziu kontroly nad AI"
 - Consumes: návrh rozhodnutia z ADR 0009
 - Produces: jednoznačne identifikovateľnú otázku na vyjadrenie MF, IR a VŘ
 
-- [ ] **Step 1: Doplniť otázku Q24**
+- [x] **Step 1: Doplniť otázku Q24**
 
 Znenie:
 
@@ -159,11 +161,11 @@ Prijímame kontrolu používateľa, individualizáciu, otvorenosť a agent-first
 
 Doplniť odkaz na ADR 0009 a dizajnový spec.
 
-- [ ] **Step 2: Aktualizovať počet otázok a návod na odpoveď**
+- [x] **Step 2: Aktualizovať počet otázok a návod na odpoveď**
 
 Všetky odkazy na rozsah `Q01 až Q23` zmeniť na `Q01 až Q24`.
 
-- [ ] **Step 3: Overiť číslovanie**
+- [x] **Step 3: Overiť číslovanie**
 
 Run:
 
@@ -174,7 +176,7 @@ rg -n 'Q01 až Q23|\x{2014}|\x{2013}|T[B]D|T[O]DO' planning/2026-08-12-rozhodova
 
 Expected: otázky Q01 až Q24 sú unikátne a druhý príkaz nič nenájde.
 
-- [ ] **Step 4: Commitnúť tímovú otázku**
+- [x] **Step 4: Commitnúť tímovú otázku**
 
 ```bash
 git add planning/2026-08-12-rozhodovacie-otazky-timu.md
@@ -186,13 +188,14 @@ git commit -m "planning: otvoriť otázku produktovej doktríny"
 **Files:**
 - Modify: `README.md`
 - Modify: `.github/PULL_REQUEST_TEMPLATE.md`
+- Modify: `.github/ISSUE_TEMPLATE/feature-navrh.yml`
 - Modify: `.github/scripts/update_readme.py` iba ak je nový text súčasťou AUTO sekcie
 
 **Interfaces:**
 - Consumes: víziu, princípy a ADR 0009
 - Produces: stručnú verejnú tézu a kontrolu budúcich PR
 
-- [ ] **Step 1: Identifikovať bezpečné miesto v README**
+- [x] **Step 1: Identifikovať bezpečné miesto v README**
 
 Run:
 
@@ -202,7 +205,7 @@ rg -n '<!-- AUTO:|Vízia|Prečo|LAWOSS' README.md
 
 Expected: je jasné, či sa text pridá mimo AUTO sekcie alebo cez generátor.
 
-- [ ] **Step 2: Doplniť verejnú formuláciu**
+- [x] **Step 2: Doplniť verejnú formuláciu**
 
 README má obsahovať túto nosnú vetu a slogan:
 
@@ -214,31 +217,32 @@ LAWOSS dáva právnikom úplnú kontrolu nad ich AI.
 
 Krátky sprievodný text má vysvetliť výber modelov, vlastné skilly a MCP, otvorené pracovné postupy a právnika ako supervízora.
 
-- [ ] **Step 3: Doplniť PR checklist**
+- [x] **Step 3: Doplniť kontrolný checklist aj do šablóny návrhu funkcie**
 
-Do `.github/PULL_REQUEST_TEMPLATE.md` pridať sekciu `Produktová doktrína` s checkboxmi:
+Do `.github/PULL_REQUEST_TEMPLATE.md` pridať sekciu `Produktová doktrína` s checkboxmi a do `.github/ISSUE_TEMPLATE/feature-navrh.yml` polia pre kontrolu používateľa, otvorenosť, riadenie agentov a prípadnú ADR výnimku:
 
 - zmena zachováva alebo zvyšuje kontrolu používateľa,
 - nevytvára povinný black box alebo vendor lock-in,
 - zachováva audit a primerané human approval,
 - platformovú alebo dočasnú výnimku odôvodňuje príslušný ADR.
 
-- [ ] **Step 4: Pregenerovať README a skontrolovať diff**
+- [x] **Step 4: Pregenerovať README a skontrolovať diff**
 
 Run:
 
 ```bash
 python3 .github/scripts/update_readme.py
 git diff --check
-rg -n '\x{2014}|\x{2013}|T[B]D|T[O]DO' README.md .github/PULL_REQUEST_TEMPLATE.md
+ruby -e 'require "yaml"; YAML.load_file(".github/ISSUE_TEMPLATE/feature-navrh.yml"); puts "YAML OK"'
+rg -n '\x{2014}|\x{2013}|T[B]D|T[O]DO' README.md .github/PULL_REQUEST_TEMPLATE.md .github/ISSUE_TEMPLATE/feature-navrh.yml
 ```
 
 Expected: generovanie prejde, diff nemá whitespace chyby a posledný príkaz nič nenájde v nových riadkoch.
 
-- [ ] **Step 5: Commitnúť verejný vstup a checklist**
+- [x] **Step 5: Commitnúť verejný vstup a checklist**
 
 ```bash
-git add README.md .github/PULL_REQUEST_TEMPLATE.md .github/scripts/update_readme.py
+git add README.md .github/PULL_REQUEST_TEMPLATE.md .github/ISSUE_TEMPLATE/feature-navrh.yml .github/scripts/update_readme.py
 git commit -m "docs: preniesť doktrínu do verejného vstupu"
 ```
 
@@ -247,7 +251,7 @@ Ak `.github/scripts/update_readme.py` nebol zmenený, nestagovať ho.
 ### Task 5: Finálna verifikácia a tímová distribúcia
 
 **Files:**
-- Verify: všetky súbory z Tasks 1 až 4
+- Verify: všetky súbory z Tasks 1 až 4 vrátane `decisions/0009-zakladna-produktova-doktrina.html` a `.github/ISSUE_TEMPLATE/feature-navrh.yml`
 
 **Interfaces:**
 - Consumes: kompletnú dokumentačnú zmenu

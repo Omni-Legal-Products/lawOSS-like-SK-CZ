@@ -70,4 +70,4 @@ Ak návrh v ktoromkoľvek bode zlyhá, výnimka vyžaduje nový ADR s výslovný
 
 ## Ďalší postup
 
-Po potvrdení tímom sa doktrína premietne do `docs/vision.md`, `docs/principles.md`, `README.md`, rozhodovacích otázok tímu a kontrolných zoznamov pre PR a feature návrhy.
+Táto vetva obsahuje navrhnuté integrácie do `docs/vision.md`, `docs/principles.md`, `README.md`, rozhodovacích otázok tímu a kontrolných zoznamov pre PR a feature návrhy. Tieto integrácie sa stanú záväznými až po potvrdení tímom.
