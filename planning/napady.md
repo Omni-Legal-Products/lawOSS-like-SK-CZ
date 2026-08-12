@@ -103,7 +103,7 @@ flowchart LR
 
 *Sem píš nové nápady, kým sa neprerokujú. Formát: **čo** — kto, kedy, odkiaľ.*
 
-- **27. Open formats at the core, compatibility at the edges** - návrh MČ z 2026-08-12. LAWOSS by interne používal otvorené, textové a agentom čitateľné formáty, najmä Markdown, HTML a JSON. DOCX, XLSX, PPTX, Teams a SharePoint by zostali podporovanými vstupmi, výstupmi alebo voliteľnými integráciami, nie povinným základom architektúry. Návrh neznamená okamžitý zákaz nástrojov Microsoftu a zatiaľ nie je prijatým rozhodnutím.
+- **27. Open formats at the core, compatibility at the edges** - nezáväzný návrh MČ z 2026-08-12. Kanonický pracovný obsah LAWOSS by používal otvorené textové formáty Markdown, HTML a JSON. DOCX, XLSX a PPTX by zostali štandardizovanými OOXML výmennými formátmi pre podporované vstupy a výstupy. Teams a SharePoint by boli voliteľnými integráciami, nie povinným základom architektúry. Návrh neznamená okamžitý zákaz nástrojov Microsoftu a zatiaľ nie je prijatým rozhodnutím.
 
 ---
 

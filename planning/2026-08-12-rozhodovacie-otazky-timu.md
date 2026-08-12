@@ -255,9 +255,9 @@ Prijímame kontrolu používateľa, individualizáciu, otvorenosť a agent-first
 
 MČ navrhuje princíp `Open formats at the core, compatibility at the edges`.
 
-- **A:** áno; kanonický pracovný obsah má používať najmä otvorené, textové a agentom čitateľné formáty, pričom DOCX, XLSX, PPTX, Teams a SharePoint zostanú adaptérmi alebo voliteľnými integráciami,
-- **B:** čiastočne; otvorené formáty podporovať, ale Microsoft formáty ponechať rovnocennou súčasťou jadra,
-- **C:** nie; prioritou má zostať natívny Microsoft ekosystém.
+- **A:** áno; kanonický pracovný obsah má používať otvorené textové formáty Markdown, HTML a JSON; DOCX, XLSX a PPTX zostanú štandardizovanými OOXML výmennými formátmi pre podporované vstupy a výstupy; Teams a SharePoint budú voliteľnými integráciami,
+- **B:** čiastočne; otvorené formáty podporovať, ale DOCX, XLSX a PPTX ponechať rovnocennou súčasťou jadra,
+- **C:** nie; formát sa určí podľa konkrétneho workflowu bez jedného kanonického formátu.
 - **Odporúčanie MČ:** A, ako dlhodobý architektonický smer a postupná tranzícia, nie okamžitý zákaz Microsoft nástrojov.
 
 Návrh je evidovaný ako [nápad #27](napady.md) a zatiaľ nie je prijatým rozhodnutím.
@@ -271,4 +271,5 @@ Po uzavretí PR vzniknú samostatné ADR pre:
 3. scope prvej iterácie,
 4. pamäťové hranice a reconciliation approval,
 5. lokálnosť dát a platformová podpora,
-6. monetizáciu a open-source hranicu.
+6. monetizáciu a open-source hranicu,
+7. architektúru formátov, ak tím prijme Q25.
