@@ -217,6 +217,7 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 |---|---|---|
 | [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
 | [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 5/52 (10 %) |
+| [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
 | [`roadmap.md`](planning/roadmap.md) | `████░░░░░░░░░░░░░░░░` | 6/28 (21 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
@@ -249,8 +250,11 @@ lawOSS-like-SK-CZ/
 │   ├── 0008-sprava-mcp-repozitarov.md
 │   └── template.md
 ├── docs/
+│   ├── templates/
+│   │   └── mcp-repository-AGENTS.md
 │   ├── brand-concept.md
 │   ├── glossary.md
+│   ├── mcp-repository-workflow.md
 │   ├── principles.md
 │   ├── telegram-notifikacie.md
 │   └── vision.md
@@ -261,6 +265,7 @@ lawOSS-like-SK-CZ/
 ├── planning/
 │   ├── 2026-08-12-mcp-repository-rollout-plan.md
 │   ├── backlog.md
+│   ├── mcp-repository-inventory.md
 │   ├── napady.md
 │   ├── roadmap.md
 │   ├── timeline.md
@@ -335,23 +340,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**107 commitov** · **73 súborov**
+**113 commitov** · **76 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `1880765` | 2026-08-12 | Majo Cuprik | Merge pull request #23 from originalmagneto/codex/mcp-rollout-execution |
+| `8192f70` | 2026-08-12 | Majo Cuprik | docs: zaznamenať rollout MCP repozitárov |
+| `c28616f` | 2026-08-12 | Majo Cuprik | docs: pridať šablónu pravidiel pre MCP repozitáre |
+| `f3a3e3f` | 2026-08-12 | Majo Cuprik | planning: pridať inventár MCP repozitárov |
+| `8d35a27` | 2026-08-12 | Majo Cuprik | chore: ignorovať lokálne worktrees |
+| `0fc39ce` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `d90c95b` | 2026-08-12 | Majo Cuprik | Merge pull request #22 from originalmagneto/codex/mcp-rollout-plan |
 | `bb9d6c9` | 2026-08-12 | Majo Cuprik | planning: pridať plán rollout-u MCP repozitárov |
-| `a2048ee` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `ba3983f` | 2026-08-12 | Majo Cuprik | Merge pull request #21 from originalmagneto/docs/mcp-repository-governance |
-| `dfe1d78` | 2026-08-12 | Majo Cuprik | decisions: upraviť správu MCP repozitárov |
-| `8d3f5d8` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `b7c1cad` | 2026-08-12 | Majo Cuprik | meetings: doplniť do agendy smerový bod ADR 0007 a faktické opravy |
-| `714deb7` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 16:37 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 17:27 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
