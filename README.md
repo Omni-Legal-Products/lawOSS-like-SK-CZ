@@ -215,8 +215,10 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 <!-- AUTO:PROGRESS -->
 | Súbor | Progress | Hotovo |
 |---|---|---|
+| [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
 | [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 5/52 (10 %) |
-| [`roadmap.md`](planning/roadmap.md) | `████░░░░░░░░░░░░░░░░` | 6/28 (21 %) |
+| [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
+| [`roadmap.md`](planning/roadmap.md) | `████░░░░░░░░░░░░░░░░` | 6/32 (19 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -245,19 +247,27 @@ lawOSS-like-SK-CZ/
 │   ├── 0005-struktura-repozitarov.html
 │   ├── 0005-struktura-repozitarov.md
 │   ├── 0006-anonymizacia-ako-lokalny-privacy-gate.md
+│   ├── 0008-sprava-mcp-repozitarov.md
 │   └── template.md
 ├── docs/
+│   ├── templates/
+│   │   └── mcp-repository-AGENTS.md
 │   ├── brand-concept.md
 │   ├── glossary.md
+│   ├── mcp-repository-workflow.md
 │   ├── principles.md
 │   ├── telegram-notifikacie.md
 │   └── vision.md
 ├── meetings/
 │   ├── 2026-08-04-brainstorming-zaklad-a-prenositelnost.md
 │   ├── 2026-08-06-sync-call-volba-zakladu.md
-│   └── 2026-08-12-agenda-mvp.md
+│   ├── 2026-08-12-agenda-mvp.md
+│   └── 2026-08-12-produktova-vizia-okf-pamat.md
 ├── planning/
+│   ├── 2026-08-12-mcp-repository-rollout-plan.md
+│   ├── 2026-08-12-rozhodovacie-otazky-timu.md
 │   ├── backlog.md
+│   ├── mcp-repository-inventory.md
 │   ├── napady.md
 │   ├── roadmap.md
 │   ├── timeline.md
@@ -332,23 +342,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**101 commitov** · **71 súborov**
+**122 commitov** · **78 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
-| `b7c1cad` | 2026-08-12 | Majo Cuprik | meetings: doplniť do agendy smerový bod ADR 0007 a faktické opravy |
-| `714deb7` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `51a9a53` | 2026-08-12 | Majo Cuprik | meetings: doplnok k agende 12. 8. — stav podkladov a fakty ráno pred callom |
-| `fc24f7b` | 2026-08-11 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `7996296` | 2026-08-11 | BiggusDicckkus | specs: pridať lokálny anonymizačný privacy gate (#17) |
-| `0d34de7` | 2026-08-11 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `b2b93f5` | 2026-08-11 | Majo Cuprik | docs: kontakty tímu do tabuľky Kto je kto (e-maily z kalendárovej pozvánky) |
-| `27801dc` | 2026-08-10 | github-actions[bot] | docs: auto-update README [skip ci] |
+| `395bb7c` | 2026-08-12 | Majo Cuprik | Merge pull request #26 from originalmagneto/codex/collaboration-decision-questions |
+| `b321bcf` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
+| `72288bf` | 2026-08-12 | Majo Cuprik | Merge pull request #25 from originalmagneto/codex/call-2026-08-12-decisions |
+| `08f50fd` | 2026-08-12 | Majo Cuprik | planning: otvoriť rozhodovacie otázky tímu |
+| `70a629d` | 2026-08-12 | Majo Cuprik | docs: zapísať priority z callu 12. augusta |
+| `39d7b3b` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
+| `82d8aeb` | 2026-08-12 | Majo Cuprik | Merge pull request #24 from originalmagneto/codex/mcp-rollout-execution |
+| `81abda3` | 2026-08-12 | Majo Cuprik | docs: zaznamenať limit ochrany private vetiev |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 09:05 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 17:59 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
