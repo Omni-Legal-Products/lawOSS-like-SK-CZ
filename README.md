@@ -332,23 +332,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**99 commitov** · **71 súborov**
+**101 commitov** · **71 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `b7c1cad` | 2026-08-12 | Majo Cuprik | meetings: doplniť do agendy smerový bod ADR 0007 a faktické opravy |
+| `714deb7` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `51a9a53` | 2026-08-12 | Majo Cuprik | meetings: doplnok k agende 12. 8. — stav podkladov a fakty ráno pred callom |
 | `fc24f7b` | 2026-08-11 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `7996296` | 2026-08-11 | BiggusDicckkus | specs: pridať lokálny anonymizačný privacy gate (#17) |
 | `0d34de7` | 2026-08-11 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `b2b93f5` | 2026-08-11 | Majo Cuprik | docs: kontakty tímu do tabuľky Kto je kto (e-maily z kalendárovej pozvánky) |
 | `27801dc` | 2026-08-10 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `445c88d` | 2026-08-10 | Majo Cuprik | docs: zosúladenie prehľadov funkcií s aktuálnym stavom návrhov |
-| `c2589a2` | 2026-08-07 | github-actions[bot] | docs: auto-update README [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 08:04 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 09:05 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
