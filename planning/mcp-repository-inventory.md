@@ -110,3 +110,43 @@ Organizačná kópia konkrétneho repozitára sa vytvorí až po splnení týcht
 - [ ] identické `AGENTS.md` a `CLAUDE.md`,
 - [ ] úspešné offline minimum alebo zdokumentované baseline zlyhanie,
 - [ ] správny cieľový názov, popis, visibility a topics.
+
+## Realizačný update 2026-08-12
+
+### Osobné upstreamy
+
+- Všetkých 15 pripravených PR bolo mergnutých do osobného `main`.
+- V každom upstream repozitári GitHub API potvrdilo obsahovo identické root súbory `AGENTS.md` a `CLAUDE.md`.
+- Slov-Lex GitHub description bol opravený na `MCP server pre Slov-Lex a slovenské právne predpisy`.
+- Povinné offline testy a buildy prešli vo všetkých 15 repozitároch.
+- `judikaty-mcp` bol korektne overený pod požadovaným Node.js 22.23.2.
+- `cz-agents-mcp` dostal chýbajúci ESLint toolchain a `pretest` build internej `@czagents/shared` workspace. Lint prešiel s 0 errors a 30 viditeľnými legacy warnings.
+- `orsr-mcp` naďalej sleduje 4 437 súborov pod `node_modules/`. Tento technický dlh nebol zmiešaný s dokumentačným PR.
+
+### Organizačné kópie
+
+| Organizačný repo | Typ | Upstream alebo parent | Visibility | Topics | Stav |
+|---|---|---|---:|---|---|
+| [`mcp-slovlex`](https://github.com/Omni-Legal-Products/mcp-slovlex) | fork | `originalmagneto/slov-lex-mcp-deploy` | private | spoločné + `slovakia` | vytvorený |
+| [`mcp-kalkulacky-sk`](https://github.com/Omni-Legal-Products/mcp-kalkulacky-sk) | fork | `originalmagneto/kalkulacky-sk-MCP` | private | spoločné + `slovakia` | vytvorený |
+| [`mcp-judikaty-sk`](https://github.com/Omni-Legal-Products/mcp-judikaty-sk) | fork | `originalmagneto/judikaty-mcp` | private | spoločné + `slovakia` | vytvorený |
+| [`mcp-orsr`](https://github.com/Omni-Legal-Products/mcp-orsr) | fork | `originalmagneto/orsr-mcp` | private | spoločné + `slovakia` | vytvorený |
+| [`mcp-rpo`](https://github.com/Omni-Legal-Products/mcp-rpo) | fork | `originalmagneto/RPO-MCP` | private | spoločné + `slovakia` | vytvorený |
+| [`mcp-rpvs`](https://github.com/Omni-Legal-Products/mcp-rpvs) | fork | `originalmagneto/RPVS-MCP` | private | spoločné + `slovakia` | vytvorený |
+| [`mcp-ruz`](https://github.com/Omni-Legal-Products/mcp-ruz) | fork | `originalmagneto/RUZ-MCP` | private | spoločné + `slovakia` | vytvorený |
+| [`mcp-crz`](https://github.com/Omni-Legal-Products/mcp-crz) | fork | `originalmagneto/crz-mcp` | private | spoločné + `slovakia` | vytvorený |
+| [`mcp-financna-sprava`](https://github.com/Omni-Legal-Products/mcp-financna-sprava) | fork | `originalmagneto/FS-MCP` | private | spoločné + `slovakia` | vytvorený |
+| [`mcp-obchodny-vestnik`](https://github.com/Omni-Legal-Products/mcp-obchodny-vestnik) | fork | `originalmagneto/OV-MCP` | private | spoločné + `slovakia` | vytvorený |
+| [`mcp-register-upadcov`](https://github.com/Omni-Legal-Products/mcp-register-upadcov) | fork | `originalmagneto/RU-MCP` | private | spoločné + `slovakia` | vytvorený |
+| [`mcp-uvo`](https://github.com/Omni-Legal-Products/mcp-uvo) | fork | `originalmagneto/UVO-MCP` | private | spoločné + `slovakia` | vytvorený |
+| [`mcp-diskvalifikacie`](https://github.com/Omni-Legal-Products/mcp-diskvalifikacie) | fork | `originalmagneto/DISQ-MCP` | private | spoločné + `slovakia` | vytvorený |
+| [`mcp-eurlex`](https://github.com/Omni-Legal-Products/mcp-eurlex) | fork | `originalmagneto/MCP-EURLEX-CELEX` | private | spoločné + `eu-law` | vytvorený |
+| [`mcp-cz-agents`](https://github.com/Omni-Legal-Products/mcp-cz-agents) | mirror | `originalmagneto/cz-agents-mcp` | private | spoločné + `czechia` | vytvorený a upstream zdokumentovaný |
+
+Spoločné topics sú `mcp-server`, `majo-mcp`, `lawoss` a `legaltech`.
+
+### Otvorené body
+
+- Branch protection na private organizačných repozitároch zatiaľ nebola nastavená. Bezpečnostná vrstva vyžaduje osobitné výslovné potvrdenie presných nastavení.
+- Presný Dokploy repository binding a deployment commit zostávajú neoverené, pretože Dokploy CLI 0.3.0 vracia pri `compose one` HTTP 400.
+- Dokploy deployment, služby, environment a secrets neboli zmenené.
