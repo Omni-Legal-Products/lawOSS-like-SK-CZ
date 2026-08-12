@@ -90,6 +90,8 @@ Dokploy CLI 0.3.0 pri `compose one` vrátilo HTTP 400. Preto presný URL repozit
 
 ### Agentové pravidlá
 
+- Spoločné minimálne jadro je v [`docs/templates/mcp-repository-AGENTS.md`](../docs/templates/mcp-repository-AGENTS.md).
+- Šablóna sa nesmie kopírovať bez doplnenia overeného účelu, zdroja dát a konkrétnych príkazov daného repozitára.
 - `OV-MCP`, `RU-MCP` a `UVO-MCP` majú dvojice `AGENTS.md` a `CLAUDE.md` s identickým obsahom.
 - Pravidlá v `OV-MCP` a `RU-MCP` neobsahujú presné repozitárové testy a bezpečný deploy boundary.
 - Zvyšných 12 upstreamov nemá root dvojicu agentových pravidiel.
