@@ -147,6 +147,6 @@ Spoločné topics sú `mcp-server`, `majo-mcp`, `lawoss` a `legaltech`.
 
 ### Otvorené body
 
-- Branch protection na private organizačných repozitároch zatiaľ nebola nastavená. Bezpečnostná vrstva vyžaduje osobitné výslovné potvrdenie presných nastavení.
+- Branch protection na private organizačných repozitároch nie je na pláne GitHub Free dostupná. GitHub API po výslovnom potvrdení MČ vrátilo pri pilotnom `mcp-slovlex` HTTP 403 s požiadavkou na upgrade; organization rulesets vyžadujú GitHub Team. Žiadna ochrana nebola aplikovaná a ostatných 14 repozitárov sa po identickom blokátore neskúšalo.
 - Presný Dokploy repository binding a deployment commit zostávajú neoverené, pretože Dokploy CLI 0.3.0 vracia pri `compose one` HTTP 400.
 - Dokploy deployment, služby, environment a secrets neboli zmenené.
