@@ -357,23 +357,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**131 commitov** · **82 súborov**
+**133 commitov** · **82 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `19c489e` | 2026-08-12 | Majo Cuprik | merge: produktová doktrína a návrh otvorených formátov |
+| `f2db995` | 2026-08-12 | Majo Cuprik | fix: spresniť architektúru formátov |
 | `f9396ef` | 2026-08-12 | Majo Cuprik | planning: navrhnúť otvorené formáty |
 | `daf995b` | 2026-08-12 | Majo Cuprik | docs: dokončiť produktovú doktrínu |
 | `34e5b9b` | 2026-08-12 | Majo Cuprik | docs: preniesť doktrínu do verejného vstupu |
 | `4d3cd25` | 2026-08-12 | Majo Cuprik | planning: otvoriť otázku produktovej doktríny |
 | `79166fe` | 2026-08-12 | Majo Cuprik | docs: ukotviť víziu kontroly nad AI |
 | `7e3daac` | 2026-08-12 | Majo Cuprik | decisions: navrhnúť produktovú doktrínu LAWOSS |
-| `8f1ab92` | 2026-08-12 | Majo Cuprik | planning: pripraviť zavedenie produktovej doktríny |
-| `2744042` | 2026-08-12 | Majo Cuprik | docs: navrhnúť základnú produktovú doktrínu |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 19:13 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 19:16 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
