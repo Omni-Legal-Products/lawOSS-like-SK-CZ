@@ -25,7 +25,7 @@
 - [ ] **Založiť fork** cez GitHub *Fork* z [eigenweltlabs/legalwork](https://github.com/eigenweltlabs/legalwork) *(kandidát na tag: `v0.1.13`)*
 - [ ] Nastaviť `upstream` remote a rytmus synchronizácie pri ich releasoch
 - [ ] Založiť `PATCHES.md` — evidencia každého zásahu do upstream súborov
-- [ ] Rebranding: `tauri.conf.json` + `productName` + ikona *(overené: iba 2 miesta)*
+- [ ] Rebranding: `apps/desktop/electron-builder.yml` (`appId`, `productName`, URL schéma) + runtime identifikátory v `apps/desktop/electron/main.mjs` + ikona *(overené 2026-08-12: tri miesta; zmena `appId` mení macOS bundle identitu — keychain, Launchpad, TCC)*
 - [ ] Doplniť podpisové tajomstvá do GitHub Secrets forku
 - [ ] **SK + CZ lokalizácia rozhrania** — ani jeden z 12 podporovaných jazykov; čistý príspevok do upstreamu
 - [ ] Prvý SK MCP server integrovaný *(registrácia v configu, bez zásahu do jadra)*
