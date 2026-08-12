@@ -52,6 +52,14 @@ Priniesť českým a slovenským advokátom **užitočný open-source nástroj �
 
 Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advokátskej praxe (OKF)](specs/0002-okf-operacny-system-praxe.md)** — appka zakladá spisy, generuje riadiace súbory a stráži poriadok; AI je násobič, nie základ.
 
+### Právnik riadi svoju AI
+
+**LAWOSS dáva právnikom úplnú kontrolu nad ich AI.**
+
+**Your law. Your models. Your knowledge. Your agents.**
+
+Kancelária si vyberá modely podľa kvality, ceny, rýchlosti a súkromia. Môže používať vlastné skilly, MCP servery a dátové zdroje, upravovať otvorené pracovné postupy a kontrolovať, ako agent pracoval. Agenti pripravujú a organizujú prácu, no právnik určuje cieľ, riadi riziko a schvaľuje výsledok ako ich supervízor. Podrobnosti rozvíja navrhnutá [základná produktová doktrína](decisions/0009-zakladna-produktova-doktrina.md).
+
 ### Päť pilierov
 
 | | |
@@ -248,8 +256,14 @@ lawOSS-like-SK-CZ/
 │   ├── 0005-struktura-repozitarov.md
 │   ├── 0006-anonymizacia-ako-lokalny-privacy-gate.md
 │   ├── 0008-sprava-mcp-repozitarov.md
+│   ├── 0009-zakladna-produktova-doktrina.md
 │   └── template.md
 ├── docs/
+│   ├── superpowers/
+│   │   ├── plans/
+│   │   │   └── 2026-08-12-lawoss-zakladna-produktova-doktrina.md
+│   │   └── specs/
+│   │       └── 2026-08-12-lawoss-zakladna-produktova-doktrina-design.md
 │   ├── templates/
 │   │   └── mcp-repository-AGENTS.md
 │   ├── brand-concept.md
@@ -342,23 +356,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**122 commitov** · **78 súborov**
+**128 commitov** · **81 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `4d3cd25` | 2026-08-12 | Majo Cuprik | planning: otvoriť otázku produktovej doktríny |
+| `79166fe` | 2026-08-12 | Majo Cuprik | docs: ukotviť víziu kontroly nad AI |
+| `7e3daac` | 2026-08-12 | Majo Cuprik | decisions: navrhnúť produktovú doktrínu LAWOSS |
+| `8f1ab92` | 2026-08-12 | Majo Cuprik | planning: pripraviť zavedenie produktovej doktríny |
+| `2744042` | 2026-08-12 | Majo Cuprik | docs: navrhnúť základnú produktovú doktrínu |
+| `754bde5` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `395bb7c` | 2026-08-12 | Majo Cuprik | Merge pull request #26 from originalmagneto/codex/collaboration-decision-questions |
 | `b321bcf` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `72288bf` | 2026-08-12 | Majo Cuprik | Merge pull request #25 from originalmagneto/codex/call-2026-08-12-decisions |
-| `08f50fd` | 2026-08-12 | Majo Cuprik | planning: otvoriť rozhodovacie otázky tímu |
-| `70a629d` | 2026-08-12 | Majo Cuprik | docs: zapísať priority z callu 12. augusta |
-| `39d7b3b` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `82d8aeb` | 2026-08-12 | Majo Cuprik | Merge pull request #24 from originalmagneto/codex/mcp-rollout-execution |
-| `81abda3` | 2026-08-12 | Majo Cuprik | docs: zaznamenať limit ochrany private vetiev |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 17:59 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 18:50 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
