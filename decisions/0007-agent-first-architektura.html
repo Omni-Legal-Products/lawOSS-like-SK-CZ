@@ -69,6 +69,7 @@
       <span class="chip"><b>Stav:</b> 📝 návrh — smerový bod na call</span>
       <span class="chip"><b>Navrhol:</b> MČ</span>
       <span class="chip"><b>Povinný recenzent:</b> MF</span>
+      <span class="chip"><b>Recenzia MF 12. 8.:</b> podmienečne — 3 požiadavky zapracované</span>
     </div>
   </div>
 </div>
@@ -100,13 +101,14 @@
 </section>
 
 <section>
-  <h2><span class="n">3</span>Štyri záväzné pravidlá</h2>
+  <h2><span class="n">3</span>Päť záväzných pravidiel</h2>
   <div class="tbl-wrap"><table>
     <tr><th style="width:34px">#</th><th>Pravidlo</th><th>Prečo</th></tr>
     <tr><td><b>1</b></td><td><b>Strojovo čitateľný stav je prvotný</b>, ľudské zobrazenie odvodené</td><td>OKF to dnes robí, ale nikde to nie je napísané — dá sa to nechtiac porušiť</td></tr>
     <tr><td><b>2</b></td><td><b>Každá funkcia musí byť vykonateľná agentom bez GUI</b></td><td>Testovacie kritérium celého ADR — dá sa naň ukázať prstom, odpoveď je áno/nie</td></tr>
     <tr><td><b>3</b></td><td><b>Kontrakt agent ↔ advokát</b> — zovšeobecnenie automatu z ADR 0006</td><td>Vnútri spisu agent voľne, na hranici podpisuje advokát, zlyhanie = fail-closed</td></tr>
     <tr><td><b>4</b></td><td><b>Hranica spisu je súčasne kontrolný aj učiaci bod</b></td><td>Úprava advokáta je vstup pre reconcile — brána sa mení z réžie na investíciu</td></tr>
+    <tr><td><b>5</b></td><td><b>Podpisovanie a konanie navonok sú agentovi technicky znemožnené</b></td><td>Nie zákazom v prompte, ale tým, že agent na to <b>nemá nástroj</b> — chýbajúcu schopnosť nemožno obísť</td></tr>
   </table></div>
 </section>
 
@@ -118,6 +120,10 @@
     <tr><td><b>Hranica spisu</b></td><td><b>advokát podpisuje</b></td><td>prechod do <code>published</code> vyžaduje automatické overenie <b>a</b> výslovné potvrdenie advokátom</td></tr>
     <tr><td><b>Zlyhanie</b></td><td>nikto</td><td>chyba, timeout alebo chýbajúca závislosť = <b>fail-closed</b>, nikdy tichý prechod</td></tr>
   </table></div>
+  <div class="warn" style="margin-top:16px">
+    <h3>Povinná ľudská verifikácia pred použitím v právnej službe</h3>
+    <p style="margin:0"><i>(doplnené na žiadosť MF, 2026-08-12)</i> Slovo <b>„voľne"</b> sa týka výlučne toho, že agent smie <b>pracovať a produkovať</b> — nie toho, že by sa jeho výstup dal použiť. <b>Žiadny výstup agenta sa nesmie použiť pri poskytovaní právnej služby, kým ho advokát neoveril</b> — a to aj vtedy, keď výstup <b>neopúšťa spis</b> (rešerš, o ktorú sa advokát oprie v porade; zhrnutie, z ktorého vychádza pri rozhodovaní). Overenie znamená, že advokát obsah <b>prečítal a prevzal zaň zodpovednosť</b>, nie že ho videl prebehnúť.</p>
+  </div>
   <div class="warn ok" style="margin-top:16px">
     <h3>Čo znamená „von"</h3>
     <p style="margin:0">Nielen klientovi, protistrane alebo na súd, ale <b>aj externému modelu</b>. To ADR 0006 už hovorí — tu to prestáva byť pravidlo o anonymizácii a stáva sa pravidlom o agentoch všeobecne. <b>Aj zápis do inštrukcií</b> (<code>AGENTS.md</code>, <code>MEMORY.md</code>, prompt layer) je prechod hranice a vyžaduje podpis.</p>
@@ -125,7 +131,41 @@
 </section>
 
 <section>
-  <h2><span class="n">5</span>Podpisovanie ako externý add-on</h2>
+  <h2><span class="n">5</span>Technické vylúčenie podpisovania a konania navonok</h2>
+  <p style="margin-top:0"><i>(pravidlo 5 — doplnené na žiadosť MF, 2026-08-12)</i> Nestačí, že to agent nemá dovolené. <b>Nesmie na to mať schopnosť.</b></p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Zakázané</th><th>Ako sa to vynucuje</th></tr>
+    <tr><td><b>Podpisovanie</b> — QES, QTS, akákoľvek autorizácia</td><td>agent <b>nemá prístup</b> k rozhraniu Autogramu, k mandátnemu certifikátu ani k čítačke; podpis spúšťa človek vo vlastnej aplikácii</td></tr>
+    <tr><td><b>Odoslanie navonok</b> — e-mail, dátová schránka, podanie na súd, komunikácia s protistranou či klientom</td><td>agent <b>nemá odosielací nástroj</b> — nie je mu sprístupnený, nie je mu zakázaný</td></tr>
+    <tr><td><b>Konanie v mene advokáta</b> voči tretím stranám</td><td>to isté: chýbajúca schopnosť, nie inštrukcia</td></tr>
+  </table></div>
+  <div class="warn" style="margin-top:16px">
+    <h3>Prečo je ten rozdiel zásadný</h3>
+    <p style="margin:0">Zákaz v prompte sa dá obísť — otráveným dokumentom, zle formulovanou úlohou, chybou modelu. <b>Chýbajúci nástroj obísť nedá.</b> Preto sa tieto schopnosti agentovi <b>nesprístupňujú</b>, namiesto toho, aby sa mu zakazovali. Dôsledok pre návrh: <b>každý nástroj, ktorý koná navonok, patrí do ľudského rozhrania, nie do sady nástrojov agenta.</b> Dať agentovi odosielací alebo podpisový nástroj je zmena tohto ADR, nie konfiguračná voľba.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">6</span>Role a zodpovednosť — dve veci, ktoré sa nesmú zliať</h2>
+  <p style="margin-top:0"><i>(doplnené na žiadosť MF, 2026-08-12)</i> Pôvodné znenie hovorilo, že zmenu inštrukcií „schvaľuje advokát", a tým dve odlišné roly nesprávne zlialo do jednej.</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Rola</th><th>Čo schvaľuje</th><th>Za čo NEzodpovedá</th></tr>
+    <tr><td><b>Recenzent architektúry</b></td><td>pravidlá, inštrukčné vrstvy, prompty kancelárie, zmeny <code>AGENTS.md</code> na úrovni kancelárie a komunity</td><td><b>za žiadnu konkrétnu vec.</b> Jeho súhlas nie je odborným posúdením ničoho, čo sa v spise deje</td></tr>
+    <tr><td><b>Zodpovedný advokát vo veci</b></td><td>všetko, čo sa v jeho spise použije pri poskytovaní právnej služby</td><td>— nesie zodpovednosť podľa predpisov o výkone advokácie</td></tr>
+  </table></div>
+  <ul style="margin-top:14px">
+    <li><b>Schválenie architektúry nikdy nenahrádza overenie vo veci.</b> Inštrukcia schválená do promptu kancelárie <b>nezbavuje</b> zodpovedného advokáta povinnosti overiť každý výstup vo svojom spise.</li>
+    <li><b>Recenzent architektúry nesmie zasahovať do cudzieho spisu.</b> Zmena inštrukcií je zmena <i>pravidiel</i>, nie zmena <i>obsahu veci</i>.</li>
+    <li><b>Zodpovedný advokát smie inštrukciu kancelárie vo svojej veci prebiť.</b> Rozpor ide na prerokovanie tímu, nie na tichý prepis spoločného promptu.</li>
+  </ul>
+  <div class="warn ok" style="margin-top:14px">
+    <h3>V malom tíme sú to často tí istí ľudia</h3>
+    <p style="margin:0">To nie je dôvod roly nerozlišovať — je to dôvod, prečo si pri každom schválení treba uvedomiť, <b>v ktorej z nich človek práve koná</b>.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">7</span>Podpisovanie ako externý add-on</h2>
   <div class="card">
     <p style="margin-top:0"><b>Podpisovanie nie je súčasť LAWOSS a nemá ňou byť.</b> Podľa <a href="../specs/0007-podpisovanie-a-zarucena-konverzia.md">spec 0007</a> je to <b>samostatný krok na konci prípravy dokumentu</b> — napríklad pred podaním na súd — cez <b>Autogram</b> (Slovensko.Digital, eIDAS):</p>
     <ul>
@@ -145,7 +185,7 @@
 </section>
 
 <section>
-  <h2><span class="n">6</span>Čo toto ADR NEznamená</h2>
+  <h2><span class="n">8</span>Čo toto ADR NEznamená</h2>
   <div class="tbl-wrap"><table>
     <tr><th>Nie je to</th><th>Prečo to treba povedať nahlas</th></tr>
     <tr><td><b>pitch pre advokátov</b></td><td>Architektonický princíp. Advokátovi predávame poriadok v spise a ušetrený čas, nie „agent-first architektúru". Persona používateľa v oponentúre pred touto optikou výslovne varovala.</td></tr>
@@ -156,7 +196,7 @@
 </section>
 
 <section>
-  <h2><span class="n">7</span>Riziká, ktoré ADR priznáva</h2>
+  <h2><span class="n">9</span>Riziká, ktoré ADR priznáva</h2>
   <div class="warn">
     <h3>1 · Zovšeobecňujeme cudziu prácu</h3>
     <p style="margin:0">Stavový automat navrhol MF a bol zlúčený 2026-08-11. Robiť z neho základ celej architektúry je poklona — ale iba ak sa ho spýtame. <b>MF je povinný recenzent</b>, bez jeho stanoviska sa ADR neprijíma.</p>
@@ -176,7 +216,7 @@
 </section>
 
 <section>
-  <h2><span class="n">8</span>Zvažované alternatívy</h2>
+  <h2><span class="n">10</span>Zvažované alternatívy</h2>
   <div class="tbl-wrap"><table>
     <tr><th>Alternatíva</th><th>Verdikt</th></tr>
     <tr><td><b>Nechať to nepomenované</b> — stav pred týmto ADR</td><td>❌ Princíp fakticky platí (OKF), ale nedá sa naň odvolať a nikto ho nemusí dodržať. <b>Neviditeľné pravidlo nie je pravidlo.</b></td></tr>

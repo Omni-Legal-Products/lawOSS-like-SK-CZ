@@ -4,6 +4,7 @@
 - **Stav:** **návrh** — na prerokovanie tímom MČ · MF · IR · VŘ
 - **Navrhol:** MČ · 2026-08-12
 - **Povinný recenzent:** **MF** — toto ADR zovšeobecňuje stavový automat, ktorý navrhol v [ADR 0006](0006-anonymizacia-ako-lokalny-privacy-gate.md) a [spec 0008](../specs/0008-anonymizacia-a-privacy-gate.md). Bez jeho stanoviska sa neprijíma.
+- **Stanovisko MF (2026-08-12):** smerovanie je *„zlučiteľné s princípmi SAK **iba podmienečne**"*. Vyžiadal tri doplnenia — **povinnú ľudskú verifikáciu pred použitím výstupu v právnej službe**, **oddelenie roly recenzenta architektúry od zodpovedného advokáta vo veci** a **technické vylúčenie podpisovania a konania navonok agentom**. Zapracované nižšie *(pravidlo 3, kapitola „Role a zodpovednosť", pravidlo 5)*; **čaká na jeho opätovné posúdenie.**
 - **Stavia na:** [ADR 0006](0006-anonymizacia-ako-lokalny-privacy-gate.md) · [ADR 0002](0002-preco-forkujeme-mikeoss.md) *(červená čiara — nie sme dodávateľ softvéru)*
 - **Súvisiace:** [spec 0002 OKF](../specs/0002-okf-operacny-system-praxe.md) · [spec 0007 podpisovanie](../specs/0007-podpisovanie-a-zarucena-konverzia.md) · [spec 0009 reconcile](../specs/0009-reconcile-ucenie-z-uprav.md) *(zatiaľ len v [PR #16](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/16))* · [stratégia](../docs/strategia.md) *(zatiaľ len v [PR #14](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/14))*
 
@@ -36,7 +37,7 @@ Pre tento vzťah existuje zabehnutá právnická analógia a používame ju nami
 
 Táto analógia nie je ozdoba. Má dva praktické dôsledky: tím štyroch advokátov rozumie bez vysvetľovania, ako sa taký vzťah riadi; a pred komorou sa obhajuje ľahšie než čokoľvek s prívlastkom „AI", lebo **režim zodpovednosti sa nemení** — mení sa len to, kto píše drafty.
 
-### Štyri záväzné pravidlá
+### Päť záväzných pravidiel
 
 #### 1. Strojovo čitateľný stav je prvotný, ľudské zobrazenie odvodené
 
@@ -57,6 +58,12 @@ Zovšeobecnenie automatu z [ADR 0006](0006-anonymizacia-ako-lokalny-privacy-gate
 | **Zlyhanie** | nikto | chyba, timeout alebo chýbajúca závislosť = **fail-closed**, nikdy tichý prechod |
 
 **Čo znamená „von"** — nielen klientovi, protistrane alebo na súd, ale **aj externému modelu**. To ADR 0006 už hovorí; tu to prestáva byť pravidlo o anonymizácii a stáva sa pravidlom o agentoch všeobecne.
+
+> [!CAUTION]
+> **Povinná ľudská verifikácia pred použitím výstupu v právnej službe** *(doplnené na žiadosť MF, 2026-08-12)*
+> Slovo **„voľne"** v prvom riadku tabuľky sa týka **výlučne toho, že agent smie pracovať a produkovať** — nie toho, že by sa jeho výstup dal použiť.
+> **Žiadny výstup agenta sa nesmie použiť pri poskytovaní právnej služby, kým ho advokát neoveril.** Platí to aj vtedy, keď výstup **neopúšťa spis** — teda aj pre rešerš, o ktorú sa advokát oprie v porade, pre zhrnutie, z ktorého vychádza pri rozhodovaní, aj pre návrh úkonu.
+> Overenie znamená, že advokát obsah **prečítal a prevzal zaň zodpovednosť** — nie že ho videl prebehnúť. Neoverený výstup je pracovný materiál, nie podklad právnej služby.
 
 ```mermaid
 flowchart LR
@@ -82,7 +89,46 @@ Z toho plynú tri veci:
 
 - **Ľudská brána nie je réžia, je to investícia.** Najsilnejšia námietka proti human gate je „spomaľuje to". Ak každé schválenie kŕmi reconcile, počet zásahov v čase **klesá** — brána sa sama zaplatí.
 - **Rozhranie dostáva konkrétnu úlohu.** Hlavná obrazovka nie je chat ani dashboard, ale **rozdiel medzi návrhom agenta a mojou verziou, s podpisom**. *(Smerovanie, nie záväzná požiadavka na UI — to sa rieši samostatne.)*
-- **Zápis do inštrukcií je tiež prechod hranice.** Učenie, ktoré reconcile navrhne zapísať do `AGENTS.md`, `MEMORY.md` alebo prompt layeru, **vyžaduje podpis rovnako ako odchod dokumentu von.** Nie je to slušnosť, je to nosný bezpečnostný prvok — dôvod je v rizikách nižšie.
+- **Zápis do inštrukcií je tiež prechod hranice.** Učenie, ktoré reconcile navrhne zapísať do `AGENTS.md`, `MEMORY.md` alebo prompt layeru, **vyžaduje podpis rovnako ako odchod dokumentu von.** Nie je to slušnosť, je to nosný bezpečnostný prvok — dôvod je v rizikách nižšie. **Kto podpisuje, závisí od úrovne**: na úrovni veci zodpovedný advokát, na úrovni kancelárie a vyššie recenzent architektúry — a jeho schválenie **nikdy nenahrádza overenie vo veci** *(viď kapitolu Role a zodpovednosť)*.
+
+#### 5. Podpisovanie a konanie navonok sú agentovi **technicky** znemožnené
+
+*(doplnené na žiadosť MF, 2026-08-12)*
+
+Nestačí, že to agent nemá dovolené. **Nesmie na to mať schopnosť.**
+
+| Zakázané | Ako sa to vynucuje |
+|---|---|
+| **Podpisovanie** — QES, QTS, akákoľvek autorizácia | agent **nemá prístup k rozhraniu Autogramu**, k mandátnemu certifikátu ani k čítačke; podpis spúšťa človek vo vlastnej aplikácii Autogramu |
+| **Odoslanie čohokoľvek navonok** — e-mail, dátová schránka, podanie na súd, komunikácia s protistranou či klientom | agent **nemá odosielací nástroj** — nie je mu sprístupnený, nie je mu zakázaný |
+| **Konanie v mene advokáta** voči tretím stranám | to isté: chýbajúca schopnosť, nie inštrukcia |
+
+> [!IMPORTANT]
+> **Rozdiel je zásadný.** Zákaz v prompte sa dá obísť — otráveným dokumentom, zle formulovanou úlohou, chybou modelu. **Chýbajúci nástroj obísť nedá.** Preto sa tieto schopnosti agentovi **nesprístupňujú**, namiesto toho, aby sa mu zakazovali.
+>
+> Praktický dôsledok pre návrh: **každý nástroj, ktorý koná navonok, patrí do ľudského rozhrania, nie do sady nástrojov agenta.** Ak by niekedy vznikla požiadavka dať agentovi odosielací alebo podpisový nástroj, je to zmena tohto ADR, nie konfiguračná voľba.
+
+Sedí to s tým, ako už dnes funguje podpisovanie *(nižšie)*: Autogram je cudzia aplikácia, ktorú agent nemá ako ovládať, a PIN ani certifikát cez LAWOSS neprechádzajú. Toto pravidlo z faktického stavu robí **záväzné pravidlo návrhu**.
+
+### Role a zodpovednosť — dve rôzne veci, ktoré sa nesmú zliať
+
+*(doplnené na žiadosť MF, 2026-08-12)*
+
+Pôvodné znenie ADR hovorilo, že zmenu inštrukcií „schvaľuje advokát", a **tým dve odlišné roly nesprávne zlialo do jednej**:
+
+| Rola | Čo schvaľuje | Za čo **nezodpovedá** |
+|---|---|---|
+| **Recenzent architektúry** | pravidlá, inštrukčné vrstvy, prompty kancelárie, zmeny v `AGENTS.md` na úrovni kancelárie a komunity | **za žiadnu konkrétnu vec.** Jeho súhlas nie je odborným posúdením ničoho, čo sa v spise deje |
+| **Zodpovedný advokát vo veci** | všetko, čo sa v jeho spise použije pri poskytovaní právnej služby | — nesie zodpovednosť podľa predpisov o výkone advokácie |
+
+Z toho plynú tri záväzné dôsledky:
+
+1. **Schválenie na úrovni architektúry nikdy nenahrádza overenie vo veci.** Ak recenzent architektúry schváli inštrukciu do promptu kancelárie, **nezbavuje to zodpovedného advokáta povinnosti overiť každý výstup vo svojom spise** podľa pravidla 3.
+2. **Recenzent architektúry nesmie zasahovať do cudzieho spisu.** Zmena inštrukcií na úrovni kancelárie je zmena *pravidiel*, nie zmena *obsahu veci*. Nikto nesmie cez inštrukčnú vrstvu meniť, ako sa vedie konkrétna vec, ktorú nevedie.
+3. **Zodpovedný advokát smie inštrukciu kancelárie vo svojej veci prebiť.** Ak je pre danú vec nevhodná, platí jeho rozhodnutie — a rozpor ide na prerokovanie tímu, nie na tichý prepis spoločného promptu. *(To už vyžaduje [spec 0009](../specs/0009-reconcile-ucenie-z-uprav.md), Adaptácia 4.)*
+
+> [!NOTE]
+> V malom tíme sú obe roly často tá istá osoba. **To nie je dôvod ich nerozlišovať** — je to dôvod, prečo si treba pri každom schválení uvedomiť, v ktorej z nich človek práve koná.
 
 ### Podpisovanie ako externý add-on — a čo z toho pre kontrakt vyplýva
 
@@ -108,6 +154,7 @@ Zaradenie sa týmto ADR **nemení** — QES/QTS ostáva kandidát na V2, zaruče
 2. **Reconcile prestáva byť voliteľná funkcia.** [Spec 0009](../specs/0009-reconcile-ucenie-z-uprav.md) ostáva **V2** — ale architektúra V1 jej musí nechať miesto: drafty sa neprepisujú, verzie ostávajú, hranica je explicitná. Zhodou okolností to pravidlo 3 už vyžaduje.
 3. **Metrika projektu:** koľko toho musel advokát prepísať a či to v čase klesá. Sleduje sa z verzií súborov v spise — bez telemetrie a bez analytiky.
 4. **Aktualizovať `AGENTS.md`** koordinačného repa o povinnú otázku z bodu 1 — po prijatí tohto ADR.
+5. **Sada nástrojov agenta sa stáva predmetom review.** Keďže pravidlo 5 sa vynucuje tým, čo agentovi *nesprístupníme*, musí byť pri každej zmene zjavné, aké nástroje agent má. Pridanie nástroja, ktorý koná navonok, je zmena tohto ADR.
 
 ## Čo toto ADR NEznamená
 
@@ -136,7 +183,9 @@ Zaradenie sa týmto ADR **nemení** — QES/QTS ostáva kandidát na V2, zaruče
 
 ## Otvorené otázky
 
-- [ ] **Stanovisko MF** k zovšeobecneniu jeho automatu *(blokuje prijatie)*
+- [x] ~~**Stanovisko MF** k zovšeobecneniu jeho automatu~~ → **doručené 2026-08-12:** zlučiteľné s princípmi SAK **podmienečne**, s tromi požiadavkami. Zapracované *(pravidlo 3, pravidlo 5, kapitola Role a zodpovednosť)*.
+- [ ] **Opätovné posúdenie MF** po zapracovaní *(blokuje prijatie)*
+- [ ] **Ako sa pravidlo 5 overí v praxi** — kto a ako skontroluje, že agent naozaj nemá sprístupnený odosielací či podpisový nástroj? Bez odpovede je to pravidlo na papieri.
 - [ ] Kde presne v OKF žije stav `candidate` — nový podpriečinok v spise, alebo konvencia v názve súboru?
 - [ ] Ako sa metrika z dôsledku 3 počíta bez toho, aby sa z nej stala telemetria
 - [ ] Platí pravidlo 2 aj pre funkcie prevzaté z upstreamu, alebo len pre naše? *(návrh: len pre naše — upstream neriadime)*
