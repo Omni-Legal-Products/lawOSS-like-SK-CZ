@@ -140,7 +140,8 @@ assets/       obrázky, diagramy, brand
 | Čo | Kde | Správanie |
 |---|---|---|
 | **Auto-README** | [`.github/workflows/update-readme.yml`](.github/workflows/update-readme.yml) | po pushi prepíše AUTO sekcie (progress, strom, aktivita) a **sám commitne** |
-| **Telegram notifikácie** | [`.github/workflows/telegram-notify.yml`](.github/workflows/telegram-notify.yml) | push/issue/PR/release → topic *SK Mike GH*. Secrets: `TELEGRAM_TOKEN`, `TELEGRAM_CHAT_ID`; premenná `TELEGRAM_TOPIC_ID` |
+| **Telegram: koordinácia** | [`.github/workflows/telegram-notify.yml`](.github/workflows/telegram-notify.yml) | `originalmagneto/lawOSS-like-SK-CZ` → topic *SK Mike GH* (`2`). Push, issue, PR, release a diskusia. |
+| **Telegram: produkt** | [`docs/telegram-notifikacie.md`](docs/telegram-notifikacie.md) | `Omni-Legal-Products/lawoss` → topic *LAWOSS APP GH* (`293`). PR, issue, release a zlyhanie CI; bežné push správy sú vypnuté. Aktivácia čaká na merge produktového PR #2 a secret `TELEGRAM_TOKEN`. |
 | **GitHub Pages** | z `main`, root, `.nojekyll` | HTML dokumenty sú živé na `originalmagneto.github.io/lawOSS-like-SK-CZ/...` |
 
 **Lokálne si vieš README pregenerovať:** `python3 .github/scripts/update_readme.py`
@@ -164,4 +165,4 @@ assets/       obrázky, diagramy, brand
 - **Repo:** https://github.com/originalmagneto/lawOSS-like-SK-CZ
 - **Základ projektu:** [LegalWork](https://github.com/eigenweltlabs/legalwork) (MIT) nad [opencode](https://github.com/sst/opencode) — [ADR 0003](decisions/0003-legal-work-ako-zaklad.md). Zamietnutí kandidáti: [mikeOSS](https://github.com/Open-Legal-Products/mike), Stella (CZ).
 - **Podať návrh funkcie:** [formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)
-- **Komunikácia:** Telegram *MikeOSS (SLOVAKIA) + AI Frontier Labs* — topics: General CHAT · SK Mike GH · DESIGN · Research · AI Frontier Labs
+- **Komunikácia:** Telegram *LawOSS (SLOVAKIA | CZECHIA) + AI Frontier Labs* (`-1003828145652`) · topics: General CHAT (`1`) · SK Mike GH (`2`) · LAWOSS APP GH (`293`) · DESIGN (`5`) · Research (`6`) · AI Frontier Labs (`7`) · Feature IDEAS (`97`)

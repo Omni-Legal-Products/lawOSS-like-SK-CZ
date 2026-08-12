@@ -1,71 +1,86 @@
-# Napojenie GitHubu na Telegram skupinu
+# GitHub notifikácie v Telegrame
 
-Workflow [`.github/workflows/telegram-notify.yml`](../.github/workflows/telegram-notify.yml) posiela do Telegram skupiny správu pri **pushi do `main`**, **release**, **issue** a **pull requeste**. Ovládame ho my, správy si vieme ľubovoľne upraviť.
+> **Overené:** Telegram MCP a GitHub API, 2026-08-12.
 
-> [!IMPORTANT]
-> Workflow je už v repe, ale **nič neposiela, kým nenastavíte dva secrets** (`TELEGRAM_TOKEN`, `TELEGRAM_CHAT_ID`). Dovtedy sa krok ticho preskočí (nepadá to na chybu).
+## Zdroj pravdy
 
-## Nastavenie (jednorazovo, ~5 minút)
-
-### 1. Vytvorte bota
-1. V Telegrame otvorte [@BotFather](https://t.me/BotFather).
-2. `/newbot` → zadajte názov (napr. `LAWOSS`) a username (musí končiť na `bot`, napr. `mikeoss_sk_bot`).
-3. BotFather vám vypíše **token** v tvare `123456789:AAE...` — uschovajte ho.
-
-### 2. Pridajte bota do skupiny
-- V Telegram skupine: **Add members** → nájdite svojho bota → pridajte.
-- (Ak má skupina témy/topics alebo je to kanál, dajte botovi rolu admina.)
-
-### 3. Zistite `chat_id` skupiny
-Najjednoduchšie: do tej istej skupiny dočasne pridajte [@getidsbot](https://t.me/getidsbot) alebo [@RawDataBot](https://t.me/RawDataBot) — hneď vypíše `Chat ID`. Pre skupiny je to **záporné** číslo (supergroup začína `-100…`). Potom pomocného bota zase vyhoďte.
-
-*Alternatíva bez cudzieho bota:* pošlite v skupine hocijakú správu a otvorte v prehliadači
-`https://api.telegram.org/bot<VÁŠ_TOKEN>/getUpdates` → nájdite `"chat":{"id":-100...}`.
-
-### 4. Uložte secrets do GitHub repa
-V repe: **Settings → Secrets and variables → Actions → New repository secret** a pridajte dva:
-
-| Name | Hodnota |
+| Položka | Hodnota |
 |---|---|
-| `TELEGRAM_TOKEN` | token z BotFather |
-| `TELEGRAM_CHAT_ID` | `chat_id` skupiny (napr. `-1001234567890`) |
+| Telegram skupina | `LawOSS (SLOVAKIA | CZECHIA) + AI Frontier Labs` |
+| `TELEGRAM_CHAT_ID` | `-1003828145652` |
+| Bot | `@mikeossSK_bot` |
+| Koordinačný repo | `originalmagneto/lawOSS-like-SK-CZ` |
+| Produktový repo | `Omni-Legal-Products/lawoss` |
 
-### 5. Test
-Spravte hocijaký push do `main` (alebo v repe **Actions → Telegram notifikácie → Run workflow**). Do skupiny by mala doraziť správa. Ak nie, pozrite log behu v záložke **Actions**.
+Token bota sa nikdy nezapisuje do dokumentácie, commitu, issue, PR ani logu. Patrí iba do GitHub Actions secretu `TELEGRAM_TOKEN`.
 
-## Smerovanie do konkrétneho topicu (forum-skupina)
+## Smerovanie podľa repozitára
 
-Ak je skupina vo forum režime (má *Topics*), notifikácie sa dajú posielať len do jedného vybraného topicu.
+| Repozitár | Vetva | Topic | Topic ID | Workflow | Udalosti |
+|---|---|---|---:|---|---|
+| `originalmagneto/lawOSS-like-SK-CZ` | `main` | `SK Mike GH` | `2` | `.github/workflows/telegram-notify.yml` | push do `main`, PR, issue, release, diskusia |
+| `Omni-Legal-Products/lawoss` | `dev` | `LAWOSS APP GH` | `293` | `.github/workflows/telegram-notify.yml` v produktovom repe | PR, issue, release, zlyhanie CI |
 
-1. **Zistite ID topicu:** v Telegrame otvorte daný topic → podržte/kliknite pravým na hociktorú správu v ňom → **Copy Link**. Dostanete odkaz v tvare
-   `https://t.me/c/2812345678/23/105`
-   **Prostredné číslo** (tu `23`) je ID topicu. *(Ak sú v odkaze len dve čísla, ide o hlavné vlákno „General" — to nemá samostatné ID.)*
-   Alternatívne pridajte do topicu [@getidsbot](https://t.me/getidsbot), ktorý vypíše *Topic ID*.
-2. **Uložte ho ako premennú** (nie secret — nie je citlivé): v repe **Settings → Secrets and variables → Actions → záložka _Variables_ → New repository variable**:
+Produktový workflow neposiela každý push. Cieľom je zachytiť udalosti vyžadujúce pozornosť bez zahltenia tímového chatu.
 
-   | Name | Hodnota |
-   |---|---|
-   | `TELEGRAM_TOPIC_ID` | ID topicu (napr. `23`) |
+## Stav produktového napojenia
 
-3. Hotovo. Od ďalšieho pushu chodia správy do tohto topicu. Keď premennú zmažete, notifikácie pôjdu späť do hlavného vlákna.
+- Topic `LAWOSS APP GH` bol vytvorený 2026-08-12 s ID `293`.
+- Repository variables sú nastavené:
+  - `TELEGRAM_CHAT_ID=-1003828145652`
+  - `TELEGRAM_TOPIC_ID=293`
+- Workflow je pripravený v [produktovom PR #2](https://github.com/Omni-Legal-Products/lawoss/pull/2) proti vetve `dev`.
+- Chýba repository alebo organization secret `TELEGRAM_TOKEN`.
+- Notifikácie sa aktivujú až po nastavení tokenu a merge PR #2.
 
-## Čo sa notifikuje
+## Udalosti produktového repozitára
 
-| Udalosť | Kedy |
+| Udalosť | Správa do `LAWOSS APP GH` |
 |---|---|
-| 🚀 Push do `main` | pri každom nasadení zmien (okrem auto-README bota) |
-| 🎉 Release | publikovaný nový release |
-| 🐛 Issue | otvorené / zatvorené / znovuotvorené |
-| 🔀 Pull request | otvorený / zatvorený / merged |
-| 💬 Diskusia | nová GitHub Discussion |
+| Pull request | otvorený, znovuotvorený, pripravený na review, zatvorený alebo mergnutý |
+| Issue | otvorené, znovuotvorené alebo zatvorené |
+| Release | publikovaný release |
+| CI | iba neúspešné dokončenie sledovaného workflowu |
+| Manuálny test | `workflow_dispatch` |
 
-Zoznam sa dá rozšíriť úpravou sekcie `on:` a `case` vo workflowe.
+Sledované CI workflowy:
 
-## Alternatívy a ďalšie GitHub funkcie
+- `Alpha Channel (macOS arm64)`
+- `Alpha Channel (Windows x64)`
+- `i18n Audit`
+- `legalwork-ui-mcp`
+- `LegalWork Tests`
+- `Release App`
 
-- **Bez GitHub Actions (no-code):** väčšina „RSS to Telegram" botov vie sledovať feed
-  `https://github.com/originalmagneto/lawOSS-like-SK-CZ/commits/main.atom`
-  a postovať commity do skupiny. Menej kontroly nad formátom, zato nulová konfigurácia.
-- **GitHub Mobile** appka — osobné push notifikácie (mentions, review requests), doplnok k skupinovým.
-- **Opačný smer (Telegram → GitHub)** — vytváranie issue príkazom z Telegramu je možné, ale vyžaduje malý serverless webhook (napr. Cloudflare Worker). Ak to budeme chcieť, spíšeme ako samostatný [spec](../specs/).
-- **GitHub Projects / Discussions** — na plánovanie a hlasovanie o nápadoch (viď [AGENTS.md](../AGENTS.md)); Discussions sa už tiež notifikujú.
+## Aktivácia produktového repozitára
+
+1. Otvoriť `Omni-Legal-Products/lawoss`.
+2. Prejsť do `Settings` → `Secrets and variables` → `Actions`.
+3. Vytvoriť repository secret `TELEGRAM_TOKEN` s tokenom `@mikeossSK_bot`.
+4. Schváliť a mergnúť [PR #2](https://github.com/Omni-Legal-Products/lawoss/pull/2) do `dev`.
+5. V `Actions` spustiť workflow `LAWOSS Telegram notifications` cez `Run workflow`.
+6. Overiť testovaciu správu v topicu `LAWOSS APP GH`.
+
+Ak sa použije organization secret, musí byť sprístupnený minimálne repozitáru `Omni-Legal-Products/lawoss`. Hodnotu secretu GitHub po uložení spätne nezobrazí.
+
+## Mapa tímových topicov
+
+| Topic | ID | Účel |
+|---|---:|---|
+| `General CHAT` | `1` | tímová komunikácia a koordinácia |
+| `SK Mike GH` | `2` | automatizácie koordinačného repozitára |
+| `LAWOSS APP GH` | `293` | automatizácie produktového repozitára |
+| `DESIGN` | `5` | produktový a vizuálny dizajn |
+| `Research` | `6` | rešerše |
+| `AI Frontier Labs` | `7` | súvisiace AI témy |
+| `Feature IDEAS` | `97` | surové návrhy pred spracovaním v koordinačnom repe |
+
+## Pravidlá pre AI agentov
+
+1. Koordinačné notifikácie nesmerovať do `LAWOSS APP GH`.
+2. Produktové notifikácie nesmerovať do `SK Mike GH`.
+3. Nepridávať bežné push notifikácie do produktového topicu bez tímového rozhodnutia.
+4. Nikdy nevypisovať ani nekopírovať hodnotu `TELEGRAM_TOKEN`.
+5. Pri zmene názvu workflowu aktualizovať aj zoznam v `workflow_run.workflows`, inak sa zlyhanie CI nemusí oznámiť.
+6. Po každej zmene smerovania overiť repository variables, názvy secrets, testovací beh a cieľový topic.
+7. MCP repozitáre zatiaľ nemajú vlastné automatické Telegram notifikácie. Ak sa doplnia, preferuje sa jeden spoločný topic `MCP GH`, nie topic pre každý server.
