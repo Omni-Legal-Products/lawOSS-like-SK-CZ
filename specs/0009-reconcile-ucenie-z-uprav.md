@@ -3,7 +3,13 @@
 - **Stav:** návrh · **V2 kandidát — vedome NIE V1** (scope V1 sa klepe 12. 8., toto doň nepatrí)
 - **Navrhol:** Marián Čuprík (MČ) · 2026-08-11
 - **Zdroj inšpirácie:** skill `reconcile`, Jeff Su / Cowork Academy → [analýza](../research/inspiracie/reconcile-jeff-su.md) *(platený kurz bez licencie — adaptujeme koncept vlastnými slovami, text nepreberáme)*
-- **Súvisiace:** [#21 tiered memory](navrhy.md) · [spec 0003 prompt layer](0003-prompt-layer.md) · [spec 0002 OKF](0002-okf-operacny-system-praxe.md) · [#5 hybrid routing](0003-prompt-layer.md#-hybrid-routing--rozdelenie-podľa-vrstvy)
+- **Súvisiace:** [**ADR 0007 agent-first**](../decisions/0007-agent-first-architektura.md) *(zatiaľ len v [PR #19](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/19))* · [#21 tiered memory](navrhy.md) · [spec 0003 prompt layer](0003-prompt-layer.md) · [spec 0002 OKF](0002-okf-operacny-system-praxe.md) · [#5 hybrid routing](0003-prompt-layer.md#-hybrid-routing--rozdelenie-podľa-vrstvy)
+
+> [!IMPORTANT]
+> **Väzba na [ADR 0007 — agent-first architektúra](../decisions/0007-agent-first-architektura.md)** *(návrh, [PR #19](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/19))*
+> ADR 0007 robí z hranice spisu súčasne **kontrolný aj učiaci bod** — a tým z reconcile **druhú polovicu kontraktu medzi agentom a advokátom**, nie voliteľnú funkciu.
+> **Zaradenie sa tým nemení: reconcile ostáva V2.** Mení sa len to, čo musí spĺňať architektúra V1, aby jej nechala miesto — drafty sa neprepisujú, verzie ostávajú, hranica je explicitná.
+> Zároveň ADR 0007 povyšuje poistku z *Adaptácie 4* („advokát schvaľuje každú zmenu inštrukcií") zo slušnosti na **záväzný bezpečnostný prvok**: zápis do `AGENTS.md` alebo `MEMORY.md` je prechod hranice a vyžaduje podpis. Dôvod je prompt injection — otrávený dokument by sa cez úpravu draftu mohol natrvalo usadiť v inštrukciách.
 
 ## Problém
 
