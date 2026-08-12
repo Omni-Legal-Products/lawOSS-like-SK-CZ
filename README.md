@@ -241,7 +241,6 @@ lawOSS-like-SK-CZ/
 │       ├── keyvisual-features.png
 │       ├── keyvisual-hero.png
 │       ├── keyvisual-mobile.png
-│       ├── logo sub 1M.png
 │       ├── logo.png
 │       ├── mockup.png
 │       ├── moodboard.png
@@ -290,8 +289,6 @@ lawOSS-like-SK-CZ/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
-│   │   ├── audio/
-│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -360,10 +357,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**134 commitov** · **82 súborov**
+**135 commitov** · **82 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `069231e` | 2026-08-12 | Majo Cuprik | docs: uzavrieť pracovnú session 12. augusta |
 | `ad7f4d7` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `19c489e` | 2026-08-12 | Majo Cuprik | merge: produktová doktrína a návrh otvorených formátov |
 | `f2db995` | 2026-08-12 | Majo Cuprik | fix: spresniť architektúru formátov |
@@ -371,7 +369,6 @@ flowchart LR
 | `daf995b` | 2026-08-12 | Majo Cuprik | docs: dokončiť produktovú doktrínu |
 | `34e5b9b` | 2026-08-12 | Majo Cuprik | docs: preniesť doktrínu do verejného vstupu |
 | `4d3cd25` | 2026-08-12 | Majo Cuprik | planning: otvoriť otázku produktovej doktríny |
-| `79166fe` | 2026-08-12 | Majo Cuprik | docs: ukotviť víziu kontroly nad AI |
 <!-- /AUTO:ACTIVITY -->
 
 ---
