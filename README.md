@@ -265,6 +265,7 @@ lawOSS-like-SK-CZ/
 │   └── 2026-08-12-produktova-vizia-okf-pamat.md
 ├── planning/
 │   ├── 2026-08-12-mcp-repository-rollout-plan.md
+│   ├── 2026-08-12-rozhodovacie-otazky-timu.md
 │   ├── backlog.md
 │   ├── mcp-repository-inventory.md
 │   ├── napady.md
@@ -341,18 +342,18 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**119 commitov** · **77 súborov**
+**122 commitov** · **78 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `395bb7c` | 2026-08-12 | Majo Cuprik | Merge pull request #26 from originalmagneto/codex/collaboration-decision-questions |
+| `b321bcf` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `72288bf` | 2026-08-12 | Majo Cuprik | Merge pull request #25 from originalmagneto/codex/call-2026-08-12-decisions |
+| `08f50fd` | 2026-08-12 | Majo Cuprik | planning: otvoriť rozhodovacie otázky tímu |
 | `70a629d` | 2026-08-12 | Majo Cuprik | docs: zapísať priority z callu 12. augusta |
 | `39d7b3b` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `82d8aeb` | 2026-08-12 | Majo Cuprik | Merge pull request #24 from originalmagneto/codex/mcp-rollout-execution |
 | `81abda3` | 2026-08-12 | Majo Cuprik | docs: zaznamenať limit ochrany private vetiev |
-| `21a0c88` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `1880765` | 2026-08-12 | Majo Cuprik | Merge pull request #23 from originalmagneto/codex/mcp-rollout-execution |
-| `8192f70` | 2026-08-12 | Majo Cuprik | docs: zaznamenať rollout MCP repozitárov |
 <!-- /AUTO:ACTIVITY -->
 
 ---
