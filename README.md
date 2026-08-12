@@ -218,7 +218,7 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 | [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
 | [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 5/52 (10 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
-| [`roadmap.md`](planning/roadmap.md) | `████░░░░░░░░░░░░░░░░` | 6/28 (21 %) |
+| [`roadmap.md`](planning/roadmap.md) | `████░░░░░░░░░░░░░░░░` | 6/32 (19 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -261,7 +261,8 @@ lawOSS-like-SK-CZ/
 ├── meetings/
 │   ├── 2026-08-04-brainstorming-zaklad-a-prenositelnost.md
 │   ├── 2026-08-06-sync-call-volba-zakladu.md
-│   └── 2026-08-12-agenda-mvp.md
+│   ├── 2026-08-12-agenda-mvp.md
+│   └── 2026-08-12-produktova-vizia-okf-pamat.md
 ├── planning/
 │   ├── 2026-08-12-mcp-repository-rollout-plan.md
 │   ├── backlog.md
@@ -340,10 +341,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**116 commitov** · **76 súborov**
+**117 commitov** · **76 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `39d7b3b` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `82d8aeb` | 2026-08-12 | Majo Cuprik | Merge pull request #24 from originalmagneto/codex/mcp-rollout-execution |
 | `81abda3` | 2026-08-12 | Majo Cuprik | docs: zaznamenať limit ochrany private vetiev |
 | `21a0c88` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
@@ -351,12 +353,11 @@ flowchart LR
 | `8192f70` | 2026-08-12 | Majo Cuprik | docs: zaznamenať rollout MCP repozitárov |
 | `c28616f` | 2026-08-12 | Majo Cuprik | docs: pridať šablónu pravidiel pre MCP repozitáre |
 | `f3a3e3f` | 2026-08-12 | Majo Cuprik | planning: pridať inventár MCP repozitárov |
-| `8d35a27` | 2026-08-12 | Majo Cuprik | chore: ignorovať lokálne worktrees |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 17:38 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 17:56 UTC<!-- /AUTO:UPDATED --></sub>
 </div>

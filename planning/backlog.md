@@ -10,9 +10,9 @@ Dozreté položky majú vlastnú špecifikáciu v [specs/](../specs/).
 
 ## 🚀 Alfa — vydať ASAP (zúžený scope)
 
-- [ ] ⏰ **Lehoty + kalendár** → [spec 0005](../specs/0005-lehoty-timeline.md) *(MF; kandidát #1)*
-- [ ] 📁 **OKF + prijatie veci s conflict checkom** (ORSR/RPO MCP už bežia)
-- [ ] 📄 **OCR ingest → markdown** — Mistral OCR quick win (existujúca Quick Action MČ)
+- [ ] 📁 **OKF + tri vrstvy pamäte + reconciliation** → [spec 0002](../specs/0002-okf-operacny-system-praxe.md) *(hlavná produktová priorita MČ; rozhodnutie z callu 2026-08-12)*
+- [ ] 🔍 **Prijatie veci + subjektový research** - conflict check, AML, sankcie, diskvalifikácie a registre cez MCP
+- [ ] 🧩 **Základné skills pre prácu so spisom** - zápis, čerstvosť, audit a pravidelná reconciliácia
 
 ## Kandidáti na v1 (majú spec)
 
@@ -50,7 +50,7 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 
 ## Ďalšie nápady (bez specu)
 
-- [ ] **Lokálny anonymizačný gate pred externým LLM** → [spec 0008](../specs/0008-anonymizacia-a-privacy-gate.md) · [Issue #15](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/15) — architektonický P0 privacy boundary; implementácia kandidát V1.1/P1; licencia, OS packaging a sidecar kontrakt pred kódom
+- [ ] ⏸️ **Lokálny anonymizačný gate pred externým LLM** → [spec 0008](../specs/0008-anonymizacia-a-privacy-gate.md) · [Issue #15](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/15) - nice to have, odložené mimo prvej verzie; zachované ako podklad pre budúci voliteľný modul
 - [ ] SK šablóny podaní a zmlúv
 - [x] Mistral OCR — PDF → Markdown: presunuté do alfy (quick win, existujúca Quick Action)
 

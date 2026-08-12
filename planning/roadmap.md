@@ -31,6 +31,10 @@
 - [ ] Prvý SK MCP server integrovaný *(registrácia v configu, bez zásahu do jadra)*
 - [ ] UI/CLI prepínač *(VŘ)*
 - [ ] Interné testovanie (MČ · MF · IR · VŘ)
+- [ ] **OKF ako jadro MVP** - tri vrstvy pamäte, reconciliation s human approval a auditom
+- [ ] **Onboarding spisu a subjektov** - conflict check, AML, sankcie, diskvalifikácie a registre cez MCP
+- [ ] **Základné skills pre spis** - zápis, kontrola čerstvosti, periodická konsolidácia a rollback
+- [ ] **Anonymizácia odložená** - neimplementovať v aktuálnej fáze; zachovať ako budúci voliteľný modul
 
 ## Fáza 2 — Pilot a komunita (2027)
 
