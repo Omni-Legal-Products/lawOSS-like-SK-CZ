@@ -38,7 +38,7 @@
 </td>
 <td>
 
-**[MikeOSS](https://github.com/Open-Legal-Products/mike)** ukázal, že právny AI asistent nemusí byť uzavretý enterprise produkt za tisíce eur — môže byť **open-source a slobodný**. Tú myšlienku berieme a prinášame ju do **česko-slovenského** právneho prostredia.
+**[MikeOSS](https://github.com/Open-Legal-Products/mike)** nás inšpiroval ukážkou, že právny AI asistent môže byť **open-source a slobodný**. Túto myšlienku rozvíjame pre **česko-slovenské** právne prostredie.
 
 LAWOSS je pokračovaním tejto línie: otvorený kód, žiadne black-box prompty, dáta u advokáta. To, čo MikeOSS začal pre svet, my dokončujeme pre CZ + SK jurisdikciu — so Slov-Lexom, judikatúrou, ORSR a slovenskou aj českou realitou advokátskej praxe.
 
@@ -50,7 +50,15 @@ LAWOSS je pokračovaním tejto línie: otvorený kód, žiadne black-box prompty
 
 Priniesť českým a slovenským advokátom **užitočný open-source nástroj úplne zadarmo** — postavený na zrelom open-source základe, obohatený o lokálne skills a MCP servery (Slov-Lex, ORSR, RPVS, judikatúra…), prispôsobený nášmu právu.
 
-Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advokátskej praxe (OKF)](specs/0002-okf-operacny-system-praxe.md)** — appka zakladá spisy, generuje riadiace súbory a stráži poriadok; AI je násobič, nie základ.
+Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advokátskej praxe (OKF)](specs/0002-okf-operacny-system-praxe.md)**: appka zakladá spisy, generuje riadiace súbory a stráži poriadok. OKF a dáta sú stabilný základ praxe. Agenti sú operačným modelom, ktorý na tomto základe pripravuje, organizuje a kontroluje prácu pod dohľadom právnika.
+
+### Právnik riadi svoju AI
+
+**LAWOSS dáva právnikom úplnú kontrolu nad ich AI.**
+
+**Your law. Your models. Your knowledge. Your agents.**
+
+Kancelária si vyberá modely podľa kvality, ceny, rýchlosti a súkromia. Môže používať vlastné skilly, MCP servery a dátové zdroje, upravovať otvorené pracovné postupy a kontrolovať, ako agent pracoval. Agenti pripravujú a organizujú prácu, no právnik určuje cieľ, riadi riziko a schvaľuje výsledok ako ich supervízor. Podrobnosti rozvíja navrhnutá [základná produktová doktrína](decisions/0009-zakladna-produktova-doktrina.md).
 
 ### Päť pilierov
 
@@ -248,8 +256,15 @@ lawOSS-like-SK-CZ/
 │   ├── 0005-struktura-repozitarov.md
 │   ├── 0006-anonymizacia-ako-lokalny-privacy-gate.md
 │   ├── 0008-sprava-mcp-repozitarov.md
+│   ├── 0009-zakladna-produktova-doktrina.html
+│   ├── 0009-zakladna-produktova-doktrina.md
 │   └── template.md
 ├── docs/
+│   ├── superpowers/
+│   │   ├── plans/
+│   │   │   └── 2026-08-12-lawoss-zakladna-produktova-doktrina.md
+│   │   └── specs/
+│   │       └── 2026-08-12-lawoss-zakladna-produktova-doktrina-design.md
 │   ├── templates/
 │   │   └── mcp-repository-AGENTS.md
 │   ├── brand-concept.md
@@ -342,23 +357,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**122 commitov** · **78 súborov**
+**131 commitov** · **82 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
-| `395bb7c` | 2026-08-12 | Majo Cuprik | Merge pull request #26 from originalmagneto/codex/collaboration-decision-questions |
-| `b321bcf` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `72288bf` | 2026-08-12 | Majo Cuprik | Merge pull request #25 from originalmagneto/codex/call-2026-08-12-decisions |
-| `08f50fd` | 2026-08-12 | Majo Cuprik | planning: otvoriť rozhodovacie otázky tímu |
-| `70a629d` | 2026-08-12 | Majo Cuprik | docs: zapísať priority z callu 12. augusta |
-| `39d7b3b` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `82d8aeb` | 2026-08-12 | Majo Cuprik | Merge pull request #24 from originalmagneto/codex/mcp-rollout-execution |
-| `81abda3` | 2026-08-12 | Majo Cuprik | docs: zaznamenať limit ochrany private vetiev |
+| `f9396ef` | 2026-08-12 | Majo Cuprik | planning: navrhnúť otvorené formáty |
+| `daf995b` | 2026-08-12 | Majo Cuprik | docs: dokončiť produktovú doktrínu |
+| `34e5b9b` | 2026-08-12 | Majo Cuprik | docs: preniesť doktrínu do verejného vstupu |
+| `4d3cd25` | 2026-08-12 | Majo Cuprik | planning: otvoriť otázku produktovej doktríny |
+| `79166fe` | 2026-08-12 | Majo Cuprik | docs: ukotviť víziu kontroly nad AI |
+| `7e3daac` | 2026-08-12 | Majo Cuprik | decisions: navrhnúť produktovú doktrínu LAWOSS |
+| `8f1ab92` | 2026-08-12 | Majo Cuprik | planning: pripraviť zavedenie produktovej doktríny |
+| `2744042` | 2026-08-12 | Majo Cuprik | docs: navrhnúť základnú produktovú doktrínu |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 17:59 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 19:13 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
