@@ -47,6 +47,16 @@ Vyplývajú z PR #13 a #14, agenda ich ešte neobsahuje:
 5. ☐ **Rola IR** — tri navrhované roly a červená čiara podľa [ADR 0002](../decisions/0002-preco-forkujeme-mikeoss.md); **potvrdzuje IR osobne**
 6. ☐ **Pravidlá forku** z PR #13 — PR povinný, `PATCHES.md`, tri zóny, verzovanie `v*-lawoss.n`, dvojjurisdikčná štruktúra `sk/`/`cz/`
 
+### 🧭 Smerový bod na diskusiu — **rozhodnutie NIE dnes**
+
+- **[ADR 0007 — agent-first architektúra](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/19)** *(návrh MČ, 12. 8.)* — tvrdí, že primárny používateľ softvéru je **agent, nie človek**, a ľudské rozhranie je riadiaci panel. Rámec: *agent je koncipient — pracuje samostatne, ale nepodpisuje.* **Scope V1 sa tým nemení**, princíp hovorí *ako* stavať, nie *čo* je v V1. Cieľom dnes je len **počuť názory**, hlavne od **MF** — ADR stojí na jeho stavovom automate z ADR 0006 a bez jeho stanoviska sa neprijíma.
+
+### 🔧 Faktická oprava na vedomie
+
+- **[PR #18](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/18) — ADR 0004 uvádzalo nesprávnu technológiu.** LegalWork je **Electron**, nie Tauri; rebranding sedí na **troch** miestach, nie na dvoch, a zmena `appId` mení macOS bundle identitu (keychain, Launchpad, TCC). **Rozhodnutie forkovať sa nemení**, mení sa odhad ceny rebrandingu. Na nezrovnalosť upozornil MF v spec 0008.
+- **Dobrá správa z toho istého overenia:** upstream medzitým pridal locale `fr`, `ja`, `pt-BR` (11 jazykov) → **preklady aktívne priberá**, čo zvyšuje šancu na prijatie nášho SK/CZ PR. `sk` ani `cs` tam stále nie sú.
+- **Onboarding zo zdrojáku je náročnejší, než README priznáva** *(overené 12. 8. na reálnom klone)*: Node 24 + pnpm 11.4 + **Bun** *(README ho vôbec nespomína)* + Xcode CLT/Swift, a sideload Word add-inu žiada **heslo do keychainu** kvôli CA certifikátu. Word add-in teda **nie je „zadarmo"**, ako uvádza bod 1️⃣ — pre netechnického advokáta je to netriviálny krok.
+
 ### Blokátory z bodu 5️⃣ — stav k 12. 8. ráno
 
 | Blokátor | Stav |
