@@ -34,7 +34,7 @@
 
 → Po potvrdení tímom **aktualizovať riadok v `AGENTS.md`** (úloha v závere).
 
-### Overené k 2026-08-10 *(GitHub API)*
+### Overené k 2026-08-12 *(GitHub API)*
 
 - Najnovší release upstreamu je stále **`v0.1.13`** (2026-08-04) — kandidát na fork z ADR 0004 platí.
 - Meno **`lawoss`**: podľa GitHub API **taký účet neexistuje** (404 pre organizáciu aj používateľa) — meno je s najväčšou pravdepodobnosťou voľné, ale definitívne sa to potvrdí až pri zakladaní organizácie (GitHub niektoré mená rezervuje).
@@ -59,7 +59,7 @@ flowchart LR
 
 | # | Krok | Detail | Kto |
 |---|---|---|---|
-| 1 | **Založiť organizáciu `lawoss`** | meno voľné *(overené 2026-08-10)*; nastaviť 2FA povinné, členovia MČ · MF · IR · VŘ | MČ |
+| 1 | **Založiť organizáciu `lawoss`** | meno voľné *(overené 2026-08-12)*; nastaviť 2FA povinné, členovia MČ · MF · IR · VŘ | MČ |
 | 2 | **Presunúť koordinačné repo** do organizácie | GitHub drží presmerovania; **pozor na GitHub Pages URL** — opraviť odkazy | MČ |
 | 3 | **Fork cez tlačidlo *Fork*** z [eigenweltlabs/legalwork](https://github.com/eigenweltlabs/legalwork) do `lawoss/lawoss` | nie klonovaním — inak nefunguje *Sync fork* ani väzba na upstream | MČ |
 | 4 | **Vetvu `main` postaviť na tag `v0.1.13`** | forkneme celú históriu, ale pracujeme od releasu, nie od tip-u `main` | MČ |
@@ -296,8 +296,8 @@ Prevzaté z [agendy 12. 8.](../meetings/2026-08-12-agenda-mvp.md) a [roadmapy](r
 *(vedome bez checkbox syntaxe, aby to nefalšovalo progress bary v README)*
 
 1. ☐ **Potvrdenie ADR 0003 + 0004 od MF** — bez toho sa fork nezakladá
-2. ☐ **GitHub organizácia `lawoss`** — áno/nie; odporúčam **áno, pred forkom** (účet s tým menom podľa API neexistuje, overené 2026-08-10; potvrdí sa pri zakladaní)
-3. ☐ **Tag forku: `v0.1.13`** — stále najnovší release (overené 2026-08-10)
+2. ☐ **GitHub organizácia `lawoss`** — áno/nie; odporúčam **áno, pred forkom** (účet s tým menom podľa API neexistuje, overené 2026-08-12; potvrdí sa pri zakladaní)
+3. ☐ **Tag forku: `v0.1.13`** — stále najnovší release (overené 2026-08-12)
 4. ☐ **Pravidlá forku z tohto plánu** — PR povinný, PATCHES.md, tri zóny, verzovanie `v*-lawoss.n`
 5. ☐ **Vlastník upstream syncu** — návrh MČ + „konflikt rieši vlastník zásahu"
 6. ☐ **Rozdelenie práce** zo sekcie 6
@@ -309,4 +309,4 @@ Prevzaté z [agendy 12. 8.](../meetings/2026-08-12-agenda-mvp.md) a [roadmapy](r
 
 ---
 
-<sub>Pripravil MČ s AI asistenciou, 2026-08-10. Fakty overené cez GitHub API k 2026-08-10 (release `v0.1.13`, dostupnosť mena `lawoss`); ostatné vychádza z ADR 0003–0005 a analýzy LegalWorku. Návrhy označené ako *návrh na odklep* nie sú rozhodnutia.</sub>
+<sub>Pripravil MČ s AI asistenciou, 2026-08-10. Fakty overené cez GitHub API k 2026-08-12 (release `v0.1.13`, dostupnosť mena `lawoss`); ostatné vychádza z ADR 0003–0005 a analýzy LegalWorku. Návrhy označené ako *návrh na odklep* nie sú rozhodnutia.</sub>
