@@ -68,7 +68,7 @@ flowchart LR
 
 | # | Nápad | Prečo počká |
 |---|---|---|
-| **26** | **Zaručená konverzia** → [spec 0007](../specs/0007-podpisovanie-a-zarucena-konverzia.md) | **Rozhodnutie MČ 2026-08-07: až do ďalšej verzie.** Regulovaná činnosť — právne náležitosti osvedčovacej doložky musia byť vyriešené pred implementáciou. MČ si na to zatiaľ stavia vlastnú aplikáciu. |
+| **26** | **Zaručená konverzia** → [spec 0010](../specs/0010-zarucena-konverzia.md) | **Rozhodnutie MČ 2026-08-07: až do ďalšej verzie** — potvrdené [rešeršou 2026-08-12](../research/pravny-ramec/2026-08-12-zarucena-konverzia-sk.md). Nie je to variant podpisovania: vyžaduje SOAP integráciu na štátny register CEZZK, registráciu oprávnenej osoby, mandátny certifikát a **platenú kvalifikovanú validačnú službu**. Rešerš sama odporúča používať hotové riešenia. MČ si na to stavia vlastnú aplikáciu — správne miesto je mimo LAWOSS. |
 | 22 | Zjednotenie komunikačných kanálov do spisu | Najsilnejšie pomenovaná bolesť z praxe (VŘ), ale veľký scope a nejasné riešenie. |
 | 23 | Self-healing a self-updating integrácie | Sedí na princíp „nie sme programátori", ale treba doriešiť breaking changes a rollback. |
 | 24 | Self-evolving / self-correcting systém | Nerozvinuté, súvisí s #23. |
