@@ -84,15 +84,23 @@ Z toho plynú tri veci:
 - **Rozhranie dostáva konkrétnu úlohu.** Hlavná obrazovka nie je chat ani dashboard, ale **rozdiel medzi návrhom agenta a mojou verziou, s podpisom**. *(Smerovanie, nie záväzná požiadavka na UI — to sa rieši samostatne.)*
 - **Zápis do inštrukcií je tiež prechod hranice.** Učenie, ktoré reconcile navrhne zapísať do `AGENTS.md`, `MEMORY.md` alebo prompt layeru, **vyžaduje podpis rovnako ako odchod dokumentu von.** Nie je to slušnosť, je to nosný bezpečnostný prvok — dôvod je v rizikách nižšie.
 
-### Hardvérovo vynútený prípad hranice
+### Podpisovanie ako externý add-on — a čo z toho pre kontrakt vyplýva
 
-[Spec 0007 — podpisovanie a zaručená konverzia](../specs/0007-podpisovanie-a-zarucena-konverzia.md) je najsilnejší dôkaz, že tento kontrakt nie je len politika.
+**Podpisovanie nie je súčasť LAWOSS a nemá ňou byť.** Podľa [spec 0007](../specs/0007-podpisovanie-a-zarucena-konverzia.md) je to **samostatný krok na konci prípravy dokumentu** — napríklad pred podaním na súd — realizovaný cez [Autogram](https://github.com/slovensko-digital/autogram) (Slovensko.Digital, eIDAS):
 
-Pri **kvalifikovanom elektronickom podpise (QES)** a kvalifikovanej časovej pečiatke (QTS) je hranica **fyzicky vynútená**: agent nikdy nezasunie kartu do čítačky a nezadá PIN. Hardvérový token robí z tej hranice vec, ktorú nemožno obísť ani omylom, ani zlým promptom, ani otráveným dokumentom. Agent pripraví dokument, skontroluje ho, založí do spisu a pripraví podpisovú dávku — a v poslednom kroku sa **musí zastaviť**.
+1. advokát má **Autogram nainštalovaný samostatne** — LAWOSS ho nedistribuuje ani nebundluje *(je EUPL-1.2; licenčná hranica musí zostať čistá)*,
+2. Autogram beží ako **lokálny proces s HTTP API** (`localhost:37200`) alebo CLI,
+3. LAWOSS ho **zavolá** a podpísaný súbor si prevezme späť do spisu podľa OKF.
 
-Pri **zaručenej konverzii** je ten ľudský prvok navyše aj právny: osvedčovaciu doložku vydáva **advokát ako oprávnená osoba**, nie softvér.
+Je to teda **add-on, nie integrovaný systém overenia advokáta.** LAWOSS nepracuje s PIN-om ani s certifikátmi — tie ostávajú medzi Autogramom a čítačkou.
 
-Zaradenie oboch sa týmto ADR **nemení** — QES/QTS ostáva kandidát na V2, zaručená konverzia ďalšia verzia *(rozhodnutie MČ 2026-08-07)*.
+**Prečo to sem patrí:** práve preto, že je to mimo nás, je hranica z pravidla 3 v tomto prípade **vynútená zvonku, nie našou disciplínou**. Podpis fyzicky prebehne v cudzej aplikácii, potvrdením v jej vlastnom rozhraní, s kartou v čítačke. Nemôžeme ho oslabiť ani omylom, ani zlým promptom, ani zmenou nášho UI. Agent pripraví dokument, skontroluje ho, založí do spisu a pripraví podpisovú dávku — a **musí sa zastaviť**, lebo ďalej jednoducho nemá ako pokračovať.
+
+To je pre toto ADR užitočný referenčný bod: ukazuje, ako vyzerá hranica, ktorá drží aj bez toho, aby ju niekto strážil.
+
+**Zaručená konverzia je samostatná funkcionalita**, nie variant podpisovania. Spec 0007 ju dnes pokrýva spolu s podpisovaním *(zdieľajú engine)*; po doplnení rešerše MČ sa zváži jej vyčlenenie do vlastného specu.
+
+Zaradenie sa týmto ADR **nemení** — QES/QTS ostáva kandidát na V2, zaručená konverzia ďalšia verzia *(rozhodnutie MČ 2026-08-07)*.
 
 ## Dôsledky
 
