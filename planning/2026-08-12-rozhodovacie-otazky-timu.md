@@ -251,6 +251,17 @@ Prijímame kontrolu používateľa, individualizáciu, otvorenosť a agent-first
 - **C:** nie; uviesť, ktorý princíp alebo dôsledok tím odmieta.
 - **Odporúčanie MČ:** A.
 
+### Q25: Majú byť otvorené formáty jadrom LAWOSS?
+
+MČ navrhuje princíp `Open formats at the core, compatibility at the edges`.
+
+- **A:** áno; kanonický pracovný obsah má používať najmä otvorené, textové a agentom čitateľné formáty, pričom DOCX, XLSX, PPTX, Teams a SharePoint zostanú adaptérmi alebo voliteľnými integráciami,
+- **B:** čiastočne; otvorené formáty podporovať, ale Microsoft formáty ponechať rovnocennou súčasťou jadra,
+- **C:** nie; prioritou má zostať natívny Microsoft ekosystém.
+- **Odporúčanie MČ:** A, ako dlhodobý architektonický smer a postupná tranzícia, nie okamžitý zákaz Microsoft nástrojov.
+
+Návrh je evidovaný ako [nápad #27](napady.md) a zatiaľ nie je prijatým rozhodnutím.
+
 ## Návrh výstupu z diskusie
 
 Po uzavretí PR vzniknú samostatné ADR pre:

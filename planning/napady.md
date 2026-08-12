@@ -4,8 +4,8 @@
 
 **Všetko, čo by sme raz mohli integrovať — na jednom mieste**
 
-![Nápadov](https://img.shields.io/badge/n%C3%A1padov-26-blue)
-![Aktualizované](https://img.shields.io/badge/aktualizovan%C3%A9-2026--08--07-green)
+![Nápadov](https://img.shields.io/badge/n%C3%A1padov-27-blue)
+![Aktualizované](https://img.shields.io/badge/aktualizovan%C3%A9-2026--08--12-green)
 
 </div>
 
@@ -103,8 +103,8 @@ flowchart LR
 
 *Sem píš nové nápady, kým sa neprerokujú. Formát: **čo** — kto, kedy, odkiaľ.*
 
-- *(prázdne)*
+- **27. Open formats at the core, compatibility at the edges** - návrh MČ z 2026-08-12. LAWOSS by interne používal otvorené, textové a agentom čitateľné formáty, najmä Markdown, HTML a JSON. DOCX, XLSX, PPTX, Teams a SharePoint by zostali podporovanými vstupmi, výstupmi alebo voliteľnými integráciami, nie povinným základom architektúry. Návrh neznamená okamžitý zákaz nástrojov Microsoftu a zatiaľ nie je prijatým rozhodnutím.
 
 ---
 
-<sub>Priehradky V1/V2/Neskôr sú **návrh na prerokovanie**, nie rozhodnutie — okrem #26, kde rozhodol MČ 2026-08-07. Aktualizované 2026-08-07 zo [spracovania Telegram topicu](../research/idey/2026-08-07-feature-ideas-telegram.md).</sub>
+<sub>Priehradky V1/V2/Neskôr sú **návrh na prerokovanie**, nie rozhodnutie, okrem #26, kde rozhodol MČ 2026-08-07. Aktualizované 2026-08-12 o návrh MČ #27; pôvodný súpis pochádza zo [spracovania Telegram topicu](../research/idey/2026-08-07-feature-ideas-telegram.md).</sub>

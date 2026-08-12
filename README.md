@@ -357,10 +357,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**129 commitov** · **81 súborov**
+**130 commitov** · **82 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `daf995b` | 2026-08-12 | Majo Cuprik | docs: dokončiť produktovú doktrínu |
 | `34e5b9b` | 2026-08-12 | Majo Cuprik | docs: preniesť doktrínu do verejného vstupu |
 | `4d3cd25` | 2026-08-12 | Majo Cuprik | planning: otvoriť otázku produktovej doktríny |
 | `79166fe` | 2026-08-12 | Majo Cuprik | docs: ukotviť víziu kontroly nad AI |
@@ -368,12 +369,11 @@ flowchart LR
 | `8f1ab92` | 2026-08-12 | Majo Cuprik | planning: pripraviť zavedenie produktovej doktríny |
 | `2744042` | 2026-08-12 | Majo Cuprik | docs: navrhnúť základnú produktovú doktrínu |
 | `754bde5` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `395bb7c` | 2026-08-12 | Majo Cuprik | Merge pull request #26 from originalmagneto/codex/collaboration-decision-questions |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 19:01 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 19:10 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
