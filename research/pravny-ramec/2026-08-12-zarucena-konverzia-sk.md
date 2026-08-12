@@ -102,7 +102,7 @@ Tretia rešerš *(Grok)* to hovorí najpriamejšie a stojí za doslovné zopakov
 
 ## Zdrojové dokumenty
 
-Tri AI rešerše zadané MČ *(august 2026)*. **Neukladáme ich do repa** — sú to surové výstupy AI nástrojov s neoverenými tvrdeniami a s odkazmi, ktoré sa nedali všetky preveriť. Tento súbor je ich preverená a skrátená destilácia; originály má MČ.
+Tri AI rešerše zadané MČ *(august 2026)*. **Uložené sú v [`zdroje-zarucena-konverzia/`](zdroje-zarucena-konverzia/)** — ako podklady, nie ako pramene. Sú to surové výstupy AI nástrojov s neoverenými tvrdeniami; časť odkazov sa nedala preveriť a v jednom bode si navzájom protirečia. **Tento súbor je ich preverená destilácia — cituj z neho, nie z nich.**
 
 **Primárne pramene, ktoré stoja za overenie čohokoľvek ďalšieho:**
 

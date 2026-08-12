@@ -2,7 +2,7 @@
 
 - **Stav:** návrh · **zaradenie: NIE V1, NIE V2** *(rozhodnutie MČ 2026-08-07 potvrdené rešeršou 2026-08-12)*
 - **Navrhol:** Marián Čuprík (MČ) · 2026-08-07 *(návrh [#26](navrhy.md))* · vyčlenené zo [spec 0007](0007-podpisovanie-a-zarucena-konverzia.md) dňa 2026-08-12
-- **Podklad:** [rešerš právneho rámca](../research/pravny-ramec/2026-08-12-zarucena-konverzia-sk.md) — tri nezávislé AI rešerše, kľúčové tvrdenia overené v Slov-Lexe
+- **Podklad:** [rešerš právneho rámca](../research/pravny-ramec/2026-08-12-zarucena-konverzia-sk.md) — tri nezávislé AI rešerše, kľúčové tvrdenia overené v Slov-Lexe · [surové zdroje](../research/pravny-ramec/zdroje-zarucena-konverzia/) *(neoverené, len na dohľadanie pôvodu tvrdení)*
 - **Súvisiace:** [spec 0007 podpisovanie](0007-podpisovanie-a-zarucena-konverzia.md) · [ADR 0007 agent-first](../decisions/0007-agent-first-architektura.md) *(zatiaľ len v [PR #19](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/19))* · [spec 0002 OKF](0002-okf-operacny-system-praxe.md)
 
 > [!NOTE]
