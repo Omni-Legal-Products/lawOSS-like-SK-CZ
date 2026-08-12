@@ -215,6 +215,7 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 <!-- AUTO:PROGRESS -->
 | Súbor | Progress | Hotovo |
 |---|---|---|
+| [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
 | [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 5/52 (10 %) |
 | [`roadmap.md`](planning/roadmap.md) | `████░░░░░░░░░░░░░░░░` | 6/28 (21 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
@@ -258,6 +259,7 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-06-sync-call-volba-zakladu.md
 │   └── 2026-08-12-agenda-mvp.md
 ├── planning/
+│   ├── 2026-08-12-mcp-repository-rollout-plan.md
 │   ├── backlog.md
 │   ├── napady.md
 │   ├── roadmap.md
@@ -333,23 +335,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**104 commitov** · **72 súborov**
+**107 commitov** · **73 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `d90c95b` | 2026-08-12 | Majo Cuprik | Merge pull request #22 from originalmagneto/codex/mcp-rollout-plan |
+| `bb9d6c9` | 2026-08-12 | Majo Cuprik | planning: pridať plán rollout-u MCP repozitárov |
+| `a2048ee` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `ba3983f` | 2026-08-12 | Majo Cuprik | Merge pull request #21 from originalmagneto/docs/mcp-repository-governance |
 | `dfe1d78` | 2026-08-12 | Majo Cuprik | decisions: upraviť správu MCP repozitárov |
 | `8d3f5d8` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `b7c1cad` | 2026-08-12 | Majo Cuprik | meetings: doplniť do agendy smerový bod ADR 0007 a faktické opravy |
 | `714deb7` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `51a9a53` | 2026-08-12 | Majo Cuprik | meetings: doplnok k agende 12. 8. — stav podkladov a fakty ráno pred callom |
-| `fc24f7b` | 2026-08-11 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `7996296` | 2026-08-11 | BiggusDicckkus | specs: pridať lokálny anonymizačný privacy gate (#17) |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 16:28 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 16:37 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
