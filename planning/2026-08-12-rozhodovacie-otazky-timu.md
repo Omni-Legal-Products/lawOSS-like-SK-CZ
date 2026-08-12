@@ -240,6 +240,17 @@ Možnosti:
 - MCP servery,
 - datasety a indexy s vyjasnenou licenciou.
 
+### Q24: Prijímame základnú produktovú doktrínu LAWOSS?
+
+Vychádza z [ADR 0009: Základná produktová doktrína LAWOSS](../decisions/0009-zakladna-produktova-doktrina.md) a [dizajnového specu základnej produktovej doktríny](../docs/superpowers/specs/2026-08-12-lawoss-zakladna-produktova-doktrina-design.md).
+
+Prijímame kontrolu používateľa, individualizáciu, otvorenosť a agent-first architektúru s právnikom ako supervízorom za záväznú produktovú doktrínu LAWOSS a za test všetkých budúcich významných rozhodnutí?
+
+- **A:** áno, ako záväznú doktrínu; výnimka vyžaduje ADR s odôvodnením, mitigáciou a časovým obmedzením,
+- **B:** áno, iba ako nezáväznú víziu,
+- **C:** nie; uviesť, ktorý princíp alebo dôsledok tím odmieta.
+- **Odporúčanie MČ:** A.
+
 ## Návrh výstupu z diskusie
 
 Po uzavretí PR vzniknú samostatné ADR pre:
