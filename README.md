@@ -340,23 +340,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**113 commitov** · **76 súborov**
+**116 commitov** · **76 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `82d8aeb` | 2026-08-12 | Majo Cuprik | Merge pull request #24 from originalmagneto/codex/mcp-rollout-execution |
+| `81abda3` | 2026-08-12 | Majo Cuprik | docs: zaznamenať limit ochrany private vetiev |
+| `21a0c88` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `1880765` | 2026-08-12 | Majo Cuprik | Merge pull request #23 from originalmagneto/codex/mcp-rollout-execution |
 | `8192f70` | 2026-08-12 | Majo Cuprik | docs: zaznamenať rollout MCP repozitárov |
 | `c28616f` | 2026-08-12 | Majo Cuprik | docs: pridať šablónu pravidiel pre MCP repozitáre |
 | `f3a3e3f` | 2026-08-12 | Majo Cuprik | planning: pridať inventár MCP repozitárov |
 | `8d35a27` | 2026-08-12 | Majo Cuprik | chore: ignorovať lokálne worktrees |
-| `0fc39ce` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `d90c95b` | 2026-08-12 | Majo Cuprik | Merge pull request #22 from originalmagneto/codex/mcp-rollout-plan |
-| `bb9d6c9` | 2026-08-12 | Majo Cuprik | planning: pridať plán rollout-u MCP repozitárov |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 17:27 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 17:38 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
