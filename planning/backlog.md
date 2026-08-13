@@ -6,7 +6,7 @@ Dozreté položky majú vlastnú špecifikáciu v [specs/](../specs/).
 > [!TIP]
 > **Máš nový nápad?** Nepíš ho sem — hoď ho do Telegram topicu *Feature IDEAS*, cez [formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml), alebo do [zberného koša](napady.md). Odtiaľ ho po prerokovaní presunieme.
 >
-> **Scope V1 sa rozhoduje v stredu 12. 8.** → [agenda a návrh MVP](../meetings/2026-08-12-agenda-mvp.md)
+> **Scope V1 sa spresnil na calle 12. 8.** → [zápis a priority](../meetings/2026-08-12-produktova-vizia-okf-pamat.md). Otvorené rozhodnutia sú v [Q01 až Q25](2026-08-12-rozhodovacie-otazky-timu.md).
 
 ## 🚀 Alfa — vydať ASAP (zúžený scope)
 
@@ -60,6 +60,10 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 - [x] ✅ **Licencia — MIT**, vyplýva z voľby základu (LegalWork je MIT) → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [ ] ⚠️ **Doplniť súbory `LICENSE`, `NOTICE`, `CONTRIBUTING`** — repo je verejné, ale **bez `LICENSE` platí „all rights reserved"** *(MČ do 2026-08-08)*
 - [x] ✅ **Ako rozšíriť LegalWork — rozhodnuté: forkujeme pod vlastným brandingom** → [ADR 0004](../decisions/0004-ako-rozsirit-legalwork.md) *(rozhodol MČ; na potvrdenie tímom)*
+- [x] ✅ **GitHub organizácia a produktový fork** - [Omni Legal Products](https://github.com/Omni-Legal-Products) + [LAWOSS](https://github.com/Omni-Legal-Products/lawoss), overené cez GitHub API 2026-08-12
+- [x] ✅ **Private tímové kópie MCP serverov** - 14 forkov a jeden mirror → [inventár](mcp-repository-inventory.md)
+- [ ] 👥 **Prijať pozvánky do organizácie** - MF, IR a VŘ; overené cez GitHub API 2026-08-12 ako čakajúce
+- [ ] 🗳️ **Vyjadriť sa k Q01 až Q25** - každý člen cez vlastného AI agenta; odpoveď s ID, voľbou a krátkym dôvodom
 - [ ] ⚠️ **Kto rieši merge konflikty pri upstream syncu** — v tíme dnes nikto; overiť, či to zvládne AI asistencia
 - [ ] ⚠️ **Apple Developer účet a podpisovanie** — bez notarizácie Gatekeeper macOS build zablokuje
 - [ ] ⚠️ **Štruktúra repozitárov** — koordinácia oddelene od kódu → **[ADR 0005](../decisions/0005-struktura-repozitarov.md)** *(návrh napísaný; zahŕňa GitHub organizáciu a zverejnenie `judikaty-mcp`)*

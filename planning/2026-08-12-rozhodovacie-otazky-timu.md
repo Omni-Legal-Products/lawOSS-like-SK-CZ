@@ -250,6 +250,28 @@ Možnosti:
 - MCP servery,
 - datasety a indexy s vyjasnenou licenciou.
 
+### Q24: Prijímame základnú produktovú doktrínu LAWOSS?
+
+Vychádza z [ADR 0009: Základná produktová doktrína LAWOSS](../decisions/0009-zakladna-produktova-doktrina.md) a [dizajnového specu základnej produktovej doktríny](../docs/superpowers/specs/2026-08-12-lawoss-zakladna-produktova-doktrina-design.md).
+
+Prijímame kontrolu používateľa, individualizáciu, otvorenosť a agent-first architektúru s právnikom ako supervízorom za záväznú produktovú doktrínu LAWOSS a za test všetkých budúcich významných rozhodnutí?
+
+- **A:** áno, ako záväznú doktrínu; výnimka vyžaduje ADR s odôvodnením, mitigáciou a časovým obmedzením,
+- **B:** áno, iba ako nezáväznú víziu,
+- **C:** nie; uviesť, ktorý princíp alebo dôsledok tím odmieta.
+- **Odporúčanie MČ:** A.
+
+### Q25: Majú byť otvorené formáty jadrom LAWOSS?
+
+MČ navrhuje princíp `Open formats at the core, compatibility at the edges`.
+
+- **A:** áno; kanonický pracovný obsah má používať otvorené textové formáty Markdown, HTML a JSON; DOCX, XLSX a PPTX zostanú štandardizovanými OOXML výmennými formátmi pre podporované vstupy a výstupy; Teams a SharePoint budú voliteľnými integráciami,
+- **B:** čiastočne; otvorené formáty podporovať, ale DOCX, XLSX a PPTX ponechať rovnocennou súčasťou jadra,
+- **C:** nie; formát sa určí podľa konkrétneho workflowu bez jedného kanonického formátu.
+- **Odporúčanie MČ:** A, ako dlhodobý architektonický smer a postupná tranzícia, nie okamžitý zákaz Microsoft nástrojov.
+
+Návrh je evidovaný ako [nápad #27](napady.md) a zatiaľ nie je prijatým rozhodnutím.
+
 ## Návrh výstupu z diskusie
 
 Po uzavretí PR vzniknú samostatné ADR pre:
@@ -259,4 +281,5 @@ Po uzavretí PR vzniknú samostatné ADR pre:
 3. scope prvej iterácie,
 4. pamäťové hranice a reconciliation approval,
 5. lokálnosť dát a platformová podpora,
-6. monetizáciu a open-source hranicu.
+6. monetizáciu a open-source hranicu,
+7. architektúru formátov, ak tím prijme Q25.
