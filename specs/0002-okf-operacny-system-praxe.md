@@ -1,9 +1,9 @@
 # Spec 0002: OKF — operačný systém advokátskej praxe
 
-- **Stav:** návrh · **priorita: vysoká** (diferenciátor)
+- **Stav:** návrh · **priorita: hlavná produktová priorita MČ**
 - **Navrhol:** Marián Čuprík (MČ) · 2026-07-29
 - **Zdroj:** existujúca implementácia — skill `novy-spis` (OKF v0.1) v legal plugine
-- **Súvisiace:** [0001 transkripcia](0001-transkripcia.md) · [0004 MCP](0004-mcp-sk-konektory.md)
+- **Súvisiace:** [0001 transkripcia](0001-transkripcia.md) · [0004 MCP](0004-mcp-sk-konektory.md) · [call 2026-08-12](../meetings/2026-08-12-produktova-vizia-okf-pamat.md)
 
 > [!IMPORTANT]
 > **Toto je jadro odlíšenia.** Appka nie je „AI editor dokumentov" — je to **organizácia advokátskej praxe**, ktorá AI len využíva. Z poznámok: *„Aplikácia je lepidlo a register (zdroj pravdy), nie monolitický AI engine."* Roast to potvrdil z opačnej strany — advokát nekúpi kód, kúpi **poriadok a istotu**.
@@ -30,6 +30,57 @@ flowchart TB
     class F c
 ```
 
+## Tri vrstvy pamäte
+
+OKF rozlišuje tri vrstvy. Zápis do jednej vrstvy nesmie automaticky meniť inú vrstvu.
+
+| Vrstva | Scope | Typický obsah | Schválenie |
+|---|---|---|---|
+| **L1 všeobecná pamäť** | používateľ alebo kancelária | stabilné preferencie, pracovné pravidlá, formátovanie | výslovné potvrdenie pri povýšení nového vzoru |
+| **L2 projektová alebo spisová pamäť** | jedna vec alebo projekt | fakty, stav, chronológia, lehoty, taktické rozhodnutia, väzby na dokumenty | zápis podľa protokolu spisu, citlivé zmeny s potvrdením |
+| **L3 právnická pamäť** | právna znalostná vrstva | zdroje, citácie, argumentačné vzory, jurisdikcia a časová platnosť | právna kontrola a zachovaná provenance |
+
+L3 nesmie obsahovať klientsky identifikujúce údaje prenesené z L2. Opakovaný vzor nie je sám osebe dôkazom právnej správnosti.
+
+## Reconciliation skill
+
+Reconciliation pravidelne porovnáva aktuálny stav, nové dokumenty, komunikáciu a používateľské úpravy s riadiacimi súbormi a pamäťou.
+
+```mermaid
+flowchart LR
+    S["Aktuálny stav"] --> D["Diff a provenance"]
+    D --> P["Návrh zmeny + cieľová vrstva"]
+    P --> V["Kontrola konfliktov, duplicít a platnosti"]
+    V --> H{"Human approval"}
+    H -->|"schváli alebo upraví"| W["Verzovaný zápis + audit"]
+    H -->|"odmietne"| N["Bez zmeny pamäte"]
+    W --> R["Možnosť rollbacku"]
+```
+
+Povinné vlastnosti:
+
+- idempotentnosť a bezpečné opakované spustenie,
+- strojovo čitateľný aj ľudsky zrozumiteľný diff,
+- provenance každého návrhu,
+- žiadny autonómny zápis do L1 alebo L3,
+- metriky kvality a evidencia schválenia alebo odmietnutia,
+- periodická konsolidácia bez straty histórie,
+- rollback na predchádzajúci schválený stav.
+
+## Onboarding subjektov a AML research
+
+Pri novom spise OKF:
+
+1. identifikuje a normalizuje všetky zadané subjekty,
+2. vykoná conflict a identity check,
+3. podľa zvoleného režimu `light`, `medium` alebo `hard` zavolá povolené MCP,
+4. preverí relevantné registre, AML, sankčné a diskvalifikačné kritériá,
+5. vytvorí verzovaný markdown report s použitými zdrojmi a časom kontroly,
+6. zapíše schválené výsledky do spisovej pamäte,
+7. naplánuje alebo umožní periodický rescan a reconciliation.
+
+Systém musí riešiť menovcov, nejednoznačné identifikátory, výpadok zdroja, rate limits a čiastočný výsledok. Neoverený alebo nedostupný register sa nesmie prezentovať ako čistý výsledok.
+
 ### Čo už existuje (skill `novy-spis`, OKF v0.1)
 
 | Prvok | Popis |
@@ -50,6 +101,9 @@ flowchart TB
 - [ ] **Onboarding existujúcej praxe** — retrofit stoviek starých spisov naraz
 - [ ] **Audit trail** — kto/kedy/čo zapísal (immutable log), nadväzuje na compliance
 - [ ] Prepojenie na [transkripciu](0001-transkripcia.md) a výstupy AI → automaticky na správne miesto
+- [ ] **Tri pamäťové vrstvy** - oddelené schémy, scope, provenance a schvaľovanie
+- [ ] **Reconciliation skill** - diff, návrh, human approval, audit, metriky a rollback
+- [ ] **Subjektový onboarding** - režimy `light` / `medium` / `hard`, AML a periodický rescan
 
 ## Prečo je to strategicky silné
 
@@ -69,3 +123,7 @@ Dôsledok: OKF môže byť zároveň **implementácia aj dokumentovaný štandar
 
 - [ ] Multi-user: ako to funguje, keď v spise pracujú traja ľudia naraz?
 - [ ] Publikovať OKF špecifikáciu samostatne (aby ju vedel implementovať aj niekto iný)?
+- [ ] Ktoré typy poznatkov sa smú povýšiť z L2 do L1 alebo L3 a kto to schvaľuje?
+- [ ] Aká je periodicita reconciliation a rescanov subjektov?
+- [ ] Čo presne obsahujú režimy subjektovej kontroly `light`, `medium` a `hard`?
+- [ ] Ktoré pamäťové vrstvy sa smú zdieľať medzi používateľmi kancelárie?

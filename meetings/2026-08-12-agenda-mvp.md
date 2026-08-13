@@ -15,6 +15,64 @@
 
 ---
 
+## 🔄 Aktualizácia 12. 8. ráno — čo sa zmenilo od prípravy agendy
+
+> [!NOTE]
+> Agenda nižšie vznikla **7. 8.** Odvtedy pribudli tri podklady a jeden blokátor padol. Tento blok agendu **nemení, len dopĺňa** — pôvodné body ostávajú v platnosti.
+
+### Čo pribudlo do repa
+
+| Kedy | Čo | Stav |
+|---|---|---|
+| 11. 8. | **PR #17 (MF)** — spec 0008 anonymizačný gate + [ADR 0006](../decisions/0006-anonymizacia-ako-lokalny-privacy-gate.md) | **zlúčené do `main`**; ADR je v stave *návrh* → čaká na odklep tímom |
+| 10. 8. | **PR #13** — [vykonávací plán forku a workflow](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/13) | otvorený, `mergeable` |
+| 10. 8. | **PR #14** — [strategické zamyslenie](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/14) | otvorený, `mergeable` |
+| 11. 8. | **PR #16** — [spec 0009 reconcile](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/16) (kandidát na V2) | otvorený, `mergeable` |
+
+### Fakty o upstreame — preverené znova 12. 8. ráno *(GitHub API)*
+
+- Najnovší release je **stále `v0.1.13`** (4. 8.) → kandidát na tag forku platí bez zmeny.
+- Posledný push do upstreamu **8. 8.**, default branch `dev`, licencia MIT.
+- **90 ⭐ · 17 forkov · 2 prispievatelia** — čísla zo strategického zamyslenia sedia.
+- Meno **`lawoss`** na GitHube vracia **404** → stále voľné (definitívne sa potvrdí pri zakladaní organizácie).
+
+### Body na odklep **navyše** k bodu 6️⃣
+
+Vyplývajú z PR #13 a #14, agenda ich ešte neobsahuje:
+
+1. ☐ **[ADR 0006](../decisions/0006-anonymizacia-ako-lokalny-privacy-gate.md) — anonymizačný gate:** schvaľujeme? A patrí do **V1, alebo V2**? *(scope V1 v bode 3️⃣ ho zatiaľ neobsahuje)*
+2. ☐ **Brána M2 — verejná distribúcia binárok:** security owner · podpisový kľúč s rotáciou · incident proces · disclaimer set · ADR
+3. ☐ **Brána lehôt:** doménové testy SK aj CZ · povinné potvrdenie advokátom · disclaimer · review MF
+4. ☐ **Exit plán z upstreamu** do `AGENTS.md` forku *(≥3 mesiace bez releasu · odchod maintainera · pivot na closed-core · konflikt >1 týždňa práce)*
+5. ☐ **Rola IR** — tri navrhované roly a červená čiara podľa [ADR 0002](../decisions/0002-preco-forkujeme-mikeoss.md); **potvrdzuje IR osobne**
+6. ☐ **Pravidlá forku** z PR #13 — PR povinný, `PATCHES.md`, tri zóny, verzovanie `v*-lawoss.n`, dvojjurisdikčná štruktúra `sk/`/`cz/`
+
+### 🧭 Smerový bod na diskusiu — **rozhodnutie NIE dnes**
+
+- **[ADR 0007 — agent-first architektúra](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/19)** *(návrh MČ, 12. 8.)* — tvrdí, že primárny používateľ softvéru je **agent, nie človek**, a ľudské rozhranie je riadiaci panel. Rámec: *agent je koncipient — pracuje samostatne, ale nepodpisuje.* **Scope V1 sa tým nemení**, princíp hovorí *ako* stavať, nie *čo* je v V1. Cieľom dnes je len **počuť názory**, hlavne od **MF** — ADR stojí na jeho stavovom automate z ADR 0006 a bez jeho stanoviska sa neprijíma.
+
+### 🔧 Faktická oprava na vedomie
+
+- **[PR #18](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/18) — ADR 0004 uvádzalo nesprávnu technológiu.** LegalWork je **Electron**, nie Tauri; rebranding sedí na **troch** miestach, nie na dvoch, a zmena `appId` mení macOS bundle identitu (keychain, Launchpad, TCC). **Rozhodnutie forkovať sa nemení**, mení sa odhad ceny rebrandingu. Na nezrovnalosť upozornil MF v spec 0008.
+- **Dobrá správa z toho istého overenia:** upstream medzitým pridal locale `fr`, `ja`, `pt-BR` (11 jazykov) → **preklady aktívne priberá**, čo zvyšuje šancu na prijatie nášho SK/CZ PR. `sk` ani `cs` tam stále nie sú.
+- **Onboarding zo zdrojáku je náročnejší, než README priznáva** *(overené 12. 8. na reálnom klone)*: Node 24 + pnpm 11.4 + **Bun** *(README ho vôbec nespomína)* + Xcode CLT/Swift, a sideload Word add-inu žiada **heslo do keychainu** kvôli CA certifikátu. Word add-in teda **nie je „zadarmo"**, ako uvádza bod 1️⃣ — pre netechnického advokáta je to netriviálny krok.
+
+### Blokátory z bodu 5️⃣ — stav k 12. 8. ráno
+
+| Blokátor | Stav |
+|---|---|
+| Potvrdenie ADR 0003 od MF | ✅ **potvrdené** (MF, Telegram 11. 8.) — ale **PR #12**, ktorý to zapisuje do repa, je stále *draft* → domergovať |
+| GitHub organizácia `lawoss` | ⏳ na odklep dnes — meno voľné (overené 12. 8.) |
+| Tag forku `v0.1.13` | ⏳ na odklep dnes — stále najnovší release |
+| Kto rieši merge konflikty pri syncu | ⏳ **stále nikto** — runbook je v PR #13, chýba meno |
+| Apple Developer účet | ⏳ neriešené |
+| `LICENSE` do repa | ⏳ **stále chýba** |
+| Zverejniť `judikaty-mcp` | ⏳ stále private a bez licencie |
+
+<sub>Doplnil MČ s AI asistenciou, 2026-08-12 ráno. Fakty o upstreame overené cez GitHub API k 2026-08-12. Stavy PR overené cez `gh` k 2026-08-12.</sub>
+
+---
+
 ## 1️⃣ Východisko — čo už máme zadarmo
 
 Toto je najdôležitejší bod, lebo mení, čo vôbec treba stavať. **[LegalWork](../decisions/0003-legal-work-ako-zaklad.md) nám hotové dáva:**
