@@ -38,7 +38,7 @@
 </td>
 <td>
 
-**[MikeOSS](https://github.com/Open-Legal-Products/mike)** ukázal, že právny AI asistent nemusí byť uzavretý enterprise produkt za tisíce eur — môže byť **open-source a slobodný**. Tú myšlienku berieme a prinášame ju do **česko-slovenského** právneho prostredia.
+**[MikeOSS](https://github.com/Open-Legal-Products/mike)** nás inšpiroval ukážkou, že právny AI asistent môže byť **open-source a slobodný**. Túto myšlienku rozvíjame pre **česko-slovenské** právne prostredie.
 
 LAWOSS je pokračovaním tejto línie: otvorený kód, žiadne black-box prompty, dáta u advokáta. To, čo MikeOSS začal pre svet, my dokončujeme pre CZ + SK jurisdikciu — so Slov-Lexom, judikatúrou, ORSR a slovenskou aj českou realitou advokátskej praxe.
 
@@ -50,7 +50,15 @@ LAWOSS je pokračovaním tejto línie: otvorený kód, žiadne black-box prompty
 
 Priniesť českým a slovenským advokátom **užitočný open-source nástroj úplne zadarmo** — postavený na zrelom open-source základe, obohatený o lokálne skills a MCP servery (Slov-Lex, ORSR, RPVS, judikatúra…), prispôsobený nášmu právu.
 
-Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advokátskej praxe (OKF)](specs/0002-okf-operacny-system-praxe.md)** — appka zakladá spisy, generuje riadiace súbory a stráži poriadok; AI je násobič, nie základ.
+Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advokátskej praxe (OKF)](specs/0002-okf-operacny-system-praxe.md)**: appka zakladá spisy, generuje riadiace súbory a stráži poriadok. OKF a dáta sú stabilný základ praxe. Agenti sú operačným modelom, ktorý na tomto základe pripravuje, organizuje a kontroluje prácu pod dohľadom právnika.
+
+### Právnik riadi svoju AI
+
+**LAWOSS dáva právnikom úplnú kontrolu nad ich AI.**
+
+**Your law. Your models. Your knowledge. Your agents.**
+
+Kancelária si vyberá modely podľa kvality, ceny, rýchlosti a súkromia. Môže používať vlastné skilly, MCP servery a dátové zdroje, upravovať otvorené pracovné postupy a kontrolovať, ako agent pracoval. Agenti pripravujú a organizujú prácu, no právnik určuje cieľ, riadi riziko a schvaľuje výsledok ako ich supervízor. Podrobnosti rozvíja navrhnutá [základná produktová doktrína](decisions/0009-zakladna-produktova-doktrina.md).
 
 ### Päť pilierov
 
@@ -215,8 +223,10 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 <!-- AUTO:PROGRESS -->
 | Súbor | Progress | Hotovo |
 |---|---|---|
-| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 5/52 (10 %) |
-| [`roadmap.md`](planning/roadmap.md) | `████░░░░░░░░░░░░░░░░` | 6/28 (21 %) |
+| [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
+| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 7/56 (12 %) |
+| [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
+| [`roadmap.md`](planning/roadmap.md) | `██████░░░░░░░░░░░░░░` | 11/35 (31 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -245,19 +255,34 @@ lawOSS-like-SK-CZ/
 │   ├── 0005-struktura-repozitarov.html
 │   ├── 0005-struktura-repozitarov.md
 │   ├── 0006-anonymizacia-ako-lokalny-privacy-gate.md
+│   ├── 0008-sprava-mcp-repozitarov.md
+│   ├── 0009-zakladna-produktova-doktrina.html
+│   ├── 0009-zakladna-produktova-doktrina.md
 │   └── template.md
 ├── docs/
+│   ├── superpowers/
+│   │   ├── plans/
+│   │   │   └── 2026-08-12-lawoss-zakladna-produktova-doktrina.md
+│   │   └── specs/
+│   │       └── 2026-08-12-lawoss-zakladna-produktova-doktrina-design.md
+│   ├── templates/
+│   │   └── mcp-repository-AGENTS.md
 │   ├── brand-concept.md
 │   ├── glossary.md
+│   ├── mcp-repository-workflow.md
 │   ├── principles.md
 │   ├── telegram-notifikacie.md
 │   └── vision.md
 ├── meetings/
 │   ├── 2026-08-04-brainstorming-zaklad-a-prenositelnost.md
 │   ├── 2026-08-06-sync-call-volba-zakladu.md
-│   └── 2026-08-12-agenda-mvp.md
+│   ├── 2026-08-12-agenda-mvp.md
+│   └── 2026-08-12-produktova-vizia-okf-pamat.md
 ├── planning/
+│   ├── 2026-08-12-mcp-repository-rollout-plan.md
+│   ├── 2026-08-12-rozhodovacie-otazky-timu.md
 │   ├── backlog.md
+│   ├── mcp-repository-inventory.md
 │   ├── napady.md
 │   ├── roadmap.md
 │   ├── timeline.md
@@ -332,23 +357,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**99 commitov** · **71 súborov**
+**135 commitov** · **82 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
-| `51a9a53` | 2026-08-12 | Majo Cuprik | meetings: doplnok k agende 12. 8. — stav podkladov a fakty ráno pred callom |
-| `fc24f7b` | 2026-08-11 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `7996296` | 2026-08-11 | BiggusDicckkus | specs: pridať lokálny anonymizačný privacy gate (#17) |
-| `0d34de7` | 2026-08-11 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `b2b93f5` | 2026-08-11 | Majo Cuprik | docs: kontakty tímu do tabuľky Kto je kto (e-maily z kalendárovej pozvánky) |
-| `27801dc` | 2026-08-10 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `445c88d` | 2026-08-10 | Majo Cuprik | docs: zosúladenie prehľadov funkcií s aktuálnym stavom návrhov |
-| `c2589a2` | 2026-08-07 | github-actions[bot] | docs: auto-update README [skip ci] |
+| `069231e` | 2026-08-12 | Majo Cuprik | docs: uzavrieť pracovnú session 12. augusta |
+| `ad7f4d7` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
+| `19c489e` | 2026-08-12 | Majo Cuprik | merge: produktová doktrína a návrh otvorených formátov |
+| `f2db995` | 2026-08-12 | Majo Cuprik | fix: spresniť architektúru formátov |
+| `f9396ef` | 2026-08-12 | Majo Cuprik | planning: navrhnúť otvorené formáty |
+| `daf995b` | 2026-08-12 | Majo Cuprik | docs: dokončiť produktovú doktrínu |
+| `34e5b9b` | 2026-08-12 | Majo Cuprik | docs: preniesť doktrínu do verejného vstupu |
+| `4d3cd25` | 2026-08-12 | Majo Cuprik | planning: otvoriť otázku produktovej doktríny |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 08:04 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 19:24 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
