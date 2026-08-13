@@ -15,6 +15,34 @@
 
 ---
 
+
+> [!IMPORTANT]
+> ## 🔁 Aktualizácia 2026-08-13 — deň D prebehol, plán ho v troch bodoch nevystihol
+>
+> Fork bol založený **12. 8. o 12:29**, teda **pred callom**. Tento dokument zostáva v platnosti ako **pravidlá a sync runbook**, ale jeho časť „deň D" je odteraz **historický návrh** — realita sa v troch bodoch líši.
+>
+> | # | Plán hovoril | Realita |
+> |---|---|---|
+> | 1 | organizácia **`lawoss`** | **[Omni-Legal-Products](https://github.com/Omni-Legal-Products)** *(zal. 12. 8. 12:25)*; produkt sa naďalej volá LAWOSS |
+> | 2 | **presunúť koordinačné repo** do organizácie | **nepresunuté** — zostáva na `originalmagneto/lawOSS-like-SK-CZ`. Odpadá tým riziko s GitHub Pages URL, ale koordinácia a kód žijú v dvoch účtoch |
+> | 3 | pracovná vetva **`main` postavená na tagu `v0.1.13`** | default vetva je **`dev`** *(prevzatá z upstreamu, ktorý má `dev` ako default)* |
+>
+> **Čo z runbooku naozaj prebehlo:**
+>
+> | Krok | Stav |
+> |---|---|
+> | Fork [Omni-Legal-Products/lawoss](https://github.com/Omni-Legal-Products/lawoss) cez tlačidlo *Fork* | ✅ väzba na upstream drží |
+> | `PATCHES.md`, `AGENTS.md`, `NOTICE`, `LICENSE` | ✅ *(PR #1 vo forku)* |
+> | Ochrana default vetvy `dev` | ✅ zapnutá |
+> | **Rebranding** | ❌ **zámerne nie** — `appId` je stále `com.eigenweltlabs.legalwork`, `productName` stále `LegalWork`. `PATCHES.md` eviduje len dva zásahy (`README.md`, `AGENTS.md`) |
+> | SK/CZ locale | ❌ zatiaľ nie |
+>
+> **Nad rámec plánu** vzniklo v organizácii **15 privátnych MCP repozitárov** → [ADR 0008](../decisions/0008-sprava-mcp-repozitarov.md), [inventár](mcp-repository-inventory.md).
+>
+> ⚠️ **Zistený limit:** branch protection na **privátnych** repozitároch nie je na pláne GitHub Free dostupná *(API vrátilo 403; organization rulesets vyžadujú GitHub Team)*. **Žiadny z 15 MCP repozitárov teda ochranu nemá.** Pravidlo „PR povinný" z tohto plánu je na nich dnes nevynútiteľné — treba rozhodnúť, či sa kupuje Team, alebo sa to zatiaľ berie na vedomie.
+>
+> To, že rebranding ešte nebeží, hodnotím ako **správne** — sedí to na zelenú zónu aj na verdikt [stratégie](../docs/strategia.md), podľa ktorého je fork zatiaľ pracovný nástroj tímu, nie distribuovaný produkt.
+
 ## 0️⃣ Čo je rozhodnuté a čo tento plán dopĺňa
 
 | Otázka | Stav | Kde |
@@ -65,7 +93,7 @@ flowchart LR
 | 4 | **Vetvu `main` postaviť na tag `v0.1.13`** | forkneme celú históriu, ale pracujeme od releasu, nie od tip-u `main` | MČ |
 | 5 | **Ochrana `main`** (force-push ❌, delete ❌, **PR povinný — 1 approval**) + `git remote add upstream https://github.com/eigenweltlabs/legalwork` | prísnejšie než koordinačné repo — je to kód, viď [sekciu 2](#2️⃣-workflow-vo-forku--vetvy-pr-worktrees) | MČ |
 | 6 | **Založiť `PATCHES.md`, `AGENTS.md` (+ symlink `CLAUDE.md`), `NOTICE`** | šablóny nižšie; `NOTICE` = atribúcia Eigenwelt Labs + pôvodná MIT licencia zostáva | MČ |
-| 7 | **Rebranding + kostra lokalizácie** | `tauri.conf.json` + `productName` *(overené: iba 2 miesta)* → prvé dva záznamy v `PATCHES.md`; `sk.ts`/`cs.ts` ako nové súbory | MČ + VŘ |
+| 7 | **Rebranding + kostra lokalizácie** | `apps/desktop/electron-builder.yml` (`appId`, `productName`) **+ runtime identifikátory v `apps/desktop/electron/main.mjs`** *(tri miesta — [PR #18](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/18); pozor, zmena `appId` mení macOS bundle identitu)* → prvé dva záznamy v `PATCHES.md`; `sk.ts`/`cs.ts` ako nové súbory | MČ + VŘ |
 
 **Čo v deň D robiť NETREBA:** podpisové tajomstvá (Apple Developer účet je samostatný blokátor), CI ladenie (zdedené workflow nechať bežať a opraviť až to, čo reálne spadne), veľké UI zmeny.
 
