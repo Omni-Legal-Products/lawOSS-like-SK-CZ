@@ -18,6 +18,7 @@ Kandidáti na **v1** — evidencia nápadov, ktoré dozreli z brainstormingu
 | 0005 | [**Lehoty & timeline spisu**](0005-lehoty-timeline.md) | MF *(+MČ)* | rozpracované | **V1** | ⭐ kandidát #1 od MF — povinné potvrdenie advokátom |
 | 0006 | *Orchestrátor a subagenti* | MF | [PR #2](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/2) — **otvorený** | — | číslo rezervované, kým sa PR nezmerguje |
 | 0007 | [Podpisovanie QES/QTS a zaručená konverzia](0007-podpisovanie-a-zarucena-konverzia.md) | MČ | návrh | V2 / neskôr | cez [Autogram](https://github.com/slovensko-digital/autogram) ako externý proces — ⚠️ EUPL-1.2 |
+| 0008 | [Lokálny anonymizačný gate pred externým LLM](0008-anonymizacia-a-privacy-gate.md) | MF | návrh | V1.1 / P1 | privacy gate pred externým routingom; samostatný local-service/sidecar |
 
 > [!NOTE]
 > **Zaradenie do verzií je návrh, nie rozhodnutie.** Scope V1 sa odklepáva **v stredu 12. 8. 2026** → [agenda a odôvodnenie](../meetings/2026-08-12-agenda-mvp.md).
