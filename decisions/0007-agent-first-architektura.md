@@ -1,12 +1,17 @@
 # ADR 0007: Agent-first architektúra — softvér pre agenta, rozhranie pre advokáta
 
 - **Dátum:** 2026-08-12
-- **Stav:** **návrh** — na prerokovanie tímom MČ · MF · IR · VŘ
+- **Stav:** **návrh** — smerovanie prijaté callom 12. 8. *(záver R1)*; samotné pravidlá čakajú na potvrdenie tímom
+- **Vzťah k [ADR 0009](0009-zakladna-produktova-doktrina.md):** toto ADR je **technickým vykonávacím predpisom k druhému pilieru doktríny** *(„Aplikácia sa stavia pre agentov, človek ju riadi")*. Doktrína hovorí **čo a prečo**, toto ADR **ako**. Prechádza záväzným produktovým testom — viď kapitolu na konci.
 - **Navrhol:** MČ · 2026-08-12
 - **Povinný recenzent:** **MF** — toto ADR zovšeobecňuje stavový automat, ktorý navrhol v [ADR 0006](0006-anonymizacia-ako-lokalny-privacy-gate.md) a [spec 0008](../specs/0008-anonymizacia-a-privacy-gate.md). Bez jeho stanoviska sa neprijíma.
 - **Stanovisko MF (2026-08-12):** smerovanie je *„zlučiteľné s princípmi SAK **iba podmienečne**"*. Vyžiadal tri doplnenia — **povinnú ľudskú verifikáciu pred použitím výstupu v právnej službe**, **oddelenie roly recenzenta architektúry od zodpovedného advokáta vo veci** a **technické vylúčenie podpisovania a konania navonok agentom**. Zapracované nižšie *(pravidlo 3, kapitola „Role a zodpovednosť", pravidlo 5)*; **čaká na jeho opätovné posúdenie.**
-- **Stavia na:** [ADR 0006](0006-anonymizacia-ako-lokalny-privacy-gate.md) · [ADR 0002](0002-preco-forkujeme-mikeoss.md) *(červená čiara — nie sme dodávateľ softvéru)*
+- **Stavia na:** [ADR 0006](0006-anonymizacia-ako-lokalny-privacy-gate.md) *(prevzatý kontrakt — pozri poznámku nižšie)* · [ADR 0002](0002-preco-forkujeme-mikeoss.md) *(červená čiara — nie sme dodávateľ softvéru)*
+- **Podložené callom 12. 8.:** záver **R1** — *„LAWOSS sa navrhuje ako AI-first prostredie. Primárnym vykonávateľom práce je agent, právnik zostáva supervízorom a rozhodovacou vrstvou."* → [zápis](../meetings/2026-08-12-produktova-vizia-okf-pamat.md)
 - **Súvisiace:** [spec 0002 OKF](../specs/0002-okf-operacny-system-praxe.md) · [spec 0007 podpisovanie](../specs/0007-podpisovanie-a-zarucena-konverzia.md) · [spec 0009 reconcile](../specs/0009-reconcile-ucenie-z-uprav.md) *(zatiaľ len v [PR #16](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/16))* · [stratégia](../docs/strategia.md) *(zatiaľ len v [PR #14](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/14))*
+
+> [!IMPORTANT]
+> **Odloženie anonymizácie (záver R7) toto ADR nepodkopáva.** Call rozhodol, že **anonymizačný modul sa v aktuálnej fáze neimplementuje**. To sa týka *funkcie*, nie *kontraktu*: pravidlo 3 preberá z [ADR 0006](0006-anonymizacia-ako-lokalny-privacy-gate.md) **stavový automat a pravidlo o spoločnej autorizácii**, ktoré platia bez ohľadu na to, či niekedy vznikne anonymizer. Ak by sa ADR 0006 niekedy zrušilo, kontrakt sa presunie sem — nezaniká.
 
 > [!NOTE]
 > **Pozor na číslovanie.** V repe existuje aj **spec 0007** (podpisovanie a zaručená konverzia) — iný dokument v inom priečinku. V odkazoch vždy píš *ADR 0007* alebo *spec 0007* v plnom znení, nikdy len „0007".
@@ -174,6 +179,31 @@ Zaradenie sa týmto ADR **nemení** — QES/QTS ostáva kandidát na V2, zaruče
 **3. Prompt injection dostáva novú, trvalú cestu.** Bezpečnostná persona v oponentúre *(3/10)* varovala pred injection cez OCR dokumenty. Agent-first spolu s reconcile ten povrch **rozširuje**: otrávený dokument ovplyvní draft → advokát draft upraví → reconcile z tej úpravy vyrobí inštrukciu → otrava sa **natrvalo usadí v `AGENTS.md`**. Preto je v pravidle 4 zápis do inštrukcií definovaný ako prechod hranice vyžadujúci podpis. Spec 0009 túto poistku má; toto ADR z nej robí **záväznú, nie voliteľnú**.
 
 **4. Princíp sa môže rozpustiť do frázy.** Tím nemá programátora, ktorý by strážil dodržiavanie. Proti tomu stojí testovacie kritérium z pravidla 2. **Ak sa po dvoch specoch ukáže, že sa naň nikto nepýta, toto ADR sa zruší** — nebude sa predstierať, že platí.
+
+## Záväzný produktový test podľa ADR 0009
+
+[ADR 0009](0009-zakladna-produktova-doktrina.md) zaviedlo šesť otázok, na ktoré musí odpovedať každý významný návrh, ADR, feature a partnerstvo. Tu sú odpovede za toto ADR:
+
+| # | Otázka | Odpoveď |
+|---|---|---|
+| 1 | Zvyšuje kontrolu používateľa nad modelmi, dátami, nástrojmi a know-how? | **Áno.** Pravidlo 1 robí zo stavu spisu čitateľný markdown u advokáta, nie databázu v aplikácii. Pravidlo 4 dáva advokátovi kontrolu nad tým, čo sa systém naučí. |
+| 2 | Zachováva možnosť systém pochopiť, upraviť, vymeniť alebo opustiť? | **Áno, a posilňuje ju.** Pravidlo 1 (strojovo čitateľný stav je prvotný) a pravidlo 2 (všetko vykonateľné bez GUI) sú presne tie vlastnosti, vďaka ktorým sa dá vrstva odpojiť od LegalWorku — sedí to na exit plán zo [stratégie](../docs/strategia.md). |
+| 3 | Posilňuje schopnosť právnika bezpečne riadiť agentov? | **Áno.** Kontrakt v pravidle 3, povinná ľudská verifikácia pred použitím a technické vylúčenie konania navonok (pravidlo 5) sú konkrétnym obsahom slova „supervízor". |
+| 4 | Zachováva audit, provenance a primerané human approval? | **Áno.** Originál sa nikdy neprepíše, stavy sú evidované, prechod hranice vyžaduje podpis, zlyhanie je fail-closed. Kapitola *Role a zodpovednosť* rieši, **kto** schvaľuje na ktorej úrovni. |
+| 5 | Nevytvára nový povinný black box ani vendor lock-in? | **Nie.** Pravidlo 1 vylučuje stav uzavretý v aplikácii; podpisovanie zostáva v cudzom procese (Autogram), ktorý nevlastníme. |
+| 6 | Umožňuje kanceláriám využiť vlastné výhody bez nútenej uniformity? | **Áno.** Rebrík učenia v [spec 0009](../specs/0009-reconcile-ucenie-z-uprav.md) drží preferencie na úrovni veci, spisu a kancelárie; povýšenie na komunitnú úroveň je dobrovoľné a cez PR. |
+
+**Výnimku z doktríny toto ADR nepotrebuje.**
+
+## Vzťah k ostatným rozhodnutiam
+
+| Dokument | Vzťah |
+|---|---|
+| **[ADR 0009](0009-zakladna-produktova-doktrina.md)** — doktrína | **nadradené.** Hovorí *čo a prečo*. Toto ADR je jeho technický vykonávací predpis pre druhý pilier. Ak sa doktrína zmení, toto ADR sa jej prispôsobuje, nie naopak. |
+| **[ADR 0006](0006-anonymizacia-ako-lokalny-privacy-gate.md)** — anonymizačný gate | **zdroj kontraktu.** Preberáme stavový automat, nie funkciu. Odloženie funkcie (R7) na kontrakt nemá vplyv. |
+| **[Spec 0002](../specs/0002-okf-operacny-system-praxe.md)** — OKF | **nositeľ.** Pravidlo 1 opisuje to, čo OKF už dnes robí; tu z toho vzniká záväzné pravidlo. |
+| **[Spec 0009](../specs/0009-reconcile-ucenie-z-uprav.md)** — reconcile | **druhá polovica kontraktu** (pravidlo 4). Potvrdené aj záverom **R4** z callu. |
+| **[Spec 0007](../specs/0007-podpisovanie-a-zarucena-konverzia.md)** a **[spec 0010](../specs/0010-zarucena-konverzia.md)** | **prípady pravidla 5.** Podpisovanie a konverzia sú mimo agenta — technicky, nie inštrukciou. |
 
 ## Zvažované alternatívy
 

@@ -70,6 +70,8 @@
       <span class="chip"><b>Navrhol:</b> MČ</span>
       <span class="chip"><b>Povinný recenzent:</b> MF</span>
       <span class="chip"><b>Recenzia MF 12. 8.:</b> podmienečne — 3 požiadavky zapracované</span>
+      <span class="chip"><b>Call 12. 8.:</b> smerovanie prijaté (R1)</span>
+      <span class="chip"><b>Vzťah:</b> vykonávací predpis k ADR 0009, pilier 2</span>
     </div>
   </div>
 </div>
@@ -216,7 +218,34 @@
 </section>
 
 <section>
-  <h2><span class="n">10</span>Zvažované alternatívy</h2>
+  <h2><span class="n">10</span>Záväzný produktový test podľa ADR 0009</h2>
+  <p style="margin-top:0"><a href="0009-zakladna-produktova-doktrina.md">ADR 0009</a> zaviedlo šesť otázok, na ktoré musí odpovedať každý významný návrh. Odpovede za toto ADR:</p>
+  <div class="tbl-wrap"><table>
+    <tr><th style="width:34px">#</th><th>Otázka</th><th>Odpoveď</th></tr>
+    <tr><td>1</td><td>Zvyšuje kontrolu používateľa nad modelmi, dátami, nástrojmi a know-how?</td><td><b>Áno.</b> Pravidlo 1 robí zo stavu spisu čitateľný markdown u advokáta; pravidlo 4 dáva kontrolu nad tým, čo sa systém naučí.</td></tr>
+    <tr><td>2</td><td>Zachováva možnosť systém pochopiť, upraviť, vymeniť alebo opustiť?</td><td><b>Áno, a posilňuje ju.</b> Pravidlá 1 a 2 sú presne tie vlastnosti, vďaka ktorým sa dá vrstva odpojiť od LegalWorku — sedí na exit plán.</td></tr>
+    <tr><td>3</td><td>Posilňuje schopnosť právnika bezpečne riadiť agentov?</td><td><b>Áno.</b> Kontrakt, povinná verifikácia pred použitím a technické vylúčenie konania navonok sú konkrétnym obsahom slova „supervízor".</td></tr>
+    <tr><td>4</td><td>Zachováva audit, provenance a primerané human approval?</td><td><b>Áno.</b> Originál sa neprepíše, stavy sú evidované, hranica vyžaduje podpis, zlyhanie je fail-closed. Kapitola <i>Role a zodpovednosť</i> rieši, kto schvaľuje na ktorej úrovni.</td></tr>
+    <tr><td>5</td><td>Nevytvára nový povinný black box ani vendor lock-in?</td><td><b>Nie.</b> Pravidlo 1 vylučuje stav uzavretý v aplikácii; podpisovanie zostáva v cudzom procese, ktorý nevlastníme.</td></tr>
+    <tr><td>6</td><td>Umožňuje kanceláriám využiť vlastné výhody bez nútenej uniformity?</td><td><b>Áno.</b> Rebrík učenia drží preferencie na úrovni veci, spisu a kancelárie; povýšenie vyššie je dobrovoľné a cez PR.</td></tr>
+  </table></div>
+  <div class="decision" style="margin-top:16px">Výnimku z doktríny toto ADR <b>nepotrebuje</b>.</div>
+</section>
+
+<section>
+  <h2><span class="n">11</span>Vzťah k ostatným rozhodnutiam</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Dokument</th><th>Vzťah</th></tr>
+    <tr><td><b>ADR 0009</b> — doktrína</td><td><b>nadradené.</b> Hovorí <i>čo a prečo</i>; toto ADR je jeho technický vykonávací predpis pre druhý pilier. Ak sa doktrína zmení, prispôsobuje sa toto ADR, nie naopak.</td></tr>
+    <tr><td><b>ADR 0006</b> — anonymizačný gate</td><td><b>zdroj kontraktu.</b> Preberáme stavový automat, nie funkciu. Odloženie funkcie (R7) na kontrakt nemá vplyv.</td></tr>
+    <tr><td><b>Spec 0002</b> — OKF</td><td><b>nositeľ.</b> Pravidlo 1 opisuje to, čo OKF už dnes robí.</td></tr>
+    <tr><td><b>Spec 0009</b> — reconcile</td><td><b>druhá polovica kontraktu</b> (pravidlo 4). Potvrdené aj záverom R4 z callu.</td></tr>
+    <tr><td><b>Spec 0007</b> a <b>spec 0010</b></td><td><b>prípady pravidla 5</b> — podpisovanie a konverzia sú mimo agenta technicky, nie inštrukciou.</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <h2><span class="n">12</span>Zvažované alternatívy</h2>
   <div class="tbl-wrap"><table>
     <tr><th>Alternatíva</th><th>Verdikt</th></tr>
     <tr><td><b>Nechať to nepomenované</b> — stav pred týmto ADR</td><td>❌ Princíp fakticky platí (OKF), ale nedá sa naň odvolať a nikto ho nemusí dodržať. <b>Neviditeľné pravidlo nie je pravidlo.</b></td></tr>
