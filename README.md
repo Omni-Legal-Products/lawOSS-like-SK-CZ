@@ -365,18 +365,18 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**165 commitov** · **89 súborov**
+**168 commitov** · **90 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `b9a6362` | 2026-08-14 | Majo Cuprik | Merge pull request #31 from Omni-Legal-Products/docs/stavy-a-tyzdenny-report |
+| `86ba0a3` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `354af48` | 2026-08-14 | Majo Cuprik | Merge pull request #32 from Omni-Legal-Products/fix/auto-readme-race |
 | `4fae573` | 2026-08-14 | Majo Cuprik | fix: auto-README padal na non-fast-forward pri viacerých pushoch |
+| `e0ae610` | 2026-08-14 | Majo Cuprik | docs: zjednotiť stavy nápadov a pridať týždenný prehľad |
 | `c951cde` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `a844ddc` | 2026-08-14 | Majo Cuprik | docs: premenované Telegram topicy — GitHub · Ops a GitHub · App |
 | `86fcced` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `7b850a5` | 2026-08-14 | Majo Cuprik | Merge pull request #29 from Omni-Legal-Products/docs/napady-docx-editor |
-| `2fd3a8e` | 2026-08-14 | Majo Cuprik | Merge remote-tracking branch 'origin/main' into docs/napady-docx-editor |
-| `b4405e9` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
