@@ -305,6 +305,12 @@ lawOSS-like-SK-CZ/
 │   ├── mcp-servery/
 │   ├── mikeoss/
 │   ├── pravny-ramec/
+│   │   ├── zdroje-zarucena-konverzia/
+│   │   │   ├── 2026-08-12-analyza-zarucenej-konverzie.md
+│   │   │   ├── 2026-08-12-grok-report-integracia-ZK.pdf
+│   │   │   ├── 2026-08-12-zarucena-konverzia-SR-report.md
+│   │   │   └── README.md
+│   │   └── 2026-08-12-zarucena-konverzia-sk.md
 │   └── sk-datove-zdroje/
 ├── specs/
 │   ├── 0001-transkripcia.md
@@ -314,6 +320,7 @@ lawOSS-like-SK-CZ/
 │   ├── 0005-lehoty-timeline.md
 │   ├── 0007-podpisovanie-a-zarucena-konverzia.md
 │   ├── 0008-anonymizacia-a-privacy-gate.md
+│   ├── 0010-zarucena-konverzia.md
 │   ├── navrhy.md
 │   ├── prehlad.html
 │   ├── README.md
@@ -357,23 +364,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**140 commitov** · **82 súborov**
+**153 commitov** · **88 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `70db9e4` | 2026-08-14 | Majo Cuprik | Merge pull request #20 from Omni-Legal-Products/spec/0010-zarucena-konverzia |
+| `027c29d` | 2026-08-14 | Majo Cuprik | Merge pull request #28 from Omni-Legal-Products/docs/telegram-repository-routing |
+| `a3bac73` | 2026-08-14 | Majo Cuprik | Merge pull request #30 from Omni-Legal-Products/docs/tok-napad-implementacia |
+| `fc6d3f7` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `e41f5dd` | 2026-08-14 | Majo Cuprik | Merge pull request #18 from Omni-Legal-Products/docs/oprava-adr-0004-electron |
-| `42a1564` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `31adf0a` | 2026-08-14 | Majo Cuprik | docs: prepísať odkazy po presune repa do organizácie |
-| `2971c7c` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `069231e` | 2026-08-12 | Majo Cuprik | docs: uzavrieť pracovnú session 12. augusta |
-| `ad7f4d7` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `19c489e` | 2026-08-12 | Majo Cuprik | merge: produktová doktrína a návrh otvorených formátov |
-| `f2db995` | 2026-08-12 | Majo Cuprik | fix: spresniť architektúru formátov |
+| `978d071` | 2026-08-14 | Majo Cuprik | docs: konvencia toku nápad → implementácia medzi repami |
+| `4869e63` | 2026-08-14 | Majo Cuprik | Merge remote-tracking branch 'origin/main' into spec/0010-zarucena-konverzia |
+| `4203181` | 2026-08-14 | Majo Cuprik | Merge remote-tracking branch 'origin/main' into docs/telegram-repository-routing |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-14 13:07 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-14 13:08 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
