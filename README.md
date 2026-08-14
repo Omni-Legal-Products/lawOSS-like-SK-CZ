@@ -258,6 +258,7 @@ lawOSS-like-SK-CZ/
 │   ├── 0008-sprava-mcp-repozitarov.md
 │   ├── 0009-zakladna-produktova-doktrina.html
 │   ├── 0009-zakladna-produktova-doktrina.md
+│   ├── 0010-ochrana-know-how-a-znacky.md
 │   └── template.md
 ├── docs/
 │   ├── superpowers/
@@ -365,23 +366,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**168 commitov** · **90 súborov**
+**172 commitov** · **92 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `2586702` | 2026-08-14 | Majo Cuprik | Merge pull request #44 from Omni-Legal-Products/docs/adr-0010-ochrana-know-how |
+| `8c94a27` | 2026-08-14 | Majo Cuprik | docs: generovať prehľad návrhov z evidencie |
+| `4e7dd69` | 2026-08-14 | Majo Cuprik | decisions: ADR 0010 — ochrana know-how a značky (návrh) |
+| `a043594` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `b9a6362` | 2026-08-14 | Majo Cuprik | Merge pull request #31 from Omni-Legal-Products/docs/stavy-a-tyzdenny-report |
 | `86ba0a3` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `354af48` | 2026-08-14 | Majo Cuprik | Merge pull request #32 from Omni-Legal-Products/fix/auto-readme-race |
 | `4fae573` | 2026-08-14 | Majo Cuprik | fix: auto-README padal na non-fast-forward pri viacerých pushoch |
-| `e0ae610` | 2026-08-14 | Majo Cuprik | docs: zjednotiť stavy nápadov a pridať týždenný prehľad |
-| `c951cde` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `a844ddc` | 2026-08-14 | Majo Cuprik | docs: premenované Telegram topicy — GitHub · Ops a GitHub · App |
-| `86fcced` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-14 13:53 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-14 20:09 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
