@@ -299,6 +299,7 @@ lawOSS-like-SK-CZ/
 │   │   ├── 2026-08-07-feature-ideas-telegram.md
 │   │   └── README.md
 │   ├── inspiracie/
+│   │   ├── 2026-08-13-editory-docx-superdoc-vs-eigenpal.md
 │   │   ├── legalwork.md
 │   │   ├── porovnanie.html
 │   │   └── README.md
@@ -364,18 +365,18 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**153 commitov** · **88 súborov**
+**160 commitov** · **89 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `7b850a5` | 2026-08-14 | Majo Cuprik | Merge pull request #29 from Omni-Legal-Products/docs/napady-docx-editor |
+| `2fd3a8e` | 2026-08-14 | Majo Cuprik | Merge remote-tracking branch 'origin/main' into docs/napady-docx-editor |
+| `b4405e9` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `70db9e4` | 2026-08-14 | Majo Cuprik | Merge pull request #20 from Omni-Legal-Products/spec/0010-zarucena-konverzia |
 | `027c29d` | 2026-08-14 | Majo Cuprik | Merge pull request #28 from Omni-Legal-Products/docs/telegram-repository-routing |
 | `a3bac73` | 2026-08-14 | Majo Cuprik | Merge pull request #30 from Omni-Legal-Products/docs/tok-napad-implementacia |
 | `fc6d3f7` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `e41f5dd` | 2026-08-14 | Majo Cuprik | Merge pull request #18 from Omni-Legal-Products/docs/oprava-adr-0004-electron |
-| `978d071` | 2026-08-14 | Majo Cuprik | docs: konvencia toku nápad → implementácia medzi repami |
-| `4869e63` | 2026-08-14 | Majo Cuprik | Merge remote-tracking branch 'origin/main' into spec/0010-zarucena-konverzia |
-| `4203181` | 2026-08-14 | Majo Cuprik | Merge remote-tracking branch 'origin/main' into docs/telegram-repository-routing |
 <!-- /AUTO:ACTIVITY -->
 
 ---
