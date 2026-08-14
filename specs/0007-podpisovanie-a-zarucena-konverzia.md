@@ -1,4 +1,4 @@
-# Spec 0007: Podpisovanie a zaručená konverzia cez Autogram
+# Spec 0007: Podpisovanie QES + QTS cez Autogram
 
 - **Stav:** návrh
 - **Navrhol:** Marián Čuprík (MČ) · 2026-08-06 · Telegram topic *Feature IDEAS* [209], [221] + upresnenie 2026-08-07
@@ -6,6 +6,11 @@
 
 > [!IMPORTANT]
 > **Autogram je EUPL-1.2 — reciproká licencia.** Nesmie sa vendorovať ani forkovať do našej MIT aplikácie. Integrácia ide **výhradne cez rozhrania samostatného procesu** — CLI alebo lokálne HTTP API. Overené cez GitHub API 2026-08-07.
+
+> [!IMPORTANT]
+> **Aktualizácia 2026-08-12 — zaručená konverzia vyčlenená do [spec 0010](0010-zarucena-konverzia.md).**
+> Tento spec ju pôvodne pokrýval spolu s podpisovaním s odôvodnením, že „zdieľajú engine a bezpečnostné hranice". [Rešerš](../research/pravny-ramec/2026-08-12-zarucena-konverzia-sk.md) ukázala, že to neplatí: konverzia navyše vyžaduje **SOAP integráciu na štátny register CEZZK**, registráciu oprávnenej osoby, **mandátny certifikát** a **platenú kvalifikovanú službu validácie** (§ 3 ods. 4 vyhl. 70/2021, overené v Slov-Lexe).
+> **Tento spec sa od 2026-08-12 týka výlučne podpisovania QES + QTS cez Autogram.**
 
 > [!NOTE]
 > **Zaradenie do verzií — rozhodnutie MČ 2026-08-07:**
