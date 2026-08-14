@@ -365,23 +365,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**162 commitov** · **89 súborov**
+**165 commitov** · **89 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `354af48` | 2026-08-14 | Majo Cuprik | Merge pull request #32 from Omni-Legal-Products/fix/auto-readme-race |
+| `4fae573` | 2026-08-14 | Majo Cuprik | fix: auto-README padal na non-fast-forward pri viacerých pushoch |
+| `c951cde` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `a844ddc` | 2026-08-14 | Majo Cuprik | docs: premenované Telegram topicy — GitHub · Ops a GitHub · App |
 | `86fcced` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `7b850a5` | 2026-08-14 | Majo Cuprik | Merge pull request #29 from Omni-Legal-Products/docs/napady-docx-editor |
 | `2fd3a8e` | 2026-08-14 | Majo Cuprik | Merge remote-tracking branch 'origin/main' into docs/napady-docx-editor |
 | `b4405e9` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `70db9e4` | 2026-08-14 | Majo Cuprik | Merge pull request #20 from Omni-Legal-Products/spec/0010-zarucena-konverzia |
-| `027c29d` | 2026-08-14 | Majo Cuprik | Merge pull request #28 from Omni-Legal-Products/docs/telegram-repository-routing |
-| `a3bac73` | 2026-08-14 | Majo Cuprik | Merge pull request #30 from Omni-Legal-Products/docs/tok-napad-implementacia |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-14 13:09 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-14 13:53 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
