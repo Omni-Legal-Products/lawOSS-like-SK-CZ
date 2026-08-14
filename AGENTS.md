@@ -125,6 +125,43 @@ assets/       obrázky, diagramy, brand
 
 ---
 
+## 🔁 Od nápadu k implementácii — dve repá, jeden smer
+
+> **Obe repá sú od 2026-08-14 v organizácii [Omni-Legal-Products](https://github.com/Omni-Legal-Products).** Vďaka tomu sa dajú issues medzi nimi **natívne presúvať** (*Issue → Transfer issue*), čo predtým nešlo.
+
+| Repo | Čo tam žije | Čo tam **nepatrí** |
+|---|---|---|
+| **`lawOSS-like-SK-CZ`** *(toto)* | nápady, ADR, špecifikácie, rešerše, zápisy — **zdroj pravdy pre rozhodnutia** | issues typu „appka padá pri OCR", implementačné úlohy |
+| **[`lawoss`](https://github.com/Omni-Legal-Products/lawoss)** *(fork)* | kód, implementačné issues a PR, buildy, releases | rozhodovanie o tom, *či* sa funkcia postaví |
+
+### Pravidlo toku
+
+1. **Nápad** → [`planning/napady.md`](planning/napady.md) + riadok do [`specs/navrhy.md`](specs/navrhy.md). Žije tu.
+2. **Rozhodnutie** *(call, ADR alebo odklep v PR)* → tu. **Nikdy vo forku.**
+3. **Až po odklepnutí** → issue vo **forku**, ktoré **odkazuje späť** na spec alebo ADR.
+4. Spec sa **nekopíruje** do forku. Iba odkaz — duplikát znamená drift.
+
+```mermaid
+flowchart LR
+    N["💭 nápad<br/><i>napady.md</i>"] --> S["📋 spec / ADR<br/><i>koordinačné repo</i>"]
+    S --> D{"✅ odklepnuté?"}
+    D -->|"nie"| S
+    D -->|"áno"| I["🔨 issue vo forku<br/><i>s odkazom na spec</i>"]
+    I --> PR["🔀 PR vo forku"]
+    classDef c fill:#0d1b2a,stroke:#c9a24a,color:#fff
+    class S c
+```
+
+### Prečo to nie je zautomatizované
+
+Zvažovalo sa vytváranie issues cez GitHub Action. **Zamietnuté:** vyžadovalo by to PAT uložený ako secret, teda ďalšie trvalé prihlasovacie údaje, pri objeme pár schválených položiek týždenne. **Most robí človek alebo jeho agent** — po calle prejde odklepnuté položky a založí k nim issues vo forku. Ak by objem narástol, prehodnotiť.
+
+### Keď issue vznikne na zlom mieste
+
+Nezakladaj duplikát — použi **Transfer issue** *(`Issue → ⋯ → Transfer issue`)*. Funguje oboma smermi v rámci organizácie a zachová komentáre aj históriu.
+
+---
+
 ## ✍️ Ako písať
 
 - **Po slovensky.** Technické termíny môžu ostať anglicky (*fork, commit, prompt, MCP*).
