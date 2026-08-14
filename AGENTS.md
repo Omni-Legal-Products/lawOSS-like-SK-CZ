@@ -178,7 +178,8 @@ Nezakladaj duplikát — použi **Transfer issue** *(`Issue → ⋯ → Transfer
 |---|---|---|
 | **Auto-README** | [`.github/workflows/update-readme.yml`](.github/workflows/update-readme.yml) | po pushi prepíše AUTO sekcie (progress, strom, aktivita) a **sám commitne** |
 | **Telegram: koordinácia** | [`.github/workflows/telegram-notify.yml`](.github/workflows/telegram-notify.yml) | `Omni-Legal-Products/lawOSS-like-SK-CZ` → topic *GitHub · Ops* (`2`). Push, issue, PR, release a diskusia. |
-| **Telegram: produkt** | [`docs/telegram-notifikacie.md`](docs/telegram-notifikacie.md) | `Omni-Legal-Products/lawoss` → topic *GitHub · App* (`293`). PR, issue, release a zlyhanie CI; bežné push správy sú vypnuté. Aktivácia čaká na merge produktového PR #2 a secret `TELEGRAM_TOKEN`. |
+| **Telegram: produkt** | [`docs/telegram-notifikacie.md`](docs/telegram-notifikacie.md) | `Omni-Legal-Products/lawoss` → topic *GitHub · App* (`293`). PR, issue, release a zlyhanie CI; bežné push správy sú vypnuté. **Aktívne od 2026-08-14** — token je organizačný secret. |
+| **Týždenný prehľad** | [`.github/workflows/tyzdenny-prehlad.yml`](.github/workflows/tyzdenny-prehlad.yml) | pondelok ráno do topicu *GitHub · Ops*: koľko PR čaká a ako dlho, koľko je bez recenzie, čo sa za týždeň zlúčilo, nápady podľa stavu. **Súhrn, nie prúd udalostí.** Dá sa spustiť aj ručne cez *Run workflow*. |
 | **GitHub Pages** | z `main`, root, `.nojekyll` | HTML dokumenty sú živé na `omni-legal-products.github.io/lawOSS-like-SK-CZ/...` |
 
 **Lokálne si vieš README pregenerovať:** `python3 .github/scripts/update_readme.py`
