@@ -4,7 +4,7 @@ Surové nápady patria do **[zberného koša](napady.md)** — sem sa dostáva t
 Dozreté položky majú vlastnú špecifikáciu v [specs/](../specs/).
 
 > [!TIP]
-> **Máš nový nápad?** Nepíš ho sem — hoď ho do Telegram topicu *Feature IDEAS*, cez [formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml), alebo do [zberného koša](napady.md). Odtiaľ ho po prerokovaní presunieme.
+> **Máš nový nápad?** Nepíš ho sem — hoď ho do Telegram topicu *Feature IDEAS*, cez [formulár](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml), alebo do [zberného koša](napady.md). Odtiaľ ho po prerokovaní presunieme.
 >
 > **Scope V1 sa spresnil na calle 12. 8.** → [zápis a priority](../meetings/2026-08-12-produktova-vizia-okf-pamat.md). Otvorené rozhodnutia sú v [Q01 až Q25](2026-08-12-rozhodovacie-otazky-timu.md).
 
@@ -50,7 +50,7 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 
 ## Ďalšie nápady (bez specu)
 
-- [ ] ⏸️ **Lokálny anonymizačný gate pred externým LLM** → [spec 0008](../specs/0008-anonymizacia-a-privacy-gate.md) · [Issue #15](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/15) - nice to have, odložené mimo prvej verzie; zachované ako podklad pre budúci voliteľný modul
+- [ ] ⏸️ **Lokálny anonymizačný gate pred externým LLM** → [spec 0008](../specs/0008-anonymizacia-a-privacy-gate.md) · [Issue #15](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/15) - nice to have, odložené mimo prvej verzie; zachované ako podklad pre budúci voliteľný modul
 - [ ] SK šablóny podaní a zmlúv
 - [x] Mistral OCR — PDF → Markdown: presunuté do alfy (quick win, existujúca Quick Action)
 

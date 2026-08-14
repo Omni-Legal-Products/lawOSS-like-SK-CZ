@@ -1,0 +1,92 @@
+name: Týždenný prehľad do Telegramu
+
+# Raz týždenne pošle do topicu GitHub · Ops súhrn toho, čo visí.
+# Zámerne NIE prúd udalostí — ten už rieši telegram-notify.yml.
+# Cieľ: aby sa dalo na jeden pohľad vidieť, čo čaká na ľudí.
+
+on:
+  schedule:
+    # pondelok 07:00 UTC = 09:00 Europe/Bratislava (v zime 08:00)
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: read
+
+jobs:
+  prehlad:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Zostaviť prehľad
+        id: build
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          # --- PR čakajúce na recenziu, zoradené od najstarších ---
+          pr=$(gh pr list --repo "$REPO" --state open --json number,title,createdAt,isDraft,reviews \
+                --jq '[.[] | select(.isDraft | not)]
+                      | sort_by(.createdAt)
+                      | .[]
+                      | "• #\(.number) \(.title[0:56]) — \(((now - (.createdAt|fromdate))/86400)|floor) dní\(if (.reviews|length)==0 then ", bez recenzie" else "" end)"' \
+                2>/dev/null | head -12)
+
+          pr_pocet=$(gh pr list --repo "$REPO" --state open --json isDraft --jq '[.[] | select(.isDraft|not)] | length')
+          pr_bez=$(gh pr list --repo "$REPO" --state open --json isDraft,reviews \
+                    --jq '[.[] | select((.isDraft|not) and (.reviews|length)==0)] | length')
+
+          # --- čo sa za posledný týždeň zlúčilo ---
+          od=$(date -u -d '7 days ago' +%Y-%m-%d)
+          zlucene=$(gh pr list --repo "$REPO" --state merged --limit 50 --json number,title,mergedAt \
+                     --jq --arg od "$od" '[.[] | select(.mergedAt >= $od)] | length')
+
+          # --- nápady podľa stavu (z evidencie) ---
+          napady=$(grep -oE '^\| [0-9]+ \|.*' specs/navrhy.md 2>/dev/null \
+                   | grep -oE '(💭 \*\*nápad\*\*|📝 \*\*spec\*\*|✅ \*\*odklepnuté\*\*|🔨 \*\*implementuje sa\*\*|✔️ \*\*hotové\*\*|⏸️ \*\*odložené\*\*|❌ \*\*zamietnuté\*\*)' \
+                   | sed 's/\*\*//g' | sort | uniq -c | sort -rn \
+                   | awk '{n=$1; $1=""; sub(/^ /,""); printf "• %s — %s\n", $0, n}')
+
+          {
+            echo "sprava<<EOF"
+            echo "📊 <b>Týždenný prehľad</b>"
+            echo ""
+            echo "<b>Pull requesty:</b> ${pr_pocet} otvorených, <b>${pr_bez} bez jedinej recenzie</b>"
+            if [ -n "$pr" ]; then echo ""; echo "$pr"; fi
+            echo ""
+            echo "<b>Za posledných 7 dní zlúčené:</b> ${zlucene}"
+            if [ -n "$napady" ]; then
+              echo ""
+              echo "<b>Nápady podľa stavu:</b>"
+              echo "$napady"
+            fi
+            echo ""
+            echo "Otvoriť: https://github.com/${REPO}/pulls"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Poslať do Telegramu
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TG_TOPIC: ${{ vars.TELEGRAM_TOPIC_ID }}
+          SPRAVA: ${{ steps.build.outputs.sprava }}
+        run: |
+          set -euo pipefail
+          if [ -z "${TG_TOKEN}" ] || [ -z "${TG_CHAT}" ]; then
+            echo "TELEGRAM_TOKEN alebo TELEGRAM_CHAT_ID nie je nastavené — preskakujem."
+            exit 0
+          fi
+          curl -sS --fail-with-body -X POST \
+            "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+            -d "chat_id=${TG_CHAT}" \
+            ${TG_TOPIC:+-d "message_thread_id=${TG_TOPIC}"} \
+            -d "parse_mode=HTML" \
+            -d "disable_web_page_preview=true" \
+            --data-urlencode "text=${SPRAVA}" > /dev/null
+          echo "Prehľad odoslaný."

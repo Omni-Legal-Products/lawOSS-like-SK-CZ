@@ -5,7 +5,7 @@
 ## Rýchly štart
 
 ```bash
-git clone https://github.com/originalmagneto/lawOSS-like-SK-CZ.git
+git clone https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ.git
 cd lawOSS-like-SK-CZ
 ```
 
@@ -22,7 +22,7 @@ Ak používaš AI agenta (Claude Code, Codex…), načíta si ho sám (`CLAUDE.m
 
 Netreba písať markdown ani robiť PR:
 
-👉 **[Podaj návrh cez formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)**
+👉 **[Podaj návrh cez formulár](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)**
 
 Po prerokovaní ho prepíšeme do [`specs/`](specs/) a zapíšeme do [`specs/navrhy.md`](specs/navrhy.md) s tvojím menom.
 

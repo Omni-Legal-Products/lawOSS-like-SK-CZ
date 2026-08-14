@@ -88,8 +88,8 @@
   <table>
     <tr><th>Čo</th><th>Zistenie</th></tr>
     <tr><td><b>Celý build pipeline</b></td><td><code>.github/workflows/</code> obsahuje <code>release-macos-aarch64.yml</code> (36 kB), <code>alpha-macos-aarch64.yml</code>, <code>alpha-windows-x64.yml</code>, <code>ci-tests.yml</code>, <code>ci-i18n.yml</code>. <b class="yes">Forkom ich zdedíme celé</b> — stačí doplniť vlastné podpisové tajomstvá.</td></tr>
-    <tr><td><b>Branding je sústredený</b></td><td><code>tauri.conf.json</code> + <code>productName</code> — <b>iba 2 miesta</b>. Zmena názvu a ikony je malý, izolovaný zásah.</td></tr>
-    <tr><td><b>Lokalizácia = nové súbory</b></td><td><code>apps/app/src/i18n/locales/</code> má <code>en · de · es · ru · vi · zh · th · ca</code>. Pridanie <code>sk.ts</code> a <code>cs.ts</code> sú <b class="yes">nové súbory → nulový merge konflikt</b>. Navyše <code>ci-i18n.yml</code> kompletnosť prekladov kontroluje za nás.</td></tr>
+    <tr><td><b>Branding je ohraničený, ale nie triviálny</b></td><td><code>apps/desktop/electron-builder.yml</code> (<code>appId</code>, <code>productName</code>, schéma <code>legalwork</code>) <b>+ runtime identifikátory v <code>apps/desktop/electron/main.mjs</code></b> — <b>tri miesta, nie dve</b>. Pozor: <code>appId</code> určuje macOS bundle identitu (keychain, Launchpad, TCC oprávnenia). <i>(overené 2026-08-12)</i></td></tr>
+    <tr><td><b>Lokalizácia = nové súbory</b></td><td><code>apps/app/src/i18n/locales/</code> má k 2026-08-12 <b>11 jazykov</b> (<code>ca · de · en · es · fr · ja · pt-BR · ru · th · vi · zh</code>) — <code>fr</code>, <code>ja</code>, <code>pt-BR</code> pribudli po 6. 8., upstream preklady aktívne priberá. Pridanie <code>sk.ts</code> a <code>cs.ts</code> sú <b class="yes">nové súbory → nulový merge konflikt</b>. Navyše <code>ci-i18n.yml</code> kompletnosť prekladov kontroluje za nás.</td></tr>
     <tr><td><b>Aktívny upstream</b></td><td>posledný release <code>v0.1.13</code> z 2026-08-04 s 18 assetmi — vyvíja sa rýchlo, sync treba robiť pravidelne</td></tr>
   </table>
   </div>
@@ -130,7 +130,7 @@
   <table>
     <tr><th>Alternatíva</th><th>Prečo nie</th></tr>
     <tr><td><b>Prenosný balík bez forku</b></td><td>Technicky najlacnejšie a plne prenositeľné, ale používateľ by videl LegalWork, nie LAWOSS. <b>Nedáva vlastný produkt ani značku</b>, čo je pre projekt určujúce. Časti si však ponechávame — naša doména žije vo vlastných priečinkoch (pravidlo č. 5).</td></tr>
-    <tr><td><b>Downstream nadstavba</b></td><td>LegalWork je desktopová aplikácia (Tauri), nie knižnica. <code>legalwork-orchestrator</code> <b>nemá na npm publikovanú verziu</b> (overené 2026-08-06).</td></tr>
+    <tr><td><b>Downstream nadstavba</b></td><td>LegalWork je desktopová aplikácia (Electron), nie knižnica. <code>legalwork-orchestrator</code> <b>nemá na npm publikovanú verziu</b> (overené 2026-08-06).</td></tr>
     <tr><td><b>LegalWork „extensions“</b></td><td>Ich registry je <b>hard-coded</b> — <code>apps/server/src/extensions/index.ts</code> obsahuje statické pole a dispatch cez <code>if (extensionId === …)</code>. Zvonku sa registrovať nedá.</td></tr>
   </table>
   </div>

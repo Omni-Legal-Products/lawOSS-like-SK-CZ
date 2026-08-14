@@ -12,7 +12,7 @@
 > [!TIP]
 > **Máš nápad? Hoď ho kamkoľvek z tohto:**
 > 1. **Telegram topic *Feature IDEAS*** — najrýchlejšie, netreba nič formátovať *(odtiaľ ich pravidelne zbierame sem)*
-> 2. **[GitHub formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)** — ak chceš, aby sa o tom hneď diskutovalo
+> 2. **[GitHub formulár](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)** — ak chceš, aby sa o tom hneď diskutovalo
 > 3. **Priamo do tohto súboru** — jeden riadok do priehradky *Nezaradené*
 >
 > **Nič sa nezahadzuje.** Aj zamietnuté nápady tu zostávajú aj s dôvodom, nech sa nevracajú dokola.
@@ -61,7 +61,7 @@ flowchart LR
 | 17 | Rešeršný workflow „one-click" | |
 | **19** | **Podpisovanie QES + QTS cez Autogram** → [spec 0007](../specs/0007-podpisovanie-a-zarucena-konverzia.md) | Advokáti s tým reálne pracujú. Regulované — potrebuje human gate a právne náležitosti. |
 | 14 | Špecializovaní agenti podľa právneho odvetvia | |
-| **28** | **Reconcile — učenie z úprav advokáta** → [spec 0009](../specs/0009-reconcile-ucenie-z-uprav.md) | Mechanizmus učenia, ktorý chýbal #21: draft vs. finál → najmenšia zmena inštrukcií, umiestnenie po rebríku OKF. 🟢 čistý skill. |
+| **34** | **Reconcile — učenie z úprav advokáta** → [spec 0009](../specs/0009-reconcile-ucenie-z-uprav.md) | Mechanizmus učenia, ktorý chýbal #21: draft vs. finál → najmenšia zmena inštrukcií, umiestnenie po rebríku OKF. 🟢 čistý skill. |
 
 ---
 
@@ -69,7 +69,7 @@ flowchart LR
 
 | # | Nápad | Prečo počká |
 |---|---|---|
-| **26** | **Zaručená konverzia** → [spec 0007](../specs/0007-podpisovanie-a-zarucena-konverzia.md) | **Rozhodnutie MČ 2026-08-07: až do ďalšej verzie.** Regulovaná činnosť — právne náležitosti osvedčovacej doložky musia byť vyriešené pred implementáciou. MČ si na to zatiaľ stavia vlastnú aplikáciu. |
+| **26** | **Zaručená konverzia** → [spec 0010](../specs/0010-zarucena-konverzia.md) | **Rozhodnutie MČ 2026-08-07: až do ďalšej verzie** — potvrdené [rešeršou 2026-08-12](../research/pravny-ramec/2026-08-12-zarucena-konverzia-sk.md). Nie je to variant podpisovania: vyžaduje SOAP integráciu na štátny register CEZZK, registráciu oprávnenej osoby, mandátny certifikát a **platenú kvalifikovanú validačnú službu**. Rešerš sama odporúča používať hotové riešenia. MČ si na to stavia vlastnú aplikáciu — správne miesto je mimo LAWOSS. |
 | 22 | Zjednotenie komunikačných kanálov do spisu | Najsilnejšie pomenovaná bolesť z praxe (VŘ), ale veľký scope a nejasné riešenie. |
 | 23 | Self-healing a self-updating integrácie | Sedí na princíp „nie sme programátori", ale treba doriešiť breaking changes a rollback. |
 | 24 | Self-evolving / self-correcting systém | Nerozvinuté, súvisí s #23. |
@@ -88,7 +88,7 @@ flowchart LR
 | 11 | UI/CLI prepínač | schválené na calle 6. 8. |
 | 12 | Markdown/Obsidian interoperabilita | schválené na calle 6. 8. — je to princíp, nie funkcia |
 | 16 | Modulové rozhranie plug-and-play | spracúva IR do 19. 8. |
-| 9 | Orchestrátor a subagenti | [PR #2](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/2) od MF, otvorený |
+| 9 | Orchestrátor a subagenti | [PR #2](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/2) od MF, otvorený |
 | 6 | Attorney workflow MVP | rozpadol sa do #7 a ďalších specov |
 | 10 | Digitálna sekretárka | rámec, ktorý spája #1 + #2 |
 
@@ -105,6 +105,10 @@ flowchart LR
 *Sem píš nové nápady, kým sa neprerokujú. Formát: **čo** — kto, kedy, odkiaľ.*
 
 - **27. Open formats at the core, compatibility at the edges** - nezáväzný návrh MČ z 2026-08-12. Kanonický pracovný obsah LAWOSS by používal otvorené textové formáty Markdown, HTML a JSON. DOCX, XLSX a PPTX by zostali štandardizovanými OOXML výmennými formátmi pre podporované vstupy a výstupy. Teams a SharePoint by boli voliteľnými integráciami, nie povinným základom architektúry. Návrh neznamená okamžitý zákaz nástrojov Microsoftu a zatiaľ nie je prijatým rozhodnutím.
+- **28. Zoraďovanie súborov vo workspace browseri** — MČ, 2026-08-13, pri skúšaní LegalWorku. Prehliadač workspace nevie zoradiť súbory podľa dátumu, veľkosti, typu ani názvu. Pri spise s desiatkami dokumentov je to prvá vec, ktorá chýba. *(Malé, ale okamžite viditeľné zlepšenie; kandidát na upstream PR.)*
+- **29. Sprístupniť režim sledovania zmien v editore dokumentov** — MČ, 2026-08-13. Editor `@eigenpal/docx-editor-react` **podporuje tri režimy**: `editing`, **`suggesting` (= sledovanie zmien)** a `viewing`. LegalWork ale natvrdo posiela `mode={readOnly ? "viewing" : "editing"}` *(`artifact-docx-editor.tsx`)*, takže **`suggesting` sa v UI nedá zapnúť**. Pre advokáta je pritom práca s tracked changes základ, nie doplnok. Chýba prepínač režimu. *(Overené v kóde 2026-08-13. Silný kandidát na upstream PR — malá zmena, veľká hodnota.)*
+- **31. Meno advokáta pri sledovaných zmenách a komentároch** — MČ, 2026-08-13. *(Kontext: [porovnanie editorov](../research/inspiracie/2026-08-13-editory-docx-superdoc-vs-eigenpal.md).)* **Dnes sa každá sledovaná zmena aj každý komentár podpíše ako „Legal Cowork".** Editor prop `author` má natvrdo tento default *(`artifact-docx-editor.tsx:87`)* a `artifact-panel.tsx` ho **nikdy neposiela**; appka navyše **nemá nikde nastavenie mena používateľa**. Pri dokumente, ktorý ide protistrane alebo na súd, je autorstvo úprav vec, ktorú advokát musí mať pod kontrolou. *(Overené v kóde 2026-08-13. Potrebné: pole na meno v nastaveniach + prepojenie do editora.)*
+- **30. Zrozumiteľnejšia hláška pri priložení .docx do chatu** — MČ, 2026-08-13. Pri priložení `.docx` do chatu sa zobrazí *„has a format the model can't read — Convert to PDF, image, or plain text"*, hoci appka má vstavaný editor Wordu. Používateľ z toho vyvodí, že docx nie je podporovaný. Správne má nasmerovať na otvorenie cez workspace. *(Zmena jedného textového reťazca, nulové riziko konfliktu — vhodný prvý upstream PR.)*
 
 ---
 

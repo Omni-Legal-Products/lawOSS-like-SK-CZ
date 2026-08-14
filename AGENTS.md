@@ -125,6 +125,43 @@ assets/       obrázky, diagramy, brand
 
 ---
 
+## 🔁 Od nápadu k implementácii — dve repá, jeden smer
+
+> **Obe repá sú od 2026-08-14 v organizácii [Omni-Legal-Products](https://github.com/Omni-Legal-Products).** Vďaka tomu sa dajú issues medzi nimi **natívne presúvať** (*Issue → Transfer issue*), čo predtým nešlo.
+
+| Repo | Čo tam žije | Čo tam **nepatrí** |
+|---|---|---|
+| **`lawOSS-like-SK-CZ`** *(toto)* | nápady, ADR, špecifikácie, rešerše, zápisy — **zdroj pravdy pre rozhodnutia** | issues typu „appka padá pri OCR", implementačné úlohy |
+| **[`lawoss`](https://github.com/Omni-Legal-Products/lawoss)** *(fork)* | kód, implementačné issues a PR, buildy, releases | rozhodovanie o tom, *či* sa funkcia postaví |
+
+### Pravidlo toku
+
+1. **Nápad** → [`planning/napady.md`](planning/napady.md) + riadok do [`specs/navrhy.md`](specs/navrhy.md). Žije tu.
+2. **Rozhodnutie** *(call, ADR alebo odklep v PR)* → tu. **Nikdy vo forku.**
+3. **Až po odklepnutí** → issue vo **forku**, ktoré **odkazuje späť** na spec alebo ADR.
+4. Spec sa **nekopíruje** do forku. Iba odkaz — duplikát znamená drift.
+
+```mermaid
+flowchart LR
+    N["💭 nápad<br/><i>napady.md</i>"] --> S["📋 spec / ADR<br/><i>koordinačné repo</i>"]
+    S --> D{"✅ odklepnuté?"}
+    D -->|"nie"| S
+    D -->|"áno"| I["🔨 issue vo forku<br/><i>s odkazom na spec</i>"]
+    I --> PR["🔀 PR vo forku"]
+    classDef c fill:#0d1b2a,stroke:#c9a24a,color:#fff
+    class S c
+```
+
+### Prečo to nie je zautomatizované
+
+Zvažovalo sa vytváranie issues cez GitHub Action. **Zamietnuté:** vyžadovalo by to PAT uložený ako secret, teda ďalšie trvalé prihlasovacie údaje, pri objeme pár schválených položiek týždenne. **Most robí človek alebo jeho agent** — po calle prejde odklepnuté položky a založí k nim issues vo forku. Ak by objem narástol, prehodnotiť.
+
+### Keď issue vznikne na zlom mieste
+
+Nezakladaj duplikát — použi **Transfer issue** *(`Issue → ⋯ → Transfer issue`)*. Funguje oboma smermi v rámci organizácie a zachová komentáre aj históriu.
+
+---
+
 ## ✍️ Ako písať
 
 - **Po slovensky.** Technické termíny môžu ostať anglicky (*fork, commit, prompt, MCP*).
@@ -140,8 +177,10 @@ assets/       obrázky, diagramy, brand
 | Čo | Kde | Správanie |
 |---|---|---|
 | **Auto-README** | [`.github/workflows/update-readme.yml`](.github/workflows/update-readme.yml) | po pushi prepíše AUTO sekcie (progress, strom, aktivita) a **sám commitne** |
-| **Telegram notifikácie** | [`.github/workflows/telegram-notify.yml`](.github/workflows/telegram-notify.yml) | push/issue/PR/release → topic *SK Mike GH*. Secrets: `TELEGRAM_TOKEN`, `TELEGRAM_CHAT_ID`; premenná `TELEGRAM_TOPIC_ID` |
-| **GitHub Pages** | z `main`, root, `.nojekyll` | HTML dokumenty sú živé na `originalmagneto.github.io/lawOSS-like-SK-CZ/...` |
+| **Telegram: koordinácia** | [`.github/workflows/telegram-notify.yml`](.github/workflows/telegram-notify.yml) | `Omni-Legal-Products/lawOSS-like-SK-CZ` → topic *GitHub · Ops* (`2`). Push, issue, PR, release a diskusia. |
+| **Telegram: produkt** | [`docs/telegram-notifikacie.md`](docs/telegram-notifikacie.md) | `Omni-Legal-Products/lawoss` → topic *GitHub · App* (`293`). PR, issue, release a zlyhanie CI; bežné push správy sú vypnuté. **Aktívne od 2026-08-14** — token je organizačný secret. |
+| **Týždenný prehľad** | [`.github/workflows/tyzdenny-prehlad.yml`](.github/workflows/tyzdenny-prehlad.yml) | pondelok ráno do topicu *GitHub · Ops*: koľko PR čaká a ako dlho, koľko je bez recenzie, čo sa za týždeň zlúčilo, nápady podľa stavu. **Súhrn, nie prúd udalostí.** Dá sa spustiť aj ručne cez *Run workflow*. |
+| **GitHub Pages** | z `main`, root, `.nojekyll` | HTML dokumenty sú živé na `omni-legal-products.github.io/lawOSS-like-SK-CZ/...` |
 
 **Lokálne si vieš README pregenerovať:** `python3 .github/scripts/update_readme.py`
 
@@ -161,7 +200,7 @@ assets/       obrázky, diagramy, brand
 
 ## 🔗 Odkazy
 
-- **Repo:** https://github.com/originalmagneto/lawOSS-like-SK-CZ
+- **Repo:** https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ
 - **Základ projektu:** [LegalWork](https://github.com/eigenweltlabs/legalwork) (MIT) nad [opencode](https://github.com/sst/opencode) — [ADR 0003](decisions/0003-legal-work-ako-zaklad.md). Zamietnutí kandidáti: [mikeOSS](https://github.com/Open-Legal-Products/mike), Stella (CZ).
-- **Podať návrh funkcie:** [formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)
-- **Komunikácia:** Telegram *MikeOSS (SLOVAKIA) + AI Frontier Labs* — topics: General CHAT · SK Mike GH · DESIGN · Research · AI Frontier Labs
+- **Podať návrh funkcie:** [formulár](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)
+- **Komunikácia:** Telegram *LawOSS (SLOVAKIA | CZECHIA) + AI Frontier Labs* (`-1003828145652`) · topics: General CHAT (`1`) · GitHub · Ops (`2`) · GitHub · App (`293`) · DESIGN (`5`) · Research (`6`) · AI Frontier Labs (`7`) · Feature IDEAS (`97`)
