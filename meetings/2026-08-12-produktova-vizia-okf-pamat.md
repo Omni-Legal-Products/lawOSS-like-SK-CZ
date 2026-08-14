@@ -121,7 +121,7 @@ Anonymizácia sa do tohto poradia nezaraďuje.
 - [x] Otázky Q01 až Q25 boli odoslané do Telegramu s výzvou naklonovať alebo aktualizovať repo a prejsť ich cez vlastného AI agenta.
 - [x] Organizácia [Omni Legal Products](https://github.com/Omni-Legal-Products), produktový fork [LAWOSS](https://github.com/Omni-Legal-Products/lawoss) a private MCP kópie sú vytvorené.
 - [ ] MF, IR a VŘ majú prijať čakajúce GitHub pozvánky a odovzdať svoje odpovede Q01 až Q25.
-- [ ] Platformová stratégia macOS main, Windows pod vedením IR a bez nútenej parity čaká na merge v [PR #27](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/27).
+- [ ] Platformová stratégia macOS main, Windows pod vedením IR a bez nútenej parity čaká na merge v [PR #27](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/27).
 
 ## Otvorené rozhodnutia
 
