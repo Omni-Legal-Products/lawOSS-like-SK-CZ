@@ -13,11 +13,12 @@ Traja slovenskí advokáti (**Marián Čuprík**, **Martin Friedrich**, **Igor R
 |---|---|
 | **Toto repo** | prípravné a plánovacie — **neobsahuje kód** produktu. Brainstorming, rešerše, rozhodnutia, plánovanie. |
 | **Monetizácia** | výhradne **školenia a workshopy**. Nepredávame softvér ani službu (SaaS) — to by z advokáta spravilo poskytovateľa. Viď [ADR 0002](decisions/0002-preco-forkujeme-mikeoss.md). |
-| **Voľba základu** | ✅ **rozhodnuté 2026-08-06: [LegalWork](https://github.com/eigenweltlabs/legalwork)** (MIT) → [ADR 0003](decisions/0003-legal-work-ako-zaklad.md), nahrádza ADR 0002. Rozhodli MČ · IR · VŘ na [calle](meetings/2026-08-06-sync-call-volba-zakladu.md); **čaká na potvrdenie MF**. Hlavný dôvod: open-code harness ([opencode](https://github.com/sst/opencode)) v pozadí + MIT. mikeOSS zamietnutý (AGPL-3.0 + chýbajúci harness), Stella sa do užšieho výberu nedostala. ⚠️ **Otvorené:** *ako* forknúť — klasický fork ruší výhodu upstreamu. |
+| **Voľba základu** | ✅ **rozhodnuté 2026-08-06: [LegalWork](https://github.com/eigenweltlabs/legalwork)** (MIT) → [ADR 0003](decisions/0003-legal-work-ako-zaklad.md), nahrádza ADR 0002. Organizačný fork je [Omni-Legal-Products/lawoss](https://github.com/Omni-Legal-Products/lawoss), default vetva `dev`, upstream zostáva `eigenweltlabs/legalwork`. Potvrdenie MF k ADR 0003 je stále otvorené. |
 | **Licencia** | **MIT** — vyplýva z voľby základu. Súbor `LICENSE` v tomto repe ešte **chýba** (úloha MČ). |
 | **Názov** | **LAWOSS** — *Czechia · Slovakia* (od 2026-07-29; predtým pracovne „MikeOSS Slovakia"). Značka: `LAW` biele + `OSS` zlaté. |
 | **Záber** | 🇨🇿 **ČR + 🇸🇰 SR** — dvojjurisdikčný. Pri rešeršiach a specoch mysli na obe. |
 | **MikeOSS** | ❌ **zamietnutý ako základ** (2026-08-06, [ADR 0003](decisions/0003-legal-work-ako-zaklad.md)) — AGPL-3.0 a chýbajúci harness. Naďalej ho featurujeme len ako **inšpiráciu**. |
+| **Organizácia** | **Omni Legal Products**, GitHub [Omni-Legal-Products](https://github.com/Omni-Legal-Products). Produkt je **LAWOSS**; samostatné repozitáre slúžia pre MCP, skills, pluginy a ďalšie moduly. |
 
 **Začni čítaním:** [`decisions/`](decisions/) (čo je rozhodnuté a prečo) → [`specs/`](specs/) (čo staviame) → [`planning/roadmap.md`](planning/roadmap.md) (kde sme).
 
@@ -140,7 +141,7 @@ assets/       obrázky, diagramy, brand
 |---|---|---|
 | **Auto-README** | [`.github/workflows/update-readme.yml`](.github/workflows/update-readme.yml) | po pushi prepíše AUTO sekcie (progress, strom, aktivita) a **sám commitne** |
 | **Telegram notifikácie** | [`.github/workflows/telegram-notify.yml`](.github/workflows/telegram-notify.yml) | push/issue/PR/release → topic *SK Mike GH*. Secrets: `TELEGRAM_TOKEN`, `TELEGRAM_CHAT_ID`; premenná `TELEGRAM_TOPIC_ID` |
-| **GitHub Pages** | z `main`, root, `.nojekyll` | HTML dokumenty sú živé na `originalmagneto.github.io/lawOSS-like-SK-CZ/...` |
+| **GitHub Pages** | z `main`, root, `.nojekyll` | HTML dokumenty sú živé na `omni-legal-products.github.io/lawOSS-like-SK-CZ/...` |
 
 **Lokálne si vieš README pregenerovať:** `python3 .github/scripts/update_readme.py`
 
@@ -160,7 +161,7 @@ assets/       obrázky, diagramy, brand
 
 ## 🔗 Odkazy
 
-- **Repo:** https://github.com/originalmagneto/lawOSS-like-SK-CZ
+- **Repo:** https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ
 - **Základ projektu:** [LegalWork](https://github.com/eigenweltlabs/legalwork) (MIT) nad [opencode](https://github.com/sst/opencode) — [ADR 0003](decisions/0003-legal-work-ako-zaklad.md). Zamietnutí kandidáti: [mikeOSS](https://github.com/Open-Legal-Products/mike), Stella (CZ).
-- **Podať návrh funkcie:** [formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)
+- **Podať návrh funkcie:** [formulár](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)
 - **Komunikácia:** Telegram *MikeOSS (SLOVAKIA) + AI Frontier Labs* — topics: General CHAT · SK Mike GH · DESIGN · Research · AI Frontier Labs

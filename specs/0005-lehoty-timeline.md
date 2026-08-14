@@ -1,7 +1,7 @@
 # Spec 0005: Lehoty & timeline spisu
 
 - **Stav:** rozpracované · **kandidát na alfu #1**
-- **Navrhol:** Martin Friedrich (MF) · 2026-07-30 · [Issue #1](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/1)
+- **Navrhol:** Martin Friedrich (MF) · 2026-07-30 · [Issue #1](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/1)
 - **Doplnil:** Marián Čuprík (MČ) — timeline/diagramy, markdown-first
 - **Súvisiace:** [0002 OKF](0002-okf-operacny-system-praxe.md) · [0001 transkripcia](0001-transkripcia.md)
 

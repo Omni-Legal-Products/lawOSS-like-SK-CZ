@@ -4,15 +4,15 @@
 
 **Všetko, čo by sme raz mohli integrovať — na jednom mieste**
 
-![Nápadov](https://img.shields.io/badge/n%C3%A1padov-26-blue)
-![Aktualizované](https://img.shields.io/badge/aktualizovan%C3%A9-2026--08--07-green)
+![Nápadov](https://img.shields.io/badge/n%C3%A1padov-27-blue)
+![Aktualizované](https://img.shields.io/badge/aktualizovan%C3%A9-2026--08--12-green)
 
 </div>
 
 > [!TIP]
 > **Máš nápad? Hoď ho kamkoľvek z tohto:**
 > 1. **Telegram topic *Feature IDEAS*** — najrýchlejšie, netreba nič formátovať *(odtiaľ ich pravidelne zbierame sem)*
-> 2. **[GitHub formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)** — ak chceš, aby sa o tom hneď diskutovalo
+> 2. **[GitHub formulár](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)** — ak chceš, aby sa o tom hneď diskutovalo
 > 3. **Priamo do tohto súboru** — jeden riadok do priehradky *Nezaradené*
 >
 > **Nič sa nezahadzuje.** Aj zamietnuté nápady tu zostávajú aj s dôvodom, nech sa nevracajú dokola.
@@ -87,7 +87,7 @@ flowchart LR
 | 11 | UI/CLI prepínač | schválené na calle 6. 8. |
 | 12 | Markdown/Obsidian interoperabilita | schválené na calle 6. 8. — je to princíp, nie funkcia |
 | 16 | Modulové rozhranie plug-and-play | spracúva IR do 19. 8. |
-| 9 | Orchestrátor a subagenti | [PR #2](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/2) od MF, otvorený |
+| 9 | Orchestrátor a subagenti | [PR #2](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/2) od MF, otvorený |
 | 6 | Attorney workflow MVP | rozpadol sa do #7 a ďalších specov |
 | 10 | Digitálna sekretárka | rámec, ktorý spája #1 + #2 |
 
@@ -103,8 +103,8 @@ flowchart LR
 
 *Sem píš nové nápady, kým sa neprerokujú. Formát: **čo** — kto, kedy, odkiaľ.*
 
-- *(prázdne)*
+- **27. Open formats at the core, compatibility at the edges** - nezáväzný návrh MČ z 2026-08-12. Kanonický pracovný obsah LAWOSS by používal otvorené textové formáty Markdown, HTML a JSON. DOCX, XLSX a PPTX by zostali štandardizovanými OOXML výmennými formátmi pre podporované vstupy a výstupy. Teams a SharePoint by boli voliteľnými integráciami, nie povinným základom architektúry. Návrh neznamená okamžitý zákaz nástrojov Microsoftu a zatiaľ nie je prijatým rozhodnutím.
 
 ---
 
-<sub>Priehradky V1/V2/Neskôr sú **návrh na prerokovanie**, nie rozhodnutie — okrem #26, kde rozhodol MČ 2026-08-07. Aktualizované 2026-08-07 zo [spracovania Telegram topicu](../research/idey/2026-08-07-feature-ideas-telegram.md).</sub>
+<sub>Priehradky V1/V2/Neskôr sú **návrh na prerokovanie**, nie rozhodnutie, okrem #26, kde rozhodol MČ 2026-08-07. Aktualizované 2026-08-12 o návrh MČ #27; pôvodný súpis pochádza zo [spracovania Telegram topicu](../research/idey/2026-08-07-feature-ideas-telegram.md).</sub>

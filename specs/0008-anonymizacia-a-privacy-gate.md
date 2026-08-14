@@ -3,7 +3,7 @@
 - **Stav:** odložené · nice to have · neimplementovať v aktuálnej fáze
 - **Navrhol:** Martin Friedrich (MF) · 2026-08-11
 - **Zaradenie:** budúci voliteľný modul alebo add-on, mimo prvej verzie
-- **Súvisiace:** [Issue #15](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/15) · [Issue #1](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/1) · [0002 OKF](0002-okf-operacny-system-praxe.md) · [0003 Prompt layer](0003-prompt-layer.md) · [0006 Orchestrátor](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/2)
+- **Súvisiace:** [Issue #15](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/15) · [Issue #1](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/1) · [0002 OKF](0002-okf-operacny-system-praxe.md) · [0003 Prompt layer](0003-prompt-layer.md) · [0006 Orchestrátor](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/2)
 
 > [!IMPORTANT]
 > Anonymizácia je bezpečnostná a procesná hranica, nie právna záruka úplnej anonymity. Publikovanie musí zostať za automatickým overením a výslovným potvrdením advokátom.

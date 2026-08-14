@@ -104,7 +104,7 @@ Anonymizácia sa do tohto poradia nezaraďuje.
 
 ## Akčné body
 
-- [ ] MČ: rozšíriť OKF spec o tri vrstvy pamäte a reconciliation lifecycle.
+- [x] MČ: rozšíriť OKF spec o tri vrstvy pamäte a reconciliation lifecycle.
 - [ ] Tím: definovať hranice medzi L1, L2 a L3 a pravidlá povyšovania poznatkov.
 - [ ] Tím: špecifikovať onboarding subjektov a režimy `light`, `medium`, `hard`.
 - [ ] Tím: definovať metriky, audit, rollback a periodicitu reconciliation.
@@ -114,7 +114,15 @@ Anonymizácia sa do tohto poradia nezaraďuje.
 - [ ] Všetci: prijať GitHub pozvánky, naklonovať koordinačný a produktový repo a doplniť feature návrhy.
 - [ ] Všetci: potvrdiť ďalší krátky call v piatok 2026-08-14 o 17:00.
 
+## Stav po pracovnej session 2026-08-12
+
+- [x] Produktová doktrína MČ je zapísaná v [ADR 0009](../decisions/0009-zakladna-produktova-doktrina.md), vo vízii, princípoch a README. Na prijatie tímom čaká otázka Q24.
+- [x] Nezáväzný návrh `Open formats at the core, compatibility at the edges` je evidovaný ako nápad #27 a otázka Q25.
+- [x] Otázky Q01 až Q25 boli odoslané do Telegramu s výzvou naklonovať alebo aktualizovať repo a prejsť ich cez vlastného AI agenta.
+- [x] Organizácia [Omni Legal Products](https://github.com/Omni-Legal-Products), produktový fork [LAWOSS](https://github.com/Omni-Legal-Products/lawoss) a private MCP kópie sú vytvorené.
+- [ ] MF, IR a VŘ majú prijať čakajúce GitHub pozvánky a odovzdať svoje odpovede Q01 až Q25.
+- [ ] Platformová stratégia macOS main, Windows pod vedením IR a bez nútenej parity čaká na merge v [PR #27](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/27).
+
 ## Otvorené rozhodnutia
 
 Otázky o product ownership, release vetvách, prvých vertikálach, scope billing modulu, lokálnosti dát, platformách a sign-off rolách budú predložené v samostatnom diskusnom PR. Nie sú súčasťou prijatých rozhodnutí tohto zápisu.
-

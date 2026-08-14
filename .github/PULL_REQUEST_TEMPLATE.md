@@ -19,6 +19,13 @@
 - [ ] Žiadne klientske dáta ani tajomstvá (repo je **verejné**)
 - [ ] Veľké médiá nie sú v gite (Release / `.gitignore`)
 
+## Produktová doktrína
+
+- [ ] Zmena zachováva alebo zvyšuje kontrolu používateľa.
+- [ ] Zmena nevytvára povinný black box ani vendor lock-in.
+- [ ] Zmena zachováva audit a primerané human approval.
+- [ ] Platformová alebo dočasná výnimka je odôvodnená príslušným ADR.
+
 ## Na prerokovanie
 
 <!-- Čo chceš, aby ostatní dvaja posúdili? Kde si si nebol istý? -->
