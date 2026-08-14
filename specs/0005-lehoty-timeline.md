@@ -56,7 +56,7 @@ timeline
 
 ## Otvorené otázky (z Issue #1 + doplnené)
 
-- [ ] Pravidlá výpočtu lehôt SK/CZ (procesné vs hmotnoprávne, sviatky, doručovanie — fikcia doručenia) — **toto je právne jadro, spíšu MF/IR**
+- [ ] Pravidlá výpočtu lehôt SK/CZ (procesné vs hmotnoprávne, sviatky, doručovanie — fikcia doručenia) — **toto je právne jadro, spíšu MF/IR**. SK časť: draft s 12 pravidlami počítania, katalógom 14 lehôt, 14 pascami a 19 testovacími prípadmi je v [research/pravny-ramec/2026-08-14-lehoty-sk-pravidla-vypoctu.md](../research/pravny-ramec/2026-08-14-lehoty-sk-pravidla-vypoctu.md) (na revíziu; neoverené tvrdenia nesú [OVERIŤ])
 - [ ] Kalendárové integrácie: čo je priorita (CalDAV / Google / ICS export)?
 - [ ] Ako riešiť lehoty závislé od udalosti, ktorá ešte nenastala?
 - [ ] Dvojitá kontrola pri lehotách kratších ako X dní?
