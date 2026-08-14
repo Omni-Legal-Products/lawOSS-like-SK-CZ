@@ -18,14 +18,15 @@ Token bota sa nikdy nezapisuje do dokumentácie, commitu, issue, PR ani logu. Pa
 
 | Repozitár | Vetva | Topic | Topic ID | Workflow | Udalosti |
 |---|---|---|---:|---|---|
-| `Omni-Legal-Products/lawOSS-like-SK-CZ` | `main` | `SK Mike GH` | `2` | `.github/workflows/telegram-notify.yml` | push do `main`, PR, issue, release, diskusia |
-| `Omni-Legal-Products/lawoss` | `dev` | `LAWOSS APP GH` | `293` | `.github/workflows/telegram-notify.yml` v produktovom repe | PR, issue, release, zlyhanie CI |
+| `Omni-Legal-Products/lawOSS-like-SK-CZ` | `main` | `GitHub · Ops` | `2` | `.github/workflows/telegram-notify.yml` | push do `main`, PR, issue, release, diskusia |
+| `Omni-Legal-Products/lawoss` | `dev` | `GitHub · App` | `293` | `.github/workflows/telegram-notify.yml` v produktovom repe | PR, issue, release, zlyhanie CI |
 
 Produktový workflow neposiela každý push. Cieľom je zachytiť udalosti vyžadujúce pozornosť bez zahltenia tímového chatu.
 
 ## Stav produktového napojenia
 
-- Topic `LAWOSS APP GH` bol vytvorený 2026-08-12 s ID `293`.
+- Topic `GitHub · App` bol vytvorený 2026-08-12 s ID `293`.
+- Topicy boli **2026-08-14 premenované** na `GitHub · Ops` a `GitHub · App` — spoločný prefix ich drží pri sebe a pôvodné `SK Mike GH` odkazovalo na zamietnutý MikeOSS. **Premenovanie nemení ID**, takže workflow ani premenné sa nedotklo.
 - Repository variables sú nastavené:
   - `TELEGRAM_CHAT_ID=-1003828145652`
   - `TELEGRAM_TOPIC_ID=293`
@@ -35,7 +36,7 @@ Produktový workflow neposiela každý push. Cieľom je zachytiť udalosti vyža
 
 ## Udalosti produktového repozitára
 
-| Udalosť | Správa do `LAWOSS APP GH` |
+| Udalosť | Správa do `GitHub · App` |
 |---|---|
 | Pull request | otvorený, znovuotvorený, pripravený na review, zatvorený alebo mergnutý |
 | Issue | otvorené, znovuotvorené alebo zatvorené |
@@ -68,7 +69,7 @@ Sledované CI workflowy:
 3. Vytvoriť repository secret `TELEGRAM_TOKEN` s tokenom `@mikeossSK_bot`.
 4. Schváliť a mergnúť [PR #2](https://github.com/Omni-Legal-Products/lawoss/pull/2) do `dev`.
 5. V `Actions` spustiť workflow `LAWOSS Telegram notifications` cez `Run workflow`.
-6. Overiť testovaciu správu v topicu `LAWOSS APP GH`.
+6. Overiť testovaciu správu v topicu `GitHub · App`.
 
 Ak sa použije organization secret, musí byť sprístupnený minimálne repozitáru `Omni-Legal-Products/lawoss`. Hodnotu secretu GitHub po uložení spätne nezobrazí.
 
@@ -77,8 +78,8 @@ Ak sa použije organization secret, musí byť sprístupnený minimálne repozit
 | Topic | ID | Účel |
 |---|---:|---|
 | `General CHAT` | `1` | tímová komunikácia a koordinácia |
-| `SK Mike GH` | `2` | automatizácie koordinačného repozitára |
-| `LAWOSS APP GH` | `293` | automatizácie produktového repozitára |
+| `GitHub · Ops` | `2` | automatizácie koordinačného repozitára |
+| `GitHub · App` | `293` | automatizácie produktového repozitára |
 | `DESIGN` | `5` | produktový a vizuálny dizajn |
 | `Research` | `6` | rešerše |
 | `AI Frontier Labs` | `7` | súvisiace AI témy |
@@ -86,8 +87,8 @@ Ak sa použije organization secret, musí byť sprístupnený minimálne repozit
 
 ## Pravidlá pre AI agentov
 
-1. Koordinačné notifikácie nesmerovať do `LAWOSS APP GH`.
-2. Produktové notifikácie nesmerovať do `SK Mike GH`.
+1. Koordinačné notifikácie nesmerovať do `GitHub · App`.
+2. Produktové notifikácie nesmerovať do `GitHub · Ops`.
 3. Nepridávať bežné push notifikácie do produktového topicu bez tímového rozhodnutia.
 4. Nikdy nevypisovať ani nekopírovať hodnotu `TELEGRAM_TOKEN`.
 5. Pri zmene názvu workflowu aktualizovať aj zoznam v `workflow_run.workflows`, inak sa zlyhanie CI nemusí oznámiť.

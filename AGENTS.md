@@ -177,8 +177,8 @@ Nezakladaj duplikát — použi **Transfer issue** *(`Issue → ⋯ → Transfer
 | Čo | Kde | Správanie |
 |---|---|---|
 | **Auto-README** | [`.github/workflows/update-readme.yml`](.github/workflows/update-readme.yml) | po pushi prepíše AUTO sekcie (progress, strom, aktivita) a **sám commitne** |
-| **Telegram: koordinácia** | [`.github/workflows/telegram-notify.yml`](.github/workflows/telegram-notify.yml) | `Omni-Legal-Products/lawOSS-like-SK-CZ` → topic *SK Mike GH* (`2`). Push, issue, PR, release a diskusia. |
-| **Telegram: produkt** | [`docs/telegram-notifikacie.md`](docs/telegram-notifikacie.md) | `Omni-Legal-Products/lawoss` → topic *LAWOSS APP GH* (`293`). PR, issue, release a zlyhanie CI; bežné push správy sú vypnuté. Aktivácia čaká na merge produktového PR #2 a secret `TELEGRAM_TOKEN`. |
+| **Telegram: koordinácia** | [`.github/workflows/telegram-notify.yml`](.github/workflows/telegram-notify.yml) | `Omni-Legal-Products/lawOSS-like-SK-CZ` → topic *GitHub · Ops* (`2`). Push, issue, PR, release a diskusia. |
+| **Telegram: produkt** | [`docs/telegram-notifikacie.md`](docs/telegram-notifikacie.md) | `Omni-Legal-Products/lawoss` → topic *GitHub · App* (`293`). PR, issue, release a zlyhanie CI; bežné push správy sú vypnuté. Aktivácia čaká na merge produktového PR #2 a secret `TELEGRAM_TOKEN`. |
 | **GitHub Pages** | z `main`, root, `.nojekyll` | HTML dokumenty sú živé na `omni-legal-products.github.io/lawOSS-like-SK-CZ/...` |
 
 **Lokálne si vieš README pregenerovať:** `python3 .github/scripts/update_readme.py`
@@ -202,4 +202,4 @@ Nezakladaj duplikát — použi **Transfer issue** *(`Issue → ⋯ → Transfer
 - **Repo:** https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ
 - **Základ projektu:** [LegalWork](https://github.com/eigenweltlabs/legalwork) (MIT) nad [opencode](https://github.com/sst/opencode) — [ADR 0003](decisions/0003-legal-work-ako-zaklad.md). Zamietnutí kandidáti: [mikeOSS](https://github.com/Open-Legal-Products/mike), Stella (CZ).
 - **Podať návrh funkcie:** [formulár](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)
-- **Komunikácia:** Telegram *LawOSS (SLOVAKIA | CZECHIA) + AI Frontier Labs* (`-1003828145652`) · topics: General CHAT (`1`) · SK Mike GH (`2`) · LAWOSS APP GH (`293`) · DESIGN (`5`) · Research (`6`) · AI Frontier Labs (`7`) · Feature IDEAS (`97`)
+- **Komunikácia:** Telegram *LawOSS (SLOVAKIA | CZECHIA) + AI Frontier Labs* (`-1003828145652`) · topics: General CHAT (`1`) · GitHub · Ops (`2`) · GitHub · App (`293`) · DESIGN (`5`) · Research (`6`) · AI Frontier Labs (`7`) · Feature IDEAS (`97`)
