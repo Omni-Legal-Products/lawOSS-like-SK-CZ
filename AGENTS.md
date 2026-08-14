@@ -29,6 +29,7 @@ Traja slovenskí advokáti (**Marián Čuprík**, **Martin Friedrich**, **Igor R
 | ❌ Nikdy | Prečo |
 |---|---|
 | **Needituj AUTO sekcie v `README.md`** (medzi `<!-- AUTO:X -->`) | generuje ich GitHub Action, tvoje zmeny sa prepíšu |
+| **Needituj `specs/prehlad.html`** | generuje sa z `specs/navrhy.md`; zmeny píš tam |
 | **Nerob `git push --force` ani prepis histórie** | pracujú tu traja, zmažeš cudziu prácu — **`main` to aj technicky blokuje** |
 | **Neprepisuj cudzie autorstvo** návrhov a rozhodnutí | evidencia v [`specs/navrhy.md`](specs/navrhy.md) musí sedieť |
 | **Nemeň cudzí ADR** — namiesto toho pridaj nový, ktorý ten starý nahrádza | rozhodnutia sú záznam v čase |
@@ -177,12 +178,13 @@ Nezakladaj duplikát — použi **Transfer issue** *(`Issue → ⋯ → Transfer
 | Čo | Kde | Správanie |
 |---|---|---|
 | **Auto-README** | [`.github/workflows/update-readme.yml`](.github/workflows/update-readme.yml) | po pushi prepíše AUTO sekcie (progress, strom, aktivita) a **sám commitne** |
+| **Prehľad návrhov** | [`.github/scripts/update_prehlad.py`](.github/scripts/update_prehlad.py) | po pushi pregeneruje [`specs/prehlad.html`](specs/prehlad.html) z `specs/navrhy.md`. **Needituj ho ručne** — zdroj pravdy je evidencia. Beží v tom istom workflowe ako auto-README. |
 | **Telegram: koordinácia** | [`.github/workflows/telegram-notify.yml`](.github/workflows/telegram-notify.yml) | `Omni-Legal-Products/lawOSS-like-SK-CZ` → topic *GitHub · Ops* (`2`). Push, issue, PR, release a diskusia. |
 | **Telegram: produkt** | [`docs/telegram-notifikacie.md`](docs/telegram-notifikacie.md) | `Omni-Legal-Products/lawoss` → topic *GitHub · App* (`293`). PR, issue, release a zlyhanie CI; bežné push správy sú vypnuté. **Aktívne od 2026-08-14** — token je organizačný secret. |
 | **Týždenný prehľad** | [`.github/workflows/tyzdenny-prehlad.yml`](.github/workflows/tyzdenny-prehlad.yml) | pondelok ráno do topicu *GitHub · Ops*: koľko PR čaká a ako dlho, koľko je bez recenzie, čo sa za týždeň zlúčilo, nápady podľa stavu. **Súhrn, nie prúd udalostí.** Dá sa spustiť aj ručne cez *Run workflow*. |
 | **GitHub Pages** | z `main`, root, `.nojekyll` | HTML dokumenty sú živé na `omni-legal-products.github.io/lawOSS-like-SK-CZ/...` |
 
-**Lokálne si vieš README pregenerovať:** `python3 .github/scripts/update_readme.py`
+**Lokálne si vieš oboje pregenerovať:** `python3 .github/scripts/update_readme.py && python3 .github/scripts/update_prehlad.py`
 
 ---
 

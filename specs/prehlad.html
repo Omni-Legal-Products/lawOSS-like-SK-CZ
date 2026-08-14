@@ -3,222 +3,234 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LAWOSS — prehľad navrhovaných funkcií</title>
+<title>LAWOSS — prehľad návrhov a funkcií</title>
 <style>
-  :root{--navy:#0d1b2a;--navy2:#13243a;--gold:#c9a24a;--gold-soft:#e4c979;
-    --ink:#1a2233;--muted:#5b6577;--line:#e4e7ec;--bg:#f6f7f9;--card:#fff;
-    --green:#1f9d55;--amber:#c98a1a;--red:#c0392b;--slate:#64748b}
-  @media (prefers-color-scheme:dark){:root{--ink:#e8ecf3;--muted:#9aa6b8;--line:#25324a;--bg:#0b131f;--card:#111c2e}}
+  :root{--navy:#0d1b2a;--gold:#c9a24a;--ink:#1a2233;--muted:#5b6577;--line:#e4e7ec;--bg:#f6f7f9;--card:#fff}
+  @media(prefers-color-scheme:dark){:root{--ink:#e8ecf3;--muted:#9aa6b8;--line:#25324a;--bg:#0b131f;--card:#111c2e}}
   *{box-sizing:border-box}
   body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
-  a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
-  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
-  .hero{background:radial-gradient(1100px 380px at 75% -10%,rgba(201,162,74,.22),transparent),
-    linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;padding:46px 0 38px;border-bottom:3px solid var(--gold)}
-  .kicker{letter-spacing:.26em;text-transform:uppercase;font-size:12px;color:var(--gold-soft);font-weight:700}
-  .hero h1{margin:.3em 0 .1em;font-size:clamp(25px,4.4vw,38px);line-height:1.12;font-weight:800}
-  .hero p{margin:.4em 0 0;color:#c8d2e0;font-size:15px;max-width:70ch}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-  .chip{background:rgba(255,255,255,.08);border:1px solid rgba(201,162,74,.4);color:#fff;padding:5px 12px;border-radius:100px;font-size:12.5px;font-weight:600}
-  .chip b{color:var(--gold-soft)}
-  section{margin:36px 0}
-  h2{font-size:20px;font-weight:800;margin:0 0 6px;display:flex;align-items:center;gap:10px}
-  h2 .n{background:var(--navy);color:var(--gold);min-width:30px;height:30px;padding:0 8px;border-radius:8px;display:inline-grid;place-items:center;font-size:12px;flex:none}
-  @media(prefers-color-scheme:dark){h2 .n{background:#0a1524}}
-  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;
-    box-shadow:0 4px 14px rgba(13,27,42,.05);border-top:4px solid var(--slate)}
-  .card.v1{border-top-color:var(--green)}
-  .card.v2{border-top-color:var(--gold)}
-  .card.later{border-top-color:var(--slate)}
-  .card h3{margin:.1em 0 .35em;font-size:15.5px;display:flex;gap:8px;align-items:baseline}
-  .card h3 .id{font-size:11.5px;color:var(--muted);font-weight:700;letter-spacing:.05em;flex:none}
-  .card p{margin:0;font-size:13.5px;color:var(--muted)}
-  .who{display:inline-block;margin-top:9px;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:100px;
-    background:rgba(125,140,170,.16);border:1px solid var(--line)}
-  .badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
-    padding:3px 10px;border-radius:100px;margin-bottom:2px}
-  .b-v1{background:rgba(31,157,85,.16);border:1px solid var(--green);color:var(--green)}
-  .b-v2{background:rgba(201,162,74,.16);border:1px solid var(--gold);color:var(--gold)}
-  .b-later{background:rgba(100,116,139,.16);border:1px solid var(--slate);color:var(--slate)}
-  .star{color:var(--gold)}
-  table{width:100%;border-collapse:collapse;font-size:14px;border-radius:12px;overflow:hidden}
-  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{background:var(--navy);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
-  @media(prefers-color-scheme:dark){th{background:#0a1524}}
-  tr:last-child td{border-bottom:none}
-  .tbl-wrap{overflow-x:auto}
-  code{background:rgba(125,140,170,.16);padding:1px 6px;border-radius:5px;font-size:13px}
-  .warn{border-left:4px solid var(--amber);background:var(--card);border-radius:0 12px 12px 0;padding:15px 18px;
-    border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .warn h3{color:var(--amber);margin:0 0 6px;font-size:15px}
-  .warn p{margin:0;font-size:14px}
-  .ok{border-left-color:var(--green)}.ok h3{color:var(--green)}
-  footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 50px;color:var(--muted);font-size:13px}
+    background:var(--bg);color:var(--ink);line-height:1.55}
+  .hero{background:linear-gradient(160deg,var(--navy),#13243a);color:#fff;padding:34px 20px 26px;border-bottom:3px solid var(--gold)}
+  .wrap{max-width:1180px;margin:0 auto}
+  .hero h1{margin:.1em 0;font-size:clamp(22px,4vw,34px);font-weight:800}
+  .hero p{margin:.3em 0 0;color:#c8d2e0;font-size:14px}
+  .gen{margin-top:12px;font-size:12.5px;color:#8fa0b8}
+  .filtre{display:flex;flex-wrap:wrap;gap:8px;padding:18px 20px 4px}
+  .f{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--c);color:var(--ink);
+    padding:7px 13px;border-radius:9px;font-size:13px;cursor:pointer;font-family:inherit}
+  .f:hover{border-color:var(--c)}
+  .f.off{opacity:.35}
+  main{padding:10px 20px 60px}
+  .skupina{margin:26px 0}
+  .skupina h2{font-size:17px;margin:0 0 2px;border-left:4px solid var(--c);padding-left:10px;font-weight:800}
+  .pocet{background:var(--c);color:#fff;border-radius:100px;padding:1px 9px;font-size:12.5px;margin-left:6px}
+  .vysvetl{margin:0 0 12px 14px;color:var(--muted);font-size:13px}
+  .karta{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin:0 0 9px 14px}
+  .hlava{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--muted)}
+  .cislo{font-weight:800;color:var(--gold)}
+  .nazov{font-weight:700;margin:3px 0 2px;font-size:14.5px}
+  .popis,.pozn{color:var(--muted);font-size:13px}
+  .pozn{margin-top:4px;font-style:italic}
+  footer{border-top:1px solid var(--line);padding:20px;color:var(--muted);font-size:12.5px;text-align:center}
 </style>
 </head>
 <body>
-
-<div class="hero">
-  <div class="wrap">
-    <div class="kicker">LAWOSS · Czechia · Slovakia</div>
-    <h1>Prehľad navrhovaných funkcií</h1>
-    <p>Nie AI editor. Operačný systém advokátskej praxe. Toto je celý zásobník nápadov rozdelený podľa toho, čo ide do prvej verzie a čo počká.</p>
-    <div class="meta">
-      <span class="chip"><b>Nápadov:</b> 26</span>
-      <span class="chip"><b>Specov:</b> 7</span>
-      <span class="chip"><b>Scope V1 sa odklepáva:</b> 12. 8. 2026</span>
-      <span class="chip"><b>Aktualizované:</b> 2026-08-07</span>
-    </div>
-  </div>
-</div>
+<div class="hero"><div class="wrap">
+  <h1>📋 Prehľad návrhov a funkcií</h1>
+  <p>Všetko, čo je v evidencii — od surového nápadu po hotovú funkciu.</p>
+  <div class="gen">Generované z <code>specs/navrhy.md</code> · 2026-08-14 19:58 UTC · <b>33 položiek</b></div>
+</div></div>
 
 <div class="wrap">
-
-<section>
-  <div class="warn ok">
-    <h3>Východisko — čo netreba stavať</h3>
-    <p>Základom je <a href="https://github.com/eigenweltlabs/legalwork">LegalWork</a> (MIT). Ten už hotové dáva chat a lokálneho agenta, Word/Excel/PowerPoint add-iny s tracked changes, on-device transkripciu, tabular review, voľbu modelu aj UI na pridávanie MCP serverov. <b>Naše funkcie sú to, čo z neho spraví nástroj pre slovenského a českého advokáta.</b></p>
+  <div class="filtre">
+    <button class="f" data-f="nápad" style="--c:#7d8ca8">💭 nápad <b>17</b></button>
+    <button class="f" data-f="spec" style="--c:#c9a24a">📝 spec <b>11</b></button>
+    <button class="f" data-f="odklepnuté" style="--c:#1f9d55">✅ odklepnuté <b>4</b></button>
+    <button class="f" data-f="odložené" style="--c:#c98a1a">⏸️ odložené <b>1</b></button>
   </div>
-</section>
-
-<section>
-  <h2><span class="n">V1</span>Kandidáti na MVP</h2>
-  <p class="lead">Výber podľa štyroch filtrov: dá sa vydať rýchlo · má hodnotu aj samostatne · nízke riziko · väčšinu už máme.</p>
-  <div class="grid">
-    <div class="card v1">
-      <span class="badge b-v1">V1</span>
-      <h3><span class="id">—</span> SK/CZ lokalizácia rozhrania</h3>
-      <p>Bez nej to advokát nepoužije. Technicky najlacnejšie — nové súbory locale, nulový merge konflikt, a upstream to aj testuje vlastnou CI.</p>
-      <span class="who">MČ + VŘ</span>
-    </div>
-    <div class="card v1">
-      <span class="badge b-v1">V1</span>
-      <h3><span class="id">0002</span> OKF — spisy a štruktúra praxe <span class="star">★</span></h3>
-      <p>Jadro odlíšenia. Zakladanie spisov, riadiace súbory, poriadok. MČ to má osobne rozbehnuté — ide o zabalenie, nie o vynález.</p>
-      <span class="who">MČ</span>
-    </div>
-    <div class="card v1">
-      <span class="badge b-v1">V1</span>
-      <h3><span class="id">0004</span> SK/CZ MCP konektory</h3>
-      <p>Judikatúra, Slov-Lex, ORSR, RPO, RPVS. Najviditeľnejšia hodnota, servery už existujú, read-only znamená nízke riziko.</p>
-      <span class="who">MČ</span>
-    </div>
-    <div class="card v1">
-      <span class="badge b-v1">V1</span>
-      <h3><span class="id">0005</span> Lehoty a timeline spisu <span class="star">★</span></h3>
-      <p>Kandidát č. 1 od MF. Zmeškaná lehota je najčastejší dôvod zodpovednosti advokáta — hodnota aj úplne samostatne.</p>
-      <span class="who">MF</span>
-    </div>
-    <div class="card v1">
-      <span class="badge b-v1">V1</span>
-      <h3><span class="id">#8</span> OCR ingest → markdown</h3>
-      <p>Quick win. MČ má hotovú Quick Action s Mistral OCR; ide o zabalenie do workflowu.</p>
-      <span class="who">MČ</span>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2><span class="n">V2</span>Hneď po MVP</h2>
-  <div class="grid">
-    <div class="card v2">
-      <span class="badge b-v2">V2</span>
-      <h3><span class="id">#21</span> Tiered memory s compaction <span class="star">★</span></h3>
-      <p>Denné memories → týždenné → mesačné, plus sumarizácie na úrovni klienta. Najsilnejší diferenciátor — MČ aj VŘ nezávisle. V MVP ho v základnej podobe zastúpi OKF.</p>
-      <span class="who">MČ · VŘ</span>
-    </div>
-    <div class="card v2">
-      <span class="badge b-v2">V2</span>
-      <h3><span class="id">0001</span> Transkripcia naviazaná na spis</h3>
-      <p>LegalWork už transkribuje sám. Naša pridaná hodnota je zaradenie prepisu do správneho spisu s úlohami a lehotami.</p>
-      <span class="who">MČ</span>
-    </div>
-    <div class="card v2">
-      <span class="badge b-v2">V2</span>
-      <h3><span class="id">0003</span> Otvorený prompt layer</h3>
-      <p>Žiadny black box, verzované prompty, štýlový profil advokáta. Vrátane hybrid routingu podľa citlivosti úlohy.</p>
-      <span class="who">MČ</span>
-    </div>
-    <div class="card v2">
-      <span class="badge b-v2">V2</span>
-      <h3><span class="id">0007</span> Podpisovanie QES + QTS</h3>
-      <p>Cez <a href="https://github.com/slovensko-digital/autogram">Autogram</a> ako externý proces — CLI aj HTTP API. Pokrýva eID, eObčanku aj I.CA SecureStore. Podpis vždy spúšťa advokát.</p>
-      <span class="who">MČ</span>
-    </div>
-    <div class="card v2">
-      <span class="badge b-v2">V2</span>
-      <h3><span class="id">#17</span> Rešeršný workflow „one-click"</h3>
-      <p>Dotaz → rešerš → projektové artefakty, s napojením na NotebookLM CLI.</p>
-      <span class="who">MČ</span>
-    </div>
-    <div class="card v2">
-      <span class="badge b-v2">V2</span>
-      <h3><span class="id">#14</span> Špecializovaní agenti podľa odvetvia</h3>
-      <p>Všeobecný agent spotrebuje priveľa dotazov — VŘ to overil v praxi na MCP Salvia.</p>
-      <span class="who">VŘ</span>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2><span class="n">…</span>Neskôr</h2>
-  <p class="lead">Dobré nápady, ktoré nemajú v prvých verziách čo hľadať. Nič sa nezahadzuje.</p>
-  <div class="tbl-wrap">
-  <table>
-    <tr><th>#</th><th>Nápad</th><th>Kto</th><th>Prečo počká</th></tr>
-    <tr><td><b>26</b></td><td><b>Zaručená konverzia</b></td><td>MČ</td><td><b>Rozhodnutie MČ 7. 8.: až ďalšia verzia.</b> Regulovaná činnosť — právne náležitosti osvedčovacej doložky treba vyriešiť pred implementáciou</td></tr>
-    <tr><td>22</td><td>Zjednotenie komunikačných kanálov do spisu</td><td>VŘ</td><td>Najsilnejšie pomenovaná bolesť z praxe, ale veľký scope a nejasné riešenie</td></tr>
-    <tr><td>23</td><td>Self-healing a self-updating integrácie</td><td>MČ</td><td>Treba doriešiť breaking changes a rollback</td></tr>
-    <tr><td>24</td><td>Self-evolving / self-correcting systém</td><td>MČ</td><td>Nerozvinuté, súvisí s #23</td></tr>
-    <tr><td>25</td><td>CMR a case audit systém</td><td>MČ</td><td>Zatiaľ len heslo</td></tr>
-    <tr><td>20</td><td>Fakturácia a výkazy času</td><td>MČ</td><td>Je v mockupoch, ale nie je to naše odlíšenie</td></tr>
-    <tr><td>15</td><td>Poľské rozšírenie (PL)</td><td>VŘ</td><td>Až keď bude SK/CZ stabilné</td></tr>
-    <tr><td>18</td><td>Google Workspace a outreach</td><td>MČ</td><td>Nízka priorita</td></tr>
-    <tr><td>13</td><td>MCP Salvia (CZ judikatúra)</td><td>VŘ</td><td>Závisí od licenčných podmienok tretej strany</td></tr>
-  </table>
-  </div>
-</section>
-
-<section>
-  <h2><span class="n">↻</span>Rieši sa priebežne</h2>
-  <div class="tbl-wrap">
-  <table>
-    <tr><th>#</th><th>Čo</th><th>Stav</th></tr>
-    <tr><td>11</td><td>UI/CLI prepínač</td><td>schválené na calle 6. 8.</td></tr>
-    <tr><td>12</td><td>Markdown/Obsidian interoperabilita</td><td>schválené — je to princíp, nie funkcia</td></tr>
-    <tr><td>16</td><td>Modulové rozhranie plug-and-play</td><td>spracúva IR do 19. 8.</td></tr>
-    <tr><td>9</td><td>Orchestrátor a subagenti</td><td>PR #2 od MF, otvorený</td></tr>
-    <tr><td>10</td><td>Digitálna sekretárka</td><td>rámec spájajúci 0001 + 0002</td></tr>
-  </table>
-  </div>
-</section>
-
-<section>
-  <h2><span class="n">!</span>Čo nesmieme podceniť</h2>
-  <div class="warn" style="margin-bottom:14px">
-    <h3>Licencie sa už trikrát ukázali ako rozhodujúce</h3>
-    <p>mikeOSS (AGPL-3.0) → zamietnutý ako základ · LegalMemory (AGPL-3.0 + CLA) → len ako oddelený appliance · Autogram (EUPL-1.2) → len ako externý proces. <b>Pri každom novom komponente overiť licenciu skôr, než sa naň naviaže návrh funkcie.</b> Vzor je vždy rovnaký — volať, neintegrovať.</p>
-  </div>
-  <div class="warn">
-    <h3>Úkony v mene advokáta potrebujú human gate</h3>
-    <p>Spec 0004 to hovorí priamo: vo chvíli, keď pripojíme autentifikované podanie pod kvalifikovaným podpisom, dávame pravdepodobnostnému modelu možnosť konať v mene advokáta. Jedna halucinovaná akcia = podanie, ktoré nikto nechcel. <b>Read-only najprv, zápisové úkony len s výslovným potvrdením človekom.</b></p>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap" style="padding:0">
-    Podrobne: <a href="README.md">specs/</a> ·
-    <a href="navrhy.md">evidencia návrhov</a> ·
-    <a href="../planning/napady.md">zberný kôš</a> ·
-    <a href="../meetings/2026-08-12-agenda-mvp.md">agenda MVP 12. 8.</a> ·
-    <a href="../planning/roadmap.md">roadmapa</a><br>
-    Zaradenie do verzií je <b>návrh na prerokovanie</b>, nie rozhodnutie — okrem #26. Aktualizované 2026-08-07.
-  </div>
-</footer>
-
+  <main>
+<section class="skupina" data-stav="nápad"><h2 style="--c:#7d8ca8">💭 nápad <span class="pocet">17</span></h2><p class="vysvetl">zapísané, nerozpracované</p><div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#5</span><span class="kto">MČ · 2026-07-29</span></div>
+  <div class="nazov">💭 Hybrid routing</div>
+  <div class="popis">lokálny model pre OKF, subscription pre rešerš, anonymizácia pred assessmentom</div>
 </div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#10</span><span class="kto">MČ · 2026-08-06</span></div>
+  <div class="nazov">💭 Digitálna sekretárka</div>
+  <div class="popis">založenie spisu → priečinky → workflow písaných aj diktovaných zápiskov → markdown do spisu</div><div class="pozn">spája 0001 + 0002</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#13</span><span class="kto">VŘ · 2026-08-06</span></div>
+  <div class="nazov">💭 MCP Salvia</div>
+  <div class="popis">CZ judikatúra ako voliteľný modul (~10 € / 3 000 dotazov, lepšia indexácia než Codexis)</div><div class="pozn">overiť licenčné podmienky</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#14</span><span class="kto">VŘ · 2026-08-06</span></div>
+  <div class="nazov">💭 Špecializovaní agenti podľa právneho odvetvia</div>
+  <div class="popis">všeobecný agent spotrebuje priveľa dotazov</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#17</span><span class="kto">MČ · 2026-08-06</span></div>
+  <div class="nazov">💭 Rešeršný workflow „one-click&quot;</div>
+  <div class="popis">dotaz → rešerš → projektové artefakty, cez NotebookLM CLI</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#18</span><span class="kto">MČ · 2026-08-06</span></div>
+  <div class="nazov">💭 Google Workspace integrácia</div>
+  <div class="popis">e-maily a marketingový outreach cez harness</div><div class="pozn">nízka priorita</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#20</span><span class="kto">MČ · 2026-08-06</span></div>
+  <div class="nazov">💭 Fakturácia a výkazy času</div>
+  <div class="popis">v rozhraní na mockupoch (Fakturácia, Výkazy času, Šablóny)</div><div class="pozn">dizajnový prieskum</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#22</span><span class="kto">VŘ · 2026-08-04</span></div>
+  <div class="nazov">💭 Zjednotenie komunikačných kanálov do spisu</div>
+  <div class="popis">e-mail, dátová schránka, SMS, telefón dnes advokát prenáša do spisu ručne</div><div class="pozn">jediný explicitne pomenovaný nevyriešený problém z praxe</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#23</span><span class="kto">MČ · 2026-08-06</span></div>
+  <div class="nazov">💭 Self-healing a self-updating integrácie</div>
+  <div class="popis">MCP servery, skilly a CLI nástroje udržiavané automaticky cez cron, aby to používateľ neriešil</div><div class="pozn">sedí na princíp „nie sme programátori&quot;</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#24</span><span class="kto">MČ · 2026-07-29</span></div>
+  <div class="nazov">💭 Self-evolving / self-correcting systém</div>
+  <div class="popis">inšpirácia Hermes Agent</div><div class="pozn">nerozvinuté; súvisí s #23</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#25</span><span class="kto">MČ · 2026-08-02</span></div>
+  <div class="nazov">💭 CMR a case audit systém</div>
+  <div class="popis">kontrola kvality a úplnosti vedenia spisu</div><div class="pozn">zatiaľ len heslo, treba rozpísať</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#28</span><span class="kto">MČ · 2026-08-13</span></div>
+  <div class="nazov">💭 Zoraďovanie súborov vo workspace browseri</div>
+  <div class="popis">podľa dátumu, veľkosti, typu a názvu; pri spise s desiatkami dokumentov chýba ako prvé</div><div class="pozn">malé zlepšenie s okamžitým dopadom · kandidát na upstream PR</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#29</span><span class="kto">MČ · 2026-08-13</span></div>
+  <div class="nazov">💭 Sprístupniť režim sledovania zmien v editore dokumentov</div>
+  <div class="popis">editor podporuje suggesting, LegalWork ho natvrdo nikdy nezapne; pre advokáta je tracked changes základ</div><div class="pozn">overené v kóde (artifact-docx-editor.tsx posiela len editing/viewing) · silný kandidát na upstream PR</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#30</span><span class="kto">MČ · 2026-08-13</span></div>
+  <div class="nazov">💭 Zrozumiteľnejšia hláška pri priložení .docx do chatu</div>
+  <div class="popis">dnes tvrdí, že formát sa nedá prečítať, hoci appka má vstavaný editor Wordu; má nasmerovať na workspace</div><div class="pozn">zmena jedného reťazca · vhodný prvý upstream PR</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#31</span><span class="kto">MČ · 2026-08-13</span></div>
+  <div class="nazov">💭 Meno advokáta pri sledovaných zmenách a komentároch</div>
+  <div class="popis">dnes sa všetko podpíše ako „Legal Cowork&quot;; appka nemá nastavenie mena používateľa</div><div class="pozn">overené v kóde · pri dokumente pre protistranu alebo súd ide o autorstvo úprav</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#32</span><span class="kto">MČ · 2026-08-14</span></div>
+  <div class="nazov">💭 Nastaviteľná nomenklatúra pomenovania súborov</div>
+  <div class="popis">vlastná konvencia (napr. RRRR-MM-DD Názov V1/V2/final); pri „usporiadaj spis&quot; agent premenuje aj existujúce súbory podľa obsahu</div><div class="pozn">sedí na OKF a na hranicu z ADR 0007</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#33</span><span class="kto">MČ · 2026-08-14</span></div>
+  <div class="nazov">💭 Ako ochrániť know-how pred komerčným prevzatím</div>
+  <div class="popis">čo bráni tomu, aby niekto na našej appke staval platené školenia, add-ony či hosting</div><div class="pozn">⚠️ strategická otázka, patrí na samostatné ADR · MIT to nebráni vedome</div>
+</div></section>
+<section class="skupina" data-stav="spec"><h2 style="--c:#c9a24a">📝 spec <span class="pocet">11</span></h2><p class="vysvetl">rozpísané do špecifikácie</p><div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#1</span><span class="kto">MČ · 2026-07-29</span></div>
+  <div class="nazov">📝 Transkripcia (hovory, porady, diktát → do spisu)</div>
+  
+</div>
+<div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#2</span><span class="kto">MČ · 2026-07-29</span></div>
+  <div class="nazov">📝 OKF</div>
+  <div class="popis">operačný systém advokátskej praxe</div><div class="pozn">⭐ vysoká priorita</div>
+</div>
+<div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#3</span><span class="kto">MČ · 2026-07-29</span></div>
+  <div class="nazov">📝 Otvorený prompt layer (žiadny black box)</div>
+  
+</div>
+<div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#4</span><span class="kto">MČ · 2026-07-29</span></div>
+  <div class="nazov">📝 SK MCP konektory (judikatúra, Slov-Lex, registre)</div>
+  
+</div>
+<div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#6</span><span class="kto">MF · 2026-07-30</span></div>
+  <div class="nazov">📝 Attorney workflow MVP</div>
+  <div class="popis">lehoty, conflict check, research ledger, dokumentový workflow, control plane</div><div class="pozn">(lehoty → spec 0005; ledger/control plane sa zlúčia do 0003/0004)</div>
+</div>
+<div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#7</span><span class="kto">MF (+MČ timeline) · 2026-07-30</span></div>
+  <div class="nazov">📝 Lehoty &amp; timeline spisu</div>
+  <div class="popis">extrakcia lehôt s povinným potvrdením + vizuálna chronológia veci (mermaid/excalidraw)</div><div class="pozn">⭐ kandidát na alfu #1</div>
+</div>
+<div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#8</span><span class="kto">MČ · 2026-07-30</span></div>
+  <div class="nazov">📝 OCR ingest → markdown</div>
+  <div class="popis">Mistral OCR quick win (existujúca Quick Action MČ), markdown-first namiesto DOCX-centrizmu</div><div class="pozn">quick win do alfy</div>
+</div>
+<div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#9</span><span class="kto">MF · 2026-08-04</span></div>
+  <div class="nazov">📝 Orchestrátor a subagenti</div>
+  <div class="popis">kto riadi workflow, oprávnenia agentov, human gates, auditná stopa</div><div class="pozn">PR otvorený</div>
+</div>
+<div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#16</span><span class="kto">MČ (spracúva IR) · 2026-08-06</span></div>
+  <div class="nazov">📝 Modulové rozhranie plug-and-play</div>
+  <div class="popis">moduly ako LEGO nad jednotným základom, bezpečnostné hranice</div><div class="pozn">IR do 2026-08-19</div>
+</div>
+<div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#19</span><span class="kto">MČ · 2026-08-06</span></div>
+  <div class="nazov">📝 Podpisovanie QES + QTS cez Autogram</div>
+  <div class="popis">cez CLI aj lokálne HTTP API (localhost:37200); podpora eID, eObčanky a I.CA SecureStore</div><div class="pozn">⚠️ Autogram je EUPL-1.2 → volať ako externý proces, nevendorovať</div>
+</div>
+<div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#26</span><span class="kto">MČ · 2026-08-07</span></div>
+  <div class="nazov">📝 Zaručená konverzia</div>
+  <div class="popis">listinný ↔ elektronický dokument so zachovaním právnych účinkov; advokát je oprávnená osoba. MČ si na to stavia aj vlastnú aplikáciu</div><div class="pozn">vyčlenené do vlastného specu 2026-08-12 po rešerši · NIE V1, NIE V2 — vyžaduje SOAP integráciu na štátny register, mandátny certifikát a platenú kvalifikovanú validačnú službu</div>
+</div></section>
+<section class="skupina" data-stav="odklepnuté"><h2 style="--c:#1f9d55">✅ odklepnuté <span class="pocet">4</span></h2><p class="vysvetl">tím schválil, môže sa stavať</p><div class="karta" data-stav="odklepnuté">
+  <div class="hlava"><span class="cislo">#11</span><span class="kto">MČ (podnet VŘ) · 2026-08-06</span></div>
+  <div class="nazov">✅ UI/CLI prepínač</div>
+  <div class="popis">UI ako default, CLI ako voliteľný režim</div><div class="pozn">na calle</div>
+</div>
+<div class="karta" data-stav="odklepnuté">
+  <div class="hlava"><span class="cislo">#12</span><span class="kto">MČ (s VŘ) · 2026-08-06</span></div>
+  <div class="nazov">✅ Markdown/Obsidian interoperabilita</div>
+  <div class="popis">markdown ako primárny formát, žiadny vendor lock-in</div><div class="pozn">na calle</div>
+</div>
+<div class="karta" data-stav="odklepnuté">
+  <div class="hlava"><span class="cislo">#15</span><span class="kto">VŘ · 2026-08-06</span></div>
+  <div class="nazov">✅ Poľské rozšírenie (PL)</div>
+  <div class="popis">voľne prístupné poľské právne dáta a judikatúra, evaluácia cez kontakty v PL</div><div class="pozn">na calle</div>
+</div>
+<div class="karta" data-stav="odklepnuté">
+  <div class="hlava"><span class="cislo">#21</span><span class="kto">MČ (podporil VŘ) · 2026-08-04, spresnené 2026-08-12</span></div>
+  <div class="nazov">✅ Trojvrstvová pamäť + reconciliation - L1 všeobecná, L2 projektová/spisová, L3 právnická; diff, human approval a periodická konsolidácia</div>
+  <div class="pozn">produktová priorita MČ · súčasť OKF</div>
+</div></section>
+<section class="skupina" data-stav="odložené"><h2 style="--c:#c98a1a">⏸️ odložené <span class="pocet">1</span></h2><p class="vysvetl">vedome nie teraz</p><div class="karta" data-stav="odložené">
+  <div class="hlava"><span class="cislo">#27</span><span class="kto">MF · 2026-08-11</span></div>
+  <div class="nazov">⏸️ Lokálny anonymizačný gate pred externým LLM - lokálna detekcia, nezávislé overenie a povinné potvrdenie pred externým routingom</div>
+  <div class="pozn">nice to have · mimo prvej verzie (call 2026-08-12)</div>
+</div></section>
+  </main>
+  <footer>
+    Tento súbor sa <b>negeneruje ručne</b>. Zdroj pravdy je <code>specs/navrhy.md</code>;
+    zmeny píš tam a prehľad sa prekreslí sám.
+  </footer>
+</div>
+
+<script>
+document.querySelectorAll('.f').forEach(function(b){
+  b.addEventListener('click', function(){
+    b.classList.toggle('off');
+    var s = b.dataset.f;
+    document.querySelectorAll('.skupina[data-stav="'+s+'"]').forEach(function(g){
+      g.style.display = b.classList.contains('off') ? 'none' : '';
+    });
+  });
+});
+</script>
 </body>
 </html>
