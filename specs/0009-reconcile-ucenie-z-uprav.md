@@ -65,6 +65,36 @@ Preberáme poistky originálu a pridávame jednu vlastnú:
 - ak finál vyzerá horšie než draft, zmena sa **neučí** (môže ísť o omyl),
 - **nové:** učenie, ktoré protirečí dohodnutému pravidlu kancelárie, ide na **prerokovanie tímu** — nie na tichý prepis spoločného promptu jedným advokátom.
 
+### Adaptácia 5: editor `.docx` ako miesto, kde sa diff zbiera
+
+*(doplnené 2026-08-13 po skúšaní editora v LegalWorku)*
+
+Doteraz spec nehovoril, **odkiaľ** diff draft → finál fyzicky príde. Skúšanie ukázalo, že to miesto už existuje: **vstavaný editor `.docx`** *(`@eigenpal/docx-editor-react`, viď [porovnanie editorov](../research/inspiracie/2026-08-13-editory-docx-superdoc-vs-eigenpal.md))*.
+
+Reťazec je tým pádom celý v aplikácii, bez Wordu a bez add-inu:
+
+```mermaid
+flowchart LR
+    A["🤖 agent pripraví draft"] --> B["📄 editor .docx<br/>režim <b>suggesting</b>"]
+    B --> C["✍️ advokát upraví<br/><i>sledované zmeny s jeho menom</i>"]
+    C --> D["🔍 reconcile<br/><i>číta diff</i>"]
+    D --> E["📚 učenie po rebríku<br/>MEMORY → AGENTS → prompt layer"]
+    classDef g fill:#0b4f2a,stroke:#3ad98b,color:#fff
+    class D g
+```
+
+**Dve veci to podmieňujú a obe sú dnes nesplnené** *(overené v kóde 2026-08-13)*:
+
+| # | Podmienka | Stav |
+|---|---|---|
+| [#31](../planning/napady.md) | **Meno autora úprav** — dnes sa každá zmena podpíše ako natvrdo zadané „Legal Cowork" a appka nemá nastavenie mena | ❌ **tvrdý predpoklad** |
+| [#29](../planning/napady.md) | **Režim `suggesting`** — knižnica ho vie, LegalWork ho nikdy nezapne, takže sledované zmeny nevznikajú | ❌ blokuje zber |
+
+> [!CAUTION]
+> **#31 nie je kozmetika, je to podmienka správnosti učenia.** Ak sa všetky úpravy podpíšu rovnakým menom, reconcile **nerozlíši, čo napísal agent a čo opravil advokát**. Učil by sa z vlastných návrhov — čo je presne tá spätná väzba, ktorá model postupne pokazí. **Bez rozlíšenia autora sa reconcile nesmie spustiť.**
+
+Poradie je teda dané: **#31 → #29 → tento spec.** Kým prvé dve nie sú hotové, reconcile nemá z čoho čítať.
+
 ### Čo máme v LAWOSS zadarmo navyše
 
 | Výhoda | Detail |
