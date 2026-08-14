@@ -9,7 +9,7 @@
 | Telegram skupina | `LawOSS (SLOVAKIA | CZECHIA) + AI Frontier Labs` |
 | `TELEGRAM_CHAT_ID` | `-1003828145652` |
 | Bot | `@mikeossSK_bot` |
-| Koordinačný repo | `originalmagneto/lawOSS-like-SK-CZ` |
+| Koordinačný repo | `Omni-Legal-Products/lawOSS-like-SK-CZ` |
 | Produktový repo | `Omni-Legal-Products/lawoss` |
 
 Token bota sa nikdy nezapisuje do dokumentácie, commitu, issue, PR ani logu. Patrí iba do GitHub Actions secretu `TELEGRAM_TOKEN`.
@@ -18,7 +18,7 @@ Token bota sa nikdy nezapisuje do dokumentácie, commitu, issue, PR ani logu. Pa
 
 | Repozitár | Vetva | Topic | Topic ID | Workflow | Udalosti |
 |---|---|---|---:|---|---|
-| `originalmagneto/lawOSS-like-SK-CZ` | `main` | `SK Mike GH` | `2` | `.github/workflows/telegram-notify.yml` | push do `main`, PR, issue, release, diskusia |
+| `Omni-Legal-Products/lawOSS-like-SK-CZ` | `main` | `SK Mike GH` | `2` | `.github/workflows/telegram-notify.yml` | push do `main`, PR, issue, release, diskusia |
 | `Omni-Legal-Products/lawoss` | `dev` | `LAWOSS APP GH` | `293` | `.github/workflows/telegram-notify.yml` v produktovom repe | PR, issue, release, zlyhanie CI |
 
 Produktový workflow neposiela každý push. Cieľom je zachytiť udalosti vyžadujúce pozornosť bez zahltenia tímového chatu.
@@ -52,7 +52,16 @@ Sledované CI workflowy:
 - `LegalWork Tests`
 - `Release App`
 
+> [!TIP]
+> **Od 2026-08-14 sú obe repá v jednej organizácii**, takže token sa dá nastaviť **raz na úrovni organizácie** namiesto zvlášť v každom repe:
+> `Organization settings → Secrets and variables → Actions → New organization secret`, s prístupom pre vybrané repozitáre. Pri ďalších repozitároch (MCP servery) sa tým odpadne opakované nastavovanie.
+
 ## Aktivácia produktového repozitára
+
+> [!NOTE]
+> **Stav k 2026-08-14:** premenné `TELEGRAM_CHAT_ID` (`-1003828145652`) a `TELEGRAM_TOPIC_ID` (`293`) sú vo forku **už nastavené**. Zostáva secret s tokenom a merge PR #2.
+>
+> ⚠️ **Pozor na typ.** Workflow vo forku číta chat a topic ako **premenné** (`vars.`), nie ako secrets — v koordinačnom repe je `TELEGRAM_CHAT_ID` historicky secret. Kto by to kopíroval podľa vzoru, nastaví secret a workflow **ticho nepošle nič**.
 
 1. Otvoriť `Omni-Legal-Products/lawoss`.
 2. Prejsť do `Settings` → `Secrets and variables` → `Actions`.

@@ -93,7 +93,7 @@ Základ [LegalWork](decisions/0003-legal-work-ako-zaklad.md) už dáva chat, age
 | ⏰ **[Lehoty a timeline](specs/0005-lehoty-timeline.md)** | zmeškaná lehota = najčastejší dôvod zodpovednosti advokáta |
 | 📄 **OCR ingest → markdown** | quick win, hotová Quick Action |
 
-🗃️ **Všetkých 26 nápadov aj s tým, kam mieria:** [zberný kôš](planning/napady.md) · [grafický prehľad funkcií](https://originalmagneto.github.io/lawOSS-like-SK-CZ/specs/prehlad.html)
+🗃️ **Všetkých 26 nápadov aj s tým, kam mieria:** [zberný kôš](planning/napady.md) · [grafický prehľad funkcií](https://omni-legal-products.github.io/lawOSS-like-SK-CZ/specs/prehlad.html)
 
 ## 🖥️ Ako to má vyzerať
 
@@ -200,8 +200,8 @@ flowchart TB
 Prvý **deep-research** balík (NotebookLM, 245 zdrojov, 6 kôl) o open-source AI pre slovenskú advokáciu — MCP servery, anonymizácia (MasKIT/Stella), integrácia vlastného a lokálneho API (BYOK), a compliance (SAK 2025, EU AI Act).
 
 - 📊 **Grafický report (rich markdown):** [research/deep-research/](research/deep-research/)
-- 🌐 **Živý HTML report:** [originalmagneto.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html](https://originalmagneto.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html)
-- 🎧 **Audio podcast (SK):** [Releases](https://github.com/originalmagneto/lawOSS-like-SK-CZ/releases/tag/research-2026-07-10)
+- 🌐 **Živý HTML report:** [omni-legal-products.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html](https://omni-legal-products.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html)
+- 🎧 **Audio podcast (SK):** [Releases](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/releases/tag/research-2026-07-10)
 
 ## 🗺️ Roadmapa
 
