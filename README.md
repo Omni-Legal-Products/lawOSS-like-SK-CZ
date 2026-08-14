@@ -93,7 +93,7 @@ Základ [LegalWork](decisions/0003-legal-work-ako-zaklad.md) už dáva chat, age
 | ⏰ **[Lehoty a timeline](specs/0005-lehoty-timeline.md)** | zmeškaná lehota = najčastejší dôvod zodpovednosti advokáta |
 | 📄 **OCR ingest → markdown** | quick win, hotová Quick Action |
 
-🗃️ **Všetkých 26 nápadov aj s tým, kam mieria:** [zberný kôš](planning/napady.md) · [grafický prehľad funkcií](https://originalmagneto.github.io/lawOSS-like-SK-CZ/specs/prehlad.html)
+🗃️ **Všetkých 26 nápadov aj s tým, kam mieria:** [zberný kôš](planning/napady.md) · [grafický prehľad funkcií](https://omni-legal-products.github.io/lawOSS-like-SK-CZ/specs/prehlad.html)
 
 ## 🖥️ Ako to má vyzerať
 
@@ -200,8 +200,8 @@ flowchart TB
 Prvý **deep-research** balík (NotebookLM, 245 zdrojov, 6 kôl) o open-source AI pre slovenskú advokáciu — MCP servery, anonymizácia (MasKIT/Stella), integrácia vlastného a lokálneho API (BYOK), a compliance (SAK 2025, EU AI Act).
 
 - 📊 **Grafický report (rich markdown):** [research/deep-research/](research/deep-research/)
-- 🌐 **Živý HTML report:** [originalmagneto.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html](https://originalmagneto.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html)
-- 🎧 **Audio podcast (SK):** [Releases](https://github.com/originalmagneto/lawOSS-like-SK-CZ/releases/tag/research-2026-07-10)
+- 🌐 **Živý HTML report:** [omni-legal-products.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html](https://omni-legal-products.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html)
+- 🎧 **Audio podcast (SK):** [Releases](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/releases/tag/research-2026-07-10)
 
 ## 🗺️ Roadmapa
 
@@ -299,12 +299,19 @@ lawOSS-like-SK-CZ/
 │   │   ├── 2026-08-07-feature-ideas-telegram.md
 │   │   └── README.md
 │   ├── inspiracie/
+│   │   ├── 2026-08-13-editory-docx-superdoc-vs-eigenpal.md
 │   │   ├── legalwork.md
 │   │   ├── porovnanie.html
 │   │   └── README.md
 │   ├── mcp-servery/
 │   ├── mikeoss/
 │   ├── pravny-ramec/
+│   │   ├── zdroje-zarucena-konverzia/
+│   │   │   ├── 2026-08-12-analyza-zarucenej-konverzie.md
+│   │   │   ├── 2026-08-12-grok-report-integracia-ZK.pdf
+│   │   │   ├── 2026-08-12-zarucena-konverzia-SR-report.md
+│   │   │   └── README.md
+│   │   └── 2026-08-12-zarucena-konverzia-sk.md
 │   └── sk-datove-zdroje/
 ├── specs/
 │   ├── 0001-transkripcia.md
@@ -314,6 +321,7 @@ lawOSS-like-SK-CZ/
 │   ├── 0005-lehoty-timeline.md
 │   ├── 0007-podpisovanie-a-zarucena-konverzia.md
 │   ├── 0008-anonymizacia-a-privacy-gate.md
+│   ├── 0010-zarucena-konverzia.md
 │   ├── navrhy.md
 │   ├── prehlad.html
 │   ├── README.md
@@ -357,23 +365,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**135 commitov** · **82 súborov**
+**162 commitov** · **89 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
-| `069231e` | 2026-08-12 | Majo Cuprik | docs: uzavrieť pracovnú session 12. augusta |
-| `ad7f4d7` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `19c489e` | 2026-08-12 | Majo Cuprik | merge: produktová doktrína a návrh otvorených formátov |
-| `f2db995` | 2026-08-12 | Majo Cuprik | fix: spresniť architektúru formátov |
-| `f9396ef` | 2026-08-12 | Majo Cuprik | planning: navrhnúť otvorené formáty |
-| `daf995b` | 2026-08-12 | Majo Cuprik | docs: dokončiť produktovú doktrínu |
-| `34e5b9b` | 2026-08-12 | Majo Cuprik | docs: preniesť doktrínu do verejného vstupu |
-| `4d3cd25` | 2026-08-12 | Majo Cuprik | planning: otvoriť otázku produktovej doktríny |
+| `a844ddc` | 2026-08-14 | Majo Cuprik | docs: premenované Telegram topicy — GitHub · Ops a GitHub · App |
+| `86fcced` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
+| `7b850a5` | 2026-08-14 | Majo Cuprik | Merge pull request #29 from Omni-Legal-Products/docs/napady-docx-editor |
+| `2fd3a8e` | 2026-08-14 | Majo Cuprik | Merge remote-tracking branch 'origin/main' into docs/napady-docx-editor |
+| `b4405e9` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
+| `70db9e4` | 2026-08-14 | Majo Cuprik | Merge pull request #20 from Omni-Legal-Products/spec/0010-zarucena-konverzia |
+| `027c29d` | 2026-08-14 | Majo Cuprik | Merge pull request #28 from Omni-Legal-Products/docs/telegram-repository-routing |
+| `a3bac73` | 2026-08-14 | Majo Cuprik | Merge pull request #30 from Omni-Legal-Products/docs/tok-napad-implementacia |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 19:24 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-14 13:09 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
