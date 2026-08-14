@@ -12,7 +12,7 @@
 > [!TIP]
 > **Máš nápad? Hoď ho kamkoľvek z tohto:**
 > 1. **Telegram topic *Feature IDEAS*** — najrýchlejšie, netreba nič formátovať *(odtiaľ ich pravidelne zbierame sem)*
-> 2. **[GitHub formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)** — ak chceš, aby sa o tom hneď diskutovalo
+> 2. **[GitHub formulár](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)** — ak chceš, aby sa o tom hneď diskutovalo
 > 3. **Priamo do tohto súboru** — jeden riadok do priehradky *Nezaradené*
 >
 > **Nič sa nezahadzuje.** Aj zamietnuté nápady tu zostávajú aj s dôvodom, nech sa nevracajú dokola.
@@ -87,7 +87,7 @@ flowchart LR
 | 11 | UI/CLI prepínač | schválené na calle 6. 8. |
 | 12 | Markdown/Obsidian interoperabilita | schválené na calle 6. 8. — je to princíp, nie funkcia |
 | 16 | Modulové rozhranie plug-and-play | spracúva IR do 19. 8. |
-| 9 | Orchestrátor a subagenti | [PR #2](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/2) od MF, otvorený |
+| 9 | Orchestrátor a subagenti | [PR #2](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/2) od MF, otvorený |
 | 6 | Attorney workflow MVP | rozpadol sa do #7 a ďalších specov |
 | 10 | Digitálna sekretárka | rámec, ktorý spája #1 + #2 |
 

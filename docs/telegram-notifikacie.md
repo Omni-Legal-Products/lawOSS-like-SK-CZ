@@ -64,7 +64,7 @@ Zoznam sa dá rozšíriť úpravou sekcie `on:` a `case` vo workflowe.
 ## Alternatívy a ďalšie GitHub funkcie
 
 - **Bez GitHub Actions (no-code):** väčšina „RSS to Telegram" botov vie sledovať feed
-  `https://github.com/originalmagneto/lawOSS-like-SK-CZ/commits/main.atom`
+  `https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/commits/main.atom`
   a postovať commity do skupiny. Menej kontroly nad formátom, zato nulová konfigurácia.
 - **GitHub Mobile** appka — osobné push notifikácie (mentions, review requests), doplnok k skupinovým.
 - **Opačný smer (Telegram → GitHub)** — vytváranie issue príkazom z Telegramu je možné, ale vyžaduje malý serverless webhook (napr. Cloudflare Worker). Ak to budeme chcieť, spíšeme ako samostatný [spec](../specs/).

@@ -1,6 +1,6 @@
 # Timeline
 
-> Aktualizované 2026-08-12. Prehľad funkcií podľa verzií: [zberný kôš](napady.md) · [grafický prehľad](https://originalmagneto.github.io/lawOSS-like-SK-CZ/specs/prehlad.html)
+> Aktualizované 2026-08-12. Prehľad funkcií podľa verzií: [zberný kôš](napady.md) · [grafický prehľad](https://omni-legal-products.github.io/lawOSS-like-SK-CZ/specs/prehlad.html)
 
 ## Najbližšie termíny
 
