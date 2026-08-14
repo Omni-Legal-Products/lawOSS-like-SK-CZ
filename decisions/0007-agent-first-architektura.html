@@ -140,6 +140,7 @@
     <tr><td><b>Podpisovanie</b> — QES, QTS, akákoľvek autorizácia</td><td>agent <b>nemá prístup</b> k rozhraniu Autogramu, k mandátnemu certifikátu ani k čítačke; podpis spúšťa človek vo vlastnej aplikácii</td></tr>
     <tr><td><b>Odoslanie navonok</b> — e-mail, dátová schránka, podanie na súd, komunikácia s protistranou či klientom</td><td>agent <b>nemá odosielací nástroj</b> — nie je mu sprístupnený, nie je mu zakázaný</td></tr>
     <tr><td><b>Konanie v mene advokáta</b> voči tretím stranám</td><td>to isté: chýbajúca schopnosť, nie inštrukcia</td></tr>
+    <tr><td><b>Reťazová aktivácia</b> — plánovací prvok spúšťa ďalšie kroky sám</td><td><b>plán je text, nie príkaz.</b> Plánovač nesmie aktivovať naplánované kroky; každá aktivácia prechádza hlavným kontextom <i>(doplnené na podklad IR, 2026-08-14)</i></td></tr>
   </table></div>
   <div class="warn" style="margin-top:16px">
     <h3>Prečo je ten rozdiel zásadný</h3>
@@ -218,7 +219,24 @@
 </section>
 
 <section>
-  <h2><span class="n">10</span>Záväzný produktový test podľa ADR 0009</h2>
+  <h2><span class="n">10</span>Prevádzkové potvrdenie z praxe <span style="font-weight:400;font-size:14px">(IR, 2026-08-14)</span></h2>
+  <p style="margin-top:0"><b>IR doložil rok produkčnej prevádzky</b> AI asistencie v advokátskej kancelárii. Nezávisle od tohto ADR sa mu v praxi ustálili tie isté hranice — to je silnejší argument než akákoľvek úvaha.</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Zistenie z praxe</th><th>Pravidlo</th></tr>
+    <tr><td><i>„Human gate vždy pred odoslaním čohokoľvek von — automatické brány human gate pripravujú, nie nahrádzajú."</i></td><td><b>3</b> a <b>5</b></td></tr>
+    <tr><td><i>„AI provenance sa eviduje oddelene od autorstva advokáta — každý AI výstup je draft, právnym autorom je advokát, ktorý ho schválil."</i></td><td><b>3</b> + <i>Role a zodpovednosť</i></td></tr>
+    <tr><td><i>„Stav žije na disku, nie v konverzácii."</i></td><td><b>1</b></td></tr>
+    <tr><td><i>„Spoliehanie na self-report agenta sa neosvedčilo — podmienka dokončenia musí byť kontrolovateľná zvonku."</i></td><td><b>5</b></td></tr>
+  </table></div>
+  <div class="warn ok" style="margin-top:16px">
+    <h3>Dve spresnenia, ktoré z toho prijímame</h3>
+    <p style="margin:0 0 8px"><b>1 · Deterministické brány idú pred modelovými.</b> Pravidlo 3 hovorí o stave <code>automated-verified</code>, ale nehovorí <i>čím</i> sa overuje. Lacné a reprodukovateľné kontroly (štruktúra, testy, citačné ukotvenie) bežia prv; modelová recenzia až nad tým, čo prešlo. Opačné poradie plytvá drahými behmi na chyby, ktoré odhalí skript.</p>
+    <p style="margin:0"><b>2 · Plán je text, nie príkaz.</b> Pravidlo 5 rieši nástroje konajúce <i>navonok</i> — nerieši agenta, ktorý spustí sám seba. Plánovač nesmie aktivovať naplánované kroky; každá aktivácia prechádza hlavným kontextom.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">11</span>Záväzný produktový test podľa ADR 0009</h2>
   <p style="margin-top:0"><a href="0009-zakladna-produktova-doktrina.md">ADR 0009</a> zaviedlo šesť otázok, na ktoré musí odpovedať každý významný návrh. Odpovede za toto ADR:</p>
   <div class="tbl-wrap"><table>
     <tr><th style="width:34px">#</th><th>Otázka</th><th>Odpoveď</th></tr>
@@ -233,7 +251,7 @@
 </section>
 
 <section>
-  <h2><span class="n">11</span>Vzťah k ostatným rozhodnutiam</h2>
+  <h2><span class="n">12</span>Vzťah k ostatným rozhodnutiam</h2>
   <div class="tbl-wrap"><table>
     <tr><th>Dokument</th><th>Vzťah</th></tr>
     <tr><td><b>ADR 0009</b> — doktrína</td><td><b>nadradené.</b> Hovorí <i>čo a prečo</i>; toto ADR je jeho technický vykonávací predpis pre druhý pilier. Ak sa doktrína zmení, prispôsobuje sa toto ADR, nie naopak.</td></tr>
@@ -245,7 +263,7 @@
 </section>
 
 <section>
-  <h2><span class="n">12</span>Zvažované alternatívy</h2>
+  <h2><span class="n">13</span>Zvažované alternatívy</h2>
   <div class="tbl-wrap"><table>
     <tr><th>Alternatíva</th><th>Verdikt</th></tr>
     <tr><td><b>Nechať to nepomenované</b> — stav pred týmto ADR</td><td>❌ Princíp fakticky platí (OKF), ale nedá sa naň odvolať a nikto ho nemusí dodržať. <b>Neviditeľné pravidlo nie je pravidlo.</b></td></tr>

@@ -107,6 +107,7 @@ Nestačí, že to agent nemá dovolené. **Nesmie na to mať schopnosť.**
 | **Podpisovanie** — QES, QTS, akákoľvek autorizácia | agent **nemá prístup k rozhraniu Autogramu**, k mandátnemu certifikátu ani k čítačke; podpis spúšťa človek vo vlastnej aplikácii Autogramu |
 | **Odoslanie čohokoľvek navonok** — e-mail, dátová schránka, podanie na súd, komunikácia s protistranou či klientom | agent **nemá odosielací nástroj** — nie je mu sprístupnený, nie je mu zakázaný |
 | **Konanie v mene advokáta** voči tretím stranám | to isté: chýbajúca schopnosť, nie inštrukcia |
+| **Reťazová aktivácia** — plánovací prvok spúšťa ďalšie kroky sám | **plán je text, nie príkaz.** Plánovač nesmie aktivovať naplánované kroky; každá aktivácia prechádza hlavným kontextom *(doplnené na podklad IR, 2026-08-14)* |
 
 > [!IMPORTANT]
 > **Rozdiel je zásadný.** Zákaz v prompte sa dá obísť — otráveným dokumentom, zle formulovanou úlohou, chybou modelu. **Chýbajúci nástroj obísť nedá.** Preto sa tieto schopnosti agentovi **nesprístupňujú**, namiesto toho, aby sa mu zakazovali.
@@ -179,6 +180,26 @@ Zaradenie sa týmto ADR **nemení** — QES/QTS ostáva kandidát na V2, zaruče
 **3. Prompt injection dostáva novú, trvalú cestu.** Bezpečnostná persona v oponentúre *(3/10)* varovala pred injection cez OCR dokumenty. Agent-first spolu s reconcile ten povrch **rozširuje**: otrávený dokument ovplyvní draft → advokát draft upraví → reconcile z tej úpravy vyrobí inštrukciu → otrava sa **natrvalo usadí v `AGENTS.md`**. Preto je v pravidle 4 zápis do inštrukcií definovaný ako prechod hranice vyžadujúci podpis. Spec 0009 túto poistku má; toto ADR z nej robí **záväznú, nie voliteľnú**.
 
 **4. Princíp sa môže rozpustiť do frázy.** Tím nemá programátora, ktorý by strážil dodržiavanie. Proti tomu stojí testovacie kritérium z pravidla 2. **Ak sa po dvoch specoch ukáže, že sa naň nikto nepýta, toto ADR sa zruší** — nebude sa predstierať, že platí.
+
+## Prevádzkové potvrdenie z praxe *(IR, 2026-08-14)*
+
+**IR doložil k tomuto ADR rok produkčnej prevádzky** AI asistencie v advokátskej kancelárii → [PR #38](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/38). Nezávisle od tohto ADR sa mu v praxi ustálili tie isté hranice, čo je pre návrh silnejší argument než akákoľvek úvaha:
+
+| Jeho zistenie z praxe | Zodpovedá pravidlu |
+|---|---|
+| *„Human gate vždy pred odoslaním čohokoľvek von — bez ohľadu na to, koľko automatických brán výstup prešiel; tie human gate pripravujú, nie nahrádzajú."* | **3** a **5** |
+| *„Audit trail per výstup; AI provenance sa eviduje oddelene od autorstva advokáta — každý AI výstup je draft, právnym autorom je advokát, ktorý ho schválil."* | **3** a kapitola *Role a zodpovednosť* |
+| *„Stav žije na disku, nie v konverzácii. Priebežný záznam sa dopĺňa po každom kroku; nová session sa obnovuje čítaním ledgera."* | **1** |
+| *„Spoliehanie na self-report agenta sa neosvedčilo — podmienka dokončenia musí byť kontrolovateľná zvonku."* | **5** *(schopnosť, nie sľub)* |
+
+### Dve veci, ktoré toto ADR spresňujú
+
+**1 · Deterministické brány idú pred modelovými.** Pravidlo 3 hovorí o stave `automated-verified`, ale nehovorí **čím** sa overuje. IR: *„Lacné a reprodukovateľné kontroly bežia prv — validácia štruktúry, testy, kontrola citačného ukotvenia. Modelová recenzia beží až nad tým, čo deterministickou bránou prešlo. Opačné poradie plytvá drahými behmi na chyby, ktoré odhalí skript."* **Prijímame ako spresnenie stavu `automated-verified`.**
+
+**2 · Plán je text, nie príkaz.** IR pomenoval zlyhanie, ktoré toto ADR nepokrývalo: *„Ak plánovací prvok rovno spúšťa ďalšie kroky, human gates sa obchádzajú mlčky."* Pravidlo 5 rieši nástroje, ktoré konajú **navonok** — nerieši agenta, ktorý spustí sám seba. **Dopĺňa sa: plánovač nesmie aktivovať naplánované kroky; každá aktivácia prechádza hlavným kontextom.**
+
+> [!NOTE]
+> Podklad je **draft na diskusiu k [spec 0006](../specs/0006-orchestrator-subagenti.md)** *(orchestrátor a subagenti, autor MF — zatiaľ draft [PR #2](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/2))*. Tam patrí jeho podrobná časť; sem len to, čo sa dotýka pravidiel tohto ADR.
 
 ## Záväzný produktový test podľa ADR 0009
 
