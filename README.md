@@ -241,7 +241,6 @@ lawOSS-like-SK-CZ/
 │       ├── keyvisual-features.png
 │       ├── keyvisual-hero.png
 │       ├── keyvisual-mobile.png
-│       ├── logo sub 1M.png
 │       ├── logo.png
 │       ├── mockup.png
 │       ├── moodboard.png
@@ -290,8 +289,6 @@ lawOSS-like-SK-CZ/
 │   └── workshopy.md
 ├── research/
 │   ├── deep-research/
-│   │   ├── audio/
-│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -360,10 +357,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**136 commitov** · **82 súborov**
+**137 commitov** · **82 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `31adf0a` | 2026-08-14 | Majo Cuprik | docs: prepísať odkazy po presune repa do organizácie |
 | `2971c7c` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `069231e` | 2026-08-12 | Majo Cuprik | docs: uzavrieť pracovnú session 12. augusta |
 | `ad7f4d7` | 2026-08-12 | github-actions[bot] | docs: auto-update README [skip ci] |
@@ -371,12 +369,11 @@ flowchart LR
 | `f2db995` | 2026-08-12 | Majo Cuprik | fix: spresniť architektúru formátov |
 | `f9396ef` | 2026-08-12 | Majo Cuprik | planning: navrhnúť otvorené formáty |
 | `daf995b` | 2026-08-12 | Majo Cuprik | docs: dokončiť produktovú doktrínu |
-| `34e5b9b` | 2026-08-12 | Majo Cuprik | docs: preniesť doktrínu do verejného vstupu |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-12 19:39 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-14 12:38 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
