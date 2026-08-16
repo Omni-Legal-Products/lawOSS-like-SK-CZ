@@ -1,8 +1,9 @@
 # Rozhodovacie otázky tímu po calle 2026-08-12
 
-- **Stav:** otvorené na vyjadrenie MČ, MF, IR a VŘ
+- **Stav** *(k 2026-08-16)*: ✅ **IR** odpovedal 2026-08-14 · ✅ **VŘ** odpovedal 2026-08-15 → [odpovede VŘ](2026-08-15-odpovedi-VR-Q01-Q25.md) · ⏳ **MČ** rozpracované · ⏳ **MF** zatiaľ nič
+- **Živý prehľad všetkých odpovedí na jednom mieste:** [stav odpovedí tímu](2026-08-14-stav-odpovedi-timu.md)
 - **Účel:** uzavrieť produktový, vývojový a prevádzkový rámec LAWOSS
-- **Spôsob vyjadrenia:** komentár v PR podľa ID otázky, napríklad `Q01: možnosť A, pretože...`
+- **Spôsob vyjadrenia:** komentár v PR podľa ID otázky, napríklad `Q01: možnosť A, pretože...`, alebo vlastný súbor v `planning/` ako to spravil VŘ
 
 > [!IMPORTANT]
 > Tento dokument nie je prijaté rozhodnutie. Odporúčané voľby sú východiskom na diskusiu. Po zhode sa výsledky prepíšu do ADR, roadmapy alebo príslušného specu.
