@@ -224,7 +224,9 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 | Súbor | Progress | Hotovo |
 |---|---|---|
 | [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
+| [`2026-08-15-odpovedi-VR-Q01-Q25.md`](planning/2026-08-15-odpovedi-VR-Q01-Q25.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
 | [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 7/56 (12 %) |
+| [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
 | [`roadmap.md`](planning/roadmap.md) | `██████░░░░░░░░░░░░░░` | 11/35 (31 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
@@ -282,7 +284,10 @@ lawOSS-like-SK-CZ/
 ├── planning/
 │   ├── 2026-08-12-mcp-repository-rollout-plan.md
 │   ├── 2026-08-12-rozhodovacie-otazky-timu.md
+│   ├── 2026-08-14-stav-odpovedi-timu.md
+│   ├── 2026-08-15-odpovedi-VR-Q01-Q25.md
 │   ├── backlog.md
+│   ├── cz-datove-zdroje.md
 │   ├── mcp-repository-inventory.md
 │   ├── napady.md
 │   ├── roadmap.md
@@ -367,23 +372,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**175 commitov** · **93 súborov**
+**182 commitov** · **96 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `b2145b2` | 2026-08-16 | Majo Cuprik | Merge pull request #43 from Omni-Legal-Products/docs/stav-odpovedi-timu |
+| `4d7c21d` | 2026-08-16 | Majo Cuprik | Merge pull request #50 from Omni-Legal-Products/planning/odpovede-vr-q01-q25 |
+| `dee1aed` | 2026-08-16 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
+| `cf20d93` | 2026-08-16 | Majo Cuprik | Merge pull request #49 from Omni-Legal-Products/planning/cz-datove-zdroje |
 | `5c67c39` | 2026-08-16 | Majo Cuprik | Merge pull request #48 from Omni-Legal-Products/spec/0005-lehotove-jadro-cz |
+| `0af74e0` | 2026-08-16 | Vojtěch Říha | planning: odpovědi VŘ na Q01-Q25 |
+| `2d0c4db` | 2026-08-16 | Vojtěch Říha | planning: mapa českých datových zdrojů (úkol z roadmapy) |
 | `667f908` | 2026-08-16 | Vojtěch Říha | research: pravidla počítání lhůt CZ pro spec 0005 (30 pravidel, 25 lhůt, 18 pastí, 24 testů) |
-| `2e3d1f6` | 2026-08-14 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `2586702` | 2026-08-14 | Majo Cuprik | Merge pull request #44 from Omni-Legal-Products/docs/adr-0010-ochrana-know-how |
-| `8c94a27` | 2026-08-14 | Majo Cuprik | docs: generovať prehľad návrhov z evidencie |
-| `4e7dd69` | 2026-08-14 | Majo Cuprik | decisions: ADR 0010 — ochrana know-how a značky (návrh) |
-| `a043594` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `b9a6362` | 2026-08-14 | Majo Cuprik | Merge pull request #31 from Omni-Legal-Products/docs/stavy-a-tyzdenny-report |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-16 11:07 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-16 11:12 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
