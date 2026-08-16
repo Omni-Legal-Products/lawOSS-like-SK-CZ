@@ -312,7 +312,8 @@ lawOSS-like-SK-CZ/
 │   │   │   ├── 2026-08-12-grok-report-integracia-ZK.pdf
 │   │   │   ├── 2026-08-12-zarucena-konverzia-SR-report.md
 │   │   │   └── README.md
-│   │   └── 2026-08-12-zarucena-konverzia-sk.md
+│   │   ├── 2026-08-12-zarucena-konverzia-sk.md
+│   │   └── 2026-08-15-lhoty-cz-pravidla-vypoctu.md
 │   └── sk-datove-zdroje/
 ├── specs/
 │   ├── 0001-transkripcia.md
@@ -366,23 +367,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**172 commitov** · **92 súborov**
+**175 commitov** · **93 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `5c67c39` | 2026-08-16 | Majo Cuprik | Merge pull request #48 from Omni-Legal-Products/spec/0005-lehotove-jadro-cz |
+| `667f908` | 2026-08-16 | Vojtěch Říha | research: pravidla počítání lhůt CZ pro spec 0005 (30 pravidel, 25 lhůt, 18 pastí, 24 testů) |
+| `2e3d1f6` | 2026-08-14 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `2586702` | 2026-08-14 | Majo Cuprik | Merge pull request #44 from Omni-Legal-Products/docs/adr-0010-ochrana-know-how |
 | `8c94a27` | 2026-08-14 | Majo Cuprik | docs: generovať prehľad návrhov z evidencie |
 | `4e7dd69` | 2026-08-14 | Majo Cuprik | decisions: ADR 0010 — ochrana know-how a značky (návrh) |
 | `a043594` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
 | `b9a6362` | 2026-08-14 | Majo Cuprik | Merge pull request #31 from Omni-Legal-Products/docs/stavy-a-tyzdenny-report |
-| `86ba0a3` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `354af48` | 2026-08-14 | Majo Cuprik | Merge pull request #32 from Omni-Legal-Products/fix/auto-readme-race |
-| `4fae573` | 2026-08-14 | Majo Cuprik | fix: auto-README padal na non-fast-forward pri viacerých pushoch |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-14 20:09 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-16 11:07 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
