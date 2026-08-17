@@ -49,8 +49,6 @@ Keep `legal-research`, `legal-source-routing`, and the canonical connectors in G
 
 Use **LAWOSS Legal Lab** for new workflow and research-method suggestions. It is intentionally separate from the stable plugin.
 
-The lab includes **lawoss-paper-research**, which structures an anonymized legal-science research question into research questions, method, source map, evidence, citation handoff, paper outline, and a synthetic test.
-
 The recommended promotion flow is:
 
 1. Capture the idea in the lab.
