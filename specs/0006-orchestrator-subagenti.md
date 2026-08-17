@@ -1,7 +1,7 @@
 # Spec 0006: Orchestrátor a subagenti
 
-- **Stav:** návrh · priečna architektúra
-- **Navrhol:** Martin Friedrich (MF) · 2026-08-04 · [Issue #1](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/1)
+- **Stav:** návrh · priečna architektúra · zosúladené s ADR 0007
+- **Navrhol:** Martin Friedrich (MF) · 2026-08-04 · [Issue #1](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/1)
 - **Súvisiace:** [0002 OKF](0002-okf-operacny-system-praxe.md) · [0003 prompt layer](0003-prompt-layer.md) · [0004 MCP konektory](0004-mcp-sk-konektory.md) · [0005 lehoty & timeline](0005-lehoty-timeline.md)
 - **Zdrojové poznámky:** [orchestrátor + transkripcia](../research/idey/2026-07-29-orchestrator-transkripcia-byo-subscriptions.md) · [deep research](../research/deep-research/README.md)
 
@@ -108,6 +108,9 @@ Použitie spotrebiteľských subscriptions musí rešpektovať podmienky poskyto
 - **Capability-based access:** oprávnenia sa udeľujú na konkrétne operácie (read_document, extract_deadline, write_status), nie na celý filesystem.
 - **Human gate:** potvrdenie advokáta je povinné pri lehote, zápise z návrhu, finálnom výstupe a akejkoľvek externej akcii.
 - **Bez autonómneho podania:** eID, slovensko.sk, odoslanie e-mailu alebo iný právny úkon sú mimo oprávnení alfy.
+- **ADR 0007 hard boundaries:** nastaviteľná autonómia sa týka iba internej práce v rámci veci. Podpisovanie, podanie, externé odoslanie, finančné úkony a odoslanie neanonymizovaných vecných dát do cloudu nesmú byť dostupnými capabilities ani po prepnutí do režimu YOLO.
+- **Ľudská verifikácia výstupu:** výstup agenta sa nesmie použiť v právnej práci bez predchádzajúcej ľudskej verifikácie; prompt nesmie byť jediným mechanizmom tejto kontroly.
+- **Pamäť:** zápis do zdieľanej pamäte a povýšenie poznatku medzi vrstvami sú vždy návrh s ľudským schválením; autonómny režim túto hranicu neodomyká.
 - **Minimálny kontext:** do každého kroku idú iba potrebné fragmenty, nie celý spis.
 - **Žiadne klientske dáta v diagnostike:** logy obsahujú identifikátory a odkazy, nie plný obsah dokumentov.
 - **Žiadne tiché zlyhanie:** neúplný workflow má stav partial alebo failed, nie completed.

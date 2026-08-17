@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADR 0004 — Forkujeme LegalWork pod vlastným brandingom</title>
+<style>
+  :root{--navy:#0d1b2a;--navy2:#13243a;--gold:#c9a24a;--gold-soft:#e4c979;
+    --ink:#1a2233;--muted:#5b6577;--line:#e4e7ec;--bg:#f6f7f9;--card:#fff;
+    --green:#1f9d55;--amber:#c98a1a;--red:#c0392b}
+  @media (prefers-color-scheme:dark){:root{--ink:#e8ecf3;--muted:#9aa6b8;--line:#25324a;--bg:#0b131f;--card:#111c2e}}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  .hero{background:radial-gradient(1100px 380px at 75% -10%,rgba(201,162,74,.22),transparent),
+    linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;padding:48px 0 40px;border-bottom:3px solid var(--gold)}
+  .kicker{letter-spacing:.26em;text-transform:uppercase;font-size:12px;color:var(--gold-soft);font-weight:700}
+  .hero h1{margin:.3em 0 .1em;font-size:clamp(26px,4.6vw,40px);line-height:1.12;font-weight:800}
+  .hero p{margin:.4em 0 0;color:#c8d2e0;font-size:15px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{background:rgba(255,255,255,.08);border:1px solid rgba(201,162,74,.4);color:#fff;padding:5px 12px;border-radius:100px;font-size:12.5px;font-weight:600}
+  .chip b{color:var(--gold-soft)}
+  section{margin:34px 0}
+  h2{font-size:20px;font-weight:800;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+  h2 .n{background:var(--navy);color:var(--gold);width:28px;height:28px;border-radius:8px;display:inline-grid;place-items:center;font-size:13px;flex:none}
+  @media(prefers-color-scheme:dark){h2 .n{background:#0a1524}}
+  h3{font-size:15px;margin:.2em 0 .5em}
+  .decision{background:linear-gradient(135deg,rgba(201,162,74,.14),rgba(201,162,74,.05));border:1.5px solid var(--gold);
+    border-radius:16px;padding:20px 22px;font-size:17px;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:0 4px 14px rgba(13,27,42,.05)}
+  table{width:100%;border-collapse:collapse;font-size:14px;border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+  @media(prefers-color-scheme:dark){th{background:#0a1524}}
+  tr:last-child td{border-bottom:none}
+  .tbl-wrap{overflow-x:auto}
+  code{background:rgba(125,140,170,.16);padding:1px 6px;border-radius:5px;font-size:13px}
+  .yes{color:var(--green);font-weight:700}.no{color:var(--red);font-weight:700}
+  .rule{background:linear-gradient(135deg,rgba(192,57,43,.13),rgba(192,57,43,.04));border:1.5px solid var(--red);
+    border-radius:14px;padding:16px 20px;font-weight:700;font-size:16px}
+  ol.rules{counter-reset:r;list-style:none;padding-left:0;margin:14px 0 0}
+  ol.rules li{counter-increment:r;position:relative;padding-left:42px;margin:12px 0}
+  ol.rules li::before{content:counter(r);position:absolute;left:0;top:1px;width:28px;height:28px;border-radius:8px;
+    background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:800;font-size:13px}
+  @media(prefers-color-scheme:dark){ol.rules li::before{background:#0a1524}}
+  .warn{border-left:4px solid var(--amber);background:var(--card);border-radius:0 12px 12px 0;padding:16px 18px;
+    border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .warn h3{color:var(--amber);margin-top:0}
+  ul{margin:.4em 0;padding-left:1.2em}li{margin:.3em 0}
+  footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 50px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Architecture Decision Record</div>
+    <h1>ADR 0004 — Forkujeme LegalWork pod vlastným brandingom</h1>
+    <p>Vlastný produkt, vlastný repozitár, vlastná značka. Čo dáva zmysel, posielame do upstreamu.</p>
+    <div class="meta">
+      <span class="chip"><b>Dátum:</b> 2026-08-06</span>
+      <span class="chip"><b>Stav:</b> prijaté — rozhodol MČ</span>
+      <span class="chip"><b>Potvrdia:</b> MF · IR · VŘ</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <h2><span class="n">1</span>Rozhodnutie</h2>
+  <div class="decision">
+    Forkneme <a href="https://github.com/eigenweltlabs/legalwork">LegalWork</a> (MIT) do vlastného repozitára,
+    prispôsobíme ho pod značkou <b>LAWOSS</b> a čo dáva zmysel budeme posielať späť do upstreamu.
+  </div>
+  <p style="color:var(--muted);font-size:13.5px;margin-top:12px">
+    <a href="0003-legal-work-ako-zaklad.html">ADR 0003</a> určil LegalWork ako základ, ale nechal otvorené <b>ako presne</b> ho rozšírime.
+    MČ rozhodol pre fork — chceme vlastný produkt s vlastným brandingom, nie doplnok do cudzej aplikácie.
+  </p>
+</section>
+
+<section>
+  <h2><span class="n">2</span>Čo forkom získavame — overené v ich repe</h2>
+  <p style="margin-top:0">Fork je lacnejší, než sa na prvý pohľad zdalo. Overené 2026-08-06:</p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Čo</th><th>Zistenie</th></tr>
+    <tr><td><b>Celý build pipeline</b></td><td><code>.github/workflows/</code> obsahuje <code>release-macos-aarch64.yml</code> (36 kB), <code>alpha-macos-aarch64.yml</code>, <code>alpha-windows-x64.yml</code>, <code>ci-tests.yml</code>, <code>ci-i18n.yml</code>. <b class="yes">Forkom ich zdedíme celé</b> — stačí doplniť vlastné podpisové tajomstvá.</td></tr>
+    <tr><td><b>Branding je ohraničený, ale nie triviálny</b></td><td><code>apps/desktop/electron-builder.yml</code> (<code>appId</code>, <code>productName</code>, schéma <code>legalwork</code>) <b>+ runtime identifikátory v <code>apps/desktop/electron/main.mjs</code></b> — <b>tri miesta, nie dve</b>. Pozor: <code>appId</code> určuje macOS bundle identitu (keychain, Launchpad, TCC oprávnenia). <i>(overené 2026-08-12)</i></td></tr>
+    <tr><td><b>Lokalizácia = nové súbory</b></td><td><code>apps/app/src/i18n/locales/</code> má k 2026-08-12 <b>11 jazykov</b> (<code>ca · de · en · es · fr · ja · pt-BR · ru · th · vi · zh</code>) — <code>fr</code>, <code>ja</code>, <code>pt-BR</code> pribudli po 6. 8., upstream preklady aktívne priberá. Pridanie <code>sk.ts</code> a <code>cs.ts</code> sú <b class="yes">nové súbory → nulový merge konflikt</b>. Navyše <code>ci-i18n.yml</code> kompletnosť prekladov kontroluje za nás.</td></tr>
+    <tr><td><b>Aktívny upstream</b></td><td>posledný release <code>v0.1.13</code> z 2026-08-04 s 18 assetmi — vyvíja sa rýchlo, sync treba robiť pravidelne</td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">3</span>Ako udržať fork lacný — záväzné pravidlá</h2>
+  <div class="rule">
+    ⚠️ Pravidlo č. 1: radšej pridávaj súbory, než upravuj cudzie.<br>
+    <span style="font-weight:500;font-size:14.5px;color:var(--muted)">Nové súbory sa nikdy nemergujú konfliktne. Každý riadok zmenený v ich existujúcom súbore je budúci konflikt. Toto jedno pravidlo rozhoduje, či bude fork udržateľný.</span>
+  </div>
+  <ol class="rules">
+    <li><b>Forkovať cez GitHub</b>, nie kopírovaním. Len tak funguje <i>Sync fork</i> a <code>upstream</code> remote.</li>
+    <li><b>Evidencia zásahov</b> — súbor <code>PATCHES.md</code> vo forku, kde je vymenovaný <b>každý</b> náš zásah do upstream súboru a prečo. Keď merge spadne, vieme presne, čo obnoviť.</li>
+    <li><b>Synchronizovať pri ich releasoch</b>, nie priebežne. Pinnúť sa na tag, prejsť changelog, mergnúť vedome.</li>
+    <li><b>Čo sa dá, posielať upstream.</b> Nie z altruizmu — <b>každá vec, ktorú prijmú, zmenšuje náš diff</b>. Lokalizácia je ideálny kandidát.</li>
+    <li><b>Naša doména do vlastných priečinkov</b> — SK/CZ MCP konfigy, OKF šablóny, skills a prompty držať v adresároch, ktoré upstream nepozná. Tie sa nikdy nezrazia.</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="n">4</span>Náklady, s ktorými treba rátať</h2>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Položka</th><th>Poznámka</th></tr>
+    <tr><td><b>Apple Developer Program</b></td><td>notarizácia macOS buildov; bez nej Gatekeeper appku zablokuje. Ročný poplatok — <i>sumu overiť pred rozpočtom</i></td></tr>
+    <tr><td><b>Podpisovanie na Windows</b></td><td>bez certifikátu bude SmartScreen varovať; dá sa dočasne akceptovať</td></tr>
+    <tr><td><b>CI tajomstvá</b></td><td>podpisové kľúče a heslá do GitHub Secrets nášho forku</td></tr>
+    <tr><td><b>Merge práca</b></td><td>pri každom upstream release; veľkosť závisí od dodržiavania pravidla č. 1</td></tr>
+    <tr><td><b>Zodpovednosť</b></td><td>vlastná branded binárka nás v očiach používateľa posúva bližšie k dodávateľovi — viď <a href="0002-preco-forkujeme-mikeoss.html">ADR 0002</a>, kde je monetizácia postavená na vzdelávaní, nie na softvéri. <b>Ošetriť disclaimerom v README a v podmienkach.</b></td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">5</span>Zvažované alternatívy — a prečo NIE</h2>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Alternatíva</th><th>Prečo nie</th></tr>
+    <tr><td><b>Prenosný balík bez forku</b></td><td>Technicky najlacnejšie a plne prenositeľné, ale používateľ by videl LegalWork, nie LAWOSS. <b>Nedáva vlastný produkt ani značku</b>, čo je pre projekt určujúce. Časti si však ponechávame — naša doména žije vo vlastných priečinkoch (pravidlo č. 5).</td></tr>
+    <tr><td><b>Downstream nadstavba</b></td><td>LegalWork je desktopová aplikácia (Electron), nie knižnica. <code>legalwork-orchestrator</code> <b>nemá na npm publikovanú verziu</b> (overené 2026-08-06).</td></tr>
+    <tr><td><b>LegalWork „extensions“</b></td><td>Ich registry je <b>hard-coded</b> — <code>apps/server/src/extensions/index.ts</code> obsahuje statické pole a dispatch cez <code>if (extensionId === …)</code>. Zvonku sa registrovať nedá.</td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">6</span>Dôsledky</h2>
+  <div class="card" style="margin-bottom:14px">
+    <h3 class="yes">Pozitívne</h3>
+    <ul>
+      <li>Vlastný produkt, vlastná značka, vlastný repozitár — plná kontrola nad tým, čo advokát vidí.</li>
+      <li>Zdedený build pipeline pre macOS aj Windows.</li>
+      <li>SK/CZ lokalizácia ako nové súbory → bez konfliktov, a zároveň silný kandidát na upstream.</li>
+      <li>Môžeme meniť UI presne pre advokátsku prácu, čo balík neumožňoval.</li>
+    </ul>
+  </div>
+  <div class="warn">
+    <h3>Negatívne a na doriešenie</h3>
+    <ul>
+      <li><b>Merge dlh.</b> Upstream sa hýbe rýchlo (release 4. 8.). Pravidlo č. 1 nie je odporúčanie, ale podmienka udržateľnosti.</li>
+      <li><b>Potrebujeme niekoho, kto vie riešiť merge konflikty v TypeScripte.</b> V tíme to dnes nemáme — otvorené, či to zvládne AI asistencia.</li>
+      <li><b>Notarizácia a podpisovanie</b> sú náklad aj administratíva. Rozhodnúť, kto účet zriadi.</li>
+      <li><b>Prenositeľnosť klesá.</b> Naša doména zostáva prenosná, ale produkt už bude viazaný na LegalWork.</li>
+      <li>Otvorené: <b>ktorý tag</b> forkneme (kandidát: <code>v0.1.13</code>).</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    Súvisí: <a href="0003-legal-work-ako-zaklad.html">ADR 0003</a> ·
+    <a href="0005-struktura-repozitarov.html">ADR 0005</a> ·
+    <a href="../research/inspiracie/legalwork.md">analýza LegalWork</a><br>
+    Fakty overené priamo v zdrojáku <a href="https://github.com/eigenweltlabs/legalwork">eigenweltlabs/legalwork</a>, cez GitHub API a npm registry, 2026-08-06.
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

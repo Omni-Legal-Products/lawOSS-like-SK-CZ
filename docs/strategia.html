@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategické zamyslenie — LAWOSS</title>
+<style>
+  :root{--navy:#0d1b2a;--navy2:#13243a;--gold:#c9a24a;--gold-soft:#e4c979;
+    --ink:#1a2233;--muted:#5b6577;--line:#e4e7ec;--bg:#f6f7f9;--card:#fff;
+    --green:#1f9d55;--amber:#c98a1a;--red:#c0392b}
+  @media (prefers-color-scheme:dark){:root{--ink:#e8ecf3;--muted:#9aa6b8;--line:#25324a;--bg:#0b131f;--card:#111c2e}}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  .hero{background:radial-gradient(1100px 380px at 75% -10%,rgba(201,162,74,.22),transparent),
+    linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;padding:48px 0 40px;border-bottom:3px solid var(--gold)}
+  .kicker{letter-spacing:.26em;text-transform:uppercase;font-size:12px;color:var(--gold-soft);font-weight:700}
+  .hero h1{margin:.3em 0 .1em;font-size:clamp(26px,4.6vw,38px);line-height:1.12;font-weight:800}
+  .hero p{margin:.4em 0 0;color:#c8d2e0;font-size:15px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{background:rgba(255,255,255,.08);border:1px solid rgba(201,162,74,.4);color:#fff;padding:5px 12px;border-radius:100px;font-size:12.5px;font-weight:600}
+  .chip b{color:var(--gold-soft)}
+  section{margin:34px 0}
+  h2{font-size:20px;font-weight:800;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+  h2 .n{background:var(--navy);color:var(--gold);width:28px;height:28px;border-radius:8px;display:inline-grid;place-items:center;font-size:13px;flex:none}
+  @media(prefers-color-scheme:dark){h2 .n{background:#0a1524}}
+  h3{font-size:15px;margin:.2em 0 .5em}
+  .decision{background:linear-gradient(135deg,rgba(201,162,74,.14),rgba(201,162,74,.05));border:1.5px solid var(--gold);
+    border-radius:16px;padding:20px 22px;font-size:16px;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:0 4px 14px rgba(13,27,42,.05)}
+  table{width:100%;border-collapse:collapse;font-size:14px;border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+  @media(prefers-color-scheme:dark){th{background:#0a1524}}
+  tr:last-child td{border-bottom:none}
+  .tbl-wrap{overflow-x:auto}
+  code{background:rgba(125,140,170,.16);padding:1px 6px;border-radius:5px;font-size:13px}
+  .note{border-left:4px solid var(--gold);background:rgba(201,162,74,.08);padding:12px 16px;border-radius:0 10px 10px 0;font-size:14px;margin:14px 0}
+  .warn{border-left-color:var(--red);background:rgba(192,57,43,.08)}
+  .verdict{border:2px solid var(--gold);border-radius:16px;overflow:hidden;margin:18px 0}
+  .verdict .head{background:var(--navy);color:#fff;padding:14px 20px;font-size:18px;font-weight:800;display:flex;align-items:center;gap:12px}
+  .verdict .head .badge{background:var(--amber);color:#fff;padding:3px 14px;border-radius:100px;font-size:14px}
+  .verdict .body{padding:16px 20px;background:var(--card);font-size:14px}
+  .verdict .body p{margin:.5em 0}
+  .scores{display:flex;flex-wrap:wrap;gap:8px;font-size:12.5px;font-weight:700;margin-top:10px}
+  .scores span{background:rgba(125,140,170,.14);padding:4px 10px;border-radius:100px}
+  .scores span.hi{background:rgba(31,157,85,.16);color:var(--green)}
+  .scores span.lo{background:rgba(192,57,43,.14);color:var(--red)}
+  .nay{font-size:14px}
+  .nay li{margin:.35em 0}
+  footer{margin:40px 0 30px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head>
+<body>
+
+<div class="hero"><div class="wrap">
+  <div class="kicker">LAWOSS · stratégia</div>
+  <h1>Strategické zamyslenie — zvládneme to, udrží sa to a ako to predáme</h1>
+  <p>Úprimná odpoveď na tri kľúčové otázky · rola IR · základ pre marketing a komunikáciu</p>
+  <div class="meta">
+    <span class="chip">Stav: <b>návrh na prerokovanie</b></span>
+    <span class="chip">Oponentúra: <b>rada 6 person · 2026-08-10</b></span>
+    <span class="chip">Fakty overené <b>2026-08-12</b></span>
+  </div>
+</div></div>
+
+<div class="wrap">
+
+<section>
+  <h2><span class="n">∑</span>TL;DR — tri otázky, tri odpovede</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Otázka</th><th>Odpoveď jednou vetou</th></tr>
+    <tr><td><b>Zvládneme to?</b></td><td><b>Áno — ale iba ako obsahový projekt, nie softvérovú firmu.</b> V1 je z ~90 % obsah; ten s AI asistenciou zvládneme. Rolu dodávateľa softvéru na seba prevziať nesmieme.</td></tr>
+    <tr><td><b>Je to udržateľné?</b></td><td><b>Podmienečne.</b> Fork ako pracovný nástroj áno; verejná distribúcia binárok a modul lehôt idú von až po splnení podmienok. Povinný písomný exit plán z upstreamu.</td></tr>
+    <tr><td><b>Sú nápady realizovateľné?</b></td><td><b>21 z 26 nápadov padne do zelenej zóny</b> — konfigurácia a nové súbory. Naša hodnota je klient-agnostická vrstva, ktorá prežije aj smrť LegalWorku.</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <h2><span class="n">1</span>Vrstva, nie binárka</h2>
+  <div class="decision">Naša hodnota nie je fork — je to <u>vrstva LAWOSS</u> (OKF, MCP konektory, prompty, skills, locale) nad LegalWorkom. Funguje aj bez forku, prežije smrť ktorejkoľvek nižšej vrstvy a je odpoveďou na najtvrdší útok oponentúry: fork je obal a distribúcia, úspech projektu na binárke stáť nesmie.</div>
+</section>
+
+<section>
+  <h2><span class="n">2</span>Oponentúra a verdikt</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Persona</th><th>Skóre</th><th>Stanovisko jednou vetou</th></tr>
+    <tr><td>🔮 Vizionár (10×)</td><td><b>9/10</b></td><td>Šanca stať sa de facto štandardom digitálnej praxe pre ~19 000 advokátov, ktorých Harvey ani Legora neobslúžia; kto vlastní formát spisu, vlastní trh.</td></tr>
+    <tr><td>🧠 First-principles</td><td>4/10</td><td>Celá V1 je obsah, nie kód — fork je najdrahší spôsob doručenia hodnoty, ktorá je z 80 % v obsahu.</td></tr>
+    <tr><td>🔍 Prior-art</td><td>4/10</td><td>Upstream je novorodenec (7 týždňov, 90 ⭐, 2 prispievatelia — overené). Skutočná inovácia je klient-agnostická SK/CZ vrstva; povinný exit plán.</td></tr>
+    <tr><td>🔧 Budúci údržbár</td><td>3/10</td><td>Upstream je open-core konkurent; „&lt;10 riadkov patchov" je sebaklam; lehoty nie sú feature, sú malpractice povrch.</td></tr>
+    <tr><td>🛡️ Bezpečnosť</td><td>3/10</td><td>Podpisovací kľúč = single point of failure; podpísaná binárka pre komoru z nás robí presne toho dodávateľa, ktorému sme sa chceli vyhnúť.</td></tr>
+    <tr><td>👤 Používateľ</td><td>4/10</td><td>„GitHub, API kľúč, MCP — už ste ma stratili." Predávajte školenie s inštaláciou v cene, nie softvér s návodom.</td></tr>
+  </table></div>
+
+  <div class="verdict">
+    <div class="head">⚖️ VERDIKT <span class="badge">PRESKUPIŤ</span> <span style="font-size:13px;font-weight:600;color:#c8d2e0">istota: vysoká</span></div>
+    <div class="body">
+      <p><b>Rozhodnutie:</b> Do projektu ísť — ale preskupiť z „forkneme appku a rozdáme binárky" na <b>„klient-agnostická vrstva LAWOSS + vzdelávanie; fork je obal, ktorého verejná distribúcia je míľnik s podmienkami, nie deň D".</b></p>
+      <p><b>Prečo:</b> Päť person nezávisle ukázalo na to isté — hodnota je vo vrstve a vzdelávaní (unesieme), riziko v roli dodávateľa binárky a v lehotách (neunesieme). Vizionárov upside preskupenie plne zachováva; jediné, čo zamietame, je „posvätenie SAK" — optika, ktorú ADR 0002 zakazuje.</p>
+      <p><b>Najväčšie riziko:</b> podpísaná binárka + lehoty bez doménových testov = zodpovednosť dodávateľa s menom člena predsedníctva SAK v credits.</p>
+      <p><b>Najväčší upside:</b> neobslúžený trh SK/CZ, vzdelávací distribučný kanál, ktorý sa nedá kúpiť, OKF ako otvorený formát spisu; produkt je vlastný dôkaz workshopu.</p>
+      <p><b>Najlacnejší test (48 h):</b> nultý krok (MCP návod) + 1 reálny netechnický advokát mimo tímu — rozbehá to sám? ušetrí hodinu? zaplatil by 150–250 € za školenie?</p>
+      <p><b>Pivot:</b> ① fork hneď, ale ako pracovný nástroj v zelenej zóne · ② verejná distribúcia binárok = míľnik M2 s bránou (security owner, správa kľúča, incident proces, disclaimery) · ③ lehoty vo V1 len ako „timeline spisu", stráženie až po doménových testoch · ④ písomný exit plán z upstreamu do AGENTS.md forku.</p>
+      <div class="scores">
+        <span class="lo">Bezpečnosť 3</span><span class="hi">Vizionár 9</span><span>Prior-art 4</span><span>First-principles 4</span><span class="lo">Údržbár 3</span><span>Používateľ 4</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">3</span>Zvládneme to? — kapacita</h2>
+  <div class="card">
+    <ul class="nay" style="margin:0">
+      <li><b>MČ je single point of failure</b> — vlastní 7+ z 11 oblastí. Presuny: dokumentácia a PM → IR · CZ os + UI/CLI → VŘ · lehoty + doménové testy → MF · sync zostáva MČ, ale s runbookom prenositeľným na kohokoľvek.</li>
+      <li><b>V1 = obsah, nie kód</b> — presne ako hovorí agenda: „MVP nie je appka".</li>
+      <li><b>Descope triggery:</b> lokalizácia + OKF nehotové do konca septembra → V1 sa zužuje na nultý krok + workshop · lehoty bez testov → von z V1 · sync 2× po sebe cez víkend → exit plán.</li>
+      <li><b>Nekupovať si nové povinnosti:</b> žiadne SLA, žiadny helpdesk — komunita áno, podpora nie.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">4</span>Je to udržateľné? — upstream a dve brány</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Fakt (GitHub API 2026-08-12)</th><th>Hodnota</th><th>Dôsledok</th></tr>
+    <tr><td>Vznik repa</td><td><b>2026-06-23</b> (7 týždňov)</td><td>staviame na novorodencovi</td></tr>
+    <tr><td>Prispievatelia</td><td><b>2</b> (68+31 commitov)</td><td>bus factor 2</td></tr>
+    <tr><td>Popularita</td><td>90 ⭐ · 17 forkov</td><td>skoro žiadna záchranná komunita</td></tr>
+    <tr><td>Biznis model</td><td>open-core</td><td><b>upstream je potenciálny konkurent</b></td></tr>
+  </table></div>
+  <div class="note warn"><b>Brána M2 — verejná distribúcia binárok:</b> security owner · spravovaný podpisový kľúč s rotáciou a revokáciou · incident kontakt a proces · disclaimer set · ADR. <b>Brána lehôt:</b> doménové testy SK aj CZ · UX s povinným potvrdením advokátom · disclaimer · review MF. Obe brány chránia tézu „nie sme dodávateľ softvéru", na ktorej stojí celý monetizačný model.</div>
+  <div class="note"><b>Exit plán (povinný, do AGENTS.md forku):</b> ≥3 mesiace bez releasu · odchod maintainera · pivot na closed-core · konflikt &gt;1 týždeň práce → vrstva sa odpája a žije nad čistým opencode / iným klientom.</div>
+</section>
+
+<section>
+  <h2><span class="n">5</span>Realizovateľnosť 26 nápadov</h2>
+  <div class="decision" style="font-size:15px">21 z 26 nápadov = 🟢 zelená zóna (konfigurácia, nové súbory, žiadny zásah do jadra). Fork architektúra reálne limituje len <b>#22 komunikačné kanály</b> (🟡/🔴) a <b>#20 fakturáciu</b> (🔴 — do forku nepatrí). Pozor: tiered memory staviame vlastné nad OKF — AGPL plugin legalmemory je v zakázanej zóne.</div>
+  <p style="font-size:14px">Plná mapa všetkých 26 nápadov so zónami a verdiktmi: <a href="strategia.md">strategia.md, kap. 5</a>.</p>
+</section>
+
+<section>
+  <h2><span class="n">6</span>Rola Igora Ribára <span style="font-size:12px;font-weight:600;color:var(--amber)">(návrh na potvrdenie IR)</span></h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Rola</th><th>Čo konkrétne</th><th>Čo to NIE je</th></tr>
+    <tr><td><b>Procesný vlastník</b></td><td>PM rámec, konvencie, dokumentácia, modulové rozhranie (z callu 6. 8.)</td><td>—</td></tr>
+    <tr><td><b>Hlas komory dovnútra</b></td><td>požiadavky a testovanie z pohľadu regulácie; early-warning na témy komory</td><td>lobovanie „nech to SAK odporučí"</td></tr>
+    <tr><td><b>Etický kompas</b></td><td>stráži, aby komunikácia neimplikovala endorsement; navrhne formu verejného disclosure</td><td>„posvätenie" projektu funkciou</td></tr>
+  </table></div>
+  <div class="note warn"><b>Červená čiara:</b> IR nesmie byť tvárou distribúcie binárky. Kým brána M2 nie je otvorená, meno člena predsedníctva SAK sa spája so vzdelávaním a otvoreným formátom — nie s „stiahnite si a nainštalujte". Transparentné priznanie vzťahu k SAK je aktívum dôvery, nie obmedzenie (ADR 0002).</div>
+</section>
+
+<section>
+  <h2><span class="n">7</span>Ako to predáme</h2>
+  <div class="decision" style="font-size:15px">LAWOSS — Poriadok v spise. Overené právo. AI pod kontrolou.<br><span style="font-weight:400;font-size:14px">Open-source nástroj a komunita advokátov v ČR a SR. Dáta zostávajú u advokáta. Postavili sme si ho sami — a naučíme vás s ním pracovať.</span></div>
+  <ul class="nay">
+    <li><b>Príbeh:</b> „štyria advokáti si to postavili sami" — produkt je dôkaz workshopu; flywheel nástroj → kredibilita → školenia → čas na nástroj.</li>
+    <li><b>Publikum:</b> sólo a malé kancelárie SK (~6 000, <i>overiť</i>) a CZ (~13 000, <i>overiť</i>) · účastníci školení · OSS komunita.</li>
+    <li><b>Predajný model:</b> školenie s inštaláciou a nastavením v cene — prekonanie inštalačnej bariéry JE súčasť produktu.</li>
+    <li><b>Čo nesľubujeme (verejne):</b> žiadne „schválené SAK/ČAK" · žiadna záruka anonymizácie · žiadna náhrada úsudku advokáta · žiadne SLA · subscription = informovaná voľba (ToS výhrada) · free logované modely nie sú pre klientske dáta.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">8</span>Dôsledky pre plán forku a call 12. 8.</h2>
+  <div class="card"><ul class="nay" style="margin:0">
+    <li>Plán forku (PR #13) platí — fork hneď, ako pracovný nástroj v zelenej zóne.</li>
+    <li>Do checklistu na odklep pribúda: brána M2 · lehoty-gate · exit plán · rola IR · najlacnejší test (kto zoženie testovacieho advokáta).</li>
+    <li>Nultý krok (MCP návod) sa stáva strategickým — je to zároveň najlacnejší test celého projektu.</li>
+    <li>Rozdelenie práce preskupiť, aby MČ nebol SPOF.</li>
+  </ul></div>
+</section>
+
+<footer>
+  Pripravil MČ s AI asistenciou, 2026-08-10. Oponentúra: rada 6 nezávislých person (/roast, TECH), 2026-08-10. Fakty o upstreame overené cez GitHub API k 2026-08-12. Počty advokátov a poplatky orientačné, neoverené. Plná verzia: <a href="strategia.md">strategia.md</a>
+</footer>
+
+</div>
+</body>
+</html>
