@@ -275,7 +275,10 @@ lawOSS-like-SK-CZ/
 │   ├── brand-concept.md
 │   ├── glossary.md
 │   ├── mcp-repository-workflow.md
+│   ├── metodika-kvality-skillov.md
 │   ├── principles.md
+│   ├── strategia.html
+│   ├── strategia.md
 │   ├── telegram-notifikacie.md
 │   └── vision.md
 ├── meetings/
@@ -298,6 +301,8 @@ lawOSS-like-SK-CZ/
 │   ├── timeline.md
 │   └── workshopy.md
 ├── research/
+│   ├── anonymizacia/
+│   │   └── 2026-08-14-sk-anonymizacne-detektory.md
 │   ├── deep-research/
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
@@ -307,6 +312,8 @@ lawOSS-like-SK-CZ/
 │   │   ├── 2026-07-29-build-open-vs-buy-closed.md
 │   │   ├── 2026-07-29-orchestrator-transkripcia-byo-subscriptions.md
 │   │   ├── 2026-08-07-feature-ideas-telegram.md
+│   │   ├── 2026-08-14-orchestracia-human-gates-vzory.md
+│   │   ├── 2026-08-14-spisovy-destilat-l2-pamat.md
 │   │   └── README.md
 │   ├── inspiracie/
 │   │   ├── 2026-08-13-editory-docx-superdoc-vs-eigenpal.md
@@ -376,18 +383,18 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**198 commitov** · **100 súborov**
+**210 commitov** · **106 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `fadab77` | 2026-08-17 | Majo Cuprik | Merge pull request #35 from Omni-Legal-Products/docs/metodika-kvality-skillov |
+| `e61c299` | 2026-08-17 | Majo Cuprik | Merge pull request #36 from Omni-Legal-Products/research/anonymizacne-detektory |
+| `9dde3f9` | 2026-08-17 | Majo Cuprik | Merge pull request #37 from Omni-Legal-Products/research/spisovy-destilat |
+| `cc0478a` | 2026-08-17 | Majo Cuprik | Merge pull request #38 from Omni-Legal-Products/research/orchestracia-vzory |
+| `5027c4a` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
+| `11fe12e` | 2026-08-17 | Majo Cuprik | Merge pull request #14 from Omni-Legal-Products/docs/strategicke-zamyslenie |
 | `a656f43` | 2026-08-17 | Majo Cuprik | Merge pull request #13 from Omni-Legal-Products/plan/fork-a-workflow |
 | `785f26a` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `71a0b3f` | 2026-08-17 | Majo Cuprik | Merge pull request #19 from Omni-Legal-Products/docs/adr-0007-agent-first |
-| `5e2323b` | 2026-08-16 | BiggusDicckkus | fix: remove duplicate HTML head and body tags |
-| `7ff5fff` | 2026-08-16 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `b2145b2` | 2026-08-16 | Majo Cuprik | Merge pull request #43 from Omni-Legal-Products/docs/stav-odpovedi-timu |
-| `4d7c21d` | 2026-08-16 | Majo Cuprik | Merge pull request #50 from Omni-Legal-Products/planning/odpovede-vr-q01-q25 |
-| `dee1aed` | 2026-08-16 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
