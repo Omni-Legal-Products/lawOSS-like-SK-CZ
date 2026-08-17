@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ADR 0009: Základná produktová doktrína LAWOSS">
+  <title>ADR 0009 | Základná produktová doktrína LAWOSS</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --navy: #0d1b2a;
+      --gold: #c9a24a;
+      --paper: #f8f7f3;
+      --ink: #162536;
+      --muted: #556474;
+      --line: #d8d7d1;
+      --card: #ffffff;
+      --note: #edf3f8;
+      --shadow: 0 18px 48px rgb(13 27 42 / 12%);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration-color: var(--gold); text-underline-offset: 0.18em; }
+
+    .topbar {
+      background: var(--navy);
+      color: #fff;
+      padding: 1rem max(1.25rem, calc((100% - 1120px) / 2));
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+    }
+
+    .brand { font-weight: 800; letter-spacing: 0.08em; }
+    .brand span { color: var(--gold); }
+    .back { color: #fff; }
+
+    main { max-width: 960px; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+
+    article {
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: clamp(2rem, 6vw, 4.5rem);
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.8rem;
+      color: var(--gold);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 { color: var(--navy); line-height: 1.15; }
+    h1 { margin: 0; color: #fff; font-size: clamp(2.25rem, 7vw, 4.5rem); }
+    h2 { margin: 3rem 0 1rem; font-size: clamp(1.55rem, 3vw, 2.25rem); }
+    h3 { margin: 2rem 0 0.75rem; font-size: 1.35rem; }
+    p { margin: 0.9rem 0; }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      margin: 2rem 0 0;
+      background: rgb(255 255 255 / 20%);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .meta div { padding: 0.85rem 1rem; background: rgb(255 255 255 / 9%); }
+    .meta strong { display: block; color: var(--gold); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .content { padding: clamp(1.5rem, 5vw, 4rem); }
+    .slogan { margin: 1.8rem 0; padding: 1.4rem 1.5rem; border-left: 5px solid var(--gold); background: var(--note); font-size: 1.15rem; font-style: italic; }
+    .pillars { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+    .pillar { padding: 1.5rem; border-top: 4px solid var(--gold); background: var(--note); }
+    .pillar h3 { margin-top: 0; }
+    ol, ul { padding-left: 1.35rem; }
+    li { margin: 0.5rem 0; }
+
+    .test { counter-reset: test; display: grid; gap: 0.75rem; margin: 1.25rem 0; padding: 0; list-style: none; }
+    .test li { display: flex; gap: 0.85rem; align-items: flex-start; margin: 0; padding: 1rem; border: 1px solid var(--line); }
+    .test li::before { counter-increment: test; content: counter(test); display: grid; place-items: center; flex: 0 0 2rem; height: 2rem; border-radius: 50%; background: var(--navy); color: #fff; font-family: Arial, Helvetica, sans-serif; font-weight: 800; }
+
+    table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.94rem; }
+    th, td { padding: 0.9rem; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: var(--navy); color: #fff; font-family: Arial, Helvetica, sans-serif; }
+    tr:nth-child(even) td { background: var(--note); }
+
+    .notice { margin: 1.5rem 0; padding: 1.25rem 1.5rem; border: 1px solid var(--gold); background: #fff9e9; }
+    .notice strong { color: var(--navy); }
+    footer { margin-top: 2rem; color: var(--muted); font-family: Arial, Helvetica, sans-serif; font-size: 0.86rem; }
+
+    @media (max-width: 640px) {
+      body { font-size: 16px; }
+      main { padding: 0 0 2rem; }
+      article { border-width: 0; }
+      .topbar-inner, .pillars { display: block; }
+      .back { display: inline-block; margin-top: 0.5rem; }
+      .meta { grid-template-columns: 1fr; }
+      .pillar + .pillar { margin-top: 1rem; }
+      th, td { padding: 0.7rem; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #0b141e;
+        --ink: #e8edf2;
+        --muted: #b5c0cb;
+        --line: #334657;
+        --card: #132231;
+        --note: #1a2d3e;
+        --shadow: none;
+      }
+      h2, h3 { color: #f2d590; }
+      .slogan { background: #1a2d3e; }
+      .notice { background: #2a2516; }
+      .notice strong { color: #f2d590; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">LAW<span>OSS</span></div>
+      <a class="back" href="../README.md">Späť na README</a>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <header class="hero">
+        <p class="eyebrow">ADR 0009</p>
+        <h1>Základná produktová doktrína LAWOSS</h1>
+        <div class="meta">
+          <div><strong>Dátum</strong>2026-08-12</div>
+          <div><strong>Stav</strong>Navrhnuté MČ, čaká na potvrdenie MF, IR a VŘ</div>
+          <div><strong>Navrhol</strong>Marián Čuprík (MČ)</div>
+          <div><strong>Súvisí s</strong><a href="../docs/superpowers/specs/2026-08-12-lawoss-zakladna-produktova-doktrina-design.md">Dizajnový spec doktríny</a></div>
+        </div>
+      </header>
+
+      <div class="content">
+        <h2>Kontext</h2>
+        <p>LAWOSS má byť otvoreným pracovným prostredím pre českých a slovenských právnikov, nie ďalším uzavretým právnickým produktom. Produktovou hypotézou MČ je riziko uniformity: ak veľká časť trhu používa rovnaký výber modelov, skryté prompty a pracovné postupy uzavretých black box riešení, právna práca sa môže zjednocovať podľa rozhodnutí dodávateľa namiesto rozdielneho know-how jednotlivých kancelárií.</p>
+        <p>Toto nie je tvrdenie o konkrétnych konkurentoch. Pri verejnej komunikácii sa nesmú bez aktuálneho a doloženého overenia uvádzať fakty o ich cenotvorbe, modeloch ani promptoch. LAWOSS sa má odlišovať vlastnými vlastnosťami a princípmi: kontrolou používateľa, individualizáciou, otvorenosťou a agent-first architektúrou s právnikom ako supervízorom.</p>
+        <p class="slogan">Your law. Your models. Your knowledge. Your agents.</p>
+
+        <h2>Rozhodnutie</h2>
+        <p>Navrhuje sa prijať základnú produktovú doktrínu LAWOSS postavenú na dvoch pilieroch. Doktrína je záväzným testom pre každé budúce významné produktové rozhodnutie, feature, ADR a partnerstvo po potvrdení MF, IR a VŘ.</p>
+
+        <div class="pillars">
+          <section class="pillar">
+            <h3>1. Právnik vlastní svoju inteligenciu</h3>
+            <p>Používateľ má mať kontrolu nad výberom modelov, pomerom kvality, ceny, rýchlosti a súkromia, vlastnými promptmi a skillmi, MCP servermi a dátovými zdrojmi, právnym know-how, pamäťou, automatizáciami, pracovnými postupmi, miestom spracovania a uloženia dát aj auditom práce agenta.</p>
+            <p>Predvolená konfigurácia môže zjednodušiť začiatok, nesmie však odstrániť možnosť systém pochopiť, upraviť, vymeniť jeho časti alebo ich opustiť.</p>
+          </section>
+          <section class="pillar">
+            <h3>2. Aplikácia sa stavia pre agentov, človek ju riadi</h3>
+            <p>Agenti vykonávajú rešerš, organizáciu, kontrolu a prípravu práce. OKF a pamäť udržiavajú kontext, skilly definujú odborné pracovné postupy a MCP servery poskytujú nástroje a overené zdroje.</p>
+            <p>Právnik stanovuje cieľ, kontroluje riziko a schvaľuje výsledok. Rozhranie musí poskytovať riadenie, dohľad, audit a rozhodovanie; rozsah human approval musí zodpovedať riziku úlohy.</p>
+          </section>
+        </div>
+
+        <h2>Záväzný produktový test</h2>
+        <p>Každý významný návrh, ADR, feature a partnerstvo musí odpovedať na všetkých šesť otázok:</p>
+        <ol class="test">
+          <li>Zvyšuje používateľovu kontrolu nad modelmi, dátami, nástrojmi a know-how?</li>
+          <li>Zachováva možnosť systém pochopiť, upraviť, vymeniť alebo opustiť?</li>
+          <li>Posilňuje schopnosť právnika bezpečne riadiť agentov?</li>
+          <li>Zachováva audit, provenance a primerané human approval?</li>
+          <li>Nevytvára nový povinný black box alebo vendor lock-in?</li>
+          <li>Umožňuje platformám a kanceláriám využiť vlastné výhody bez nútenej uniformity?</li>
+        </ol>
+        <div class="notice"><strong>Výnimka:</strong> Ak návrh v ktoromkoľvek bode zlyhá, výnimka vyžaduje nový ADR s výslovným odôvodnením, mitigáciou a časovým obmedzením. Bez takého ADR sa výnimka neprijíma.</div>
+
+        <h2>Zvažované alternatívy</h2>
+        <table>
+          <thead><tr><th>Alternatíva</th><th>Prečo nie</th></tr></thead>
+          <tbody>
+            <tr><td>Uzavretý jednotný stack</td><td>Znižuje kontrolu používateľa, vytvára vendor lock-in a núti rôzne kancelárie pracovať s rovnakými skrytými rozhodnutiami.</td></tr>
+            <tr><td>Nezáväzná vízia</td><td>Neposkytuje rozhodovací test ani mechanizmus na posúdenie výnimiek pri budúcich features a partnerstvách.</td></tr>
+            <tr><td>Otvorené modulárne jadro bez spoločnej doktríny</td><td>Zachováva technickú otvorenosť, ale bez záväzného smerovania nemusí chrániť individualitu, audit a právnika ako supervízora agentov.</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Dôsledky</h2>
+        <h3>Pozitívne</h3>
+        <ul>
+          <li>Multi-model výber je základná schopnosť produktu, nie doplnok.</li>
+          <li>Skilly, MCP servery a pracovné postupy musia byť prenositeľné a upraviteľné.</li>
+          <li>Používateľ musí pri podstatnom výstupe vedieť identifikovať použitý model, nástroj, zdroj a pravidlo.</li>
+          <li>Agent-first architektúra má jasné human approval brány podľa rizika.</li>
+          <li>Kancelárie, jednotlivci a platformy môžu budovať vlastnú konfiguráciu a zachovať vlastné konkurenčné výhody.</li>
+          <li>Komerčné partnerstvo nesmie odobrať komunite možnosť používať, kontrolovať a prispôsobovať otvorené jadro.</li>
+        </ul>
+        <h3>Negatívne a hranice</h3>
+        <ul>
+          <li>Modularita zvyšuje nároky na dokumentáciu, konfiguráciu, bezpečné predvolené nastavenia a podporu kompatibility.</li>
+          <li>Nie každý model, integrácia alebo kombinácia workflowov môže byť podporená od prvého vydania.</li>
+          <li>Otvorenosť neznamená automatické zverejňovanie klientskych dát ani interného know-how, autonómne právne rozhodovanie bez zodpovedného človeka, bezplatnú infraštruktúru alebo API kredity.</li>
+          <li>Výnimka, ktorá obmedzí kontrolu, individualizáciu alebo audit, musí mať samostatný ADR, odôvodnenie, mitigáciu a časové obmedzenie.</li>
+        </ul>
+
+        <h2>Ďalší postup</h2>
+        <p>Táto vetva obsahuje navrhnuté integrácie do <code>docs/vision.md</code>, <code>docs/principles.md</code>, <code>README.md</code>, rozhodovacích otázok tímu a kontrolných zoznamov pre PR a feature návrhy. Tieto integrácie sa stanú záväznými až po potvrdení tímom.</p>
+
+        <footer>HTML dvojník Markdown ADR. Zverejnený dokument je návrhom MČ a čaká na tímové potvrdenie.</footer>
+      </div>
+    </article>
+  </main>
+</body>
+</html>

@@ -38,7 +38,7 @@
 </td>
 <td>
 
-**[MikeOSS](https://github.com/Open-Legal-Products/mike)** ukázal, že právny AI asistent nemusí byť uzavretý enterprise produkt za tisíce eur — môže byť **open-source a slobodný**. Tú myšlienku berieme a prinášame ju do **česko-slovenského** právneho prostredia.
+**[MikeOSS](https://github.com/Open-Legal-Products/mike)** nás inšpiroval ukážkou, že právny AI asistent môže byť **open-source a slobodný**. Túto myšlienku rozvíjame pre **česko-slovenské** právne prostredie.
 
 LAWOSS je pokračovaním tejto línie: otvorený kód, žiadne black-box prompty, dáta u advokáta. To, čo MikeOSS začal pre svet, my dokončujeme pre CZ + SK jurisdikciu — so Slov-Lexom, judikatúrou, ORSR a slovenskou aj českou realitou advokátskej praxe.
 
@@ -50,7 +50,15 @@ LAWOSS je pokračovaním tejto línie: otvorený kód, žiadne black-box prompty
 
 Priniesť českým a slovenským advokátom **užitočný open-source nástroj úplne zadarmo** — postavený na zrelom open-source základe, obohatený o lokálne skills a MCP servery (Slov-Lex, ORSR, RPVS, judikatúra…), prispôsobený nášmu právu.
 
-Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advokátskej praxe (OKF)](specs/0002-okf-operacny-system-praxe.md)** — appka zakladá spisy, generuje riadiace súbory a stráži poriadok; AI je násobič, nie základ.
+Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advokátskej praxe (OKF)](specs/0002-okf-operacny-system-praxe.md)**: appka zakladá spisy, generuje riadiace súbory a stráži poriadok. OKF a dáta sú stabilný základ praxe. Agenti sú operačným modelom, ktorý na tomto základe pripravuje, organizuje a kontroluje prácu pod dohľadom právnika.
+
+### Právnik riadi svoju AI
+
+**LAWOSS dáva právnikom úplnú kontrolu nad ich AI.**
+
+**Your law. Your models. Your knowledge. Your agents.**
+
+Kancelária si vyberá modely podľa kvality, ceny, rýchlosti a súkromia. Môže používať vlastné skilly, MCP servery a dátové zdroje, upravovať otvorené pracovné postupy a kontrolovať, ako agent pracoval. Agenti pripravujú a organizujú prácu, no právnik určuje cieľ, riadi riziko a schvaľuje výsledok ako ich supervízor. Podrobnosti rozvíja navrhnutá [základná produktová doktrína](decisions/0009-zakladna-produktova-doktrina.md).
 
 ### Päť pilierov
 
@@ -69,6 +77,23 @@ Nechceme „ďalší AI editor dokumentov". Ťažisko je **[organizácia advoká
 | 🧩 **Základ** | ✅ **[LegalWork](https://github.com/eigenweltlabs/legalwork)** (MIT) nad [opencode](https://github.com/sst/opencode) — [ADR 0003](decisions/0003-legal-work-ako-zaklad.md) |
 | 🔄 **Stratégia** | **Fork pod vlastným brandingom** vo vlastnom repozitári; čo dáva zmysel posielame do upstreamu — [ADR 0004](decisions/0004-ako-rozsirit-legalwork.md) |
 | 💬 **Komunikácia** | Telegram skupina + GitHub Issues/Discussions |
+
+## 📦 Čo staviame ako prvé
+
+> [!IMPORTANT]
+> **Scope V1 (MVP) sa odklepáva v stredu 12. 8. 2026** → [agenda a odôvodnenie](meetings/2026-08-12-agenda-mvp.md)
+
+Základ [LegalWork](decisions/0003-legal-work-ako-zaklad.md) už dáva chat, agenta, Office add-iny, transkripciu aj UI na MCP servery. **MVP je preto to, čo z neho spraví nástroj pre slovenského a českého advokáta:**
+
+| Kandidát na V1 | Prečo |
+|---|---|
+| 🇸🇰🇨🇿 **SK/CZ lokalizácia** | bez nej to advokát nepoužije; nové súbory locale = nulový merge konflikt |
+| 📁 **[OKF — spisy a štruktúra](specs/0002-okf-operacny-system-praxe.md)** | jadro odlíšenia, veľká časť už existuje |
+| 🔌 **[MCP: judikatúra + Slov-Lex](specs/0004-mcp-sk-konektory.md)** | najviditeľnejšia hodnota, servery bežia, read-only |
+| ⏰ **[Lehoty a timeline](specs/0005-lehoty-timeline.md)** | zmeškaná lehota = najčastejší dôvod zodpovednosti advokáta |
+| 📄 **OCR ingest → markdown** | quick win, hotová Quick Action |
+
+🗃️ **Všetkých 26 nápadov aj s tým, kam mieria:** [zberný kôš](planning/napady.md) · [grafický prehľad funkcií](https://omni-legal-products.github.io/lawOSS-like-SK-CZ/specs/prehlad.html)
 
 ## 🖥️ Ako to má vyzerať
 
@@ -175,8 +200,8 @@ flowchart TB
 Prvý **deep-research** balík (NotebookLM, 245 zdrojov, 6 kôl) o open-source AI pre slovenskú advokáciu — MCP servery, anonymizácia (MasKIT/Stella), integrácia vlastného a lokálneho API (BYOK), a compliance (SAK 2025, EU AI Act).
 
 - 📊 **Grafický report (rich markdown):** [research/deep-research/](research/deep-research/)
-- 🌐 **Živý HTML report:** [originalmagneto.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html](https://originalmagneto.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html)
-- 🎧 **Audio podcast (SK):** [Releases](https://github.com/originalmagneto/lawOSS-like-SK-CZ/releases/tag/research-2026-07-10)
+- 🌐 **Živý HTML report:** [omni-legal-products.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html](https://omni-legal-products.github.io/lawOSS-like-SK-CZ/research/deep-research/report.html)
+- 🎧 **Audio podcast (SK):** [Releases](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/releases/tag/research-2026-07-10)
 
 ## 🗺️ Roadmapa
 
@@ -198,8 +223,12 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 <!-- AUTO:PROGRESS -->
 | Súbor | Progress | Hotovo |
 |---|---|---|
-| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 5/52 (10 %) |
-| [`roadmap.md`](planning/roadmap.md) | `████░░░░░░░░░░░░░░░░` | 6/28 (21 %) |
+| [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
+| [`2026-08-15-odpovedi-VR-Q01-Q25.md`](planning/2026-08-15-odpovedi-VR-Q01-Q25.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
+| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 8/68 (12 %) |
+| [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
+| [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
+| [`roadmap.md`](planning/roadmap.md) | `██████░░░░░░░░░░░░░░` | 13/43 (30 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -214,6 +243,7 @@ lawOSS-like-SK-CZ/
 │       ├── keyvisual-features.png
 │       ├── keyvisual-hero.png
 │       ├── keyvisual-mobile.png
+│       ├── logo sub 1M.png
 │       ├── logo.png
 │       ├── mockup.png
 │       ├── moodboard.png
@@ -227,24 +257,56 @@ lawOSS-like-SK-CZ/
 │   ├── 0004-ako-rozsirit-legalwork.md
 │   ├── 0005-struktura-repozitarov.html
 │   ├── 0005-struktura-repozitarov.md
+│   ├── 0006-anonymizacia-ako-lokalny-privacy-gate.md
+│   ├── 0007-agent-first-architektura.html
+│   ├── 0007-agent-first-architektura.md
+│   ├── 0008-sprava-mcp-repozitarov.md
+│   ├── 0009-zakladna-produktova-doktrina.html
+│   ├── 0009-zakladna-produktova-doktrina.md
+│   ├── 0010-ochrana-know-how-a-znacky.md
 │   └── template.md
 ├── docs/
+│   ├── superpowers/
+│   │   ├── plans/
+│   │   │   └── 2026-08-12-lawoss-zakladna-produktova-doktrina.md
+│   │   └── specs/
+│   │       └── 2026-08-12-lawoss-zakladna-produktova-doktrina-design.md
+│   ├── templates/
+│   │   └── mcp-repository-AGENTS.md
 │   ├── brand-concept.md
 │   ├── glossary.md
+│   ├── mcp-repository-workflow.md
+│   ├── metodika-kvality-skillov.md
+│   ├── navod-mcp-pripojenie-legalwork.md
 │   ├── principles.md
+│   ├── strategia.html
+│   ├── strategia.md
 │   ├── telegram-notifikacie.md
+│   ├── validate-skills.md
 │   └── vision.md
 ├── meetings/
 │   ├── 2026-08-04-brainstorming-zaklad-a-prenositelnost.md
 │   ├── 2026-08-06-sync-call-volba-zakladu.md
-│   └── 2026-08-12-agenda-mvp.md
+│   ├── 2026-08-12-agenda-mvp.md
+│   └── 2026-08-12-produktova-vizia-okf-pamat.md
 ├── planning/
+│   ├── 2026-08-12-mcp-repository-rollout-plan.md
+│   ├── 2026-08-12-rozhodovacie-otazky-timu.md
+│   ├── 2026-08-14-stav-odpovedi-timu.md
+│   ├── 2026-08-15-odpovedi-VR-Q01-Q25.md
+│   ├── 2026-08-17-stanoviska-timu-Q01-Q25.md
 │   ├── backlog.md
+│   ├── cz-datove-zdroje.md
+│   ├── mcp-repository-inventory.md
 │   ├── napady.md
+│   ├── plan-fork-a-workflow.html
+│   ├── plan-fork-a-workflow.md
 │   ├── roadmap.md
 │   ├── timeline.md
 │   └── workshopy.md
 ├── research/
+│   ├── anonymizacia/
+│   │   └── 2026-08-14-sk-anonymizacne-detektory.md
 │   ├── deep-research/
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
@@ -254,15 +316,29 @@ lawOSS-like-SK-CZ/
 │   │   ├── 2026-07-29-build-open-vs-buy-closed.md
 │   │   ├── 2026-07-29-orchestrator-transkripcia-byo-subscriptions.md
 │   │   ├── 2026-08-07-feature-ideas-telegram.md
+│   │   ├── 2026-08-14-orchestracia-human-gates-vzory.md
+│   │   ├── 2026-08-14-spisovy-destilat-l2-pamat.md
 │   │   └── README.md
 │   ├── inspiracie/
+│   │   ├── 2026-08-13-editory-docx-superdoc-vs-eigenpal.md
 │   │   ├── legalwork.md
 │   │   ├── porovnanie.html
-│   │   └── README.md
+│   │   ├── README.md
+│   │   └── reconcile-jeff-su.md
 │   ├── mcp-servery/
 │   ├── mikeoss/
 │   ├── pravny-ramec/
+│   │   ├── zdroje-zarucena-konverzia/
+│   │   │   ├── 2026-08-12-analyza-zarucenej-konverzie.md
+│   │   │   ├── 2026-08-12-grok-report-integracia-ZK.pdf
+│   │   │   ├── 2026-08-12-zarucena-konverzia-SR-report.md
+│   │   │   └── README.md
+│   │   ├── 2026-08-12-zarucena-konverzia-sk.md
+│   │   ├── 2026-08-14-lehoty-sk-pravidla-vypoctu.md
+│   │   └── 2026-08-15-lhoty-cz-pravidla-vypoctu.md
 │   └── sk-datove-zdroje/
+├── scripts/
+│   └── validate-skills.mjs
 ├── specs/
 │   ├── 0001-transkripcia.md
 │   ├── 0002-okf-operacny-system-praxe.md
@@ -270,10 +346,21 @@ lawOSS-like-SK-CZ/
 │   ├── 0004-mcp-sk-konektory.md
 │   ├── 0005-lehoty-timeline.md
 │   ├── 0007-podpisovanie-a-zarucena-konverzia.md
+│   ├── 0008-anonymizacia-a-privacy-gate.md
+│   ├── 0009-reconcile-ucenie-z-uprav.md
+│   ├── 0010-zarucena-konverzia.md
 │   ├── navrhy.md
 │   ├── prehlad.html
 │   ├── README.md
 │   └── template.md
+├── tests-fixtures/
+│   └── skills/
+│       ├── zly-skill/
+│       │   └── SKILL.md
+│       └── zmluvny-audit/
+│           ├── tests/
+│           │   └── triggers.md
+│           └── SKILL.md
 ├── AGENTS.md
 ├── CLAUDE.md
 ├── CONTRIBUTING.md
@@ -313,23 +400,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**91 commitov** · **69 súborov**
+**243 commitov** · **118 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
-| `4f1c6a8` | 2026-08-07 | Majo Cuprik | planning: zberný kôš nápadov + agenda na rozhodnutie o MVP (12. 8.) |
-| `317bbd5` | 2026-08-07 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `1c48d93` | 2026-08-07 | Majo Cuprik | Merge branch 'main' of https://github.com/originalmagneto/lawOSS-like-SK-CZ |
-| `a4fcbf0` | 2026-08-07 | Majo Cuprik | specs: 0007 podpisovanie QES/QTS a zaručená konverzia cez Autogram |
-| `77aef05` | 2026-08-07 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `c30e396` | 2026-08-07 | Majo Cuprik | research: spracovaný Telegram topic Feature IDEAS (31 správ, 29. 7. – 7. 8.) |
-| `82b6087` | 2026-08-06 | Majo Cuprik | Merge pull request #7 from originalmagneto/docs/keyvisualy-readme |
-| `8e5d7ae` | 2026-08-06 | Majo Cuprik | docs: eIDAS von z README, evidencia preformulovaná na dizajnový prieskum |
+| `58e93da` | 2026-08-17 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
+| `53dcdd4` | 2026-08-17 | Majo Cuprik | planning: aktualizovať prehľad visiacich vecí po upratovaní PR 17. 8. |
+| `595562b` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
+| `608283d` | 2026-08-17 | Majo Cuprik | planning: aktualizovať prehľad visiacich vecí po upratovaní PR 17. 8. |
+| `b4e6f7c` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
+| `9e1abd4` | 2026-08-17 | Majo Cuprik | Merge pull request #52 from Omni-Legal-Products/docs/stanoviska-timu-q01-q25 |
+| `a592e63` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
+| `915042c` | 2026-08-17 | Majo Cuprik | Merge pull request #51 from Omni-Legal-Products/docs/reakcie-ir-vr |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-07 15:50 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 08:27 UTC<!-- /AUTO:UPDATED --></sub>
 </div>

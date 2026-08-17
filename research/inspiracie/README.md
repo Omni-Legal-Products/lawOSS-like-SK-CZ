@@ -19,7 +19,7 @@
 | Repo | `Open-Legal-Products/mike` | `stella` (CZ) | `eigenweltlabs/legalwork` |
 | Pôvod | 🇺🇸 Will Chen (ex-Latham) | 🇨🇿 Česko | Eigenwelt Labs *(pôvod neoverený)* |
 | Licencia | **AGPL-3.0** | Apache-2.0 *(z rešerše)* | **MIT** *(kompozit s 3rd-party)* |
-| Jazyk | TypeScript | TypeScript | TypeScript + Tauri |
+| Jazyk | TypeScript | TypeScript | TypeScript + Electron *(opravené 2026-08-12 — nie Tauri)* |
 | Vznik | 2026-04-29 | — | 2026-06-23 |
 | Posledný push | 2026-07-08 | — | **2026-07-29 (dnes)** |
 | Commity / 4 týždne | **6** | — | **62** |

@@ -165,10 +165,11 @@ Alfa sa považuje za pripravenú na syntetické testovanie iba ak:
 
 - Ktoré konkrétne SK/CZ právne pravidlá a sviatky patria do prvej testovacej sady?
 - Kto schváli pravidlový katalóg a ako sa bude versionovať?
+- Aké konkrétne SK/CZ právne pravidlá a sviatky patria do prvej testovacej sady? SK návrh s katalógom lehôt a testovacími prípadmi je v [research/pravny-ramec/2026-08-14-lehoty-sk-pravidla-vypoctu.md](../research/pravny-ramec/2026-08-14-lehoty-sk-pravidla-vypoctu.md) a zostáva na právnu revíziu; neoverené tvrdenia sa nesmú použiť ako hotové pravidlá.
 - Je pre alfu dostatočný ICS export, alebo je nevyhnutný CalDAV?
 - Aký je presný OKF formát pre potvrdenú lehotu a audit?
 - Aký bezpečnostný prah vyvolá dvojitú kontrolu?
 - Kto v tíme preberie právnu kontrolu pravidiel výpočtu?
 
 > [!NOTE]
-> Táto špecifikácia definuje produktový a bezpečnostný kontrakt. Nie je samostatným právnym stanoviskom k výpočtu konkrétnej slovenskej alebo českej lehoty.
+> Táto špecifikácia definuje produktový a bezpečnostný kontrakt. Nie je samostatným právnym stanoviskom k výpočtu konkrétnej slovenskej alebo českej lehoty. **Markdown je primárny pracovný formát; DOCX zostáva iba výmenným formátom na hranici systému.**

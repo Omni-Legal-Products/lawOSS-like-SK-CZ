@@ -4,15 +4,15 @@ Surové nápady patria do **[zberného koša](napady.md)** — sem sa dostáva t
 Dozreté položky majú vlastnú špecifikáciu v [specs/](../specs/).
 
 > [!TIP]
-> **Máš nový nápad?** Nepíš ho sem — hoď ho do Telegram topicu *Feature IDEAS*, cez [formulár](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml), alebo do [zberného koša](napady.md). Odtiaľ ho po prerokovaní presunieme.
+> **Máš nový nápad?** Nepíš ho sem — hoď ho do Telegram topicu *Feature IDEAS*, cez [formulár](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml), alebo do [zberného koša](napady.md). Odtiaľ ho po prerokovaní presunieme.
 >
-> **Scope V1 sa rozhoduje v stredu 12. 8.** → [agenda a návrh MVP](../meetings/2026-08-12-agenda-mvp.md)
+> **Scope V1 sa spresnil na calle 12. 8.** → [zápis a priority](../meetings/2026-08-12-produktova-vizia-okf-pamat.md). Otvorené rozhodnutia sú v [Q01 až Q25](2026-08-12-rozhodovacie-otazky-timu.md).
 
 ## 🚀 Alfa — vydať ASAP (zúžený scope)
 
-- [ ] ⏰ **Lehoty + kalendár** → [spec 0005](../specs/0005-lehoty-timeline.md) *(MF; kandidát #1)*
-- [ ] 📁 **OKF + prijatie veci s conflict checkom** (ORSR/RPO MCP už bežia)
-- [ ] 📄 **OCR ingest → markdown** — Mistral OCR quick win (existujúca Quick Action MČ)
+- [ ] 📁 **OKF + tri vrstvy pamäte + reconciliation** → [spec 0002](../specs/0002-okf-operacny-system-praxe.md) *(hlavná produktová priorita MČ; rozhodnutie z callu 2026-08-12)*
+- [ ] 🔍 **Prijatie veci + subjektový research** - conflict check, AML, sankcie, diskvalifikácie a registre cez MCP
+- [ ] 🧩 **Základné skills pre prácu so spisom** - zápis, čerstvosť, audit a pravidelná reconciliácia
 
 ## Kandidáti na v1 (majú spec)
 
@@ -40,7 +40,8 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 - [ ] 🧩 **Modulové rozhranie plug-and-play** — moduly ako LEGO, konfigurácia, bezpečnostné hranice *(IR do 2026-08-19)*
 - [ ] ⚖️ **MCP Salvia** — CZ judikatúra ako voliteľný modul *(VŘ; ~10 € / 3 000 dotazov — **overiť licenčné podmienky pre komunitné zdieľanie**)*
 - [ ] 🎯 **Špecializovaní agenti podľa právneho odvetvia** — všeobecný agent spotrebuje priveľa dotazov *(VŘ)*
-- [ ] 🇵🇱 **Poľské rozšírenie** — mapovanie voľne dostupných PL zdrojov *(VŘ do 2026-08-20)*
+- [x] 🇨🇿 **Mapa českých dátových zdrojov** — 15 zdrojov so stavom zrelosti, 5 pomenovaných medzier *(VŘ, hotové 2026-08-15)* → [cz-datove-zdroje.md](cz-datove-zdroje.md)
+- [ ] 🇵🇱 **Poľské rozšírenie** — mapovanie voľne dostupných PL zdrojov *(VŘ do 2026-08-20; potvrdené v odpovedi na Q19)*
 - [ ] 🌍 **Jurisdikčne neutrálny intake** pre SK/CZ/PL *(MČ do 2026-08-18)*
 - [ ] 🔍 **Rešeršný workflow „one-click"** cez NotebookLM CLI *(MČ)*
 - [ ] 📦 **Balíček „Community Skills"** — OKF, rešerše, judikatúra + dokumentácia *(MČ do 2026-08-15)*
@@ -50,9 +51,22 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 
 ## Ďalšie nápady (bez specu)
 
-- [ ] Anonymizácia / sanitizačný filter pred LLM (MasKIT + SK regex: rodné číslo, IBAN)
+- [ ] ⏸️ **Lokálny anonymizačný gate pred externým LLM** → [spec 0008](../specs/0008-anonymizacia-a-privacy-gate.md) · [Issue #15](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/15) - nice to have, odložené mimo prvej verzie; zachované ako podklad pre budúci voliteľný modul
 - [ ] SK šablóny podaní a zmlúv
 - [x] Mistral OCR — PDF → Markdown: presunuté do alfy (quick win, existujúca Quick Action)
+
+## 🗳️ Z odpovedí na Q01 až Q25
+
+Prišlo s odpoveďami IR *(14. 8.)* a VŘ *(15. 8.)*. Evidencia v [navrhy.md](../specs/navrhy.md) **#34–#41**, plné znenie v [zbernom koši](napady.md) · [prehľad odpovedí](2026-08-14-stav-odpovedi-timu.md)
+
+- [ ] 📄 **DOCX round-trip s testovacím korpusom a vizuálnou kontrolou** — [návrh #34](../specs/navrhy.md) *(VŘ)*; deväť zdokumentovaných spôsobov, ako sa rozbije `.docx` → PDF, ktoré **textová kontrola nenájde**. Podmienka k Q25.
+- [ ] 🚨 **Kontrolný dotaz (canary) pri sankčnom screeningu** — [návrh #35](../specs/navrhy.md) *(VŘ)*; bez neho „čistý výsledok" znamená len „dotaz neprešiel". Podmienka k Q14 a k metodike AML.
+- [ ] 🔒 **Hranica vynútená v nástroji, nie v prompte** — [návrh #36](../specs/navrhy.md) *(VŘ)*; *„čo agent nesmie, mu nemá ísť ponúknuť."* Navrhnuté do [ADR 0007](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/19), ten čaká na MF.
+- [ ] 🧠 **Typované záznamy pamäte + oddelená vrstva „poučenie z chyby"** — [návrh #37](../specs/navrhy.md) *(VŘ)*; doplnok k [spec 0002](../specs/0002-okf-operacny-system-praxe.md) z vyše roka prevádzky.
+- [ ] 📊 **Metrika „koľko z návrhu advokát prepísal a v čom"** — [návrh #38](../specs/navrhy.md) *(VŘ)*; metrika štýlu, nie správnosti. Keď neklesá, prompt layer sa neučí.
+- [ ] 📤 **Export do existujúcich spisových a fakturačných systémov** — [návrh #39](../specs/navrhy.md) *(VŘ)*; české kancelárie ich väčšinou už majú. Mení ťažisko Q08.
+- [ ] 🔁 **Distribúcia schváleného poznatku ku všetkým agentom** — [návrh #40](../specs/navrhy.md) *(VŘ)*; doložený prípad, keď subagent zopakoval už zamietnutý judikát.
+- [ ] 🔧 **Automat na upstream sync s konfliktným reportom** — [návrh #41](../specs/navrhy.md) *(IR)*; viazaný na `PATCHES.md`. Rieši otvorenú položku *„Kto rieši merge konflikty pri upstream syncu"* nižšie.
 
 ## Rozhodnúť
 
@@ -60,6 +74,13 @@ Zdroj: [zápis zo sync callu](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 - [x] ✅ **Licencia — MIT**, vyplýva z voľby základu (LegalWork je MIT) → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [ ] ⚠️ **Doplniť súbory `LICENSE`, `NOTICE`, `CONTRIBUTING`** — repo je verejné, ale **bez `LICENSE` platí „all rights reserved"** *(MČ do 2026-08-08)*
 - [x] ✅ **Ako rozšíriť LegalWork — rozhodnuté: forkujeme pod vlastným brandingom** → [ADR 0004](../decisions/0004-ako-rozsirit-legalwork.md) *(rozhodol MČ; na potvrdenie tímom)*
+- [x] ✅ **GitHub organizácia a produktový fork** - [Omni Legal Products](https://github.com/Omni-Legal-Products) + [LAWOSS](https://github.com/Omni-Legal-Products/lawoss), overené cez GitHub API 2026-08-12
+- [x] ✅ **Private tímové kópie MCP serverov** - 14 forkov a jeden mirror → [inventár](mcp-repository-inventory.md)
+- [ ] 👥 **Prijať pozvánky do organizácie** - MF, IR a VŘ; overené cez GitHub API 2026-08-12 ako čakajúce
+- [ ] 🗳️ **Vyjadriť sa k Q01 až Q25** — ✅ IR *(14. 8.)* · ✅ VŘ *(15. 8.)* · ⏳ **MČ** rozpracované · ⏳ **MF** zatiaľ nič → [živý prehľad odpovedí](2026-08-14-stav-odpovedi-timu.md)
+- [ ] ⚔️ **Rozseknúť Q07 — poradie prvých troch vertikál** *(MČ)*; jediná vecná odchýlka medzi IR a VŘ: lehoty vs. onboarding subjektov v prvej trojici
+- [ ] ⚠️ **Odblokovať [issue #40](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/40)** *(MČ)* — IR nemôže ako member zakladať repozitáre; čaká mirror 20 SK predpisov a rozhodnutia NS SR
+- [ ] 🔏 **Rozhodnúť, kto platí podpisové certifikáty a na koho účet znejú** — IR aj VŘ si dali podpísané buildy ako **osobnú podmienku účasti** (Q06), takže to už nie je položka v backlogu, ale brána vydania
 - [ ] ⚠️ **Kto rieši merge konflikty pri upstream syncu** — v tíme dnes nikto; overiť, či to zvládne AI asistencia
 - [ ] ⚠️ **Apple Developer účet a podpisovanie** — bez notarizácie Gatekeeper macOS build zablokuje
 - [ ] ⚠️ **Štruktúra repozitárov** — koordinácia oddelene od kódu → **[ADR 0005](../decisions/0005-struktura-repozitarov.md)** *(návrh napísaný; zahŕňa GitHub organizáciu a zverejnenie `judikaty-mcp`)*
