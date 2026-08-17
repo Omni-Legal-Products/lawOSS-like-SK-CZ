@@ -1,6 +1,6 @@
 # LAWOSS Agent Plugin
 
-LAWOSS provides a read-only Codex plugin with source-coverage, specification-review, workflow-routing, law-drift, citation, and judiciary-citation workflows.
+LAWOSS provides a read-only Codex plugin with source-coverage, specification-review, and judiciary-citation workflows.
 
 ## Install from GitHub
 
@@ -29,21 +29,6 @@ The skills require:
 - exact locators and retrieval dates;
 - visible uncertainty and index limitations;
 - human review before a legal conclusion or final pleading.
-
-## Reusable workflows
-
-The stable **LAWOSS Legal** plugin now includes:
-
-- **lawoss-workflow-router**: maps the request to the narrowest registered legal workflow and defines its inputs, phases, source plan, output, and human gate;
-- **lawoss-law-drift**: compares law or authority across relevant dates and preserves version identity, effective intervals, locators, and uncertainty;
-- **lawoss-citations**: audits and normalizes legal and academic citations without inventing missing metadata;
-- **lawoss-source-coverage**: records source availability, provenance, fallback boundaries, and human review;
-- **lawoss-spec-review**: checks proposals and specifications for scope, evidence, safety, and testability;
-- **judikatura-citation-builder**: builds source-traceable judiciary citations.
-
-The router follows the registered Gravity workflow catalogue. When the canonical Gravity tooling is available, use `legal-cli workflow list` and `legal-cli workflow init`; the repository does not bundle connector logic and does not assume a separate `legalflow` executable.
-
-Keep `legal-research`, `legal-source-routing`, and the canonical connectors in Gravity. LAWOSS skills describe the workflow contract and hand source selection to those global tools.
 
 ## Experimental lab
 
