@@ -243,6 +243,7 @@ lawOSS-like-SK-CZ/
 │       ├── keyvisual-features.png
 │       ├── keyvisual-hero.png
 │       ├── keyvisual-mobile.png
+│       ├── logo sub 1M.png
 │       ├── logo.png
 │       ├── mockup.png
 │       ├── moodboard.png
@@ -320,7 +321,8 @@ lawOSS-like-SK-CZ/
 │   │   ├── 2026-08-13-editory-docx-superdoc-vs-eigenpal.md
 │   │   ├── legalwork.md
 │   │   ├── porovnanie.html
-│   │   └── README.md
+│   │   ├── README.md
+│   │   └── reconcile-jeff-su.md
 │   ├── mcp-servery/
 │   ├── mikeoss/
 │   ├── pravny-ramec/
@@ -341,6 +343,7 @@ lawOSS-like-SK-CZ/
 │   ├── 0005-lehoty-timeline.md
 │   ├── 0007-podpisovanie-a-zarucena-konverzia.md
 │   ├── 0008-anonymizacia-a-privacy-gate.md
+│   ├── 0009-reconcile-ucenie-z-uprav.md
 │   ├── 0010-zarucena-konverzia.md
 │   ├── navrhy.md
 │   ├── prehlad.html
@@ -385,23 +388,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**215 commitov** · **108 súborov**
+**224 commitov** · **111 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `0f03fb2` | 2026-08-17 | Majo Cuprik | Merge pull request #16 from Omni-Legal-Products/spec/0008-reconcile |
+| `8c431a9` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `42cbd25` | 2026-08-17 | Majo Cuprik | Merge pull request #34 from Omni-Legal-Products/docs/navod-mcp-legalwork |
 | `804107a` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `7ef09e0` | 2026-08-17 | Majo Cuprik | Merge pull request #33 from Omni-Legal-Products/spec/0005-lehotove-jadro-sk |
 | `fadab77` | 2026-08-17 | Majo Cuprik | Merge pull request #35 from Omni-Legal-Products/docs/metodika-kvality-skillov |
 | `e61c299` | 2026-08-17 | Majo Cuprik | Merge pull request #36 from Omni-Legal-Products/research/anonymizacne-detektory |
 | `9dde3f9` | 2026-08-17 | Majo Cuprik | Merge pull request #37 from Omni-Legal-Products/research/spisovy-destilat |
-| `cc0478a` | 2026-08-17 | Majo Cuprik | Merge pull request #38 from Omni-Legal-Products/research/orchestracia-vzory |
-| `5027c4a` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 08:24 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 08:25 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
