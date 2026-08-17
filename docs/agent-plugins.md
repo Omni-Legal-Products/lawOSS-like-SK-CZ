@@ -11,6 +11,7 @@ codex plugin marketplace add originalmagneto/lawOSS-like-SK-CZ --ref main
 codex plugin marketplace list
 codex plugin list
 codex plugin add lawoss-legal --marketplace <marketplace-name>
+codex plugin add lawoss-legal-lab --marketplace <marketplace-name>
 ```
 
 For testing a branch, replace `main` with the branch name. For reproducible legal workflows, prefer a reviewed tag or commit SHA over an unpinned moving branch.
@@ -28,6 +29,23 @@ The skills require:
 - exact locators and retrieval dates;
 - visible uncertainty and index limitations;
 - human review before a legal conclusion or final pleading.
+
+## Experimental lab
+
+Use **LAWOSS Legal Lab** for new workflow and research-method suggestions. It is intentionally separate from the stable plugin.
+
+The recommended promotion flow is:
+
+1. Capture the idea in the lab.
+2. Redact all client and matter information.
+3. Identify the jurisdiction, relevant date, source families, and exact locators.
+4. Test the workflow on a synthetic example, including an uncertainty or failure path.
+5. Submit the proposal for LAWOSS review.
+6. Promote it into **LAWOSS Legal** only after review and acceptance.
+
+The lab must not contain confidential client information, privileged material, credentials, bearer tokens, unpublished case material, or matter-specific deadlines. The capture skill does not open GitHub issues, modify repositories, or create legal conclusions automatically.
+
+Legal-methodology proposals belong in LAWOSS review. Agent Plugins upstream is appropriate for portable-format, interoperability, or cross-client concerns.
 
 ## Judiciary MCP
 
