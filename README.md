@@ -276,6 +276,7 @@ lawOSS-like-SK-CZ/
 │   ├── glossary.md
 │   ├── mcp-repository-workflow.md
 │   ├── metodika-kvality-skillov.md
+│   ├── navod-mcp-pripojenie-legalwork.md
 │   ├── principles.md
 │   ├── strategia.html
 │   ├── strategia.md
@@ -329,6 +330,7 @@ lawOSS-like-SK-CZ/
 │   │   │   ├── 2026-08-12-zarucena-konverzia-SR-report.md
 │   │   │   └── README.md
 │   │   ├── 2026-08-12-zarucena-konverzia-sk.md
+│   │   ├── 2026-08-14-lehoty-sk-pravidla-vypoctu.md
 │   │   └── 2026-08-15-lhoty-cz-pravidla-vypoctu.md
 │   └── sk-datove-zdroje/
 ├── specs/
@@ -383,18 +385,18 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**210 commitov** · **106 súborov**
+**215 commitov** · **108 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `42cbd25` | 2026-08-17 | Majo Cuprik | Merge pull request #34 from Omni-Legal-Products/docs/navod-mcp-legalwork |
+| `804107a` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
+| `7ef09e0` | 2026-08-17 | Majo Cuprik | Merge pull request #33 from Omni-Legal-Products/spec/0005-lehotove-jadro-sk |
 | `fadab77` | 2026-08-17 | Majo Cuprik | Merge pull request #35 from Omni-Legal-Products/docs/metodika-kvality-skillov |
 | `e61c299` | 2026-08-17 | Majo Cuprik | Merge pull request #36 from Omni-Legal-Products/research/anonymizacne-detektory |
 | `9dde3f9` | 2026-08-17 | Majo Cuprik | Merge pull request #37 from Omni-Legal-Products/research/spisovy-destilat |
 | `cc0478a` | 2026-08-17 | Majo Cuprik | Merge pull request #38 from Omni-Legal-Products/research/orchestracia-vzory |
 | `5027c4a` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `11fe12e` | 2026-08-17 | Majo Cuprik | Merge pull request #14 from Omni-Legal-Products/docs/strategicke-zamyslenie |
-| `a656f43` | 2026-08-17 | Majo Cuprik | Merge pull request #13 from Omni-Legal-Products/plan/fork-a-workflow |
-| `785f26a` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
