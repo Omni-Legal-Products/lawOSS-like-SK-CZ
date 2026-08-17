@@ -400,23 +400,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**243 commitov** · **118 súborov**
+**247 commitov** · **118 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `a424199` | 2026-08-17 | BiggusDicckkus | Merge pull request #11 from Omni-Legal-Products/spec/alpha-deadline-workflow |
+| `f3b5925` | 2026-08-17 | Martin Friedrich | merge main into deadline alpha spec |
+| `2309910` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `58e93da` | 2026-08-17 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 | `53dcdd4` | 2026-08-17 | Majo Cuprik | planning: aktualizovať prehľad visiacich vecí po upratovaní PR 17. 8. |
 | `595562b` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `608283d` | 2026-08-17 | Majo Cuprik | planning: aktualizovať prehľad visiacich vecí po upratovaní PR 17. 8. |
 | `b4e6f7c` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `9e1abd4` | 2026-08-17 | Majo Cuprik | Merge pull request #52 from Omni-Legal-Products/docs/stanoviska-timu-q01-q25 |
-| `a592e63` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `915042c` | 2026-08-17 | Majo Cuprik | Merge pull request #51 from Omni-Legal-Products/docs/reakcie-ir-vr |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 08:27 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 09:55 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
