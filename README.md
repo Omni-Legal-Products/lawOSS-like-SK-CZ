@@ -292,6 +292,8 @@ lawOSS-like-SK-CZ/
 │   ├── cz-datove-zdroje.md
 │   ├── mcp-repository-inventory.md
 │   ├── napady.md
+│   ├── plan-fork-a-workflow.html
+│   ├── plan-fork-a-workflow.md
 │   ├── roadmap.md
 │   ├── timeline.md
 │   └── workshopy.md
@@ -374,23 +376,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**192 commitov** · **98 súborov**
+**198 commitov** · **100 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `a656f43` | 2026-08-17 | Majo Cuprik | Merge pull request #13 from Omni-Legal-Products/plan/fork-a-workflow |
+| `785f26a` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `71a0b3f` | 2026-08-17 | Majo Cuprik | Merge pull request #19 from Omni-Legal-Products/docs/adr-0007-agent-first |
 | `5e2323b` | 2026-08-16 | BiggusDicckkus | fix: remove duplicate HTML head and body tags |
 | `7ff5fff` | 2026-08-16 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `b2145b2` | 2026-08-16 | Majo Cuprik | Merge pull request #43 from Omni-Legal-Products/docs/stav-odpovedi-timu |
 | `4d7c21d` | 2026-08-16 | Majo Cuprik | Merge pull request #50 from Omni-Legal-Products/planning/odpovede-vr-q01-q25 |
 | `dee1aed` | 2026-08-16 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `cf20d93` | 2026-08-16 | Majo Cuprik | Merge pull request #49 from Omni-Legal-Products/planning/cz-datove-zdroje |
-| `5c67c39` | 2026-08-16 | Majo Cuprik | Merge pull request #48 from Omni-Legal-Products/spec/0005-lehotove-jadro-cz |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 08:09 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 08:24 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
