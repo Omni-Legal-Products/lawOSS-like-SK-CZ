@@ -183,13 +183,23 @@ Treba rozhodnúť zvlášť pre:
 - **Navrhované rozhodnutie:** áno pre prvú verziu.
 - **Doriešiť:** veľkosť korpusu, aktualizácie, licencie, citačný graph, distribúcia a diskové limity.
 
-### Q18: Ktoré platformy podporujeme?
+### Q18: Ako rozdelíme platformovo špecifické integrácie?
 
-- macOS,
-- Windows,
-- Linux,
-- ktoré CLI integrácie môžu zostať macOS-only: Apple Notes a Reminders,
-- čo musí mať platformovo neutrálny fallback.
+**Už dohodnuté:**
+
+- macOS je hlavná platforma; pracujú na nej MČ, VŘ a MF,
+- IR zodpovedá za Windows integrácie,
+- úplná funkčná parita nie je cieľ,
+- natívna funkcia jednej platformy sa nemá obmedziť iba preto, že na druhej platforme nemá ekvivalent.
+
+**Treba doriešiť:**
+
+- ktoré časti tvoria povinné spoločné jadro,
+- ako budeme v roadmapách a dokumentácii označovať `core`, `macOS` a `Windows`,
+- ktoré natívne macOS integrácie idú do prvej verzie,
+- ktoré natívne Windows integrácie navrhne IR ako prvé,
+- či a kedy podporíme Linux,
+- aké minimálne správanie očakávame, keď platformovo špecifická integrácia nie je dostupná.
 
 ### Q19: Patrí Poľsko do prvej architektúry?
 

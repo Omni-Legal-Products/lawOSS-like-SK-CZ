@@ -15,6 +15,7 @@
 - [x] **Založiť verejný fork [Omni-Legal-Products/lawoss](https://github.com/Omni-Legal-Products/lawoss)** z `eigenweltlabs/legalwork`, default vetva `dev`
 - [ ] ⚠️ **Potvrdiť [ADR 0005: štruktúra repozitárov](../decisions/0005-struktura-repozitarov.md)** tímom a zosúladiť ho so skutočným stavom organizácie
 - [ ] Zriadiť **Apple Developer účet** pre notarizáciu macOS buildov
+- [ ] Spísať platformovú maticu: spoločné jadro, macOS integrácie a Windows integrácie
 - [ ] Zmapovať SK dátové zdroje (Slov-Lex, ORSR, RPVS, judikatúra, OV, FS)
 - [x] Zmapovať existujúce slovenské MCP servery → [inventár](mcp-repository-inventory.md)
 - [x] Vytvoriť 14 private organizačných MCP forkov a jeden private mirror s topics `mcp-server`, `majo-mcp`, `lawoss`, `legaltech`
@@ -35,6 +36,8 @@
 - [ ] **SK + CZ lokalizácia rozhrania** — ani jeden z 12 podporovaných jazykov; čistý príspevok do upstreamu
 - [ ] Prvý SK MCP server integrovaný *(registrácia v configu, bez zásahu do jadra)*
 - [ ] UI/CLI prepínač *(VŘ)*
+- [ ] **macOS ako hlavná platforma** - natívne integrácie viesť bez požiadavky na úplnú paritu s Windows *(MČ · MF · VŘ)*
+- [ ] **Windows integračná vetva** - návrh, overovanie a natívne Windows výhody *(IR)*
 - [ ] Interné testovanie (MČ · MF · IR · VŘ)
 - [ ] **OKF ako jadro MVP** - tri vrstvy pamäte, reconciliation s human approval a auditom
 - [ ] **Onboarding spisu a subjektov** - conflict check, AML, sankcie, diskvalifikácie a registre cez MCP

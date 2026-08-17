@@ -61,6 +61,7 @@ flowchart LR
 | 17 | Rešeršný workflow „one-click" | |
 | **19** | **Podpisovanie QES + QTS cez Autogram** → [spec 0007](../specs/0007-podpisovanie-a-zarucena-konverzia.md) | Advokáti s tým reálne pracujú. Regulované — potrebuje human gate a právne náležitosti. |
 | 14 | Špecializovaní agenti podľa právneho odvetvia | |
+| **34** | **Reconcile — učenie z úprav advokáta** → [spec 0009](../specs/0009-reconcile-ucenie-z-uprav.md) | Mechanizmus učenia, ktorý chýbal #21: draft vs. finál → najmenšia zmena inštrukcií, umiestnenie po rebríku OKF. 🟢 čistý skill. |
 
 ---
 

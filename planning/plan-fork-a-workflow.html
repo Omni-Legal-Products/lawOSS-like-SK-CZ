@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plán: fork, repozitár a spôsob práce</title>
+<style>
+  :root{--navy:#0d1b2a;--navy2:#13243a;--gold:#c9a24a;--gold-soft:#e4c979;
+    --ink:#1a2233;--muted:#5b6577;--line:#e4e7ec;--bg:#f6f7f9;--card:#fff;
+    --green:#1f9d55;--amber:#c98a1a;--red:#c0392b}
+  @media (prefers-color-scheme:dark){:root{--ink:#e8ecf3;--muted:#9aa6b8;--line:#25324a;--bg:#0b131f;--card:#111c2e}}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  .hero{background:radial-gradient(1100px 380px at 75% -10%,rgba(201,162,74,.22),transparent),
+    linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;padding:48px 0 40px;border-bottom:3px solid var(--gold)}
+  .kicker{letter-spacing:.26em;text-transform:uppercase;font-size:12px;color:var(--gold-soft);font-weight:700}
+  .hero h1{margin:.3em 0 .1em;font-size:clamp(26px,4.6vw,40px);line-height:1.12;font-weight:800}
+  .hero p{margin:.4em 0 0;color:#c8d2e0;font-size:15px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{background:rgba(255,255,255,.08);border:1px solid rgba(201,162,74,.4);color:#fff;padding:5px 12px;border-radius:100px;font-size:12.5px;font-weight:600}
+  .chip b{color:var(--gold-soft)}
+  section{margin:34px 0}
+  h2{font-size:20px;font-weight:800;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+  h2 .n{background:var(--navy);color:var(--gold);width:28px;height:28px;border-radius:8px;display:inline-grid;place-items:center;font-size:13px;flex:none}
+  @media(prefers-color-scheme:dark){h2 .n{background:#0a1524}}
+  h3{font-size:15px;margin:.2em 0 .5em}
+  .decision{background:linear-gradient(135deg,rgba(201,162,74,.14),rgba(201,162,74,.05));border:1.5px solid var(--gold);
+    border-radius:16px;padding:20px 22px;font-size:16px;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:0 4px 14px rgba(13,27,42,.05)}
+  table{width:100%;border-collapse:collapse;font-size:14px;border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+  @media(prefers-color-scheme:dark){th{background:#0a1524}}
+  tr:last-child td{border-bottom:none}
+  .tbl-wrap{overflow-x:auto}
+  code{background:rgba(125,140,170,.16);padding:1px 6px;border-radius:5px;font-size:13px}
+  pre{background:var(--navy);color:#dce6f5;padding:14px 16px;border-radius:12px;font-size:13px;overflow-x:auto;line-height:1.5}
+  pre code{background:none;padding:0;color:inherit}
+  .zones{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.zones{grid-template-columns:1fr}}
+  .zone{border-radius:12px;padding:16px;border:1px solid var(--line);background:var(--card)}
+  .zone h4{margin:0 0 6px;font-size:14px}
+  .zone p{margin:0;font-size:13px;color:var(--muted)}
+  .zone.g{border-top:4px solid var(--green)}
+  .zone.y{border-top:4px solid var(--amber)}
+  .zone.r{border-top:4px solid var(--red)}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;font-weight:600}
+  .flow .step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+  .flow .step.hl{border-color:var(--gold);background:linear-gradient(135deg,rgba(201,162,74,.16),rgba(201,162,74,.04))}
+  .flow .arr{color:var(--muted)}
+  .note{border-left:4px solid var(--gold);background:rgba(201,162,74,.08);padding:12px 16px;border-radius:0 10px 10px 0;font-size:14px;margin:14px 0}
+  .warn{border-left-color:var(--red);background:rgba(192,57,43,.08)}
+  ol.chk{padding-left:0;list-style:none;counter-reset:c;font-size:14px}
+  ol.chk li{counter-increment:c;padding:9px 12px 9px 44px;position:relative;border-bottom:1px solid var(--line)}
+  ol.chk li::before{content:counter(c);position:absolute;left:8px;top:9px;width:24px;height:24px;border-radius:7px;
+    background:var(--navy);color:var(--gold);display:grid;place-items:center;font-size:12px;font-weight:700}
+  ol.chk li:last-child{border-bottom:none}
+  footer{margin:40px 0 30px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);padding-top:16px}
+  .tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:100px;margin-right:4px}
+  .tag.ok{background:rgba(31,157,85,.15);color:var(--green)}
+  .tag.prop{background:rgba(201,138,26,.15);color:var(--amber)}
+</style>
+</head>
+<body>
+
+<div class="hero"><div class="wrap">
+  <div class="kicker">LAWOSS · plánovanie</div>
+  <h1>Plán: fork, repozitár a spôsob práce</h1>
+  <p>Ako založíme fork LegalWorku, ako budeme štyria fungovať a ako fork udržíme lacný</p>
+  <div class="meta">
+    <span class="chip">Stav: <b>návrh na odklep 12. 8.</b></span>
+    <span class="chip">Nadväzuje na <b>ADR 0004 · ADR 0005</b></span>
+    <span class="chip">Fakty overené <b>2026-08-12</b></span>
+    <span class="chip"><b>Deň D prebehol 12. 8.</b> — org je Omni-Legal-Products, nie lawoss</span>
+  </div>
+</div></div>
+
+<div class="wrap">
+
+<div class="note warn" style="margin-top:24px"><b>Aktualizácia 2026-08-13 — deň D prebehol 12. 8. o 12:29, ešte pred callom.</b> Pravidlá a sync runbook nižšie platia; časť „deň D" je odteraz historický návrh. Tri odchýlky: organizácia je <b>Omni-Legal-Products</b> (nie <code>lawoss</code>) · koordinačné repo sa <b>nepresúvalo</b> · default vetva forku je <b><code>dev</code></b>, nie <code>main</code> na tagu. Hotové: fork, <code>PATCHES.md</code>, <code>AGENTS.md</code>, <code>NOTICE</code>, <code>LICENSE</code>, ochrana <code>dev</code>. <b>Rebranding zámerne ešte nie</b> — <code>appId</code> je stále <code>com.eigenweltlabs.legalwork</code>. Navyše vzniklo 15 privátnych MCP repozitárov, na ktorých <b>branch protection nie je dostupná</b> na pláne GitHub Free (API vrátilo 403). Plná verzia: <a href="plan-fork-a-workflow.md">plan-fork-a-workflow.md</a></div>
+
+<section>
+  <div class="decision">Tento dokument je <u>vykonávací plán</u>, nie nové rozhodnutie. Cieľ: po odklepnutí na calle 12.&nbsp;8. je založenie forku mechanická práca na menej než hodinu — a od prvého dňa fungujeme podľa dohodnutých pravidiel.</div>
+</section>
+
+<section>
+  <h2><span class="n">0</span>Uzavretie otázky „ako forknúť"</h2>
+  <div class="card">
+    <p style="margin-top:0">Analýza varovala, že <em>klasický fork ruší výhodu upstreamu</em>. ADR 0004 to uzavrel — a rozpor sa zmieruje takto:</p>
+    <ul style="font-size:14px;margin-bottom:0">
+      <li>Varovanie platí pre fork, ktorý <b>prepisuje cudzí kód</b>. Naše zmeny sú <b>nové súbory</b> (SK/CZ locale, vlastné adresáre) + <b>2 evidované miesta</b> brandingu.</li>
+      <li><b>opencode jadro neforkujeme</b> — LegalWork ho drží ako pinnutú závislosť a my to zdedíme nezmenené.</li>
+      <li>Divergenciu ohraničuje disciplína: <em>pridávaj súbory</em> + <code>PATCHES.md</code> + upstream-first.</li>
+    </ul>
+  </div>
+  <div class="note">Overené cez GitHub API 2026-08-12: najnovší release upstreamu je stále <code>v0.1.13</code> (2026-08-04) a účet s menom <b><code>lawoss</code></b> podľa API <b>neexistuje</b> — meno je pravdepodobne voľné, definitívne sa potvrdí pri zakladaní organizácie.</div>
+</section>
+
+<section>
+  <h2><span class="n">1</span>Deň D — založenie repozitára</h2>
+  <div class="flow" style="margin-bottom:14px">
+    <span class="step">1 · org <b>lawoss</b></span><span class="arr">→</span>
+    <span class="step">2 · presun koordinačného repa</span><span class="arr">→</span>
+    <span class="step hl">3 · Fork legalworku</span><span class="arr">→</span>
+    <span class="step hl">4 · main na tagu v0.1.13</span><span class="arr">→</span>
+    <span class="step">5 · ochrana main + upstream remote</span><span class="arr">→</span>
+    <span class="step">6 · PATCHES.md · AGENTS.md · NOTICE</span><span class="arr">→</span>
+    <span class="step">7 · rebranding + sk/cs locale</span>
+  </div>
+  <div class="note">Poradie je záväzné: <b>organizácia pred forkom</b> (ADR 0005). Fork výhradne cez tlačidlo <em>Fork</em> — inak nefunguje <em>Sync fork</em> ani väzba na upstream. V deň D netreba: podpisové tajomstvá, ladenie CI, UI zmeny.</div>
+  <div class="note"><b>Nultý krok ešte pred forkom:</b> MCP konektory (judikatúra + Slov-Lex) rozdať kolegom hneď ako návod so screenshotmi — LegalWork ich pridáva cez Settings UI.</div>
+</section>
+
+<section>
+  <h2><span class="n">2</span>Workflow vo forku</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th></th><th>Koordinačné repo</th><th>Fork lawoss/lawoss</th></tr>
+    <tr><td>Push do <code>main</code></td><td>✅ pri drobnostiach</td><td>❌ <b>nikdy — všetko cez PR</b></td></tr>
+    <tr><td>Review</td><td>nepovinné</td><td><b>1 approval povinný</b></td></tr>
+    <tr><td>CI</td><td>auto-README</td><td>zdedené testy + i18n musia byť zelené</td></tr>
+    <tr><td>Commity</td><td>slovensky, <code>typ: čo</code></td><td>slovensky; <code>feat:</code> <code>fix:</code> <code>loc:</code> <code>sync:</code> <code>chore:</code></td></tr>
+  </table></div>
+  <h3 style="margin-top:18px">Vetvy a verzie</h3>
+  <pre><code>feat/okf-zalozenie-spisu   ·   fix/ocr-pdf-encoding   ·   loc/sk-locale   ·   sync/upstream-v0.1.14
+
+v0.1.13-lawoss.1   prvý náš release nad upstream v0.1.13
+v0.1.14-lawoss.1   po synci na ich v0.1.14</code></pre>
+  <div class="note"><b>Worktrees</b> = osobný nástroj, nie politika repa: jedna worktree na jednu úlohu/AI session, aby si paralelné sessions nešliapali po priečinku. Po mergnutí PR worktree zmazať.</div>
+</section>
+
+<section>
+  <h2><span class="n">3</span>Pamäť projektu a implementácia</h2>
+  <div class="decision" style="font-size:15px">Rozhodnutia tu, kód tam. ADR a specy sa do forku <u>nepresúvajú</u> — fork nesie <code>AGENTS.md</code> (pravidlá pre ľudí aj AI), <code>PATCHES.md</code> a implementačnú stopu v issues/PR.</div>
+  <div class="flow" style="margin:14px 0">
+    <span class="step">💡 nápad</span><span class="arr">→</span>
+    <span class="step">📝 spec + navrhy.md</span><span class="arr">→</span>
+    <span class="step">✅ odklep na calle</span><span class="arr">→</span>
+    <span class="step">🎫 issue vo forku</span><span class="arr">→</span>
+    <span class="step">🌿 feat/* vetva</span><span class="arr">→</span>
+    <span class="step">🔀 PR + review + CI</span><span class="arr">→</span>
+    <span class="step">📦 merge → roadmapa</span>
+  </div>
+  <h3>Dvojjurisdikčnosť 🇸🇰🇨🇿 — os štruktúry, nie preklad na konci</h3>
+  <pre><code>lawoss/                ← naša doména (zelená zóna)
+├── okf/       sk/ · cz/        šablóny spisov, lehoty — CZ vlastní VŘ
+├── prompts/   common/ · sk/ · cz/
+├── mcp/       sk.json · cz.json
+└── skills/    per-jurisdikcia tam, kde treba</code></pre>
+  <p style="font-size:14px"><code>sk.ts</code> a <code>cs.ts</code> vznikajú súčasne (MČ + VŘ) · glosár dostane CZ stĺpec · štruktúra drží doménu prenosnú (funguje aj v čistom opencode / Claude Code).</p>
+</section>
+
+<section>
+  <h2><span class="n">4</span>Synchronizácia s upstreamom</h2>
+  <div class="flow" style="margin-bottom:14px">
+    <span class="step">🔔 ich release</span><span class="arr">→</span>
+    <span class="step">fetch --tags + changelog</span><span class="arr">→</span>
+    <span class="step">vetva sync/upstream-vX.Y.Z</span><span class="arr">→</span>
+    <span class="step hl">merge tagu (nie main)</span><span class="arr">→</span>
+    <span class="step">konflikty podľa PATCHES.md</span><span class="arr">→</span>
+    <span class="step">CI + smoke test</span><span class="arr">→</span>
+    <span class="step">PR → release v*-lawoss.1</span>
+  </div>
+  <div class="tbl-wrap"><table>
+    <tr><th>Upstream súbor</th><th>Náš zásah</th><th>Prečo</th><th>Vlastník</th><th>PR</th></tr>
+    <tr><td><code>tauri.conf.json</code></td><td>productName, identifier, ikona</td><td>branding LAWOSS</td><td>MČ</td><td>#1</td></tr>
+  </table></div>
+  <p style="font-size:13.5px;color:var(--muted)">Šablóna <code>PATCHES.md</code> — žiadny zásah do upstream súboru bez riadku tu; pri merge konflikte je tabuľka checklist.</p>
+  <div class="note"><b>Kto rieši konflikty (návrh):</b> sync vlastní MČ s AI asistenciou · konflikt v zásahu rieši vlastník zásahu · ak konflikt presahuje kapacitu, zásah radšej zahodiť a nahradiť novým súborom alebo upstream PR.</div>
+  <div class="note"><b>Upstream-first:</b> čo nie je SK/CZ doména, ponúknuť najprv upstreamu — každý prijatý PR zmenšuje náš diff. Lokalizačný PR podať skoro, nech vzťah s upstreamom existuje skôr, než niečo budeme potrebovať my.</div>
+</section>
+
+<section>
+  <h2><span class="n">5</span>Architektúra addonov — tri zóny</h2>
+  <div class="zones">
+    <div class="zone g"><h4>🟢 Naše adresáre</h4><p><code>lawoss/**</code> · <code>sk.ts</code>, <code>cs.ts</code> · naša dokumentácia. Voľná ruka — nové súbory sa s upstreamom nikdy nezrazia. <b>~90 % našej práce.</b></p></div>
+    <div class="zone y"><h4>🟡 Evidované zásahy</h4><p>branding (2 miesta) · ikony · i18n index. Každý zásah = riadok v <code>PATCHES.md</code> + vlastník. Cieľ: <b>pod ~10 riadkov.</b></p></div>
+    <div class="zone r"><h4>🔴 Zakázaná zóna</h4><p>AGPL plugin <code>legalmemory</code> · hard-coded extension registry · bump <code>opencodeVersion</code> · prepis histórie. Zmena len cez nový ADR.</p></div>
+  </div>
+  <div class="note" style="margin-top:14px">Rozšírenia opencode sú <b>konfiguračné</b> (MCP, skills, agenti, pluginy) — naša doména sa pripája registráciou, nie zásahom do jadra. Celý scope V1 sa zmestí do zelenej zóny; ak by ju niečo muselo opustiť, je to signál na rozpravu, nie na tichý zásah.</div>
+</section>
+
+<section>
+  <h2><span class="n">6</span>Rozdelenie práce <span class="tag prop">návrh</span></h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Oblasť</th><th>Kto</th></tr>
+    <tr><td>Org + fork + ochrana vetiev · PATCHES.md · AGENTS.md · NOTICE</td><td>MČ</td></tr>
+    <tr><td>SK/CZ lokalizácia rozhrania</td><td>MČ + VŘ</td></tr>
+    <tr><td>OKF · MCP konektory (+ nultý krok návod) · OCR ingest</td><td>MČ</td></tr>
+    <tr><td>Lehoty a timeline spisu</td><td>MF</td></tr>
+    <tr><td>UI/CLI prepínač · CZ jurisdikcia (cz/ adresáre, glosár, zdroje)</td><td>VŘ</td></tr>
+    <tr><td>Upstream sync</td><td>MČ <em>(návrh)</em></td></tr>
+    <tr><td>Apple Developer účet + podpisové tajomstvá</td><td>❓ otvorené</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <h2><span class="n">7</span>Na odklep 12. 8.</h2>
+  <div class="card">
+    <ol class="chk">
+      <li>Potvrdenie ADR 0003 + 0004 od <b>MF</b> — bez toho sa fork nezakladá</li>
+      <li>GitHub organizácia <code>lawoss</code> — odporúčam <b>áno, pred forkom</b> (účet podľa API neexistuje; potvrdí sa pri zakladaní)</li>
+      <li>Tag forku <code>v0.1.13</code> — stále najnovší release</li>
+      <li>Pravidlá forku: PR povinný · PATCHES.md · tri zóny · verzovanie <code>v*-lawoss.n</code></li>
+      <li>Vlastník upstream syncu (návrh: MČ)</li>
+      <li>Rozdelenie práce zo sekcie 6</li>
+      <li>Apple Developer účet — kto zriadi a platí</li>
+      <li>Zverejnenie <code>judikaty-mcp</code> + licencia</li>
+      <li><code>LICENSE</code> do koordinačného repa (MČ)</li>
+    </ol>
+  </div>
+  <p style="font-size:14px"><b>Po odklepe:</b> aktualizovať <code>AGENTS.md</code> (riadok „ako forknúť" → vyriešené) · preklopiť ADR 0005 zo stavu návrh · zapísať do zápisu z callu.</p>
+</section>
+
+<footer>
+  Pripravil MČ s AI asistenciou, 2026-08-10. Fakty overené cez GitHub API k 2026-08-12 (release <code>v0.1.13</code>, dostupnosť mena <code>lawoss</code>); ostatné vychádza z ADR 0003–0005 a analýzy LegalWorku. Plná verzia: <a href="plan-fork-a-workflow.md">plan-fork-a-workflow.md</a>
+</footer>
+
+</div>
+</body>
+</html>

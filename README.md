@@ -224,7 +224,9 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 | Súbor | Progress | Hotovo |
 |---|---|---|
 | [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
+| [`2026-08-15-odpovedi-VR-Q01-Q25.md`](planning/2026-08-15-odpovedi-VR-Q01-Q25.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
 | [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 7/56 (12 %) |
+| [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
 | [`roadmap.md`](planning/roadmap.md) | `██████░░░░░░░░░░░░░░` | 11/35 (31 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
@@ -241,6 +243,7 @@ lawOSS-like-SK-CZ/
 │       ├── keyvisual-features.png
 │       ├── keyvisual-hero.png
 │       ├── keyvisual-mobile.png
+│       ├── logo sub 1M.png
 │       ├── logo.png
 │       ├── mockup.png
 │       ├── moodboard.png
@@ -255,6 +258,8 @@ lawOSS-like-SK-CZ/
 │   ├── 0005-struktura-repozitarov.html
 │   ├── 0005-struktura-repozitarov.md
 │   ├── 0006-anonymizacia-ako-lokalny-privacy-gate.md
+│   ├── 0007-agent-first-architektura.html
+│   ├── 0007-agent-first-architektura.md
 │   ├── 0008-sprava-mcp-repozitarov.md
 │   ├── 0009-zakladna-produktova-doktrina.html
 │   ├── 0009-zakladna-produktova-doktrina.md
@@ -271,7 +276,11 @@ lawOSS-like-SK-CZ/
 │   ├── brand-concept.md
 │   ├── glossary.md
 │   ├── mcp-repository-workflow.md
+│   ├── metodika-kvality-skillov.md
+│   ├── navod-mcp-pripojenie-legalwork.md
 │   ├── principles.md
+│   ├── strategia.html
+│   ├── strategia.md
 │   ├── telegram-notifikacie.md
 │   └── vision.md
 ├── meetings/
@@ -282,13 +291,20 @@ lawOSS-like-SK-CZ/
 ├── planning/
 │   ├── 2026-08-12-mcp-repository-rollout-plan.md
 │   ├── 2026-08-12-rozhodovacie-otazky-timu.md
+│   ├── 2026-08-14-stav-odpovedi-timu.md
+│   ├── 2026-08-15-odpovedi-VR-Q01-Q25.md
 │   ├── backlog.md
+│   ├── cz-datove-zdroje.md
 │   ├── mcp-repository-inventory.md
 │   ├── napady.md
+│   ├── plan-fork-a-workflow.html
+│   ├── plan-fork-a-workflow.md
 │   ├── roadmap.md
 │   ├── timeline.md
 │   └── workshopy.md
 ├── research/
+│   ├── anonymizacia/
+│   │   └── 2026-08-14-sk-anonymizacne-detektory.md
 │   ├── deep-research/
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
@@ -298,12 +314,15 @@ lawOSS-like-SK-CZ/
 │   │   ├── 2026-07-29-build-open-vs-buy-closed.md
 │   │   ├── 2026-07-29-orchestrator-transkripcia-byo-subscriptions.md
 │   │   ├── 2026-08-07-feature-ideas-telegram.md
+│   │   ├── 2026-08-14-orchestracia-human-gates-vzory.md
+│   │   ├── 2026-08-14-spisovy-destilat-l2-pamat.md
 │   │   └── README.md
 │   ├── inspiracie/
 │   │   ├── 2026-08-13-editory-docx-superdoc-vs-eigenpal.md
 │   │   ├── legalwork.md
 │   │   ├── porovnanie.html
-│   │   └── README.md
+│   │   ├── README.md
+│   │   └── reconcile-jeff-su.md
 │   ├── mcp-servery/
 │   ├── mikeoss/
 │   ├── pravny-ramec/
@@ -313,6 +332,7 @@ lawOSS-like-SK-CZ/
 │   │   │   ├── 2026-08-12-zarucena-konverzia-SR-report.md
 │   │   │   └── README.md
 │   │   ├── 2026-08-12-zarucena-konverzia-sk.md
+│   │   ├── 2026-08-14-lehoty-sk-pravidla-vypoctu.md
 │   │   └── 2026-08-15-lhoty-cz-pravidla-vypoctu.md
 │   └── sk-datove-zdroje/
 ├── specs/
@@ -323,6 +343,7 @@ lawOSS-like-SK-CZ/
 │   ├── 0005-lehoty-timeline.md
 │   ├── 0007-podpisovanie-a-zarucena-konverzia.md
 │   ├── 0008-anonymizacia-a-privacy-gate.md
+│   ├── 0009-reconcile-ucenie-z-uprav.md
 │   ├── 0010-zarucena-konverzia.md
 │   ├── navrhy.md
 │   ├── prehlad.html
@@ -367,23 +388,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**175 commitov** · **93 súborov**
+**224 commitov** · **111 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
-| `5c67c39` | 2026-08-16 | Majo Cuprik | Merge pull request #48 from Omni-Legal-Products/spec/0005-lehotove-jadro-cz |
-| `667f908` | 2026-08-16 | Vojtěch Říha | research: pravidla počítání lhůt CZ pro spec 0005 (30 pravidel, 25 lhůt, 18 pastí, 24 testů) |
-| `2e3d1f6` | 2026-08-14 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `2586702` | 2026-08-14 | Majo Cuprik | Merge pull request #44 from Omni-Legal-Products/docs/adr-0010-ochrana-know-how |
-| `8c94a27` | 2026-08-14 | Majo Cuprik | docs: generovať prehľad návrhov z evidencie |
-| `4e7dd69` | 2026-08-14 | Majo Cuprik | decisions: ADR 0010 — ochrana know-how a značky (návrh) |
-| `a043594` | 2026-08-14 | github-actions[bot] | docs: auto-update README [skip ci] |
-| `b9a6362` | 2026-08-14 | Majo Cuprik | Merge pull request #31 from Omni-Legal-Products/docs/stavy-a-tyzdenny-report |
+| `0f03fb2` | 2026-08-17 | Majo Cuprik | Merge pull request #16 from Omni-Legal-Products/spec/0008-reconcile |
+| `8c431a9` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
+| `42cbd25` | 2026-08-17 | Majo Cuprik | Merge pull request #34 from Omni-Legal-Products/docs/navod-mcp-legalwork |
+| `804107a` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
+| `7ef09e0` | 2026-08-17 | Majo Cuprik | Merge pull request #33 from Omni-Legal-Products/spec/0005-lehotove-jadro-sk |
+| `fadab77` | 2026-08-17 | Majo Cuprik | Merge pull request #35 from Omni-Legal-Products/docs/metodika-kvality-skillov |
+| `e61c299` | 2026-08-17 | Majo Cuprik | Merge pull request #36 from Omni-Legal-Products/research/anonymizacne-detektory |
+| `9dde3f9` | 2026-08-17 | Majo Cuprik | Merge pull request #37 from Omni-Legal-Products/research/spisovy-destilat |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-16 11:07 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 08:25 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
