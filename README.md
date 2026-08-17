@@ -228,7 +228,7 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 | [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 7/56 (12 %) |
 | [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
-| [`roadmap.md`](planning/roadmap.md) | `██████░░░░░░░░░░░░░░` | 11/35 (31 %) |
+| [`roadmap.md`](planning/roadmap.md) | `██████░░░░░░░░░░░░░░` | 11/38 (29 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -282,6 +282,7 @@ lawOSS-like-SK-CZ/
 │   ├── strategia.html
 │   ├── strategia.md
 │   ├── telegram-notifikacie.md
+│   ├── validate-skills.md
 │   └── vision.md
 ├── meetings/
 │   ├── 2026-08-04-brainstorming-zaklad-a-prenositelnost.md
@@ -335,6 +336,8 @@ lawOSS-like-SK-CZ/
 │   │   ├── 2026-08-14-lehoty-sk-pravidla-vypoctu.md
 │   │   └── 2026-08-15-lhoty-cz-pravidla-vypoctu.md
 │   └── sk-datove-zdroje/
+├── scripts/
+│   └── validate-skills.mjs
 ├── specs/
 │   ├── 0001-transkripcia.md
 │   ├── 0002-okf-operacny-system-praxe.md
@@ -349,6 +352,14 @@ lawOSS-like-SK-CZ/
 │   ├── prehlad.html
 │   ├── README.md
 │   └── template.md
+├── tests-fixtures/
+│   └── skills/
+│       ├── zly-skill/
+│       │   └── SKILL.md
+│       └── zmluvny-audit/
+│           ├── tests/
+│           │   └── triggers.md
+│           └── SKILL.md
 ├── AGENTS.md
 ├── CLAUDE.md
 ├── CONTRIBUTING.md
@@ -388,23 +399,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**224 commitov** · **111 súborov**
+**231 commitov** · **117 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `db09771` | 2026-08-17 | Majo Cuprik | Merge pull request #42 from Omni-Legal-Products/feat/validate-skills |
+| `4b591b3` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
+| `8dd0ac5` | 2026-08-17 | Majo Cuprik | Merge pull request #27 from Omni-Legal-Products/codex/platform-strategy |
 | `0f03fb2` | 2026-08-17 | Majo Cuprik | Merge pull request #16 from Omni-Legal-Products/spec/0008-reconcile |
 | `8c431a9` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `42cbd25` | 2026-08-17 | Majo Cuprik | Merge pull request #34 from Omni-Legal-Products/docs/navod-mcp-legalwork |
 | `804107a` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `7ef09e0` | 2026-08-17 | Majo Cuprik | Merge pull request #33 from Omni-Legal-Products/spec/0005-lehotove-jadro-sk |
-| `fadab77` | 2026-08-17 | Majo Cuprik | Merge pull request #35 from Omni-Legal-Products/docs/metodika-kvality-skillov |
-| `e61c299` | 2026-08-17 | Majo Cuprik | Merge pull request #36 from Omni-Legal-Products/research/anonymizacne-detektory |
-| `9dde3f9` | 2026-08-17 | Majo Cuprik | Merge pull request #37 from Omni-Legal-Products/research/spisovy-destilat |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 08:25 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 08:26 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
