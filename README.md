@@ -401,23 +401,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**266 commitov** · **119 súborov**
+**274 commitov** · **122 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `a032cc6` | 2026-08-17 | BiggusDicckkus | Merge pull request #4 from Omni-Legal-Products/docs/codex-skills |
+| `a9c71e2` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `0d880cf` | 2026-08-17 | BiggusDicckkus | Merge pull request #12 from Omni-Legal-Products/docs/record-mf-adr-confirmation |
 | `65f50c1` | 2026-08-17 | Martin Friedrich | Merge remote-tracking branch 'origin/main' into codex/resolve-pr12-clean |
 | `b6ab646` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `49d1c41` | 2026-08-17 | BiggusDicckkus | Merge pull request #2 from Omni-Legal-Products/spec/orchestrator-subagents |
 | `c422fe0` | 2026-08-17 | Martin Friedrich | Merge remote-tracking branch 'origin/main' into codex/resolve-pr12-clean |
 | `5346014` | 2026-08-17 | Martin Friedrich | Merge remote-tracking branch 'origin/main' into codex/resolve-pr2 |
-| `4eb903f` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `a424199` | 2026-08-17 | BiggusDicckkus | Merge pull request #11 from Omni-Legal-Products/spec/alpha-deadline-workflow |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 09:59 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 10:04 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
