@@ -73,6 +73,7 @@ Kto čo navrhol, v akom je to stave a kde to žije
 | 23 | **Self-healing a self-updating integrácie** — MCP servery, skilly a CLI nástroje udržiavané automaticky cez cron, aby to používateľ neriešil | **MČ** | 2026-08-06 | 💭 **nápad** · sedí na princíp „nie sme programátori" | [spracovanie topicu](../research/idey/2026-08-07-feature-ideas-telegram.md) |
 | 24 | **Self-evolving / self-correcting systém** — inšpirácia Hermes Agent | **MČ** | 2026-07-29 | 💭 **nápad** · nerozvinuté; súvisí s #23 | [spracovanie topicu](../research/idey/2026-08-07-feature-ideas-telegram.md) |
 | 25 | **CMR a case audit systém** — kontrola kvality a úplnosti vedenia spisu | **MČ** | 2026-08-02 | 💭 **nápad** · zatiaľ len heslo, treba rozpísať | [spracovanie topicu](../research/idey/2026-08-07-feature-ideas-telegram.md) |
+| 34 | **Reconcile — učenie z úprav advokáta** — porovnanie AI draftu s finálom, najmenšia zmena inštrukcií; rebrík umiestnenia nad OKF (spis → kancelária → komunita) s anonymizačnou bránou (nadväzuje na #27). Inšpirácia: skill Jeffa Su (koncept, nie text — platený kurz bez licencie) | **MČ** | 2026-08-11 | 📝 **spec** · V2 kandidát — konkretizuje #21 | [spec 0009](0009-reconcile-ucenie-z-uprav.md) |
 
 ### Legenda stavov
 
