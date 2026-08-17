@@ -1,0 +1,21 @@
+{
+  "name": "lawoss-legal",
+  "version": "0.1.0",
+  "description": "Source-traceable Czech and Slovak legal research workflows for LAWOSS.",
+  "author": {
+    "name": "LAWOSS"
+  },
+  "repository": "https://github.com/originalmagneto/lawOSS-like-SK-CZ",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "LAWOSS Legal",
+    "shortDescription": "Source-traceable Czech and Slovak legal research workflows.",
+    "longDescription": "LAWOSS adds provenance, source coverage, specification review, and judiciary citation workflows for legal research.",
+    "developerName": "LAWOSS",
+    "category": "Legal research",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": "Use LAWOSS legal research workflows with explicit provenance, source coverage, and human review gates."
+  }
+}

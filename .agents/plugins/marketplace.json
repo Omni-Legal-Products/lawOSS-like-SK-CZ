@@ -1,0 +1,20 @@
+{
+  "name": "lawoss-plugins",
+  "interface": {
+    "displayName": "LAWOSS Plugins"
+  },
+  "plugins": [
+    {
+      "name": "lawoss-legal",
+      "source": {
+        "source": "local",
+        "path": "./plugins/lawoss-legal"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Legal research"
+    }
+  ]
+}
