@@ -87,6 +87,21 @@ git push -u origin spec/nazov-veci
 gh pr create --fill
 ```
 
+### Kto smie PR zlúčiť — záväzné pravidlo ([ADR 0011](decisions/0011-proces-zmien-a-mergovania.md))
+
+> [!IMPORTANT]
+> **Platí pre ľudí aj AI agentov.** GitHub to technicky nevynucuje (vedome — aby to nezdržovalo), ale tím sa na tom zhodol v Q05: pravidlo je záväzné aj bez technického vynútenia. Porušenie = revert bez drámy.
+
+| Obsah PR | Kto merguje |
+|---|---|
+| rešerš, podklad, zápis, návod (`research/`, `meetings/`, `docs/` mimo doktríny) | **autor sám** po zelenom CI |
+| **spec, ADR, `AGENTS.md`, automatizácie, štruktúra repa** | **iba niekto iný než autor** — treba odklep aspoň 1 ďalšieho člena (review alebo 👍 v PR) |
+| evidencia vlastného stanoviska (svoj stĺpec, svoje potvrdenie) | autor sám — smie meniť len svoje |
+
+**Prečo:** spec a ADR sú rozhodnutia tímu — rozhodnutie vzniká až odklepom, nie mergom. Rešerše sú vstupy, tie nech tečú voľne. **Ticho nie je súhlas** — ak sa nikto neozve do 3 pracovných dní, eskaluj na product ownera.
+
+**Kód skillov, pluginov a modulov do tohto repa nepatrí** — patrí do samostatných repozitárov organizácie (ADR 0005, ADR 0008). Tu žijú len skripty automatizácií tohto repa (`.github/`).
+
 ### Aby ste si nešliapali po nohách
 
 - **Ohlás sa v Telegrame** (topic *General CHAT*), keď ideš robiť väčšiu zmenu — „idem prepisovať specs/0002".
@@ -135,7 +150,10 @@ assets/       obrázky, diagramy, brand
 | **`lawOSS-like-SK-CZ`** *(toto)* | nápady, ADR, špecifikácie, rešerše, zápisy — **zdroj pravdy pre rozhodnutia** | issues typu „appka padá pri OCR", implementačné úlohy |
 | **[`lawoss`](https://github.com/Omni-Legal-Products/lawoss)** *(fork)* | kód, implementačné issues a PR, buildy, releases | rozhodovanie o tom, *či* sa funkcia postaví |
 
-### Pravidlo toku
+### Pravidlo toku — záväzné pre ľudí aj AI agentov
+
+> [!IMPORTANT]
+> Toto nie je odporúčanie, ale **proces, ktorý tím schválil**. Agent, ktorý dostane nápad či feature na spracovanie, ho **vedie touto cestou** — nezakladá spec bez záznamu v koši, nezakladá issue vo forku bez odklepnutého specu, nezačína implementáciu bez issue.
 
 1. **Nápad** → [`planning/napady.md`](planning/napady.md) + riadok do [`specs/navrhy.md`](specs/navrhy.md). Žije tu.
 2. **Rozhodnutie** *(call, ADR alebo odklep v PR)* → tu. **Nikdy vo forku.**
