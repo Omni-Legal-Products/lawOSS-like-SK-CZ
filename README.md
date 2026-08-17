@@ -294,6 +294,7 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-12-rozhodovacie-otazky-timu.md
 │   ├── 2026-08-14-stav-odpovedi-timu.md
 │   ├── 2026-08-15-odpovedi-VR-Q01-Q25.md
+│   ├── 2026-08-17-stanoviska-timu-Q01-Q25.md
 │   ├── backlog.md
 │   ├── cz-datove-zdroje.md
 │   ├── mcp-repository-inventory.md
@@ -399,23 +400,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**235 commitov** · **117 súborov**
+**238 commitov** · **118 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `9e1abd4` | 2026-08-17 | Majo Cuprik | Merge pull request #52 from Omni-Legal-Products/docs/stanoviska-timu-q01-q25 |
+| `a592e63` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `915042c` | 2026-08-17 | Majo Cuprik | Merge pull request #51 from Omni-Legal-Products/docs/reakcie-ir-vr |
 | `6aeab3b` | 2026-08-17 | Majo Cuprik | Merge main do docs/reakcie-ir-vr — ponechaný doplnený GitHub účet VŘ |
 | `df4d068` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `db09771` | 2026-08-17 | Majo Cuprik | Merge pull request #42 from Omni-Legal-Products/feat/validate-skills |
 | `4b591b3` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `8dd0ac5` | 2026-08-17 | Majo Cuprik | Merge pull request #27 from Omni-Legal-Products/codex/platform-strategy |
-| `0f03fb2` | 2026-08-17 | Majo Cuprik | Merge pull request #16 from Omni-Legal-Products/spec/0008-reconcile |
-| `8c431a9` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 08:26 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 08:27 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
