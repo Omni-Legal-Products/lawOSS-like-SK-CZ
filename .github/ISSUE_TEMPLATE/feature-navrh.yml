@@ -56,6 +56,34 @@ body:
         - "Neviem posúdiť"
 
   - type: textarea
+    id: kontrola_pouzivatela
+    attributes:
+      label: Kontrola používateľa
+      description: Ako bude mať právnik kontrolu nad modelmi, dátami, nástrojmi a know-how pri tejto funkcii?
+      placeholder: Napríklad výber modelu, vlastný zdroj dát, možnosť overiť použitý nástroj alebo upraviť workflow.
+
+  - type: textarea
+    id: otvorenost_a_prenositelnost
+    attributes:
+      label: Otvorenosť a prenositeľnosť
+      description: Dá sa riešenie pochopiť, upraviť, vymeniť alebo opustiť? Uveď, čo bude prenositeľné medzi konfiguráciami.
+      placeholder: Napríklad otvorený skill, vymeniteľný MCP server alebo exportovateľný workflow.
+
+  - type: textarea
+    id: riadenie_agentov
+    attributes:
+      label: Riadenie agentov a schválenie
+      description: Čo môže agent vykonať, aké riziko nesie a kde právnik schvaľuje alebo kontroluje výsledok?
+      placeholder: Napríklad agent pripraví návrh, ale právnik pred odoslaním preverí zdroje a výsledok schváli.
+
+  - type: textarea
+    id: vynimka_z_doktriny
+    attributes:
+      label: Možná výnimka z produktovej doktríny
+      description: Obmedzuje návrh kontrolu, otvorenosť, audit alebo primerané schválenie? Ak áno, vysvetli dôvod, mitigáciu a časové obmedzenie pre samostatný ADR.
+      placeholder: Ak výnimka nie je potrebná, uveď prečo.
+
+  - type: textarea
     id: poznamky
     attributes:
       label: Čokoľvek ďalšie

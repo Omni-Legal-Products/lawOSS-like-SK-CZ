@@ -11,26 +11,41 @@
 - [x] **Licencia: MIT** — vyplýva z voľby základu → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [ ] ⚠️ **Doplniť `LICENSE`, `NOTICE`, `CONTRIBUTING`** do tohto repa *(MČ)*
 - [x] **[ADR 0004: forkujeme LegalWork pod vlastným brandingom](../decisions/0004-ako-rozsirit-legalwork.md)** *(rozhodol MČ; MF podmienečne podporil 2026-08-09; IR · VŘ čakajú)*
-- [ ] ⚠️ **[ADR 0005: štruktúra repozitárov](../decisions/0005-struktura-repozitarov.md)** — koordinácia oddelene od kódu; návrh na prerokovanie
-- [ ] Rozhodnúť, či zakladáme **GitHub organizáciu** — ak áno, **pred forkom**
+- [x] **Založiť organizáciu [Omni Legal Products](https://github.com/Omni-Legal-Products)** a oddeliť koordináciu od produktového kódu
+- [x] **Založiť verejný fork [Omni-Legal-Products/lawoss](https://github.com/Omni-Legal-Products/lawoss)** z `eigenweltlabs/legalwork`, default vetva `dev`
+- [ ] ⚠️ **Potvrdiť [ADR 0005: štruktúra repozitárov](../decisions/0005-struktura-repozitarov.md)** tímom a zosúladiť ho so skutočným stavom organizácie
 - [ ] Zriadiť **Apple Developer účet** pre notarizáciu macOS buildov
+- [ ] Spísať platformovú maticu: spoločné jadro, macOS integrácie a Windows integrácie
 - [ ] Zmapovať SK dátové zdroje (Slov-Lex, ORSR, RPVS, judikatúra, OV, FS)
-- [ ] Zmapovať existujúce slovenské MCP servery
-- [ ] Zmapovať CZ zdroje *(VŘ)* a PL zdroje *(VŘ)*
+- [x] Zmapovať existujúce slovenské MCP servery → [inventár](mcp-repository-inventory.md)
+- [x] Vytvoriť 14 private organizačných MCP forkov a jeden private mirror s topics `mcp-server`, `majo-mcp`, `lawoss`, `legaltech`
+- [x] **Zmapovať CZ dátové zdroje** *(VŘ)* — 15 zdrojov so stavom zrelosti, 5 pomenovaných medzier → [mapa CZ zdrojov](cz-datove-zdroje.md)
+- [ ] Zmapovať PL zdroje *(VŘ, termín 20. 8.)*
+- [x] **Pravidlá počítania lehôt** — SK *(IR, [PR #33](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/33))* a CZ *(VŘ, [podklad](../research/pravny-ramec/2026-08-15-lhoty-cz-pravidla-vypoctu.md))*; spolu 42 pravidiel, 39 lehôt, 32 pascí, 43 testov
 - [ ] Právny rámec: GDPR, predpisy SAK, mlčanlivosť, AI Act
 - [x] Potvrdenie ADR 0003 od MF — potvrdené 2026-08-09 komentárom k PR #5
+- [ ] ⚠️ **Odblokovať [issue #40](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/40)** *(MČ)* — IR má pripravený mirror 20 SK predpisov (~6300 súborov) a rozhodnutia NS SR, ale ako member nemôže zakladať repozitáre
 
 ## Fáza 1 — Fork & MVP (Q4 2026)
 
-- [ ] **Založiť fork** cez GitHub *Fork* z [eigenweltlabs/legalwork](https://github.com/eigenweltlabs/legalwork) *(kandidát na tag: `v0.1.13`)*
+- [x] **Založiť fork** [Omni-Legal-Products/lawoss](https://github.com/Omni-Legal-Products/lawoss) z [eigenweltlabs/legalwork](https://github.com/eigenweltlabs/legalwork)
 - [ ] Nastaviť `upstream` remote a rytmus synchronizácie pri ich releasoch
 - [ ] Založiť `PATCHES.md` — evidencia každého zásahu do upstream súborov
-- [ ] Rebranding: `tauri.conf.json` + `productName` + ikona *(overené: iba 2 miesta)*
+- [ ] Rebranding: `apps/desktop/electron-builder.yml` (`appId`, `productName`, URL schéma) + runtime identifikátory v `apps/desktop/electron/main.mjs` + ikona *(overené 2026-08-12: tri miesta; zmena `appId` mení macOS bundle identitu — keychain, Launchpad, TCC)*
 - [ ] Doplniť podpisové tajomstvá do GitHub Secrets forku
 - [ ] **SK + CZ lokalizácia rozhrania** — ani jeden z 12 podporovaných jazykov; čistý príspevok do upstreamu
 - [ ] Prvý SK MCP server integrovaný *(registrácia v configu, bez zásahu do jadra)*
 - [ ] UI/CLI prepínač *(VŘ)*
+- [ ] **macOS ako hlavná platforma** - natívne integrácie viesť bez požiadavky na úplnú paritu s Windows *(MČ · MF · VŘ)*
+- [ ] **Windows integračná vetva** - návrh, overovanie a natívne Windows výhody *(IR)*
 - [ ] Interné testovanie (MČ · MF · IR · VŘ)
+- [ ] **OKF ako jadro MVP** - tri vrstvy pamäte, reconciliation s human approval a auditom
+- [ ] **Onboarding spisu a subjektov** - conflict check, AML, sankcie, diskvalifikácie a registre cez MCP
+- [ ] **Základné skills pre spis** - zápis, kontrola čerstvosti, periodická konsolidácia a rollback
+- [ ] **Anonymizácia odložená** - neimplementovať v aktuálnej fáze; zachovať ako budúci voliteľný modul
+- [x] **Tímové rozhodnutia Q01 až Q25** — ✅ IR *(14. 8.)* · ✅ VŘ *(15. 8.)* · 📝 **MČ** pracovné pozície · ✅ **MF** *(17. 8.)* → [súhrn](2026-08-17-stanoviska-timu-Q01-Q25.md)
+- [ ] ⚔️ **Rozseknúť Q07** *(MČ ako product owner)* — jediná vecná odchýlka medzi IR a VŘ: patria lehoty do prvej trojice vertikál, alebo onboarding subjektov?
+- [ ] **Prepísať uzavreté odpovede do ADR** — governance, branching a release, scope prvej iterácie, pamäťové hranice, lokálnosť dát a platformy, monetizácia, architektúra formátov
 
 ## Fáza 2 — Pilot a komunita (2027)
 

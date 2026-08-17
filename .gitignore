@@ -6,3 +6,6 @@ research/deep-research/audio/
 
 # macOS
 .DS_Store
+
+# Izolovane pracovne stromy agentov
+.worktrees/

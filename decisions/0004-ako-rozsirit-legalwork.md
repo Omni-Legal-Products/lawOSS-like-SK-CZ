@@ -28,13 +28,18 @@ flowchart LR
 
 ## Čo forkom získavame — overené v ich repe
 
-Fork je lacnejší, než sa na prvý pohľad zdalo. Overené 2026-08-06:
+> [!CAUTION]
+> **Oprava 2026-08-12 — pôvodná verzia tohto ADR uvádzala nesprávnu technológiu.**
+> Tvrdila, že LegalWork stojí na **Tauri** a že branding sedí v `tauri.conf.json` na dvoch miestach. **LegalWork je Electron** — `apps/desktop/` obsahuje `electron-builder.yml`, `electron/` a závislosti `electron`, `electron-builder`, `electron-updater`. Žiadny `tauri.conf.json` v repe neexistuje.
+> Na nezrovnalosť upozornil **MF** v [spec 0008](../specs/0008-anonymizacia-a-privacy-gate.md) *(„staršie LAWOSS poznámky o Tauri treba pred implementáciou zosúladiť")*. Riadky nižšie sú opravené a preznačené dátumom overenia; **samotné rozhodnutie forkovať sa nemení** — mení sa odhad ceny rebrandingu.
+
+Fork je lacnejší, než sa na prvý pohľad zdalo. Overené 2026-08-06, branding a lokalizácia preverené znova **2026-08-12**:
 
 | Čo | Zistenie |
 |---|---|
 | **Celý build pipeline** | `.github/workflows/` obsahuje `release-macos-aarch64.yml` (36 kB), `alpha-macos-aarch64.yml`, `alpha-windows-x64.yml`, `ci-tests.yml`, `ci-i18n.yml`. **Forkom ich zdedíme celé** — stačí doplniť vlastné podpisové tajomstvá. |
-| **Branding je sústredený** | `tauri.conf.json` + `productName` — **iba 2 miesta**. Zmena názvu a ikony je malý, izolovaný zásah. |
-| **Lokalizácia = nové súbory** | `apps/app/src/i18n/locales/` má `en · de · es · ru · vi · zh · th · ca`. Pridanie `sk.ts` a `cs.ts` sú **nové súbory → nulový merge konflikt**. Navyše `ci-i18n.yml` kompletnosť prekladov kontroluje za nás. |
+| **Branding je ohraničený, ale nie triviálny** | `apps/desktop/electron-builder.yml` (`appId`, `productName`, URL schéma `legalwork`) **+ runtime identifikátory v `apps/desktop/electron/main.mjs`** — ich vlastný komentár prikazuje držať to v synchrone. **Tri miesta, nie dve.** ⚠️ `appId` určuje macOS bundle identitu: **keychain, Launchpad slot a TCC oprávnenia**. Prebrandená appka ich nezdedí a vedľa originálu si o ne konkuruje. *(overené 2026-08-12)* |
+| **Lokalizácia = nové súbory** | `apps/app/src/i18n/locales/` má k 2026-08-12 **11 jazykov**: `ca · de · en · es · fr · ja · pt-BR · ru · th · vi · zh` — oproti 2026-08-06 pribudli `fr`, `ja`, `pt-BR`, teda **upstream preklady aktívne priberá**. `sk` ani `cs` stále nie sú → pridanie `sk.ts` a `cs.ts` sú **nové súbory → nulový merge konflikt**. Navyše `ci-i18n.yml` kompletnosť prekladov kontroluje za nás. |
 | **Aktívny upstream** | posledný release `v0.1.13` z 2026-08-04 s 18 assetmi — vyvíja sa rýchlo, sync treba robiť pravidelne |
 
 ## Ako udržať fork lacný — záväzné pravidlá
@@ -64,7 +69,7 @@ Fork je lacnejší, než sa na prvý pohľad zdalo. Overené 2026-08-06:
 | Alternatíva | Prečo nie |
 |---|---|
 | **Prenosný balík bez forku** *(skills, prompty, MCP konektory inštalované do LegalWorku)* | Technicky najlacnejšie a plne prenositeľné, ale používateľ by videl LegalWork, nie LAWOSS. **Nedáva vlastný produkt ani vlastnú značku**, čo je pre projekt určujúce. Rovnaký argument sme zamietli už v [ADR 0002](0002-preco-forkujeme-mikeoss.md): *„netechnický advokát nerozbehne «naklonuj MCP config» — fork dáva použiteľnú appku s UI."* Časti tohto prístupu si však ponechávame — naša doména žije vo vlastných priečinkoch (pravidlo č. 5). |
-| **Downstream nadstavba nad ich balíkmi** | LegalWork je desktopová aplikácia (Tauri), nie knižnica. `legalwork-orchestrator` **nemá na npm publikovanú verziu** *(overené 2026-08-06)*, takže reálne to nejde. |
+| **Downstream nadstavba nad ich balíkmi** | LegalWork je desktopová aplikácia (Electron), nie knižnica. `legalwork-orchestrator` **nemá na npm publikovanú verziu** *(overené 2026-08-06)*, takže reálne to nejde. |
 | **LegalWork „extensions"** | Ich extension registry je **hard-coded** — `apps/server/src/extensions/index.ts` obsahuje statické pole a dispatch cez `if (extensionId === …)`. Zvonku sa registrovať nedá; aj tak by to znamenalo zásah do ich repa. |
 
 ## Dôsledky
