@@ -61,7 +61,7 @@ Prišlo s odpoveďami IR *(14. 8.)* a VŘ *(15. 8.)*. Evidencia v [navrhy.md](..
 
 - [ ] 📄 **DOCX round-trip s testovacím korpusom a vizuálnou kontrolou** — [návrh #34](../specs/navrhy.md) *(VŘ)*; deväť zdokumentovaných spôsobov, ako sa rozbije `.docx` → PDF, ktoré **textová kontrola nenájde**. Podmienka k Q25.
 - [ ] 🚨 **Kontrolný dotaz (canary) pri sankčnom screeningu** — [návrh #35](../specs/navrhy.md) *(VŘ)*; bez neho „čistý výsledok" znamená len „dotaz neprešiel". Podmienka k Q14 a k metodike AML.
-- [ ] 🔒 **Hranica vynútená v nástroji, nie v prompte** — [návrh #36](../specs/navrhy.md) *(VŘ)*; *„čo agent nesmie, mu nemá ísť ponúknuť."* Navrhnuté do [ADR 0007](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/19), ten čaká na MF.
+- [x] 🔒 **Hranica vynútená v nástroji, nie v prompte** — [návrh #36](../specs/navrhy.md) *(VŘ)*; *„čo agent nesmie, mu nemá ísť ponúknuť."* Zapracované a zlúčené v [ADR 0007](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/19) 17. 8.
 - [ ] 🧠 **Typované záznamy pamäte + oddelená vrstva „poučenie z chyby"** — [návrh #37](../specs/navrhy.md) *(VŘ)*; doplnok k [spec 0002](../specs/0002-okf-operacny-system-praxe.md) z vyše roka prevádzky.
 - [ ] 📊 **Metrika „koľko z návrhu advokát prepísal a v čom"** — [návrh #38](../specs/navrhy.md) *(VŘ)*; metrika štýlu, nie správnosti. Keď neklesá, prompt layer sa neučí.
 - [ ] 📤 **Export do existujúcich spisových a fakturačných systémov** — [návrh #39](../specs/navrhy.md) *(VŘ)*; české kancelárie ich väčšinou už majú. Mení ťažisko Q08.
@@ -70,14 +70,14 @@ Prišlo s odpoveďami IR *(14. 8.)* a VŘ *(15. 8.)*. Evidencia v [navrhy.md](..
 
 ## Rozhodnúť
 
-- [x] ✅ **Voľba základu — rozhodnuté 2026-08-06: LegalWork** → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md) *(nahrádza [ADR 0002](../decisions/0002-preco-forkujeme-mikeoss.md); čaká na potvrdenie MF)*
+- [x] ✅ **Voľba základu — rozhodnuté 2026-08-06: LegalWork** → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md) *(nahrádza [ADR 0002](../decisions/0002-preco-forkujeme-mikeoss.md); MF potvrdené 2026-08-09)*
 - [x] ✅ **Licencia — MIT**, vyplýva z voľby základu (LegalWork je MIT) → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [ ] ⚠️ **Doplniť súbory `LICENSE`, `NOTICE`, `CONTRIBUTING`** — repo je verejné, ale **bez `LICENSE` platí „all rights reserved"** *(MČ do 2026-08-08)*
-- [x] ✅ **Ako rozšíriť LegalWork — rozhodnuté: forkujeme pod vlastným brandingom** → [ADR 0004](../decisions/0004-ako-rozsirit-legalwork.md) *(rozhodol MČ; na potvrdenie tímom)*
+- [x] ✅ **Ako rozšíriť LegalWork — rozhodnuté: forkujeme pod vlastným brandingom** → [ADR 0004](../decisions/0004-ako-rozsirit-legalwork.md) *(rozhodol MČ; MF podmienečne podporil 2026-08-09; IR · VŘ čakajú)*
 - [x] ✅ **GitHub organizácia a produktový fork** - [Omni Legal Products](https://github.com/Omni-Legal-Products) + [LAWOSS](https://github.com/Omni-Legal-Products/lawoss), overené cez GitHub API 2026-08-12
 - [x] ✅ **Private tímové kópie MCP serverov** - 14 forkov a jeden mirror → [inventár](mcp-repository-inventory.md)
 - [ ] 👥 **Prijať pozvánky do organizácie** - MF, IR a VŘ; overené cez GitHub API 2026-08-12 ako čakajúce
-- [ ] 🗳️ **Vyjadriť sa k Q01 až Q25** — ✅ IR *(14. 8.)* · ✅ VŘ *(15. 8.)* · ⏳ **MČ** rozpracované · ⏳ **MF** zatiaľ nič → [živý prehľad odpovedí](2026-08-14-stav-odpovedi-timu.md)
+- [x] 🗳️ **Vyjadriť sa k Q01 až Q25** — ✅ IR *(14. 8.)* · ✅ VŘ *(15. 8.)* · 📝 **MČ** pracovné pozície · ✅ **MF** *(17. 8.)* → [živý prehľad odpovedí](2026-08-14-stav-odpovedi-timu.md) a [súhrn tímu](2026-08-17-stanoviska-timu-Q01-Q25.md)
 - [ ] ⚔️ **Rozseknúť Q07 — poradie prvých troch vertikál** *(MČ)*; jediná vecná odchýlka medzi IR a VŘ: lehoty vs. onboarding subjektov v prvej trojici
 - [ ] ⚠️ **Odblokovať [issue #40](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/40)** *(MČ)* — IR nemôže ako member zakladať repozitáre; čaká mirror 20 SK predpisov a rozhodnutia NS SR
 - [ ] 🔏 **Rozhodnúť, kto platí podpisové certifikáty a na koho účet znejú** — IR aj VŘ si dali podpísané buildy ako **osobnú podmienku účasti** (Q06), takže to už nie je položka v backlogu, ale brána vydania

@@ -13,7 +13,7 @@ Traja slovenskí advokáti (**Marián Čuprík**, **Martin Friedrich**, **Igor R
 |---|---|
 | **Toto repo** | prípravné a plánovacie — **neobsahuje kód** produktu. Brainstorming, rešerše, rozhodnutia, plánovanie. |
 | **Monetizácia** | výhradne **školenia a workshopy**. Nepredávame softvér ani službu (SaaS) — to by z advokáta spravilo poskytovateľa. Viď [ADR 0002](decisions/0002-preco-forkujeme-mikeoss.md). |
-| **Voľba základu** | ✅ **rozhodnuté 2026-08-06: [LegalWork](https://github.com/eigenweltlabs/legalwork)** (MIT) → [ADR 0003](decisions/0003-legal-work-ako-zaklad.md), nahrádza ADR 0002. Organizačný fork je [Omni-Legal-Products/lawoss](https://github.com/Omni-Legal-Products/lawoss), default vetva `dev`, upstream zostáva `eigenweltlabs/legalwork`. Potvrdenie MF k ADR 0003 je stále otvorené. |
+| **Voľba základu** | ✅ **rozhodnuté 2026-08-06: [LegalWork](https://github.com/eigenweltlabs/legalwork)** (MIT) → [ADR 0003](decisions/0003-legal-work-ako-zaklad.md), nahrádza ADR 0002. Organizačný fork je [Omni-Legal-Products/lawoss](https://github.com/Omni-Legal-Products/lawoss), default vetva `dev`, upstream zostáva `eigenweltlabs/legalwork`; **MF potvrdené 2026-08-09**. Hlavný dôvod: open-code harness ([opencode](https://github.com/sst/opencode)) v pozadí + MIT. Otvorený zostáva spôsob dlhodobej synchronizácie s upstreamom. |
 | **Licencia** | **MIT** — vyplýva z voľby základu. Súbor `LICENSE` v tomto repe ešte **chýba** (úloha MČ). |
 | **Názov** | **LAWOSS** — *Czechia · Slovakia* (od 2026-07-29; predtým pracovne „MikeOSS Slovakia"). Značka: `LAW` biele + `OSS` zlaté. |
 | **Záber** | 🇨🇿 **ČR + 🇸🇰 SR** — dvojjurisdikčný. Pri rešeršiach a specoch mysli na obe. |

@@ -10,7 +10,7 @@
 - [x] **ADR 0003: voľba základu — LegalWork** *(nahrádza ADR 0002)* → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [x] **Licencia: MIT** — vyplýva z voľby základu → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [ ] ⚠️ **Doplniť `LICENSE`, `NOTICE`, `CONTRIBUTING`** do tohto repa *(MČ)*
-- [x] **[ADR 0004: forkujeme LegalWork pod vlastným brandingom](../decisions/0004-ako-rozsirit-legalwork.md)** *(rozhodol MČ; na potvrdenie MF · IR · VŘ)*
+- [x] **[ADR 0004: forkujeme LegalWork pod vlastným brandingom](../decisions/0004-ako-rozsirit-legalwork.md)** *(rozhodol MČ; MF podmienečne podporil 2026-08-09; IR · VŘ čakajú)*
 - [x] **Založiť organizáciu [Omni Legal Products](https://github.com/Omni-Legal-Products)** a oddeliť koordináciu od produktového kódu
 - [x] **Založiť verejný fork [Omni-Legal-Products/lawoss](https://github.com/Omni-Legal-Products/lawoss)** z `eigenweltlabs/legalwork`, default vetva `dev`
 - [ ] ⚠️ **Potvrdiť [ADR 0005: štruktúra repozitárov](../decisions/0005-struktura-repozitarov.md)** tímom a zosúladiť ho so skutočným stavom organizácie
@@ -23,7 +23,7 @@
 - [ ] Zmapovať PL zdroje *(VŘ, termín 20. 8.)*
 - [x] **Pravidlá počítania lehôt** — SK *(IR, [PR #33](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/33))* a CZ *(VŘ, [podklad](../research/pravny-ramec/2026-08-15-lhoty-cz-pravidla-vypoctu.md))*; spolu 42 pravidiel, 39 lehôt, 32 pascí, 43 testov
 - [ ] Právny rámec: GDPR, predpisy SAK, mlčanlivosť, AI Act
-- [ ] Potvrdenie ADR 0003 od MF *(nezúčastnil sa callu 6. 8.)*
+- [x] Potvrdenie ADR 0003 od MF — potvrdené 2026-08-09 komentárom k PR #5
 - [ ] ⚠️ **Odblokovať [issue #40](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/40)** *(MČ)* — IR má pripravený mirror 20 SK predpisov (~6300 súborov) a rozhodnutia NS SR, ale ako member nemôže zakladať repozitáre
 
 ## Fáza 1 — Fork & MVP (Q4 2026)
@@ -43,7 +43,7 @@
 - [ ] **Onboarding spisu a subjektov** - conflict check, AML, sankcie, diskvalifikácie a registre cez MCP
 - [ ] **Základné skills pre spis** - zápis, kontrola čerstvosti, periodická konsolidácia a rollback
 - [ ] **Anonymizácia odložená** - neimplementovať v aktuálnej fáze; zachovať ako budúci voliteľný modul
-- [ ] **Tímové rozhodnutia Q01 až Q25** — ✅ IR *(14. 8.)* · ✅ VŘ *(15. 8.)* · ⏳ MČ rozpracované · ⏳ MF zatiaľ nič → [živý prehľad](2026-08-14-stav-odpovedi-timu.md)
+- [x] **Tímové rozhodnutia Q01 až Q25** — ✅ IR *(14. 8.)* · ✅ VŘ *(15. 8.)* · 📝 **MČ** pracovné pozície · ✅ **MF** *(17. 8.)* → [súhrn](2026-08-17-stanoviska-timu-Q01-Q25.md)
 - [ ] ⚔️ **Rozseknúť Q07** *(MČ ako product owner)* — jediná vecná odchýlka medzi IR a VŘ: patria lehoty do prvej trojice vertikál, alebo onboarding subjektov?
 - [ ] **Prepísať uzavreté odpovede do ADR** — governance, branching a release, scope prvej iterácie, pamäťové hranice, lokálnosť dát a platformy, monetizácia, architektúra formátov
 
