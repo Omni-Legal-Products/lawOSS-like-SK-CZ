@@ -225,10 +225,10 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 |---|---|---|
 | [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
 | [`2026-08-15-odpovedi-VR-Q01-Q25.md`](planning/2026-08-15-odpovedi-VR-Q01-Q25.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
-| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 8/68 (12 %) |
+| [`backlog.md`](planning/backlog.md) | `███░░░░░░░░░░░░░░░░░` | 10/68 (15 %) |
 | [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
-| [`roadmap.md`](planning/roadmap.md) | `██████░░░░░░░░░░░░░░` | 13/43 (30 %) |
+| [`roadmap.md`](planning/roadmap.md) | `███████░░░░░░░░░░░░░` | 15/43 (35 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -401,23 +401,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**254 commitov** · **119 súborov**
+**266 commitov** · **119 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `0d880cf` | 2026-08-17 | BiggusDicckkus | Merge pull request #12 from Omni-Legal-Products/docs/record-mf-adr-confirmation |
+| `65f50c1` | 2026-08-17 | Martin Friedrich | Merge remote-tracking branch 'origin/main' into codex/resolve-pr12-clean |
+| `b6ab646` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `49d1c41` | 2026-08-17 | BiggusDicckkus | Merge pull request #2 from Omni-Legal-Products/spec/orchestrator-subagents |
+| `c422fe0` | 2026-08-17 | Martin Friedrich | Merge remote-tracking branch 'origin/main' into codex/resolve-pr12-clean |
 | `5346014` | 2026-08-17 | Martin Friedrich | Merge remote-tracking branch 'origin/main' into codex/resolve-pr2 |
 | `4eb903f` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `a424199` | 2026-08-17 | BiggusDicckkus | Merge pull request #11 from Omni-Legal-Products/spec/alpha-deadline-workflow |
-| `14f64ed` | 2026-08-17 | Martin Friedrich | merge main and align orchestrator with ADR 0007 |
-| `f3b5925` | 2026-08-17 | Martin Friedrich | merge main into deadline alpha spec |
-| `2309910` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `58e93da` | 2026-08-17 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 09:57 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 09:59 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
