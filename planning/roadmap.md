@@ -19,9 +19,12 @@
 - [ ] Zmapovať SK dátové zdroje (Slov-Lex, ORSR, RPVS, judikatúra, OV, FS)
 - [x] Zmapovať existujúce slovenské MCP servery → [inventár](mcp-repository-inventory.md)
 - [x] Vytvoriť 14 private organizačných MCP forkov a jeden private mirror s topics `mcp-server`, `majo-mcp`, `lawoss`, `legaltech`
-- [ ] Zmapovať CZ zdroje *(VŘ)* a PL zdroje *(VŘ)*
+- [x] **Zmapovať CZ dátové zdroje** *(VŘ)* — 15 zdrojov so stavom zrelosti, 5 pomenovaných medzier → [mapa CZ zdrojov](cz-datove-zdroje.md)
+- [ ] Zmapovať PL zdroje *(VŘ, termín 20. 8.)*
+- [x] **Pravidlá počítania lehôt** — SK *(IR, [PR #33](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/33))* a CZ *(VŘ, [podklad](../research/pravny-ramec/2026-08-15-lhoty-cz-pravidla-vypoctu.md))*; spolu 42 pravidiel, 39 lehôt, 32 pascí, 43 testov
 - [ ] Právny rámec: GDPR, predpisy SAK, mlčanlivosť, AI Act
 - [ ] Potvrdenie ADR 0003 od MF *(nezúčastnil sa callu 6. 8.)*
+- [ ] ⚠️ **Odblokovať [issue #40](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/40)** *(MČ)* — IR má pripravený mirror 20 SK predpisov (~6300 súborov) a rozhodnutia NS SR, ale ako member nemôže zakladať repozitáre
 
 ## Fáza 1 — Fork & MVP (Q4 2026)
 
@@ -40,7 +43,9 @@
 - [ ] **Onboarding spisu a subjektov** - conflict check, AML, sankcie, diskvalifikácie a registre cez MCP
 - [ ] **Základné skills pre spis** - zápis, kontrola čerstvosti, periodická konsolidácia a rollback
 - [ ] **Anonymizácia odložená** - neimplementovať v aktuálnej fáze; zachovať ako budúci voliteľný modul
-- [ ] **Tímové rozhodnutia Q01 až Q25** - MF, IR a VŘ prejdú otázky cez svojich agentov; Q24 rieši produktovú doktrínu, Q25 nezáväzný návrh otvorených formátov
+- [ ] **Tímové rozhodnutia Q01 až Q25** — ✅ IR *(14. 8.)* · ✅ VŘ *(15. 8.)* · ⏳ MČ rozpracované · ⏳ MF zatiaľ nič → [živý prehľad](2026-08-14-stav-odpovedi-timu.md)
+- [ ] ⚔️ **Rozseknúť Q07** *(MČ ako product owner)* — jediná vecná odchýlka medzi IR a VŘ: patria lehoty do prvej trojice vertikál, alebo onboarding subjektov?
+- [ ] **Prepísať uzavreté odpovede do ADR** — governance, branching a release, scope prvej iterácie, pamäťové hranice, lokálnosť dát a platformy, monetizácia, architektúra formátov
 
 ## Fáza 2 — Pilot a komunita (2027)
 
