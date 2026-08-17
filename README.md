@@ -225,10 +225,10 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 |---|---|---|
 | [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
 | [`2026-08-15-odpovedi-VR-Q01-Q25.md`](planning/2026-08-15-odpovedi-VR-Q01-Q25.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
-| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 7/56 (12 %) |
+| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 8/68 (12 %) |
 | [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
-| [`roadmap.md`](planning/roadmap.md) | `██████░░░░░░░░░░░░░░` | 11/38 (29 %) |
+| [`roadmap.md`](planning/roadmap.md) | `██████░░░░░░░░░░░░░░` | 13/43 (30 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -399,18 +399,18 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**231 commitov** · **117 súborov**
+**235 commitov** · **117 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `915042c` | 2026-08-17 | Majo Cuprik | Merge pull request #51 from Omni-Legal-Products/docs/reakcie-ir-vr |
+| `6aeab3b` | 2026-08-17 | Majo Cuprik | Merge main do docs/reakcie-ir-vr — ponechaný doplnený GitHub účet VŘ |
+| `df4d068` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `db09771` | 2026-08-17 | Majo Cuprik | Merge pull request #42 from Omni-Legal-Products/feat/validate-skills |
 | `4b591b3` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `8dd0ac5` | 2026-08-17 | Majo Cuprik | Merge pull request #27 from Omni-Legal-Products/codex/platform-strategy |
 | `0f03fb2` | 2026-08-17 | Majo Cuprik | Merge pull request #16 from Omni-Legal-Products/spec/0008-reconcile |
 | `8c431a9` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `42cbd25` | 2026-08-17 | Majo Cuprik | Merge pull request #34 from Omni-Legal-Products/docs/navod-mcp-legalwork |
-| `804107a` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `7ef09e0` | 2026-08-17 | Majo Cuprik | Merge pull request #33 from Omni-Legal-Products/spec/0005-lehotove-jadro-sk |
 <!-- /AUTO:ACTIVITY -->
 
 ---
