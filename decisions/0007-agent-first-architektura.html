@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADR 0007 — Agent-first architektúra</title>
+<style>
+  :root{--navy:#0d1b2a;--navy2:#13243a;--gold:#c9a24a;--gold-soft:#e4c979;
+    --ink:#1a2233;--muted:#5b6577;--line:#e4e7ec;--bg:#f6f7f9;--card:#fff;
+    --green:#1f9d55;--amber:#c98a1a;--red:#c0392b}
+  @media (prefers-color-scheme:dark){:root{--ink:#e8ecf3;--muted:#9aa6b8;--line:#25324a;--bg:#0b131f;--card:#111c2e}}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  .hero{background:radial-gradient(1100px 380px at 75% -10%,rgba(201,162,74,.22),transparent),
+    linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;padding:48px 0 40px;border-bottom:3px solid var(--gold)}
+  .kicker{letter-spacing:.26em;text-transform:uppercase;font-size:12px;color:var(--gold-soft);font-weight:700}
+  .hero h1{margin:.3em 0 .1em;font-size:clamp(26px,4.6vw,40px);line-height:1.12;font-weight:800}
+  .hero p{margin:.4em 0 0;color:#c8d2e0;font-size:15px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{background:rgba(255,255,255,.08);border:1px solid rgba(201,162,74,.4);color:#fff;padding:5px 12px;border-radius:100px;font-size:12.5px;font-weight:600}
+  .chip b{color:var(--gold-soft)}
+  section{margin:34px 0}
+  h2{font-size:20px;font-weight:800;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+  h2 .n{background:var(--navy);color:var(--gold);width:28px;height:28px;border-radius:8px;display:inline-grid;place-items:center;font-size:13px;flex:none}
+  @media(prefers-color-scheme:dark){h2 .n{background:#0a1524}}
+  h3{font-size:15px;margin:.2em 0 .5em}
+  .decision{background:linear-gradient(135deg,rgba(201,162,74,.14),rgba(201,162,74,.05));border:1.5px solid var(--gold);
+    border-radius:16px;padding:20px 22px;font-size:17px;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:0 4px 14px rgba(13,27,42,.05)}
+  table{width:100%;border-collapse:collapse;font-size:14px;border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--navy);color:#fff;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+  @media(prefers-color-scheme:dark){th{background:#0a1524}}
+  tr:last-child td{border-bottom:none}
+  .tbl-wrap{overflow-x:auto}
+  code{background:rgba(125,140,170,.16);padding:1px 6px;border-radius:5px;font-size:13px}
+  .repos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.repos{grid-template-columns:1fr}}
+  .repo{border-radius:12px;padding:15px 17px;border:1px solid var(--line);background:var(--card);border-top:4px solid var(--gold)}
+  .repo.new{border-top-color:var(--green)}
+  .repo .t{font-weight:800;font-size:14px;word-break:break-word}
+  .repo .s{color:var(--muted);font-size:13px;margin-top:5px}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:100px;margin-top:8px;
+    background:rgba(201,162,74,.18);border:1px solid var(--gold)}
+  .tag.g{background:rgba(31,157,85,.16);border-color:var(--green)}
+  .warn{border-left:4px solid var(--amber);background:var(--card);border-radius:0 12px 12px 0;padding:16px 18px;
+    border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .warn h3{color:var(--amber);margin-top:0}
+  .ok{border-left-color:var(--green)}.ok h3{color:var(--green)}
+  ul{margin:.4em 0;padding-left:1.2em}li{margin:.3em 0}
+  footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 50px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Architecture Decision Record — návrh</div>
+    <h1>ADR 0007 — Agent-first architektúra</h1>
+    <p>Softvér pre agenta, rozhranie pre advokáta. Agent je koncipient — pracuje samostatne, ale nepodpisuje.</p>
+    <div class="meta">
+      <span class="chip"><b>Dátum:</b> 2026-08-12</span>
+      <span class="chip"><b>Stav:</b> 📝 návrh — smerový bod na call</span>
+      <span class="chip"><b>Navrhol:</b> MČ</span>
+      <span class="chip"><b>Povinný recenzent:</b> MF</span>
+      <span class="chip"><b>Recenzia MF 12. 8.:</b> podmienečne — 3 požiadavky zapracované</span>
+      <span class="chip"><b>Call 12. 8.:</b> smerovanie prijaté (R1)</span>
+      <span class="chip"><b>Vzťah:</b> vykonávací predpis k ADR 0009, pilier 2</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<div class="warn" style="margin-top:28px">
+  <h3>Pozor na číslovanie</h3>
+  <p style="margin:0">V repe existuje aj <b>spec 0007</b> (podpisovanie a zaručená konverzia) — iný dokument v inom priečinku. V odkazoch vždy píš <i>ADR 0007</i> alebo <i>spec 0007</i> v plnom znení, nikdy len „0007".</p>
+</div>
+
+<section>
+  <h2><span class="n">1</span>Kontext</h2>
+  <div class="card">
+    <p style="margin-top:0">Doterajšie ADR opisujú, <b>čo</b> staviame a <b>prečo</b>. Nikde nie je napísané, <b>pre koho je softvér primárne navrhnutý</b> — a ukazuje sa, že to nie je detail.</p>
+    <p style="margin-bottom:0">Viaceré dokumenty okolo tej istej myšlienky už krúžia: <a href="../specs/0002-okf-operacny-system-praxe.md">spec 0002</a> hovorí <i>„aplikácia je lepidlo a register, nie monolitický AI engine"</i> a OKF už dnes generuje <code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>MEMORY.md</code> a <code>_STATUS.md</code> — teda strojovo čitateľný stav spisu. Verdikt oponentúry znie <i>„vrstva &gt; binárka; kto vlastní formát spisu, vlastní trh"</i>. A <a href="0006-anonymizacia-ako-lokalny-privacy-gate.md">ADR 0006</a> od MF definuje stavový automat, ktorý je v skutočnosti všeobecným kontraktom medzi agentom a advokátom.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">2</span>Návrh rozhodnutia</h2>
+  <div class="decision" style="margin-bottom:18px">
+    LAWOSS sa navrhuje tak, že primárny používateľ softvéru je <b>agent, nie človek</b>. Ľudské rozhranie je riadiaci panel: zadať mandát, vidieť stav, podpísať výstup.
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0">Rámec: agent je koncipient</h3>
+    <p style="margin-bottom:0"><b>Pracuje samostatne, pripravuje podklady a drafty, má prístup do spisu. Ale nepodpisuje.</b> Za jeho prácu zodpovedá advokát, ktorý ju pred podpisom prečíta — a tým, že ju opravuje, ho učí. Zámerne právnická analógia namiesto technického žargónu: <b>režim zodpovednosti sa nemení</b>, mení sa len to, kto píše drafty.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">3</span>Päť záväzných pravidiel</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th style="width:34px">#</th><th>Pravidlo</th><th>Prečo</th></tr>
+    <tr><td><b>1</b></td><td><b>Strojovo čitateľný stav je prvotný</b>, ľudské zobrazenie odvodené</td><td>OKF to dnes robí, ale nikde to nie je napísané — dá sa to nechtiac porušiť</td></tr>
+    <tr><td><b>2</b></td><td><b>Každá funkcia musí byť vykonateľná agentom bez GUI</b></td><td>Testovacie kritérium celého ADR — dá sa naň ukázať prstom, odpoveď je áno/nie</td></tr>
+    <tr><td><b>3</b></td><td><b>Kontrakt agent ↔ advokát</b> — zovšeobecnenie automatu z ADR 0006</td><td>Vnútri spisu agent voľne, na hranici podpisuje advokát, zlyhanie = fail-closed</td></tr>
+    <tr><td><b>4</b></td><td><b>Hranica spisu je súčasne kontrolný aj učiaci bod</b></td><td>Úprava advokáta je vstup pre reconcile — brána sa mení z réžie na investíciu</td></tr>
+    <tr><td><b>5</b></td><td><b>Podpisovanie a konanie navonok sú agentovi technicky znemožnené</b></td><td>Nie zákazom v prompte, ale tým, že agent na to <b>nemá nástroj</b> — chýbajúcu schopnosť nemožno obísť</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <h2><span class="n">4</span>Kontrakt agent ↔ advokát</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Zóna</th><th>Kto koná</th><th>Pravidlo</th></tr>
+    <tr><td><b>Vnútri spisu</b></td><td>agent voľne</td><td>stavy <code>candidate</code> → <code>automated-verified</code> → <code>review-confirmed</code> sú lokálne; <b>originál sa nikdy neprepíše</b></td></tr>
+    <tr><td><b>Hranica spisu</b></td><td><b>advokát podpisuje</b></td><td>prechod do <code>published</code> vyžaduje automatické overenie <b>a</b> výslovné potvrdenie advokátom</td></tr>
+    <tr><td><b>Zlyhanie</b></td><td>nikto</td><td>chyba, timeout alebo chýbajúca závislosť = <b>fail-closed</b>, nikdy tichý prechod</td></tr>
+  </table></div>
+  <div class="warn" style="margin-top:16px">
+    <h3>Povinná ľudská verifikácia pred použitím v právnej službe</h3>
+    <p style="margin:0"><i>(doplnené na žiadosť MF, 2026-08-12)</i> Slovo <b>„voľne"</b> sa týka výlučne toho, že agent smie <b>pracovať a produkovať</b> — nie toho, že by sa jeho výstup dal použiť. <b>Žiadny výstup agenta sa nesmie použiť pri poskytovaní právnej služby, kým ho advokát neoveril</b> — a to aj vtedy, keď výstup <b>neopúšťa spis</b> (rešerš, o ktorú sa advokát oprie v porade; zhrnutie, z ktorého vychádza pri rozhodovaní). Overenie znamená, že advokát obsah <b>prečítal a prevzal zaň zodpovednosť</b>, nie že ho videl prebehnúť.</p>
+  </div>
+  <div class="warn ok" style="margin-top:16px">
+    <h3>Čo znamená „von"</h3>
+    <p style="margin:0">Nielen klientovi, protistrane alebo na súd, ale <b>aj externému modelu</b>. To ADR 0006 už hovorí — tu to prestáva byť pravidlo o anonymizácii a stáva sa pravidlom o agentoch všeobecne. <b>Aj zápis do inštrukcií</b> (<code>AGENTS.md</code>, <code>MEMORY.md</code>, prompt layer) je prechod hranice a vyžaduje podpis.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">5</span>Technické vylúčenie podpisovania a konania navonok</h2>
+  <p style="margin-top:0"><i>(pravidlo 5 — doplnené na žiadosť MF, 2026-08-12)</i> Nestačí, že to agent nemá dovolené. <b>Nesmie na to mať schopnosť.</b></p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Zakázané</th><th>Ako sa to vynucuje</th></tr>
+    <tr><td><b>Podpisovanie</b> — QES, QTS, akákoľvek autorizácia</td><td>agent <b>nemá prístup</b> k rozhraniu Autogramu, k mandátnemu certifikátu ani k čítačke; podpis spúšťa človek vo vlastnej aplikácii</td></tr>
+    <tr><td><b>Odoslanie navonok</b> — e-mail, dátová schránka, podanie na súd, komunikácia s protistranou či klientom</td><td>agent <b>nemá odosielací nástroj</b> — nie je mu sprístupnený, nie je mu zakázaný</td></tr>
+    <tr><td><b>Konanie v mene advokáta</b> voči tretím stranám</td><td>to isté: chýbajúca schopnosť, nie inštrukcia</td></tr>
+    <tr><td><b>Reťazová aktivácia</b> — plánovací prvok spúšťa ďalšie kroky sám</td><td><b>plán je text, nie príkaz.</b> Plánovač nesmie aktivovať naplánované kroky; každá aktivácia prechádza hlavným kontextom <i>(doplnené na podklad IR, 2026-08-14)</i></td></tr>
+  </table></div>
+  <div class="warn" style="margin-top:16px">
+    <h3>Prečo je ten rozdiel zásadný</h3>
+    <p style="margin:0">Zákaz v prompte sa dá obísť — otráveným dokumentom, zle formulovanou úlohou, chybou modelu. <b>Chýbajúci nástroj obísť nedá.</b> Preto sa tieto schopnosti agentovi <b>nesprístupňujú</b>, namiesto toho, aby sa mu zakazovali. Dôsledok pre návrh: <b>každý nástroj, ktorý koná navonok, patrí do ľudského rozhrania, nie do sady nástrojov agenta.</b> Dať agentovi odosielací alebo podpisový nástroj je zmena tohto ADR, nie konfiguračná voľba.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">6</span>Role a zodpovednosť — dve veci, ktoré sa nesmú zliať</h2>
+  <p style="margin-top:0"><i>(doplnené na žiadosť MF, 2026-08-12)</i> Pôvodné znenie hovorilo, že zmenu inštrukcií „schvaľuje advokát", a tým dve odlišné roly nesprávne zlialo do jednej.</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Rola</th><th>Čo schvaľuje</th><th>Za čo NEzodpovedá</th></tr>
+    <tr><td><b>Recenzent architektúry</b></td><td>pravidlá, inštrukčné vrstvy, prompty kancelárie, zmeny <code>AGENTS.md</code> na úrovni kancelárie a komunity</td><td><b>za žiadnu konkrétnu vec.</b> Jeho súhlas nie je odborným posúdením ničoho, čo sa v spise deje</td></tr>
+    <tr><td><b>Zodpovedný advokát vo veci</b></td><td>všetko, čo sa v jeho spise použije pri poskytovaní právnej služby</td><td>— nesie zodpovednosť podľa predpisov o výkone advokácie</td></tr>
+  </table></div>
+  <ul style="margin-top:14px">
+    <li><b>Schválenie architektúry nikdy nenahrádza overenie vo veci.</b> Inštrukcia schválená do promptu kancelárie <b>nezbavuje</b> zodpovedného advokáta povinnosti overiť každý výstup vo svojom spise.</li>
+    <li><b>Recenzent architektúry nesmie zasahovať do cudzieho spisu.</b> Zmena inštrukcií je zmena <i>pravidiel</i>, nie zmena <i>obsahu veci</i>.</li>
+    <li><b>Zodpovedný advokát smie inštrukciu kancelárie vo svojej veci prebiť.</b> Rozpor ide na prerokovanie tímu, nie na tichý prepis spoločného promptu.</li>
+  </ul>
+  <div class="warn ok" style="margin-top:14px">
+    <h3>V malom tíme sú to často tí istí ľudia</h3>
+    <p style="margin:0">To nie je dôvod roly nerozlišovať — je to dôvod, prečo si pri každom schválení treba uvedomiť, <b>v ktorej z nich človek práve koná</b>.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">7</span>Podpisovanie ako externý add-on</h2>
+  <div class="card">
+    <p style="margin-top:0"><b>Podpisovanie nie je súčasť LAWOSS a nemá ňou byť.</b> Podľa <a href="../specs/0007-podpisovanie-a-zarucena-konverzia.md">spec 0007</a> je to <b>samostatný krok na konci prípravy dokumentu</b> — napríklad pred podaním na súd — cez <b>Autogram</b> (Slovensko.Digital, eIDAS):</p>
+    <ul>
+      <li>advokát má <b>Autogram nainštalovaný samostatne</b> — LAWOSS ho nedistribuuje ani nebundluje <i>(EUPL-1.2, licenčná hranica musí zostať čistá)</i></li>
+      <li>Autogram beží ako <b>lokálny proces s HTTP API</b> (<code>localhost:37200</code>) alebo CLI</li>
+      <li>LAWOSS ho <b>zavolá</b> a podpísaný súbor si prevezme späť do spisu podľa OKF</li>
+    </ul>
+    <p style="margin-bottom:0">Je to teda <b>add-on, nie integrovaný systém overenia advokáta</b>. LAWOSS nepracuje s PIN-om ani s certifikátmi — tie ostávajú medzi Autogramom a čítačkou.</p>
+  </div>
+  <div class="warn ok" style="margin-top:16px">
+    <h3>Prečo to sem patrí</h3>
+    <p style="margin:0">Práve preto, že je to <b>mimo nás</b>, je hranica z pravidla 3 v tomto prípade <b>vynútená zvonku, nie našou disciplínou</b>. Podpis prebehne v cudzej aplikácii, potvrdením v jej vlastnom rozhraní, s kartou v čítačke — nemôžeme ho oslabiť ani omylom, ani zlým promptom, ani zmenou nášho UI. Agent pripraví podpisovú dávku a <b>musí sa zastaviť</b>, lebo ďalej nemá ako pokračovať. Užitočný referenčný bod: takto vyzerá hranica, ktorá drží aj bez toho, aby ju niekto strážil.</p>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <p style="margin:0"><b>Zaručená konverzia je samostatná funkcionalita</b>, nie variant podpisovania. Spec 0007 ju dnes pokrýva spolu s podpisovaním <i>(zdieľajú engine)</i>; po doplnení rešerše MČ sa zváži jej vyčlenenie do vlastného specu. <b>Zaradenie sa nemení</b> — QES/QTS ostáva V2, zaručená konverzia ďalšia verzia.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">8</span>Čo toto ADR NEznamená</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Nie je to</th><th>Prečo to treba povedať nahlas</th></tr>
+    <tr><td><b>pitch pre advokátov</b></td><td>Architektonický princíp. Advokátovi predávame poriadok v spise a ušetrený čas, nie „agent-first architektúru". Persona používateľa v oponentúre pred touto optikou výslovne varovala.</td></tr>
+    <tr><td><b>zmena scope V1</b></td><td>SK/CZ lokalizácia ostáva — je to <b>vstupenka, nie funkcia</b>. Princíp hovorí <i>ako</i> stavať, nie <i>čo</i> je v V1.</td></tr>
+    <tr><td><b>krok k autonómii</b></td><td>Kontrakt je <b>strop, nie schodík</b>. Kto navrhne, že podpisuje agent, musí najprv zrušiť toto ADR.</td></tr>
+    <tr><td><b>rozšírenie na ďalšie trhy</b></td><td>Poľsko ani iné jurisdikcie sem nepatria. Nanajvýš riadok do zberného koša.</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <h2><span class="n">9</span>Riziká, ktoré ADR priznáva</h2>
+  <div class="warn">
+    <h3>1 · Zovšeobecňujeme cudziu prácu</h3>
+    <p style="margin:0">Stavový automat navrhol MF a bol zlúčený 2026-08-11. Robiť z neho základ celej architektúry je poklona — ale iba ak sa ho spýtame. <b>MF je povinný recenzent</b>, bez jeho stanoviska sa ADR neprijíma.</p>
+  </div>
+  <div class="warn" style="margin-top:14px">
+    <h3>2 · „Voľne vnútri spisu" naráža na mlčanlivosť</h3>
+    <p style="margin:0">Ak je agent cloudový model, klientske dáta odchádzajú von. Toto ADR na to <b>nemá vlastné riešenie</b> — brzdou je hybrid routing a anonymizačný gate z ADR 0006. Slovo „voľne" sa vzťahuje na <b>rozsah práce v rámci spisu, nie na voľbu modelu</b>.</p>
+  </div>
+  <div class="warn" style="margin-top:14px">
+    <h3>3 · Prompt injection dostáva novú, trvalú cestu</h3>
+    <p style="margin:0">Otrávený dokument ovplyvní draft → advokát draft upraví → reconcile z tej úpravy vyrobí inštrukciu → otrava sa <b>natrvalo usadí v <code>AGENTS.md</code></b>. Preto je zápis do inštrukcií definovaný ako prechod hranice vyžadujúci podpis — <b>záväzne, nie voliteľne</b>.</p>
+  </div>
+  <div class="warn" style="margin-top:14px">
+    <h3>4 · Princíp sa môže rozpustiť do frázy</h3>
+    <p style="margin:0">Tím nemá programátora, ktorý by strážil dodržiavanie. Proti tomu stojí testovacie kritérium z pravidla 2. <b>Ak sa po dvoch specoch ukáže, že sa naň nikto nepýta, toto ADR sa zruší</b> — nebude sa predstierať, že platí.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">10</span>Prevádzkové potvrdenie z praxe <span style="font-weight:400;font-size:14px">(IR, 2026-08-14)</span></h2>
+  <p style="margin-top:0"><b>IR doložil rok produkčnej prevádzky</b> AI asistencie v advokátskej kancelárii. Nezávisle od tohto ADR sa mu v praxi ustálili tie isté hranice — to je silnejší argument než akákoľvek úvaha.</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Zistenie z praxe</th><th>Pravidlo</th></tr>
+    <tr><td><i>„Human gate vždy pred odoslaním čohokoľvek von — automatické brány human gate pripravujú, nie nahrádzajú."</i></td><td><b>3</b> a <b>5</b></td></tr>
+    <tr><td><i>„AI provenance sa eviduje oddelene od autorstva advokáta — každý AI výstup je draft, právnym autorom je advokát, ktorý ho schválil."</i></td><td><b>3</b> + <i>Role a zodpovednosť</i></td></tr>
+    <tr><td><i>„Stav žije na disku, nie v konverzácii."</i></td><td><b>1</b></td></tr>
+    <tr><td><i>„Spoliehanie na self-report agenta sa neosvedčilo — podmienka dokončenia musí byť kontrolovateľná zvonku."</i></td><td><b>5</b></td></tr>
+  </table></div>
+  <div class="warn ok" style="margin-top:16px">
+    <h3>Dve spresnenia, ktoré z toho prijímame</h3>
+    <p style="margin:0 0 8px"><b>1 · Deterministické brány idú pred modelovými.</b> Pravidlo 3 hovorí o stave <code>automated-verified</code>, ale nehovorí <i>čím</i> sa overuje. Lacné a reprodukovateľné kontroly (štruktúra, testy, citačné ukotvenie) bežia prv; modelová recenzia až nad tým, čo prešlo. Opačné poradie plytvá drahými behmi na chyby, ktoré odhalí skript.</p>
+    <p style="margin:0"><b>2 · Plán je text, nie príkaz.</b> Pravidlo 5 rieši nástroje konajúce <i>navonok</i> — nerieši agenta, ktorý spustí sám seba. Plánovač nesmie aktivovať naplánované kroky; každá aktivácia prechádza hlavným kontextom.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">11</span>Záväzný produktový test podľa ADR 0009</h2>
+  <p style="margin-top:0"><a href="0009-zakladna-produktova-doktrina.md">ADR 0009</a> zaviedlo šesť otázok, na ktoré musí odpovedať každý významný návrh. Odpovede za toto ADR:</p>
+  <div class="tbl-wrap"><table>
+    <tr><th style="width:34px">#</th><th>Otázka</th><th>Odpoveď</th></tr>
+    <tr><td>1</td><td>Zvyšuje kontrolu používateľa nad modelmi, dátami, nástrojmi a know-how?</td><td><b>Áno.</b> Pravidlo 1 robí zo stavu spisu čitateľný markdown u advokáta; pravidlo 4 dáva kontrolu nad tým, čo sa systém naučí.</td></tr>
+    <tr><td>2</td><td>Zachováva možnosť systém pochopiť, upraviť, vymeniť alebo opustiť?</td><td><b>Áno, a posilňuje ju.</b> Pravidlá 1 a 2 sú presne tie vlastnosti, vďaka ktorým sa dá vrstva odpojiť od LegalWorku — sedí na exit plán.</td></tr>
+    <tr><td>3</td><td>Posilňuje schopnosť právnika bezpečne riadiť agentov?</td><td><b>Áno.</b> Kontrakt, povinná verifikácia pred použitím a technické vylúčenie konania navonok sú konkrétnym obsahom slova „supervízor".</td></tr>
+    <tr><td>4</td><td>Zachováva audit, provenance a primerané human approval?</td><td><b>Áno.</b> Originál sa neprepíše, stavy sú evidované, hranica vyžaduje podpis, zlyhanie je fail-closed. Kapitola <i>Role a zodpovednosť</i> rieši, kto schvaľuje na ktorej úrovni.</td></tr>
+    <tr><td>5</td><td>Nevytvára nový povinný black box ani vendor lock-in?</td><td><b>Nie.</b> Pravidlo 1 vylučuje stav uzavretý v aplikácii; podpisovanie zostáva v cudzom procese, ktorý nevlastníme.</td></tr>
+    <tr><td>6</td><td>Umožňuje kanceláriám využiť vlastné výhody bez nútenej uniformity?</td><td><b>Áno.</b> Rebrík učenia drží preferencie na úrovni veci, spisu a kancelárie; povýšenie vyššie je dobrovoľné a cez PR.</td></tr>
+  </table></div>
+  <div class="decision" style="margin-top:16px">Výnimku z doktríny toto ADR <b>nepotrebuje</b>.</div>
+</section>
+
+<section>
+  <h2><span class="n">12</span>Vzťah k ostatným rozhodnutiam</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Dokument</th><th>Vzťah</th></tr>
+    <tr><td><b>ADR 0009</b> — doktrína</td><td><b>nadradené.</b> Hovorí <i>čo a prečo</i>; toto ADR je jeho technický vykonávací predpis pre druhý pilier. Ak sa doktrína zmení, prispôsobuje sa toto ADR, nie naopak.</td></tr>
+    <tr><td><b>ADR 0006</b> — anonymizačný gate</td><td><b>zdroj kontraktu.</b> Preberáme stavový automat, nie funkciu. Odloženie funkcie (R7) na kontrakt nemá vplyv.</td></tr>
+    <tr><td><b>Spec 0002</b> — OKF</td><td><b>nositeľ.</b> Pravidlo 1 opisuje to, čo OKF už dnes robí.</td></tr>
+    <tr><td><b>Spec 0009</b> — reconcile</td><td><b>druhá polovica kontraktu</b> (pravidlo 4). Potvrdené aj záverom R4 z callu.</td></tr>
+    <tr><td><b>Spec 0007</b> a <b>spec 0010</b></td><td><b>prípady pravidla 5</b> — podpisovanie a konverzia sú mimo agenta technicky, nie inštrukciou.</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <h2><span class="n">13</span>Zvažované alternatívy</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Alternatíva</th><th>Verdikt</th></tr>
+    <tr><td><b>Nechať to nepomenované</b> — stav pred týmto ADR</td><td>❌ Princíp fakticky platí (OKF), ale nedá sa naň odvolať a nikto ho nemusí dodržať. <b>Neviditeľné pravidlo nie je pravidlo.</b></td></tr>
+    <tr><td><b>Agent-first ako piaty filter výberu do V1</b></td><td>❌ <b>pre teraz</b> — myšlienka je pár dní stará a scope V1 sa klepe 12. 8. Možné neskôr, po overení na dvoch–troch specoch.</td></tr>
+    <tr><td><b>Klient-agnostický agentský runtime</b> — OKF + skills + MCP ako samostatný produkt</td><td>⏳ Neprijaté tu, ale <b>nezatvorené</b>. Je to smer, kam pravidlá 1 a 2 prirodzene vedú, a zhoduje sa s exit plánom z upstreamu. Na samostatné ADR.</td></tr>
+  </table></div>
+</section>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    Súvisí: <a href="0006-anonymizacia-ako-lokalny-privacy-gate.md">ADR 0006</a> · <a href="0002-preco-forkujeme-mikeoss.html">ADR 0002</a> · <a href="../specs/0007-podpisovanie-a-zarucena-konverzia.md">spec 0007</a> · <a href="0007-agent-first-architektura.md">plná verzia (.md)</a><br>
+    Pripravil MČ s AI asistenciou, 2026-08-12. Fakty overené v repe k 2026-08-12. Analógia s koncipientom a rozdelenie zón sú <b>návrh na prerokovanie</b>, nie rozhodnutie.<br>
+    Inšpirácia pre reconcile: skill <code>reconcile</code>, Jeff Su / Cowork Academy — platený kurz bez licencie, koncept adaptujeme vlastnými slovami.
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

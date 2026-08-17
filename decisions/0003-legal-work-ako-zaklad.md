@@ -1,7 +1,8 @@
 # ADR 0003: LegalWork ako základ projektu
 
 - **Dátum:** 2026-08-06
-- **Stav:** prijaté *(čaká na potvrdenie: Martin Friedrich)*
+- **Stav:** prijaté a potvrdené MF 2026-08-09
+- **Potvrdenie MF:** [komentár k záznamu PR #5](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/5#issuecomment-5230759750)
 - **Rozhodli:** MČ · IR · VŘ — na [sync calle 6. 8. 2026](../meetings/2026-08-06-sync-call-volba-zakladu.md)
 - **Nahrádza:** [ADR 0002 — Prečo forkujeme mikeOSS](0002-preco-forkujeme-mikeoss.md)
 - **Súvisí s:** [brainstorming 4. 8.](../meetings/2026-08-04-brainstorming-zaklad-a-prenositelnost.md) · [analýza LegalWork](../research/inspiracie/legalwork.md)

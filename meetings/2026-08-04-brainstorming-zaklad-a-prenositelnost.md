@@ -221,7 +221,7 @@ Zároveň je to **príležitosť**: dostať LAWOSS do ich indexu je hotová dist
 - [ ] **Referenčný harness** — opencode?
 - [ ] **Vlajková feature alfy** — pamäť prípadu nad OKF?
 - [ ] **Názov** — LAWOSS vs LegalOSS
-- [ ] **Martinove otvorené veci** — [Issue #1](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/1) (attorney workflow MVP) a [PR #2](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/2) (orchestrátor a subagenti), obe nevybavené
+- [ ] **Martinove otvorené veci** — [Issue #1](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/1) (attorney workflow MVP) a [PR #2](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/2) (orchestrátor a subagenti), obe nevybavené
 
 ---
 
@@ -235,7 +235,7 @@ Do akceptačného filtra pre voľbu harnessu patrí explicitne:
 
 Konkrétne zistené: oficiálne buildy LegalWorku posielajú anonymné štatistiky na EU-hosted PostHog (vypnuteľné, dev buildy nič), a **ich free modely logujú dáta** — vlastné README hovorí, že sa nesmú používať na privilegované, klientske ani spisové dáta. Martinova skoršia oponentúra k `oh-my-pi` (telemetria zapnutá defaultne, bearer-link collab, obrovský privilege surface) bola vecne správna a rovnaké kritérium má platiť na všetkých kandidátov.
 
-Presne toto pokrýva Martinov [PR #2](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/2): read-only default, matter-scoped capabilities, human gates, žiadne autonómne eID ani odosielanie.
+Presne toto pokrýva Martinov [PR #2](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/2): read-only default, matter-scoped capabilities, human gates, žiadne autonómne eID ani odosielanie.
 
 ---
 

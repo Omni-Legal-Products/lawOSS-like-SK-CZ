@@ -161,7 +161,7 @@ VŘ upozornil, že datasety na Hugging Face nie sú použiteľné v Markdowne �
 
 **Ďalšie otvorené otázky:**
 
-- [ ] **Potvrdenie od Martina (MF)** — nezúčastnil sa; jeho [Issue #1](https://github.com/originalmagneto/lawOSS-like-SK-CZ/issues/1) a [PR #2](https://github.com/originalmagneto/lawOSS-like-SK-CZ/pull/2) sú stále otvorené
+- [ ] **Potvrdenie od Martina (MF)** — nezúčastnil sa; jeho [Issue #1](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/1) a [PR #2](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/2) sú stále otvorené
 - [ ] **Branding** — názov **LAWOSS** je rozhodnutý od 29. 7. ([AGENTS.md](../AGENTS.md)), ale na calle sa téma znova otvorila v súvislosti s upustením od Mikea ako marketingového ťahúňa. Treba doriešiť, čím sa marketingová expozícia nahradí.
 - [ ] **Licenčné podmienky MCP Salvia** pre komunitné zdieľanie — VŘ: *„musím si nechať potvrdiť, či to vôbec môžeme odoslať"*
 - [ ] **Ktorá verzia LegalWork** sa forkne (tag/commit)?
