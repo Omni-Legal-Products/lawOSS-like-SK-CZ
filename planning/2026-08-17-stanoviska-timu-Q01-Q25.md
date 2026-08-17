@@ -191,6 +191,7 @@ Obe strany chcú to isté — dostať LAWOSS medzi advokátov. Cesta, ktorá re�
 | 7 starších draftov (#2, #4, #8–#12) | **MF** | jediné otvorené PR po upratovaní 17. 8. (okrem draftu #39); časť v konflikte s `main` |
 | Dokončiť draft #39 (SAK compliance balík) | **IR** | označený ako draft na revíziu |
 | MCP konsolidácia — zber a benchmark | **všetci** | issue #45, zatiaľ reagoval len MČ |
+| ~~Revízia PR od IR a MČ~~ | — | **hotové 17. 8.** — zlúčených 16 PR (podklady IR #33–#38 + #42, dokumenty MČ #13, #14, #16, #27, #51, #52 a ďalšie) |
 | Testovanie forku | **všetci** | issue #47, zatiaľ bez reakcií; issues vo forku už zapnuté |
 | Licenčné podmienky Salvia · CZ rámec autorizovanej konverzie · PL zdroje (20. 8.) · analýza DetermO | **VŘ** | jeho vlastný zoznam úloh |
 
