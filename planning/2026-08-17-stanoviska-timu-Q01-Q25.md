@@ -188,8 +188,8 @@ Obe strany chcú to isté — dostať LAWOSS medzi advokátov. Cesta, ktorá re�
 | Rozhodnutie Q07 (poradie vertikál) | **MČ** ako PO | jediná vecná odchýlka IR × VŘ |
 | Kolízie K1–K3 | **MČ + tím** | ideálne na najbližšom calle |
 | Q20 rozdelenie sign-off rolí | **celý tím na calle** | MF sa musí k svojej roli prihlásiť osobne |
-| 7 starších draftov (#2, #4, #8–#12) | **MF** | #2, #11, #12 po víkendových merge-och v konflikte |
-| Revízia 8 PR od IR (#33–#39, #42) | **MČ** | podklady k trom specom |
+| 7 starších draftov (#2, #4, #8–#12) | **MF** | jediné otvorené PR po upratovaní 17. 8. (okrem draftu #39); časť v konflikte s `main` |
+| Dokončiť draft #39 (SAK compliance balík) | **IR** | označený ako draft na revíziu |
 | MCP konsolidácia — zber a benchmark | **všetci** | issue #45, zatiaľ reagoval len MČ |
 | Testovanie forku | **všetci** | issue #47, zatiaľ bez reakcií; issues vo forku už zapnuté |
 | Licenčné podmienky Salvia · CZ rámec autorizovanej konverzie · PL zdroje (20. 8.) · analýza DetermO | **VŘ** | jeho vlastný zoznam úloh |
