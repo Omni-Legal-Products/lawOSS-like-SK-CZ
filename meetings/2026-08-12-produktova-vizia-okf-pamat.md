@@ -22,6 +22,17 @@
 | R8 | Preferujú sa lokálne indexované korpusy, jednoduché vyhľadávanie, graph alebo citačné väzby a otvorené rozhrania pred komplexným RAG ako východiskom. | RAG sa nezakazuje navždy, ale nie je predvolenou architektúrou prvej iterácie. |
 | R9 | AML a subjektový research sú silný používateľský scenár naviazaný na OKF onboarding. | AML nie je samostatný ostrov, ale workflow nad spisom, MCP a periodickým update mechanizmom. |
 | R10 | Modulárne MCP, skills a CLI nástroje zostávajú oddelené od jadra aplikácie a pripájajú sa cez jednotné kontrakty. | LAWOSS nemá absorbovať implementácie všetkých externých nástrojov do jedného monolitu. |
+| R11 | **macOS je hlavná platforma. Igor Rybár zodpovedá za Windows integrácie.** | Platformy využívajú svoje natívne výhody. Funkcia dostupná iba na macOS alebo iba na Windows sa nemusí odstrániť ani oslabiť len preto, že na druhej platforme nemá ekvivalent. |
+
+## Platformová stratégia
+
+- MČ, VŘ a MF pracujú na macOS, preto je macOS hlavnou platformou pre prvé iterácie a natívne integrácie.
+- IR vlastní smerovanie, návrh a overovanie Windows integrácií.
+- Spoločné jadro a dátové formáty majú zostať prenositeľné tam, kde je to rozumné.
+- Úplná funkčná parita medzi platformami nie je cieľ ani podmienka vydania.
+- Každá platforma môže mať vlastné natívne funkcie, napríklad Apple Notes a Reminders na macOS alebo osobitné Windows integrácie.
+- Platformovo špecifická funkcia musí byť v dokumentácii a rozhraní jasne označená.
+- Rozvoj jednej platformy nesmie byť blokovaný tým, že druhá platforma zatiaľ rovnakú schopnosť nemá.
 
 ## OKF a tri vrstvy pamäte
 
@@ -110,7 +121,8 @@ Anonymizácia sa do tohto poradia nezaraďuje.
 - [ ] Tím: definovať metriky, audit, rollback a periodicitu reconciliation.
 - [ ] Tím: vybrať prvé tri implementačné vertikály.
 - [ ] VŘ: navrhnúť formát integrácie CZ komentárov a korpusov.
-- [ ] IR: pripraviť produktový branding a prezentáciu.
+- [ ] IR: pripraviť produktový branding a prezentáciu a viesť návrh Windows integrácií.
+- [ ] Tím: pri každej platformovej feature označiť spoločné jadro, macOS implementáciu a Windows implementáciu bez požiadavky na úplnú paritu.
 - [ ] Všetci: prijať GitHub pozvánky, naklonovať koordinačný a produktový repo a doplniť feature návrhy.
 - [ ] Všetci: potvrdiť ďalší krátky call v piatok 2026-08-14 o 17:00.
 
