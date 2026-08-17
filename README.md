@@ -257,6 +257,8 @@ lawOSS-like-SK-CZ/
 │   ├── 0005-struktura-repozitarov.html
 │   ├── 0005-struktura-repozitarov.md
 │   ├── 0006-anonymizacia-ako-lokalny-privacy-gate.md
+│   ├── 0007-agent-first-architektura.html
+│   ├── 0007-agent-first-architektura.md
 │   ├── 0008-sprava-mcp-repozitarov.md
 │   ├── 0009-zakladna-produktova-doktrina.html
 │   ├── 0009-zakladna-produktova-doktrina.md
@@ -372,23 +374,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**182 commitov** · **96 súborov**
+**192 commitov** · **98 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `71a0b3f` | 2026-08-17 | Majo Cuprik | Merge pull request #19 from Omni-Legal-Products/docs/adr-0007-agent-first |
+| `5e2323b` | 2026-08-16 | BiggusDicckkus | fix: remove duplicate HTML head and body tags |
+| `7ff5fff` | 2026-08-16 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `b2145b2` | 2026-08-16 | Majo Cuprik | Merge pull request #43 from Omni-Legal-Products/docs/stav-odpovedi-timu |
 | `4d7c21d` | 2026-08-16 | Majo Cuprik | Merge pull request #50 from Omni-Legal-Products/planning/odpovede-vr-q01-q25 |
 | `dee1aed` | 2026-08-16 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `cf20d93` | 2026-08-16 | Majo Cuprik | Merge pull request #49 from Omni-Legal-Products/planning/cz-datove-zdroje |
 | `5c67c39` | 2026-08-16 | Majo Cuprik | Merge pull request #48 from Omni-Legal-Products/spec/0005-lehotove-jadro-cz |
-| `0af74e0` | 2026-08-16 | Vojtěch Říha | planning: odpovědi VŘ na Q01-Q25 |
-| `2d0c4db` | 2026-08-16 | Vojtěch Říha | planning: mapa českých datových zdrojů (úkol z roadmapy) |
-| `667f908` | 2026-08-16 | Vojtěch Říha | research: pravidla počítání lhůt CZ pro spec 0005 (30 pravidel, 25 lhůt, 18 pastí, 24 testů) |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-16 11:12 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 08:09 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
