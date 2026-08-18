@@ -2,7 +2,7 @@
 
 - **Prítomní:** MČ · MF · VŘ — **IR sa ospravedlnil**
 - **Cieľ:** uzavrieť Q01–Q25, odklepnúť proces práce a **rozdeliť úlohy na samotnej aplikácii**
-- **Podklady:** [plný podklad k otázkam](2026-08-21-agenda-konsolidacia-Q01-Q25.md) *(U1–U19 a B1–B8)* · [prehľadová tabuľka](../planning/2026-08-17-stanoviska-timu-Q01-Q25.md) · [návrh ADR 0011](../decisions/0011-proces-zmien-a-mergovania.md) v [PR #54](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/54)
+- **Podklady:** [plný podklad k otázkam](2026-08-18-podklad-konsolidacia-Q01-Q25.md) *(U1–U19 a B1–B8)* · [prehľadová tabuľka](../planning/2026-08-17-stanoviska-timu-Q01-Q25.md) · [návrh ADR 0011](../decisions/0011-proces-zmien-a-mergovania.md) v [PR #54](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/54)
 
 > [!IMPORTANT]
 > **Neúčasť IR blokuje len jednu vec.** Odpovedal písomne na všetkých 25 otázok (14. 8.) a vyjadril sa aj k otvoreným PR, takže jeho pozícia je na stole pri každom bode. **Jediné, čo sa bez neho rozhodnúť nedá, je B2** — kto vlastní upstream sync, lebo je sám kandidátom na tú rolu.
