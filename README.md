@@ -415,23 +415,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**291 commitov** · **130 súborov**
+**293 commitov** · **130 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `2d6438d` | 2026-08-18 | Majo Cuprik | planning: nápad #45 — údržba nástrojovej plochy (doctor pre MCP, skilly a CLI); overené, že T3 Code agentské CLI neaktualizuje |
+| `f460bb7` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `c962dd8` | 2026-08-17 | Majo Cuprik | planning: nápady #42–#44 — komponenty stella (folio, anonymize, CLA a org workflows) ako lacné winy |
 | `25b6477` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `00fb97d` | 2026-08-17 | BiggusDicckkus | Merge pull request #9 from Omni-Legal-Products/plugin/lawoss-legal-lab |
 | `e8b1f8f` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `9a2ba92` | 2026-08-17 | BiggusDicckkus | Merge pull request #8 from Omni-Legal-Products/plugin/lawoss-agent-plugins |
 | `da6d8df` | 2026-08-17 | Martin Friedrich | Merge remote-tracking branch 'origin/main' into codex/resolve-pr8 |
-| `50ce3e6` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `a032cc6` | 2026-08-17 | BiggusDicckkus | Merge pull request #4 from Omni-Legal-Products/docs/codex-skills |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 15:47 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-18 14:51 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
