@@ -85,6 +85,7 @@ Kto čo navrhol, v akom je to stave a kde to žije
 | 42 | **stella/folio ako DOCX motor a testovacia latka** — Apache-2.0 engine zachovávajúci tracked changes; lacný win pre merateľný round-trip (#34), kandidát k #29/#31 | **MČ** | 2026-08-17 | 💭 **nápad** · lacný win | [zberný kôš #42](../planning/napady.md) |
 | 43 | **stella/anonymize ako engine pre spec 0008** — deterministická lokálna PII detekcia (Rust, Apache-2.0); pri otvorení anonymizácie nestavať vlastný engine | **MČ** | 2026-08-17 | 💭 **nápad** · viaže sa na spúšťače Q09 | [zberný kôš #43](../planning/napady.md) |
 | 44 | **Governance podľa org stella** — CLA pred prvým externým contributorom + reusable workflows (audit branch protection, pr-lint) ako vzor | **MČ** | 2026-08-17 | 💭 **nápad** · lacný win | [zberný kôš #44](../planning/napady.md) |
+| 45 | **Údržba nástrojovej plochy — „doctor" pre MCP, skilly a CLI** — stavový panel s kontrolou verzií, jednoklikovou aktualizáciou a rollbackom; nikdy nie tichá inštalácia. Konkretizuje #23, podnet z T3 Code | **MČ** | 2026-08-18 | 💭 **nápad** · lacný prvý krok k #23 | [zberný kôš #45](../planning/napady.md) |
 
 ### Legenda stavov
 
