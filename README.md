@@ -417,18 +417,18 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**300 commitov** · **132 súborov**
+**303 commitov** · **132 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `c22807a` | 2026-08-18 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
+| `2f5e931` | 2026-08-18 | Majo Cuprik | meetings: opraviť odkazy na ADR 0011 (žije zatiaľ v PR #54, nie v main) |
+| `9898bf3` | 2026-08-18 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `8598fd5` | 2026-08-18 | Majo Cuprik | meetings: podklad ku konsolidácii Q01-Q25 do main (zjednotený dátum callu 18. 8.) |
 | `5059850` | 2026-08-18 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `0cd8575` | 2026-08-18 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 | `128ab29` | 2026-08-18 | Majo Cuprik | meetings: agenda sync callu 18. 8. (MČ, MF, VŘ — IR neprítomný) |
 | `1316bf5` | 2026-08-18 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `1c333a8` | 2026-08-18 | Majo Cuprik | planning: spresniť nápad #45 — samoúdržba nástrojovej plochy podľa zadania MČ (integrácia = CLI + skill + konfig, manifest per platformu, pin a rollback) |
-| `80c7df1` | 2026-08-18 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `2d6438d` | 2026-08-18 | Majo Cuprik | planning: nápad #45 — údržba nástrojovej plochy (doctor pre MCP, skilly a CLI); overené, že T3 Code agentské CLI neaktualizuje |
 <!-- /AUTO:ACTIVITY -->
 
 ---
