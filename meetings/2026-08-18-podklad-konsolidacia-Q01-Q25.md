@@ -103,7 +103,7 @@ Z hlasových diskusií MČ 15.–17. 8. vyplynulo sedem postojov, ktoré nie sú
 >
 > **MF:** „Áno — minimá review sú záväzné aj vtedy, keď ich GitHub technicky nevynúti."
 
-**MČ — myšlienkový proces:** áno, záväzne — a k tomu governance dodatok: nechce byť jediný reviewer; všetci štyria core členovia majú právo review a merge; komunitné PR sú vítané, ale core tím drží kontrolu kvality. **Kontext zo 17. 8.:** šesť PR vrátane specov bolo zlúčených autorom bez odklepu — pravidlá totiž nehovorili, *kto smie mergovať*. Presne túto dieru zapĺňa [ADR 0011](../decisions/0011-proces-zmien-a-mergovania.md) *(→ B7)*.
+**MČ — myšlienkový proces:** áno, záväzne — a k tomu governance dodatok: nechce byť jediný reviewer; všetci štyria core členovia majú právo review a merge; komunitné PR sú vítané, ale core tím drží kontrolu kvality. **Kontext zo 17. 8.:** šesť PR vrátane specov bolo zlúčených autorom bez odklepu — pravidlá totiž nehovorili, *kto smie mergovať*. Presne túto dieru zapĺňa [ADR 0011](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/54) *(→ B7)*.
 
 **U5 — návrh znenia:** Review minimá sú záväzné aj bez technického vynútenia: docs po CI; funkčný kód min. 1 ľudský review; regulované témy + doménový sign-off; upstream sync samostatný PR s regresnými testami. **Katalógy lehôt a zoznamy registrov sa počítajú ako funkčný kód** *(VŘ)*. Porušenie = revert bez drámy. Kto smie čo mergovať určuje ADR 0011.
 
