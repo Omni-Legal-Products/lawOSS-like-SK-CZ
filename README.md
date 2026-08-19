@@ -418,23 +418,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**305 commitov** · **133 súborov**
+**307 commitov** · **133 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `a5c881a` | 2026-08-19 | Majo Cuprik | planning: označiť prehľad stanovísk ako stav pred callom, odkázať na zápis |
+| `9365725` | 2026-08-19 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `e44ae96` | 2026-08-19 | Majo Cuprik | meetings: zápis zo sync callu 18. 8. + nápad #46 (jednoklikové stiahnutie korpusov) |
 | `5249874` | 2026-08-18 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `c22807a` | 2026-08-18 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 | `2f5e931` | 2026-08-18 | Majo Cuprik | meetings: opraviť odkazy na ADR 0011 (žije zatiaľ v PR #54, nie v main) |
 | `9898bf3` | 2026-08-18 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `8598fd5` | 2026-08-18 | Majo Cuprik | meetings: podklad ku konsolidácii Q01-Q25 do main (zjednotený dátum callu 18. 8.) |
-| `5059850` | 2026-08-18 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `0cd8575` | 2026-08-18 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-19 08:09 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-19 08:11 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
