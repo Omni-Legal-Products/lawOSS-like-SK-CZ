@@ -102,14 +102,7 @@ gh pr create --fill
 
 **Kód skillov, pluginov a modulov do tohto repa nepatrí** — patrí do samostatných repozitárov organizácie (ADR 0005, ADR 0008). Tu žijú len skripty automatizácií tohto repa (`.github/`).
 
----|---|
-| rešerš, podklad, zápis, návod (`research/`, `meetings/`, `docs/` mimo doktríny) | **autor sám** po zelenom CI |
-| **spec, ADR, `AGENTS.md`, automatizácie, štruktúra repa** | **iba niekto iný než autor** — treba odklep aspoň 1 ďalšieho člena (review alebo 👍 v PR) |
-| evidencia vlastného stanoviska (svoj stĺpec, svoje potvrdenie) | autor sám — smie meniť len svoje |
-
-**Prečo:** spec a ADR sú rozhodnutia tímu — rozhodnutie vzniká až odklepom, nie mergom. Rešerše sú vstupy, tie nech tečú voľne. **Ticho nie je súhlas** — ak sa nikto neozve do 3 pracovných dní, eskaluj na product ownera.
-
-**Kód skillov, pluginov a modulov do tohto repa nepatrí** — patrí do samostatných repozitárov organizácie (ADR 0005, ADR 0008). Tu žijú len skripty automatizácií tohto repa (`.github/`).
+---
 
 ### Aby ste si nešliapali po nohách
 
