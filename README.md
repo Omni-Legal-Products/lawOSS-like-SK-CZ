@@ -289,7 +289,9 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-04-brainstorming-zaklad-a-prenositelnost.md
 │   ├── 2026-08-06-sync-call-volba-zakladu.md
 │   ├── 2026-08-12-agenda-mvp.md
-│   └── 2026-08-12-produktova-vizia-okf-pamat.md
+│   ├── 2026-08-12-produktova-vizia-okf-pamat.md
+│   ├── 2026-08-18-agenda-sync-call.md
+│   └── 2026-08-18-podklad-konsolidacia-Q01-Q25.md
 ├── planning/
 │   ├── 2026-08-12-mcp-repository-rollout-plan.md
 │   ├── 2026-08-12-rozhodovacie-otazky-timu.md
@@ -415,23 +417,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**289 commitov** · **130 súborov**
+**303 commitov** · **132 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
-| `00fb97d` | 2026-08-17 | BiggusDicckkus | Merge pull request #9 from Omni-Legal-Products/plugin/lawoss-legal-lab |
-| `e8b1f8f` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `9a2ba92` | 2026-08-17 | BiggusDicckkus | Merge pull request #8 from Omni-Legal-Products/plugin/lawoss-agent-plugins |
-| `da6d8df` | 2026-08-17 | Martin Friedrich | Merge remote-tracking branch 'origin/main' into codex/resolve-pr8 |
-| `50ce3e6` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `a032cc6` | 2026-08-17 | BiggusDicckkus | Merge pull request #4 from Omni-Legal-Products/docs/codex-skills |
-| `a9c71e2` | 2026-08-17 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `0d880cf` | 2026-08-17 | BiggusDicckkus | Merge pull request #12 from Omni-Legal-Products/docs/record-mf-adr-confirmation |
+| `c22807a` | 2026-08-18 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
+| `2f5e931` | 2026-08-18 | Majo Cuprik | meetings: opraviť odkazy na ADR 0011 (žije zatiaľ v PR #54, nie v main) |
+| `9898bf3` | 2026-08-18 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
+| `8598fd5` | 2026-08-18 | Majo Cuprik | meetings: podklad ku konsolidácii Q01-Q25 do main (zjednotený dátum callu 18. 8.) |
+| `5059850` | 2026-08-18 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
+| `0cd8575` | 2026-08-18 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
+| `128ab29` | 2026-08-18 | Majo Cuprik | meetings: agenda sync callu 18. 8. (MČ, MF, VŘ — IR neprítomný) |
+| `1316bf5` | 2026-08-18 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-17 10:12 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-18 14:59 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
