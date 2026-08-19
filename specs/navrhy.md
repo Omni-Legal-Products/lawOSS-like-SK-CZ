@@ -86,6 +86,7 @@ Kto čo navrhol, v akom je to stave a kde to žije
 | 43 | **stella/anonymize ako engine pre spec 0008** — deterministická lokálna PII detekcia (Rust, Apache-2.0); pri otvorení anonymizácie nestavať vlastný engine | **MČ** | 2026-08-17 | 💭 **nápad** · viaže sa na spúšťače Q09 | [zberný kôš #43](../planning/napady.md) |
 | 44 | **Governance podľa org stella** — CLA pred prvým externým contributorom + reusable workflows (audit branch protection, pr-lint) ako vzor | **MČ** | 2026-08-17 | 💭 **nápad** · lacný win | [zberný kôš #44](../planning/napady.md) |
 | 45 | **Samoúdržba nástrojovej plochy — CLI, skilly a ich verzie** — tlačidlo + kontrola pri štarte, či zapnuté integrácie (napr. `gog` CLI pre Gmail/Workspace) sedia so svojím repom; aktualizuje sa **integrácia ako celok** (binárka + skill + konfig), s pinom, rollbackom a audit záznamom. Konkretizuje #23 | **MČ** | 2026-08-18 | 💭 **nápad** · reálna potreba MČ · lacný prvý krok k #23 | [zberný kôš #45](../planning/napady.md) |
+| 46 | **Jednoklikové stiahnutie a indexácia právnych korpusov** — distribúcia cez Hugging Face/torrent namiesto Google Drive; appka stiahne, rozbalí, naindexuje a prepojí. Cieľom je najmenej technicky zdatný používateľ | **MČ** *(s VŘ)* | 2026-08-18 | 💭 **nápad** · z callu 18. 8. | [zberný kôš #46](../planning/napady.md) |
 
 ### Legenda stavov
 
