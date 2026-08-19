@@ -11,6 +11,9 @@
 
 </div>
 
+> [!CAUTION]
+> **Tento dokument zachytáva stav pred callom 18. 8. 2026.** Otázky sa medzitým prerokovali a **niektoré sa rozhodli inak, než znejú písomné odpovede nižšie** — najmä Q05, Q11, Q13, Q20 a Q21. **Aktuálny stav je v [zápise z callu](../meetings/2026-08-18-zapis-sync-call.md).** Tento prehľad zostáva ako záznam východiskových pozícií jednotlivých členov.
+
 > [!IMPORTANT]
 > **Pre koho je tento dokument.** Pre kohokoľvek — aj mimo tímu — kto chce pochopiť, ako sa LAWOSS rozhoduje o svojom smerovaní: čo sú otázky, kto na nich stojí na akej pozícii a prečo, kde je zhoda a kde nie.
 >
