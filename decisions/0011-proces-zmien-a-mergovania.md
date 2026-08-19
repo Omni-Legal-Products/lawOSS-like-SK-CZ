@@ -1,86 +1,71 @@
-# ADR 0011: Proces zmien a mergovania — kto, čo, kedy a ako
+# ADR 0011: Proces zmien a mergovania — vlastníctvo namiesto brány
 
-- **Dátum:** 2026-08-17
-- **Stav:** **návrh** — na odklep na calle 21. 8. 2026
-- **Navrhol:** Marián Čuprík (MČ) · 2026-08-17
-- **Súvisí s:** [ADR 0005 — štruktúra repozitárov](0005-struktura-repozitarov.md) · [ADR 0007 — agent-first architektúra](0007-agent-first-architektura.md) · odpovede tímu na Q02, Q05 ([prehľad](../planning/2026-08-17-stanoviska-timu-Q01-Q25.md))
+- **Dátum:** 2026-08-17, **prepísané 2026-08-19** podľa záverov [callu 18. 8.](../meetings/2026-08-18-zapis-sync-call.md)
+- **Stav:** **návrh** — rozhodnuté na calle za účasti MČ, MF a VŘ; **čaká na vyjadrenie IR**
+- **Navrhol:** Marián Čuprík (MČ)
+- **Súvisí s:** [ADR 0005](0005-struktura-repozitarov.md) · [ADR 0007](0007-agent-first-architektura.md) · odpovede tímu na Q02 a Q05
 
 ## Kontext
 
-Doterajšie pravidlá hovoria, *že* väčšie zmeny idú cez branch + PR, ale **nehovoria, kto smie PR zlúčiť**. `main` nemá povinný review (vedomé rozhodnutie, aby to nezdržovalo) — a 17. 8. sa ukázalo, že to je diera: šesť PR vrátane **nového specu** a **veľkého prepisu existujúceho specu** bolo zlúčených autorom bez odklepu tímom. Obsahovo zmeny išli v smere odpovedí tímu, ale proces to nechráni: nabudúce nemusia.
+Pravidlá hovorili, *že* väčšie zmeny idú cez branch a PR, ale **nehovorili, kto smie PR zlúčiť**. `main` nemá povinný review — vedomé rozhodnutie, aby to nezdržovalo. 17. 8. sa ukázalo, že je to diera: šesť PR vrátane nového specu a väčšieho prepisu specu bolo zlúčených autorom. Obsahovo zmeny sedeli s odpoveďami tímu, procesne to ale nebolo ošetrené.
 
-Zároveň všetci štyria v Q05 odpovedali, že review minimá majú byť **záväzné aj tam, kde ich GitHub Free technicky nevynúti** — tento ADR ich konkrétne pomenúva. A z Q02 vyplýva model upstream syncu, ktorý treba zapísať.
+**Pôvodný návrh tohto ADR** *(zo 17. 8.)* na to reagoval bránou: rozhodovací obsah — spec, ADR, `AGENTS.md` — nemerguje autor, treba odklep aspoň jedného ďalšieho člena.
 
-## Rozhodnutie (návrh)
+**Call 18. 8. rozhodol inak.** Prevládol argument, že nikto z tímu nie je vývojár, produkt sa ladí za pochodu a vstupná brána by len brzdila:
 
-### 1 · Koordinačné repo `lawOSS-like-SK-CZ` — kto merguje čo
+> Fungujeme cez Telegram, issues a PR. Každý si merguje svoje PR a nesie za ne zodpovednosť. Keď niekto zlúči hlúposť, upozorní sa naňho a revertne sa to — bez drámy.
 
-| Typ zmeny | Kto smie zlúčiť | Podmienka |
-|---|---|---|
-| **Rešerš, podklad, zápis z callu** (`research/`, `meetings/`) | autor sám | po zelenom CI; self-merge OK |
-| **Návody a dokumentácia** (`docs/` bez doktríny) | autor sám | po zelenom CI |
-| **Drobnosť** (preklep, riadok v backlogu, oprava odkazu) | ktokoľvek priamo do `main` | existujúce pravidlo, bez zmeny |
-| **Nový spec alebo zmena specu** (`specs/`) | **iba niekto iný než autor** | odklep aspoň 1 ďalšieho člena v PR (review alebo 👍 komentár); regulované témy → príslušný sign-off |
-| **Nový ADR alebo zmena ADR** (`decisions/`) | **iba niekto iný než autor** | odklep aspoň 1 ďalšieho člena; zmena prijatého rozhodnutia → rozprava v Telegrame vopred |
-| **`AGENTS.md`, automatizácie, CI, štruktúra repa** | **iba niekto iný než autor** | odklep aspoň 1 ďalšieho člena |
-| **Evidencia vlastného stanoviska** (zápis vlastného potvrdenia/odpovede do stavových polí) | autor sám | musí meniť len vlastné stanovisko, nie cudzie |
+## Rozhodnutie
+
+### 1 · Vlastníctvo namiesto brány
+
+| | |
+|---|---|
+| **Kto merguje** | **autor svojho PR** — v koordinačnom repe bez rozdielu typu obsahu |
+| **Kto nesie zodpovednosť** | **autor**, za obsah aj za dôsledky |
+| **Kde je kontrola** | **následná** — všetci sledujú zmeny cez Telegram most a GitHub |
+| **Čo pri chybe** | upozorniť autora a **revertnúť bežným PR**. Bez drámy, bez eskalácie |
+
+**Praktické minimum, ktoré ostáva v platnosti:**
+
+- `git pull --no-rebase` pred pushom aj po ňom *(auto-README bot commituje do `main`)*
+- väčšia zmena sa **ohlási v Telegrame** vopred — nie na schválenie, ale aby si dvaja nešliapali po tom istom súbore
+- nové rozhodnutie má **ADR**, nový návrh má **spec a riadok v `navrhy.md`** — proces evidencie sa nemení
+- **nemeníme cudzie autorstvo** a nemeníme cudzí ADR; namiesto toho sa pridáva nový, ktorý starý nahrádza
+
+### 2 · Fork `lawoss` — tu brána zostáva
+
+V produktovom forku je **povinný review technicky vynútený** cez branch protection a `AGENTS.md` forku hovorí *„every PR requires at least one approval"*. Tento ADR to **nemení**: koordinačné repo sú dokumenty, fork je kód, ktorý sa distribuuje advokátom.
 
 > [!NOTE]
-> **Princíp: rozhodovací obsah nemerguje autor.** Nejde o nedôveru — ide o to, že spec a ADR sú **rozhodnutia tímu**, a rozhodnutie vzniká až odklepom. Merge bez odklepu z neho robí hotovú vec. Naopak rešerše a podklady sú **vstupy** do rozhodovania — tie nech tečú voľne a rýchlo.
+> **Na doriešenie:** či sa má povinný review vo forku ponechať aj po tom, čo call zvolil ľahší režim pre koordinačné repo. Návrh MČ je ponechať — cena chyby v kóde je vyššia než v dokumente.
 
-### 2 · Fork `lawoss` — ako sa integrujú funkcie
+### 3 · Tok od nápadu k implementácii — nemení sa
 
-```mermaid
-flowchart LR
-    S["📋 odklepnutý spec/ADR<br/><i>koordinačné repo</i>"] --> I["🔨 issue vo forku<br/>s odkazom na spec"]
-    I --> B["🌿 branch + PR do dev"]
-    B --> R{"review — 1 človek,<br/>nie autor"}
-    R -->|"OK"| M["merge do dev"]
-    R -->|"pripomienky"| B
-    M --> T["🏷️ tag pri stabilnom bode"]
-    T --> REL["📦 release — podpísané buildy<br/>(sign-off podľa Q03/Q20)"]
-```
+Nápad → `napady.md` + `navrhy.md` → spec alebo ADR → **odklep tímom** → issue vo forku s odkazom späť → PR do `dev`. Odklep sa naďalej deje na calle alebo v PR; **merge nie je odklep** a odklep nie je merge. Kto zlúči vlastný spec, tým ho nespravil rozhodnutím tímu — rozhodnutím sa stáva až vyjadrením ostatných.
 
-1. **Nič sa nestavia bez odklepnutého specu** — platí doterajšie pravidlo toku. Výnimka: drobné opravy chýb a upstream-kandidáti (typu nápady #28–#31), tie stačí evidovať ako issue.
-2. **Každá zmena kódu ide cez PR do `dev`** s odkazom na issue. **Merguje niekto iný než autor** po aspoň jednom ľudskom review. AI review je vítaný doplnok, nenahrádza človeka.
-3. **Regulované oblasti** (QES, konverzia, AML, privacy/pamäť) navyše vyžadujú sign-off doménového vlastníka podľa Q20.
-4. **Stabilné body sa tagujú**; release podlieha Q03 (product + technická + doménová kontrola). Verejné buildy len podpísané (Q06).
+### 4 · Gestorstvo namiesto matice sign-offov
 
-### 3 · Upstream sync (Q02)
+Call zamietol formálnu maticu sign-offov (Q20). Platí: **kto si funkciu vezme za svoju, ten ju maintainuje a zodpovedá za ňu**, pokiaľ nerozbije dohodnuté core features. Aktuálni gestori sú v [zápise z callu](../meetings/2026-08-18-zapis-sync-call.md#g--regulované-workflowy-q20q21).
 
-- **Maintainer:** *(doplniť na calle — MČ alebo IR)* + AI agent; **reviewer:** ten druhý. VŘ robí review CZ vrstvy.
-- Každý náš zásah do prevzatého kódu sa eviduje v **`PATCHES.md`** vo forku — tak, aby sync vedel zopakovať ktokoľvek.
-- Sync beží ako **samostatný PR** s regresným testom; IR dodá automat, ktorý pri konflikte sám otvorí PR s prehľadom.
-- Čo sa upstreamuje späť do LegalWorku: všeobecné opravy a lokalizácie áno, LAWOSS-specific nadstavba nie — **case-by-case**, rozhoduje maintainer syncu s PO.
+### 5 · Ticho a eskalácia
 
-### 4 · Kde žije aký kód
-
-| Čo | Kam patrí |
-|---|---|
-| Kód produktu | fork `lawoss` |
-| MCP servery | samostatné repá organizácie (ADR 0008) |
-| Skilly, pluginy, agentské nástroje | **samostatné repá organizácie** (napr. `lawoss-skills`), nie koordinačné repo |
-| Pomocné skripty koordinačného repa (`.github/`) | koordinačné repo — sú to nástroje *tohto* repa |
-
-> [!WARNING]
-> 17. 8. pribudli do koordinačného repa adresáre `.agents/` a `plugins/` (Codex skilly a pluginy z PR #4, #8, #9). Podľa tohto ADR patria do samostatného repa — **navrhuje sa presun do `lawoss-skills`** po odklepe. Obsah sa nezahadzuje, len sťahuje na správne miesto.
-
-### 5 · Kadencia
-
-- **Týždenný sync call** (streda 17:00) je miesto, kde sa odklepávajú nazbierané specy/ADR a rieši sa, čo sa v PR zaseklo.
-- Čo potrebuje odklep skôr, pýta si ho **v Telegrame** (topic *General CHAT*) — odklep v PR komentári stačí, netreba čakať na call.
-- **Ticho nie je súhlas** (rovnaké pravidlo ako pri Q otázkach). Ak sa nikto nevyjadrí do 3 pracovných dní, autor to eskaluje na PO; PO môže rozhodnúť sám a zapíše to.
+Ticho **nie je súhlas** pri rozhodnutiach *(ADR, spec, zmena prijatého rozhodnutia)*. Ak sa k odklepu nikto nevyjadrí do troch pracovných dní, autor to pripomenie v Telegrame; pri pate rozhoduje product owner a zapíše prečo.
 
 ## Zvažované alternatívy — a prečo nie
 
 | Alternatíva | Prečo nie |
 |---|---|
-| **Zapnúť povinný PR review na GitHube** (branch protection s required review) | GitHub Free na privátnych repách obmedzuje; na verejných by blokoval aj rešerše a drobnosti — spomalí presne to, čo má tiecť voľne. Pravidlo držíme ako záväznú normu tímu (Q05: všetci súhlasili so záväznosťou bez technického vynútenia). Ak sa poruší opakovane, prehodnotiť. |
-| **Všetko merguje iba PO** | MČ výslovne nechce byť bottleneck; odporuje Q05 odpovedi MČ (všetci štyria majú mať právomoc review/merge). |
-| **Nechať status quo** (merguje hocikto hocičo) | práve zlyhalo — spec sa stal „rozhodnutím" bez rozhodnutia. |
+| **Brána: rozhodovací obsah nemerguje autor** *(pôvodný návrh tohto ADR)* | Call ju zamietol — pri štyroch ľuďoch, z ktorých ani jeden nie je vývojár na plný úväzok, by vstupná brána brzdila viac, než by chránila. Kontrola sa presunula za merge. |
+| **Povinný review technicky vynútiť aj v koordinačnom repe** | Rovnaký dôvod; navyše by blokoval aj rešerše a drobnosti, ktoré majú tiecť voľne. |
+| **Všetko merguje product owner** | MČ výslovne odmietol byť bottleneck. |
+| **Status quo bez zápisu** | Práve zlyhalo — nikto nevedel, čo platí. |
 
 ## Dôsledky
 
-- Autor specu/ADR musí požiadať o odklep — najneskôr na calle, rýchlejšie cez Telegram.
-- Merge specu 0006 a prepisu specu 0005 zo 17. 8. sa **spätne legitimizuje odklepom na calle 21. 8.** (obsahovo idú v smere odpovedí tímu; ak call rozhodne inak, revertnú sa bežným PR).
-- `.agents/` a `plugins/` sa po odklepe presunú do samostatného repa.
+- Merge-e zo 17. 8. sú **v súlade s takto zapísaným pravidlom** — riešili sa spätne a nie je ich potrebné revertovať.
+- Riziko, ktoré vedome prijímame: **spec sa môže dostať do `main` skôr, než ho tím prerokoval.** Poistkou je, že merge nie je odklep *(bod 3)* a že sa všetko dá revertnúť.
+- `AGENTS.md` treba zosúladiť s týmto znením — sekcia „kto smie PR zlúčiť" hovorí opak.
+
+> [!WARNING]
+> **Odchýlka od písomných odpovedí tímu.** V Q05 **IR, VŘ aj MF** písomne uviedli, že review minimá majú byť záväzné aj tam, kde ich GitHub nevynúti. Call rozhodol inak a nikto z prítomných proti tomu nenamietal, ale **IR na calle nebol**. Kým sa nevyjadrí, je toto ADR **návrh, nie prijaté rozhodnutie**.

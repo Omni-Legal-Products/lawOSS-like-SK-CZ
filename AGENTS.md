@@ -87,13 +87,22 @@ git push -u origin spec/nazov-veci
 gh pr create --fill
 ```
 
-### Kto smie PR zlúčiť — záväzné pravidlo ([ADR 0011](decisions/0011-proces-zmien-a-mergovania.md))
+### Kto merguje — záväzné pravidlo ([ADR 0011](decisions/0011-proces-zmien-a-mergovania.md))
 
 > [!IMPORTANT]
-> **Platí pre ľudí aj AI agentov.** GitHub to technicky nevynucuje (vedome — aby to nezdržovalo), ale tím sa na tom zhodol v Q05: pravidlo je záväzné aj bez technického vynútenia. Porušenie = revert bez drámy.
+> **Platí pre ľudí aj AI agentov.** Rozhodnuté na calle 18. 8. 2026.
 
-| Obsah PR | Kto merguje |
-|---|---|
+**Každý si merguje svoje PR a nesie zaň zodpovednosť.** Žiadna vstupná brána — kontrola je **následná**. Keď niekto zlúči nezmysel, upozorní sa naňho a **revertne sa to bežným PR**, bez drámy.
+
+Čo z toho **nevyplýva**:
+
+- **Merge nie je odklep.** Kto zlúči vlastný spec alebo ADR, tým ho nespravil rozhodnutím tímu — rozhodnutím sa stáva až vyjadrením ostatných na calle alebo v PR. **Ticho nie je súhlas.**
+- **Väčšiu zmenu ohlás v Telegrame** *(topic General CHAT)* — nie na schválenie, ale aby dvaja neprepisovali ten istý súbor.
+- **Vo forku [`lawoss`](https://github.com/Omni-Legal-Products/lawoss) brána zostáva** — tam je povinný review technicky vynútený. Koordinačné repo sú dokumenty, fork je kód, ktorý sa distribuuje advokátom.
+
+**Kód skillov, pluginov a modulov do tohto repa nepatrí** — patrí do samostatných repozitárov organizácie (ADR 0005, ADR 0008). Tu žijú len skripty automatizácií tohto repa (`.github/`).
+
+---|---|
 | rešerš, podklad, zápis, návod (`research/`, `meetings/`, `docs/` mimo doktríny) | **autor sám** po zelenom CI |
 | **spec, ADR, `AGENTS.md`, automatizácie, štruktúra repa** | **iba niekto iný než autor** — treba odklep aspoň 1 ďalšieho člena (review alebo 👍 v PR) |
 | evidencia vlastného stanoviska (svoj stĺpec, svoje potvrdenie) | autor sám — smie meniť len svoje |
