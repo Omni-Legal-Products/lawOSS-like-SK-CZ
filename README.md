@@ -225,6 +225,7 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 |---|---|---|
 | [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
 | [`2026-08-15-odpovedi-VR-Q01-Q25.md`](planning/2026-08-15-odpovedi-VR-Q01-Q25.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
+| [`2026-08-21-paper-cuts-a-rychle-vylepsenia.md`](planning/2026-08-21-paper-cuts-a-rychle-vylepsenia.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
 | [`backlog.md`](planning/backlog.md) | `███░░░░░░░░░░░░░░░░░` | 10/68 (15 %) |
 | [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
@@ -299,6 +300,7 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-14-stav-odpovedi-timu.md
 │   ├── 2026-08-15-odpovedi-VR-Q01-Q25.md
 │   ├── 2026-08-17-stanoviska-timu-Q01-Q25.md
+│   ├── 2026-08-21-paper-cuts-a-rychle-vylepsenia.md
 │   ├── backlog.md
 │   ├── cz-datove-zdroje.md
 │   ├── mcp-repository-inventory.md
@@ -419,23 +421,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**313 commitov** · **134 súborov**
+**315 commitov** · **135 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `d4ac66a` | 2026-08-21 | Majo Cuprik | planning: paper cuts a rýchle vylepšenia — report na víkend (plní akčný bod MČ z callu 18.8.) |
+| `bb222e3` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `a72d2c4` | 2026-08-21 | Majo Cuprik | research: Granular Project Brain a pamäťové vzory pre OKF (Q10, #37) |
 | `1cc9bfd` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `d449bb6` | 2026-08-21 | Majo Cuprik | napady: #48 opencode sync pipeline a verifikačná brána |
 | `3b769b4` | 2026-08-19 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `9db6b2e` | 2026-08-19 | Majo Cuprik | planning: nápad #47 — komentárový korpus VŘ ako zabudovaný CZ zdroj; spresniť #46 (dve triedy dát) |
 | `7dbb61d` | 2026-08-19 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `a5c881a` | 2026-08-19 | Majo Cuprik | planning: označiť prehľad stanovísk ako stav pred callom, odkázať na zápis |
-| `9365725` | 2026-08-19 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-21 10:08 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-21 10:14 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
