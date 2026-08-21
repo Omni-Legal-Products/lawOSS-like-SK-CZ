@@ -1,4 +1,4 @@
-# Spec 0012: Session log — pracovný denník spisu
+# Spec 0013: Session log — pracovný denník spisu
 
 - **Stav:** návrh
 - **Navrhol:** Marián Čuprík (MČ) · 2026-08-21
