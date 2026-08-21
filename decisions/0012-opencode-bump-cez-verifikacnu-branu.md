@@ -1,7 +1,7 @@
 # ADR 0012: Bump `opencodeVersion` presúvame z 🔴 zóny do riadeného procesu s verifikačnou bránou
 
 - **Dátum:** 2026-08-21
-- **Stav:** návrh *(na odklep na stredajšom sync calle — MČ · MF · IR · VŘ)*
+- **Stav:** návrh *(na odklep na sync calle v utorok 25. 8. 2026 — MČ · MF · IR · VŘ)*
 - **Navrhol:** Marián Čuprík (MČ)
 - **Súvisí s:** [ADR 0004](0004-ako-rozsirit-legalwork.md) *(nemení sa — dopĺňa sa)* · **ADR 0011** *(proces zmien a mergovania, [PR #54](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/54) — ešte neodklepnuté)* · [nápad #48](../planning/napady.md) · issue [lawoss#11](https://github.com/Omni-Legal-Products/lawoss/issues/11) · [analýza LegalWork](../research/inspiracie/legalwork.md)
 
