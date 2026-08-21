@@ -1,9 +1,12 @@
-# ADR 0011: Bump `opencodeVersion` presúvame z 🔴 zóny do riadeného procesu s verifikačnou bránou
+# ADR 0012: Bump `opencodeVersion` presúvame z 🔴 zóny do riadeného procesu s verifikačnou bránou
 
 - **Dátum:** 2026-08-21
 - **Stav:** návrh *(na odklep na stredajšom sync calle — MČ · MF · IR · VŘ)*
 - **Navrhol:** Marián Čuprík (MČ)
-- **Súvisí s:** [ADR 0004](0004-ako-rozsirit-legalwork.md) *(nemení sa — dopĺňa sa)* · [nápad #48](../planning/napady.md) · issue [lawoss#11](https://github.com/Omni-Legal-Products/lawoss/issues/11) · [analýza LegalWork](../research/inspiracie/legalwork.md)
+- **Súvisí s:** [ADR 0004](0004-ako-rozsirit-legalwork.md) *(nemení sa — dopĺňa sa)* · **ADR 0011** *(proces zmien a mergovania, [PR #54](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/54) — ešte neodklepnuté)* · [nápad #48](../planning/napady.md) · issue [lawoss#11](https://github.com/Omni-Legal-Products/lawoss/issues/11) · [analýza LegalWork](../research/inspiracie/legalwork.md)
+
+> [!IMPORTANT]
+> **Toto ADR nemerguje jeho autor.** Je to rozhodovací obsah, ktorý mení už schválené pravidlo — podľa navrhovaného [ADR 0011](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/54) potrebuje odklep aspoň jedného ďalšieho člena tímu.
 
 > [!NOTE]
 > **Toto ADR nenahrádza [ADR 0004](0004-ako-rozsirit-legalwork.md).** Mení jediný riadok v modeli troch zón (`opencodeVersion` v `constants.json`) a zvyšok pravidiel — vrátane pravidla č. 1 *„radšej pridávaj súbory, než upravuj cudzie"* — ponecháva nedotknutý.
