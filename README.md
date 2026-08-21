@@ -338,6 +338,7 @@ lawOSS-like-SK-CZ/
 │   │   └── README.md
 │   ├── inspiracie/
 │   │   ├── 2026-08-13-editory-docx-superdoc-vs-eigenpal.md
+│   │   ├── 2026-08-21-granular-brain-a-pamatove-vzory.md
 │   │   ├── legalwork.md
 │   │   ├── porovnanie.html
 │   │   ├── README.md
@@ -418,23 +419,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**311 commitov** · **133 súborov**
+**313 commitov** · **134 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `a72d2c4` | 2026-08-21 | Majo Cuprik | research: Granular Project Brain a pamäťové vzory pre OKF (Q10, #37) |
+| `1cc9bfd` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `d449bb6` | 2026-08-21 | Majo Cuprik | napady: #48 opencode sync pipeline a verifikačná brána |
 | `3b769b4` | 2026-08-19 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `9db6b2e` | 2026-08-19 | Majo Cuprik | planning: nápad #47 — komentárový korpus VŘ ako zabudovaný CZ zdroj; spresniť #46 (dve triedy dát) |
 | `7dbb61d` | 2026-08-19 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `a5c881a` | 2026-08-19 | Majo Cuprik | planning: označiť prehľad stanovísk ako stav pred callom, odkázať na zápis |
 | `9365725` | 2026-08-19 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `e44ae96` | 2026-08-19 | Majo Cuprik | meetings: zápis zo sync callu 18. 8. + nápad #46 (jednoklikové stiahnutie korpusov) |
-| `5249874` | 2026-08-18 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-21 08:27 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-21 10:08 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
