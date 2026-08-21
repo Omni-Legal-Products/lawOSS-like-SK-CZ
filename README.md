@@ -423,23 +423,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**319 commitov** · **137 súborov**
+**322 commitov** · **137 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `4b144fd` | 2026-08-21 | Majo Cuprik | Merge pull request #59 from Omni-Legal-Products/docs/okf-diagram-ilustracia |
+| `25c41bd` | 2026-08-21 | Majo Cuprik | specs: 0002 — doplniť ilustráciu architektúry OKF (návrh, nie finál) |
+| `ce50358` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `0220a93` | 2026-08-21 | Majo Cuprik | assets: diagram OKF systému + brandový profil pre diagram-design |
 | `636de44` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `1ffd569` | 2026-08-21 | Majo Cuprik | chore: aktualizácia projektových súborov po sedení 21. 8. — spec 0011 v indexe, badge nápadov, roadmapa (Q07, sync forku, sprint), backlog paper cuts |
 | `cb9e65c` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `d4ac66a` | 2026-08-21 | Majo Cuprik | planning: paper cuts a rýchle vylepšenia — report na víkend (plní akčný bod MČ z callu 18.8.) |
-| `bb222e3` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `a72d2c4` | 2026-08-21 | Majo Cuprik | research: Granular Project Brain a pamäťové vzory pre OKF (Q10, #37) |
-| `1cc9bfd` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-21 12:30 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-21 12:38 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
