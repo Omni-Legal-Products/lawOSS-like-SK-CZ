@@ -44,8 +44,11 @@
 - [ ] **Základné skills pre spis** - zápis, kontrola čerstvosti, periodická konsolidácia a rollback
 - [ ] **Anonymizácia odložená** - neimplementovať v aktuálnej fáze; zachovať ako budúci voliteľný modul
 - [x] **Tímové rozhodnutia Q01 až Q25** — ✅ IR *(14. 8.)* · ✅ VŘ *(15. 8.)* · 📝 **MČ** pracovné pozície · ✅ **MF** *(17. 8.)* → [súhrn](2026-08-17-stanoviska-timu-Q01-Q25.md)
-- [ ] ⚔️ **Rozseknúť Q07** *(MČ ako product owner)* — jediná vecná odchýlka medzi IR a VŘ: patria lehoty do prvej trojice vertikál, alebo onboarding subjektov?
+- [x] **Synchronizovať fork s upstreamom** — `dev` @ `c5e177a`: fast-forward na origin/dev (+10 našich commitov) + merge upstream fixu #88 *(21. 8. 2026)*
+- [x] **Paper cuts sprint rozbehaný** — report + issues [#5–#12](https://github.com/Omni-Legal-Products/lawoss/issues/12) vo forku, cieľ: hotovo pre pondelok 24. 8. → [report](2026-08-21-paper-cuts-a-rychle-vylepsenia.md)
+- [ ] ⚔️ ~~**Rozseknúť Q07**~~ ✅ **uzavreté na calle 18. 8.**: vertikály v poradí 1. OKF/spisy+pamäť · 2. lehoty a timeline · 3. reconciliation → [zápis](../meetings/2026-08-18-zapis-sync-call.md)
 - [ ] **Prepísať uzavreté odpovede do ADR** — governance, branching a release, scope prvej iterácie, pamäťové hranice, lokálnosť dát a platformy, monetizácia, architektúra formátov
+- [ ] **ADR amendment: opencode bump do riadenej zóny** — bump `opencodeVersion` je v pláne forku v 🔴 zóne; sync pipeline ([nápad #48](napady.md), issue [lawoss#11](https://github.com/Omni-Legal-Products/lawoss/issues/11)) ho potrebuje povoliť cez verifikačnú bránu. Overené 21. 8.: SDK 1.17→1.18 diff čisto additívny
 
 ## Fáza 2 — Pilot a komunita (2027)
 

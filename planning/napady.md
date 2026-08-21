@@ -4,8 +4,8 @@
 
 **Všetko, čo by sme raz mohli integrovať — na jednom mieste**
 
-![Nápadov](https://img.shields.io/badge/n%C3%A1padov-27-blue)
-![Aktualizované](https://img.shields.io/badge/aktualizovan%C3%A9-2026--08--12-green)
+![Nápadov](https://img.shields.io/badge/n%C3%A1padov-50-blue)
+![Aktualizované](https://img.shields.io/badge/aktualizovan%C3%A9-2026--08--21-green)
 
 </div>
 

@@ -7,7 +7,7 @@ Kandidáti na **v1** — evidencia nápadov, ktoré dozreli z brainstormingu
 </div>
 
 > 🌐 **Grafický prehľad:** [prehlad.html](prehlad.html) — [živá verzia](https://omni-legal-products.github.io/lawOSS-like-SK-CZ/specs/prehlad.html)
-> 💡 **Evidencia návrhov (kto čo navrhol):** [navrhy.md](navrhy.md) · 🗃️ **Všetkých 26 nápadov:** [zberný kôš](../planning/napady.md) · [**podať nový návrh →**](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)
+> 💡 **Evidencia návrhov (kto čo navrhol):** [navrhy.md](navrhy.md) · 🗃️ **Všetkých 50 nápadov:** [zberný kôš](../planning/napady.md) · [**podať nový návrh →**](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/issues/new?template=feature-navrh.yml)
 
 | # | Spec | Navrhol | Stav | Verzia | Poznámka |
 |---|---|---|---|---|---|
@@ -19,6 +19,7 @@ Kandidáti na **v1** — evidencia nápadov, ktoré dozreli z brainstormingu
 | 0006 | *Orchestrátor a subagenti* | MF | [PR #2](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/2) — **otvorený** | — | číslo rezervované, kým sa PR nezmerguje |
 | 0007 | [Podpisovanie QES/QTS a zaručená konverzia](0007-podpisovanie-a-zarucena-konverzia.md) | MČ | návrh | V2 / neskôr | cez [Autogram](https://github.com/slovensko-digital/autogram) ako externý proces — ⚠️ EUPL-1.2 |
 | 0008 | [Lokálny anonymizačný gate pred externým LLM](0008-anonymizacia-a-privacy-gate.md) | MF | návrh | V1.1 / P1 | privacy gate pred externým routingom; samostatný local-service/sidecar |
+| 0011 | [Rozširujúca vrstva LAWOSS — UI architektúra a konektory](0011-rozsirujuca-vrstva-ui-a-konektory.md) | MČ | [PR #55](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/55) — **otvorený** | V1 podpora | settings tab „LAWOSS" · spis wizard · connector registry (tri vrstvy MCP, BYO) |
 
 > [!NOTE]
 > **Zaradenie do verzií je návrh, nie rozhodnutie.** Scope V1 sa odklepáva **v stredu 12. 8. 2026** → [agenda a odôvodnenie](../meetings/2026-08-12-agenda-mvp.md).

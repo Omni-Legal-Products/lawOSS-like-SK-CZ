@@ -68,6 +68,14 @@ Prišlo s odpoveďami IR *(14. 8.)* a VŘ *(15. 8.)*. Evidencia v [navrhy.md](..
 - [ ] 🔁 **Distribúcia schváleného poznatku ku všetkým agentom** — [návrh #40](../specs/navrhy.md) *(VŘ)*; doložený prípad, keď subagent zopakoval už zamietnutý judikát.
 - [ ] 🔧 **Automat na upstream sync s konfliktným reportom** — [návrh #41](../specs/navrhy.md) *(IR)*; viazaný na `PATCHES.md`. Rieši otvorenú položku *„Kto rieši merge konflikty pri upstream syncu"* nižšie.
 
+## 🔧 Paper cuts — víkendový sprint 22.–24. 8.
+
+Rozbehnuté 21. 8. → [report](2026-08-21-paper-cuts-a-rychle-vylepsenia.md) · [tracker vo forku](https://github.com/Omni-Legal-Products/lawoss/issues/12). Cieľ: hotovo pre pondelok 24. 8., kedy začína oficiálny vývoj.
+
+- [ ] P1: hláška pri .docx (#30) · meno advokáta (#31) · suggesting prepínač (#29) → issues [lawoss #5–#7](https://github.com/Omni-Legal-Products/lawoss/issues/12)
+- [ ] P2: zoraďovanie súborov (#28) · nomenklatúra skill (#32) → issues [lawoss #8–#9](https://github.com/Omni-Legal-Products/lawoss/issues/12)
+- [ ] P3: SK/CZ locale kostra · opencode bump (ADR amendment) → issues [lawoss #10–#11](https://github.com/Omni-Legal-Products/lawoss/issues/12)
+
 ## Rozhodnúť
 
 - [x] ✅ **Voľba základu — rozhodnuté 2026-08-06: LegalWork** → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md) *(nahrádza [ADR 0002](../decisions/0002-preco-forkujeme-mikeoss.md); MF potvrdené 2026-08-09)*
