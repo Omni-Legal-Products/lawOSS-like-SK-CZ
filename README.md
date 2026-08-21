@@ -397,10 +397,16 @@ lawOSS-like-SK-CZ/
 │   │   ├── moodboard.png
 │   │   └── README.md
 │   └── diagrams/
+│       ├── architektura.html
+│       ├── architektura.png
 │       ├── lehota-rozhodovacia-brana.html
 │       ├── lehota-rozhodovacia-brana.png
 │       ├── okf-system.html
-│       └── okf-system.png
+│       ├── okf-system.png
+│       ├── roadmapa.html
+│       ├── roadmapa.png
+│       ├── tok-rozhodnutia.html
+│       └── tok-rozhodnutia.png
 ├── decisions/
 │   ├── 0002-preco-forkujeme-mikeoss.html
 │   ├── 0002-preco-forkujeme-mikeoss.md
@@ -587,23 +593,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**325 commitov** · **150 súborov**
+**328 commitov** · **156 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `d90ede5` | 2026-08-21 | Majo Cuprik | docs: prekresliť tri mermaid diagramy v README + dve vecné opravy (#61) |
+| `48d2f0a` | 2026-08-21 | Majo Cuprik | docs: prekresliť tri mermaid diagramy v README do brandových |
+| `f49b1e1` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `7d89e65` | 2026-08-21 | Majo Cuprik | docs: nová sada mockupov v README + dva diagramy (#60) |
 | `eaaaee8` | 2026-08-21 | Majo Cuprik | docs: nová sada mockupov v README + dva diagramy (OKF, rozhodovacia brána) |
 | `f5e6c3d` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `4b144fd` | 2026-08-21 | Majo Cuprik | Merge pull request #59 from Omni-Legal-Products/docs/okf-diagram-ilustracia |
 | `25c41bd` | 2026-08-21 | Majo Cuprik | specs: 0002 — doplniť ilustráciu architektúry OKF (návrh, nie finál) |
-| `ce50358` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `0220a93` | 2026-08-21 | Majo Cuprik | assets: diagram OKF systému + brandový profil pre diagram-design |
-| `636de44` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-21 16:21 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-21 17:21 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
