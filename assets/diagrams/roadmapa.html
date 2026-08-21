@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmapa LAWOSS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper: #f6f7f9; --color-ink: #0d1b2a; --color-muted: #42586e;
+      --color-soft: #9aa6b8; --color-rule: rgba(13,27,42,0.12);
+      --color-accent: #c9a24a; --color-link: #2a6099;
+      --font-sans: 'Geist', system-ui, sans-serif;
+      --font-serif: 'Instrument Serif', 'Times New Roman', serif;
+      --font-mono: 'Geist Mono', ui-monospace, Menlo, monospace;
+    }
+    body { font-family: var(--font-sans); background: var(--color-paper); min-height: 100vh; padding: 3rem 2rem; color: var(--color-ink); }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .header { margin-bottom: 2.5rem; }
+    .header-eyebrow { font-family: var(--font-mono); font-size: 0.66rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 0.75rem; }
+    h1 { font-family: var(--font-serif); font-size: clamp(1.75rem, 3vw + 1rem, 2.5rem); font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.5rem; }
+    .subtitle { font-size: 1rem; line-height: 1.55; color: var(--color-muted); max-width: 58ch; }
+    .diagram-container { background: transparent; border: none; padding: 0; overflow-x: auto; }
+    svg { width: 100%; min-width: 900px; display: block; }
+    .footer { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(13,27,42,0.10); font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--color-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+      <p class="header-eyebrow">Timeline · LAWOSS · 21. 8. 2026</p>
+      <h1>Roadmapa — štyri fázy</h1>
+      <p class="subtitle">Časová os je lineárna: jeden štvrťrok = rovnaký úsek. Preto je vidieť, že pilot nie je bod, ale najdlhšia fáza celého plánu.</p>
+    </div>
+
+    <div class="diagram-container">
+      <svg viewBox="0 0 1000 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="roadmapa-title roadmapa-desc">
+        <title id="roadmapa-title">Roadmapa LAWOSS</title>
+        <desc id="roadmapa-desc">Časová os od tretieho štvrťroka 2026 do konca roka 2027 so štyrmi fázami: príprava a plánovanie, verzia jedna ako MVP, verzia dva a napokon pilot s komunitou, ktorý zaberá tri štvrťroky.</desc>
+
+        <defs>
+          <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#42586e"/></marker>
+          <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#c9a24a"/></marker>
+          <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2a6099"/></marker>
+        </defs>
+
+        <rect width="100%" height="100%" fill="#f6f7f9"/>
+
+        <!-- ══ DROPS (hairlines) ══ -->
+        <line x1="96"  y1="244" x2="96"  y2="292" stroke="rgba(13,27,42,0.25)" stroke-width="1"/>
+        <line x1="232" y1="308" x2="232" y2="356" stroke="rgba(13,27,42,0.25)" stroke-width="1"/>
+        <line x1="368" y1="244" x2="368" y2="292" stroke="rgba(13,27,42,0.25)" stroke-width="1"/>
+        <line x1="504" y1="308" x2="504" y2="356" stroke="rgba(13,27,42,0.25)" stroke-width="1"/>
+
+        <!-- ══ BASELINE + TICKS ══ -->
+        <line x1="80" y1="300" x2="928" y2="300" stroke="#42586e" stroke-width="1"/>
+        <line x1="96"  y1="294" x2="96"  y2="306" stroke="#42586e" stroke-width="1"/>
+        <line x1="232" y1="294" x2="232" y2="306" stroke="#42586e" stroke-width="1"/>
+        <line x1="368" y1="294" x2="368" y2="306" stroke="#42586e" stroke-width="1"/>
+        <line x1="504" y1="294" x2="504" y2="306" stroke="#42586e" stroke-width="1"/>
+        <line x1="640" y1="294" x2="640" y2="306" stroke="#42586e" stroke-width="1"/>
+        <line x1="776" y1="294" x2="776" y2="306" stroke="#42586e" stroke-width="1"/>
+        <line x1="912" y1="294" x2="912" y2="306" stroke="#42586e" stroke-width="1"/>
+
+        <!-- štvrťročné popisy, medzi značkami -->
+        <text x="164" y="326" fill="#9aa6b8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">Q3 2026</text>
+        <text x="300" y="326" fill="#9aa6b8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">Q4 2026</text>
+        <text x="436" y="326" fill="#9aa6b8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">Q1 2027</text>
+        <text x="572" y="326" fill="#9aa6b8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">Q2 2027</text>
+        <text x="708" y="326" fill="#9aa6b8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">Q3 2027</text>
+        <text x="844" y="326" fill="#9aa6b8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">Q4 2027</text>
+
+        <!-- fázové body -->
+        <circle cx="96"  cy="300" r="4" fill="#42586e"/>
+        <circle cx="232" cy="300" r="4" fill="#42586e"/>
+        <circle cx="368" cy="300" r="4" fill="#42586e"/>
+        <circle cx="504" cy="300" r="4" fill="#42586e"/>
+
+        <!-- DNES · jediný akcent -->
+        <line x1="172" y1="272" x2="172" y2="294" stroke="#c9a24a" stroke-width="1"/>
+        <circle cx="172" cy="300" r="6" fill="rgba(201,162,74,0.20)" stroke="#c9a24a" stroke-width="1.2"/>
+        <rect x="140" y="256" width="64" height="12" rx="2" fill="#f6f7f9"/>
+        <text x="172" y="265" fill="#c9a24a" font-size="8" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">DNES · 21. 8.</text>
+
+        <!-- ══ FÁZA 1 (nad osou) ══ -->
+        <rect x="48" y="132" width="208" height="112" rx="6" fill="#f6f7f9"/>
+        <rect x="48" y="132" width="208" height="112" rx="6" fill="#ffffff" stroke="#0d1b2a" stroke-width="1"/>
+        <rect x="56" y="138" width="52" height="12" rx="2" fill="transparent" stroke="rgba(13,27,42,0.28)" stroke-width="0.8"/>
+        <text x="82" y="147" fill="rgba(13,27,42,0.55)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">2026 Q3</text>
+        <text x="152" y="172" fill="#0d1b2a" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Príprava a plánovanie</text>
+        <text x="152" y="194" fill="#42586e" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">voľba základu · fork</text>
+        <text x="152" y="210" fill="#42586e" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">produktová doktrína</text>
+        <text x="152" y="226" fill="#42586e" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">rebranding</text>
+
+        <!-- ══ FÁZA 2 (pod osou) ══ -->
+        <rect x="200" y="356" width="208" height="112" rx="6" fill="#f6f7f9"/>
+        <rect x="200" y="356" width="208" height="112" rx="6" fill="#ffffff" stroke="#0d1b2a" stroke-width="1"/>
+        <rect x="208" y="362" width="52" height="12" rx="2" fill="transparent" stroke="rgba(13,27,42,0.28)" stroke-width="0.8"/>
+        <text x="234" y="371" fill="rgba(13,27,42,0.55)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">2026 Q4</text>
+        <text x="304" y="396" fill="#0d1b2a" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">V1 — MVP</text>
+        <text x="304" y="418" fill="#42586e" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">SK/CZ lokalizácia · OKF</text>
+        <text x="304" y="434" fill="#42586e" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">judikatúra · Slov-Lex</text>
+        <text x="304" y="450" fill="#42586e" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">lehoty · OCR ingest</text>
+
+        <!-- ══ FÁZA 3 (nad osou) ══ -->
+        <rect x="336" y="132" width="208" height="112" rx="6" fill="#f6f7f9"/>
+        <rect x="336" y="132" width="208" height="112" rx="6" fill="#ffffff" stroke="#0d1b2a" stroke-width="1"/>
+        <rect x="344" y="138" width="52" height="12" rx="2" fill="transparent" stroke="rgba(13,27,42,0.28)" stroke-width="0.8"/>
+        <text x="370" y="147" fill="rgba(13,27,42,0.55)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">2027 Q1</text>
+        <text x="440" y="172" fill="#0d1b2a" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">V2</text>
+        <text x="440" y="194" fill="#42586e" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">pamäť · transkripcia</text>
+        <text x="440" y="210" fill="#42586e" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">prompt layer</text>
+        <text x="440" y="226" fill="#42586e" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">podpisovanie QES / QTS</text>
+
+        <!-- ══ FÁZA 4 (pod osou, široká = dlhá) ══ -->
+        <rect x="472" y="356" width="440" height="112" rx="6" fill="#f6f7f9"/>
+        <rect x="472" y="356" width="440" height="112" rx="6" fill="rgba(13,27,42,0.05)" stroke="#42586e" stroke-width="1"/>
+        <rect x="480" y="362" width="76" height="12" rx="2" fill="transparent" stroke="rgba(13,27,42,0.28)" stroke-width="0.8"/>
+        <text x="518" y="371" fill="rgba(13,27,42,0.55)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">2027 Q2 – Q4</text>
+        <text x="692" y="396" fill="#0d1b2a" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Pilot a komunita</text>
+        <text x="692" y="418" fill="#42586e" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">testovanie s advokátmi</text>
+        <text x="692" y="434" fill="#42586e" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">workshopy a školenia</text>
+        <text x="692" y="450" fill="#42586e" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">spätná väzba → iterácie</text>
+
+        <!-- ══ LEGEND ══ -->
+        <line x1="48" y1="516" x2="952" y2="516" stroke="rgba(13,27,42,0.10)" stroke-width="0.8"/>
+        <text x="48" y="540" fill="#42586e" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.14em">LEGENDA</text>
+
+        <circle cx="140" cy="536" r="4" fill="#42586e"/>
+        <text x="156" y="540" fill="#42586e" font-size="8" font-family="'Geist Mono', monospace">začiatok fázy</text>
+
+        <circle cx="320" cy="536" r="6" fill="rgba(201,162,74,0.20)" stroke="#c9a24a" stroke-width="1.2"/>
+        <text x="340" y="540" fill="#42586e" font-size="8" font-family="'Geist Mono', monospace">kde sme dnes</text>
+
+        <rect x="512" y="530" width="10" height="10" rx="2" fill="#ffffff" stroke="#0d1b2a" stroke-width="1"/>
+        <text x="528" y="540" fill="#42586e" font-size="8" font-family="'Geist Mono', monospace">vývojová fáza</text>
+
+        <rect x="704" y="530" width="10" height="10" rx="2" fill="rgba(13,27,42,0.05)" stroke="#42586e" stroke-width="1"/>
+        <text x="720" y="540" fill="#42586e" font-size="8" font-family="'Geist Mono', monospace">šírka rámu = dĺžka fázy</text>
+      </svg>
+    </div>
+
+    <div class="footer">
+      <span>LAWOSS · podľa planning/timeline.md</span>
+      <span>nahrádza mermaid timeline v README</span>
+    </div>
+
+  </div>
+</body>
+</html>

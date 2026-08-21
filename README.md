@@ -231,6 +231,18 @@ Hlavný dôvod je **open-code harness v pozadí**: LegalWork nie je samostatný 
 
 ## 🏗️ Architektúra (návrh)
 
+<div align="center">
+
+<a href="https://omni-legal-products.github.io/lawOSS-like-SK-CZ/assets/diagrams/architektura.html"><img src="assets/diagrams/architektura.png" alt="Architektúra LAWOSS — advokát, naša vrstva nad forkom LegalWorku, konektory a modely" width="100%" /></a>
+
+<sub><b>Zlatý rám</b> = jadro odlíšenia · <b>plný rám</b> = naša vrstva · <b>sivý rám</b> = cudzie alebo voľba používateľa<br/>
+<a href="https://omni-legal-products.github.io/lawOSS-like-SK-CZ/assets/diagrams/architektura.html">otvoriť interaktívnu verziu</a> · <a href="assets/diagrams/architektura.html">zdroj</a></sub>
+
+</div>
+
+<details>
+<summary><sub>pôvodný mermaid zdroj</sub></summary>
+
 ```mermaid
 flowchart TB
     ADVOKAT(["👩‍⚖️ Advokát"]) --> SK
@@ -263,6 +275,8 @@ flowchart TB
     SK --> mcp
     PROMPT --> model
 ```
+
+</details>
 
 ### OKF zblízka — čo systém drží
 
@@ -313,6 +327,18 @@ Prvý **deep-research** balík (NotebookLM, 245 zdrojov, 6 kôl) o open-source A
 
 ## 🗺️ Roadmapa
 
+<div align="center">
+
+<a href="https://omni-legal-products.github.io/lawOSS-like-SK-CZ/assets/diagrams/roadmapa.html"><img src="assets/diagrams/roadmapa.png" alt="Roadmapa LAWOSS — štyri fázy na lineárnej časovej osi" width="100%" /></a>
+
+<sub>Lineárna škála: jeden štvrťrok = rovnaký úsek. Preto je vidieť, že pilot je najdlhšia fáza.<br/>
+<a href="https://omni-legal-products.github.io/lawOSS-like-SK-CZ/assets/diagrams/roadmapa.html">otvoriť interaktívnu verziu</a> · <a href="assets/diagrams/roadmapa.html">zdroj</a></sub>
+
+</div>
+
+<details>
+<summary><sub>pôvodný mermaid zdroj</sub></summary>
+
 ```mermaid
 timeline
     title Fázy projektu
@@ -323,6 +349,8 @@ timeline
     section Fáza 2 · Pilot
         2027 : Testovanie s advokátmi : Workshopy a školenia : Spätná väzba → iterácie
 ```
+
+</details>
 
 Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: [planning/backlog.md](planning/backlog.md)
 
@@ -532,6 +560,18 @@ lawOSS-like-SK-CZ/
 
 ## 🔄 Ako pracujeme s rozhodnutiami
 
+<div align="center">
+
+<a href="https://omni-legal-products.github.io/lawOSS-like-SK-CZ/assets/diagrams/tok-rozhodnutia.html"><img src="assets/diagrams/tok-rozhodnutia.png" alt="Ako pracujeme s rozhodnutiami — od nápadu cez rozpravu k implementácii vo forku" width="100%" /></a>
+
+<sub>Ak nie je zhoda, vec sa vracia na rešerš a späť do rozpravy — tá slučka je jadro postupu.<br/>
+<a href="https://omni-legal-products.github.io/lawOSS-like-SK-CZ/assets/diagrams/tok-rozhodnutia.html">otvoriť interaktívnu verziu</a> · <a href="assets/diagrams/tok-rozhodnutia.html">zdroj</a></sub>
+
+</div>
+
+<details>
+<summary><sub>pôvodný mermaid zdroj</sub></summary>
+
 ```mermaid
 flowchart LR
     A["💡 Nápad<br/>(Telegram / Issue)"] --> B{"Diskusia<br/>traja partneri"}
@@ -541,6 +581,8 @@ flowchart LR
     C --> E["📋 Backlog / Spec"]
     E --> F["🚀 Implementácia<br/>(vo fork repe)"]
 ```
+
+</details>
 
 ## 📈 Aktivita
 
