@@ -226,10 +226,10 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 | [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
 | [`2026-08-15-odpovedi-VR-Q01-Q25.md`](planning/2026-08-15-odpovedi-VR-Q01-Q25.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
 | [`2026-08-21-paper-cuts-a-rychle-vylepsenia.md`](planning/2026-08-21-paper-cuts-a-rychle-vylepsenia.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
-| [`backlog.md`](planning/backlog.md) | `███░░░░░░░░░░░░░░░░░` | 10/68 (15 %) |
+| [`backlog.md`](planning/backlog.md) | `███░░░░░░░░░░░░░░░░░` | 10/71 (14 %) |
 | [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
-| [`roadmap.md`](planning/roadmap.md) | `███████░░░░░░░░░░░░░` | 15/43 (35 %) |
+| [`roadmap.md`](planning/roadmap.md) | `███████░░░░░░░░░░░░░` | 17/46 (37 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -421,23 +421,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**315 commitov** · **135 súborov**
+**317 commitov** · **135 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `1ffd569` | 2026-08-21 | Majo Cuprik | chore: aktualizácia projektových súborov po sedení 21. 8. — spec 0011 v indexe, badge nápadov, roadmapa (Q07, sync forku, sprint), backlog paper cuts |
+| `cb9e65c` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `d4ac66a` | 2026-08-21 | Majo Cuprik | planning: paper cuts a rýchle vylepšenia — report na víkend (plní akčný bod MČ z callu 18.8.) |
 | `bb222e3` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `a72d2c4` | 2026-08-21 | Majo Cuprik | research: Granular Project Brain a pamäťové vzory pre OKF (Q10, #37) |
 | `1cc9bfd` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `d449bb6` | 2026-08-21 | Majo Cuprik | napady: #48 opencode sync pipeline a verifikačná brána |
 | `3b769b4` | 2026-08-19 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `9db6b2e` | 2026-08-19 | Majo Cuprik | planning: nápad #47 — komentárový korpus VŘ ako zabudovaný CZ zdroj; spresniť #46 (dve triedy dát) |
-| `7dbb61d` | 2026-08-19 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-21 10:14 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-21 10:23 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
