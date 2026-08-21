@@ -342,12 +342,14 @@ Prvý **deep-research** balík (NotebookLM, 245 zdrojov, 6 kôl) o open-source A
 ```mermaid
 timeline
     title Fázy projektu
-    section Fáza 0 · Príprava
-        Q3 2026 : Toto repo – brainstorming, rešerše : Voľba základu – LegalWork : ADR – fork, licencia, štruktúra repozitárov
-    section Fáza 1 · Fork & MVP
-        Q4 2026 : Fork LegalWorku a rebranding : Prvé SK MCP servery : SK a CZ lokalizácia
-    section Fáza 2 · Pilot
-        2027 : Testovanie s advokátmi : Workshopy a školenia : Spätná väzba → iterácie
+    section Fáza 0 · Príprava a plánovanie
+        Q3 2026 : Toto repo – brainstorming, rešerše : Voľba základu – LegalWork : Organizácia a fork : Produktová doktrína : Rebranding
+    section Fáza 1 · V1 — MVP
+        Q4 2026 : SK a CZ lokalizácia : OKF : MCP judikatúra a Slov-Lex : Lehoty : OCR ingest
+    section Fáza 2 · V2
+        Q1 2027 : Pamäť a transkripcia do spisu : Prompt layer : Podpisovanie QES/QTS
+    section Fáza 3 · Pilot a komunita
+        2027 Q2–Q4 : Testovanie s advokátmi : Workshopy a školenia : Spätná väzba → iterácie
 ```
 
 </details>
@@ -580,7 +582,7 @@ lawOSS-like-SK-CZ/
 
 ```mermaid
 flowchart LR
-    A["💡 Nápad<br/>(Telegram / Issue)"] --> B{"Diskusia<br/>traja partneri"}
+    A["💡 Nápad<br/>(Telegram / Issue)"] --> B{"Rozprava<br/>MČ · MF · IR · VŘ"}
     B -->|zhoda| C["📄 ADR v decisions/"]
     B -->|treba preveriť| D["🔍 Rešerš v research/"]
     D --> B
