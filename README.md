@@ -93,12 +93,100 @@ Základ [LegalWork](decisions/0003-legal-work-ako-zaklad.md) už dáva chat, age
 | ⏰ **[Lehoty a timeline](specs/0005-lehoty-timeline.md)** | zmeškaná lehota = najčastejší dôvod zodpovednosti advokáta |
 | 📄 **OCR ingest → markdown** | quick win, hotová Quick Action |
 
-🗃️ **Všetkých 26 nápadov aj s tým, kam mieria:** [zberný kôš](planning/napady.md) · [grafický prehľad funkcií](https://omni-legal-products.github.io/lawOSS-like-SK-CZ/specs/prehlad.html)
+🗃️ **Všetky nápady aj s tým, kam mieria:** [zberný kôš](planning/napady.md) · [grafický prehľad funkcií](https://omni-legal-products.github.io/lawOSS-like-SK-CZ/specs/prehlad.html)
 
 ## 🖥️ Ako to má vyzerať
 
 > [!NOTE]
-> **Vizuálne koncepty, nie snímky hotového produktu.** Slúžia na zjednotenie predstavy o rozhraní a na komunikáciu projektu. Dáta v nich sú vymyslené.
+> **Vizuálne koncepty, nie snímky hotového produktu.** Slúžia na zjednotenie predstavy o rozhraní a na komunikáciu projektu. **Dáta v nich sú vymyslené** — vrátane mien, spisových značiek a súm.
+
+Sada z **21. 8. 2026** — desať obrazoviek, ktoré prvýkrát držia jeden dizajnový jazyk: navy plocha, zlatý akcent, jedna ľavá navigácia a rovnaký spôsob, akým sa ukazuje zdroj a rozhodnutie. Pri každej je uvedené, čo za ňou stojí — a či na to už máme špecifikáciu.
+
+<div align="center">
+
+<img src="assets/brand/mockupy/01-prehlad-praxe.jpg" alt="LAWOSS — prehľad praxe s aktívnymi spismi, lehotami a dokumentmi" width="100%" />
+
+<sub><b>1 · Prehľad praxe</b> — aktívne spisy, najbližšie lehoty a dokumenty na jednej obrazovke. Vpravo stála pripomienka doktríny: <i>AI pod kontrolou advokáta</i>. → <a href="specs/0002-okf-operacny-system-praxe.md">OKF</a> · <a href="specs/0005-lehoty-timeline.md">lehoty</a></sub>
+
+<br><br>
+
+<img src="assets/brand/mockupy/02-spis-matter-brain.jpg" alt="LAWOSS — detail spisu s timeline, úlohami a panelom Matter Brain" width="100%" />
+
+<sub><b>2 · Spis pod kontrolou</b> — timeline veci, úlohy s termínmi, nedávne dokumenty a vpravo <b>Matter Brain</b> so stavom, kľúčovými faktami a ďalšími krokmi. Podtitul <i>„OKF ako zdroj pravdy"</i> hovorí presne to, o čo ide. → <a href="specs/0002-okf-operacny-system-praxe.md">OKF</a></sub>
+
+<br><br>
+
+<img src="assets/brand/mockupy/03-kontrola-lehoty.jpg" alt="LAWOSS — kontrola lehoty s citáciou zdroja a rozhodnutím advokáta" width="100%" />
+
+<sub><b>3 · Lehoty pod kontrolou. Rozhoduje advokát.</b> — vľavo doslovná citácia § 362 ods. 1 CSP, vpravo návrh AI s <b>mierou neistoty</b>, dole štyri tlačidlá: potvrdiť, upraviť, odmietnuť, odložiť. Nič sa nezapíše bez advokáta. → <a href="specs/0005-lehoty-timeline.md">spec 0005</a> · <a href="decisions/0009-zakladna-produktova-doktrina.md">doktrína</a></sub>
+
+<br><br>
+
+<img src="assets/brand/mockupy/04-podpisovanie-eidas.jpg" alt="LAWOSS — natívne podpisovanie podľa eIDAS cez Autogram" width="100%" />
+
+<sub><b>4 · Natívne podpisovanie podľa eIDAS</b> — PDF aj XML, QES a QTS, slovenské eID aj český elektronický podpis, podpis cez <a href="https://github.com/slovensko-digital/autogram">Autogram</a> ako externý proces. → <a href="specs/0007-podpisovanie-a-zarucena-konverzia.md">spec 0007</a></sub>
+
+<br><br>
+
+<img src="assets/brand/mockupy/05-pravny-vyskum.jpg" alt="LAWOSS — výsledky právneho výskumu s overenými zdrojmi a konektormi" width="100%" />
+
+<sub><b>5 · Overený právny výskum</b> — judikatúra, predpisy a články s odznakom <i>Overené</i> a s panelom aktívnych konektorov (Slov-Lex, Judikatúra SR, ORSR). Odznak nie je ozdoba: je to odpoveď na halucinácie. → <a href="specs/0004-mcp-sk-konektory.md">spec 0004</a></sub>
+
+<br><br>
+
+<img src="assets/brand/mockupy/06-reserse-subjektov.jpg" alt="LAWOSS — rešerš subjektu naprieč slovenskými registrami" width="100%" />
+
+<sub><b>6 · Rešerše, na ktoré sa dá spoľahnúť</b> — jedno preverenie naprieč RPVS, registrom úpadcov, Finančnou správou, registrom diskvalifikácií, ORSR a živnostenským registrom; vpravo zhrnutie nálezov vrátane <b>daňového nedoplatku</b> a konečného užívateľa výhod. → <a href="specs/0002-okf-operacny-system-praxe.md">onboarding subjektov</a> · <a href="specs/0004-mcp-sk-konektory.md">spec 0004</a></sub>
+
+<br><br>
+
+<img src="assets/brand/mockupy/07-timeline-spisu.jpg" alt="LAWOSS — jednotná chronológia spisu s lehotami a ďalšími krokmi" width="100%" />
+
+<sub><b>7 · Každý míľnik. Pod kontrolou.</b> — jednotná chronológia veci, kde vedľa seba stoja podania, uznesenia, lehoty, pojednávania aj e-maily, a v ľavom menu <b>auditná stopa</b>. Vpravo znova Matter Brain. → <a href="specs/0005-lehoty-timeline.md">spec 0005</a></sub>
+
+<br><br>
+
+<img src="assets/brand/mockupy/08-zarucena-konverzia.jpg" alt="LAWOSS — zaručená konverzia dokumentu do elektronickej podoby" width="100%" />
+
+<sub><b>8 · Zaručená konverzia a vybavenie formalít</b> — štyri kroky od naskenovaného dokumentu cez osvedčovaciu doložku a overenie po elektronický výstup. → <a href="specs/0010-zarucena-konverzia.md">spec 0010</a> · <a href="specs/0007-podpisovanie-a-zarucena-konverzia.md">spec 0007</a></sub>
+
+<br><br>
+
+<img src="assets/brand/mockupy/09-automatizacia-emailov.jpg" alt="LAWOSS — automatizácia spracovania právnych e-mailov" width="100%" />
+
+<sub><b>9 · Automatizácia e-mailov</b> — od doručenia cez sumár, úlohy a rozpoznané lehoty až po návrh odpovede, ktorý <b>odíde až po schválení</b>. Rieši to, čo VŘ označil za jediný explicitne pomenovaný nevyriešený problém z praxe. → <a href="planning/napady.md">nápad #22</a> — <b>zatiaľ bez špecifikácie</b></sub>
+
+<br><br>
+
+<img src="assets/brand/mockupy/10-lokalne-nastroje.jpg" alt="LAWOSS — lokálne nástroje, CLI, transkripcia a OCR" width="100%" />
+
+<sub><b>10 · Lokálne nástroje a automatizácia</b> — CLI, lokálne skripty, import dokumentov, Whisper transkripcia, OCR a Autogram, všetko s pätkou <i>„Všetko beží lokálne. Vaše dáta zostávajú vo vašom prostredí."</i> → <a href="specs/0001-transkripcia.md">spec 0001</a> · <a href="planning/napady.md">nápad #45</a></sub>
+
+</div>
+
+> [!IMPORTANT]
+> **Nový pojem, ktorý sa v mockupoch objavil sám: „Matter Brain"** *(obrazovky 2 a 7)*.
+> Pomenúva presne to, čo v OKF dnes nesú `_STATUS.md` a `MEMORY.md` — stav veci, kľúčové fakty, ďalšie kroky. Sedí na [rešerš pamäťových vzorov](research/inspiracie/2026-08-21-granular-brain-a-pamatove-vzory.md) z 21. 8., ale **názov zatiaľ nie je odklepnutý** a je anglický, kým zvyšok rozhrania je po slovensky. Na prerokovanie.
+
+**Čo v konceptoch hľadať a čo za tým je:**
+
+| V rozhraní | Čo za tým je | Stav |
+|---|---|---|
+| **Prehľad** a **Spisy** so spisovými značkami | [OKF — operačný systém praxe](specs/0002-okf-operacny-system-praxe.md) | 📝 spec |
+| **Kontrola lehoty** so štyrmi tlačidlami | [spec 0005](specs/0005-lehoty-timeline.md) — povinné potvrdenie advokátom | 📝 spec |
+| **Matter Brain** — stav, fakty, ďalšie kroky | pamäť spisu v [OKF](specs/0002-okf-operacny-system-praxe.md); názov otvorený | 💭 prieskum |
+| **Rešerš** s odznakom *Overené* | [SK MCP konektory](specs/0004-mcp-sk-konektory.md) | 📝 spec |
+| **Rešerš subjektu** naprieč registrami | onboarding subjektov v [OKF](specs/0002-okf-operacny-system-praxe.md) | 📝 spec |
+| **Podpisovanie** QES/QTS cez Autogram | [spec 0007](specs/0007-podpisovanie-a-zarucena-konverzia.md) | 📝 spec |
+| **Zaručená konverzia** | [spec 0010](specs/0010-zarucena-konverzia.md) | 📝 spec |
+| **Komunikácia** — spracovanie e-mailov | [nápad #22](planning/napady.md) (VŘ) | 💭 prieskum |
+| **Integrácie** — CLI, skripty, OCR | lokálnosť dát (Q16) · [nápad #45](planning/napady.md) | 💭 prieskum |
+
+> [!NOTE]
+> Vo vizuáloch sa objavujú aj funkcie, ktoré sú zatiaľ **v štádiu prieskumu** a nemajú špecifikáciu — evidujeme ich v [navrhy.md](specs/navrhy.md).
+
+<details>
+<summary><b>Staršie vizuálne koncepty</b> (7. 8. 2026) — pre históriu</summary>
 
 <div align="center">
 
@@ -120,19 +208,7 @@ Základ [LegalWork](decisions/0003-legal-work-ako-zaklad.md) už dáva chat, age
 
 </div>
 
-**Čo v konceptoch hľadať:**
-
-| V rozhraní | Čo za tým je |
-|---|---|
-| **Spisy** s číslami vecí a agendou | [OKF — operačný systém praxe](specs/0002-okf-operacny-system-praxe.md) |
-| **Rešerš** s relevanciou nad rozhodnutiami NS, ÚS a KS | [SK MCP konektory](specs/0004-mcp-sk-konektory.md) |
-| **Transkripcia** naviazaná na konkrétny spis, s úlohami a lehotami | [spec 0001](specs/0001-transkripcia.md) + [lehoty a timeline](specs/0005-lehoty-timeline.md) |
-| **Prompty** ako vlastné AI postupy | [otvorený prompt layer](specs/0003-prompt-layer.md) |
-| **Konektory** na e-súdy, registre a služby tretích strán | [spec 0004](specs/0004-mcp-sk-konektory.md) |
-| **Lokálne spracovanie dát** | dáta zostávajú u advokáta — mlčanlivosť a GDPR |
-
-> [!NOTE]
-> Vo vizuáloch sa objavujú aj funkcie, ktoré sú zatiaľ **v štádiu prieskumu** a nemajú špecifikáciu — evidujeme ich v [navrhy.md](specs/navrhy.md).
+</details>
 
 ## 🧩 Základ — rozhodnuté
 
@@ -187,6 +263,38 @@ flowchart TB
     SK --> mcp
     PROMPT --> model
 ```
+
+### OKF zblízka — čo systém drží
+
+Diagram vyššie ukazuje vrstvy projektu. Tento ukazuje **jadro odlíšenia** — ako appka štruktúru presadzuje a udržiava.
+
+<div align="center">
+
+<a href="https://omni-legal-products.github.io/lawOSS-like-SK-CZ/assets/diagrams/okf-system.html"><img src="assets/diagrams/okf-system.png" alt="OKF — architektúra v troch pásmach: vstup, procesy, štruktúra ako zdroj pravdy" width="100%" /></a>
+
+<sub><b>Zlatý rám</b> = ohnisko systému · <b>plný rám</b> = beží dnes v skille <code>novy-spis</code> · <b>prerušovaný rám</b> = navrhované, zatiaľ neexistuje<br/>
+<a href="https://omni-legal-products.github.io/lawOSS-like-SK-CZ/assets/diagrams/okf-system.html">otvoriť interaktívnu verziu</a> · <a href="assets/diagrams/okf-system.html">zdroj</a></sub>
+
+</div>
+
+> [!WARNING]
+> **Podklad na rozpravu, nie schválená architektúra.** Úroveň *Prax* (L1 pravidlá a L3 právna vrstva) je zámerne prerušovaná — dnes **neexistuje** a povýšený poznatok nemá kam padnúť. Detail v [spec 0002](specs/0002-okf-operacny-system-praxe.md).
+
+### Rozhodovacia brána — kde končí AI a začína advokát
+
+Obrazovka 3 vyššie ukazuje, ako to vyzerá. Tento diagram ukazuje, ako to funguje.
+
+<div align="center">
+
+<a href="https://omni-legal-products.github.io/lawOSS-like-SK-CZ/assets/diagrams/lehota-rozhodovacia-brana.html"><img src="assets/diagrams/lehota-rozhodovacia-brana.png" alt="Kontrola lehoty — od doručeného dokumentu cez zdroj a výpočet po povinné rozhodnutie advokáta" width="100%" /></a>
+
+<sub>Žiadna cesta nevedie do spisu mimo kosoštvorca.<br/>
+<a href="https://omni-legal-products.github.io/lawOSS-like-SK-CZ/assets/diagrams/lehota-rozhodovacia-brana.html">otvoriť interaktívnu verziu</a> · <a href="assets/diagrams/lehota-rozhodovacia-brana.html">zdroj</a></sub>
+
+</div>
+
+> [!NOTE]
+> **Lehoty sú výnimka, nie pravidlo.** Podľa **Q11/Q21** ([call 18. 8.](meetings/2026-08-18-zapis-sync-call.md)) je miera autonómie **nastavenie používateľa** — od schvaľovania každého kroku po YOLO; appka hard stopy sama neurčuje. Pri lehotách to neplatí: [spec 0005](specs/0005-lehoty-timeline.md) má vlastnú sekciu *„Povinné ľudské potvrdenie"*, lebo zmeškaná lehota je najčastejší dôvod zodpovednosti advokáta za škodu.
 
 ## 🎨 Značka
 
