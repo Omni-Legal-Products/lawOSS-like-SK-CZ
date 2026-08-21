@@ -16,6 +16,27 @@ Každá kancelária si vymýšľa vlastný chaos: názvy súborov, kde čo lež�
 
 Appka **presadzuje a učí** štruktúru — zakladá priečinky, generuje riadiace súbory, kontroluje konzistenciu.
 
+> [!NOTE]
+> ### 🖼️ Ilustrácia architektúry — **návrh, nie finálny stav**
+>
+> **[Otvoriť diagram →](https://omni-legal-products.github.io/lawOSS-like-SK-CZ/assets/diagrams/okf-system.html)** *(zdroj: [`assets/diagrams/okf-system.html`](../assets/diagrams/okf-system.html))*
+>
+> Celý systém v troch pásmach: **vstup → procesy OKF → štruktúra ako zdroj pravdy**. Poradie je zámerné — hovorí, že appka nie je editor súborov, ale niečo, čo štruktúru *presadzuje*.
+>
+> **Ako čítať, čo je čím:**
+>
+> | Na diagrame | Znamená |
+> |---|---|
+> | zlatý rám *(Spis, Reconciliation)* | dve ohniská systému — spis je jednotka, reconciliation je to, čo ho drží pravdivý |
+> | plný rám | **beží** dnes v skille `novy-spis` (OKF v0.1) |
+> | **prerušovaný rám** *(Prax)* | **neexistuje** — navrhované; povýšený poznatok L1 ani právna vrstva L3 nemajú dnes kam padnúť |
+>
+> ⚠️ **Diagram je podklad na rozpravu, nie schválená architektúra.** Vedome z neho vypadli: rozpad vrstiev L1/L2/L3, režimy preverovania `light` / `medium` / `hard` a GUI nad skriptami — každé z toho je samostatný obrázok. `CHANGELOG.md` v uzle *Spis* je zatiaľ len návrh — spec 0013 v [PR #58](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/58).
+>
+> *Vypracované 2026-08-21 na základe [rešerše Granular](../research/inspiracie/2026-08-21-granular-brain-a-pamatove-vzory.md) a porovnania s OKF v0.1.*
+
+Detail zakladania konkrétnej veci:
+
 ```mermaid
 flowchart TB
     U["👩‍⚖️ „Nový spis: Novák ⁄ rozvod"] --> APP["LAWOSS"]
