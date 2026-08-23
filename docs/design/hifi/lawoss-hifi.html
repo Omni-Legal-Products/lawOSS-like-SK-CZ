@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LAWOSS — hi-fi prototyp v2 · podací denník na tmavom stole</title>
 <!--
-THESIS: LegalWork ostáva (chat + dashboard + nastavenia navrchu, opencode vzadu). LAWOSS vrstva sa správa ako podací denník a spisový obal na tmavom stole pod lampou: registre s číslom listu, kolónky, registrové záložky, pečať. Odmieta SaaS dashboard s kartami, pills a eyebrows — aj wall of text: každý pohľad má jeden diagram, ktorý nesie informáciu.
+THESIS: Spis = chat v strede (Codex/Cowork), záložky vľavo, panel vpravo (Spis · Súbory · Dokument · Agenti). LegalWork ostáva (chat + dashboard + nastavenia navrchu, opencode vzadu). LAWOSS vrstva sa správa ako podací denník a spisový obal na tmavom stole pod lampou: registre s číslom listu, kolónky, registrové záložky, pečať. Odmieta SaaS dashboard s kartami, pills a eyebrows — aj wall of text: každý pohľad má jeden diagram, ktorý nesie informáciu.
 OWN-WORLD: stôl #0A0E14 + svetlo lampy; list #10171F s linajkami; atrament #E9E4DA; zlatá #C9A24A iba ako razidlo. IBM Plex Sans (UI) · IBM Plex Mono (identifikátory) · Playfair iba pečať a wordmark.
 STORY: advokát otvorí spis, vidí kde je vec (timeline), čo agent vie (Brain), čo čaká na podpis (brána) — rozhodne, pečať potvrdí. Agent pracuje v chate v spise.
 FIRST VIEWPORT: záložky vľavo; obal s kolónkami; register „Čaká na advokáta“; pás lehôt ako diagram; composer dole.
@@ -219,6 +219,66 @@ h1 em{font-style:italic;color:var(--ink-3);font-weight:400}
 .layer-pick button{padding:5px 12px;font-size:12.5px;color:var(--ink-3);border-right:1px solid var(--rule-2)}
 .layer-pick button:last-child{border-right:0}
 .layer-pick button[aria-selected="true"]{color:var(--desk);background:var(--gold);font-weight:500}
+
+/* spis: 3 stĺpce */
+.spis3{display:grid;grid-template-columns:1fr 360px;gap:0;margin:-34px -44px -120px -40px;min-height:calc(100vh - 38px)}
+.chat{display:flex;flex-direction:column;min-width:0;padding:30px 36px 18px 40px}
+.chat-head{padding-bottom:4px}
+.obal.compact{margin-top:16px}.obal.compact>div{padding:9px 16px 9px 0;margin-right:16px}.obal.compact .v{font-size:14px}
+.msgs{flex:1;display:flex;flex-direction:column;gap:22px;padding:26px 0 10px;max-width:78ch}
+.msg .who{font-size:12px;color:var(--ink-3);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.msg.ai .who i{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.msg.running .who i{box-shadow:0 0 0 3px var(--gold-ink)}
+.msg p{font-size:14px;line-height:1.6;color:var(--ink);margin-top:8px}
+.msg.me p{color:var(--ink-2);padding-left:12px;border-left:1px solid var(--rule-3)}
+.msg .tools{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--mono);font-size:11px;color:var(--ink-3);margin:2px 0 4px}
+.msg .tools b{color:var(--ink-2);font-weight:500}
+.gate-card{margin:12px 0 6px;border:1px solid var(--rule-2);border-left:2px solid var(--gold);border-radius:3px;padding:12px 16px 12px 16px;background:var(--sheet-2)}
+.gc-h{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-2);font-weight:500}
+.gate-card .fields{grid-template-columns:120px 1fr;margin-top:6px}
+.gate-card .fields dt,.gate-card .fields dd{padding:6px 0;font-size:13px}
+.gate-card .fields dd.hero{font-size:18px;padding:8px 0}
+.gc-a{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:12px}
+.faint{color:var(--ink-3)}
+.chat .composer{position:sticky;bottom:14px;margin-top:14px}
+.panel{border-left:1px solid var(--rule-2);background:var(--well);padding:18px 20px 30px;display:flex;flex-direction:column;gap:18px;overflow:auto}
+.ptabs{display:flex;gap:16px;border-bottom:1px solid var(--rule-2)}
+.ptabs button{padding:6px 0;color:var(--ink-3);border-bottom:1.5px solid transparent;margin-bottom:-1px;font-size:13px}
+.ptabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold)}
+.ptabs .n{font-family:var(--mono);font-size:10.5px;color:var(--gold);margin-left:4px}
+.pv{display:none;flex-direction:column;gap:18px}.pv[data-on]{display:flex}
+.ph{font-size:13px;font-weight:600;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.ph a,.ph .faint{font-weight:400;font-size:11.5px;color:var(--ink-3)}
+.ph a{border-bottom:1px solid var(--rule-2)}
+.vtl{position:relative;padding-left:16px;display:flex;flex-direction:column;gap:10px}
+.vtl::before{content:"";position:absolute;left:3px;top:6px;bottom:6px;width:1px;background:var(--rule-3)}
+.vtl .ev{position:relative;font-size:12.5px;line-height:1.3}
+.vtl .ev::before{content:"";position:absolute;left:-16px;top:4px;width:7px;height:7px;border-radius:50%;background:var(--sheet);border:1.2px solid var(--ink-3)}
+.vtl .ev.done::before{background:var(--gold);border-color:var(--gold)}
+.vtl .ev.cand::before{border:1.2px dashed var(--gold)}.vtl .ev.cand b{color:var(--gold)}
+.vtl .ev.ord::before{border-color:var(--ink-2)}
+.vtl .ev.today{color:var(--gold);font-size:10.5px}.vtl .ev.today::before{width:9px;height:2px;border:0;border-radius:0;background:var(--gold);left:-17px;top:6px}
+.vtl .ev b{font-weight:500;display:block}.vtl .ev span{color:var(--ink-3);font-size:11.5px}
+.panel .brain{padding:14px 16px 12px}
+.panel .brain .fields{grid-template-columns:72px 1fr}
+.panel .brain .fields dd{font-size:12.5px}
+.tree{display:flex;flex-direction:column}
+.tree .f{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:6px 0;border-bottom:1px solid var(--rule);font-size:12.5px}
+.tree .f span{font-family:var(--mono);font-size:11.5px;color:var(--ink)}
+.tree .f.dir span{color:var(--ink-2)}.tree .f.dir::before{content:"▸ ";color:var(--ink-3)}.tree .f.dir.open::before{content:"▾ "}
+.tree .f.sub{padding-left:18px}
+.tree .f small{color:var(--ink-3);font-size:11px;white-space:nowrap}
+.tree .f em{font-style:normal;color:var(--gold);font-size:11px}
+.tree .f.run span{color:var(--gold)}
+.foot-note{font-size:11.5px;color:var(--ink-3);line-height:1.5}
+.foot-note a{color:var(--ink-2);border-bottom:1px solid var(--rule-2)}
+.docview.one{grid-template-columns:1fr;margin-top:0}
+.agents{display:flex;flex-direction:column}
+.ag{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:12.5px;position:relative;padding-left:14px}
+.ag::before{content:"";position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:var(--ink-3)}
+.ag.run::before{background:var(--gold);box-shadow:0 0 0 3px var(--gold-ink)}.ag.done::before{background:var(--green)}
+.ag b{font-weight:500}.ag span{grid-column:1;color:var(--ink-3);font-size:11.5px}.ag em{grid-column:2;grid-row:1/3;font-style:normal;font-family:var(--mono);font-size:11px;color:var(--ink-2);align-self:start}
+@media (max-width:1100px){.spis3{grid-template-columns:1fr}.panel{border-left:0;border-top:1px solid var(--rule-2)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.seal[data-on]{opacity:.88;transform:rotate(-8deg)}}
 </style>
 </head>
@@ -290,84 +350,115 @@ h1 em{font-style:italic;color:var(--ink-3);font-weight:400}
     <form class="composer" onsubmit="return false"><span class="ctx">prax</span><input placeholder="Napíšte agentovi… napr. „založ spis Novák / rozvod“ alebo „čo mám dnes podať?“"><span class="k">⌘K</span><button class="send">Poslať</button></form>
   </section>
 
-  <!-- ================= SPIS + OKF BRAIN ================= -->
+  <!-- ================= SPIS: chat v strede, panel vpravo ================= -->
   <section class="screen" id="spis">
-    <div class="crumb"><a href="#" data-go="prehlad">Spisy</a> › obchodný spor</div>
-    <h1>ABC s.r.o. <em>v.</em> DEF a.s.</h1>
-    <div class="obal">
-      <div><span class="sc">Sp. zn.</span><span class="v mono">15C/123/2024</span></div>
-      <div><span class="sc">Súd</span><span class="v">Okresný súd Bratislava I</span></div>
-      <div><span class="sc">Klient</span><span class="v">ABC s.r.o.</span></div>
-      <div><span class="sc">Fáza</span><span class="v warn">príprava na pojednávanie</span></div>
-      <div><span class="sc">Priečinok</span><span class="v mono">2024-01 DEF - Zmluva o dielo - spor</span></div>
-    </div>
-
-    <div class="tl-wrap">
-      <svg viewBox="0 0 1160 150" aria-label="Timeline spisu">
-        <defs><linearGradient id="ph" x1="0" x2="1"><stop offset="0" stop-color="#C9A24A" stop-opacity=".22"/><stop offset="1" stop-color="#C9A24A" stop-opacity=".04"/></linearGradient></defs>
-        <g font-size="10.5" fill="#75808C" letter-spacing=".06em">
-          <rect x="20" y="112" width="300" height="18" fill="rgba(233,228,218,.05)"/><text x="30" y="125">I. STUPEŇ · ŽALOBA</text>
-          <rect x="320" y="112" width="420" height="18" fill="url(#ph)"/><text x="330" y="125" fill="#C9A24A">DOKAZOVANIE · POJEDNÁVANIE</text>
-          <rect x="740" y="112" width="400" height="18" fill="rgba(233,228,218,.03)" stroke="rgba(233,228,218,.12)" stroke-dasharray="3 3"/><text x="750" y="125">ROZHODNUTIE · OPRAVNÉ PROSTRIEDKY</text>
-        </g>
-        <line x1="20" x2="1140" y1="84" y2="84" stroke="rgba(233,228,218,.26)"/>
-        <line x1="20" x2="520" y1="84" y2="84" stroke="#C9A24A" stroke-width="1.5"/>
-        <g font-size="12" fill="#E9E4DA">
-          <circle cx="60" cy="84" r="5" fill="#C9A24A"/><text x="60" y="66" text-anchor="middle">Podanie žaloby</text><text x="60" y="100" text-anchor="middle" font-size="11" fill="#75808C">10. 1. 2025</text>
-          <circle cx="200" cy="84" r="5" fill="#C9A24A"/><text x="200" y="66" text-anchor="middle">Vyjadrenie žalovaného</text><text x="200" y="100" text-anchor="middle" font-size="11" fill="#75808C">10. 2. 2025</text>
-          <circle cx="350" cy="84" r="5" fill="#C9A24A"/><text x="350" y="66" text-anchor="middle">Doručený rozsudok</text><text x="350" y="100" text-anchor="middle" font-size="11" fill="#75808C">23. 5. · list č. 12</text>
-          <line x1="520" x2="520" y1="30" y2="110" stroke="#C9A24A" stroke-width="1.5"/><text x="526" y="38" font-size="10.5" fill="#C9A24A">dnes</text>
-          <circle cx="610" cy="84" r="5" fill="#10171F" stroke="#C9A24A" stroke-width="1.5" stroke-dasharray="2 2"/><text x="610" y="66" text-anchor="middle" fill="#C9A24A">Lehota na odvolanie</text><text x="610" y="100" text-anchor="middle" font-size="11" fill="#C9A24A">7. 6. · návrh, čaká na potvrdenie</text>
-          <circle cx="780" cy="84" r="5" fill="#10171F" stroke="#A8B0BA" stroke-width="1.5"/><text x="780" y="66" text-anchor="middle">Pojednávanie</text><text x="780" y="100" text-anchor="middle" font-size="11" fill="#75808C">25. 6. 2025 · 10:00</text>
-          <circle cx="940" cy="84" r="4" fill="none" stroke="#75808C" stroke-width="1.2"/><text x="940" y="66" text-anchor="middle" fill="#A8B0BA">Návrh dôkazov</text><text x="940" y="100" text-anchor="middle" font-size="11" fill="#75808C">plánované · do 10 dní</text>
-          <circle cx="1090" cy="84" r="4" fill="none" stroke="#75808C" stroke-width="1.2"/><text x="1090" y="66" text-anchor="middle" fill="#A8B0BA">Záverečné vyjadrenie</text><text x="1090" y="100" text-anchor="middle" font-size="11" fill="#75808C">plánované</text>
-        </g>
-      </svg>
-      <div class="tl-leg"><span class="c">udialo sa</span><span class="k">návrh agenta</span><span class="m">nariadené</span><span class="p">plánované</span><a href="#" style="margin-left:auto">Celá chronológia a auditná stopa →</a></div>
-    </div>
-
-    <div class="two">
-      <div>
-        <div class="reg dok">
-          <div class="reg-h"><h2>Dokumenty</h2><span class="meta">OKF · 12 súborov<a href="#">Otvoriť priečinok</a><a href="#">Nahrať</a></span></div>
-          <a class="r" href="#"><span class="no">12.</span><span class="t">Rozsudok OS BA I.pdf<small>02_podania · doručený 23. 5. · OCR hotové</small></span><span class="st ai">lehota navrhnutá</span><span class="d">23. 5.</span><span class="go">otvoriť →</span></a>
-          <a class="r" href="#"><span class="no">11.</span><span class="t">Vyjadrenie žalovaného.pdf<small>02_podania</small></span><span class="st ok">zaradené</span><span class="d">10. 2.</span><span class="go">otvoriť →</span></a>
-          <a class="r" href="#"><span class="no">4.</span><span class="t">Zmluva o dielo.docx<small>01_zmluvy · podpísaná QES · sledované zmeny</small></span><span class="st ok">podpísaná</span><span class="d">5. 1.</span><span class="go">upraviť →</span></a>
-          <a class="r" href="#"><span class="no">1.</span><span class="t">Plná moc.pdf<small>00_klient</small></span><span class="st ok">zaradené</span><span class="d">3. 1.</span><span class="go">otvoriť →</span></a>
+    <div class="spis3">
+      <div class="chat">
+        <div class="chat-head">
+          <div class="crumb"><a href="#" data-go="prehlad">Spisy</a> › obchodný spor</div>
+          <h1>ABC s.r.o. <em>v.</em> DEF a.s.</h1>
+          <div class="obal compact">
+            <div><span class="sc">Sp. zn.</span><span class="v mono">15C/123/2024</span></div>
+            <div><span class="sc">Súd</span><span class="v">OS Bratislava I</span></div>
+            <div><span class="sc">Fáza</span><span class="v warn">príprava na pojednávanie</span></div>
+            <div><span class="sc">Lehoty</span><span class="v">1 návrh<small>čaká</small></span></div>
+          </div>
         </div>
-        <div class="reg leh" style="margin-top:28px">
-          <div class="reg-h"><h2>Úlohy</h2><span class="meta">1 / 4 hotové<a href="#">Všetky</a></span></div>
-          <a class="r" href="#"><span class="no">✓</span><span class="d">hotové</span><span class="t" style="color:var(--ink-3)">Preštudovať vyjadrenie žalovaného</span><span class="ref"></span><span class="st off">10. 2.</span></a>
-          <a class="r" href="#"><span class="no">2.</span><span class="d soon">do 2 dní</span><span class="t">Reakcia na vyjadrenie</span><span class="ref">draft v Asistentovi</span><span class="st ai">pripravené</span></a>
-          <a class="r" href="#"><span class="no">3.</span><span class="d">do 5 dní</span><span class="t">Príprava na pojednávanie</span><span class="ref"></span><span class="st">otvorené</span></a>
-          <a class="r" href="#"><span class="no">4.</span><span class="d">do 10 dní</span><span class="t">Návrh dôkazov</span><span class="ref"></span><span class="st">otvorené</span></a>
+
+        <div class="msgs">
+          <div class="msg me"><div class="who">Vy · 08:58</div><p>Prišiel rozsudok z okresného súdu, je v 02_podania. Pozri ho a povedz, čo z neho vyplýva.</p></div>
+
+          <div class="msg ai"><div class="who"><i></i>Agent · 09:02</div>
+            <div class="tools"><span>read <b>Rozsudok OS BA I.pdf</b></span><span>ocr · 6 strán</span><span>slov-lex <b>§ 362 CSP</b> ✓</span><span>judikatúra · 3 rozhodnutia</span><span>okf-validate ✓</span></div>
+            <p>Rozsudok (list č. 12) som prečítal. Súd žalobu <b>zamietol</b> v celom rozsahu s odôvodnením, že omeškanie zhotoviteľa nebolo preukázané preberacím protokolom. Doručený bol <span class="mono">23. 5. 2024</span> do elektronickej schránky.</p>
+            <p>Z toho vyplýva jedna lehota, ktorú treba potvrdiť:</p>
+            <div class="gate-card">
+              <div class="gc-h"><span>Návrh lehoty · list č. 14</span><span class="cert"><i></i>istota vysoká</span></div>
+              <dl class="fields"><dt>Právny základ</dt><dd class="mono">§ 362 ods. 1 CSP</dd><dt>Od</dt><dd>doručenie 23. 5. 2024 <small>doručenka · OCR</small></dd><dt>Lehota</dt><dd class="hero">piatok 7. 6. 2024</dd></dl>
+              <div class="gc-a"><button class="btn gold sm" data-go="brana">Skontrolovať a potvrdiť</button><button class="btn quiet sm">Odložiť</button><span class="faint">· po potvrdení: spis.md + ICS + audit</span></div>
+            </div>
+            <p>Zapísal som do <span class="mono">_STATUS.md</span> návrh faktu <em>„rozsudok doručený 23. 5., žaloba zamietnutá“</em> — čaká na váš podpis v OKF Brain. Mám pripraviť koncept odvolania? Navrhujem argumentovať cez čl. 4.2 zmluvy (splátka, nie záloha) — TP-003.</p>
+          </div>
+
+          <div class="msg me"><div class="who">Vy · 09:06</div><p>Áno, priprav koncept odvolania. Použi vzor z môjho spisu Kováč a drž sa môjho štýlu.</p></div>
+
+          <div class="msg ai running"><div class="who"><i></i>Agent · pracuje</div>
+            <div class="tools"><span>skill <b>koncept-odvolania</b></span><span>memory L1 · štýl podaní</span><span>subagent <b>rešerš judikatúry</b> beží…</span><span>subagent <b>kontrola citácií</b> čaká</span></div>
+            <p class="faint">Píšem koncept do <span class="mono">02_podania/Odvolanie - koncept v1.docx</span> · otvorí sa v paneli vpravo, keď bude hotový.</p>
+          </div>
         </div>
+
+        <form class="composer" onsubmit="return false"><span class="ctx">ABC v. DEF</span><input placeholder="Napíšte agentovi v tomto spise… / pre skills a pluginy"><span class="k">⌘K</span><button class="send">Poslať</button></form>
       </div>
 
-      <div class="brain" style="margin-top:34px">
-        <h2>OKF Brain <span>L2 · spisová pamäť · provenance ✓</span></h2>
-        <dl class="fields">
-          <dt>Stav</dt><dd>Príprava na pojednávanie; rozsudok doručený, plynie lehota na odvolanie (návrh).</dd>
-          <dt>Fakty</dt><dd>Zmluva o dielo z 12. 3. 2024. Nesplnený termín odovzdania. Uhradených 40 % ceny diela (82 400 €).<a href="#">_STATUS.md</a></dd>
-          <dt>Taktika</dt><dd>TP-003: argumentovať omeškaním dodávateľa, nie vadami.<a href="#">MEMORY.md</a></dd>
-          <dt>Ďalšie kroky</dt><dd><ul class="steps"><li>Pripraviť dôkaznú stratégiu k omeškaniu</li><li>Skontrolovať preberací protokol</li><li>Zvážiť návrh na zabezpečenie dôkazu</li></ul></dd>
-        </dl>
-        <div class="layers">
-          <svg viewBox="0 0 400 92" aria-label="Vrstvy pamäte">
-            <g font-size="11" fill="#A8B0BA">
-              <rect x="0" y="6" width="400" height="22" fill="rgba(233,228,218,.03)" stroke="rgba(233,228,218,.12)"/><text x="10" y="21" font-weight="500" fill="#E9E4DA">L1</text><text x="34" y="21">prax · preferencie advokáta</text><text x="390" y="21" text-anchor="end" fill="#75808C">bez zmeny</text>
-              <rect x="0" y="34" width="400" height="22" fill="rgba(201,162,74,.10)" stroke="#C9A24A"/><text x="10" y="49" font-weight="500" fill="#E9E4DA">L2</text><text x="34" y="49">tento spis · fakty, stav, lehoty</text><text x="390" y="49" text-anchor="end" fill="#C9A24A" font-weight="500">1 návrh zápisu čaká</text>
-              <rect x="0" y="62" width="400" height="22" fill="rgba(233,228,218,.03)" stroke="rgba(233,228,218,.12)"/><text x="10" y="77" font-weight="500" fill="#E9E4DA">L3</text><text x="34" y="77">právo · zdroje, citácie, vzory</text><text x="390" y="77" text-anchor="end" fill="#75808C">iba verejné</text>
-            </g>
-          </svg>
-        </div>
-        <div class="foot"><span>aktualizované 12. 6. · agent nezapisuje bez podpisu</span><a href="#" data-go="recon">Posúdiť návrh zápisu</a></div>
-      </div>
-    </div>
+      <aside class="panel">
+        <div class="ptabs" role="tablist"><button aria-selected="true" data-p="p-spis">Spis</button><button data-p="p-files">Súbory</button><button data-p="p-doc">Dokument</button><button data-p="p-agents">Agenti <span class="n">2</span></button></div>
 
-    <div class="agent-line"><i></i><div><b>Agent v spise</b> · 09:02 — Rozsudok (list č. 12) som prečítal. Navrhujem lehotu na odvolanie do 7. 6. (<span class="mono">§ 362 ods. 1 CSP</span>) — čaká na vašu kontrolu v bráne. Mám pripraviť koncept odvolania?
-      <div class="tools"><span>read rozsudok.pdf</span><span>slov-lex § 362 ✓</span><span>judikatúra · 3 rozhodnutia</span><span>lehoty.md +1 kandidát</span></div></div></div>
-    <form class="composer" onsubmit="return false"><span class="ctx">ABC v. DEF</span><input placeholder="Napíšte agentovi v tomto spise… napr. „priprav koncept odvolania“"><span class="k">⌘K</span><button class="send">Poslať</button></form>
+        <div class="pv" id="p-spis" data-on>
+          <div class="ph">Timeline <a href="#">celá →</a></div>
+          <div class="vtl">
+            <div class="ev done"><b>Podanie žaloby</b><span>10. 1. 2025</span></div>
+            <div class="ev done"><b>Vyjadrenie žalovaného</b><span>10. 2. 2025</span></div>
+            <div class="ev done"><b>Doručený rozsudok</b><span>23. 5. · list č. 12</span></div>
+            <div class="ev today"><b>dnes</b></div>
+            <div class="ev cand"><b>Lehota na odvolanie</b><span>7. 6. · návrh, čaká</span></div>
+            <div class="ev ord"><b>Pojednávanie</b><span>25. 6. 2025 · 10:00</span></div>
+            <div class="ev plan"><b>Návrh dôkazov</b><span>plánované</span></div>
+          </div>
+
+          <div class="brain">
+            <h2>OKF Brain <span>L2 · provenance ✓</span></h2>
+            <dl class="fields">
+              <dt>Stav</dt><dd>Rozsudok doručený; plynie lehota na odvolanie (návrh).</dd>
+              <dt>Fakty</dt><dd>Zmluva o dielo 12. 3. 2024 · nesplnený termín · uhradených 40 % (82 400 €).<a href="#">_STATUS.md</a></dd>
+              <dt>Taktika</dt><dd>TP-003: omeškanie, nie vady.<a href="#">MEMORY.md</a></dd>
+              <dt>Ďalšie</dt><dd><ul class="steps"><li>Koncept odvolania (beží)</li><li>Preberací protokol</li><li>Zabezpečenie dôkazu</li></ul></dd>
+            </dl>
+            <div class="layers"><svg viewBox="0 0 400 92" aria-label="Vrstvy pamäte"><g font-size="11" fill="#A8B0BA"><rect x="0" y="6" width="400" height="22" fill="rgba(233,228,218,.03)" stroke="rgba(233,228,218,.12)"/><text x="10" y="21" font-weight="500" fill="#E9E4DA">L1</text><text x="34" y="21">moja prax · štýl, preferencie</text><text x="390" y="21" text-anchor="end" fill="#75808C">bez zmeny</text><rect x="0" y="34" width="400" height="22" fill="rgba(201,162,74,.10)" stroke="#C9A24A"/><text x="10" y="49" font-weight="500" fill="#E9E4DA">L2</text><text x="34" y="49">tento spis</text><text x="390" y="49" text-anchor="end" fill="#C9A24A" font-weight="500">1 návrh zápisu čaká</text><rect x="0" y="62" width="400" height="22" fill="rgba(233,228,218,.03)" stroke="rgba(233,228,218,.12)"/><text x="10" y="77" font-weight="500" fill="#E9E4DA">L3</text><text x="34" y="77">právo · iba verejné</text></g></svg></div>
+            <div class="foot"><span>agent nezapisuje bez podpisu</span><a href="#" data-go="recon">Posúdiť zápis</a></div>
+          </div>
+        </div>
+
+        <div class="pv" id="p-files">
+          <div class="ph">Súbory <span class="faint">OKF · 2024-01 DEF - Zmluva o dielo - spor</span></div>
+          <div class="tree">
+            <div class="f dir"><span>spis.md</span><small>karta veci</small></div>
+            <div class="f"><span>_STATUS.md</span><small>stav · fakty · lehoty</small><em>› 1 návrh</em></div>
+            <div class="f"><span>MEMORY.md</span><small>TP-001 – TP-003</small></div>
+            <div class="f"><span>AGENTS.md · CLAUDE.md</span><small>kontext pre agentov</small></div>
+            <div class="f"><span>lehoty.md</span><small>1 potvrdená · 1 kandidát</small></div>
+            <div class="f dir open"><span>00_klient</span><small>2</small></div>
+            <div class="f sub"><span>Plná moc.pdf</span><small>list č. 1</small></div>
+            <div class="f dir open"><span>01_zmluvy</span><small>3</small></div>
+            <div class="f sub"><span>Zmluva o dielo.docx</span><small>list č. 4 · podpísaná QES</small></div>
+            <div class="f dir open"><span>02_podania</span><small>5</small></div>
+            <div class="f sub"><span>Vyjadrenie žalovaného.pdf</span><small>list č. 11</small></div>
+            <div class="f sub"><span>Rozsudok OS BA I.pdf</span><small>list č. 12 · OCR</small></div>
+            <div class="f sub run"><span>Odvolanie - koncept v1.docx</span><small>píše agent…</small></div>
+            <div class="f dir"><span>03_komunikacia</span><small>4</small></div>
+            <div class="f dir"><span>04_dokazy</span><small>0</small></div>
+          </div>
+          <div class="foot-note">Obyčajný priečinok na disku. Funguje aj v Claude Code / opencode bez appky.</div>
+        </div>
+
+        <div class="pv" id="p-doc">
+          <div class="ph">Odvolanie - koncept v1.docx <a href="#">sledované zmeny · zap.</a></div>
+          <div class="docview one"><div class="page"><h4>ODVOLANIE</h4>proti rozsudku Okresného súdu Bratislava I sp. zn. <span class="mono">15C/123/2024</span> zo dňa 20. 5. 2024<br><br>Žalobca podáva v zákonnej lehote odvolanie … <mark>Súd prvej inštancie nesprávne posúdil platbu zo dňa 15. 3. 2024 ako zálohu; podľa čl. 4.2 zmluvy ide o prvú splátku ceny diela</mark> …<br><br><span class="faint">— koncept píše agent, 2 / 6 odsekov —</span></div></div>
+          <div class="foot-note">Úpravy priamo v editore; uloženie spustí <a href="#" data-go="recon">reconcile</a>. Podpísať: Autogram (KEP + QTS).</div>
+        </div>
+
+        <div class="pv" id="p-agents">
+          <div class="ph">Agenti v spise</div>
+          <div class="agents">
+            <div class="ag run"><b>koncept-odvolania</b><span>hlavný · píše 02_podania/Odvolanie - koncept v1.docx</span><em>beží 02:14</em></div>
+            <div class="ag run"><b>rešerš judikatúry</b><span>subagent · judikatúra SR · „omeškanie zhotoviteľa preberací protokol“</span><em>3 / 5 nálezov</em></div>
+            <div class="ag wait"><b>kontrola citácií</b><span>subagent · overí každý § a sp. zn. v Slov-Lex a judikatúre</span><em>čaká</em></div>
+            <div class="ag done"><b>ocr + zaradenie</b><span>Rozsudok OS BA I.pdf → 02_podania, list č. 12</span><em>09:01 ✓</em></div>
+          </div>
+          <div class="foot-note">Žiadny agent nemá nástroj na odoslanie ani podpis. Audit: <span class="mono">_audit/2026-08-23.jsonl</span></div>
+        </div>
+      </aside>
+    </div>
   </section>
 
   <!-- ================= KONTROLA LEHOTY ================= -->
@@ -457,7 +548,7 @@ h1 em{font-style:italic;color:var(--ink-3);font-weight:400}
       <div class="r"><span class="no">4.</span><span class="t">OKF skripty<small>okf-validate · okf-freshness · vlastné</small></span><span class="trust loc">lokálne</span><span class="ref">3 skripty · posledný beh OK</span><span class="st ok">pripravené</span><span class="go">spustiť</span></div>
       <div class="r"><span class="no">5.</span><span class="t">Whisper transkripcia<small>sherpa-onnx · model medium-sk · 1,5 GB</small></span><span class="trust loc">lokálne</span><span class="ref">GPU áno</span><span class="st ok">pripravené</span><span class="go">modely</span></div>
       <div class="r"><span class="no">6.</span><span class="t">OCR<small>tesseract 5 · sk · cs · en</small></span><span class="trust loc">lokálne</span><span class="ref">—</span><span class="st ok">pripravené</span><span class="go">nastavenia</span></div>
-      <div class="r"><span class="no">7.</span><span class="t">Autogram<small>podpisovanie QES/QTS · externý proces</small></span><span class="trust loc">lokálne</span><span class="ref">mac · win</span><span class="st warn">nenájdený</span><span class="go">nastaviť cestu →</span></div>
+      <div class="r"><span class="no">7.</span><span class="t">Autogram<small>KEP + kvalifikovaná časová pečiatka · zaručená konverzia (advanced) · externý proces, neskôr modul LAWOSS</small></span><span class="trust loc">lokálne</span><span class="ref">mac · win</span><span class="st warn">nenájdený</span><span class="go">nastaviť cestu →</span></div>
       <div class="r"><span class="no">8.</span><span class="t">Context7<small>dokumentácia knižníc</small></span><span class="trust ext">tretia strana · dáta odchádzajú</span><span class="ref">2 nástroje</span><span class="st off">vypnuté v spisoch</span><span class="go">zapnúť</span></div>
     </div>
 
@@ -520,7 +611,7 @@ h1 em{font-style:italic;color:var(--ink-3);font-weight:400}
     document.querySelectorAll('.pb [data-go]').forEach(b=>b.setAttribute('aria-selected',b.dataset.go===id));
     document.querySelectorAll('.tab').forEach(t=>{t.removeAttribute('aria-current');if(t.dataset.go===id)t.setAttribute('aria-current','page')});
     window.scrollTo(0,0)};
-  document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;e.preventDefault();go(b.dataset.go)});
+  document.addEventListener('click',e=>{const p=e.target.closest('[data-p]');if(p){document.querySelectorAll('.pv').forEach(v=>v.toggleAttribute('data-on',v.id===p.dataset.p));document.querySelectorAll('.ptabs button').forEach(b=>b.setAttribute('aria-selected',b===p));return}const b=e.target.closest('[data-go]');if(!b)return;e.preventDefault();go(b.dataset.go)});
   const seal=document.getElementById('seal'),st=document.getElementById('state');
   document.getElementById('confirm').addEventListener('click',()=>{seal.setAttribute('data-on','');st.setAttribute('data-on','');st.innerHTML='Stav: <b>potvrdené</b> · zapísané do spisu, ICS vytvorené, audit 0x4F2A';});
 })();

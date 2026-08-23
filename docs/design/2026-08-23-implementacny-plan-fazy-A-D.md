@@ -36,7 +36,7 @@ Spec 0011 je **mechanika** (settings tab `lawoss`, `lawoss.config.md`, agent-dri
 | B2 | Horný blok `app-sidebar.tsx` → `<LawossTabs/>` (1 riadok) — alebo upstream PR „sidebar slot v ShellConfig“ | 🟡 | S | 1 |
 | B3 | `lawoss/shell/routes.tsx` + mount v `app-root.tsx` (+ redirect `/` → `/prehlad`) | 🟢 + 🟡 | M | 1 |
 | B4 | `lawoss/shell/layout.tsx`: list (sheet) s obalom, H1, composer s kontextom; prázdne stavy pre každú routu (1 veta + 1 zlatá akcia) | 🟢 | S | — |
-| B5 | Settings tab `lawoss` (spec 0011 A) | 🟢 + 🟡 | M | 1 |
+| B5 | Settings tab `lawoss` (spec 0011 A) ako **editovateľná vrstva**: profil, štýl/pravidlá (editor textu), skills (otvoriť/upraviť SKILL.md), prompty s diffom, OKF, agent — všetko súbory na disku (IA §6) | 🟢 + 🟡 | L | 1 |
 | B6 | `sk.ts` + `cs.ts` + registrácia v `i18n/index.ts`; stratégia voči `ci-i18n.yml` (rozhodnutie §7) | 🟢 + 🟡 | L | 1 |
 | B7 | Command palette: „Nový spis“, „Usporiadaj spis“, „Skontrolovať lehoty“ (spec 0011) | 🟡 | S | 1 |
 
@@ -49,7 +49,7 @@ Poradie: Brain → lehoty → reconcile → konektory/marketplace (Q07 + to, čo
 | # | Pohľad | Stavebné prvky (`lawoss/ui`) | Dáta / skill | Nár. |
 |---|---|---|---|---|
 | C1 | `lawoss/okf/read.ts` — parser `spis.md` (frontmatter), `_STATUS.md`, `MEMORY.md` (TP-xxx), `lehoty.md` (JSON front-matter); **read-only**; + `lawoss/ui/preview.tsx` na vizuálnu kontrolu prvkov | — | OKF v0.1 formáty zo skillu `novy-spis` | M |
-| C2 | **Spis + OKF Brain** (`/spis/:id`): obal, timeline SVG s fázami, register dokumentov (otvoriť v upstream editore), úlohy, Brain panel s vrstvami, agent line + composer (session filtrovaná na priečinok) | obal, register, timeline, brain, composer-context | C1; session = upstream `SessionRoute` s route state | L |
+| C2 | **Spis** (`/spis/:id`) = upstream chat v strede + náš panel vpravo (taby Spis · Súbory · Dokument · Agenti): obal, zvislá timeline, Brain s vrstvami, OKF strom, subagenti; návrh lehoty ako karta brány v chate | obal, vtimeline, brain, tree, agents, gate-card, composer-context | C1; session = upstream `SessionRoute` s route state; panel = upstream side-panel taby + naše | L |
 | C3 | **Lehoty + brána** (`/lehoty`, `/lehoty/:id`): register lehôt, pás 14 dní, brána s náhľadom dokumentu a locatorom, pečať; potvrdenie volá skill `lehoty` (zápis + ICS + audit) | register, deadline-strip, gate, docview, seal | spec 0005 stavy; skill `lehoty-sk` (IR #33), `lehoty-cz` (VŘ) | L |
 | C4 | **Prehľad** (`/prehlad`): obal praxe, „Čaká na advokáta“ (kandidáti lehôt + návrhy zápisov + drafty), pás lehôt, agent line, composer, prijímacia pečiatka | obal, register, deadline-strip, stamp | agregácia C1 cez všetky spisy koreňa | M |
 | C5 | **Reconcile** (`/spis/:id/reconcile/:docId`): hook na uloženie v upstream DOCX editore → skill `reconcile` vytvorí diff + návrhy → pohľad diff + „čo si agent chce zapamätať“ + výber vrstvy + brána | diff, learn, gate | spec 0009; verzie dokumentu v OKF; zápis do `MEMORY.md`/`_STATUS.md` len po podpise | L |
@@ -68,6 +68,14 @@ Poradie: Brain → lehoty → reconcile → konektory/marketplace (Q07 + to, čo
 | D3 | Klávesnica: brána ⏎/E/Esc, command palette pre každý pohľad (ADR 0007 p. 2) | M |
 | D4 | Prázdne/chybové stavy podľa jazyka; SK copy MČ, CZ copy VŘ | M |
 | D5 | Kontrast audit (axe), Windows ClearType (IR), `impeccable detect` nad `lawoss/**` = 0 nálezov | S |
+
+## 4b · Fáza E — autorizácia dokumentov (eIDAS), po D
+
+| # | Úloha | Zóna | Nár. |
+|---|---|---|---|
+| E1 | Konektor Autogram: detekcia (mac: autogram-macOS, win: Autogram), „Podpísať“ z dokumentu → externý proces → podpísaný súbor do OKF + audit + pečať | 🟢 `lawoss/hub/tools/autogram.ts` | M |
+| E2 | Stav „podpísaná KEP + QTS“ v registri dokumentov a v timeline | 🟢 | S |
+| E3 | Modul `lawoss/autorizacia` vytiahnutý z autogram-macOS (KEP, QTS, neskôr zaručená konverzia) — samostatný spec/ADR, nie V1/V2 | 🟢 + ADR | L+ |
 
 ## 5 · Rozpočet `PATCHES.md` po fáze C
 

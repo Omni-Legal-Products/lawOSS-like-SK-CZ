@@ -31,17 +31,32 @@ Každý náš pohľad je **derivát stavu na disku** (`_STATUS.md`, `spis.md`, `
 
 Záložky nahrádzajú horný blok upstream sidebaru (New Task / Learning / Workflows / Integrations / Recorder) — tie položky sa presúvajú: Learning → Reconcile (v spise), Workflows → Nastavenia, Integrations → Konektory, Recorder → Konektory › Whisper. Priečinky (60 % sidebaru) ostávajú ako sú, len v našom skine.
 
-## 3 · Päť pohľadov × štyri tentpoles
+## 3 · Rozloženie spisu: Codex / Cowork model
+
+```
+┌ záložky ─┬──────────── chat (hlavná plocha) ────────────┬─ panel 360 px ───────┐
+│ Prehľad  │ obal spisu (Sp. zn. · súd · fáza · lehoty)    │ Spis · Súbory ·      │
+│ Spisy 24 │ správy: vy / agent (+ riadok tool-callov)     │ Dokument · Agenti    │
+│ Lehoty 7 │ návrh s právnym účinkom = karta brány v chate │ timeline (zvislá)    │
+│ …        │ skills a pluginy sa volajú odtiaľto           │ OKF Brain + vrstvy   │
+│          │ composer s kontextom spisu (⌘K)               │ strom OKF / editor / │
+│          │                                               │ subagenti + audit    │
+└──────────┴───────────────────────────────────────────────┴──────────────────────┘
+```
+
+Väčšina funkcionality žije v chate (skills, pluginy, MCP); panel ukazuje *stav na disku* a *čo robia agenti*; brána sa otvára z karty v chate na celú plochu iba keď treba porovnať dokument so zdrojom. Toto je upstream `SessionRoute` + upstream side panel s našimi tabmi — nie nová obrazovka.
+
+## 3b · Päť pohľadov × štyri tentpoles
 
 | Pohľad | Tentpole | Diagram (aby to nebol wall of text) | Dáta | Hi-fi |
 |---|---|---|---|---|
 | **Prehľad** | všetky | pás lehôt 14 dní | agregácia `_STATUS.md` + `lehoty.md` + health konektorov | ✅ |
-| **Spis + OKF Brain** | 1 · OKF Brain | timeline spisu s fázami konania; vrstvy pamäte L1/L2/L3 | `spis.md`, `_STATUS.md`, `MEMORY.md`, `lehoty.md`; dokumenty = OKF priečinok; composer = session v spise | ✅ |
+| **Spis** = chat v strede + panel vpravo | 1 · OKF Brain (+ 2) | v paneli: vertikálna timeline, vrstvy pamäte L1/L2/L3; v chate: návrh lehoty ako karta brány | stred = upstream session (chat) filtrovaná na priečinok spisu; panel = taby **Spis** (obal, timeline, Brain) · **Súbory** (OKF strom s číslami listov) · **Dokument** (upstream DOCX editor) · **Agenti** (hlavný agent + subagenti, stav, audit) | ✅ |
 | **Kontrola lehoty** (brána) | 2 · lehoty + dokumenty | náhľad dokumentu s locatorom vedľa citácie predpisu; pečať | spec 0005 model (`source_locator`, `calculation_trace`, `uncertainty`, stavy) | ✅ |
 | **Reconcile** | 1 · OKF Brain (self-healing) | diff v1 agent / v2 advokát; panel „čo si agent chce zapamätať“ s výberom vrstvy | spec 0009: diff z verzií dokumentu v OKF, návrhy do `MEMORY.md` (L1) / `_STATUS.md` (L2), žiadny autonómny zápis | ✅ |
 | **Konektory + Marketplace** | 3 · MCP, 4 · marketplace | schéma LAWOSS → opencode → konektory s trust labelom | `connections/store` (MCP remote/local), lokálne nástroje (Autogram, OCR, Whisper, OKF skripty), `lawoss-registry` manifesty (spec 0011 B) | ✅ |
 
-Dokument s priamou editáciou = upstream artifact DOCX editor (`artifact-docx-editor.tsx`) v side paneli, reskin + `suggesting` režim (nápad #29) + meno advokáta (#31). Reconcile sa spúšťa **pri uložení** v tomto editore.
+Súbory = upstream workspace files panel v skine OKF stromu (čísla listov, riadiace súbory hore, „píše agent…“). Dokument s priamou editáciou = upstream artifact DOCX editor (`artifact-docx-editor.tsx`) v side paneli, reskin + `suggesting` režim (nápad #29) + meno advokáta (#31). Reconcile sa spúšťa **pri uložení** v tomto editore.
 
 Čo sa **nestavia** (zo zamietnutej v1): samostatné obrazovky Rešerš, Podpisovanie, Zaručená konverzia, Automatizácia e-mailov, Lokálne nástroje. Rešerš a subjekty = skills v chate (výsledky ako registre v artifact preview); podpisovanie = Autogram v Konektoroch + akcia v dokumente; konverzia mimo V1/V2 (spec 0010); e-maily V2.
 
@@ -93,9 +108,25 @@ type ConnectorRow = { name: string; sub: string; trust: Trust; kind: 'remote' | 
 type RegistryItem = { id: string; name: string; sub: string; type: 'mcp' | 'skill' | 'plugin'; source: string; pin: string; install: ('remote' | 'local')[]; requires?: string[]; verified: boolean };
 ```
 
-## 6 · Nastavenia › tab LAWOSS
+## 6 · Nastavenia › tab LAWOSS — personalizácia je produkt, nie doplnok
 
-Advokát (meno, titul, jurisdikcia) · OKF (koreň, nomenklatúra, default moduly) · Agent (default autonómia, výstupný formát) · Vzhľad (téma — default tmavá, jazyk sk/cs/en) · odkazy Konektory / Marketplace. Podľa spec 0011 A, bez zmeny.
+Doktrína (ADR 0009): výstup každého advokáta má byť po onboardingu iný. Preto tab LAWOSS nie je formulár s piatimi poľami, ale **editovateľná vrstva**:
+
+| Sekcia | Čo si advokát mení | Kde to žije (prenositeľné) |
+|---|---|---|
+| Advokát | meno, titul, jurisdikcia SK/CZ, podpisový blok | `~/.lawoss/profil.md` (L1) |
+| Štýl a pravidlá | ako píše podania, čo nikdy nepoužíva, formát citácií — **textový editor, nie prepínače**; reconcile sem navrhuje doplnky | `MEMORY.md` L1 + `prompts/sk/*.md` |
+| Skills | zoznam nainštalovaných s možnosťou **otvoriť a upraviť SKILL.md**, zapnúť/vypnúť, duplikovať ako vlastný | `lawoss/skills/` + používateľské `~/.lawoss/skills/` |
+| Prompty | systémové prompty per oblasť (common · sk · cz) ako súbory s diffom voči defaultu | `prompts/` |
+| OKF | koreň, nomenklatúra, profil spisu (A/B/C), moduly | `lawoss.config.md` |
+| Agent | default autonómia pre nové spisy, výstupný formát, model (lokálny/cloud/auto) | `lawoss.config.md` + opencode config |
+| Konektory · Marketplace | odkazy | — |
+
+Všetko sú súbory na disku → rovnaké nastavenia fungujú v Claude Code aj opencode bez appky (OKF prenositeľnosť). Onboarding = 4 kroky: kto ste → kde máte spisy → **ako píšete** (ukážka vlastného podania, z ktorého agent odvodí prvé pravidlá štýlu do L1, advokát podpíše) → konektory.
+
+## 7 · Autorizácia dokumentov (eIDAS) — počítať s tým od začiatku
+
+MČ má vlastnú appku **Autogram macOS** ([originalmagneto/autogram-macOS](https://github.com/originalmagneto/autogram-macOS), SwiftUI, KEP + kvalifikovaná časová pečiatka, advanced režim zaručená konverzia cez EZZK; overené GitHub API 2026-08-23, aktualizované 22. 8.). Postup: (1) teraz Autogram ako **externý proces** v Konektoroch (detekcia, „Podpísať“ z dokumentu odovzdá súbor, výsledok späť do OKF + audit); (2) neskôr vytiahnuť systém autorizácie ako modul LAWOSS (`lawoss/autorizacia`, fáza E v pláne). Pravidlá spec 0007 platia: advokát iniciuje, PIN/certifikát nikdy cez LAWOSS, agent nemá nástroj na podpis (ADR 0007 p. 5). Pečať v UI po úspešnom podpise = rovnaký prvok ako pri lehote.
 
 ---
 

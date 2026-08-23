@@ -84,6 +84,8 @@ Brand concept: riadok „Inter — UI“ sa mení na „IBM Plex Sans — UI“ 
 | **Prijímacia pečiatka** | ghost v rohu: `LAWOSS · došlo 23. 08. 2026 · 09:14 · 3 na rozhodnutie` (mono, 55 %) | Prehľad — jediný „delight“ na domovskej obrazovke |
 | **Diff + poznatok** | dvojstĺpcový diff (v1 agent / v2 advokát, del/ins tintované) → panel „Čo si agent chce zapamätať“: pravidlo s markerom, výber vrstvy L1/L2, dôkaz | Reconcile |
 | **Schéma konektorov** | SVG: LAWOSS → opencode (skills, prompty, *žiadny nástroj na odoslanie*) → konektory so stavom a trust labelom | Konektory |
+| **Chat** | správy „Vy“ (ľavá linka) / „Agent“ (zlatá bodka) + riadok tool-callov v mono; návrh s právnym účinkom ako **karta brány** (2 px zlatý hrot, kolónky, hero hodnota, 1 zlatá akcia) — nie modal | Spis (stred) |
+| **Panel** | pravý panel 360 px s tabmi Spis · Súbory · Dokument · Agenti; zvislá timeline; OKF strom s číslami listov; zoznam agentov so stavom | Spis (vpravo) |
 | **Composer** | LegalWork chat vstup, prilepený dole, s kontextom (`prax` / `ABC v. DEF`) v mono zlatom | Prehľad, Spis — chat nezmizol, je v spise |
 | **Agent line** | posledná správa agenta ako jeden odsek so zlatou bodkou + riadok tool-callov v mono | nad composerom |
 
