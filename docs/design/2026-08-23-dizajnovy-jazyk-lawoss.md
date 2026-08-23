@@ -1,181 +1,112 @@
-# Dizajnový jazyk LAWOSS — tokeny, typografia, motion, vzory
+# Dizajnový jazyk LAWOSS — „podací denník na tmavom stole“
 
-- **Zostavil:** Marián Čuprík (MČ) s AI asistenciou · 2026-08-23
-- **Stav:** 📝 návrh na odklep · **nie reskin LegalWorku, samostatný jazyk** realizovaný cez upstream token architektúru
-- **Živý prototyp:** [`hifi/lawoss-hifi.html`](hifi/lawoss-hifi.html) *(self-contained; 4 obrazovky + tokeny; prepínač dark/light)*
-- **Nadväzuje na:** [brand concept](../brand-concept.md) · mockupy 01–10 (21. 8.) · [audit](2026-08-23-audit-sucasnej-appky.md) · [ADR 0009 doktrína](../../decisions/0009-zakladna-produktova-doktrina.md) · [ADR 0007 agent-first](../../decisions/0007-agent-first-architektura.md)
-
----
-
-## 0 · Téza v jednej vete
-
-**Tmavý navy ako pracovný stôl advokáta, zlatá ako pečať rozhodnutia.** Všetko ostatné je tiché: hairline linky, veľkorysý priestor, presné identifikátory. Zlatá sa *zarába* — objaví sa iba tam, kde advokát rozhoduje alebo kde je zdroj overený. Keď je na obrazovke zlatých vecí veľa, dizajn zlyhal.
-
-### Tri rozhodnutia, ktoré robia jazyk unikátnym (nie generickým „dark premium")
-
-1. **Zlatá nie je dekorácia, je sémantika.** Plná zlatá výplň = *jedna* primárna akcia na obrazovke (Potvrdiť, Nový spis). Zlatý rám + glow (`card-gold`) = *čaká na rozhodnutie advokáta*. Zlatý odznak = *Overené* (zdroj s provenance). Nič iné zlaté nie je.
-2. **Mono písmo pre právne identifikátory.** `§ 362 ods. 1 CSP`, `15C/123/2024`, `IČO 35 763 469`, `_STATUS.md` — všetko v Geist Mono. Čitateľ na prvý pohľad vie: *toto je presný odkaz, nie próza.* To je náš ekvivalent „štruktúra je informácia".
-3. **Serif hovorí hlasom produktu, nie UI.** Playfair iba na H1 obrazovky, hero čísla a názov *Matter Brain*. Nikdy na labely, tlačidlá, tabuľky. Vďaka tomu serif zostane vzácny a obrazovky dostanú „právnickú" gravitas bez toho, aby sa z appky stal časopis.
-
-Jedno vedomé riziko: **warning je oranžová, nie zlatá** (`#E08A3C`). Brand paleta má iba navy + zlatú; keby upozornenia boli zlaté, stratila by sa sémantika bodu 1.
+- **Zostavil:** Marián Čuprík (MČ) s AI asistenciou · 2026-08-23 · **v2** (v1 z toho istého dňa zamietnutá MČ ako „cloud style / AI slop“: karty, pills, eyebrows, ikonky v rohoch, glow)
+- **Stav:** 📝 návrh na odklep
+- **Živý prototyp:** [`hifi/lawoss-hifi.html`](hifi/lawoss-hifi.html) — Prehľad · Spis + OKF Brain · Kontrola lehoty · Konektory + Marketplace · Reconcile
+- **Rozsah:** LegalWork ostáva základom (chat + dashboard + nastavenia navrchu, opencode vzadu, dokument s priamou editáciou). Tento jazyk je **vrstva nad ním**, jasne oddelená od upstreamu, pre 4 tentpoles: OKF Brain · lehoty a dokumenty · MCP · marketplace.
+- **Metóda:** smer vybraný z troch svetov (A podací denník · B Zbierka zákonov · C precízny nástroj) podľa postupu *impeccable / new-work*; prototyp prešiel detektorom anti-vzorov (`impeccable detect`, 2026-08-23).
 
 ---
 
-## 1 · Farebný systém
+## 0 · Svet v jednej vete
 
-### 1.1 Rampy
+**Appka sa správa ako podací denník a spisový obal položené na tmavom stole pod lampou.** Riadky s linajkami namiesto kariet, číslo listu namiesto ikonky, kolónky namiesto eyebrows, registrové záložky namiesto ikonovej navigácie, pečať namiesto zeleného checku. Advokát to pozná naspamäť — preto to nevyzerá ako ďalší SaaS dashboard.
 
-| Token | Hex | Použitie |
-|---|---|---|
-| `navy-950` | `#070E17` | sidebar (najhlbšia plocha) |
-| `navy-900` | `#0A1420` | **canvas** (dark) |
-| `navy-850` | `#0D1B2A` | brand navy (logo, light-mode sidebar, primárne tlačidlo light) |
-| `navy-800` | `#112233` | elevated / popover |
-| `navy-700` | `#16293D` | surface-hover |
-| `navy-500` | `#2B4258` | border-strong @ light, avatar |
-| `navy-300` | `#5B7188` | placeholder @ dark |
-| `navy-100 / 50` | `#C9D3DE / #EEF2F6` | sidebar text, light sunken |
-| `gold-700` | `#8C6A1F` | **akcent v light móde** (text/ikony na bielom, AA 5,0:1) |
-| `gold-600` | `#A8832E` | hover @ light |
-| `gold-500` | `#C9A24A` | **akcent v dark móde**, zlatá výplň v oboch módoch |
-| `gold-400` | `#D8B45E` | hover @ dark |
-| `gold-300 / 100` | `#E6C97F / #F3E7C6` | marker citácie, glow |
+### Čo tento svet zakazuje (vynútiteľné v review)
 
-### 1.2 Sémantické tokeny (mapa na upstream `--lw-*`, **value-only**)
-
-| `--lw-*` | Dark (primárny) | Light (sekundárny) |
-|---|---|---|
-| `canvas` | `#0A1420` | `#F6F7F9` |
-| `surface` / `surface-hover` | `#0F1D2E` / `#142538` | `#FFFFFF` / `#F1F3F6` |
-| `sunken` | `#081019` | `#EDF0F4` |
-| `sidebar` | `#070E17` | **`#0D1B2A`** *(sidebar ostáva navy aj v light — kotva značky)* |
-| `text-primary / secondary / tertiary` | `#F2F4F7 / #A9B4C2 / #7D8A99` | `#0D1B2A / #42586E / #66758A` |
-| `accent / accent-hover / accent-fg` | `#C9A24A / #D8B45E / #0A1420` | `#8C6A1F / #A8832E / #FFFFFF` |
-| `accent-soft` | `rgba(201,162,74,.12)` | `rgba(201,162,74,.14)` |
-| `accent-border` | `rgba(201,162,74,.55)` | `rgba(140,106,31,.45)` |
-| `primary / primary-fg` | `#F2F4F7 / #0A1420` *(upstream sémantika: inverzná výplň — ponechať)* | `#0D1B2A / #FFFFFF` |
-| `border-subtle / border / border-strong` | `rgba(255,255,255,.06/.10/.18)` | `rgba(13,27,42,.07/.12/.22)` |
-| `success / warning / danger` | `#5CC08A / #E08A3C / #E06C6C` | `#1F7A4C / #B4560F / #B3261E` |
-| `focus-ring` | `0 0 0 2px canvas, 0 0 0 4px #C9A24A` | rovnako |
-| `shadow-md` | `0 12px 32px -12px rgba(0,0,0,.6)` | `0 6px 20px -8px rgba(13,27,42,.18)` |
-| **nové** `--lw-glow` | `0 0 0 1px rgba(201,162,74,.45), 0 0 32px -6px rgba(201,162,74,.45)` | slabšia |
-| **nové** `--lw-marker` | `rgba(201,162,74,.26)` | `.22` |
-| `--chart-1..5` (index.css) | `#C9A24A #5B7188 #5CC08A #E08A3C #A9B4C2` | `#8C6A1F #2B4258 #1F7A4C #B4560F #66758A` |
-
-**Kontrast (overené výpočtom 2026-08-23):** gold-500 na canvas 7,7:1 · gold-700 na bielom 5,0:1 · navy na zlatej výplni 7,7:1 · secondary 8,1 / 7,4 · tertiary 4,8 / 4,7 · warning 6,4 / 4,9 · success 7,6 / 5,3 · danger 5,3 / — . **`#C9A24A` na bielom = 2,4:1 ✗ — nikdy ako text v light móde.**
-
-### 1.3 Hierarchia plôch
-
-`sidebar (950)` → `canvas (900)` → `surface (card)` → `sunken (vnorené bloky: kalkulácia, code, input)`. Rozdiely sú 3–6 % jasu — hĺbku robia **hairline bordery**, nie tiene. Tieň iba: popover/menu (`shadow-md`), hover lift karty (`translateY(-1px/-2px)` + `shadow-md`).
+| ❌ Nikdy | ✅ Namiesto toho |
+|---|---|
+| karty s ikonkou v rohu, rovnaké v gride; vnorené karty | **register**: riadky oddelené linajkou, číslo listu, pevný stĺpec dátumu |
+| pills / odznaky so zaoblením | **typografický stav**: `· potvrdené` `› návrh agenta` `· čaká na doklady` (farba + znak) |
+| eyebrow / kicker nad nadpisom | **kolónka**: label v small-caps *vedľa* hodnoty ako na spisovom obale; nadpis sekcie + linka pod ním |
+| hero-metric (veľké číslo + label + delta) | čísla v kolónke, 16 px, s poznámkou — nie plagát |
+| lucide ikony v navigácii | **registrové záložky** s textom a počtom (mono) |
+| glow, zero-offset tiene, glass | jediné svetlo = lampa (radial gradient na stole); list má skutočný tieň s offsetom |
+| pulzujúce bodky, progress ringy, sparklines | diagram, ktorý nesie informáciu (pás lehôt, timeline, schéma konektorov, vrstvy pamäte) |
+| serif H1 všade | serif iba **pečať a wordmark** |
+| wall of text / tabuľka na celú obrazovku | každý pohľad má **jeden diagram** + registre; text má mieru 46–70 ch |
 
 ---
 
-## 2 · Typografia
+## 1 · Farby
 
-| Rola | Písmo | Veľkosť / riadok | Váha | Kde |
-|---|---|---|---|---|
-| **display** | Playfair Display | 30 / 1.15, letter-spacing −.01em | 400 | H1 obrazovky |
-| **hero číslo** | Playfair Display, `tnum` | 40 / 1 | 400 | StatCard, navrhovaná lehota (22) |
-| **h2** | Playfair Display | 24 / 1.2 | 400 | sekcie v dlhých dokumentoch |
-| **h3** | Inter | 15 / 1.4 | 600 | nadpis karty |
-| **body** | Inter | 14 / 1.5 | 400 | základ; `cv11 ss01 tnum` |
-| **body-lg** | Inter | 15.5 / 1.6 | 400 | citácie, dlhé texty v DecisionGate |
-| **caption** | Inter | 12–12.5 / 1.4 | 400 | meta, dátumy |
-| **eyebrow** | Inter | 11, `.12em`, uppercase | 600 | labely sekcií (Zdroj, Stav, Kľúčové fakty) |
-| **mono** | Geist Mono | 12 (0.92em) | 400–500 | §, spisové značky, IČO, súbory, kalkulácia |
-| **kbd** | Geist Mono | 10.5 | 500 | klávesové skratky |
+Jedna téma: tmavá. Svetlý režim sa **nenavrhuje** (rozhodnutie MČ 2026-08-23); upstream light ostáva funkčný cez tokeny, ale nie je cieľ.
 
-Pravidlá: serif **≥ 18 px** (Windows ClearType); nikdy serif bold; číselné stĺpce vždy `tabular-nums`; max šírka textu 64 ch v čítacích blokoch; **sentence case** všade (žiadne Title Case v tlačidlách).
-
-Závislosť: `@fontsource-variable/playfair-display` (🟢 dep v `apps/app`), import v `lawoss/theme/fonts.css`. Inter Variable a Geist Mono už sú.
-
----
-
-## 3 · Tvar, priestor, hustota
-
-- **Radius:** `sm 6` (badge, kbd, chk) · `md 8` (button, input, ikona) · `lg 10` (veľké tlačidlá) · `xl 12` (card) · `2xl 16` (seal, modal) · `full`. Upstream hodnoty, bez zmeny.
-- **Spacing scale:** 4 / 8 / 12 / 16 / 20 / 24 / 36 / 48. Karta `p-20`, grid gap `16`, stránka `28 36`.
-- **Grid:** sidebar 232 px fixný + obsah `max-width 1400`. Dashboard `1.1fr 1fr .9fr`; spis `1fr 1.1fr .95fr` (timeline · úlohy/dokumenty · Matter Brain). Pod 1100 px 2 stĺpce, pod 800 px 1 stĺpec + skrytý sidebar (drawer).
-- **Hustota:** riadky zoznamov 40–44 px (advokát klikne myšou, nie prstom), tabuľky 36 px. Čítacie bloky (citácie, dokument) majú väčšie písmo a riadkovanie než UI okolo — **čitateľnosť dlhého textu má prednosť pred hustotou**.
-- **Hairline vždy `1px`**, nikdy 2 px okrem focus ringu a aktívneho gold railu v sidebari (2 px).
-
----
-
-## 4 · Motion & small delights
-
-Všetko na existujúcich tokenoch `--lw-ease-standard (.2,0,0,1)`, `--lw-ease-out (.16,1,.3,1)`, `--lw-ease-spring (.34,1.56,.64,1)`, `120/160/220 ms` + **nový `--lw-duration-seal: 600ms`**. Všetko pod `@media (prefers-reduced-motion: reduce)` → bez animácií (transitions aj keyframes).
-
-| Moment | Animácia | Tokeny | Prečo |
+| Token (náš) | Hex | Mapuje sa na `--lw-*` | Použitie |
 |---|---|---|---|
-| Vstup obrazovky | staggered rise kariet: `opacity 0→1, translateY 6px→0`, delay 40 ms/karta, max 6 | `slow`, `ease-out` | obrazovka „sa usadí", nie vybuchne |
-| Hover karty konektora / riadku | `translateY(-2px)` + border → `accent-border` | `base`, `ease-out` | ticho potvrdí klikateľnosť |
-| Checkbox úlohy | spring scale 0.4→1 zlatého checku | `base`, `ease-spring` | jediný „hravý" spring okrem brány |
-| **DecisionGate → Potvrdiť** | tlačidlo 1 px lift; potom **Seal moment**: disk `scale .86→1` spring 600 ms, check sa *kreslí* (`stroke-dashoffset 40→0`, 500 ms, delay 250 ms), auto-zavrie po 1,8 s | `seal`, `ease-spring`, `ease-out` | fyzická metafora pečate — advokát *niečo potvrdil*, nie klikol |
-| Podpis / konverzia hotová | rovnaký Seal moment, iná ikona (pero / dokument) | | konzistentný jazyk „hotovo s právnym účinkom" |
-| Timeline progress | gradient čiary `--progress` animovaný z 0 na aktuálnu hodnotu pri otvorení (400 ms) | `ease-standard` | „kde sme vo veci" |
-| Skeleton → content | skeleton fade-out 120 ms, content rise | `fast` | bez preskoku layoutu |
-| Status dot pripojené | jemný glow `box-shadow 0 0 6px`, **bez pulzovania** | — | pulzovanie = úzkosť |
-| Toast | upstream `lw-toast-in` | — | reuse |
-| `more →` link | `gap 6→9px` na hover | `fast` | šípka „ide" |
+| `desk` | `#0A0E14` | `canvas`, `sidebar` | stôl, pozadie okna |
+| `sheet` | `#10171F` | `surface` | list registra (hlavná plocha) |
+| `sheet-2` | `#141C26` | `surface-hover`, `overlay` | hover riadku, Brain gradient |
+| `well` | `#0C1219` | `sunken` | composer, náhľad dokumentu, kalkulácia |
+| `rule / rule-2 / rule-3` | `rgba(233,228,218,.08/.14/.26)` | `border-subtle/border/border-strong` | linajky — **vždy 1 px**; `rule-3` iba hlavné deliace čiary |
+| `ink` | `#E9E4DA` | `text-primary` | atrament — papierovo teplý, nie studená biela |
+| `ink-2` | `#A8B0BA` | `text-secondary` | tintovaný z navy hue (nie sivý) |
+| `ink-3` | `#75808C` | `text-tertiary` | labely, meta (4,8:1 na sheet) |
+| `gold` | `#C9A24A` | `accent` | **razidlo**: aktívna záložka (2 px hrot), jedna primárna akcia, pečať, „dnes“, návrh agenta |
+| `gold-2` | `#E3C46E` | `accent-hover` | hover, hero hodnota v bráne |
+| `gold-ink` | `rgba(201,162,74,.18)` | `accent-soft`, `selection` | marker v citácii, výber textu |
+| `red / amber / green / blue` | `#D9776B / #D89A4E / #8DBB8F / #7FA3C7` | `danger / warning / success / info` | dnes-zajtra · blízko · potvrdené-pripojené · vlastný server |
 
-**Čo zámerne nerobíme:** parallax, glassmorphism, gradientové tlačidlá (jediný gradient: Matter Brain surface→sunken), pulzujúce bodky, animované pozadia (upstream `PaperGrainGradient` nahradíme statickým navy s jemným vignette).
+Chart paleta (`--chart-1..5`): `gold · ink-2 · green · amber · blue`.
 
----
-
-## 5 · Komponentové vzory pre doktrínu „AI pod kontrolou advokáta“
-
-Toto je jadro — dizajnové pravidlá, ktoré robia ADR 0007/0009 **viditeľnými**.
-
-### 5.1 DecisionGate (rozhodovacia brána)
-
-Každý návrh agenta s právnym účinkom sa zobrazuje **iba** cez tento vzor:
-
-```
-┌ Zdroj ───────────────────────┐ ┌ Návrh agenta ──── istota ▮▮▮▯ ┐
-│ Názov predpisu (serif)       │ │ kľúč  →  hodnota (mono/tnum)   │
-│ mono citácia + verzia znenia │ │ navrhovaná hodnota (serif gold)│
-│ „citát s <mark>markerom</mark>“│ │ ▢ kalkulácia (mono, sunken)    │
-│ [Overené · Slov-Lex] [locator]│ │ ⚠ neistota: čo skontrolovať    │
-└──────────────────────────────┘ └────────────────────────────────┘
-┌ [■ Potvrdiť]  [Upraviť]  [Odmietnuť]  [Odložiť] ─ ⏎ E Esc · „Po potvrdení: …“ ┐
-```
-
-Pravidlá: (1) Zdroj je **vždy vľavo/prvý** — advokát číta zdroj pred návrhom. (2) Iba **Potvrdiť** má zlatú výplň; Odmietnuť je sekundárne s červeným textom, nie červené tlačidlo (aby odmietnutie nebolo „nebezpečné", je legitímne). (3) **Auditná veta** pod akciami hovorí presne, čo sa zapíše a kam (`spis.md`, ICS, audit). (4) Istota je **vizuálny meter + slovo** (nízka/stredná/vysoká), nie percento — percento by sugerovalo presnosť, ktorú model nemá. (5) Bez zdroja s provenance sa brána **nezobrazí** — agent musí dodať `source_ref + locator` (spec 0005).
-
-### 5.2 SourceBadge „Overené“
-
-Zlatý outline odznak s checkom + názov zdroja (`Overené · Slov-Lex`). Zobrazuje sa **iba** ak výsledok prišiel z overeného konektora s časom získania. Bez neho = výsledok je „návrh" (`badge-ai` s bodkou). Hover → tooltip s provenance (zdroj, verzia, čas, locator).
-
-### 5.3 AI badge
-
-Sivý outline + zlatá bodka s glow. Označuje **každý** blok, ktorý napísal agent. Nikdy sa neskrýva.
-
-### 5.4 Matter Brain panel
-
-Gradient surface→sunken, zlatý rám + glow (je to „čo agent vie o veci"). Sekcie: Stav · Kľúčové fakty (s mono odkazom na riadiaci súbor) · Ďalšie kroky (návrh agenta) · pätička *aktualizované · provenance ✓* + akcia **Navrhnúť zápis** (nie „Uložiť" — zápis do pamäte ide cez bránu, ADR 0007 pravidlo 4).
-
-### 5.5 Trust label konektora
-
-Tri stavy, vždy viditeľné na karte: `beží lokálne` (neutrálny) · `vlastný server` (neutrálny) · **`dáta odchádzajú z počítača`** (warning) pre servery tretích strán. Plus `read-only` a `Overený zdroj`. Spec 0011 B požaduje, aby to nebolo skryté — preto je to na karte, nie v detaile.
-
-### 5.6 Stavové vzory
-
-- **Empty state:** serif jednoriadková veta + jedna zlatá akcia („Zatiaľ žiadne lehoty. Agent ich nájde v doručených dokumentoch. → Skontrolovať dokumenty").
-- **Chyba konektora:** oranžový badge + veta čo sa stalo + čo spraviť; **nikdy** „prázdny výsledok" prezentovaný ako čistý (spec 0004/0011 canary).
-- **Loading:** skeleton v tvare cieľového layoutu, bez spinnera na celú obrazovku.
+**Pravidlo zlatej:** na jednej obrazovke max. jedna zlatá výplň (tlačidlo) + razidlá (záložka, pečať, „dnes“, `›` pri návrhu agenta). Keď je zlatých vecí viac, uber.
 
 ---
 
-## 6 · Svetlý režim
+## 2 · Písmo
 
-Sekundárny, ale plnohodnotný. Tri pravidlá: sidebar ostáva navy (kotva značky), akcent je gold-700 (AA), zlatá výplň tlačidla zostáva gold-500 s navy textom. Testovať každú obrazovku v oboch módoch (prototyp má prepínač).
+| Rola | Písmo | Prečo |
+|---|---|---|
+| UI a text | **IBM Plex Sans** 400/500/600 | už bundlovaný upstreamom (`@fontsource-variable/ibm-plex-sans`, overené 2026-08-23) → nulová závislosť; výborné SK/CZ diakritiky; „úradný“ charakter sadí k registru; **nie je Inter** (MČ: „Inter = AI slop“) |
+| identifikátory | **IBM Plex Mono** 400/500 | § a ods., spisové značky, IČO, názvy súborov (`_STATUS.md`), čísla listov, kalkulácia lehoty, tool-calls agenta. Nie ako kostým — iba pre dáta a merania |
+| pečať, wordmark | **Playfair Display** 500 | jediný serif; nikdy na nadpisy v UI |
+
+Škála: H1 26/1.15 w500 · H2 sekcie 15 w600 · body 14/1.45 · meta 12–12.5 · kolónkové labely `font-variant-caps: all-small-caps` 13 px `.07em` · citácia 17/1.55 max 46 ch · hero hodnota (lehota) 22 w500 gold-2. Číslice vždy `tnum`.
+
+Nová závislosť: `@fontsource/ibm-plex-mono` (🟢). `lawoss/theme/lawoss-tokens.css` nastaví `--lw-font-sans`, `--lw-font-mono`, `--lw-font-serif`.
+
+Brand concept: riadok „Inter — UI“ sa mení na „IBM Plex Sans — UI“ (PR do `docs/brand-concept.md` po odklepe).
 
 ---
 
-## 7 · Čo z toho je „taste“ a čo je pravidlo
+## 3 · Stavebné prvky (namiesto komponentovej knižnice kariet)
 
-Pravidlá (vynútiteľné v review): sekcie 1–3, 5.1–5.5, kontrast AA, reduced-motion. Taste (dizajnér rozhoduje per obrazovka): konkrétne rozloženie gridu, kde použiť serif H2, ktorá akcia je „tá jedna zlatá". Ak si pri obrazovke nie si istý, **uber zlatú**.
+| Prvok | Čo to je | Kde |
+|---|---|---|
+| **Záložky** (`.tab`) | ľavá navigácia ako registrové záložky zakladača; aktívna je vytiahnutá (−6 px), zrastá s listom, 2 px zlatý hrot; počet v mono | shell — skin upstream sidebaru: priečinky = Spisy, sessions = Asistent, + naše položky |
+| **Obal** (`.obal`) | riadok kolónok spisového obalu: small-caps label / hodnota / poznámka, oddelené linkami | hlavička Prehľadu, spisu, reconcile |
+| **Register** (`.reg`, `.r`) | sekcia s nadpisom + linkou + meta vpravo; riadky grid: číslo listu · dátum · vec (+ podriadok) · referencia (mono) · stav (typografický) · akcia | všade, kde bol zoznam/karty |
+| **Pás lehôt** | SVG: 14 dní, víkendy tlmené, „dnes“ zlatá čiara so svetlom, lehoty ako vlajky v dvoch výškach; potvrdené plné · návrh prerušovaný | Prehľad |
+| **Timeline spisu** | SVG: os s pásmi fáz konania pod ňou, udalosti (plné = stalo sa, prerušované zlaté = návrh, obrys = nariadené, prázdne = plánované), „dnes“ | Spis |
+| **OKF Brain** | panel s 2 px zlatým hrotom: Stav · Fakty (s mono odkazom na `_STATUS.md`) · Taktika (`MEMORY.md` TP-xxx) · Ďalšie kroky · **diagram vrstiev L1/L2/L3** s tým, čo čaká na zápis | Spis |
+| **Brána** (`.gate`) | Zdroj (predpis, mono citácia, citát s markerom, **náhľad dokumentu s locatorom**) ‖ Návrh (kolónky, hero hodnota, kalkulácia v mono, neistota) → 4 akcie → veta „po potvrdení sa zapíše…“ | lehoty, menovci, odoslanie e-mailu, zápis do pamäte |
+| **Pečať** (`.seal`) | SVG okrúhla pečať, Playfair po obvode, dopadne vedľa potvrdenej hodnoty (spring 550 ms, rotácia −8°) | potvrdenie v bráne, podpis, dokončenie onboardingu |
+| **Prijímacia pečiatka** | ghost v rohu: `LAWOSS · došlo 23. 08. 2026 · 09:14 · 3 na rozhodnutie` (mono, 55 %) | Prehľad — jediný „delight“ na domovskej obrazovke |
+| **Diff + poznatok** | dvojstĺpcový diff (v1 agent / v2 advokát, del/ins tintované) → panel „Čo si agent chce zapamätať“: pravidlo s markerom, výber vrstvy L1/L2, dôkaz | Reconcile |
+| **Schéma konektorov** | SVG: LAWOSS → opencode (skills, prompty, *žiadny nástroj na odoslanie*) → konektory so stavom a trust labelom | Konektory |
+| **Composer** | LegalWork chat vstup, prilepený dole, s kontextom (`prax` / `ABC v. DEF`) v mono zlatom | Prehľad, Spis — chat nezmizol, je v spise |
+| **Agent line** | posledná správa agenta ako jeden odsek so zlatou bodkou + riadok tool-callov v mono | nad composerom |
+
+Stavové slová: `· potvrdené` green · `› návrh agenta` gold · `· čaká na …` amber · `· nenájdený` amber · `· vypnuté` ink-3. Trust label konektora: `lokálne` green · `vlastný server` blue · `tretia strana · dáta odchádzajú` amber.
 
 ---
 
-<sub>Návrh MČ s AI asistenciou 2026-08-23. Hodnoty kontrastu vypočítané (WCAG 2.x relative luminance) 2026-08-23. Prototyp používa Google Fonts link s plnými fallbackmi — v appke idú fonty cez @fontsource (offline).</sub>
+## 4 · Motion
+
+Jeden autorský moment: **pečať**. Ostatné je ticho: záložka sa vysunie 220 ms `ease-standard`; riadok hover 120 ms; `dnes` na páse má statické svetlo (žiadne pulzovanie). Upstream tokeny `--lw-ease-*`, `--lw-duration-*` + nový `--lw-duration-seal: 550ms`. Všetko pod `prefers-reduced-motion` → pečať sa objaví bez animácie. Žiadne staggered entrances na každej sekcii.
+
+---
+
+## 5 · Prehliadačové plochy, ktoré tiež nesú dizajn
+
+`::selection` zlatý atrament · scrollbar tenký v `rule-2` · focus ring 1,5 px zlatý s 3 px odsadením · `color-scheme: dark` (natívne ovládacie prvky) · caret v `ink`. V Electrone: titlebar plocha v `desk`, `titlebar-drag` ostáva.
+
+---
+
+## 6 · Kontrola kvality pred merge
+
+`ink-3` na `sheet` 4,8:1 · `ink-2` 8,1:1 · `gold` na `desk` 7,7:1 · `desk` text na `gold` 7,7:1 (overené výpočtom 2026-08-23). Detektor: `node …/impeccable/scripts/detect.mjs <súbor>` — cieľ 0 nálezov okrem známych (Google Fonts link v prototype; v appke idú fonty cez @fontsource). Windows: IR skontroluje Plex Sans rendering a záložky na 125 % škálovaní.
+
+---
+
+<sub>v2 · MČ s AI asistenciou · 2026-08-23. Referencie, ktoré MČ poslal (impeccable.style, tasteskill.dev, refero styles, 21st.dev, aceternity) prešli 2026-08-23; z nich vzaté: zákaz eyebrow/karty/pills/hero-metric (impeccable craft-floor), pomenovanie sveta miestom (refero), a vedomé **nepoužitie** marketingových efektov (aurora, beams, 3D karty — 21st/aceternity) v nástroji na prácu.</sub>

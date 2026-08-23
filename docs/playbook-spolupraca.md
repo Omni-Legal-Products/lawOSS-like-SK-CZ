@@ -74,7 +74,7 @@ Pred ukončením (agent aj človek):
 
 - [ ] `git pull --no-rebase` (koordinácia: bot commituje do `main`) · fork: `git fetch origin upstream`
 - [ ] typecheck/test spustené a **výsledok uvedený v PR** (presné príkazy + výstup, aj keď fail)
-- [ ] UI zmena → screenshot dark **aj** light (a Windows, ak ide o shell)
+- [ ] UI zmena → screenshot (tmavá téma; a Windows, ak ide o shell)
 - [ ] 🟡 zásah → riadok v `PATCHES.md`
 - [ ] PR odkazuje na issue/spec/plán; sekcia *Na prerokovanie* vyplnená
 - [ ] Odovzdanie: krátke zhrnutie *čo je hotové · čo nie · čo treba rozhodnúť*
@@ -158,6 +158,7 @@ Review checklist (reviewer, 5 minút):
 - [ ] žiadny 🔴 súbor; každý 🟡 má riadok v `PATCHES.md`
 - [ ] nové stringy v `sk.ts` aj `cs.ts`
 - [ ] žiadne hexy — iba `--lw-*` tokeny / Tailwind utility z theme
+- [ ] žiadne karty s ikonkou, pills, eyebrows — register/kolónky/typografický stav (dizajnový jazyk v2 §0)
 - [ ] každý AI výstup v UI má AI badge; každé „Overené" má provenance; každá akcia s právnym účinkom ide cez DecisionGate (ADR 0007/0009)
 - [ ] testy/typecheck uvedené s výsledkom; UI → screenshot dark+light
 - [ ] Windows: ak shell/onboarding → label `windows`, IR odklepne
@@ -196,7 +197,7 @@ Review checklist (reviewer, 5 minút):
 
 1. **Zdroj pravdy vizuálu** = [`docs/design/2026-08-23-dizajnovy-jazyk-lawoss.md`](design/2026-08-23-dizajnovy-jazyk-lawoss.md) + [`hifi/lawoss-hifi.html`](design/hifi/lawoss-hifi.html). Zmena tokenu = PR do koordinačného repa **najprv** (prototyp), potom `lawoss/theme/lawoss-tokens.css` vo forku.
 2. Nová obrazovka: **wireframe/hi-fi v prototype → odklep na calle → issue vo forku → implementácia**. Nie naopak.
-3. Každý PR s UI má `design-review` label; MČ alebo ktokoľvek s prototypom vedľa porovná. Kritériá: §5 dizajnového jazyka (zlatá = rozhodnutie, mono = identifikátor, serif ≥ 18 px, AA kontrast, reduced-motion).
+3. Každý PR s UI má `design-review` label; MČ alebo ktokoľvek s prototypom vedľa porovná. Kritériá: dizajnový jazyk v2 §0 (žiadne karty/pills/eyebrows/ikony v navigácii; register, kolónky, záložky, pečať; IBM Plex; jeden diagram na pohľad; AA kontrast; reduced-motion) + `impeccable detect` bez nálezov.
 4. Mockupy a fixtúry: **iba fiktívne** mená, značky, sumy (napr. `ABC s.r.o. v. DEF a.s.`, `15C/123/2024`).
 5. Windows je rovnocenný: shell/onboarding PR bez Windows screenshotu sa nemerguje (IR).
 

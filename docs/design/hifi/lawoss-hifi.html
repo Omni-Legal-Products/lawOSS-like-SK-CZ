@@ -1,675 +1,528 @@
 <!DOCTYPE html>
-<html lang="sk" data-theme="dark">
+<html lang="sk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LAWOSS — hi-fi prototyp dizajnového jazyka</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>LAWOSS — hi-fi prototyp v2 · podací denník na tmavom stole</title>
+<!--
+THESIS: LegalWork ostáva (chat + dashboard + nastavenia navrchu, opencode vzadu). LAWOSS vrstva sa správa ako podací denník a spisový obal na tmavom stole pod lampou: registre s číslom listu, kolónky, registrové záložky, pečať. Odmieta SaaS dashboard s kartami, pills a eyebrows — aj wall of text: každý pohľad má jeden diagram, ktorý nesie informáciu.
+OWN-WORLD: stôl #0A0E14 + svetlo lampy; list #10171F s linajkami; atrament #E9E4DA; zlatá #C9A24A iba ako razidlo. IBM Plex Sans (UI) · IBM Plex Mono (identifikátory) · Playfair iba pečať a wordmark.
+STORY: advokát otvorí spis, vidí kde je vec (timeline), čo agent vie (Brain), čo čaká na podpis (brána) — rozhodne, pečať potvrdí. Agent pracuje v chate v spise.
+FIRST VIEWPORT: záložky vľavo; obal s kolónkami; register „Čaká na advokáta“; pás lehôt ako diagram; composer dole.
+FORM: smer A · 4 tentpoles (OKF Brain · lehoty + dokumenty · MCP · marketplace) · 2026-08-23.
+-->
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 <style>
-/* =====================================================================
-   LAWOSS design tokens — 1:1 predloha pre lawoss/theme/lawoss-tokens.css
-   (názvy --lw-* sú upstream názvy; meníme LEN hodnoty → cascade urobí zvyšok)
-   ===================================================================== */
-:root {
-  /* navy rampa */
-  --lw-navy-950:#070E17; --lw-navy-900:#0A1420; --lw-navy-850:#0D1B2A; --lw-navy-800:#112233;
-  --lw-navy-700:#16293D; --lw-navy-600:#1E3448; --lw-navy-500:#2B4258; --lw-navy-300:#5B7188;
-  --lw-navy-100:#C9D3DE; --lw-navy-50:#EEF2F6;
-  /* zlatá rampa */
-  --lw-gold-700:#8C6A1F; --lw-gold-600:#A8832E; --lw-gold-500:#C9A24A; --lw-gold-400:#D8B45E;
-  --lw-gold-300:#E6C97F; --lw-gold-100:#F3E7C6;
-
-  /* LIGHT (sekundárny režim) */
-  --lw-canvas:#F6F7F9; --lw-surface:#FFFFFF; --lw-surface-hover:#F1F3F6; --lw-sunken:#EDF0F4;
-  --lw-sidebar:#0D1B2A; --lw-sidebar-text:#C9D3DE; --lw-sidebar-text-active:#FFFFFF;
-  --lw-text-primary:#0D1B2A; --lw-text-secondary:#42586E; --lw-text-tertiary:#66758A; --lw-text-placeholder:#9AA6B8;
-  --lw-primary:#0D1B2A; --lw-primary-hover:#16293D; --lw-primary-fg:#FFFFFF;
-  --lw-accent:#8C6A1F; --lw-accent-hover:#A8832E; --lw-accent-fg:#FFFFFF;
-  --lw-accent-soft:rgba(201,162,74,.14); --lw-accent-border:rgba(140,106,31,.45);
-  --lw-gold-fill:#C9A24A; --lw-gold-fill-fg:#0D1B2A;
-  --lw-border-subtle:rgba(13,27,42,.07); --lw-border:rgba(13,27,42,.12); --lw-border-strong:rgba(13,27,42,.22);
-  --lw-success:#1F7A4C; --lw-success-soft:rgba(31,122,76,.12);
-  --lw-warning:#B4560F; --lw-warning-soft:rgba(180,86,15,.12);
-  --lw-danger:#B3261E; --lw-danger-soft:rgba(179,38,30,.12);
-  --lw-info:#2A6099;
-  --lw-focus-ring:0 0 0 2px var(--lw-canvas),0 0 0 4px var(--lw-gold-500);
-  --lw-shadow-sm:0 1px 2px rgba(13,27,42,.06); --lw-shadow-md:0 6px 20px -8px rgba(13,27,42,.18);
-  --lw-glow:0 0 0 1px rgba(201,162,74,.35), 0 0 24px -6px rgba(201,162,74,.35);
-  --lw-marker:rgba(201,162,74,.22);
-
-  --lw-radius-sm:6px; --lw-radius-md:8px; --lw-radius-lg:10px; --lw-radius-xl:12px; --lw-radius-2xl:16px;
-  --lw-font-sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --lw-font-serif:'Playfair Display',Georgia,'Times New Roman',serif;
-  --lw-font-mono:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;
-  --lw-ease-standard:cubic-bezier(.2,0,0,1); --lw-ease-out:cubic-bezier(.16,1,.3,1); --lw-ease-spring:cubic-bezier(.34,1.56,.64,1);
-  --lw-duration-fast:120ms; --lw-duration-base:160ms; --lw-duration-slow:220ms; --lw-duration-seal:600ms;
-  color-scheme:light;
+:root{
+  --desk:#0A0E14; --sheet:#10171F; --sheet-2:#141C26; --well:#0C1219;
+  --rule:rgba(233,228,218,.08); --rule-2:rgba(233,228,218,.14); --rule-3:rgba(233,228,218,.26);
+  --ink:#E9E4DA; --ink-2:#A8B0BA; --ink-3:#75808C;
+  --gold:#C9A24A; --gold-2:#E3C46E; --gold-ink:rgba(201,162,74,.18);
+  --red:#D9776B; --amber:#D89A4E; --green:#8DBB8F; --blue:#7FA3C7;
+  --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace; --seal:'Playfair Display',Georgia,serif;
+  --row:44px; color-scheme:dark;
 }
-[data-theme="dark"] {
-  --lw-canvas:#0A1420; --lw-surface:#0F1D2E; --lw-surface-hover:#142538; --lw-sunken:#081019;
-  --lw-sidebar:#070E17; --lw-sidebar-text:#A9B4C2; --lw-sidebar-text-active:#FFFFFF;
-  --lw-text-primary:#F2F4F7; --lw-text-secondary:#A9B4C2; --lw-text-tertiary:#7D8A99; --lw-text-placeholder:#4F5D6D;
-  --lw-primary:#F2F4F7; --lw-primary-hover:#FFFFFF; --lw-primary-fg:#0A1420;
-  --lw-accent:#C9A24A; --lw-accent-hover:#D8B45E; --lw-accent-fg:#0A1420;
-  --lw-accent-soft:rgba(201,162,74,.12); --lw-accent-border:rgba(201,162,74,.55);
-  --lw-gold-fill:#C9A24A; --lw-gold-fill-fg:#0A1420;
-  --lw-border-subtle:rgba(255,255,255,.06); --lw-border:rgba(255,255,255,.10); --lw-border-strong:rgba(255,255,255,.18);
-  --lw-success:#5CC08A; --lw-success-soft:rgba(92,192,138,.14);
-  --lw-warning:#E08A3C; --lw-warning-soft:rgba(224,138,60,.14);
-  --lw-danger:#E06C6C; --lw-danger-soft:rgba(224,108,108,.14);
-  --lw-info:#6FA8DC;
-  --lw-shadow-sm:0 1px 2px rgba(0,0,0,.4); --lw-shadow-md:0 12px 32px -12px rgba(0,0,0,.6);
-  --lw-glow:0 0 0 1px rgba(201,162,74,.45), 0 0 32px -6px rgba(201,162,74,.45);
-  --lw-marker:rgba(201,162,74,.26);
-  color-scheme:dark;
-}
-
-/* ===== base ===== */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{font-family:var(--lw-font-sans);font-size:14px;line-height:1.5;color:var(--lw-text-primary);background:var(--lw-canvas);-webkit-font-smoothing:antialiased;font-feature-settings:"cv11","ss01","tnum"}
-a{color:var(--lw-accent);text-decoration:none}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--desk)}
+body{font-family:var(--sans);font-size:14px;line-height:1.45;color:var(--ink);background:radial-gradient(1100px 700px at 18% -10%,rgba(201,162,74,.10),transparent 60%),radial-gradient(900px 600px at 80% 110%,rgba(60,90,130,.10),transparent 60%),var(--desk);min-height:100vh;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum"}
+::selection{background:var(--gold-ink);color:var(--ink)}
+*{scrollbar-width:thin;scrollbar-color:var(--rule-2) transparent}
+a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-:focus-visible{outline:none;box-shadow:var(--lw-focus-ring);border-radius:var(--lw-radius-sm)}
-.mono{font-family:var(--lw-font-mono);font-size:.92em;letter-spacing:-.01em}
-.serif{font-family:var(--lw-font-serif)}
-.muted{color:var(--lw-text-secondary)}
-.faint{color:var(--lw-text-tertiary)}
-.gold{color:var(--lw-accent)}
-.eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--lw-text-tertiary)}
+:focus-visible{outline:1.5px solid var(--gold);outline-offset:3px}
+.mono{font-family:var(--mono);font-size:.93em}
+.sc{font-variant-caps:all-small-caps;letter-spacing:.07em;color:var(--ink-3);font-weight:500}
+svg text{font-family:var(--sans)}
 
-/* ===== prototype chrome (nie je súčasť appky) ===== */
-.proto-bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:10px;padding:8px 14px;background:var(--lw-sunken);border-bottom:1px solid var(--lw-border);font-size:12px}
-.proto-bar .title{font-weight:600}
-.proto-bar .spacer{flex:1}
-.proto-bar .tabs{display:flex;gap:2px;background:var(--lw-surface);border:1px solid var(--lw-border);border-radius:999px;padding:2px}
-.proto-bar .tabs button{padding:4px 10px;border-radius:999px;color:var(--lw-text-secondary)}
-.proto-bar .tabs button[aria-selected="true"]{background:var(--lw-accent);color:var(--lw-accent-fg);font-weight:600}
-.proto-bar .toggle{display:flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--lw-border);border-radius:999px;color:var(--lw-text-secondary)}
-.screen{display:none}
-.screen[data-active]{display:block}
+.pb{position:sticky;top:0;z-index:9;display:flex;gap:18px;align-items:center;padding:9px 18px;font-size:12px;color:var(--ink-3);border-bottom:1px solid var(--rule);background:rgba(10,14,20,.9);backdrop-filter:blur(6px)}
+.pb b{color:var(--ink-2);font-weight:500}
+.pb .sw{margin-left:auto;display:flex;gap:16px}
+.pb .sw button{color:var(--ink-3);padding:2px 0;border-bottom:1px solid transparent}
+.pb .sw button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold)}
 
-/* ===== app shell ===== */
-.app{display:grid;grid-template-columns:232px 1fr;min-height:calc(100vh - 37px)}
-.sidebar{background:var(--lw-sidebar);color:var(--lw-sidebar-text);display:flex;flex-direction:column;padding:18px 12px 14px;border-right:1px solid var(--lw-border-subtle)}
-.brand{display:flex;align-items:center;gap:10px;padding:4px 8px 18px}
-.brand .hex{width:30px;height:34px}
-.brand .wordmark{font-family:var(--lw-font-serif);font-size:17px;letter-spacing:.14em;color:#fff;line-height:1}
-.brand .wordmark b{color:var(--lw-gold-500);font-weight:500}
-.brand .sub{font-size:8px;letter-spacing:.22em;color:var(--lw-gold-500);text-transform:uppercase;margin-top:3px}
-.nav{display:flex;flex-direction:column;gap:2px}
-.nav .group{margin:12px 8px 4px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--lw-text-tertiary)}
-.nav a{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:var(--lw-radius-md);color:var(--lw-sidebar-text);font-size:13.5px;position:relative;transition:background var(--lw-duration-fast) var(--lw-ease-standard),color var(--lw-duration-fast)}
-.nav a:hover{background:rgba(255,255,255,.05);color:var(--lw-sidebar-text-active)}
-.nav a[aria-current]{background:rgba(255,255,255,.06);color:var(--lw-sidebar-text-active)}
-.nav a[aria-current]::before{content:"";position:absolute;left:-12px;top:7px;bottom:7px;width:2px;background:var(--lw-gold-500);border-radius:2px}
-.nav a svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none;opacity:.85}
-.nav a .count{margin-left:auto;font-family:var(--lw-font-mono);font-size:11px;color:var(--lw-gold-400);background:rgba(201,162,74,.12);padding:1px 7px;border-radius:999px}
-.sidebar .foot{margin-top:auto;display:flex;align-items:center;gap:10px;padding:10px 8px 0;border-top:1px solid rgba(255,255,255,.06)}
-.avatar{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:600;background:var(--lw-navy-700);color:#fff;border:1px solid rgba(201,162,74,.4)}
-.foot .who{line-height:1.2}.foot .who b{display:block;font-size:12.5px;color:#fff;font-weight:500}.foot .who span{font-size:11px;color:var(--lw-text-tertiary)}
+.desk{display:grid;grid-template-columns:196px 1fr;min-height:calc(100vh - 38px)}
+.tabs{padding:30px 0 24px 22px;display:flex;flex-direction:column}
+.brand{padding:0 0 28px 14px;display:flex;align-items:center;gap:10px}
+.brand svg{width:22px;height:25px}
+.brand .wm{font-family:var(--seal);font-size:15px;letter-spacing:.16em;color:var(--ink);line-height:1}
+.brand .wm b{color:var(--gold);font-weight:500}
+.brand small{display:block;font-size:8.5px;letter-spacing:.22em;color:var(--ink-3);margin-top:3px}
+.tab{display:flex;align-items:center;justify-content:space-between;gap:8px;height:38px;padding:0 12px 0 14px;margin-left:6px;color:var(--ink-2);font-size:13.5px;border:1px solid transparent;border-right:0;border-radius:3px 0 0 3px;position:relative;transition:color .16s,background .16s,transform .22s cubic-bezier(.2,0,0,1)}
+.tab:hover{color:var(--ink);background:rgba(233,228,218,.03)}
+.tab[aria-current]{color:var(--ink);background:var(--sheet);border-color:var(--rule-2);transform:translateX(-6px);padding-left:20px;box-shadow:-8px 10px 24px -14px rgba(0,0,0,.8)}
+.tab[aria-current]::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;background:var(--gold);border-radius:1px}
+.tab[aria-current]::after{content:"";position:absolute;right:-1px;top:-1px;bottom:-1px;width:3px;background:var(--sheet)}
+.tab .n{font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+.tab[aria-current] .n{color:var(--gold)}
+.tabs .gap{height:18px}
+.tabs .who{margin-top:auto;padding:16px 0 0 14px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink-2);line-height:1.4}
+.tabs .who span{display:block;color:var(--ink-3);font-size:11.5px}
 
-.main{padding:28px 36px 48px;max-width:1400px}
-.topbar{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px}
-.topbar h1{font-family:var(--lw-font-serif);font-weight:400;font-size:30px;letter-spacing:-.01em;line-height:1.15}
-.topbar .lead{color:var(--lw-text-secondary);margin-top:4px}
-.topbar .crumbs{font-size:12.5px;color:var(--lw-text-tertiary);margin-bottom:6px}
-.topbar .crumbs a{color:var(--lw-text-secondary)}
-.topbar .actions{margin-left:auto;display:flex;gap:8px;align-items:center}
-.iconbtn{width:34px;height:34px;display:grid;place-items:center;border-radius:var(--lw-radius-md);border:1px solid var(--lw-border);color:var(--lw-text-secondary);background:var(--lw-surface);transition:all var(--lw-duration-fast)}
-.iconbtn:hover{border-color:var(--lw-accent-border);color:var(--lw-accent)}
-.iconbtn svg,.btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sheet{background:var(--sheet);border-left:1px solid var(--rule-2);padding:34px 44px 120px 40px;position:relative;box-shadow:-30px 0 80px -40px rgba(0,0,0,.85)}
+.sheet::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(233,228,218,.025),transparent 240px)}
+.screen{display:none}.screen[data-on]{display:block}
 
-/* ===== buttons ===== */
-.btn{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:var(--lw-radius-md);font-weight:500;font-size:13.5px;border:1px solid transparent;transition:all var(--lw-duration-base) var(--lw-ease-standard)}
-.btn-gold{background:var(--lw-gold-fill);color:var(--lw-gold-fill-fg);border-color:var(--lw-gold-fill)}
-.btn-gold:hover{background:var(--lw-gold-400);border-color:var(--lw-gold-400);transform:translateY(-1px);box-shadow:var(--lw-shadow-md)}
-.btn-outline{border-color:var(--lw-accent-border);color:var(--lw-accent);background:var(--lw-accent-soft)}
-.btn-outline:hover{background:var(--lw-accent);color:var(--lw-accent-fg)}
-.btn-secondary{border-color:var(--lw-border);background:var(--lw-surface);color:var(--lw-text-primary)}
-.btn-secondary:hover{border-color:var(--lw-border-strong);background:var(--lw-surface-hover)}
-.btn-ghost{color:var(--lw-text-secondary)}.btn-ghost:hover{color:var(--lw-text-primary);background:var(--lw-surface-hover)}
-.btn-danger{border-color:var(--lw-danger);color:var(--lw-danger);background:var(--lw-danger-soft)}
-.btn-lg{height:44px;padding:0 20px;font-size:14.5px;border-radius:var(--lw-radius-lg)}
-.btn-sm{height:30px;padding:0 10px;font-size:12.5px}
+.stamp-date{position:absolute;right:44px;top:30px;transform:rotate(-4deg);border:1.5px solid var(--gold);border-radius:3px;padding:6px 10px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--gold);opacity:.55;text-align:center;line-height:1.35;mix-blend-mode:screen}
+.stamp-date b{display:block;font-family:var(--seal);font-weight:500;letter-spacing:.14em;font-size:12px}
 
-/* ===== cards ===== */
-.card{background:var(--lw-surface);border:1px solid var(--lw-border);border-radius:var(--lw-radius-xl);padding:20px;position:relative}
-.card-gold{border-color:var(--lw-accent-border);box-shadow:var(--lw-glow)}
-.card h3{font-size:15px;font-weight:600;margin-bottom:4px}
-.card .sub{color:var(--lw-text-secondary);font-size:13px}
-.card .more{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:13px;font-weight:500;color:var(--lw-accent)}
-.card .more:hover{gap:9px}
-.card .more::after{content:"→"}
-.card-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
-.grid{display:grid;gap:16px}
-.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:1fr 1fr}
-.g-dash{grid-template-columns:1.1fr 1fr .9fr}
-.g-spis{grid-template-columns:1fr 1.1fr .95fr}
-@media (max-width:1100px){.g3,.g2,.g-dash,.g-spis{grid-template-columns:1fr 1fr}}
-@media (max-width:800px){.app{grid-template-columns:1fr}.sidebar{display:none}.g3,.g2,.g-dash,.g-spis{grid-template-columns:1fr}.main{padding:20px}}
+h1{font-size:26px;font-weight:500;letter-spacing:-.015em;line-height:1.15}
+h1 em{font-style:italic;color:var(--ink-3);font-weight:400}
+.lead{color:var(--ink-2);margin-top:6px;max-width:70ch}
+.crumb{font-size:12.5px;color:var(--ink-3);margin-bottom:8px}
+.crumb a{color:var(--ink-2)}.crumb a:hover{color:var(--gold)}
+.obal{display:flex;margin:26px 0 0;border-top:1px solid var(--rule-3);border-bottom:1px solid var(--rule-2);flex-wrap:wrap}
+.obal>div{padding:12px 22px 12px 0;margin-right:22px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:2px}
+.obal>div:last-child{border-right:0;margin-right:0}
+.obal .v{font-size:16px;font-weight:500}
+.obal .v small{font-size:12.5px;color:var(--ink-3);font-weight:400;margin-left:6px}
+.obal .v.warn{color:var(--amber)}
+.obal .v.mono{font-size:14px}
 
-/* StatCard */
-.stat{padding:18px 20px}
-.stat .label{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--lw-text-tertiary);font-weight:600}
-.stat .label svg{width:14px;height:14px;stroke:var(--lw-accent);fill:none;stroke-width:1.6}
-.stat .value{font-family:var(--lw-font-serif);font-size:40px;line-height:1;margin:12px 0 6px;font-variant-numeric:tabular-nums}
-.stat .delta{font-size:12.5px;color:var(--lw-text-secondary)}
-.stat .delta b{color:var(--lw-accent);font-weight:500}
-.stat.urgent .value{color:var(--lw-warning)}
+.reg{margin-top:34px}
+.reg-h{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:8px;border-bottom:1px solid var(--rule-3)}
+.reg-h h2{font-size:15px;font-weight:600}
+.reg-h .meta{font-size:12px;color:var(--ink-3)}
+.reg-h .meta a{color:var(--ink-2);border-bottom:1px solid var(--rule-2);margin-left:14px}
+.reg-h .meta a:hover{color:var(--gold);border-color:var(--gold)}
+.r{display:grid;align-items:center;min-height:var(--row);border-bottom:1px solid var(--rule);padding:7px 0;transition:background .12s}
+.r:hover{background:rgba(233,228,218,.025)}
+.r .no{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);padding-left:4px}
+.r .d{color:var(--ink-2);font-size:13px;white-space:nowrap}
+.r .d.urg{color:var(--red);font-weight:500}.r .d.soon{color:var(--amber)}
+.r .t{min-width:0}.r .t small{display:block;color:var(--ink-3);font-size:12.5px;margin-top:1px}
+.r .ref{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);white-space:nowrap}
+.r .st{font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+.r .st::before{content:"· ";color:var(--ink-3)}
+.r .st.ai::before{content:"› ";color:var(--gold)}
+.r .st.ok{color:var(--green)}.r .st.warn{color:var(--amber)}.r .st.off{color:var(--ink-3)}
+.r .go{text-align:right;font-size:13px;color:var(--ink-2);white-space:nowrap}
+.r:hover .go{color:var(--gold)}
+.reg.wait .r{grid-template-columns:34px 96px 1fr 150px 130px}
+.reg.leh .r{grid-template-columns:34px 96px 1fr 190px 120px}
+.reg.dok .r{grid-template-columns:34px 1fr 130px 70px 90px}
+.reg.con .r{grid-template-columns:34px 1fr 150px 200px 110px 120px}
+.reg.mkt .r{grid-template-columns:34px 1fr 60px 230px 110px 110px}
+.two{display:grid;grid-template-columns:1.25fr 1fr;gap:40px}
+@media (max-width:1000px){.two{grid-template-columns:1fr}.desk{grid-template-columns:1fr}.tabs{display:none}.sheet{padding:24px 20px 120px}}
 
-/* rows */
-.rows{display:flex;flex-direction:column}
-.row{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--lw-border-subtle);font-size:13.5px}
-.row:first-child{border-top:0}
-.row .t{flex:1;min-width:0}
-.row .t small{display:block;color:var(--lw-text-tertiary);font-size:12px}
-.row .r{color:var(--lw-text-secondary);font-size:12.5px;font-variant-numeric:tabular-nums}
-.row .r.soon{color:var(--lw-warning);font-weight:500}
-.row .r.now{color:var(--lw-danger);font-weight:600}
-.row .ico{width:28px;height:28px;border-radius:var(--lw-radius-sm);display:grid;place-items:center;background:var(--lw-sunken);border:1px solid var(--lw-border-subtle)}
-.row .ico svg{width:14px;height:14px;stroke:var(--lw-accent);fill:none;stroke-width:1.6}
+/* composer (LegalWork chat surface) */
+.composer{position:sticky;bottom:18px;margin-top:40px;display:flex;align-items:center;gap:12px;padding:10px 10px 10px 16px;background:var(--well);border:1px solid var(--rule-2);border-radius:4px;box-shadow:0 18px 40px -20px rgba(0,0,0,.9)}
+.composer .ctx{font-family:var(--mono);font-size:11px;color:var(--gold);white-space:nowrap;padding-right:12px;border-right:1px solid var(--rule)}
+.composer input{flex:1;background:none;border:0;color:var(--ink);font:inherit;font-size:14px;outline:none}
+.composer input::placeholder{color:var(--ink-3)}
+.composer .k{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);border:1px solid var(--rule-2);border-radius:3px;padding:1px 6px}
+.composer .send{height:32px;padding:0 14px;border:1px solid var(--gold);color:var(--gold);border-radius:3px;font-weight:500;font-size:13px}
+.composer .send:hover{background:var(--gold);color:var(--desk)}
+.agent-line{margin-top:28px;display:grid;grid-template-columns:20px 1fr;gap:12px;font-size:13.5px;color:var(--ink-2);align-items:start}
+.agent-line i{width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:6px;margin-left:6px}
+.agent-line b{color:var(--ink);font-weight:500}
+.agent-line .tools{display:flex;gap:14px;margin-top:6px;font-family:var(--mono);font-size:11px;color:var(--ink-3);flex-wrap:wrap}
 
-/* badges */
-.badge{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:999px;font-size:11.5px;font-weight:500;border:1px solid transparent;white-space:nowrap}
-.badge svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
-.badge-verified{color:var(--lw-accent);border-color:var(--lw-accent-border);background:var(--lw-accent-soft)}
-.badge-ok{color:var(--lw-success);background:var(--lw-success-soft)}
-.badge-warn{color:var(--lw-warning);background:var(--lw-warning-soft)}
-.badge-danger{color:var(--lw-danger);background:var(--lw-danger-soft)}
-.badge-neutral{color:var(--lw-text-secondary);background:var(--lw-sunken);border-color:var(--lw-border-subtle)}
-.badge-ai{color:var(--lw-text-secondary);border-color:var(--lw-border);background:transparent}
-.badge-ai::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lw-accent);box-shadow:0 0 8px var(--lw-accent)}
-.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
-.dot-ok{background:var(--lw-success);box-shadow:0 0 6px var(--lw-success)}
-.dot-warn{background:var(--lw-warning)}.dot-off{background:var(--lw-text-tertiary)}
+.strip{margin-top:16px}
+.strip svg{width:100%;height:auto;display:block}
+.tl-wrap{margin-top:24px;padding:18px 0 8px;border-top:1px solid var(--rule-3);border-bottom:1px solid var(--rule-2)}
+.tl-wrap svg{width:100%;height:auto;display:block}
+.tl-leg{display:flex;gap:22px;margin-top:10px;font-size:12px;color:var(--ink-3);flex-wrap:wrap}
+.tl-leg span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.tl-leg .c::before{background:var(--gold)}.tl-leg .k::before{border:1.5px dashed var(--gold);background:none}.tl-leg .m::before{background:var(--ink-2)}.tl-leg .t::before{background:var(--red)}.tl-leg .p::before{border:1.2px solid var(--ink-3);background:none}
+.tl-leg a{color:var(--ink-2);border-bottom:1px solid var(--rule-2)}.tl-leg a::before{display:none}
 
-/* timeline */
-.tl{position:relative;padding-left:22px}
-.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--lw-accent) 0,var(--lw-accent) var(--progress,45%),var(--lw-border-strong) var(--progress,45%))}
-.tl .ev{position:relative;padding:0 0 18px}
-.tl .ev::before{content:"";position:absolute;left:-20px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--lw-surface);border:1.5px solid var(--lw-border-strong)}
-.tl .ev.done::before{background:var(--lw-accent);border-color:var(--lw-accent)}
-.tl .ev.now::before{background:var(--lw-accent);border-color:var(--lw-accent);box-shadow:0 0 0 4px var(--lw-accent-soft)}
-.tl .ev.future{opacity:.7}
-.tl .ev b{display:block;font-weight:500;font-size:13.5px}
-.tl .ev span{font-size:12px;color:var(--lw-text-tertiary);font-variant-numeric:tabular-nums}
-.tl .ev .tag{float:right;font-size:11px;color:var(--lw-text-tertiary)}
+.brain{border:1px solid var(--rule-2);border-radius:4px;padding:18px 20px 16px;background:linear-gradient(180deg,var(--sheet-2),var(--sheet));position:relative}
+.brain::before{content:"";position:absolute;left:-1px;top:14px;bottom:14px;width:2px;background:var(--gold)}
+.brain h2{font-size:15px;font-weight:600;display:flex;justify-content:space-between;align-items:baseline}
+.brain h2 span{font-family:var(--mono);font-size:11px;color:var(--ink-3);font-weight:400}
+.brain .fields{display:grid;grid-template-columns:110px 1fr;margin-top:12px}
+.brain .fields dt{font-variant-caps:all-small-caps;letter-spacing:.07em;color:var(--ink-3);font-weight:500;padding:8px 0;border-bottom:1px solid var(--rule)}
+.brain .fields dd{padding:8px 0;border-bottom:1px solid var(--rule);font-size:13.5px;line-height:1.5}
+.brain .fields dd a{font-family:var(--mono);font-size:11px;color:var(--ink-3);border-bottom:1px dotted var(--rule-3);margin-left:6px;white-space:nowrap}
+.brain .steps{list-style:none}
+.brain .steps li{padding:3px 0 3px 14px;position:relative}
+.brain .steps li::before{content:"›";position:absolute;left:0;color:var(--gold)}
+.layers{margin-top:16px}
+.layers svg{width:100%;height:auto;display:block}
+.brain .foot{margin-top:12px;font-size:12px;color:var(--ink-3);display:flex;justify-content:space-between;gap:12px}
+.brain .foot a{color:var(--ink-2);border-bottom:1px solid var(--rule-2);white-space:nowrap}.brain .foot a:hover{color:var(--gold)}
 
-/* tasks */
-.task{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--lw-border-subtle);font-size:13.5px}
-.task:first-child{border-top:0}
-.chk{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--lw-border-strong);display:grid;place-items:center;flex:none;transition:all var(--lw-duration-base) var(--lw-ease-spring)}
-.chk svg{width:10px;height:10px;stroke:var(--lw-accent-fg);fill:none;stroke-width:3;opacity:0;transform:scale(.4)}
-.task.done .chk{background:var(--lw-accent);border-color:var(--lw-accent)}.task.done .chk svg{opacity:1;transform:scale(1)}
-.task.done .t{color:var(--lw-text-tertiary);text-decoration:line-through}
-.task .due{margin-left:auto;font-size:12px;color:var(--lw-text-secondary);font-variant-numeric:tabular-nums}
-.task .due.soon{color:var(--lw-warning)}
+.gate{display:grid;grid-template-columns:1.15fr 1fr;margin-top:28px;border-top:1px solid var(--rule-3)}
+.gate>section{padding:22px 28px 24px 0}
+.gate>section+section{border-left:1px solid var(--rule);padding-left:28px;padding-right:0}
+.gate h2{font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline}
+.gate h2 span{font-weight:400;color:var(--ink-3);font-size:12px}
+.law{font-size:19px;font-weight:500}
+.cite{font-family:var(--mono);font-size:12px;color:var(--ink-2);margin-top:4px}
+.quote{margin:18px 0 6px;font-size:17px;line-height:1.55;max-width:46ch}
+.quote mark{background:linear-gradient(transparent 18%,var(--gold-ink) 18%,var(--gold-ink) 88%,transparent 88%);color:inherit}
+.fields{display:grid;grid-template-columns:150px 1fr}
+.fields dt{font-variant-caps:all-small-caps;letter-spacing:.07em;color:var(--ink-3);font-weight:500;padding:9px 0;border-bottom:1px solid var(--rule)}
+.fields dd{padding:9px 0;border-bottom:1px solid var(--rule)}
+.fields dd.hero{font-size:22px;font-weight:500;color:var(--gold-2);padding:12px 0}
+.fields dd small{color:var(--ink-3);font-size:12.5px;margin-left:8px}
+.trace{margin-top:14px;font-family:var(--mono);font-size:11.5px;line-height:1.65;color:var(--ink-2);padding:10px 12px;border-left:1px solid var(--rule-3);background:rgba(0,0,0,.18)}
+.trace i{font-style:normal;color:var(--ink-3)}
+.warn-line{margin-top:14px;font-size:13px;color:var(--amber)}
+.cert{display:inline-flex;gap:7px;align-items:center;font-size:12.5px;color:var(--ink-2)}
+.cert i{width:7px;height:7px;border-radius:50%;background:var(--green)}
+.docview{margin-top:22px;border:1px solid var(--rule-2);border-radius:4px;background:var(--well);display:grid;grid-template-columns:1fr 200px}
+.docview .page{padding:20px 24px;font-size:12.5px;line-height:1.7;color:var(--ink-2);border-right:1px solid var(--rule)}
+.docview .page h4{font-size:12.5px;color:var(--ink);font-weight:600;margin-bottom:6px}
+.docview .page mark{background:var(--gold-ink);color:var(--ink)}
+.docview aside{padding:16px 18px;font-size:12.5px;color:var(--ink-3);display:flex;flex-direction:column;gap:10px}
+.docview aside b{color:var(--ink-2);font-weight:500}
+.docview aside .btn{margin-top:auto}
+.acts{display:flex;align-items:center;gap:8px;margin-top:24px;padding-top:18px;border-top:1px solid var(--rule-3)}
+.btn{height:38px;padding:0 16px;border:1px solid var(--rule-2);border-radius:3px;font-weight:500;font-size:13.5px;color:var(--ink);transition:all .14s;display:inline-flex;align-items:center;white-space:nowrap}
+.btn:hover{border-color:var(--rule-3);background:rgba(233,228,218,.03)}
+.btn.gold{background:var(--gold);color:var(--desk);border-color:var(--gold);padding:0 22px}
+.btn.gold:hover{background:var(--gold-2);border-color:var(--gold-2)}
+.btn.quiet{border-color:transparent;color:var(--ink-2)}.btn.quiet:hover{color:var(--ink);border-color:var(--rule-2)}
+.btn.sm{height:30px;padding:0 12px;font-size:12.5px}
+.acts .hint{margin-left:auto;font-size:12px;color:var(--ink-3)}
+.acts kbd{font-family:var(--mono);font-size:10.5px;padding:1px 5px;border:1px solid var(--rule-2);border-radius:3px;color:var(--ink-2);margin-right:4px}
+.after{margin-top:10px;font-size:12.5px;color:var(--ink-3)}
+.after b{color:var(--ink-2);font-weight:500}
+.seal{position:absolute;right:18px;top:262px;width:168px;height:168px;opacity:0;transform:rotate(-14deg) scale(1.5);pointer-events:none;mix-blend-mode:screen}
+.seal[data-on]{animation:stamp .55s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes stamp{0%{opacity:0;transform:rotate(-14deg) scale(1.5)}55%{opacity:.92;transform:rotate(-8deg) scale(.96)}100%{opacity:.88;transform:rotate(-8deg) scale(1)}}
+.seal text{font-family:var(--seal);font-weight:500;fill:var(--gold);letter-spacing:.2em}
+.seal circle,.seal path{fill:none;stroke:var(--gold);stroke-width:1.6}
+.seal .inner{stroke-width:.9;stroke-dasharray:2 3}
+.gate-state{margin-top:18px;font-size:13px;color:var(--ink-3)}
+.gate-state[data-on]{color:var(--green)}
 
-/* Matter Brain */
-.brain{background:linear-gradient(180deg,var(--lw-surface),var(--lw-sunken));border:1px solid var(--lw-accent-border);box-shadow:var(--lw-glow)}
-.brain .bh{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.brain .bh svg{width:22px;height:22px;stroke:var(--lw-accent);fill:none;stroke-width:1.4}
-.brain .bh h3{font-family:var(--lw-font-serif);font-weight:400;font-size:18px;margin:0}
-.brain .sec{margin-top:14px}
-.brain .sec .eyebrow{margin-bottom:6px}
-.brain .fact{font-size:13px;line-height:1.55;color:var(--lw-text-secondary)}
-.brain .fact a{font-family:var(--lw-font-mono);font-size:11px;color:var(--lw-text-tertiary);border-bottom:1px dotted var(--lw-border-strong)}
-.brain .steps{display:flex;flex-direction:column;gap:6px}
-.brain .steps div{display:flex;gap:8px;font-size:13px}
-.brain .steps div::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--lw-accent);margin-top:7px;flex:none}
-.brain .foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--lw-border-subtle);font-size:11.5px;color:var(--lw-text-tertiary);display:flex;justify-content:space-between;align-items:center}
+.schema{margin-top:24px;border-top:1px solid var(--rule-3);border-bottom:1px solid var(--rule-2);padding:18px 0 10px}
+.schema svg{width:100%;height:auto;display:block}
+.seg{display:inline-flex;gap:18px;margin-top:26px;border-bottom:1px solid var(--rule-2)}
+.seg button{padding:8px 0;color:var(--ink-3);border-bottom:1.5px solid transparent;margin-bottom:-1px;font-size:13.5px}
+.seg button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold)}
+.trust{font-size:12px}
+.trust.loc{color:var(--green)}.trust.own{color:var(--blue)}.trust.ext{color:var(--amber)}
+.note{margin-top:22px;font-size:12.5px;color:var(--ink-3);display:flex;gap:22px;flex-wrap:wrap}
+.note b{color:var(--ink-2);font-weight:500}
 
-/* DecisionGate */
-.gate{max-width:980px}
-.gate .g2{align-items:stretch}
-.source .cite{font-family:var(--lw-font-mono);font-size:12px;color:var(--lw-text-secondary);margin-top:2px}
-.source .law{font-family:var(--lw-font-serif);font-size:19px;margin-top:14px}
-.quote{margin:14px 0 4px;font-size:15.5px;line-height:1.6}
-.quote mark{background:var(--lw-marker);color:inherit;padding:2px 0;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.kv{display:grid;grid-template-columns:1fr auto;gap:10px 16px;font-size:13.5px}
-.kv dt{color:var(--lw-text-secondary)}.kv dd{text-align:right;font-variant-numeric:tabular-nums}
-.kv dd.hero{font-family:var(--lw-font-serif);font-size:22px;color:var(--lw-accent)}
-.kv .calc{grid-column:1/-1;font-family:var(--lw-font-mono);font-size:11.5px;color:var(--lw-text-tertiary);background:var(--lw-sunken);border:1px solid var(--lw-border-subtle);border-radius:var(--lw-radius-sm);padding:8px 10px;line-height:1.6}
-.certainty{display:inline-flex;align-items:center;gap:6px}
-.certainty i{width:34px;height:4px;border-radius:2px;background:var(--lw-border);overflow:hidden;display:inline-block}
-.certainty i::after{content:"";display:block;height:100%;width:var(--c,85%);background:var(--lw-success)}
-.gate-actions{margin-top:18px;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:10px;padding:14px;border:1px solid var(--lw-border);border-radius:var(--lw-radius-xl);background:var(--lw-surface)}
-.gate-actions .btn{height:46px;justify-content:center;border-radius:var(--lw-radius-lg)}
-.gate-actions .hint{grid-column:1/-1;font-size:12px;color:var(--lw-text-tertiary);display:flex;gap:14px}
-.gate-actions .hint kbd{font-family:var(--lw-font-mono);font-size:10.5px;border:1px solid var(--lw-border-strong);border-radius:4px;padding:0 5px;color:var(--lw-text-secondary)}
-.audit{margin-top:14px;font-size:12px;color:var(--lw-text-tertiary);display:flex;align-items:center;gap:8px}
-.audit svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.6}
-
-/* seal moment */
-.seal{position:fixed;inset:0;display:none;place-items:center;background:rgba(7,14,23,.55);backdrop-filter:blur(4px);z-index:60}
-.seal[data-show]{display:grid}
-.seal .disc{width:220px;text-align:center;padding:28px 22px;background:var(--lw-surface);border:1px solid var(--lw-accent-border);border-radius:var(--lw-radius-2xl);box-shadow:var(--lw-glow);animation:sealIn var(--lw-duration-seal) var(--lw-ease-spring) both}
-.seal .ring{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;border:1.5px solid var(--lw-accent);display:grid;place-items:center;position:relative}
-.seal .ring::after{content:"";position:absolute;inset:5px;border-radius:50%;border:1px dashed var(--lw-accent-border)}
-.seal .ring svg{width:26px;height:26px;stroke:var(--lw-accent);fill:none;stroke-width:2;stroke-dasharray:40;stroke-dashoffset:40;animation:draw .5s .25s var(--lw-ease-out) forwards}
-.seal b{font-family:var(--lw-font-serif);font-weight:400;font-size:18px;display:block}
-.seal span{font-size:12px;color:var(--lw-text-secondary)}
-@keyframes sealIn{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
-@keyframes draw{to{stroke-dashoffset:0}}
-
-/* hub */
-.hub-head{display:flex;gap:10px;margin-bottom:18px;align-items:center}
-.seg{display:inline-flex;background:var(--lw-sunken);border:1px solid var(--lw-border-subtle);border-radius:var(--lw-radius-md);padding:2px}
-.seg button{padding:5px 12px;border-radius:6px;font-size:13px;color:var(--lw-text-secondary)}
-.seg button[aria-selected="true"]{background:var(--lw-surface);color:var(--lw-text-primary);box-shadow:var(--lw-shadow-sm);font-weight:500}
-.search{display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;background:var(--lw-surface);border:1px solid var(--lw-border);border-radius:var(--lw-radius-md);color:var(--lw-text-placeholder);min-width:260px}
-.search svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7}
-.conn{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media (max-width:1100px){.conn{grid-template-columns:1fr 1fr}}
-.conn .card{padding:16px 18px;transition:transform var(--lw-duration-base) var(--lw-ease-out),border-color var(--lw-duration-base)}
-.conn .card:hover{transform:translateY(-2px);border-color:var(--lw-accent-border)}
-.conn .ch{display:flex;align-items:center;gap:10px}
-.conn .ch .ico{width:34px;height:34px;border-radius:var(--lw-radius-md);display:grid;place-items:center;background:var(--lw-sunken);border:1px solid var(--lw-border-subtle)}
-.conn .ch .ico svg{width:17px;height:17px;stroke:var(--lw-accent);fill:none;stroke-width:1.5}
-.conn .ch b{font-weight:500;font-size:14px;display:block}
-.conn .ch small{font-size:11.5px;color:var(--lw-text-tertiary)}
-.conn .ch .st{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--lw-text-secondary)}
-.conn .meta{display:flex;gap:14px;margin-top:12px;font-size:12px;color:var(--lw-text-tertiary)}
-.conn .meta b{color:var(--lw-text-secondary);font-weight:500;font-family:var(--lw-font-mono);font-size:11.5px}
-.conn .flags{display:flex;gap:6px;margin-top:12px}
-.conn .cf{margin-top:12px;padding-top:10px;border-top:1px solid var(--lw-border-subtle);display:flex;gap:8px}
-.local-note{margin-top:22px;display:flex;align-items:center;gap:10px;padding:12px 16px;border:1px dashed var(--lw-accent-border);border-radius:var(--lw-radius-lg);font-size:13px;color:var(--lw-text-secondary)}
-.local-note svg{width:16px;height:16px;stroke:var(--lw-accent);fill:none;stroke-width:1.6}
-
-/* token sheet */
-.sheet{padding:32px 40px 60px;max-width:1200px}
-.sheet h2{font-family:var(--lw-font-serif);font-weight:400;font-size:24px;margin:36px 0 14px}
-.sheet h2:first-child{margin-top:0}
-.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
-.sw div{border:1px solid var(--lw-border);border-radius:var(--lw-radius-md);overflow:hidden;font-size:11px}
-.sw div i{display:block;height:52px}
-.sw div span{display:block;padding:6px 8px;font-family:var(--lw-font-mono);color:var(--lw-text-secondary)}
-.sw div b{display:block;padding:0 8px 6px;font-weight:500}
-.type-row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:10px 0;border-top:1px solid var(--lw-border-subtle);align-items:baseline}
-.type-row .k{font-family:var(--lw-font-mono);font-size:11px;color:var(--lw-text-tertiary)}
-.demo-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-
-/* staggered entrance */
-.enter>*{animation:rise var(--lw-duration-slow) var(--lw-ease-out) both}
-.enter>*:nth-child(2){animation-delay:40ms}.enter>*:nth-child(3){animation-delay:80ms}.enter>*:nth-child(4){animation-delay:120ms}.enter>*:nth-child(5){animation-delay:160ms}.enter>*:nth-child(6){animation-delay:200ms}
-@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+/* reconcile */
+.diff{margin-top:24px;border-top:1px solid var(--rule-3);display:grid;grid-template-columns:1fr 1fr}
+.diff>div{padding:18px 24px 20px 0;font-size:13px;line-height:1.7;color:var(--ink-2)}
+.diff>div+div{border-left:1px solid var(--rule);padding-left:24px;padding-right:0}
+.diff h2{font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:12px;display:flex;justify-content:space-between}
+.diff h2 span{font-weight:400;color:var(--ink-3);font-size:12px}
+.diff del{background:rgba(217,119,107,.16);color:var(--ink);text-decoration:line-through;text-decoration-color:var(--red)}
+.diff ins{background:rgba(141,187,143,.16);color:var(--ink);text-decoration:none}
+.learn{margin-top:26px;border:1px solid var(--rule-2);border-radius:4px;background:linear-gradient(180deg,var(--sheet-2),var(--sheet));padding:18px 22px;position:relative}
+.learn::before{content:"";position:absolute;left:-1px;top:14px;bottom:14px;width:2px;background:var(--gold)}
+.learn h2{font-size:15px;font-weight:600;display:flex;justify-content:space-between;align-items:baseline}
+.learn h2 span{font-family:var(--mono);font-size:11px;color:var(--ink-3);font-weight:400}
+.learn .rule{font-size:16px;line-height:1.5;margin:12px 0 4px;max-width:70ch}
+.learn .rule mark{background:linear-gradient(transparent 18%,var(--gold-ink) 18%,var(--gold-ink) 88%,transparent 88%);color:inherit}
+.learn .fields{grid-template-columns:130px 1fr;margin-top:10px}
+.learn .fields dd{font-size:13.5px}
+.layer-pick{display:inline-flex;gap:0;border:1px solid var(--rule-2);border-radius:3px;overflow:hidden}
+.layer-pick button{padding:5px 12px;font-size:12.5px;color:var(--ink-3);border-right:1px solid var(--rule-2)}
+.layer-pick button:last-child{border-right:0}
+.layer-pick button[aria-selected="true"]{color:var(--desk);background:var(--gold);font-weight:500}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.seal[data-on]{opacity:.88;transform:rotate(-8deg)}}
 </style>
 </head>
 <body>
+<div class="pb"><b>LAWOSS · hi-fi v2</b> podací denník na tmavom stole · 2026-08-23 · fiktívne dáta
+  <div class="sw"><button aria-selected="true" data-go="prehlad">Prehľad</button><button data-go="spis">Spis · OKF Brain</button><button data-go="brana">Kontrola lehoty</button><button data-go="hub">Konektory · Marketplace</button><button data-go="recon">Reconcile</button></div></div>
 
-<!-- ============ prototype bar ============ -->
-<div class="proto-bar">
-  <span class="title">LAWOSS · hi-fi prototyp</span>
-  <span class="faint">2026-08-23 · návrh, nie finálny dizajn</span>
-  <span class="spacer"></span>
-  <div class="tabs" role="tablist">
-    <button role="tab" aria-selected="true" data-go="prehlad">01 Prehľad</button>
-    <button role="tab" data-go="spis">02 Spis + Matter Brain</button>
-    <button role="tab" data-go="lehota">03 Kontrola lehoty</button>
-    <button role="tab" data-go="hub">05/10 Konektory &amp; nástroje</button>
-    <button role="tab" data-go="tokeny">Tokeny</button>
-  </div>
-  <button class="toggle" id="theme"><span class="dot dot-ok"></span><span id="theme-label">Tmavý (primárny)</span></button>
-</div>
-
-<!-- ============ SVG symbols ============ -->
-<svg width="0" height="0" style="position:absolute">
-  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
-  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
-  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></symbol>
-  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
-  <symbol id="i-sign" viewBox="0 0 24 24"><path d="M3 20c4-1 6-6 8-6s2 4 4 4 3-4 6-4"/><path d="M14 4l3 3-8 8H6v-3z"/></symbol>
-  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
-  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M6 7h12v4a6 6 0 0 1-12 0zM12 17v4"/></symbol>
-  <symbol id="i-term" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M12 15h5"/></symbol>
-  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></symbol>
-  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol>
-  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></symbol>
-  <symbol id="i-x" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></symbol>
-  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4l10-10-4-4L4 16z"/><path d="M13 7l4 4"/></symbol>
-  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/></symbol>
-  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 4v16M8.5 5A3 3 0 0 0 5 8a3 3 0 0 0-1 5 3 3 0 0 0 2 5 3 3 0 0 0 6 0V6a3 3 0 0 0-3.5-1zM15.5 5A3 3 0 0 1 19 8a3 3 0 0 1 1 5 3 3 0 0 1-2 5 3 3 0 0 1-6 0V6a3 3 0 0 1 3.5-1z"/></symbol>
-  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M6 7h12"/><path d="M6 7l-3 7a3 3 0 0 0 6 0zM18 7l-3 7a3 3 0 0 0 6 0z"/></symbol>
-  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4h7a2 2 0 0 1 2 2v14a1 1 0 0 0-1-1H4zM20 4h-7a2 2 0 0 0-2 2v14a1 1 0 0 1 1-1h8z"/></symbol>
-  <symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2M10 21v-3h4v3"/></symbol>
-  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
-  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3M3 12h18"/></symbol>
-  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
-  <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></symbol>
-  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
-</svg>
-
-<!-- ============ template: sidebar ============ -->
-<template id="sidebar-tpl">
-  <aside class="sidebar">
-    <div class="brand">
-      <svg class="hex" viewBox="0 0 30 34" fill="none"><path d="M15 1l13 7.5v17L15 33 2 25.5v-17z" stroke="#C9A24A" stroke-width="1.3"/><path d="M15 9v14M10 13h10M10 13l-2.5 5a2.5 2.5 0 0 0 5 0zM20 13l-2.5 5a2.5 2.5 0 0 0 5 0zM11.5 25h7" stroke="#C9A24A" stroke-width="1.1" stroke-linecap="round"/></svg>
-      <div><div class="wordmark">LAW<b>OSS</b></div><div class="sub">Czechia · Slovakia</div></div>
-    </div>
-    <nav class="nav">
-      <div class="group">Prax</div>
-      <a href="#" data-nav="prehlad"><svg><use href="#i-home"/></svg>Prehľad</a>
-      <a href="#" data-nav="spis"><svg><use href="#i-folder"/></svg>Spisy<span class="count">24</span></a>
-      <a href="#" data-nav="lehota"><svg><use href="#i-clock"/></svg>Lehoty<span class="count">7</span></a>
-      <a href="#"><svg><use href="#i-doc"/></svg>Dokumenty</a>
-      <a href="#"><svg><use href="#i-mail"/></svg>Komunikácia</a>
-      <div class="group">Overovanie</div>
-      <a href="#"><svg><use href="#i-search"/></svg>Rešerš</a>
-      <a href="#"><svg><use href="#i-sign"/></svg>Podpisovanie</a>
-      <div class="group">Systém</div>
-      <a href="#" data-nav="hub"><svg><use href="#i-plug"/></svg>Konektory a nástroje</a>
-      <a href="#"><svg><use href="#i-spark"/></svg>AI asistent</a>
-      <a href="#"><svg><use href="#i-gear"/></svg>Nastavenia</a>
-    </nav>
-    <div class="foot"><div class="avatar">MN</div><div class="who"><b>JUDr. Martin Novák</b><span>Advokát · fiktívne dáta</span></div></div>
+<div class="desk">
+  <aside class="tabs">
+    <div class="brand"><svg viewBox="0 0 22 25" fill="none"><path d="M11 1l9.5 5.5v11L11 23 1.5 17.5v-11z" stroke="#C9A24A" stroke-width="1.2"/><path d="M11 7v10M7 10h8M7 10l-2 4a2 2 0 0 0 4 0zM15 10l-2 4a2 2 0 0 0 4 0z" stroke="#C9A24A" stroke-width=".9" stroke-linecap="round"/></svg><div><div class="wm">LAW<b>OSS</b></div><small>CZECHIA · SLOVAKIA</small></div></div>
+    <a class="tab" href="#" data-go="prehlad" aria-current="page">Prehľad<span class="n"></span></a>
+    <a class="tab" href="#" data-go="spis">Spisy<span class="n">24</span></a>
+    <a class="tab" href="#" data-go="brana">Lehoty<span class="n">7</span></a>
+    <a class="tab" href="#">Dokumenty<span class="n">128</span></a>
+    <div class="gap"></div>
+    <a class="tab" href="#">Asistent<span class="n">3</span></a>
+    <div class="gap"></div>
+    <a class="tab" href="#" data-go="hub">Konektory<span class="n">8</span></a>
+    <a class="tab" href="#" data-go="hub">Marketplace<span class="n"></span></a>
+    <a class="tab" href="#">Nastavenia<span class="n"></span></a>
+    <div class="who">JUDr. Martin Novák<span>advokát · SR · fiktívny</span></div>
   </aside>
-</template>
 
-<!-- ============ 01 PREHĽAD ============ -->
-<section class="screen" id="prehlad" data-active>
-<div class="app"><div data-sidebar></div>
-<main class="main">
-  <div class="topbar">
-    <div><h1>Prehľad praxe</h1><p class="lead">Utorok 23. augusta · 3 veci čakajú na vaše rozhodnutie.</p></div>
-    <div class="actions"><button class="iconbtn" aria-label="Hľadať"><svg><use href="#i-search"/></svg></button><button class="iconbtn" aria-label="Upozornenia"><svg><use href="#i-bell"/></svg></button><button class="btn btn-gold">Nový spis</button></div>
-  </div>
-
-  <div class="grid g3 enter" style="margin-bottom:16px">
-    <div class="card stat"><div class="label"><svg><use href="#i-folder"/></svg>Aktívne spisy</div><div class="value">24</div><div class="delta"><b>+3</b> tento týždeň</div></div>
-    <div class="card stat urgent"><div class="label"><svg><use href="#i-clock"/></svg>Najbližšie lehoty</div><div class="value">7</div><div class="delta"><b>2 dnes</b> · 1 čaká na potvrdenie</div></div>
-    <div class="card stat"><div class="label"><svg><use href="#i-doc"/></svg>Dokumenty</div><div class="value">128</div><div class="delta"><b>+12</b> tento týždeň · 4 nové z e-mailu</div></div>
-  </div>
-
-  <div class="grid g-dash enter">
-    <div class="card card-gold">
-      <div class="card-head"><h3>Čaká na vaše rozhodnutie</h3><span class="badge badge-ai">AI návrh</span></div>
-      <p class="sub">Agent pripravil, vy rozhodujete. Nič sa nezapíše bez potvrdenia.</p>
-      <div class="rows" style="margin-top:10px">
-        <div class="row"><div class="ico"><svg><use href="#i-clock"/></svg></div><div class="t">Lehota na odvolanie<small>ABC s.r.o. v. DEF a.s. · <span class="mono">§ 362 ods. 1 CSP</span></small></div><span class="badge badge-warn">do 7. 6.</span></div>
-        <div class="row"><div class="ico"><svg><use href="#i-mail"/></svg></div><div class="t">Návrh odpovede klientovi<small>KLIENT s.r.o. · Re: Zmluva o dielo</small></div><span class="badge badge-neutral">draft</span></div>
-        <div class="row"><div class="ico"><svg><use href="#i-brain"/></svg></div><div class="t">Zápis do pamäte spisu<small>Nový fakt: úhrada 40 % z ceny diela</small></div><span class="badge badge-neutral">L2</span></div>
-      </div>
-      <a class="more" href="#" data-go="lehota">Otvoriť rozhodovaciu bránu</a>
+  <main class="sheet">
+  <!-- ================= PREHĽAD ================= -->
+  <section class="screen" id="prehlad" data-on>
+    <div class="stamp-date"><b>LAWOSS</b>došlo 23. 08. 2026<br>09:14 · 3 na rozhodnutie</div>
+    <h1>Prehľad praxe</h1>
+    <p class="lead">Utorok 23. augusta. Tri veci čakajú na vaše rozhodnutie, dve lehoty sú tento týždeň.</p>
+    <div class="obal">
+      <div><span class="sc">Aktívne spisy</span><span class="v">24<small>+3 tento týždeň</small></span></div>
+      <div><span class="sc">Lehoty · 7 dní</span><span class="v warn">7<small>2 dnes</small></span></div>
+      <div><span class="sc">Dokumenty</span><span class="v">128<small>+12 · 4 z e-mailu</small></span></div>
+      <div><span class="sc">Agent</span><span class="v">lokálny<small>cloud vypnutý</small></span></div>
+      <div><span class="sc">Zdroje</span><span class="v">4 / 5<small>Autogram chýba</small></span></div>
     </div>
 
-    <div class="card">
-      <div class="card-head"><h3>Najbližšie lehoty</h3><a class="faint" href="#" style="font-size:12px">Kalendár</a></div>
-      <div class="rows">
-        <div class="row"><div class="t">Žaloba – Okresný súd Bratislava I<small>Novák v. Poisťovňa</small></div><span class="r now">zajtra</span></div>
-        <div class="row"><div class="t">Vyjadrenie k žalobe<small>Kováč / rozvod</small></div><span class="r soon">23. 5.</span></div>
-        <div class="row"><div class="t">Odvolanie – Krajský súd Žilina<small>STAV s.r.o. v. Mesto</small></div><span class="r">25. 5.</span></div>
-        <div class="row"><div class="t">Podanie na ORSR<small>Zmena konateľa · Alfa s.r.o.</small></div><span class="r">2. 6.</span></div>
-      </div>
-      <a class="more" href="#">Zobraziť všetky lehoty</a>
+    <div class="reg wait">
+      <div class="reg-h"><h2>Čaká na advokáta</h2><span class="meta">agent pripravil, vy rozhodujete<a href="#" data-go="brana">Otvoriť bránu</a></span></div>
+      <a class="r" href="#" data-go="brana"><span class="no">1.</span><span class="d soon">do 7. 6.</span><span class="t">Lehota na odvolanie<small>ABC s.r.o. v. DEF a.s. · Okresný súd Bratislava I</small></span><span class="ref">§ 362 ods. 1 CSP</span><span class="st ai">návrh agenta</span></a>
+      <a class="r" href="#"><span class="no">2.</span><span class="d">dnes 10:24</span><span class="t">Návrh odpovede klientovi<small>KLIENT s.r.o. · Re: Zmluva o dielo · odíde až po schválení</small></span><span class="ref">e-mail</span><span class="st ai">návrh agenta</span></a>
+      <a class="r" href="#" data-go="recon"><span class="no">3.</span><span class="d">včera</span><span class="t">Zápis do pamäte spisu<small>nový fakt: uhradených 40 % z ceny diela (82 400 €)</small></span><span class="ref">MEMORY.md · L2</span><span class="st ai">návrh agenta</span></a>
     </div>
 
-    <div class="card">
-      <div class="card-head"><h3>Overené zdroje</h3><span class="badge badge-ok"><span class="dot dot-ok"></span>4 / 5</span></div>
-      <div class="rows">
-        <div class="row"><div class="t">Slov-Lex</div><span class="r"><span class="dot dot-ok"></span></span></div>
-        <div class="row"><div class="t">Judikatúra SR<small>161 229 rozhodnutí NS SR</small></div><span class="r"><span class="dot dot-ok"></span></span></div>
-        <div class="row"><div class="t">ORSR · RPVS · FS SR</div><span class="r"><span class="dot dot-ok"></span></span></div>
-        <div class="row"><div class="t">Autogram<small>nenájdený v systéme</small></div><span class="r"><span class="dot dot-warn"></span></span></div>
+    <div class="reg leh">
+      <div class="reg-h"><h2>Lehoty · najbližších 14 dní</h2><span class="meta"><a href="#">Celý kalendár</a><a href="#">Exportovať ICS</a></span></div>
+      <div class="strip">
+        <svg viewBox="0 0 1160 118" aria-label="Pás lehôt na 14 dní">
+          <defs><linearGradient id="today" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#C9A24A" stop-opacity=".35"/><stop offset="1" stop-color="#C9A24A" stop-opacity="0"/></linearGradient></defs>
+          <rect x="300" y="20" width="160" height="58" fill="rgba(233,228,218,.025)"/><rect x="860" y="20" width="160" height="58" fill="rgba(233,228,218,.025)"/>
+          <line x1="20" x2="1140" y1="78" y2="78" stroke="rgba(233,228,218,.26)"/>
+          <g stroke="rgba(233,228,218,.18)"><line x1="100" x2="100" y1="74" y2="82"/><line x1="180" x2="180" y1="74" y2="82"/><line x1="260" x2="260" y1="74" y2="82"/><line x1="340" x2="340" y1="74" y2="82"/><line x1="420" x2="420" y1="74" y2="82"/><line x1="500" x2="500" y1="74" y2="82"/><line x1="580" x2="580" y1="74" y2="82"/><line x1="660" x2="660" y1="74" y2="82"/><line x1="740" x2="740" y1="74" y2="82"/><line x1="820" x2="820" y1="74" y2="82"/><line x1="900" x2="900" y1="74" y2="82"/><line x1="980" x2="980" y1="74" y2="82"/><line x1="1060" x2="1060" y1="74" y2="82"/><line x1="1140" x2="1140" y1="74" y2="82"/></g>
+          <g font-size="11" fill="#75808C"><text x="20" y="100" text-anchor="middle">ut 23.</text><text x="100" y="100" text-anchor="middle">st 24.</text><text x="180" y="100" text-anchor="middle">št 25.</text><text x="260" y="100" text-anchor="middle">pi 26.</text><text x="340" y="100" text-anchor="middle" fill="#4F5A66">so 27.</text><text x="420" y="100" text-anchor="middle" fill="#4F5A66">ne 28.</text><text x="500" y="100" text-anchor="middle">po 29.</text><text x="580" y="100" text-anchor="middle">ut 30.</text><text x="660" y="100" text-anchor="middle">st 31.</text><text x="740" y="100" text-anchor="middle">št 1.</text><text x="820" y="100" text-anchor="middle">pi 2.</text><text x="900" y="100" text-anchor="middle" fill="#4F5A66">so 3.</text><text x="980" y="100" text-anchor="middle" fill="#4F5A66">ne 4.</text><text x="1060" y="100" text-anchor="middle">po 5.</text><text x="1140" y="100" text-anchor="middle">ut 6.</text></g>
+          <rect x="12" y="8" width="16" height="70" fill="url(#today)"/><line x1="20" x2="20" y1="8" y2="78" stroke="#C9A24A" stroke-width="1.5"/><text x="28" y="18" font-size="10.5" fill="#C9A24A">dnes</text>
+          <g font-size="12" fill="#E9E4DA">
+            <line x1="100" x2="100" y1="16" y2="78" stroke="#D9776B"/><circle cx="100" cy="78" r="4.5" fill="#D9776B"/><text x="108" y="20" fill="#D9776B" font-weight="500">Žaloba o náhradu škody</text><text x="108" y="34" font-size="11" fill="#A8B0BA">Novák v. Poisťovňa · OS Bratislava I</text>
+            <line x1="260" x2="260" y1="46" y2="78" stroke="#D89A4E"/><circle cx="260" cy="78" r="4.5" fill="#D89A4E"/><text x="268" y="50" fill="#D89A4E" font-weight="500">Vyjadrenie k žalobe</text><text x="268" y="64" font-size="11" fill="#A8B0BA">Kováč / rozvod · OS Trnava</text>
+            <line x1="420" x2="420" y1="16" y2="78" stroke="#A8B0BA"/><circle cx="420" cy="78" r="4.5" fill="#10171F" stroke="#A8B0BA" stroke-width="1.5"/><text x="428" y="20">Odvolanie</text><text x="428" y="34" font-size="11" fill="#A8B0BA">STAV s.r.o. v. Mesto Žilina · KS Žilina</text>
+            <line x1="820" x2="820" y1="16" y2="78" stroke="#C9A24A" stroke-dasharray="3 3"/><circle cx="820" cy="78" r="4.5" fill="#10171F" stroke="#C9A24A" stroke-width="1.5" stroke-dasharray="2 2"/><text x="828" y="20" fill="#C9A24A">Lehota na odvolanie · návrh</text><text x="828" y="34" font-size="11" fill="#A8B0BA">ABC v. DEF · čaká na potvrdenie</text>
+            <line x1="1060" x2="1060" y1="46" y2="78" stroke="#A8B0BA"/><circle cx="1060" cy="78" r="4.5" fill="#10171F" stroke="#A8B0BA" stroke-width="1.5"/><text x="1068" y="50">Zmena konateľa</text><text x="1068" y="64" font-size="11" fill="#A8B0BA">Alfa s.r.o. · ORSR</text>
+          </g>
+        </svg>
       </div>
-      <a class="more" href="#" data-go="hub">Spravovať konektory</a>
-    </div>
-  </div>
-</main></div>
-</section>
-
-<!-- ============ 02 SPIS + MATTER BRAIN ============ -->
-<section class="screen" id="spis">
-<div class="app"><div data-sidebar></div>
-<main class="main">
-  <div class="topbar">
-    <div>
-      <div class="crumbs"><a href="#" data-go="prehlad">Spisy</a> › Obchodný spor</div>
-      <h1>ABC s.r.o. <span class="faint serif" style="font-style:italic">v.</span> DEF a.s.</h1>
-      <p class="lead">Okresný súd Bratislava I · <span class="mono">15C/123/2024</span> · spis <span class="mono">2024-01 DEF - Zmluva o dielo - spor</span></p>
-    </div>
-    <div class="actions"><button class="btn btn-secondary"><svg><use href="#i-spark"/></svg>Otvoriť v asistentovi</button><button class="btn btn-gold">Nový dokument</button></div>
-  </div>
-
-  <div class="grid g-spis enter">
-    <div class="card">
-      <div class="card-head"><h3>Timeline</h3><span class="faint" style="font-size:12px">fáza: príprava na pojednávanie</span></div>
-      <div class="tl" style="--progress:48%">
-        <div class="ev done"><span class="tag">Podanie</span><b>Podanie žaloby</b><span>10. 1. 2025</span></div>
-        <div class="ev done"><span class="tag">Dokument</span><b>Vyjadrenie žalovaného</b><span>10. 2. 2025</span></div>
-        <div class="ev now"><span class="tag">Pojednávanie</span><b>Pojednávanie</b><span>25. 6. 2025 · 10:00</span></div>
-        <div class="ev future"><span class="tag">Plánované</span><b>Navrhované dôkazy</b><span>do 10 dní</span></div>
-        <div class="ev future"><span class="tag">Plánované</span><b>Záverečné vyjadrenie</b><span>—</span></div>
-      </div>
-      <a class="more" href="#">Celá chronológia a auditná stopa</a>
+      <div class="tl-leg"><span class="t">dnes / zajtra</span><span class="m">potvrdené</span><span class="k">návrh agenta, čaká na potvrdenie</span></div>
     </div>
 
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div class="card">
-        <div class="card-head"><h3>Úlohy</h3><span class="faint" style="font-size:12px">1 / 4</span></div>
-        <div class="task done"><span class="chk"><svg><use href="#i-check"/></svg></span><span class="t">Preštudovať vyjadrenie žalovaného</span></div>
-        <div class="task"><span class="chk"></span><span class="t">Reakcia na vyjadrenie</span><span class="due soon">do 2 dní</span></div>
-        <div class="task"><span class="chk"></span><span class="t">Príprava na pojednávanie</span><span class="due">do 5 dní</span></div>
-        <div class="task"><span class="chk"></span><span class="t">Návrh dôkazov</span><span class="due">do 10 dní</span></div>
-        <a class="more" href="#">Všetky úlohy</a>
-      </div>
-      <div class="card">
-        <div class="card-head"><h3>Nedávne dokumenty</h3></div>
-        <div class="rows">
-          <div class="row"><div class="ico"><svg><use href="#i-doc"/></svg></div><div class="t">Vyjadrenie žalovaného.pdf<small>02_podania · 10. 2. 2025</small></div><span class="badge badge-neutral">OCR</span></div>
-          <div class="row"><div class="ico"><svg><use href="#i-doc"/></svg></div><div class="t">Zmluva o dielo.docx<small>01_zmluvy · 5. 1. 2025</small></div><span class="badge badge-verified"><svg><use href="#i-check"/></svg>podpísaná</span></div>
-          <div class="row"><div class="ico"><svg><use href="#i-doc"/></svg></div><div class="t">Plná moc.pdf<small>00_klient · 3. 1. 2025</small></div></div>
+    <div class="agent-line"><i></i><div><b>Agent</b> · dnes 09:02 — Spracoval som 4 nové e-maily. V spise <span class="mono">ABC v. DEF</span> som našiel doručený rozsudok a navrhol lehotu na odvolanie (list č. 14). Dva dokumenty z KLIENT s.r.o. som zaradil do <span class="mono">03_komunikacia</span>.
+      <div class="tools"><span>read · ocr</span><span>okf-validate ✓</span><span>lehoty.md +1 kandidát</span><span>audit 09:02</span></div></div></div>
+    <form class="composer" onsubmit="return false"><span class="ctx">prax</span><input placeholder="Napíšte agentovi… napr. „založ spis Novák / rozvod“ alebo „čo mám dnes podať?“"><span class="k">⌘K</span><button class="send">Poslať</button></form>
+  </section>
+
+  <!-- ================= SPIS + OKF BRAIN ================= -->
+  <section class="screen" id="spis">
+    <div class="crumb"><a href="#" data-go="prehlad">Spisy</a> › obchodný spor</div>
+    <h1>ABC s.r.o. <em>v.</em> DEF a.s.</h1>
+    <div class="obal">
+      <div><span class="sc">Sp. zn.</span><span class="v mono">15C/123/2024</span></div>
+      <div><span class="sc">Súd</span><span class="v">Okresný súd Bratislava I</span></div>
+      <div><span class="sc">Klient</span><span class="v">ABC s.r.o.</span></div>
+      <div><span class="sc">Fáza</span><span class="v warn">príprava na pojednávanie</span></div>
+      <div><span class="sc">Priečinok</span><span class="v mono">2024-01 DEF - Zmluva o dielo - spor</span></div>
+    </div>
+
+    <div class="tl-wrap">
+      <svg viewBox="0 0 1160 150" aria-label="Timeline spisu">
+        <defs><linearGradient id="ph" x1="0" x2="1"><stop offset="0" stop-color="#C9A24A" stop-opacity=".22"/><stop offset="1" stop-color="#C9A24A" stop-opacity=".04"/></linearGradient></defs>
+        <g font-size="10.5" fill="#75808C" letter-spacing=".06em">
+          <rect x="20" y="112" width="300" height="18" fill="rgba(233,228,218,.05)"/><text x="30" y="125">I. STUPEŇ · ŽALOBA</text>
+          <rect x="320" y="112" width="420" height="18" fill="url(#ph)"/><text x="330" y="125" fill="#C9A24A">DOKAZOVANIE · POJEDNÁVANIE</text>
+          <rect x="740" y="112" width="400" height="18" fill="rgba(233,228,218,.03)" stroke="rgba(233,228,218,.12)" stroke-dasharray="3 3"/><text x="750" y="125">ROZHODNUTIE · OPRAVNÉ PROSTRIEDKY</text>
+        </g>
+        <line x1="20" x2="1140" y1="84" y2="84" stroke="rgba(233,228,218,.26)"/>
+        <line x1="20" x2="520" y1="84" y2="84" stroke="#C9A24A" stroke-width="1.5"/>
+        <g font-size="12" fill="#E9E4DA">
+          <circle cx="60" cy="84" r="5" fill="#C9A24A"/><text x="60" y="66" text-anchor="middle">Podanie žaloby</text><text x="60" y="100" text-anchor="middle" font-size="11" fill="#75808C">10. 1. 2025</text>
+          <circle cx="200" cy="84" r="5" fill="#C9A24A"/><text x="200" y="66" text-anchor="middle">Vyjadrenie žalovaného</text><text x="200" y="100" text-anchor="middle" font-size="11" fill="#75808C">10. 2. 2025</text>
+          <circle cx="350" cy="84" r="5" fill="#C9A24A"/><text x="350" y="66" text-anchor="middle">Doručený rozsudok</text><text x="350" y="100" text-anchor="middle" font-size="11" fill="#75808C">23. 5. · list č. 12</text>
+          <line x1="520" x2="520" y1="30" y2="110" stroke="#C9A24A" stroke-width="1.5"/><text x="526" y="38" font-size="10.5" fill="#C9A24A">dnes</text>
+          <circle cx="610" cy="84" r="5" fill="#10171F" stroke="#C9A24A" stroke-width="1.5" stroke-dasharray="2 2"/><text x="610" y="66" text-anchor="middle" fill="#C9A24A">Lehota na odvolanie</text><text x="610" y="100" text-anchor="middle" font-size="11" fill="#C9A24A">7. 6. · návrh, čaká na potvrdenie</text>
+          <circle cx="780" cy="84" r="5" fill="#10171F" stroke="#A8B0BA" stroke-width="1.5"/><text x="780" y="66" text-anchor="middle">Pojednávanie</text><text x="780" y="100" text-anchor="middle" font-size="11" fill="#75808C">25. 6. 2025 · 10:00</text>
+          <circle cx="940" cy="84" r="4" fill="none" stroke="#75808C" stroke-width="1.2"/><text x="940" y="66" text-anchor="middle" fill="#A8B0BA">Návrh dôkazov</text><text x="940" y="100" text-anchor="middle" font-size="11" fill="#75808C">plánované · do 10 dní</text>
+          <circle cx="1090" cy="84" r="4" fill="none" stroke="#75808C" stroke-width="1.2"/><text x="1090" y="66" text-anchor="middle" fill="#A8B0BA">Záverečné vyjadrenie</text><text x="1090" y="100" text-anchor="middle" font-size="11" fill="#75808C">plánované</text>
+        </g>
+      </svg>
+      <div class="tl-leg"><span class="c">udialo sa</span><span class="k">návrh agenta</span><span class="m">nariadené</span><span class="p">plánované</span><a href="#" style="margin-left:auto">Celá chronológia a auditná stopa →</a></div>
+    </div>
+
+    <div class="two">
+      <div>
+        <div class="reg dok">
+          <div class="reg-h"><h2>Dokumenty</h2><span class="meta">OKF · 12 súborov<a href="#">Otvoriť priečinok</a><a href="#">Nahrať</a></span></div>
+          <a class="r" href="#"><span class="no">12.</span><span class="t">Rozsudok OS BA I.pdf<small>02_podania · doručený 23. 5. · OCR hotové</small></span><span class="st ai">lehota navrhnutá</span><span class="d">23. 5.</span><span class="go">otvoriť →</span></a>
+          <a class="r" href="#"><span class="no">11.</span><span class="t">Vyjadrenie žalovaného.pdf<small>02_podania</small></span><span class="st ok">zaradené</span><span class="d">10. 2.</span><span class="go">otvoriť →</span></a>
+          <a class="r" href="#"><span class="no">4.</span><span class="t">Zmluva o dielo.docx<small>01_zmluvy · podpísaná QES · sledované zmeny</small></span><span class="st ok">podpísaná</span><span class="d">5. 1.</span><span class="go">upraviť →</span></a>
+          <a class="r" href="#"><span class="no">1.</span><span class="t">Plná moc.pdf<small>00_klient</small></span><span class="st ok">zaradené</span><span class="d">3. 1.</span><span class="go">otvoriť →</span></a>
+        </div>
+        <div class="reg leh" style="margin-top:28px">
+          <div class="reg-h"><h2>Úlohy</h2><span class="meta">1 / 4 hotové<a href="#">Všetky</a></span></div>
+          <a class="r" href="#"><span class="no">✓</span><span class="d">hotové</span><span class="t" style="color:var(--ink-3)">Preštudovať vyjadrenie žalovaného</span><span class="ref"></span><span class="st off">10. 2.</span></a>
+          <a class="r" href="#"><span class="no">2.</span><span class="d soon">do 2 dní</span><span class="t">Reakcia na vyjadrenie</span><span class="ref">draft v Asistentovi</span><span class="st ai">pripravené</span></a>
+          <a class="r" href="#"><span class="no">3.</span><span class="d">do 5 dní</span><span class="t">Príprava na pojednávanie</span><span class="ref"></span><span class="st">otvorené</span></a>
+          <a class="r" href="#"><span class="no">4.</span><span class="d">do 10 dní</span><span class="t">Návrh dôkazov</span><span class="ref"></span><span class="st">otvorené</span></a>
         </div>
       </div>
+
+      <div class="brain" style="margin-top:34px">
+        <h2>OKF Brain <span>L2 · spisová pamäť · provenance ✓</span></h2>
+        <dl class="fields">
+          <dt>Stav</dt><dd>Príprava na pojednávanie; rozsudok doručený, plynie lehota na odvolanie (návrh).</dd>
+          <dt>Fakty</dt><dd>Zmluva o dielo z 12. 3. 2024. Nesplnený termín odovzdania. Uhradených 40 % ceny diela (82 400 €).<a href="#">_STATUS.md</a></dd>
+          <dt>Taktika</dt><dd>TP-003: argumentovať omeškaním dodávateľa, nie vadami.<a href="#">MEMORY.md</a></dd>
+          <dt>Ďalšie kroky</dt><dd><ul class="steps"><li>Pripraviť dôkaznú stratégiu k omeškaniu</li><li>Skontrolovať preberací protokol</li><li>Zvážiť návrh na zabezpečenie dôkazu</li></ul></dd>
+        </dl>
+        <div class="layers">
+          <svg viewBox="0 0 400 92" aria-label="Vrstvy pamäte">
+            <g font-size="11" fill="#A8B0BA">
+              <rect x="0" y="6" width="400" height="22" fill="rgba(233,228,218,.03)" stroke="rgba(233,228,218,.12)"/><text x="10" y="21" font-weight="500" fill="#E9E4DA">L1</text><text x="34" y="21">prax · preferencie advokáta</text><text x="390" y="21" text-anchor="end" fill="#75808C">bez zmeny</text>
+              <rect x="0" y="34" width="400" height="22" fill="rgba(201,162,74,.10)" stroke="#C9A24A"/><text x="10" y="49" font-weight="500" fill="#E9E4DA">L2</text><text x="34" y="49">tento spis · fakty, stav, lehoty</text><text x="390" y="49" text-anchor="end" fill="#C9A24A" font-weight="500">1 návrh zápisu čaká</text>
+              <rect x="0" y="62" width="400" height="22" fill="rgba(233,228,218,.03)" stroke="rgba(233,228,218,.12)"/><text x="10" y="77" font-weight="500" fill="#E9E4DA">L3</text><text x="34" y="77">právo · zdroje, citácie, vzory</text><text x="390" y="77" text-anchor="end" fill="#75808C">iba verejné</text>
+            </g>
+          </svg>
+        </div>
+        <div class="foot"><span>aktualizované 12. 6. · agent nezapisuje bez podpisu</span><a href="#" data-go="recon">Posúdiť návrh zápisu</a></div>
+      </div>
     </div>
 
-    <div class="card brain">
-      <div class="bh"><svg><use href="#i-brain"/></svg><h3>Matter Brain</h3><span class="badge badge-neutral" style="margin-left:auto">L2</span></div>
-      <div class="sec"><div class="eyebrow">Stav</div><div style="display:flex;align-items:center;gap:8px;font-size:13.5px"><span class="dot dot-warn"></span>Príprava na pojednávanie</div></div>
-      <div class="sec"><div class="eyebrow">Kľúčové fakty</div>
-        <p class="fact">Zmluva o dielo z 12. 3. 2024. Nesplnenie termínu odovzdania. Uhradených 40 % z ceny diela (82 400 €). <a href="#">_STATUS.md › fakty</a></p></div>
-      <div class="sec"><div class="eyebrow">Ďalšie kroky · návrh agenta</div>
-        <div class="steps"><div>Pripraviť dôkaznú stratégiu k omeškaniu</div><div>Skontrolovať listinné dôkazy (preberací protokol)</div><div>Zvážiť návrh na zabezpečenie dôkazu</div></div></div>
-      <div class="foot"><span>aktualizované 12. 6. · provenance ✓</span><a href="#">Navrhnúť zápis</a></div>
-    </div>
-  </div>
-</main></div>
-</section>
+    <div class="agent-line"><i></i><div><b>Agent v spise</b> · 09:02 — Rozsudok (list č. 12) som prečítal. Navrhujem lehotu na odvolanie do 7. 6. (<span class="mono">§ 362 ods. 1 CSP</span>) — čaká na vašu kontrolu v bráne. Mám pripraviť koncept odvolania?
+      <div class="tools"><span>read rozsudok.pdf</span><span>slov-lex § 362 ✓</span><span>judikatúra · 3 rozhodnutia</span><span>lehoty.md +1 kandidát</span></div></div></div>
+    <form class="composer" onsubmit="return false"><span class="ctx">ABC v. DEF</span><input placeholder="Napíšte agentovi v tomto spise… napr. „priprav koncept odvolania“"><span class="k">⌘K</span><button class="send">Poslať</button></form>
+  </section>
 
-<!-- ============ 03 KONTROLA LEHOTY (DecisionGate) ============ -->
-<section class="screen" id="lehota">
-<div class="app"><div data-sidebar></div>
-<main class="main">
-  <div class="topbar">
-    <button class="iconbtn" aria-label="Späť" data-go="spis" style="margin-top:4px"><svg><use href="#i-arrow"/></svg></button>
-    <div>
-      <div class="crumbs"><a href="#" data-go="spis">ABC s.r.o. v. DEF a.s.</a> › Lehoty</div>
-      <h1>Kontrola lehoty</h1>
-      <p class="lead">Agent navrhol lehotu z doručeného rozsudku. Skontrolujte zdroj a výpočet — rozhoduje advokát.</p>
-    </div>
-    <div class="actions"><span class="badge badge-ai">kandidát · needs_review</span></div>
-  </div>
+  <!-- ================= KONTROLA LEHOTY ================= -->
+  <section class="screen" id="brana" style="position:relative;min-height:620px">
+    <div class="crumb"><a href="#" data-go="prehlad">Prehľad</a> › <a href="#" data-go="spis">ABC s.r.o. v. DEF a.s.</a> › Lehoty › list č. 14</div>
+    <h1>Kontrola lehoty</h1>
+    <p class="lead">Agent navrhol lehotu z doručeného rozsudku. Skontrolujte zdroj a výpočet. Rozhoduje advokát.</p>
 
-  <div class="gate">
-    <div class="grid g2 enter">
-      <div class="card source">
-        <div class="card-head"><span class="eyebrow">Zdroj</span><button class="iconbtn" aria-label="Uložiť citáciu" style="width:28px;height:28px"><svg><use href="#i-bookmark"/></svg></button></div>
+    <div class="gate">
+      <section>
+        <h2>Zdroj <span>Slov-Lex · overené 23. 8. 09:11</span></h2>
         <div class="law">Civilný sporový poriadok</div>
         <div class="cite">zákon č. 160/2015 Z. z. · § 362 ods. 1 · znenie účinné k 23. 5. 2024</div>
         <p class="quote">„Odvolanie sa podáva <mark>v lehote 15 dní od doručenia rozhodnutia</mark> na súde, proti ktorého rozhodnutiu smeruje.“</p>
-        <div class="demo-row" style="margin-top:10px"><span class="badge badge-verified"><svg><use href="#i-check"/></svg>Overené · Slov-Lex</span><span class="badge badge-neutral">locator: s. 2, ods. 3</span></div>
-        <a class="more" href="#">Zobraziť rozsudok v dokumente</a>
-      </div>
-
-      <div class="card">
-        <div class="card-head"><span class="eyebrow">Návrh agenta</span><span class="certainty" title="Miera istoty"><i style="--c:88%"></i><span class="faint" style="font-size:12px">istota vysoká</span></span></div>
-        <dl class="kv">
+        <div class="docview">
+          <div class="page"><h4>Rozsudok · list č. 12 · s. 2</h4>… súd rozhodol tak, ako je uvedené vo výroku. <mark>Rozsudok bol doručený účastníkom dňa 23. 5. 2024</mark> prostredníctvom elektronickej schránky. Proti tomuto rozsudku je prípustné odvolanie v lehote pätnástich dní odo dňa jeho doručenia …</div>
+          <aside><span><b>Locator</b><br><span class="mono">s. 2, ods. 3</span></span><span><b>Zdroj dátumu</b><br>doručenka · OCR 97 %</span><span><b>Dokument</b><br>Rozsudok OS BA I.pdf</span><button class="btn sm">Otvoriť dokument</button></aside>
+        </div>
+      </section>
+      <section>
+        <h2>Návrh agenta <span class="cert"><i></i>istota vysoká</span></h2>
+        <dl class="fields">
           <dt>Právny základ</dt><dd class="mono">§ 362 ods. 1 CSP</dd>
           <dt>Spúšťacia udalosť</dt><dd>doručenie rozsudku</dd>
-          <dt>Dátum doručenia</dt><dd>23. 5. 2024 <span class="faint">(z doručenky)</span></dd>
+          <dt>Dátum doručenia</dt><dd>23. 5. 2024<small>z doručenky, OCR</small></dd>
           <dt>Dĺžka</dt><dd>15 dní · kalendárne</dd>
-          <dt>Navrhovaná lehota</dt><dd class="hero">7. 6. 2024</dd>
-          <dd class="calc">23. 5. + 15 d → 7. 6. (piatok) · § 121 CSP: koniec nepripadá na víkend/sviatok · deterministický výpočet, nie model</dd>
+          <dt>Lehota</dt><dd class="hero">piatok 7. 6. 2024</dd>
         </dl>
-        <div class="audit"><svg><use href="#i-shield"/></svg>Neistota: dátum doručenia pochádza z OCR doručenky — skontrolujte ho.</div>
-      </div>
+        <div class="trace">23. 5. + 15 d → 7. 6. (piatok)<br><i>§ 121 CSP: koniec nepripadá na sobotu, nedeľu ani sviatok</i><br><i>deterministický výpočet; model nie je výpočtová autorita</i></div>
+        <div class="warn-line">Neistota: dátum doručenia pochádza z OCR doručenky — porovnajte s originálom vľavo.</div>
+      </section>
     </div>
 
-    <div class="gate-actions">
-      <button class="btn btn-gold" id="confirm"><svg><use href="#i-check"/></svg>Potvrdiť lehotu</button>
-      <button class="btn btn-secondary"><svg><use href="#i-pen"/></svg>Upraviť</button>
-      <button class="btn btn-secondary" style="color:var(--lw-danger)"><svg><use href="#i-x"/></svg>Odmietnuť</button>
-      <button class="btn btn-secondary"><svg><use href="#i-clock"/></svg>Odložiť</button>
-      <div class="hint"><span><kbd>⏎</kbd> potvrdiť</span><span><kbd>E</kbd> upraviť</span><span><kbd>Esc</kbd> odložiť</span><span style="margin-left:auto">Po potvrdení: zápis do <span class="mono">spis.md</span> + ICS + auditná udalosť</span></div>
+    <div class="acts">
+      <button class="btn gold" id="confirm">Potvrdiť lehotu</button>
+      <button class="btn">Upraviť</button>
+      <button class="btn quiet">Odmietnuť</button>
+      <button class="btn quiet">Odložiť</button>
+      <span class="hint"><kbd>⏎</kbd>potvrdiť <kbd>E</kbd>upraviť <kbd>Esc</kbd>odložiť</span>
     </div>
-  </div>
-</main></div>
-<div class="seal" id="seal"><div class="disc"><div class="ring"><svg><use href="#i-check"/></svg></div><b>Lehota potvrdená</b><span>7. 6. 2024 · zapísané do spisu a kalendára</span></div></div>
-</section>
+    <p class="after">Po potvrdení sa zapíše do <b class="mono">spis.md</b> a <b class="mono">_STATUS.md</b>, vznikne udalosť v kalendári (ICS) a záznam v auditnej stope. Originál návrhu sa neprepíše.</p>
+    <p class="gate-state" id="state">Stav: <b>kandidát · needs_review</b></p>
+    <svg class="seal" id="seal" viewBox="0 0 200 200" aria-hidden="true">
+      <defs><path id="arc" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0"/></defs>
+      <circle cx="100" cy="100" r="92"/><circle cx="100" cy="100" r="86" class="inner"/><circle cx="100" cy="100" r="58"/>
+      <text font-size="12.5"><textPath href="#arc">POTVRDIL ADVOKÁT · 7. 6. 2024 · LAWOSS · AUDIT 0x4F2A ·</textPath></text>
+      <path d="M100 72v56M86 86h28M86 86l-6 12a6 6 0 0 0 12 0zM114 86l-6 12a6 6 0 0 0 12 0zM92 128h16" stroke-linecap="round"/>
+    </svg>
+  </section>
 
-<!-- ============ 05/10 KONEKTORY & NÁSTROJE HUB ============ -->
-<section class="screen" id="hub">
-<div class="app"><div data-sidebar></div>
-<main class="main">
-  <div class="topbar">
-    <div><h1>Konektory a nástroje</h1><p class="lead">Dátové zdroje, MCP servery a lokálne nástroje na jednom mieste. Všetko beží lokálne alebo cez overené pripojenie.</p></div>
-    <div class="actions"><button class="btn btn-secondary"><svg><use href="#i-ext"/></svg>Importovať konfiguráciu</button><button class="btn btn-gold">Pridať konektor</button></div>
-  </div>
+  <!-- ================= KONEKTORY + MARKETPLACE ================= -->
+  <section class="screen" id="hub">
+    <h1>Konektory a marketplace</h1>
+    <p class="lead">Čo agent vidí a čo smie použiť. Registre sú iba na čítanie; lokálne nástroje bežia vo vašom počítači. Servery tretích strán sú označené.</p>
 
-  <div class="hub-head">
-    <div class="seg" role="tablist"><button aria-selected="true">Všetko</button><button>Právne zdroje</button><button>Registre</button><button>Lokálne nástroje</button><button>AI modely</button></div>
-    <div class="search"><svg><use href="#i-search"/></svg>Hľadať konektor alebo nástroj…</div>
-    <span class="faint" style="margin-left:auto;font-size:12.5px"><span class="dot dot-ok"></span> 8 pripojených · 1 vyžaduje pozornosť</span>
-  </div>
+    <div class="schema">
+      <svg viewBox="0 0 1160 230" aria-label="Schéma: LAWOSS → opencode → konektory">
+        <g font-size="12" fill="#E9E4DA">
+          <rect x="20" y="70" width="200" height="90" rx="3" fill="rgba(233,228,218,.03)" stroke="rgba(233,228,218,.26)"/>
+          <text x="36" y="96" font-weight="600">LAWOSS</text><text x="36" y="116" fill="#A8B0BA">chat · spisy · lehoty</text><text x="36" y="134" fill="#A8B0BA">dokumenty · nastavenia</text><text x="36" y="152" fill="#75808C" font-size="11">povrch pre advokáta</text>
+          <line x1="220" x2="300" y1="115" y2="115" stroke="#C9A24A"/><path d="M294 110l8 5-8 5z" fill="#C9A24A"/>
+          <rect x="300" y="50" width="240" height="130" rx="3" fill="rgba(201,162,74,.06)" stroke="#C9A24A"/>
+          <text x="316" y="76" font-weight="600">opencode · agent</text>
+          <text x="316" y="98" fill="#A8B0BA">subagenti · tool calling · súbory</text>
+          <text x="316" y="120" fill="#A8B0BA">skills: <tspan fill="#E9E4DA">novy-spis · lehoty-sk · reconcile</tspan></text>
+          <text x="316" y="142" fill="#A8B0BA">prompty: <tspan fill="#E9E4DA">common · sk · cz</tspan></text>
+          <text x="316" y="166" fill="#75808C" font-size="11">žiadny nástroj na odoslanie ani podpis</text>
+          <g stroke="rgba(233,228,218,.26)" fill="none">
+            <path d="M540 115 C600 115 600 30 660 30"/><path d="M540 115 C600 115 600 72 660 72"/><path d="M540 115 C600 115 600 115 660 115" stroke="#C9A24A"/><path d="M540 115 C600 115 600 158 660 158"/><path d="M540 115 C600 115 600 200 660 200" stroke-dasharray="3 3"/>
+          </g>
+          <circle cx="668" cy="30" r="4" fill="#8DBB8F"/><text x="682" y="34">Slov-Lex · Judikatúra SR</text><text x="900" y="34" fill="#75808C" font-size="11">remote · vlastný server · read-only · 33 nástrojov</text>
+          <circle cx="668" cy="72" r="4" fill="#8DBB8F"/><text x="682" y="76">ORSR · RPVS · FS · úpadcovia</text><text x="900" y="76" fill="#75808C" font-size="11">remote · vlastný server · read-only · 18 nástrojov</text>
+          <circle cx="668" cy="115" r="4" fill="#8DBB8F"/><text x="682" y="119">OKF skripty · OCR · Whisper</text><text x="900" y="119" fill="#75808C" font-size="11">lokálne · v počítači · výstup do spisu</text>
+          <circle cx="668" cy="158" r="4" fill="#D89A4E"/><text x="682" y="162">Autogram</text><text x="900" y="162" fill="#D89A4E" font-size="11">lokálne · nenájdený · nastaviť cestu</text>
+          <circle cx="668" cy="200" r="4" fill="none" stroke="#75808C"/><text x="682" y="204" fill="#A8B0BA">Vlastný server (BYO)</text><text x="900" y="204" fill="#75808C" font-size="11">pridať remote URL alebo lokálny príkaz</text>
+        </g>
+      </svg>
+    </div>
 
-  <div class="conn enter">
-    <div class="card">
-      <div class="ch"><div class="ico"><svg><use href="#i-book"/></svg></div><div><b>Slov-Lex</b><small>Zbierka zákonov SR · MCP</small></div><div class="st"><span class="dot dot-ok"></span>pripojené</div></div>
-      <div class="meta"><span>nástroje <b>9</b></span><span>odozva <b>120 ms</b></span><span>auth <b>—</b></span></div>
-      <div class="flags"><span class="badge badge-verified"><svg><use href="#i-check"/></svg>Overený zdroj</span><span class="badge badge-neutral">read-only</span></div>
-      <div class="cf"><button class="btn btn-ghost btn-sm">Nástroje</button><button class="btn btn-ghost btn-sm">Logy</button><button class="btn btn-ghost btn-sm" style="margin-left:auto">Vypnúť</button></div>
-    </div>
-    <div class="card">
-      <div class="ch"><div class="ico"><svg><use href="#i-scale"/></svg></div><div><b>Judikatúra SR</b><small>NS SR · ÚS SR · MS SR · MCP</small></div><div class="st"><span class="dot dot-ok"></span>pripojené</div></div>
-      <div class="meta"><span>nástroje <b>24</b></span><span>index <b>161 229</b></span><span>sync <b>dnes 04:10</b></span></div>
-      <div class="flags"><span class="badge badge-verified"><svg><use href="#i-check"/></svg>Overený zdroj</span><span class="badge badge-neutral">read-only</span></div>
-      <div class="cf"><button class="btn btn-ghost btn-sm">Nástroje</button><button class="btn btn-ghost btn-sm">Logy</button><button class="btn btn-ghost btn-sm" style="margin-left:auto">Vypnúť</button></div>
-    </div>
-    <div class="card">
-      <div class="ch"><div class="ico"><svg><use href="#i-building"/></svg></div><div><b>ORSR · RPO · RPVS</b><small>Registre SR · 3 servery</small></div><div class="st"><span class="dot dot-ok"></span>pripojené</div></div>
-      <div class="meta"><span>nástroje <b>18</b></span><span>odozva <b>340 ms</b></span><span>auth <b>—</b></span></div>
-      <div class="flags"><span class="badge badge-verified"><svg><use href="#i-check"/></svg>Overený zdroj</span><span class="badge badge-neutral">read-only</span></div>
-      <div class="cf"><button class="btn btn-ghost btn-sm">Nástroje</button><button class="btn btn-ghost btn-sm">Logy</button><button class="btn btn-ghost btn-sm" style="margin-left:auto">Vypnúť</button></div>
-    </div>
-    <div class="card">
-      <div class="ch"><div class="ico"><svg><use href="#i-sign"/></svg></div><div><b>Autogram</b><small>Lokálne podpisovanie · QES/QTS</small></div><div class="st"><span class="dot dot-warn"></span>nenájdený</div></div>
-      <div class="meta"><span>typ <b>lokálny nástroj</b></span><span>platforma <b>mac · win</b></span></div>
-      <div class="flags"><span class="badge badge-warn">vyžaduje inštaláciu</span></div>
-      <div class="cf"><button class="btn btn-outline btn-sm">Nastaviť cestu</button><button class="btn btn-ghost btn-sm">Stiahnuť Autogram</button></div>
-    </div>
-    <div class="card">
-      <div class="ch"><div class="ico"><svg><use href="#i-mic"/></svg></div><div><b>Whisper transkripcia</b><small>Lokálny model · sherpa-onnx</small></div><div class="st"><span class="dot dot-ok"></span>pripravené</div></div>
-      <div class="meta"><span>model <b>medium-sk</b></span><span>veľkosť <b>1,5 GB</b></span><span>GPU <b>áno</b></span></div>
-      <div class="flags"><span class="badge badge-neutral">beží lokálne</span></div>
-      <div class="cf"><button class="btn btn-ghost btn-sm">Modely</button><button class="btn btn-ghost btn-sm">Test mikrofónu</button></div>
-    </div>
-    <div class="card">
-      <div class="ch"><div class="ico"><svg><use href="#i-scan"/></svg></div><div><b>OCR</b><small>Obrázky a skeny → text</small></div><div class="st"><span class="dot dot-ok"></span>pripravené</div></div>
-      <div class="meta"><span>engine <b>tesseract 5</b></span><span>jazyky <b>sk · cs · en</b></span></div>
-      <div class="flags"><span class="badge badge-neutral">beží lokálne</span></div>
-      <div class="cf"><button class="btn btn-ghost btn-sm">Nastavenia</button><button class="btn btn-ghost btn-sm">Logy</button></div>
-    </div>
-    <div class="card">
-      <div class="ch"><div class="ico"><svg><use href="#i-term"/></svg></div><div><b>CLI nástroje a skripty</b><small>okf-validate · okf-freshness · vlastné</small></div><div class="st"><span class="dot dot-ok"></span>3 skripty</div></div>
-      <div class="meta"><span>posledný beh <b>okf-validate · OK</b></span></div>
-      <div class="flags"><span class="badge badge-neutral">beží lokálne</span><span class="badge badge-neutral">výstup do spisu</span></div>
-      <div class="cf"><button class="btn btn-ghost btn-sm">Spustiť</button><button class="btn btn-ghost btn-sm">Pridať skript</button></div>
-    </div>
-    <div class="card">
-      <div class="ch"><div class="ico"><svg><use href="#i-spark"/></svg></div><div><b>AI model</b><small>Lokálny · Cloud · Auto</small></div><div class="st"><span class="dot dot-ok"></span>lokálny</div></div>
-      <div class="meta"><span>aktívny <b>lokálny model</b></span><span>cloud <b>vypnutý</b></span></div>
-      <div class="flags"><span class="badge badge-ok"><svg><use href="#i-lock"/></svg>dáta neopúšťajú počítač</span></div>
-      <div class="cf"><button class="btn btn-ghost btn-sm">Zmeniť model</button><button class="btn btn-ghost btn-sm">Politika dát</button></div>
-    </div>
-  </div>
+    <div class="seg" role="tablist"><button aria-selected="true">Pripojené · 8</button><button>Marketplace · 23</button><button>Vlastné servery</button><button>Skills · 6</button></div>
 
-  <div class="local-note"><svg><use href="#i-lock"/></svg>Všetky registre sú iba na čítanie. Lokálne nástroje bežia vo vašom počítači — výstupy sa ukladajú do spisu s auditnou stopou.</div>
-</main></div>
-</section>
-
-<!-- ============ TOKENY ============ -->
-<section class="screen sheet" id="tokeny">
-  <h2>Paleta</h2>
-  <div class="sw">
-    <div><i style="background:#070E17"></i><span>#070E17</span><b>navy-950 sidebar</b></div>
-    <div><i style="background:#0A1420"></i><span>#0A1420</span><b>navy-900 canvas</b></div>
-    <div><i style="background:#0F1D2E"></i><span>#0F1D2E</span><b>surface</b></div>
-    <div><i style="background:#142538"></i><span>#142538</span><b>surface-hover</b></div>
-    <div><i style="background:#0D1B2A"></i><span>#0D1B2A</span><b>navy-850 brand</b></div>
-    <div><i style="background:#C9A24A"></i><span>#C9A24A</span><b>gold-500 akcent</b></div>
-    <div><i style="background:#D8B45E"></i><span>#D8B45E</span><b>gold-400 hover</b></div>
-    <div><i style="background:#8C6A1F"></i><span>#8C6A1F</span><b>gold-700 text@light</b></div>
-    <div><i style="background:#5CC08A"></i><span>#5CC08A</span><b>success</b></div>
-    <div><i style="background:#E08A3C"></i><span>#E08A3C</span><b>warning (nie zlatá!)</b></div>
-    <div><i style="background:#E06C6C"></i><span>#E06C6C</span><b>danger</b></div>
-    <div><i style="background:#F2F4F7"></i><span>#F2F4F7</span><b>text-primary@dark</b></div>
-    <div><i style="background:#A9B4C2"></i><span>#A9B4C2</span><b>text-secondary</b></div>
-    <div><i style="background:#7D8A99"></i><span>#7D8A99</span><b>text-tertiary</b></div>
-  </div>
-
-  <h2>Typografia</h2>
-  <div class="type-row"><span class="k">display · Playfair 400 · 30/1.15</span><span class="serif" style="font-size:30px;line-height:1.15">Lehoty pod kontrolou.</span></div>
-  <div class="type-row"><span class="k">hero číslo · Playfair · 40 tnum</span><span class="serif" style="font-size:40px;line-height:1">24 · 7 · 128</span></div>
-  <div class="type-row"><span class="k">h3 · Inter 600 · 15</span><span style="font-size:15px;font-weight:600">Najbližšie lehoty</span></div>
-  <div class="type-row"><span class="k">body · Inter 400 · 14/1.5</span><span>Agent pripravuje a odporúča. Advokát schvaľuje. Nič právne záväzné sa nestane bez ľudskej brány.</span></div>
-  <div class="type-row"><span class="k">eyebrow · Inter 600 · 11 · .12em</span><span class="eyebrow">Kľúčové fakty</span></div>
-  <div class="type-row"><span class="k">identifikátory · Geist Mono · 12</span><span class="mono">§ 362 ods. 1 CSP · 15C/123/2024 · IČO 35 763 469 · _STATUS.md</span></div>
-  <div class="type-row"><span class="k">citácia · Inter 400 · 15.5/1.6 + marker</span><span class="quote" style="margin:0">„Odvolanie sa podáva <mark>v lehote 15 dní</mark> od doručenia.“</span></div>
-
-  <h2>Tlačidlá a odznaky</h2>
-  <div class="demo-row">
-    <button class="btn btn-gold">Potvrdiť</button><button class="btn btn-outline">Upraviť</button><button class="btn btn-secondary">Odložiť</button><button class="btn btn-ghost">Zrušiť</button><button class="btn btn-danger">Odmietnuť</button>
-    <span class="badge badge-verified"><svg><use href="#i-check"/></svg>Overené</span><span class="badge badge-ai">AI návrh</span><span class="badge badge-ok">bez záznamu</span><span class="badge badge-warn">nedoplatok</span><span class="badge badge-danger">po lehote</span><span class="badge badge-neutral">L2</span>
-  </div>
-
-  <h2>Pravidlá použitia</h2>
-  <div class="card" style="max-width:760px">
-    <div class="rows">
-      <div class="row"><div class="t"><b>Zlatá = rozhodnutie a dôvera.</b><small>Plná zlatá výplň iba na jednu primárnu akciu na obrazovke (Potvrdiť, Nový spis). Zlatý rám (card-gold) iba na to, čo čaká na advokáta.</small></div></div>
-      <div class="row"><div class="t"><b>Serif = hlas produktu, nie UI.</b><small>Playfair na H1 stránky, hero čísla a názov Matter Brain. Nikdy na labely, tlačidlá, tabuľky.</small></div></div>
-      <div class="row"><div class="t"><b>Mono = právne identifikátory.</b><small>§, spisové značky, IČO, názvy riadiacich súborov — čitateľ okamžite vidí „toto je presný odkaz“.</small></div></div>
-      <div class="row"><div class="t"><b>Warning ≠ zlatá.</b><small>Upozornenia sú oranžové (#E08A3C), aby sa nezamieňali s akcentom značky.</small></div></div>
-      <div class="row"><div class="t"><b>Hairline, nie tieň.</b><small>Hierarchia cez canvas → surface → sunken a bordery .06/.10/.18. Tieň len na popover a hover lift.</small></div></div>
-      <div class="row"><div class="t"><b>Každý AI návrh má zdroj, istotu a štyri akcie.</b><small>DecisionGate = Zdroj + Návrh + Potvrdiť/Upraviť/Odmietnuť/Odložiť + auditná veta.</small></div></div>
+    <div class="reg con" style="margin-top:8px">
+      <div class="reg-h"><h2>Pripojené</h2><span class="meta">stav k 04:10<a href="#">Pridať vlastný server</a><a href="#">Importovať konfiguráciu</a></span></div>
+      <div class="r"><span class="no">1.</span><span class="t">Slov-Lex<small>zbierka zákonov SR · mcp-slovlex v1.4.2</small></span><span class="trust own">vlastný server · remote</span><span class="ref">9 nástrojov · 120 ms · read-only</span><span class="st ok">pripojené</span><span class="go">nástroje · logy</span></div>
+      <div class="r"><span class="no">2.</span><span class="t">Judikatúra SR<small>NS SR · ÚS SR · MS SR · 161 229 rozhodnutí</small></span><span class="trust own">vlastný server · remote</span><span class="ref">24 nástrojov · sync 04:10</span><span class="st ok">pripojené</span><span class="go">nástroje · logy</span></div>
+      <div class="r"><span class="no">3.</span><span class="t">ORSR · RPO · RPVS<small>registre SR · 3 servery</small></span><span class="trust own">vlastný server · remote</span><span class="ref">18 nástrojov · 340 ms · read-only</span><span class="st ok">pripojené</span><span class="go">nástroje · logy</span></div>
+      <div class="r"><span class="no">4.</span><span class="t">OKF skripty<small>okf-validate · okf-freshness · vlastné</small></span><span class="trust loc">lokálne</span><span class="ref">3 skripty · posledný beh OK</span><span class="st ok">pripravené</span><span class="go">spustiť</span></div>
+      <div class="r"><span class="no">5.</span><span class="t">Whisper transkripcia<small>sherpa-onnx · model medium-sk · 1,5 GB</small></span><span class="trust loc">lokálne</span><span class="ref">GPU áno</span><span class="st ok">pripravené</span><span class="go">modely</span></div>
+      <div class="r"><span class="no">6.</span><span class="t">OCR<small>tesseract 5 · sk · cs · en</small></span><span class="trust loc">lokálne</span><span class="ref">—</span><span class="st ok">pripravené</span><span class="go">nastavenia</span></div>
+      <div class="r"><span class="no">7.</span><span class="t">Autogram<small>podpisovanie QES/QTS · externý proces</small></span><span class="trust loc">lokálne</span><span class="ref">mac · win</span><span class="st warn">nenájdený</span><span class="go">nastaviť cestu →</span></div>
+      <div class="r"><span class="no">8.</span><span class="t">Context7<small>dokumentácia knižníc</small></span><span class="trust ext">tretia strana · dáta odchádzajú</span><span class="ref">2 nástroje</span><span class="st off">vypnuté v spisoch</span><span class="go">zapnúť</span></div>
     </div>
-  </div>
-</section>
+
+    <div class="reg mkt">
+      <div class="reg-h"><h2>Marketplace</h2><span class="meta">lawoss-registry · pin = overená verzia · upozorní, neaktualizuje sám<a href="#">Celý katalóg</a></span></div>
+      <div class="r"><span class="no">—</span><span class="t">Register úpadcov<small>konkurzy a reštrukturalizácie SR</small></span><span class="ref">MCP</span><span class="ref">Omni-Legal-Products · v1.2.0</span><span class="st">remote · local</span><span class="go"><button class="btn sm">Inštalovať</button></span></div>
+      <div class="r"><span class="no">—</span><span class="t">EUR-Lex<small>európske právo, CELEX</small></span><span class="ref">MCP</span><span class="ref">Omni-Legal-Products · v0.9.3</span><span class="st">remote</span><span class="go"><button class="btn sm">Inštalovať</button></span></div>
+      <div class="r"><span class="no">—</span><span class="t">subjektovy-research<small>light · medium · hard preverenie subjektu</small></span><span class="ref">skill</span><span class="ref">vyžaduje: ORSR · RPVS · úpadcovia</span><span class="st">v1.0</span><span class="go"><button class="btn sm">Inštalovať</button></span></div>
+      <div class="r"><span class="no">—</span><span class="t">lehoty-cz<small>počítanie lhůt podľa o.s.ř. · VŘ</small></span><span class="ref">skill</span><span class="ref">vyžaduje: zakonyprolidi</span><span class="st">v0.3 · beta</span><span class="go"><button class="btn sm">Inštalovať</button></span></div>
+      <div class="r"><span class="no">—</span><span class="t">ISDS datová schránka<small>CZ · čítanie doručenek</small></span><span class="ref">MCP</span><span class="ref">komunita · neoverené</span><span class="st warn">mimo registry</span><span class="go">zobraziť</span></div>
+    </div>
+    <div class="note"><span>Inštalácia je <b>deterministická</b> (skill/CLI), model o nej nerozhoduje.</span><span>Allowlist: iba repá z <b>lawoss-registry</b>.</span><span>Rollback = vrátenie pinu.</span></div>
+  </section>
+
+  <!-- ================= RECONCILE ================= -->
+  <section class="screen" id="recon">
+    <div class="crumb"><a href="#" data-go="spis">ABC s.r.o. v. DEF a.s.</a> › Dokumenty › Vyjadrenie k žalobe.docx › uložené 09:40</div>
+    <h1>Učenie z vašich úprav</h1>
+    <p class="lead">Uložili ste dokument, ktorý pripravil agent. Porovnal svoj návrh s vašou verziou a navrhuje, čo si má zapamätať. Nič sa nezapíše bez vášho podpisu.</p>
+
+    <div class="obal">
+      <div><span class="sc">Dokument</span><span class="v">Vyjadrenie k žalobe.docx<small>list č. 15</small></span></div>
+      <div><span class="sc">Návrh agenta</span><span class="v mono">v1 · 09:02</span></div>
+      <div><span class="sc">Vaša verzia</span><span class="v mono">v2 · 09:40</span></div>
+      <div><span class="sc">Zmeny</span><span class="v">3 odseky<small>2 štylistické · 1 vecná</small></span></div>
+    </div>
+
+    <div class="diff">
+      <div><h2>Návrh agenta <span>v1</span></h2>
+        Žalovaný <del>si dovoľuje uviesť, že</del> predmetná zmluva o dielo bola uzavretá dňa 12. 3. 2024. <del>Je nepochybné, že</del> zhotoviteľ nedodržal dohodnutý termín odovzdania diela, <del>čo jednoznačne preukazuje</del> preberací protokol zo dňa 30. 6. 2024.<br><br>
+        Žalobca uhradil <del>zálohu vo výške 40 % z ceny diela</del>.</div>
+      <div><h2>Vaša verzia <span>v2 · uložené v editore</span></h2>
+        Žalovaný <ins>uvádza, že</ins> predmetná zmluva o dielo bola uzavretá dňa 12. 3. 2024. Zhotoviteľ nedodržal dohodnutý termín odovzdania diela, <ins>ako vyplýva z</ins> preberacieho protokolu zo dňa 30. 6. 2024.<br><br>
+        Žalobca uhradil <ins>prvú časť ceny diela vo výške 40 % (82 400 €) dňa 15. 3. 2024 — nejde o zálohu, ale o splátku podľa čl. 4.2 zmluvy</ins>.</div>
+    </div>
+
+    <div class="learn">
+      <h2>Čo si agent chce zapamätať <span>reconcile · 2 návrhy · provenance v1→v2</span></h2>
+      <p class="rule">1 · <mark>V podaniach nepoužívať zosilňujúce frázy</mark> („je nepochybné“, „jednoznačne preukazuje“, „si dovoľuje uviesť“). Písať vecne, tvrdenie + dôkaz.</p>
+      <dl class="fields"><dt>Vrstva</dt><dd><span class="layer-pick"><button aria-selected="true">L1 · moja prax</button><button>L2 · tento spis</button></span><small>štýl sa opakuje v 4 dokumentoch → návrh L1</small></dd><dt>Dôkaz</dt><dd>3 odstránené frázy v tomto dokumente; podobné úpravy 2. 6. a 14. 7. (iné spisy)</dd></dl>
+      <p class="rule" style="margin-top:22px">2 · <mark>Platba 40 % (82 400 €) z 15. 3. 2024 je splátka podľa čl. 4.2, nie záloha.</mark></p>
+      <dl class="fields"><dt>Vrstva</dt><dd><span class="layer-pick"><button>L1 · moja prax</button><button aria-selected="true">L2 · tento spis</button></span><small>fakt spisu → _STATUS.md › fakty; opravuje predchádzajúci zápis</small></dd><dt>Dôkaz</dt><dd>vaša úprava v odseku 2 · zmluva čl. 4.2 (list č. 4)</dd></dl>
+    </div>
+
+    <div class="acts">
+      <button class="btn gold">Zapísať oba návrhy</button>
+      <button class="btn">Upraviť</button>
+      <button class="btn quiet">Iba č. 2</button>
+      <button class="btn quiet">Odmietnuť</button>
+      <span class="hint"><kbd>⏎</kbd>zapísať <kbd>E</kbd>upraviť <kbd>Esc</kbd>neskôr</span>
+    </div>
+    <p class="after">Zápis vytvorí verziu <b class="mono">MEMORY.md</b> (L1) a <b class="mono">_STATUS.md</b> (L2) s odkazom na v1→v2 diff; predchádzajúce verzie zostávajú, rollback je možný. Metrika: koľko ste museli prepísať — 3 odseky z 11.</p>
+  </section>
+  </main>
+</div>
 
 <script>
 (function(){
-  const tpl=document.getElementById('sidebar-tpl');
-  document.querySelectorAll('[data-sidebar]').forEach(el=>el.replaceWith(tpl.content.cloneNode(true)));
-  const tabs=[...document.querySelectorAll('.proto-bar [data-go]')];
-  function go(id){
-    document.querySelectorAll('.screen').forEach(s=>s.toggleAttribute('data-active',s.id===id));
-    tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.go===id));
-    document.querySelectorAll('.nav a').forEach(a=>{a.removeAttribute('aria-current');if(a.dataset.nav===id)a.setAttribute('aria-current','page')});
-    // re-trigger stagger
-    document.querySelectorAll('#'+id+' .enter').forEach(e=>{e.classList.remove('enter');void e.offsetWidth;e.classList.add('enter')});
-    window.scrollTo(0,0);
-  }
-  document.addEventListener('click',e=>{const b=e.target.closest('[data-go],[data-nav]');if(!b)return;e.preventDefault();go(b.dataset.go||b.dataset.nav)});
-  go('prehlad');
-  const root=document.documentElement,lbl=document.getElementById('theme-label');
-  document.getElementById('theme').addEventListener('click',()=>{const d=root.dataset.theme==='dark';root.dataset.theme=d?'light':'dark';lbl.textContent=d?'Svetlý (sekundárny)':'Tmavý (primárny)'});
-  const seal=document.getElementById('seal');
-  document.getElementById('confirm').addEventListener('click',()=>{seal.setAttribute('data-show','');setTimeout(()=>seal.removeAttribute('data-show'),1800)});
-  seal.addEventListener('click',()=>seal.removeAttribute('data-show'));
-  document.querySelectorAll('.task').forEach(t=>t.addEventListener('click',()=>t.classList.toggle('done')));
+  const go=id=>{document.querySelectorAll('.screen').forEach(s=>s.toggleAttribute('data-on',s.id===id));
+    document.querySelectorAll('.pb [data-go]').forEach(b=>b.setAttribute('aria-selected',b.dataset.go===id));
+    document.querySelectorAll('.tab').forEach(t=>{t.removeAttribute('aria-current');if(t.dataset.go===id)t.setAttribute('aria-current','page')});
+    window.scrollTo(0,0)};
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;e.preventDefault();go(b.dataset.go)});
+  const seal=document.getElementById('seal'),st=document.getElementById('state');
+  document.getElementById('confirm').addEventListener('click',()=>{seal.setAttribute('data-on','');st.setAttribute('data-on','');st.innerHTML='Stav: <b>potvrdené</b> · zapísané do spisu, ICS vytvorené, audit 0x4F2A';});
 })();
 </script>
 </body>

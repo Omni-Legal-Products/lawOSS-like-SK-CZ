@@ -78,10 +78,10 @@ legacy --dls-* · glass aliasy · @custom-variant dark · platform variants · t
 
 | Skupina | Dnes (dark) | Cieľ | Poznámka |
 |---|---|---|---|
-| `--lw-canvas / surface / sunken / sidebar` | `#131316 / #1b1b1f / #202024 / #161619` (neutrálna čierna) | navy rampa `#0A1420 / #0F1D2E / #081019 / #070E17` | identita značky |
-| `--lw-accent*` | modrá `#3b9bff` (dark) / `#0a58c2` (light) | zlatá `#C9A24A` (dark) / **`#8C6A1F`** (light, AA na bielom) | **light zlatá musí byť tmavšia** — `#C9A24A` na bielom má kontrast 2,4 ✗ |
+| `--lw-canvas / surface / sunken / sidebar` | `#131316 / #1b1b1f / #202024 / #161619` (neutrálna čierna) | stôl / list / well: `#0A0E14 / #10171F / #0C1219 / #0A0E14` | svet „podací denník na tmavom stole“ (jazyk v2) |
+| `--lw-accent*` | modrá `#3b9bff` (dark) / `#0a58c2` (light) | zlatá `#C9A24A` (dark); light sa nenavrhuje, iba technicky funguje (`#8C6A1F`, AA) | zlatá = razidlo, nie dekorácia |
 | `--lw-primary` | `#f4f4f5` (dark, invertované!) / `#011627` | ponechať sémantiku (primary = inverzná výplň), **nezamieňať s navy** | upstream používa primary ako „čierne tlačidlo" |
-| `--lw-font-serif` | IBM Plex Sans (!) | Playfair Display (`@fontsource-variable/playfair-display`, 🟢 dep) | dnes serif token = sans |
+| `--lw-font-sans / mono / serif` | Inter / Geist Mono / IBM Plex Sans (!) | **IBM Plex Sans** (už bundlovaný) / **IBM Plex Mono** (🟢 dep) / Playfair iba pečať (🟢 dep) | Inter zamietnutý MČ („AI slop“); serif token je dnes sans |
 | `--lw-focus-ring` | modrá | zlatá | |
 | `--lw-success/warning/danger` | Radix | ladené k navy; **warning oranžová `#E08A3C`, nie zlatá** | inak kolízia s akcentom |
 | `--chart-1..5` (index.css) | `sky/blue/indigo/violet/purple-9` | navy/gold/mint/oranž/sivá | 🟡 value-only v `index.css` |
@@ -142,11 +142,13 @@ Nemenia sa: radius (4–20 px, `--radius: .625rem`), motion (`ease-standard/out/
 
 ## 6 · Komponentový deficit (vs. 36 primitív `@legalwork/ui` + shadcn `@/components/ui`)
 
-| Stačí reuse | Reskin (token) | **Nový komponent (🟢 `lawoss/ui`)** |
-|---|---|---|
-| Button, IconButton, Input, SearchInput, Switch, SegmentedControl, Tabs, Menu, Select, Tooltip, Modal, ConfirmModal, Toast, Skeleton, Spinner, Checkbox, Progress, Accordion, Table, Kbd, StatusDot | Card (pridať `tone="gold"`), Badge (pridať `tone="verified" \| "ai"`), Sidebar/SidebarItem (aktívny gold rail), Alert | **StatCard** · **DeadlineCard** · **DecisionGate** · **SourceBadge** „Overené" · **ConfidenceMeter** · **CitationBlock** (§ + marker) · **Timeline** (+ `TimelineEvent`) · **MatterBrainPanel** · **TaskList** · **ConnectorCard** · **LocalToolCard** · **WizardSteps** · **SealMoment** (potvrdenie/podpis) · **PageHeader** (serif H1 + lead + actions) · **EmptyState** |
+*(v2 — rozsah „LegalWork + vrstva“; v1 zoznam StatCard/Badge/Card-gold zamietnutý ako cloud style)*
 
-API náčrty sú v [IA, screen plán a komponenty](2026-08-23-ia-screen-plan-a-komponenty.md).
+| Stačí reuse (reskin tokenmi) | **Nové stavebné prvky (🟢 `lawoss/ui`)** |
+|---|---|
+| Button, Input, SearchInput, Switch, Tabs, Menu, Select, Tooltip, Modal, ConfirmModal, Toast, Skeleton, Checkbox, Table, Kbd; upstream composer, DOCX/PDF artifact editor, workspace files panel, settings shell, MCP auth modaly | **Tabs** (registrové záložky) · **Obal** (kolónky) · **Register** (riadky s číslom listu) · **DeadlineStrip** (SVG 14 dní) · **Timeline** (SVG s fázami) · **Brain** (+ vrstvy L1/L2/L3) · **Gate** (+ DocView s locatorom) · **Seal** · **Diff + Learn** (reconcile) · **Schema** (konektory) · **ComposerContext** · **EmptyState** |
+
+API náčrty: [IA v2 §5](2026-08-23-ia-screen-plan-a-komponenty.md).
 
 ---
 

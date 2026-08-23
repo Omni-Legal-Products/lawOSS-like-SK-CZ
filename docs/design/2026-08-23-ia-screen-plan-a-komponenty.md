@@ -1,142 +1,102 @@
-# IA, navigácia, screen plán a komponentový inventár
+# IA, pohľady a stavebné prvky — LegalWork + LAWOSS vrstva
 
-- **Zostavil:** Marián Čuprík (MČ) s AI asistenciou · 2026-08-23
+- **Zostavil:** Marián Čuprík (MČ) s AI asistenciou · 2026-08-23 · **v2** (v1 navrhovala 10 nových obrazoviek a novú IA — zamietnuté MČ: *„nejdeme prekopávať základy, sme advokáti; chat + dashboard + nastavenia, opencode vzadu, 4 tentpoles“*)
 - **Stav:** 📝 návrh na odklep
-- **Nadväzuje na:** [audit](2026-08-23-audit-sucasnej-appky.md) · [dizajnový jazyk](2026-08-23-dizajnovy-jazyk-lawoss.md) · [spec 0011 (PR #55)](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/55) · [spec 0002 OKF](../../specs/0002-okf-operacny-system-praxe.md) · [spec 0005 lehoty](../../specs/0005-lehoty-timeline.md) · [spec 0004 MCP](../../specs/0004-mcp-sk-konektory.md) · [spec 0007 podpisovanie](../../specs/0007-podpisovanie-a-zarucena-konverzia.md)
+- **Nadväzuje na:** [audit](2026-08-23-audit-sucasnej-appky.md) · [dizajnový jazyk v2](2026-08-23-dizajnovy-jazyk-lawoss.md) · [spec 0011 (PR #55)](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/55) · [spec 0002 OKF](../../specs/0002-okf-operacny-system-praxe.md) · [spec 0005 lehoty](../../specs/0005-lehoty-timeline.md) · [spec 0009 reconcile](../../specs/0009-reconcile-ucenie-z-uprav.md) · [ADR 0007](../../decisions/0007-agent-first-architektura.md)
 
 ---
 
-## 1 · Princíp IA: spis je jednotka, agent je v spise
+## 1 · Princíp: LegalWork ostáva, LAWOSS je vrstva
 
-Dnes: *session* (konverzácia) je jednotka, priečinky sú kontext. Nová IA: **spis** (OKF priečinok) je jednotka; session, dokumenty, lehoty, timeline a Matter Brain sú jeho *pohľady*. Agentné plochy (chat, terminál, voice, artifacts) **neodstraňujeme** — stávajú sa tabom *Asistent* vnútri spisu a samostatnou položkou *AI asistent* pre prácu mimo spisu.
+| Vrstva | Čo | Kto to vlastní |
+|---|---|---|
+| **Povrch** (LegalWork) | sidebar s priečinkami a sessions · chat so composerom · side panel (súbory, artifacts, **DOCX editor s priamou editáciou a sledovanými zmenami**, browser) · terminál · voice · settings | upstream; my iba **skin** (tokeny, písmo, záložky) |
+| **Motor** (opencode) | agent, subagenti, tool calling, skills, prompty, MCP | upstream pin + naše skills/prompty/MCP konfigy v `lawoss/**` (🟢) |
+| **LAWOSS vrstva** | 4 tentpoles ako *pohľady nad dátami na disku* (OKF markdown) + admin konektorov/marketplace | my, nové súbory |
 
-Toto zároveň plní ADR 0007 pravidlo 2: každá obrazovka je *pohľad na stav na disku* (`_STATUS.md`, `spis.md`, `lehoty.md`), nie vlastný stav v UI. Agent ju vie „vykonať" bez GUI.
+Každý náš pohľad je **derivát stavu na disku** (`_STATUS.md`, `spis.md`, `MEMORY.md`, `lehoty.md`, opencode config) — ADR 0007 pravidlo 1 a 2: agent to vie bez GUI, GUI to len ukazuje a dáva advokátovi podpísať.
 
-## 2 · Ľavá navigácia
+## 2 · Navigácia = upstream sidebar so záložkami
 
-| Skupina | Položka | Routa | Zdroj dát | Fáza |
+| Záložka | Čo je pod ňou | Pôvod |
+|---|---|---|
+| Prehľad | domovská: obal praxe, register „Čaká na advokáta“, pás lehôt, posledná správa agenta, composer | **nové** (`/prehlad`) |
+| Spisy `24` | upstream zoznam priečinkov (workspaces) = OKF spisy; detail spisu = náš pohľad | upstream priečinky + nový detail (`/spis/:id`) |
+| Lehoty `7` | register lehôt zo všetkých spisov + brána | **nové** (`/lehoty`, `/lehoty/:id`) |
+| Dokumenty `128` | upstream workspace files panel ako stránka + OKF triedenie | upstream panel, reskin |
+| Asistent `3` | upstream sessions (chat) — nezmenené | upstream (`/session/*`) |
+| Konektory `8` | náš admin nad `connections/store` + lokálne nástroje | **nové** (`/konektory`) |
+| Marketplace | registry: MCP · skills · pluginy, pin, inštalácia | **nové** (`/marketplace`) |
+| Nastavenia | upstream settings + tab `lawoss` (spec 0011 A) | upstream + 1 tab |
+
+Záložky nahrádzajú horný blok upstream sidebaru (New Task / Learning / Workflows / Integrations / Recorder) — tie položky sa presúvajú: Learning → Reconcile (v spise), Workflows → Nastavenia, Integrations → Konektory, Recorder → Konektory › Whisper. Priečinky (60 % sidebaru) ostávajú ako sú, len v našom skine.
+
+## 3 · Päť pohľadov × štyri tentpoles
+
+| Pohľad | Tentpole | Diagram (aby to nebol wall of text) | Dáta | Hi-fi |
 |---|---|---|---|---|
-| **Prax** | Prehľad | `/prehlad` (nová domovská) | agregácia `_STATUS.md` všetkých spisov v OKF koreni | C |
-| | Spisy `24` | `/spisy`, `/spis/:id/*` | OKF priečinky (workspace = OKF koreň) | C |
-| | Lehoty `7` | `/lehoty`, `/lehoty/:id` (brána) | `lehoty.md` JSON front-matter (spec 0011 A) | C |
-| | Dokumenty | `/dokumenty` | workspace files panel (reuse) + OKF triedenie | C |
-| | Komunikácia | `/komunikacia` | mockup 09 — **V2**, placeholder „pripravujeme" | D+ |
-| **Overovanie** | Rešerš | `/resers` (právny výskum · subjekty) | MCP judikatúra/Slov-Lex, registre | C |
-| | Podpisovanie | `/podpisovanie` | Autogram detekcia (spec 0007) | D |
-| **Systém** | Konektory a nástroje | `/konektory` | `connections/store` + `lawoss/hub` | C |
-| | AI asistent | `/session/*` (existujúce) | bez zmeny | B |
-| | Nastavenia | `/settings/*` + tab `lawoss` | spec 0011 | B |
+| **Prehľad** | všetky | pás lehôt 14 dní | agregácia `_STATUS.md` + `lehoty.md` + health konektorov | ✅ |
+| **Spis + OKF Brain** | 1 · OKF Brain | timeline spisu s fázami konania; vrstvy pamäte L1/L2/L3 | `spis.md`, `_STATUS.md`, `MEMORY.md`, `lehoty.md`; dokumenty = OKF priečinok; composer = session v spise | ✅ |
+| **Kontrola lehoty** (brána) | 2 · lehoty + dokumenty | náhľad dokumentu s locatorom vedľa citácie predpisu; pečať | spec 0005 model (`source_locator`, `calculation_trace`, `uncertainty`, stavy) | ✅ |
+| **Reconcile** | 1 · OKF Brain (self-healing) | diff v1 agent / v2 advokát; panel „čo si agent chce zapamätať“ s výberom vrstvy | spec 0009: diff z verzií dokumentu v OKF, návrhy do `MEMORY.md` (L1) / `_STATUS.md` (L2), žiadny autonómny zápis | ✅ |
+| **Konektory + Marketplace** | 3 · MCP, 4 · marketplace | schéma LAWOSS → opencode → konektory s trust labelom | `connections/store` (MCP remote/local), lokálne nástroje (Autogram, OCR, Whisper, OKF skripty), `lawoss-registry` manifesty (spec 0011 B) | ✅ |
 
-Pätička: avatar + meno advokáta (z nastavenia, nápad #31) + jurisdikcia. Sidebar má **gold rail** pri aktívnej položke, počty iba pri Spisy/Lehoty (ostatné counts = šum).
+Dokument s priamou editáciou = upstream artifact DOCX editor (`artifact-docx-editor.tsx`) v side paneli, reskin + `suggesting` režim (nápad #29) + meno advokáta (#31). Reconcile sa spúšťa **pri uložení** v tomto editore.
 
-**Technicky:** `lawoss/shell/lawoss-sidebar.tsx` (🟢) nahrádza upstream `AppSidebar` jedným switchom v `session-page.tsx` (🟡 1 riadok, alebo `ShellConfig` flag ak upstream prijme PR). Routy sa registrujú v `app-root.tsx` jedným `<Route path="/*" element={<LawossRoutes/>}>` (🟡 1 riadok) — vnútri `lawoss/shell/routes.tsx` (🟢) sú všetky naše.
+Čo sa **nestavia** (zo zamietnutej v1): samostatné obrazovky Rešerš, Podpisovanie, Zaručená konverzia, Automatizácia e-mailov, Lokálne nástroje. Rešerš a subjekty = skills v chate (výsledky ako registre v artifact preview); podpisovanie = Autogram v Konektoroch + akcia v dokumente; konverzia mimo V1/V2 (spec 0010); e-maily V2.
 
-## 3 · Screen-by-screen mapa (10 mockupov)
-
-Legenda: **reuse** = existujúci komponent/flow bez zmeny · **reskin** = existujúce, iba tokeny/labely · **nové** = nový súbor v 🟢 zóne. Hi-fi = v prototype [`hifi/lawoss-hifi.html`](hifi/lawoss-hifi.html).
-
-| # | Obrazovka | Reuse | Reskin | Nové | Hi-fi | Dáta / špecifikácia |
-|---|---|---|---|---|---|---|
-| 01 | **Prehľad praxe** | Card, Badge, Button | — | PageHeader, StatCard×3, „Čaká na rozhodnutie" (card-gold), DeadlineList, SourceStatus | ✅ | agregácia `_STATUS.md` + `lehoty.md`; konektory health |
-| 02 | **Spis + Matter Brain** | workspace-files-panel (dokumenty), session (tab Asistent) | — | PageHeader s mono spisovou značkou, Timeline (skrátená), TaskList, MatterBrainPanel | ✅ | `spis.md` frontmatter, `_STATUS.md`, `MEMORY.md` (L2) |
-| 03 | **Kontrola lehoty** | Button, Badge, Kbd | — | **DecisionGate** (CitationBlock + ProposalTable + ConfidenceMeter + 4 akcie + audit veta), SealMoment | ✅ | spec 0005 dátový model: `source_ref/locator/version`, `calculation_trace`, `uncertainty`, stav `needs_review→confirmed` |
-| 04 | **Podpisovanie eIDAS** | artifact preview (DOCX/PDF) | — | SignTypePicker (6 kariet: PDF/XML · QES/QTS · SK eID/CZ podpis), AutogramStatus, SealMoment (pero) | wireframe | spec 0007: iba detekcia + odovzdanie Autogramu; PIN nikdy v LAWOSS |
-| 05 | **Právny výskum** | SearchInput, Tabs, Card | — | ResultRow (typ · názov · mono ref · **SourceBadge**), ConnectorsSidePanel, „Všetky výsledky sú overené" pätička | wireframe | MCP judikatúra (24 tools), Slov-Lex; každý výsledok má provenance alebo sa nezobrazí ako Overené |
-| 06 | **Rešerš subjektov** | SearchInput, Tabs (Klient·Protistrana·Partner·Riziká·KÚV) | — | RegisterCard×6 (stav `bez záznamu / nedoplatok / nenačítané`), FindingsSummary, KuvCard | wireframe | spec 0002 light/medium/hard; **menovec = vždy človek potvrdí** (IR podmienka) → DecisionGate variant |
-| 07 | **Timeline spisu** | — | — | Timeline (plná, filter chips: Lehoty·Podania·Pojednávania·Dokumenty·E-maily·Ďalšie kroky), MatterBrain (zúžený), AuditTrail link | wireframe (skrátený v 02) | `lehoty.md` + `_STATUS.md` chronológia; vizuálne odlíšiť *confirmed / candidate / rejected* (spec 0005) |
-| 08 | **Zaručená konverzia** | — | — | WizardSteps×4 (Naskenovaný dokument → Osvedčovacia doložka → Overenie → Elektronický výstup), SealMoment | wireframe | spec 0010: **nie V1, nie V2** — obrazovka ako externý proces (odkaz na samostatnú appku MČ); v UI zatiaľ „pripravujeme" + vysvetlenie prečo |
-| 09 | **Automatizácia e-mailov** | — | — | FlowDiagram 8 krokov (ilustratívna), IncomingMailCard (sumár·úlohy·lehota·návrh odpovede) → DecisionGate „Odoslať po schválení" | wireframe | V2; ADR 0007 pravidlo 5: **odosielací nástroj agent nemá** — brána odovzdá draft do mail klienta |
-| 10 | **Lokálne nástroje** | recorder settings (Whisper modely) | — | ConnectorCard / LocalToolCard grid, segment filter, LocalNote „všetko beží lokálne" | ✅ (zlúčené s 05 do hubu) | `lawoss/hub`: detekcia Autogram/OCR/Whisper/skripty, health, logy |
-
-**Rozhodnutie v návrhu:** mockupy 05 (panel konektorov) a 10 (lokálne nástroje) sú v IA **jedna obrazovka** *Konektory a nástroje* so segmentom (Všetko · Právne zdroje · Registre · Lokálne nástroje · AI modely). Dva hubové ekrány by advokát nerozlíšil.
-
-## 4 · Routing v kóde
+## 4 · Routing a napojovacie body v kóde
 
 ```
-apps/app/src/react-app/shell/app-root.tsx        🟡 +1 riadok: <Route path="/*" element={<LawossRoutes />} />  (pred fallback "*")
-lawoss/shell/routes.tsx                          🟢 všetky /prehlad /spisy /spis/:id/* /lehoty /resers /konektory /podpisovanie
-lawoss/shell/lawoss-sidebar.tsx                  🟢 navigácia (t() kľúče lawoss.nav.*)
-lawoss/shell/lawoss-layout.tsx                   🟢 sidebar + main (reuse titlebar-drag utilities, platform variants)
-lawoss/shell/routes-paths.ts                     🟢 buildery: prehladRoute(), spisRoute(id, tab?), lehotaRoute(id) — rovnaký vzor ako workspace-routes.ts
+shell/app-root.tsx              🟡 +1: <Route path="/*" element={<LawossRoutes/>}/> pred fallback; redirect "/" → /prehlad
+session/sidebar/app-sidebar.tsx 🟡 +1: horný blok → <LawossTabs/> (alebo upstream PR „sidebar slot“)
+app/types.ts + settings-page    🟡 +1: tab "lawoss"
+i18n/index.ts                   🟡: registrácia sk/cs
+artifacts/artifact-docx-editor  🟡 +2: mode prop (suggesting), author z nastavení (#29, #31), onSave → reconcile hook
+lawoss/shell/routes.tsx, tabs.tsx, layout.tsx                 🟢
+lawoss/domains/prehlad, spis, lehoty, reconcile, konektory, marketplace   🟢
+lawoss/okf/read.ts  (parser _STATUS.md / spis.md / lehoty.md, read-only)  🟢
+lawoss/hub/{health,tools,registry}.ts                         🟢
+lawoss/ui/{tabs,obal,register,gate,seal,timeline,deadline-strip,brain,diff,schema,composer-context}.tsx  🟢
+lawoss/theme/{lawoss-tokens.css,fonts.css}                    🟢
 ```
 
-Workspace mapping: **OKF koreň = workspace**. `spis/:id` = relatívna cesta priečinka spisu v OKF koreni (URL-safe slug + hash). Session v spise: `spisRoute(id,'asistent')` renderuje existujúci `SessionRoute` s `workspaceId` = OKF koreň a session filtrom na priečinok spisu (route state, nie global).
+Zápisy do OKF robí **vždy agent cez skill** (`novy-spis`, `lehoty`, `reconcile`), GUI volá skill a zobrazuje výsledok — nikdy nezapisuje markdown samo. To drží logiku prenosnú (ADR 0004 p. 5) a jednu cestu pre audit.
 
-## 5 · Komponentový inventár s API náčrtmi (🟢 `lawoss/ui/`)
-
-Všetko strict TS, bez `any`; `cva` varianty; `@/components/ui` primitíva pod kapotou; každý string cez `t('lawoss.*')` v `sk.ts` **aj** `cs.ts`.
+## 5 · API náčrty stavebných prvkov (`lawoss/ui`, strict TS)
 
 ```ts
-// PageHeader — serif H1 + lead + crumbs + actions
-type PageHeaderProps = { title: ReactNode; lead?: ReactNode; crumbs?: Crumb[]; actions?: ReactNode; back?: () => void };
+type Tab = { id: string; label: string; count?: number; to: string; group: 'prax' | 'agent' | 'system' };
 
-// StatCard — hero číslo
-type StatCardProps = { label: string; icon: LucideIcon; value: number | string; delta?: ReactNode; tone?: 'default' | 'urgent'; href?: string };
+type ObalField = { label: string; value: ReactNode; note?: string; mono?: boolean; tone?: 'warn' };
 
-// SourceBadge — „Overené“; bez provenance sa NEVYKRESLÍ ako overené
-type Provenance = { source: string; retrievedAt: string; version?: string; locator?: string; url?: string };
-type SourceBadgeProps = { provenance?: Provenance; fallback?: 'ai' | 'none' };
+type RegisterColumn = 'no' | 'date' | 'title' | 'ref' | 'status' | 'action';
+type RegisterRow = { id: string; no?: string; date?: { text: string; tone?: 'urg' | 'soon' }; title: string; sub?: string; ref?: string; status?: { text: string; tone?: 'ok' | 'warn' | 'ai' | 'off' }; action?: { label: string; to: string } };
+type RegisterProps = { title: string; meta?: ReactNode; columns: RegisterColumn[]; rows: RegisterRow[]; widths?: string };
 
-// ConfidenceMeter — slovo + meter, nikdy percento
-type Confidence = 'low' | 'medium' | 'high';
-type ConfidenceMeterProps = { level: Confidence; reasons?: string[] };
+type Provenance = { source: string; retrievedAt: string; version?: string; locator?: string };
+type GateProps<T> = { source: ReactNode /* citácia + docview */; proposal: ReactNode /* kolónky + trace */; confidence: 'low'|'medium'|'high'; uncertainty?: string[]; consequence: string; onDecide: (a: 'confirm'|'edit'|'reject'|'defer', p?: Partial<T>) => Promise<void> };
+type SealProps = { ring: string /* „POTVRDIL ADVOKÁT · 7. 6. 2024 · AUDIT 0x…“ */; anchor: HTMLElement | null };
 
-// CitationBlock — § citácia s markerom
-type CitationBlockProps = { lawTitle: string; citation: string /* mono */; versionNote?: string; quote: string; highlight?: [number, number]; provenance?: Provenance; onOpenDocument?: () => void };
+type TimelineEvent = { at: string; title: string; sub?: string; kind: 'done' | 'candidate' | 'ordered' | 'planned' };
+type Phase = { label: string; from: string; to: string; active?: boolean };
+type TimelineProps = { events: TimelineEvent[]; phases: Phase[]; today: string };
+type DeadlineStripProps = { days: 14; items: { at: string; title: string; sub: string; tone: 'urg'|'soon'|'ok'|'candidate' }[] };
 
-// DecisionGate — jadro doktríny
-type GateAction = 'confirm' | 'edit' | 'reject' | 'defer';
-type DecisionGateProps<T> = {
-  source: ReactNode;                 // typicky <CitationBlock/>
-  proposal: ReactNode;               // typicky <ProposalTable/>
-  confidence: Confidence;
-  uncertainty?: string[];            // „dátum doručenia z OCR — skontrolujte“
-  consequence: string;               // auditná veta: čo sa zapíše a kam
-  onDecide: (a: GateAction, payload?: Partial<T>) => Promise<void>;
-  shortcuts?: boolean;               // ⏎ / E / Esc
-};
+type BrainProps = { status: string; facts: { text: string; ref: string }[]; tactics?: { text: string; ref: string }[]; next: string[]; layers: { l2Pending: number }; onReview: () => void };
 
-// ProposalTable — kľúč/hodnota s hero riadkom a calc trace
-type ProposalRow = { key: string; value: ReactNode; mono?: boolean; hero?: boolean; note?: string };
-type ProposalTableProps = { rows: ProposalRow[]; calculationTrace?: string };
+type DiffProps = { v1: string; v2: string; meta: { doc: string; v1At: string; v2At: string } };
+type Learning = { rule: string; layer: 'L1' | 'L2'; evidence: string; suggestedLayer: 'L1' | 'L2' };
 
-// SealMoment — potvrdenie s právnym účinkom
-type SealMomentProps = { title: string; subtitle?: string; icon?: 'check' | 'pen' | 'doc'; autoCloseMs?: number };
-
-// Timeline
-type TimelineEvent = { id: string; at: string; title: string; kind: 'podanie'|'dokument'|'lehota'|'pojednavanie'|'email'|'krok'; state: 'done'|'now'|'future'; status?: 'confirmed'|'candidate'|'rejected'; meta?: string };
-type TimelineProps = { events: TimelineEvent[]; progress?: number; compact?: boolean; filters?: TimelineEvent['kind'][] };
-
-// MatterBrainPanel — L2 pamäť veci
-type MatterBrainProps = { status: { label: string; tone: 'ok'|'warn' }; facts: { text: string; ref: string }[]; nextSteps: string[]; updatedAt: string; provenanceOk: boolean; onProposeWrite: () => void };
-
-// TaskList
-type Task = { id: string; title: string; done: boolean; due?: string; dueTone?: 'soon'|'late' };
-
-// DeadlineRow / DeadlineList — riadok lehoty s tónom podľa blízkosti
-type DeadlineRowProps = { title: string; matter: string; dueAt: string; status: 'confirmed'|'candidate'; };
-
-// ConnectorCard / LocalToolCard — hub
-type Trust = 'local' | 'own-server' | 'third-party';
-type ConnectorCardProps = { name: string; kind: 'mcp' | 'tool' | 'model'; description: string; status: 'connected'|'ready'|'missing'|'error'; trust: Trust; readOnly?: boolean; verified?: boolean; meta?: { label: string; value: string }[]; actions: ReactNode };
-
-// WizardSteps — 4-krokový (konverzia, onboarding)
-type WizardStep = { id: string; title: string; hint?: string; state: 'done'|'current'|'todo' };
-
-// EmptyState
-type EmptyStateProps = { title: string; hint?: string; action?: { label: string; onClick: () => void } };
+type Trust = 'local' | 'own' | 'third';
+type ConnectorRow = { name: string; sub: string; trust: Trust; kind: 'remote' | 'local' | 'tool'; tools?: number; latencyMs?: number; readOnly: boolean; status: 'connected' | 'ready' | 'missing' | 'off' };
+type RegistryItem = { id: string; name: string; sub: string; type: 'mcp' | 'skill' | 'plugin'; source: string; pin: string; install: ('remote' | 'local')[]; requires?: string[]; verified: boolean };
 ```
 
-Rozšírenia existujúcich (value-only / variant add, 🟡 ak v `packages/ui`, inak wrapper v 🟢): `Card tone="gold"`, `Badge tone="verified" | "ai"`, `Button variant="gold"` (= upstream `accent` po remape, netreba nový variant).
+## 6 · Nastavenia › tab LAWOSS
 
-## 6 · Nastavenia — tab „LAWOSS“ (spec 0011 A)
-
-Jedna stránka, sekcie: **Advokát** (meno, titul, jurisdikcia SK/CZ) · **Spisy a OKF** (koreňový priečinok, nomenklatúra, default moduly) · **Agent** (default autonómia pre nové spisy, default výstupný formát) · **Vzhľad** (téma dark/light/system, jazyk sk/cs/en) · **Konektory** → odkaz na hub. Tab registrácia = 🟡 1 riadok v `SETTINGS_TAB_VALUES` + settings-page list.
-
-## 7 · Onboarding LAWOSS (nahrádza `/welcome`)
-
-4 kroky vo WizardSteps: *Kto ste* (meno, jurisdikcia) → *Kde máte spisy* (OKF koreň, retrofit ponuka) → *AI model* (lokálny/cloud/auto + politika dát) → *Konektory* (Slov-Lex, Judikatúra, registre — jedným klikom). Posledná obrazovka = Seal moment „Prax pripravená". Reuse: `create-workspace` flow pre výber priečinka; provider selection logiku reuse, iba nový vizuál.
+Advokát (meno, titul, jurisdikcia) · OKF (koreň, nomenklatúra, default moduly) · Agent (default autonómia, výstupný formát) · Vzhľad (téma — default tmavá, jazyk sk/cs/en) · odkazy Konektory / Marketplace. Podľa spec 0011 A, bez zmeny.
 
 ---
 
-<sub>Návrh MČ s AI asistenciou 2026-08-23. Routy a napojovacie body overené v kóde forku 2026-08-23 (`app-root.tsx`, `session-page.tsx`, `types.ts`); pri upstream synce znova overiť.</sub>
+<sub>v2 · MČ s AI asistenciou · 2026-08-23. Napojovacie body overené v kóde forku `dev` @ c5e177a.</sub>
