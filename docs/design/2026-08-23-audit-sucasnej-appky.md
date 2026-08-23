@@ -3,7 +3,7 @@
 - **Zostavil:** Marián Čuprík (MČ) s AI asistenciou · 2026-08-23
 - **Stav:** 📄 pracovný podklad · **nie rozhodnutie** — patrí do PR `design/redesign-plan`
 - **Metóda:** čítanie kódu forku `Omni-Legal-Products/lawoss` (`dev` @ `c5e177a`, sync s upstreamom `v0.1.13` + #88), grep, `git log`; web build (`pnpm --filter @legalwork/app dev:web`) spustený 2026-08-23 pre baseline uvítacej obrazovky. Každý nález má značku **overené** / **neoverené**.
-- **Nadväzuje na:** [podklad redesign prompt 2026-08-23](../../podklady/) *(lokálne u MČ)* · [spec 0011 UI vrstva a konektory (PR #55)](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/55) · [ADR 0004](../../decisions/0004-ako-rozsirit-legalwork.md) *(tri zóny)* · [brand concept](../brand-concept.md)
+- **Nadväzuje na:** podklad „redesign prompt 2026-08-23“ *(lokálne u MČ, nie v repe)* · [spec 0011 UI vrstva a konektory (PR #55)](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/55) · [ADR 0004](../../decisions/0004-ako-rozsirit-legalwork.md) *(tri zóny)* · [brand concept](../brand-concept.md)
 
 > [!IMPORTANT]
 > Čast B podkladu z 23. 8. bola v troch bodoch **nepresná** — opravené nižšie (§1.3, §2.1, §3.2). Audit ju nahrádza ako technický štartovací bod.
