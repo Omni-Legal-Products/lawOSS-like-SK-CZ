@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="sk" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAWOSS — hi-fi prototyp dizajnového jazyka</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   LAWOSS design tokens — 1:1 predloha pre lawoss/theme/lawoss-tokens.css
+   (názvy --lw-* sú upstream názvy; meníme LEN hodnoty → cascade urobí zvyšok)
+   ===================================================================== */
+:root {
+  /* navy rampa */
+  --lw-navy-950:#070E17; --lw-navy-900:#0A1420; --lw-navy-850:#0D1B2A; --lw-navy-800:#112233;
+  --lw-navy-700:#16293D; --lw-navy-600:#1E3448; --lw-navy-500:#2B4258; --lw-navy-300:#5B7188;
+  --lw-navy-100:#C9D3DE; --lw-navy-50:#EEF2F6;
+  /* zlatá rampa */
+  --lw-gold-700:#8C6A1F; --lw-gold-600:#A8832E; --lw-gold-500:#C9A24A; --lw-gold-400:#D8B45E;
+  --lw-gold-300:#E6C97F; --lw-gold-100:#F3E7C6;
+
+  /* LIGHT (sekundárny režim) */
+  --lw-canvas:#F6F7F9; --lw-surface:#FFFFFF; --lw-surface-hover:#F1F3F6; --lw-sunken:#EDF0F4;
+  --lw-sidebar:#0D1B2A; --lw-sidebar-text:#C9D3DE; --lw-sidebar-text-active:#FFFFFF;
+  --lw-text-primary:#0D1B2A; --lw-text-secondary:#42586E; --lw-text-tertiary:#66758A; --lw-text-placeholder:#9AA6B8;
+  --lw-primary:#0D1B2A; --lw-primary-hover:#16293D; --lw-primary-fg:#FFFFFF;
+  --lw-accent:#8C6A1F; --lw-accent-hover:#A8832E; --lw-accent-fg:#FFFFFF;
+  --lw-accent-soft:rgba(201,162,74,.14); --lw-accent-border:rgba(140,106,31,.45);
+  --lw-gold-fill:#C9A24A; --lw-gold-fill-fg:#0D1B2A;
+  --lw-border-subtle:rgba(13,27,42,.07); --lw-border:rgba(13,27,42,.12); --lw-border-strong:rgba(13,27,42,.22);
+  --lw-success:#1F7A4C; --lw-success-soft:rgba(31,122,76,.12);
+  --lw-warning:#B4560F; --lw-warning-soft:rgba(180,86,15,.12);
+  --lw-danger:#B3261E; --lw-danger-soft:rgba(179,38,30,.12);
+  --lw-info:#2A6099;
+  --lw-focus-ring:0 0 0 2px var(--lw-canvas),0 0 0 4px var(--lw-gold-500);
+  --lw-shadow-sm:0 1px 2px rgba(13,27,42,.06); --lw-shadow-md:0 6px 20px -8px rgba(13,27,42,.18);
+  --lw-glow:0 0 0 1px rgba(201,162,74,.35), 0 0 24px -6px rgba(201,162,74,.35);
+  --lw-marker:rgba(201,162,74,.22);
+
+  --lw-radius-sm:6px; --lw-radius-md:8px; --lw-radius-lg:10px; --lw-radius-xl:12px; --lw-radius-2xl:16px;
+  --lw-font-sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --lw-font-serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  --lw-font-mono:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;
+  --lw-ease-standard:cubic-bezier(.2,0,0,1); --lw-ease-out:cubic-bezier(.16,1,.3,1); --lw-ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --lw-duration-fast:120ms; --lw-duration-base:160ms; --lw-duration-slow:220ms; --lw-duration-seal:600ms;
+  color-scheme:light;
+}
+[data-theme="dark"] {
+  --lw-canvas:#0A1420; --lw-surface:#0F1D2E; --lw-surface-hover:#142538; --lw-sunken:#081019;
+  --lw-sidebar:#070E17; --lw-sidebar-text:#A9B4C2; --lw-sidebar-text-active:#FFFFFF;
+  --lw-text-primary:#F2F4F7; --lw-text-secondary:#A9B4C2; --lw-text-tertiary:#7D8A99; --lw-text-placeholder:#4F5D6D;
+  --lw-primary:#F2F4F7; --lw-primary-hover:#FFFFFF; --lw-primary-fg:#0A1420;
+  --lw-accent:#C9A24A; --lw-accent-hover:#D8B45E; --lw-accent-fg:#0A1420;
+  --lw-accent-soft:rgba(201,162,74,.12); --lw-accent-border:rgba(201,162,74,.55);
+  --lw-gold-fill:#C9A24A; --lw-gold-fill-fg:#0A1420;
+  --lw-border-subtle:rgba(255,255,255,.06); --lw-border:rgba(255,255,255,.10); --lw-border-strong:rgba(255,255,255,.18);
+  --lw-success:#5CC08A; --lw-success-soft:rgba(92,192,138,.14);
+  --lw-warning:#E08A3C; --lw-warning-soft:rgba(224,138,60,.14);
+  --lw-danger:#E06C6C; --lw-danger-soft:rgba(224,108,108,.14);
+  --lw-info:#6FA8DC;
+  --lw-shadow-sm:0 1px 2px rgba(0,0,0,.4); --lw-shadow-md:0 12px 32px -12px rgba(0,0,0,.6);
+  --lw-glow:0 0 0 1px rgba(201,162,74,.45), 0 0 32px -6px rgba(201,162,74,.45);
+  --lw-marker:rgba(201,162,74,.26);
+  color-scheme:dark;
+}
+
+/* ===== base ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--lw-font-sans);font-size:14px;line-height:1.5;color:var(--lw-text-primary);background:var(--lw-canvas);-webkit-font-smoothing:antialiased;font-feature-settings:"cv11","ss01","tnum"}
+a{color:var(--lw-accent);text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:none;box-shadow:var(--lw-focus-ring);border-radius:var(--lw-radius-sm)}
+.mono{font-family:var(--lw-font-mono);font-size:.92em;letter-spacing:-.01em}
+.serif{font-family:var(--lw-font-serif)}
+.muted{color:var(--lw-text-secondary)}
+.faint{color:var(--lw-text-tertiary)}
+.gold{color:var(--lw-accent)}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--lw-text-tertiary)}
+
+/* ===== prototype chrome (nie je súčasť appky) ===== */
+.proto-bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:10px;padding:8px 14px;background:var(--lw-sunken);border-bottom:1px solid var(--lw-border);font-size:12px}
+.proto-bar .title{font-weight:600}
+.proto-bar .spacer{flex:1}
+.proto-bar .tabs{display:flex;gap:2px;background:var(--lw-surface);border:1px solid var(--lw-border);border-radius:999px;padding:2px}
+.proto-bar .tabs button{padding:4px 10px;border-radius:999px;color:var(--lw-text-secondary)}
+.proto-bar .tabs button[aria-selected="true"]{background:var(--lw-accent);color:var(--lw-accent-fg);font-weight:600}
+.proto-bar .toggle{display:flex;align-items:center;gap:6px;padding:4px 10px;border:1px solid var(--lw-border);border-radius:999px;color:var(--lw-text-secondary)}
+.screen{display:none}
+.screen[data-active]{display:block}
+
+/* ===== app shell ===== */
+.app{display:grid;grid-template-columns:232px 1fr;min-height:calc(100vh - 37px)}
+.sidebar{background:var(--lw-sidebar);color:var(--lw-sidebar-text);display:flex;flex-direction:column;padding:18px 12px 14px;border-right:1px solid var(--lw-border-subtle)}
+.brand{display:flex;align-items:center;gap:10px;padding:4px 8px 18px}
+.brand .hex{width:30px;height:34px}
+.brand .wordmark{font-family:var(--lw-font-serif);font-size:17px;letter-spacing:.14em;color:#fff;line-height:1}
+.brand .wordmark b{color:var(--lw-gold-500);font-weight:500}
+.brand .sub{font-size:8px;letter-spacing:.22em;color:var(--lw-gold-500);text-transform:uppercase;margin-top:3px}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav .group{margin:12px 8px 4px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--lw-text-tertiary)}
+.nav a{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:var(--lw-radius-md);color:var(--lw-sidebar-text);font-size:13.5px;position:relative;transition:background var(--lw-duration-fast) var(--lw-ease-standard),color var(--lw-duration-fast)}
+.nav a:hover{background:rgba(255,255,255,.05);color:var(--lw-sidebar-text-active)}
+.nav a[aria-current]{background:rgba(255,255,255,.06);color:var(--lw-sidebar-text-active)}
+.nav a[aria-current]::before{content:"";position:absolute;left:-12px;top:7px;bottom:7px;width:2px;background:var(--lw-gold-500);border-radius:2px}
+.nav a svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none;opacity:.85}
+.nav a .count{margin-left:auto;font-family:var(--lw-font-mono);font-size:11px;color:var(--lw-gold-400);background:rgba(201,162,74,.12);padding:1px 7px;border-radius:999px}
+.sidebar .foot{margin-top:auto;display:flex;align-items:center;gap:10px;padding:10px 8px 0;border-top:1px solid rgba(255,255,255,.06)}
+.avatar{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:600;background:var(--lw-navy-700);color:#fff;border:1px solid rgba(201,162,74,.4)}
+.foot .who{line-height:1.2}.foot .who b{display:block;font-size:12.5px;color:#fff;font-weight:500}.foot .who span{font-size:11px;color:var(--lw-text-tertiary)}
+
+.main{padding:28px 36px 48px;max-width:1400px}
+.topbar{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px}
+.topbar h1{font-family:var(--lw-font-serif);font-weight:400;font-size:30px;letter-spacing:-.01em;line-height:1.15}
+.topbar .lead{color:var(--lw-text-secondary);margin-top:4px}
+.topbar .crumbs{font-size:12.5px;color:var(--lw-text-tertiary);margin-bottom:6px}
+.topbar .crumbs a{color:var(--lw-text-secondary)}
+.topbar .actions{margin-left:auto;display:flex;gap:8px;align-items:center}
+.iconbtn{width:34px;height:34px;display:grid;place-items:center;border-radius:var(--lw-radius-md);border:1px solid var(--lw-border);color:var(--lw-text-secondary);background:var(--lw-surface);transition:all var(--lw-duration-fast)}
+.iconbtn:hover{border-color:var(--lw-accent-border);color:var(--lw-accent)}
+.iconbtn svg,.btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== buttons ===== */
+.btn{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:var(--lw-radius-md);font-weight:500;font-size:13.5px;border:1px solid transparent;transition:all var(--lw-duration-base) var(--lw-ease-standard)}
+.btn-gold{background:var(--lw-gold-fill);color:var(--lw-gold-fill-fg);border-color:var(--lw-gold-fill)}
+.btn-gold:hover{background:var(--lw-gold-400);border-color:var(--lw-gold-400);transform:translateY(-1px);box-shadow:var(--lw-shadow-md)}
+.btn-outline{border-color:var(--lw-accent-border);color:var(--lw-accent);background:var(--lw-accent-soft)}
+.btn-outline:hover{background:var(--lw-accent);color:var(--lw-accent-fg)}
+.btn-secondary{border-color:var(--lw-border);background:var(--lw-surface);color:var(--lw-text-primary)}
+.btn-secondary:hover{border-color:var(--lw-border-strong);background:var(--lw-surface-hover)}
+.btn-ghost{color:var(--lw-text-secondary)}.btn-ghost:hover{color:var(--lw-text-primary);background:var(--lw-surface-hover)}
+.btn-danger{border-color:var(--lw-danger);color:var(--lw-danger);background:var(--lw-danger-soft)}
+.btn-lg{height:44px;padding:0 20px;font-size:14.5px;border-radius:var(--lw-radius-lg)}
+.btn-sm{height:30px;padding:0 10px;font-size:12.5px}
+
+/* ===== cards ===== */
+.card{background:var(--lw-surface);border:1px solid var(--lw-border);border-radius:var(--lw-radius-xl);padding:20px;position:relative}
+.card-gold{border-color:var(--lw-accent-border);box-shadow:var(--lw-glow)}
+.card h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.card .sub{color:var(--lw-text-secondary);font-size:13px}
+.card .more{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:13px;font-weight:500;color:var(--lw-accent)}
+.card .more:hover{gap:9px}
+.card .more::after{content:"→"}
+.card-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:1fr 1fr}
+.g-dash{grid-template-columns:1.1fr 1fr .9fr}
+.g-spis{grid-template-columns:1fr 1.1fr .95fr}
+@media (max-width:1100px){.g3,.g2,.g-dash,.g-spis{grid-template-columns:1fr 1fr}}
+@media (max-width:800px){.app{grid-template-columns:1fr}.sidebar{display:none}.g3,.g2,.g-dash,.g-spis{grid-template-columns:1fr}.main{padding:20px}}
+
+/* StatCard */
+.stat{padding:18px 20px}
+.stat .label{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--lw-text-tertiary);font-weight:600}
+.stat .label svg{width:14px;height:14px;stroke:var(--lw-accent);fill:none;stroke-width:1.6}
+.stat .value{font-family:var(--lw-font-serif);font-size:40px;line-height:1;margin:12px 0 6px;font-variant-numeric:tabular-nums}
+.stat .delta{font-size:12.5px;color:var(--lw-text-secondary)}
+.stat .delta b{color:var(--lw-accent);font-weight:500}
+.stat.urgent .value{color:var(--lw-warning)}
+
+/* rows */
+.rows{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--lw-border-subtle);font-size:13.5px}
+.row:first-child{border-top:0}
+.row .t{flex:1;min-width:0}
+.row .t small{display:block;color:var(--lw-text-tertiary);font-size:12px}
+.row .r{color:var(--lw-text-secondary);font-size:12.5px;font-variant-numeric:tabular-nums}
+.row .r.soon{color:var(--lw-warning);font-weight:500}
+.row .r.now{color:var(--lw-danger);font-weight:600}
+.row .ico{width:28px;height:28px;border-radius:var(--lw-radius-sm);display:grid;place-items:center;background:var(--lw-sunken);border:1px solid var(--lw-border-subtle)}
+.row .ico svg{width:14px;height:14px;stroke:var(--lw-accent);fill:none;stroke-width:1.6}
+
+/* badges */
+.badge{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:999px;font-size:11.5px;font-weight:500;border:1px solid transparent;white-space:nowrap}
+.badge svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
+.badge-verified{color:var(--lw-accent);border-color:var(--lw-accent-border);background:var(--lw-accent-soft)}
+.badge-ok{color:var(--lw-success);background:var(--lw-success-soft)}
+.badge-warn{color:var(--lw-warning);background:var(--lw-warning-soft)}
+.badge-danger{color:var(--lw-danger);background:var(--lw-danger-soft)}
+.badge-neutral{color:var(--lw-text-secondary);background:var(--lw-sunken);border-color:var(--lw-border-subtle)}
+.badge-ai{color:var(--lw-text-secondary);border-color:var(--lw-border);background:transparent}
+.badge-ai::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lw-accent);box-shadow:0 0 8px var(--lw-accent)}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.dot-ok{background:var(--lw-success);box-shadow:0 0 6px var(--lw-success)}
+.dot-warn{background:var(--lw-warning)}.dot-off{background:var(--lw-text-tertiary)}
+
+/* timeline */
+.tl{position:relative;padding-left:22px}
+.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--lw-accent) 0,var(--lw-accent) var(--progress,45%),var(--lw-border-strong) var(--progress,45%))}
+.tl .ev{position:relative;padding:0 0 18px}
+.tl .ev::before{content:"";position:absolute;left:-20px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--lw-surface);border:1.5px solid var(--lw-border-strong)}
+.tl .ev.done::before{background:var(--lw-accent);border-color:var(--lw-accent)}
+.tl .ev.now::before{background:var(--lw-accent);border-color:var(--lw-accent);box-shadow:0 0 0 4px var(--lw-accent-soft)}
+.tl .ev.future{opacity:.7}
+.tl .ev b{display:block;font-weight:500;font-size:13.5px}
+.tl .ev span{font-size:12px;color:var(--lw-text-tertiary);font-variant-numeric:tabular-nums}
+.tl .ev .tag{float:right;font-size:11px;color:var(--lw-text-tertiary)}
+
+/* tasks */
+.task{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--lw-border-subtle);font-size:13.5px}
+.task:first-child{border-top:0}
+.chk{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--lw-border-strong);display:grid;place-items:center;flex:none;transition:all var(--lw-duration-base) var(--lw-ease-spring)}
+.chk svg{width:10px;height:10px;stroke:var(--lw-accent-fg);fill:none;stroke-width:3;opacity:0;transform:scale(.4)}
+.task.done .chk{background:var(--lw-accent);border-color:var(--lw-accent)}.task.done .chk svg{opacity:1;transform:scale(1)}
+.task.done .t{color:var(--lw-text-tertiary);text-decoration:line-through}
+.task .due{margin-left:auto;font-size:12px;color:var(--lw-text-secondary);font-variant-numeric:tabular-nums}
+.task .due.soon{color:var(--lw-warning)}
+
+/* Matter Brain */
+.brain{background:linear-gradient(180deg,var(--lw-surface),var(--lw-sunken));border:1px solid var(--lw-accent-border);box-shadow:var(--lw-glow)}
+.brain .bh{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.brain .bh svg{width:22px;height:22px;stroke:var(--lw-accent);fill:none;stroke-width:1.4}
+.brain .bh h3{font-family:var(--lw-font-serif);font-weight:400;font-size:18px;margin:0}
+.brain .sec{margin-top:14px}
+.brain .sec .eyebrow{margin-bottom:6px}
+.brain .fact{font-size:13px;line-height:1.55;color:var(--lw-text-secondary)}
+.brain .fact a{font-family:var(--lw-font-mono);font-size:11px;color:var(--lw-text-tertiary);border-bottom:1px dotted var(--lw-border-strong)}
+.brain .steps{display:flex;flex-direction:column;gap:6px}
+.brain .steps div{display:flex;gap:8px;font-size:13px}
+.brain .steps div::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--lw-accent);margin-top:7px;flex:none}
+.brain .foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--lw-border-subtle);font-size:11.5px;color:var(--lw-text-tertiary);display:flex;justify-content:space-between;align-items:center}
+
+/* DecisionGate */
+.gate{max-width:980px}
+.gate .g2{align-items:stretch}
+.source .cite{font-family:var(--lw-font-mono);font-size:12px;color:var(--lw-text-secondary);margin-top:2px}
+.source .law{font-family:var(--lw-font-serif);font-size:19px;margin-top:14px}
+.quote{margin:14px 0 4px;font-size:15.5px;line-height:1.6}
+.quote mark{background:var(--lw-marker);color:inherit;padding:2px 0;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.kv{display:grid;grid-template-columns:1fr auto;gap:10px 16px;font-size:13.5px}
+.kv dt{color:var(--lw-text-secondary)}.kv dd{text-align:right;font-variant-numeric:tabular-nums}
+.kv dd.hero{font-family:var(--lw-font-serif);font-size:22px;color:var(--lw-accent)}
+.kv .calc{grid-column:1/-1;font-family:var(--lw-font-mono);font-size:11.5px;color:var(--lw-text-tertiary);background:var(--lw-sunken);border:1px solid var(--lw-border-subtle);border-radius:var(--lw-radius-sm);padding:8px 10px;line-height:1.6}
+.certainty{display:inline-flex;align-items:center;gap:6px}
+.certainty i{width:34px;height:4px;border-radius:2px;background:var(--lw-border);overflow:hidden;display:inline-block}
+.certainty i::after{content:"";display:block;height:100%;width:var(--c,85%);background:var(--lw-success)}
+.gate-actions{margin-top:18px;display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:10px;padding:14px;border:1px solid var(--lw-border);border-radius:var(--lw-radius-xl);background:var(--lw-surface)}
+.gate-actions .btn{height:46px;justify-content:center;border-radius:var(--lw-radius-lg)}
+.gate-actions .hint{grid-column:1/-1;font-size:12px;color:var(--lw-text-tertiary);display:flex;gap:14px}
+.gate-actions .hint kbd{font-family:var(--lw-font-mono);font-size:10.5px;border:1px solid var(--lw-border-strong);border-radius:4px;padding:0 5px;color:var(--lw-text-secondary)}
+.audit{margin-top:14px;font-size:12px;color:var(--lw-text-tertiary);display:flex;align-items:center;gap:8px}
+.audit svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.6}
+
+/* seal moment */
+.seal{position:fixed;inset:0;display:none;place-items:center;background:rgba(7,14,23,.55);backdrop-filter:blur(4px);z-index:60}
+.seal[data-show]{display:grid}
+.seal .disc{width:220px;text-align:center;padding:28px 22px;background:var(--lw-surface);border:1px solid var(--lw-accent-border);border-radius:var(--lw-radius-2xl);box-shadow:var(--lw-glow);animation:sealIn var(--lw-duration-seal) var(--lw-ease-spring) both}
+.seal .ring{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;border:1.5px solid var(--lw-accent);display:grid;place-items:center;position:relative}
+.seal .ring::after{content:"";position:absolute;inset:5px;border-radius:50%;border:1px dashed var(--lw-accent-border)}
+.seal .ring svg{width:26px;height:26px;stroke:var(--lw-accent);fill:none;stroke-width:2;stroke-dasharray:40;stroke-dashoffset:40;animation:draw .5s .25s var(--lw-ease-out) forwards}
+.seal b{font-family:var(--lw-font-serif);font-weight:400;font-size:18px;display:block}
+.seal span{font-size:12px;color:var(--lw-text-secondary)}
+@keyframes sealIn{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* hub */
+.hub-head{display:flex;gap:10px;margin-bottom:18px;align-items:center}
+.seg{display:inline-flex;background:var(--lw-sunken);border:1px solid var(--lw-border-subtle);border-radius:var(--lw-radius-md);padding:2px}
+.seg button{padding:5px 12px;border-radius:6px;font-size:13px;color:var(--lw-text-secondary)}
+.seg button[aria-selected="true"]{background:var(--lw-surface);color:var(--lw-text-primary);box-shadow:var(--lw-shadow-sm);font-weight:500}
+.search{display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;background:var(--lw-surface);border:1px solid var(--lw-border);border-radius:var(--lw-radius-md);color:var(--lw-text-placeholder);min-width:260px}
+.search svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7}
+.conn{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:1100px){.conn{grid-template-columns:1fr 1fr}}
+.conn .card{padding:16px 18px;transition:transform var(--lw-duration-base) var(--lw-ease-out),border-color var(--lw-duration-base)}
+.conn .card:hover{transform:translateY(-2px);border-color:var(--lw-accent-border)}
+.conn .ch{display:flex;align-items:center;gap:10px}
+.conn .ch .ico{width:34px;height:34px;border-radius:var(--lw-radius-md);display:grid;place-items:center;background:var(--lw-sunken);border:1px solid var(--lw-border-subtle)}
+.conn .ch .ico svg{width:17px;height:17px;stroke:var(--lw-accent);fill:none;stroke-width:1.5}
+.conn .ch b{font-weight:500;font-size:14px;display:block}
+.conn .ch small{font-size:11.5px;color:var(--lw-text-tertiary)}
+.conn .ch .st{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--lw-text-secondary)}
+.conn .meta{display:flex;gap:14px;margin-top:12px;font-size:12px;color:var(--lw-text-tertiary)}
+.conn .meta b{color:var(--lw-text-secondary);font-weight:500;font-family:var(--lw-font-mono);font-size:11.5px}
+.conn .flags{display:flex;gap:6px;margin-top:12px}
+.conn .cf{margin-top:12px;padding-top:10px;border-top:1px solid var(--lw-border-subtle);display:flex;gap:8px}
+.local-note{margin-top:22px;display:flex;align-items:center;gap:10px;padding:12px 16px;border:1px dashed var(--lw-accent-border);border-radius:var(--lw-radius-lg);font-size:13px;color:var(--lw-text-secondary)}
+.local-note svg{width:16px;height:16px;stroke:var(--lw-accent);fill:none;stroke-width:1.6}
+
+/* token sheet */
+.sheet{padding:32px 40px 60px;max-width:1200px}
+.sheet h2{font-family:var(--lw-font-serif);font-weight:400;font-size:24px;margin:36px 0 14px}
+.sheet h2:first-child{margin-top:0}
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.sw div{border:1px solid var(--lw-border);border-radius:var(--lw-radius-md);overflow:hidden;font-size:11px}
+.sw div i{display:block;height:52px}
+.sw div span{display:block;padding:6px 8px;font-family:var(--lw-font-mono);color:var(--lw-text-secondary)}
+.sw div b{display:block;padding:0 8px 6px;font-weight:500}
+.type-row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:10px 0;border-top:1px solid var(--lw-border-subtle);align-items:baseline}
+.type-row .k{font-family:var(--lw-font-mono);font-size:11px;color:var(--lw-text-tertiary)}
+.demo-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
+/* staggered entrance */
+.enter>*{animation:rise var(--lw-duration-slow) var(--lw-ease-out) both}
+.enter>*:nth-child(2){animation-delay:40ms}.enter>*:nth-child(3){animation-delay:80ms}.enter>*:nth-child(4){animation-delay:120ms}.enter>*:nth-child(5){animation-delay:160ms}.enter>*:nth-child(6){animation-delay:200ms}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ============ prototype bar ============ -->
+<div class="proto-bar">
+  <span class="title">LAWOSS · hi-fi prototyp</span>
+  <span class="faint">2026-08-23 · návrh, nie finálny dizajn</span>
+  <span class="spacer"></span>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-go="prehlad">01 Prehľad</button>
+    <button role="tab" data-go="spis">02 Spis + Matter Brain</button>
+    <button role="tab" data-go="lehota">03 Kontrola lehoty</button>
+    <button role="tab" data-go="hub">05/10 Konektory &amp; nástroje</button>
+    <button role="tab" data-go="tokeny">Tokeny</button>
+  </div>
+  <button class="toggle" id="theme"><span class="dot dot-ok"></span><span id="theme-label">Tmavý (primárny)</span></button>
+</div>
+
+<!-- ============ SVG symbols ============ -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+  <symbol id="i-sign" viewBox="0 0 24 24"><path d="M3 20c4-1 6-6 8-6s2 4 4 4 3-4 6-4"/><path d="M14 4l3 3-8 8H6v-3z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v4M15 3v4M6 7h12v4a6 6 0 0 1-12 0zM12 17v4"/></symbol>
+  <symbol id="i-term" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M12 15h5"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4l10-10-4-4L4 16z"/><path d="M13 7l4 4"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 4v16M8.5 5A3 3 0 0 0 5 8a3 3 0 0 0-1 5 3 3 0 0 0 2 5 3 3 0 0 0 6 0V6a3 3 0 0 0-3.5-1zM15.5 5A3 3 0 0 1 19 8a3 3 0 0 1 1 5 3 3 0 0 1-2 5 3 3 0 0 1-6 0V6a3 3 0 0 1 3.5-1z"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M6 7h12"/><path d="M6 7l-3 7a3 3 0 0 0 6 0zM18 7l-3 7a3 3 0 0 0 6 0z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4h7a2 2 0 0 1 2 2v14a1 1 0 0 0-1-1H4zM20 4h-7a2 2 0 0 0-2 2v14a1 1 0 0 1 1-1h8z"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2M10 21v-3h4v3"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3M3 12h18"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+  <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+</svg>
+
+<!-- ============ template: sidebar ============ -->
+<template id="sidebar-tpl">
+  <aside class="sidebar">
+    <div class="brand">
+      <svg class="hex" viewBox="0 0 30 34" fill="none"><path d="M15 1l13 7.5v17L15 33 2 25.5v-17z" stroke="#C9A24A" stroke-width="1.3"/><path d="M15 9v14M10 13h10M10 13l-2.5 5a2.5 2.5 0 0 0 5 0zM20 13l-2.5 5a2.5 2.5 0 0 0 5 0zM11.5 25h7" stroke="#C9A24A" stroke-width="1.1" stroke-linecap="round"/></svg>
+      <div><div class="wordmark">LAW<b>OSS</b></div><div class="sub">Czechia · Slovakia</div></div>
+    </div>
+    <nav class="nav">
+      <div class="group">Prax</div>
+      <a href="#" data-nav="prehlad"><svg><use href="#i-home"/></svg>Prehľad</a>
+      <a href="#" data-nav="spis"><svg><use href="#i-folder"/></svg>Spisy<span class="count">24</span></a>
+      <a href="#" data-nav="lehota"><svg><use href="#i-clock"/></svg>Lehoty<span class="count">7</span></a>
+      <a href="#"><svg><use href="#i-doc"/></svg>Dokumenty</a>
+      <a href="#"><svg><use href="#i-mail"/></svg>Komunikácia</a>
+      <div class="group">Overovanie</div>
+      <a href="#"><svg><use href="#i-search"/></svg>Rešerš</a>
+      <a href="#"><svg><use href="#i-sign"/></svg>Podpisovanie</a>
+      <div class="group">Systém</div>
+      <a href="#" data-nav="hub"><svg><use href="#i-plug"/></svg>Konektory a nástroje</a>
+      <a href="#"><svg><use href="#i-spark"/></svg>AI asistent</a>
+      <a href="#"><svg><use href="#i-gear"/></svg>Nastavenia</a>
+    </nav>
+    <div class="foot"><div class="avatar">MN</div><div class="who"><b>JUDr. Martin Novák</b><span>Advokát · fiktívne dáta</span></div></div>
+  </aside>
+</template>
+
+<!-- ============ 01 PREHĽAD ============ -->
+<section class="screen" id="prehlad" data-active>
+<div class="app"><div data-sidebar></div>
+<main class="main">
+  <div class="topbar">
+    <div><h1>Prehľad praxe</h1><p class="lead">Utorok 23. augusta · 3 veci čakajú na vaše rozhodnutie.</p></div>
+    <div class="actions"><button class="iconbtn" aria-label="Hľadať"><svg><use href="#i-search"/></svg></button><button class="iconbtn" aria-label="Upozornenia"><svg><use href="#i-bell"/></svg></button><button class="btn btn-gold">Nový spis</button></div>
+  </div>
+
+  <div class="grid g3 enter" style="margin-bottom:16px">
+    <div class="card stat"><div class="label"><svg><use href="#i-folder"/></svg>Aktívne spisy</div><div class="value">24</div><div class="delta"><b>+3</b> tento týždeň</div></div>
+    <div class="card stat urgent"><div class="label"><svg><use href="#i-clock"/></svg>Najbližšie lehoty</div><div class="value">7</div><div class="delta"><b>2 dnes</b> · 1 čaká na potvrdenie</div></div>
+    <div class="card stat"><div class="label"><svg><use href="#i-doc"/></svg>Dokumenty</div><div class="value">128</div><div class="delta"><b>+12</b> tento týždeň · 4 nové z e-mailu</div></div>
+  </div>
+
+  <div class="grid g-dash enter">
+    <div class="card card-gold">
+      <div class="card-head"><h3>Čaká na vaše rozhodnutie</h3><span class="badge badge-ai">AI návrh</span></div>
+      <p class="sub">Agent pripravil, vy rozhodujete. Nič sa nezapíše bez potvrdenia.</p>
+      <div class="rows" style="margin-top:10px">
+        <div class="row"><div class="ico"><svg><use href="#i-clock"/></svg></div><div class="t">Lehota na odvolanie<small>ABC s.r.o. v. DEF a.s. · <span class="mono">§ 362 ods. 1 CSP</span></small></div><span class="badge badge-warn">do 7. 6.</span></div>
+        <div class="row"><div class="ico"><svg><use href="#i-mail"/></svg></div><div class="t">Návrh odpovede klientovi<small>KLIENT s.r.o. · Re: Zmluva o dielo</small></div><span class="badge badge-neutral">draft</span></div>
+        <div class="row"><div class="ico"><svg><use href="#i-brain"/></svg></div><div class="t">Zápis do pamäte spisu<small>Nový fakt: úhrada 40 % z ceny diela</small></div><span class="badge badge-neutral">L2</span></div>
+      </div>
+      <a class="more" href="#" data-go="lehota">Otvoriť rozhodovaciu bránu</a>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h3>Najbližšie lehoty</h3><a class="faint" href="#" style="font-size:12px">Kalendár</a></div>
+      <div class="rows">
+        <div class="row"><div class="t">Žaloba – Okresný súd Bratislava I<small>Novák v. Poisťovňa</small></div><span class="r now">zajtra</span></div>
+        <div class="row"><div class="t">Vyjadrenie k žalobe<small>Kováč / rozvod</small></div><span class="r soon">23. 5.</span></div>
+        <div class="row"><div class="t">Odvolanie – Krajský súd Žilina<small>STAV s.r.o. v. Mesto</small></div><span class="r">25. 5.</span></div>
+        <div class="row"><div class="t">Podanie na ORSR<small>Zmena konateľa · Alfa s.r.o.</small></div><span class="r">2. 6.</span></div>
+      </div>
+      <a class="more" href="#">Zobraziť všetky lehoty</a>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h3>Overené zdroje</h3><span class="badge badge-ok"><span class="dot dot-ok"></span>4 / 5</span></div>
+      <div class="rows">
+        <div class="row"><div class="t">Slov-Lex</div><span class="r"><span class="dot dot-ok"></span></span></div>
+        <div class="row"><div class="t">Judikatúra SR<small>161 229 rozhodnutí NS SR</small></div><span class="r"><span class="dot dot-ok"></span></span></div>
+        <div class="row"><div class="t">ORSR · RPVS · FS SR</div><span class="r"><span class="dot dot-ok"></span></span></div>
+        <div class="row"><div class="t">Autogram<small>nenájdený v systéme</small></div><span class="r"><span class="dot dot-warn"></span></span></div>
+      </div>
+      <a class="more" href="#" data-go="hub">Spravovať konektory</a>
+    </div>
+  </div>
+</main></div>
+</section>
+
+<!-- ============ 02 SPIS + MATTER BRAIN ============ -->
+<section class="screen" id="spis">
+<div class="app"><div data-sidebar></div>
+<main class="main">
+  <div class="topbar">
+    <div>
+      <div class="crumbs"><a href="#" data-go="prehlad">Spisy</a> › Obchodný spor</div>
+      <h1>ABC s.r.o. <span class="faint serif" style="font-style:italic">v.</span> DEF a.s.</h1>
+      <p class="lead">Okresný súd Bratislava I · <span class="mono">15C/123/2024</span> · spis <span class="mono">2024-01 DEF - Zmluva o dielo - spor</span></p>
+    </div>
+    <div class="actions"><button class="btn btn-secondary"><svg><use href="#i-spark"/></svg>Otvoriť v asistentovi</button><button class="btn btn-gold">Nový dokument</button></div>
+  </div>
+
+  <div class="grid g-spis enter">
+    <div class="card">
+      <div class="card-head"><h3>Timeline</h3><span class="faint" style="font-size:12px">fáza: príprava na pojednávanie</span></div>
+      <div class="tl" style="--progress:48%">
+        <div class="ev done"><span class="tag">Podanie</span><b>Podanie žaloby</b><span>10. 1. 2025</span></div>
+        <div class="ev done"><span class="tag">Dokument</span><b>Vyjadrenie žalovaného</b><span>10. 2. 2025</span></div>
+        <div class="ev now"><span class="tag">Pojednávanie</span><b>Pojednávanie</b><span>25. 6. 2025 · 10:00</span></div>
+        <div class="ev future"><span class="tag">Plánované</span><b>Navrhované dôkazy</b><span>do 10 dní</span></div>
+        <div class="ev future"><span class="tag">Plánované</span><b>Záverečné vyjadrenie</b><span>—</span></div>
+      </div>
+      <a class="more" href="#">Celá chronológia a auditná stopa</a>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="card">
+        <div class="card-head"><h3>Úlohy</h3><span class="faint" style="font-size:12px">1 / 4</span></div>
+        <div class="task done"><span class="chk"><svg><use href="#i-check"/></svg></span><span class="t">Preštudovať vyjadrenie žalovaného</span></div>
+        <div class="task"><span class="chk"></span><span class="t">Reakcia na vyjadrenie</span><span class="due soon">do 2 dní</span></div>
+        <div class="task"><span class="chk"></span><span class="t">Príprava na pojednávanie</span><span class="due">do 5 dní</span></div>
+        <div class="task"><span class="chk"></span><span class="t">Návrh dôkazov</span><span class="due">do 10 dní</span></div>
+        <a class="more" href="#">Všetky úlohy</a>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>Nedávne dokumenty</h3></div>
+        <div class="rows">
+          <div class="row"><div class="ico"><svg><use href="#i-doc"/></svg></div><div class="t">Vyjadrenie žalovaného.pdf<small>02_podania · 10. 2. 2025</small></div><span class="badge badge-neutral">OCR</span></div>
+          <div class="row"><div class="ico"><svg><use href="#i-doc"/></svg></div><div class="t">Zmluva o dielo.docx<small>01_zmluvy · 5. 1. 2025</small></div><span class="badge badge-verified"><svg><use href="#i-check"/></svg>podpísaná</span></div>
+          <div class="row"><div class="ico"><svg><use href="#i-doc"/></svg></div><div class="t">Plná moc.pdf<small>00_klient · 3. 1. 2025</small></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card brain">
+      <div class="bh"><svg><use href="#i-brain"/></svg><h3>Matter Brain</h3><span class="badge badge-neutral" style="margin-left:auto">L2</span></div>
+      <div class="sec"><div class="eyebrow">Stav</div><div style="display:flex;align-items:center;gap:8px;font-size:13.5px"><span class="dot dot-warn"></span>Príprava na pojednávanie</div></div>
+      <div class="sec"><div class="eyebrow">Kľúčové fakty</div>
+        <p class="fact">Zmluva o dielo z 12. 3. 2024. Nesplnenie termínu odovzdania. Uhradených 40 % z ceny diela (82 400 €). <a href="#">_STATUS.md › fakty</a></p></div>
+      <div class="sec"><div class="eyebrow">Ďalšie kroky · návrh agenta</div>
+        <div class="steps"><div>Pripraviť dôkaznú stratégiu k omeškaniu</div><div>Skontrolovať listinné dôkazy (preberací protokol)</div><div>Zvážiť návrh na zabezpečenie dôkazu</div></div></div>
+      <div class="foot"><span>aktualizované 12. 6. · provenance ✓</span><a href="#">Navrhnúť zápis</a></div>
+    </div>
+  </div>
+</main></div>
+</section>
+
+<!-- ============ 03 KONTROLA LEHOTY (DecisionGate) ============ -->
+<section class="screen" id="lehota">
+<div class="app"><div data-sidebar></div>
+<main class="main">
+  <div class="topbar">
+    <button class="iconbtn" aria-label="Späť" data-go="spis" style="margin-top:4px"><svg><use href="#i-arrow"/></svg></button>
+    <div>
+      <div class="crumbs"><a href="#" data-go="spis">ABC s.r.o. v. DEF a.s.</a> › Lehoty</div>
+      <h1>Kontrola lehoty</h1>
+      <p class="lead">Agent navrhol lehotu z doručeného rozsudku. Skontrolujte zdroj a výpočet — rozhoduje advokát.</p>
+    </div>
+    <div class="actions"><span class="badge badge-ai">kandidát · needs_review</span></div>
+  </div>
+
+  <div class="gate">
+    <div class="grid g2 enter">
+      <div class="card source">
+        <div class="card-head"><span class="eyebrow">Zdroj</span><button class="iconbtn" aria-label="Uložiť citáciu" style="width:28px;height:28px"><svg><use href="#i-bookmark"/></svg></button></div>
+        <div class="law">Civilný sporový poriadok</div>
+        <div class="cite">zákon č. 160/2015 Z. z. · § 362 ods. 1 · znenie účinné k 23. 5. 2024</div>
+        <p class="quote">„Odvolanie sa podáva <mark>v lehote 15 dní od doručenia rozhodnutia</mark> na súde, proti ktorého rozhodnutiu smeruje.“</p>
+        <div class="demo-row" style="margin-top:10px"><span class="badge badge-verified"><svg><use href="#i-check"/></svg>Overené · Slov-Lex</span><span class="badge badge-neutral">locator: s. 2, ods. 3</span></div>
+        <a class="more" href="#">Zobraziť rozsudok v dokumente</a>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="eyebrow">Návrh agenta</span><span class="certainty" title="Miera istoty"><i style="--c:88%"></i><span class="faint" style="font-size:12px">istota vysoká</span></span></div>
+        <dl class="kv">
+          <dt>Právny základ</dt><dd class="mono">§ 362 ods. 1 CSP</dd>
+          <dt>Spúšťacia udalosť</dt><dd>doručenie rozsudku</dd>
+          <dt>Dátum doručenia</dt><dd>23. 5. 2024 <span class="faint">(z doručenky)</span></dd>
+          <dt>Dĺžka</dt><dd>15 dní · kalendárne</dd>
+          <dt>Navrhovaná lehota</dt><dd class="hero">7. 6. 2024</dd>
+          <dd class="calc">23. 5. + 15 d → 7. 6. (piatok) · § 121 CSP: koniec nepripadá na víkend/sviatok · deterministický výpočet, nie model</dd>
+        </dl>
+        <div class="audit"><svg><use href="#i-shield"/></svg>Neistota: dátum doručenia pochádza z OCR doručenky — skontrolujte ho.</div>
+      </div>
+    </div>
+
+    <div class="gate-actions">
+      <button class="btn btn-gold" id="confirm"><svg><use href="#i-check"/></svg>Potvrdiť lehotu</button>
+      <button class="btn btn-secondary"><svg><use href="#i-pen"/></svg>Upraviť</button>
+      <button class="btn btn-secondary" style="color:var(--lw-danger)"><svg><use href="#i-x"/></svg>Odmietnuť</button>
+      <button class="btn btn-secondary"><svg><use href="#i-clock"/></svg>Odložiť</button>
+      <div class="hint"><span><kbd>⏎</kbd> potvrdiť</span><span><kbd>E</kbd> upraviť</span><span><kbd>Esc</kbd> odložiť</span><span style="margin-left:auto">Po potvrdení: zápis do <span class="mono">spis.md</span> + ICS + auditná udalosť</span></div>
+    </div>
+  </div>
+</main></div>
+<div class="seal" id="seal"><div class="disc"><div class="ring"><svg><use href="#i-check"/></svg></div><b>Lehota potvrdená</b><span>7. 6. 2024 · zapísané do spisu a kalendára</span></div></div>
+</section>
+
+<!-- ============ 05/10 KONEKTORY & NÁSTROJE HUB ============ -->
+<section class="screen" id="hub">
+<div class="app"><div data-sidebar></div>
+<main class="main">
+  <div class="topbar">
+    <div><h1>Konektory a nástroje</h1><p class="lead">Dátové zdroje, MCP servery a lokálne nástroje na jednom mieste. Všetko beží lokálne alebo cez overené pripojenie.</p></div>
+    <div class="actions"><button class="btn btn-secondary"><svg><use href="#i-ext"/></svg>Importovať konfiguráciu</button><button class="btn btn-gold">Pridať konektor</button></div>
+  </div>
+
+  <div class="hub-head">
+    <div class="seg" role="tablist"><button aria-selected="true">Všetko</button><button>Právne zdroje</button><button>Registre</button><button>Lokálne nástroje</button><button>AI modely</button></div>
+    <div class="search"><svg><use href="#i-search"/></svg>Hľadať konektor alebo nástroj…</div>
+    <span class="faint" style="margin-left:auto;font-size:12.5px"><span class="dot dot-ok"></span> 8 pripojených · 1 vyžaduje pozornosť</span>
+  </div>
+
+  <div class="conn enter">
+    <div class="card">
+      <div class="ch"><div class="ico"><svg><use href="#i-book"/></svg></div><div><b>Slov-Lex</b><small>Zbierka zákonov SR · MCP</small></div><div class="st"><span class="dot dot-ok"></span>pripojené</div></div>
+      <div class="meta"><span>nástroje <b>9</b></span><span>odozva <b>120 ms</b></span><span>auth <b>—</b></span></div>
+      <div class="flags"><span class="badge badge-verified"><svg><use href="#i-check"/></svg>Overený zdroj</span><span class="badge badge-neutral">read-only</span></div>
+      <div class="cf"><button class="btn btn-ghost btn-sm">Nástroje</button><button class="btn btn-ghost btn-sm">Logy</button><button class="btn btn-ghost btn-sm" style="margin-left:auto">Vypnúť</button></div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ico"><svg><use href="#i-scale"/></svg></div><div><b>Judikatúra SR</b><small>NS SR · ÚS SR · MS SR · MCP</small></div><div class="st"><span class="dot dot-ok"></span>pripojené</div></div>
+      <div class="meta"><span>nástroje <b>24</b></span><span>index <b>161 229</b></span><span>sync <b>dnes 04:10</b></span></div>
+      <div class="flags"><span class="badge badge-verified"><svg><use href="#i-check"/></svg>Overený zdroj</span><span class="badge badge-neutral">read-only</span></div>
+      <div class="cf"><button class="btn btn-ghost btn-sm">Nástroje</button><button class="btn btn-ghost btn-sm">Logy</button><button class="btn btn-ghost btn-sm" style="margin-left:auto">Vypnúť</button></div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ico"><svg><use href="#i-building"/></svg></div><div><b>ORSR · RPO · RPVS</b><small>Registre SR · 3 servery</small></div><div class="st"><span class="dot dot-ok"></span>pripojené</div></div>
+      <div class="meta"><span>nástroje <b>18</b></span><span>odozva <b>340 ms</b></span><span>auth <b>—</b></span></div>
+      <div class="flags"><span class="badge badge-verified"><svg><use href="#i-check"/></svg>Overený zdroj</span><span class="badge badge-neutral">read-only</span></div>
+      <div class="cf"><button class="btn btn-ghost btn-sm">Nástroje</button><button class="btn btn-ghost btn-sm">Logy</button><button class="btn btn-ghost btn-sm" style="margin-left:auto">Vypnúť</button></div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ico"><svg><use href="#i-sign"/></svg></div><div><b>Autogram</b><small>Lokálne podpisovanie · QES/QTS</small></div><div class="st"><span class="dot dot-warn"></span>nenájdený</div></div>
+      <div class="meta"><span>typ <b>lokálny nástroj</b></span><span>platforma <b>mac · win</b></span></div>
+      <div class="flags"><span class="badge badge-warn">vyžaduje inštaláciu</span></div>
+      <div class="cf"><button class="btn btn-outline btn-sm">Nastaviť cestu</button><button class="btn btn-ghost btn-sm">Stiahnuť Autogram</button></div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ico"><svg><use href="#i-mic"/></svg></div><div><b>Whisper transkripcia</b><small>Lokálny model · sherpa-onnx</small></div><div class="st"><span class="dot dot-ok"></span>pripravené</div></div>
+      <div class="meta"><span>model <b>medium-sk</b></span><span>veľkosť <b>1,5 GB</b></span><span>GPU <b>áno</b></span></div>
+      <div class="flags"><span class="badge badge-neutral">beží lokálne</span></div>
+      <div class="cf"><button class="btn btn-ghost btn-sm">Modely</button><button class="btn btn-ghost btn-sm">Test mikrofónu</button></div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ico"><svg><use href="#i-scan"/></svg></div><div><b>OCR</b><small>Obrázky a skeny → text</small></div><div class="st"><span class="dot dot-ok"></span>pripravené</div></div>
+      <div class="meta"><span>engine <b>tesseract 5</b></span><span>jazyky <b>sk · cs · en</b></span></div>
+      <div class="flags"><span class="badge badge-neutral">beží lokálne</span></div>
+      <div class="cf"><button class="btn btn-ghost btn-sm">Nastavenia</button><button class="btn btn-ghost btn-sm">Logy</button></div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ico"><svg><use href="#i-term"/></svg></div><div><b>CLI nástroje a skripty</b><small>okf-validate · okf-freshness · vlastné</small></div><div class="st"><span class="dot dot-ok"></span>3 skripty</div></div>
+      <div class="meta"><span>posledný beh <b>okf-validate · OK</b></span></div>
+      <div class="flags"><span class="badge badge-neutral">beží lokálne</span><span class="badge badge-neutral">výstup do spisu</span></div>
+      <div class="cf"><button class="btn btn-ghost btn-sm">Spustiť</button><button class="btn btn-ghost btn-sm">Pridať skript</button></div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ico"><svg><use href="#i-spark"/></svg></div><div><b>AI model</b><small>Lokálny · Cloud · Auto</small></div><div class="st"><span class="dot dot-ok"></span>lokálny</div></div>
+      <div class="meta"><span>aktívny <b>lokálny model</b></span><span>cloud <b>vypnutý</b></span></div>
+      <div class="flags"><span class="badge badge-ok"><svg><use href="#i-lock"/></svg>dáta neopúšťajú počítač</span></div>
+      <div class="cf"><button class="btn btn-ghost btn-sm">Zmeniť model</button><button class="btn btn-ghost btn-sm">Politika dát</button></div>
+    </div>
+  </div>
+
+  <div class="local-note"><svg><use href="#i-lock"/></svg>Všetky registre sú iba na čítanie. Lokálne nástroje bežia vo vašom počítači — výstupy sa ukladajú do spisu s auditnou stopou.</div>
+</main></div>
+</section>
+
+<!-- ============ TOKENY ============ -->
+<section class="screen sheet" id="tokeny">
+  <h2>Paleta</h2>
+  <div class="sw">
+    <div><i style="background:#070E17"></i><span>#070E17</span><b>navy-950 sidebar</b></div>
+    <div><i style="background:#0A1420"></i><span>#0A1420</span><b>navy-900 canvas</b></div>
+    <div><i style="background:#0F1D2E"></i><span>#0F1D2E</span><b>surface</b></div>
+    <div><i style="background:#142538"></i><span>#142538</span><b>surface-hover</b></div>
+    <div><i style="background:#0D1B2A"></i><span>#0D1B2A</span><b>navy-850 brand</b></div>
+    <div><i style="background:#C9A24A"></i><span>#C9A24A</span><b>gold-500 akcent</b></div>
+    <div><i style="background:#D8B45E"></i><span>#D8B45E</span><b>gold-400 hover</b></div>
+    <div><i style="background:#8C6A1F"></i><span>#8C6A1F</span><b>gold-700 text@light</b></div>
+    <div><i style="background:#5CC08A"></i><span>#5CC08A</span><b>success</b></div>
+    <div><i style="background:#E08A3C"></i><span>#E08A3C</span><b>warning (nie zlatá!)</b></div>
+    <div><i style="background:#E06C6C"></i><span>#E06C6C</span><b>danger</b></div>
+    <div><i style="background:#F2F4F7"></i><span>#F2F4F7</span><b>text-primary@dark</b></div>
+    <div><i style="background:#A9B4C2"></i><span>#A9B4C2</span><b>text-secondary</b></div>
+    <div><i style="background:#7D8A99"></i><span>#7D8A99</span><b>text-tertiary</b></div>
+  </div>
+
+  <h2>Typografia</h2>
+  <div class="type-row"><span class="k">display · Playfair 400 · 30/1.15</span><span class="serif" style="font-size:30px;line-height:1.15">Lehoty pod kontrolou.</span></div>
+  <div class="type-row"><span class="k">hero číslo · Playfair · 40 tnum</span><span class="serif" style="font-size:40px;line-height:1">24 · 7 · 128</span></div>
+  <div class="type-row"><span class="k">h3 · Inter 600 · 15</span><span style="font-size:15px;font-weight:600">Najbližšie lehoty</span></div>
+  <div class="type-row"><span class="k">body · Inter 400 · 14/1.5</span><span>Agent pripravuje a odporúča. Advokát schvaľuje. Nič právne záväzné sa nestane bez ľudskej brány.</span></div>
+  <div class="type-row"><span class="k">eyebrow · Inter 600 · 11 · .12em</span><span class="eyebrow">Kľúčové fakty</span></div>
+  <div class="type-row"><span class="k">identifikátory · Geist Mono · 12</span><span class="mono">§ 362 ods. 1 CSP · 15C/123/2024 · IČO 35 763 469 · _STATUS.md</span></div>
+  <div class="type-row"><span class="k">citácia · Inter 400 · 15.5/1.6 + marker</span><span class="quote" style="margin:0">„Odvolanie sa podáva <mark>v lehote 15 dní</mark> od doručenia.“</span></div>
+
+  <h2>Tlačidlá a odznaky</h2>
+  <div class="demo-row">
+    <button class="btn btn-gold">Potvrdiť</button><button class="btn btn-outline">Upraviť</button><button class="btn btn-secondary">Odložiť</button><button class="btn btn-ghost">Zrušiť</button><button class="btn btn-danger">Odmietnuť</button>
+    <span class="badge badge-verified"><svg><use href="#i-check"/></svg>Overené</span><span class="badge badge-ai">AI návrh</span><span class="badge badge-ok">bez záznamu</span><span class="badge badge-warn">nedoplatok</span><span class="badge badge-danger">po lehote</span><span class="badge badge-neutral">L2</span>
+  </div>
+
+  <h2>Pravidlá použitia</h2>
+  <div class="card" style="max-width:760px">
+    <div class="rows">
+      <div class="row"><div class="t"><b>Zlatá = rozhodnutie a dôvera.</b><small>Plná zlatá výplň iba na jednu primárnu akciu na obrazovke (Potvrdiť, Nový spis). Zlatý rám (card-gold) iba na to, čo čaká na advokáta.</small></div></div>
+      <div class="row"><div class="t"><b>Serif = hlas produktu, nie UI.</b><small>Playfair na H1 stránky, hero čísla a názov Matter Brain. Nikdy na labely, tlačidlá, tabuľky.</small></div></div>
+      <div class="row"><div class="t"><b>Mono = právne identifikátory.</b><small>§, spisové značky, IČO, názvy riadiacich súborov — čitateľ okamžite vidí „toto je presný odkaz“.</small></div></div>
+      <div class="row"><div class="t"><b>Warning ≠ zlatá.</b><small>Upozornenia sú oranžové (#E08A3C), aby sa nezamieňali s akcentom značky.</small></div></div>
+      <div class="row"><div class="t"><b>Hairline, nie tieň.</b><small>Hierarchia cez canvas → surface → sunken a bordery .06/.10/.18. Tieň len na popover a hover lift.</small></div></div>
+      <div class="row"><div class="t"><b>Každý AI návrh má zdroj, istotu a štyri akcie.</b><small>DecisionGate = Zdroj + Návrh + Potvrdiť/Upraviť/Odmietnuť/Odložiť + auditná veta.</small></div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const tpl=document.getElementById('sidebar-tpl');
+  document.querySelectorAll('[data-sidebar]').forEach(el=>el.replaceWith(tpl.content.cloneNode(true)));
+  const tabs=[...document.querySelectorAll('.proto-bar [data-go]')];
+  function go(id){
+    document.querySelectorAll('.screen').forEach(s=>s.toggleAttribute('data-active',s.id===id));
+    tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.go===id));
+    document.querySelectorAll('.nav a').forEach(a=>{a.removeAttribute('aria-current');if(a.dataset.nav===id)a.setAttribute('aria-current','page')});
+    // re-trigger stagger
+    document.querySelectorAll('#'+id+' .enter').forEach(e=>{e.classList.remove('enter');void e.offsetWidth;e.classList.add('enter')});
+    window.scrollTo(0,0);
+  }
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-go],[data-nav]');if(!b)return;e.preventDefault();go(b.dataset.go||b.dataset.nav)});
+  go('prehlad');
+  const root=document.documentElement,lbl=document.getElementById('theme-label');
+  document.getElementById('theme').addEventListener('click',()=>{const d=root.dataset.theme==='dark';root.dataset.theme=d?'light':'dark';lbl.textContent=d?'Svetlý (sekundárny)':'Tmavý (primárny)'});
+  const seal=document.getElementById('seal');
+  document.getElementById('confirm').addEventListener('click',()=>{seal.setAttribute('data-show','');setTimeout(()=>seal.removeAttribute('data-show'),1800)});
+  seal.addEventListener('click',()=>seal.removeAttribute('data-show'));
+  document.querySelectorAll('.task').forEach(t=>t.addEventListener('click',()=>t.classList.toggle('done')));
+})();
+</script>
+</body>
+</html>
