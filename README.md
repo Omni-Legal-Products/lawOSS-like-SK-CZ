@@ -453,7 +453,8 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-12-produktova-vizia-okf-pamat.md
 │   ├── 2026-08-18-agenda-sync-call.md
 │   ├── 2026-08-18-podklad-konsolidacia-Q01-Q25.md
-│   └── 2026-08-18-zapis-sync-call.md
+│   ├── 2026-08-18-zapis-sync-call.md
+│   └── 2026-08-27-zapis-quick-call.md
 ├── planning/
 │   ├── 2026-08-12-mcp-repository-rollout-plan.md
 │   ├── 2026-08-12-rozhodovacie-otazky-timu.md
@@ -596,23 +597,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**332 commitov** · **157 súborov**
+**334 commitov** · **158 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `7663a6e` | 2026-08-27 | Majo Cuprik | docs: zápis quick call 27. 8. (najprv dizajn, potom implementácia) + nápad #51 TUI alternatíva (VŘ) |
+| `f104b58` | 2026-08-27 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `18e56c7` | 2026-08-27 | Majo Cuprik | docs: podklad na call 27. 8. — kick-off vývoja, rozdelenie práce, sync a fáza A hotové |
 | `3b3f028` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `873a751` | 2026-08-21 | Majo Cuprik | fix: zosúladiť zachované mermaid zdroje s prekreslenými diagramami |
 | `68fbbde` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `d90ede5` | 2026-08-21 | Majo Cuprik | docs: prekresliť tri mermaid diagramy v README + dve vecné opravy (#61) |
 | `48d2f0a` | 2026-08-21 | Majo Cuprik | docs: prekresliť tri mermaid diagramy v README do brandových |
-| `f49b1e1` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `7d89e65` | 2026-08-21 | Majo Cuprik | docs: nová sada mockupov v README + dva diagramy (#60) |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-27 13:52 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-27 15:35 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
