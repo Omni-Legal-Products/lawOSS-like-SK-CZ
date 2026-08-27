@@ -24,12 +24,22 @@
 | **Prehľad praxe** | `dashboard.*` je workspace chooser, nie practice dashboard | ✅ nové — ale ako pohľad v shelli, z existujúcich primitív |
 | **Spis + OKF Brain** | workspace = priečinok; `workspace-files-panel` (file browser); **markdown renderer** (`components/markdown`); artifact preview; `context_panel` (authorized folders) | interpretácia OKF `.md` súborov (spis.md/_STATUS.md/MEMORY.md/lehoty.md) do **jednotného zobrazenia v spise** — čítačka + panel, nie nová obrazovka |
 | **Dokument s editáciou** | ✅ kompletné: `artifact-docx-editor` (tracked changes, suggesting podporované), text/spreadsheet editor | len prepínač suggesting (#29), meno advokáta (#31), onSave hook |
-| **Reconcile / učenie** | **`learnings-route` + Learning v sidebari** — upstream už má „poučenia“ plochu | preskúmať a **nadviazať na Learnings**, nie stavať paralelný reconcile view (spec 0009 = náš protokol, ich plocha) |
+| **Reconcile / učenie** | **`learnings-route` + Learning v sidebari** — upstream už má „poučenia“ plochu | reconcile je **funkcia v toku práce agenta, nie stránka** — viď §2b; Learnings = kandidát na archív schválených poznatkov |
 | **Konektory (MCP)** | ✅ `settings › extensions/mcp` (mcp-view), connections store, OAuth modaly, connector katalóg modal | trust label, health/canary, lokálne nástroje (Autogram/OCR/Whisper), BYO — **rozšírenie existujúceho mcp-view**, nie nová stránka |
 | **Marketplace (skills/pluginy)** | ✅ `settings › skills` (+ skill_resources), `plugins-view`, `extensions-view`, claude-plugin-import | náš registry (piny, allowlist) ako **zdroj v existujúcich views** |
 | **Prompty/agent nastavenia** | ✅ `identities.*` (137 kľúčov! agent behavior, súbory agentov), `config-view` | LAWOSS profil advokáta a štýl = **rozšírenie identities/config**, nie vlastný tab-svet |
 | **Lehoty + brána** | ✗ nič také | ✅ jediná úplne nová plocha — stavať z ich primitív (Card/Row/Badge idiom appky + naše tokeny) |
 | **Firm hub** | `firm_hub.*` (66 kľúčov — team/usage) | pozor, nekolidovať pri „kancelária“ features |
+
+### 2b · Interakčný model reconcile (spresnené MČ 27. 8. večer)
+
+Reconcile **nie je plocha, na ktorú sa chodí** — je to funkcia integrovaná priamo do práce agentov:
+
+1. **Zapnutie:** advokát si ju zapne ako funkciu (globálny default v Nastaveniach › LAWOSS, per spis prepísateľné v `lawoss.config.md`). Zapnutá = platí vždy, keď sa v spise pracuje s dokumentmi.
+2. **Spúšťanie:** automatické a deterministické — uloženie dokumentu v editore, dokončenie úlohy agenta, väčší diff v OKF súboroch spúšťa skill `reconcile` na pozadí (o spustení nerozhoduje model; ADR 0007 — deterministické brány pred modelovými).
+3. **Zobrazenie:** advokátovi sa **ukáže, čo sa agent naučil / snaží naučiť** — nenápadná karta „návrh zápisu do pamäte“ priamo v toku (chat spisu / panel), + počítadlo v „Čaká na advokáta“ na Prehľade. **Nikdy modál cez prácu**; ignorované návrhy sa ticho hromadia.
+4. **Schválenie:** otvorením karty sa zobrazí diff (návrh agenta v1 / verzia advokáta v2) + formulované poznatky s cieľovou vrstvou L1/L2 a dôkazom → advokát podpíše / upraví / odmietne. Žiadny autonómny zápis (spec 0009, ADR 0007 pravidlo 4).
+5. **História:** schválené poznatky žijú v `MEMORY.md`/`_STATUS.md` (verzované, rollback); **upstream Learnings plocha** je prirodzený kandidát na ich prehliadanie a revíziu — nie miesto, kam treba chodiť schvaľovať.
 
 **Dôsledok:** z pôvodných 4 „nových stránok“ sú reálne nové len **Prehľad** a **Lehoty**. Konektory a Marketplace = rozšírenia settings; Brain = interpretácia markdownov v spise; Reconcile = nadviazať na Learnings. Menší diff, menej údržby, viac synchronizácie s upstreamom.
 
