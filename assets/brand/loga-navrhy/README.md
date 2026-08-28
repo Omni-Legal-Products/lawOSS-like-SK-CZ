@@ -2,7 +2,11 @@
 
 - **Kontext:** IR sa nepáči pôvodný odznak s váhami → MČ dal vygenerovať 14 alternatív (28. 8., AI generované — **návrhy, nie finálne logá**; finál bude treba prekresliť do čistého SVG).
 - **Spoločné:** navy `#0D1B2A` + zlatá, thin-line, wordmark `LAWOSS · CZECHIA · SLOVAKIA`. Sedia na dizajn systém appky bez zmeny tokenov.
-- **Hlasovanie:** ankety v Telegram topicu DESIGN (28. 8.); finálny výber na calle.
+- **Hlasovanie:** ankety v Telegrame (28. 8.); prvé kolo prebrané na calle 28. 8.
+- **Stav po calle 28. 8.:** logo **zatiaľ nerozhodnuté**. Zhoda na dvoch veciach:
+  - **typografia wordmarku** z návrhov **11–14** (tenký geometrický font s väčším prekladom) — tá ostáva,
+  - **shortlist značiek: 3 · Konštelácia, 4 · Orbita, 11 · Labyrint, 13 · Kľúč**.
+  Ďalšie kolo = kombinácie shortlist značiek s tým fontom (+ mono/SVG verzie). IR sa ešte vyjadrí async.
 
 ## A · Znaky — geometria a symbol (01–06)
 
