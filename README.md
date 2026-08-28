@@ -443,6 +443,15 @@ lawOSS-like-SK-CZ/
 │   ├── 0010-ochrana-know-how-a-znacky.md
 │   └── template.md
 ├── docs/
+│   ├── design/
+│   │   ├── hifi/
+│   │   │   └── lawoss-hifi.html
+│   │   ├── 2026-08-23-audit-sucasnej-appky.md
+│   │   ├── 2026-08-23-dizajnovy-jazyk-lawoss.md
+│   │   ├── 2026-08-23-ia-screen-plan-a-komponenty.md
+│   │   ├── 2026-08-23-implementacny-plan-fazy-A-D.md
+│   │   ├── 2026-08-27-dizajn-system-je-legalwork.md
+│   │   └── README.md
 │   ├── superpowers/
 │   │   ├── plans/
 │   │   │   └── 2026-08-12-lawoss-zakladna-produktova-doktrina.md
@@ -456,6 +465,7 @@ lawOSS-like-SK-CZ/
 │   ├── mcp-repository-workflow.md
 │   ├── metodika-kvality-skillov.md
 │   ├── navod-mcp-pripojenie-legalwork.md
+│   ├── playbook-spolupraca.md
 │   ├── principles.md
 │   ├── strategia.html
 │   ├── strategia.md
@@ -615,23 +625,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**342 commitov** · **175 súborov**
+**351 commitov** · **183 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `875f2bd` | 2026-08-28 | Majo Cuprik | Merge pull request #62 from Omni-Legal-Products/design/redesign-plan |
+| `e7baaa2` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `13a2cd6` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 | `c6bf97b` | 2026-08-28 | Majo Cuprik | docs: zápis z callu 28. 8. — dizajn odklepnutý, OKF feature #1, onboarding/light (MF), logo shortlist 3·4·11·13 + font z 11–14 |
 | `d5f9dfa` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `7b6a11e` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 | `7aeb000` | 2026-08-28 | Majo Cuprik | docs: agenda na call 28. 8. — logo, smer, design systém, rozdelenie features |
 | `ca9eeca` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `fed74f1` | 2026-08-28 | Majo Cuprik | docs: 14 návrhov loga (kolo 2) — pomenované s príbehmi, podklad na hlasovanie |
-| `f80053d` | 2026-08-27 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 16:06 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 16:13 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
