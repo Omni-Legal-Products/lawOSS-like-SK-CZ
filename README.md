@@ -378,6 +378,22 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 lawOSS-like-SK-CZ/
 ├── assets/
 │   ├── brand/
+│   │   ├── loga-navrhy/
+│   │   │   ├── 01-iniciala.jpg
+│   │   │   ├── 02-brana.jpg
+│   │   │   ├── 03-konstelacia.jpg
+│   │   │   ├── 04-orbita.jpg
+│   │   │   ├── 05-kodex.jpg
+│   │   │   ├── 06-rieka.jpg
+│   │   │   ├── 07-dvojica.jpg
+│   │   │   ├── 08-dialog.jpg
+│   │   │   ├── 09-synapsa.jpg
+│   │   │   ├── 10-mandat.jpg
+│   │   │   ├── 11-labyrint.jpg
+│   │   │   ├── 12-zrkadlo.jpg
+│   │   │   ├── 13-kluc.jpg
+│   │   │   ├── 14-strazcovia.jpg
+│   │   │   └── README.md
 │   │   ├── mockupy/
 │   │   │   ├── 01-prehlad-praxe.jpg
 │   │   │   ├── 02-spis-matter-brain.jpg
@@ -597,23 +613,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**334 commitov** · **158 súborov**
+**336 commitov** · **173 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `fed74f1` | 2026-08-28 | Majo Cuprik | docs: 14 návrhov loga (kolo 2) — pomenované s príbehmi, podklad na hlasovanie |
+| `f80053d` | 2026-08-27 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `7663a6e` | 2026-08-27 | Majo Cuprik | docs: zápis quick call 27. 8. (najprv dizajn, potom implementácia) + nápad #51 TUI alternatíva (VŘ) |
 | `f104b58` | 2026-08-27 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `18e56c7` | 2026-08-27 | Majo Cuprik | docs: podklad na call 27. 8. — kick-off vývoja, rozdelenie práce, sync a fáza A hotové |
 | `3b3f028` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `873a751` | 2026-08-21 | Majo Cuprik | fix: zosúladiť zachované mermaid zdroje s prekreslenými diagramami |
 | `68fbbde` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `d90ede5` | 2026-08-21 | Majo Cuprik | docs: prekresliť tri mermaid diagramy v README + dve vecné opravy (#61) |
-| `48d2f0a` | 2026-08-21 | Majo Cuprik | docs: prekresliť tri mermaid diagramy v README do brandových |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-27 15:35 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 14:37 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
