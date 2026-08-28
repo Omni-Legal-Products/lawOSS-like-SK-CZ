@@ -471,7 +471,8 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-18-podklad-konsolidacia-Q01-Q25.md
 │   ├── 2026-08-18-zapis-sync-call.md
 │   ├── 2026-08-27-zapis-quick-call.md
-│   └── 2026-08-28-agenda-call-dizajn.md
+│   ├── 2026-08-28-agenda-call-dizajn.md
+│   └── 2026-08-28-zapis-sync-call.md
 ├── planning/
 │   ├── 2026-08-12-mcp-repository-rollout-plan.md
 │   ├── 2026-08-12-rozhodovacie-otazky-timu.md
@@ -614,23 +615,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**339 commitov** · **174 súborov**
+**342 commitov** · **175 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `13a2cd6` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
+| `c6bf97b` | 2026-08-28 | Majo Cuprik | docs: zápis z callu 28. 8. — dizajn odklepnutý, OKF feature #1, onboarding/light (MF), logo shortlist 3·4·11·13 + font z 11–14 |
+| `d5f9dfa` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `7b6a11e` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 | `7aeb000` | 2026-08-28 | Majo Cuprik | docs: agenda na call 28. 8. — logo, smer, design systém, rozdelenie features |
 | `ca9eeca` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `fed74f1` | 2026-08-28 | Majo Cuprik | docs: 14 návrhov loga (kolo 2) — pomenované s príbehmi, podklad na hlasovanie |
 | `f80053d` | 2026-08-27 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `7663a6e` | 2026-08-27 | Majo Cuprik | docs: zápis quick call 27. 8. (najprv dizajn, potom implementácia) + nápad #51 TUI alternatíva (VŘ) |
-| `f104b58` | 2026-08-27 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `18e56c7` | 2026-08-27 | Majo Cuprik | docs: podklad na call 27. 8. — kick-off vývoja, rozdelenie práce, sync a fáza A hotové |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 15:00 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 16:06 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
