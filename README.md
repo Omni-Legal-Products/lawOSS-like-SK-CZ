@@ -485,6 +485,7 @@ lawOSS-like-SK-CZ/
 │   ├── agent-plugins.md
 │   ├── brand-concept.md
 │   ├── glossary.md
+│   ├── lawoss-web-teaser.md
 │   ├── mcp-repository-workflow.md
 │   ├── metodika-kvality-skillov.md
 │   ├── navod-mcp-pripojenie-legalwork.md
@@ -702,23 +703,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**354 commitov** · **227 súborov**
+**356 commitov** · **228 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `a90cb6c` | 2026-08-28 | Majo Cuprik | docs: teaser web lawoss.app a oprava zastaranej typografie v Značke |
+| `829cfb3` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `5f89417` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 | `85b890d` | 2026-08-28 | Majo Cuprik | docs: design-system.md (živý, hranaté tokeny, wordmark z loga 11–14, OKF dashboard mapovanie) + predpríprava OKF zjednotenia (mc-novy-spis) a zadanie onboarding/light pre MF |
 | `175877d` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `875f2bd` | 2026-08-28 | Majo Cuprik | Merge pull request #62 from Omni-Legal-Products/design/redesign-plan |
 | `e7baaa2` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `13a2cd6` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
-| `c6bf97b` | 2026-08-28 | Majo Cuprik | docs: zápis z callu 28. 8. — dizajn odklepnutý, OKF feature #1, onboarding/light (MF), logo shortlist 3·4·11·13 + font z 11–14 |
-| `d5f9dfa` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 16:16 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 21:53 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
