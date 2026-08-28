@@ -6,6 +6,7 @@ Dizajnové rozhodnutia sa robia tu (koordinačné repo); implementácia ide do f
 
 | # | Dokument | Čo odpovedá |
 |---|---|---|
+| ⭐ | [**Design systém (živý)**](design-system.md) | záväzný referenčný dokument pre každý feature — tokeny (hranaté), typografia + wordmark, vzory, OKF dashboard mapovanie, PR checklist |
 | 1 | [Audit súčasnej appky](2026-08-23-audit-sucasnej-appky.md) | kde sme: routy, tokeny, hex dlh, UX model, MCP, riziká |
 | 2 | [Dizajnový jazyk LAWOSS](2026-08-23-dizajnovy-jazyk-lawoss.md) | svet „podací denník na tmavom stole“: zákazy, farby, IBM Plex, stavebné prvky, pečať |
 | 3 | [IA, screen plán, komponenty](2026-08-23-ia-screen-plan-a-komponenty.md) | LegalWork + vrstva: záložky, 5 pohľadov × 4 tentpoles, napojovacie body, API náčrty |
