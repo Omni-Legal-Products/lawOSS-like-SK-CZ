@@ -312,10 +312,32 @@ Obrazovka 3 vyššie ukazuje, ako to vyzerá. Tento diagram ukazuje, ako to fung
 
 ## 🎨 Značka
 
-**Wordmark:** `LAW` biele + `OSS` zlaté · **Logo:** hexagonálny štít s váhami spravodlivosti a antickým stĺpom, štítky s českou a slovenskou vlajkou.
-**Paleta:** navy `#0D1B2A` · zlatá `#C9A24A` · biela — **Typografia:** Inter (UI) + Playfair Display (nadpisy).
+**Wordmark:** tenký geometrický grotesk so širokým prekladom, `A` **bez priečnej čiary**, kruhové `O`
+ — od 2026-08-28 kreslený ako **krivky, nie font** (generátor v teaser repe, `design/lettering/`).
+**Logo:** finálny znak ešte nie je vybraný (shortlist `3 · 4 · 11 · 13`), teaser zatiaľ beží len na wordmarku.
+**Paleta:** navy `#0D1B2A` · zlatá `#C9A24A` · biela — **Typografia:** **IBM Plex Sans** (UI) + **IBM Plex Mono**
+(právne identifikátory); Playfair Display je vyhradený **len pre pečať a wordmark**, nie pre nadpisy.
+
+> [!NOTE]
+> Do 2026-08-23 tu bol uvedený Inter. Dizajn systém ho odvtedy zakazuje
+> (`docs/design/2026-08-23-dizajnovy-jazyk-lawoss.md` §0). Zdroj pravdy je
+> **[docs/design/design-system.md](docs/design/design-system.md)**, nie táto sekcia.
 
 > Celý rozpis značky a rozhrania: **[docs/brand-concept.md](docs/brand-concept.md)**
+
+### 🌐 Teaser web — lawoss.app
+
+Verejná tvár projektu beží na **[lawoss.app](https://lawoss.app)** (SK · CZ · EN).
+Nie je to landing page so zoznamom funkcií, ale krátka stránka o tom, **kto to robí a prečo**:
+*„Nesľubujeme, že vás nahradíme."*
+
+| | |
+|---|---|
+| Repo | **[Omni-Legal-Products/lawoss-web](https://github.com/Omni-Legal-Products/lawoss-web)** (private) |
+| Stack | Next.js 15 · React 19 · nasadené na Dokploy, push na `main` = nasadenie |
+| Vzťah k tomuto repu | web je **spotrebiteľ** dizajn systému, nie jeho vlastník |
+
+> Čo z tohto repa web preberá a čo si drží sám: **[docs/lawoss-web-teaser.md](docs/lawoss-web-teaser.md)**
 
 ## 🔬 Rešerše
 
