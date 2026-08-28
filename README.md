@@ -470,7 +470,8 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-18-agenda-sync-call.md
 │   ├── 2026-08-18-podklad-konsolidacia-Q01-Q25.md
 │   ├── 2026-08-18-zapis-sync-call.md
-│   └── 2026-08-27-zapis-quick-call.md
+│   ├── 2026-08-27-zapis-quick-call.md
+│   └── 2026-08-28-agenda-call-dizajn.md
 ├── planning/
 │   ├── 2026-08-12-mcp-repository-rollout-plan.md
 │   ├── 2026-08-12-rozhodovacie-otazky-timu.md
@@ -613,23 +614,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**336 commitov** · **173 súborov**
+**339 commitov** · **174 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `7b6a11e` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
+| `7aeb000` | 2026-08-28 | Majo Cuprik | docs: agenda na call 28. 8. — logo, smer, design systém, rozdelenie features |
+| `ca9eeca` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `fed74f1` | 2026-08-28 | Majo Cuprik | docs: 14 návrhov loga (kolo 2) — pomenované s príbehmi, podklad na hlasovanie |
 | `f80053d` | 2026-08-27 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `7663a6e` | 2026-08-27 | Majo Cuprik | docs: zápis quick call 27. 8. (najprv dizajn, potom implementácia) + nápad #51 TUI alternatíva (VŘ) |
 | `f104b58` | 2026-08-27 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `18e56c7` | 2026-08-27 | Majo Cuprik | docs: podklad na call 27. 8. — kick-off vývoja, rozdelenie práce, sync a fáza A hotové |
-| `3b3f028` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `873a751` | 2026-08-21 | Majo Cuprik | fix: zosúladiť zachované mermaid zdroje s prekreslenými diagramami |
-| `68fbbde` | 2026-08-21 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 14:37 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 15:00 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
