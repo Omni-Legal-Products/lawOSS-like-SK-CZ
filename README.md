@@ -451,6 +451,7 @@ lawOSS-like-SK-CZ/
 │   │   ├── 2026-08-23-ia-screen-plan-a-komponenty.md
 │   │   ├── 2026-08-23-implementacny-plan-fazy-A-D.md
 │   │   ├── 2026-08-27-dizajn-system-je-legalwork.md
+│   │   ├── design-system.md
 │   │   └── README.md
 │   ├── superpowers/
 │   │   ├── plans/
@@ -537,6 +538,60 @@ lawOSS-like-SK-CZ/
 │   │   └── reconcile-jeff-su.md
 │   ├── mcp-servery/
 │   ├── mikeoss/
+│   ├── okf-implementacie/
+│   │   ├── mc-novy-spis/
+│   │   │   ├── scripts/
+│   │   │   │   ├── firma-from-orsr.sh
+│   │   │   │   ├── index-gen.sh
+│   │   │   │   ├── lib.sh
+│   │   │   │   ├── new-firma.sh
+│   │   │   │   ├── new-kauza.sh
+│   │   │   │   ├── new-klient.sh
+│   │   │   │   ├── new-projekt.sh
+│   │   │   │   ├── new-spis.sh
+│   │   │   │   ├── okf-freshness.sh
+│   │   │   │   ├── okf-validate.sh
+│   │   │   │   ├── preflight.sh
+│   │   │   │   ├── retrofit-firma.sh
+│   │   │   │   ├── retrofit.sh
+│   │   │   │   └── sync_agents_claude.sh
+│   │   │   ├── templates/
+│   │   │   │   ├── klient/
+│   │   │   │   │   ├── AGENTS.md
+│   │   │   │   │   ├── klient.md
+│   │   │   │   │   └── MEMORY.md
+│   │   │   │   ├── partials/
+│   │   │   │   │   └── protokol-zapisu.md
+│   │   │   │   ├── projekt/
+│   │   │   │   │   ├── AGENTS.md
+│   │   │   │   │   ├── MEMORY.md
+│   │   │   │   │   └── projekt.md
+│   │   │   │   └── spis/
+│   │   │   │       ├── _STATUS.md
+│   │   │   │       ├── AGENTS.md
+│   │   │   │       ├── MEMORY.md
+│   │   │   │       └── spis.md
+│   │   │   ├── tests/
+│   │   │   │   ├── e2e_test.sh
+│   │   │   │   ├── freshness_test.sh
+│   │   │   │   ├── index-gen_test.sh
+│   │   │   │   ├── lib_test.sh
+│   │   │   │   ├── new-projekt_test.sh
+│   │   │   │   ├── new-spis_test.sh
+│   │   │   │   ├── okf-validate_test.sh
+│   │   │   │   ├── profil-c_test.sh
+│   │   │   │   ├── retrofit_test.sh
+│   │   │   │   ├── run-tests.sh
+│   │   │   │   └── sync_test.sh
+│   │   │   ├── DOCS.md
+│   │   │   ├── README.md
+│   │   │   └── SKILL.md
+│   │   ├── vr-pamat/
+│   │   │   └── README.md
+│   │   └── README.md
+│   ├── onboarding-light/
+│   │   ├── AGENTS.md
+│   │   └── CLAUDE.md
 │   ├── pravny-ramec/
 │   │   ├── zdroje-zarucena-konverzia/
 │   │   │   ├── 2026-08-12-analyza-zarucenej-konverzie.md
@@ -625,23 +680,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**351 commitov** · **183 súborov**
+**354 commitov** · **227 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `5f89417` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
+| `85b890d` | 2026-08-28 | Majo Cuprik | docs: design-system.md (živý, hranaté tokeny, wordmark z loga 11–14, OKF dashboard mapovanie) + predpríprava OKF zjednotenia (mc-novy-spis) a zadanie onboarding/light pre MF |
+| `175877d` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `875f2bd` | 2026-08-28 | Majo Cuprik | Merge pull request #62 from Omni-Legal-Products/design/redesign-plan |
 | `e7baaa2` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `13a2cd6` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 | `c6bf97b` | 2026-08-28 | Majo Cuprik | docs: zápis z callu 28. 8. — dizajn odklepnutý, OKF feature #1, onboarding/light (MF), logo shortlist 3·4·11·13 + font z 11–14 |
 | `d5f9dfa` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `7b6a11e` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
-| `7aeb000` | 2026-08-28 | Majo Cuprik | docs: agenda na call 28. 8. — logo, smer, design systém, rozdelenie features |
-| `ca9eeca` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 16:13 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 16:16 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
