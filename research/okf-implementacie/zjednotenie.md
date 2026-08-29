@@ -96,9 +96,19 @@ MČ protokol (čo kam patrí) preberáme celý a dopĺňame o štyri brány, kto
 | **atomicita pravdy** | zmena `## Pravda` musí v tom istom zápise pridať riadok do `## Historie` | rešerš 21. 8., mindmux vzor |
 | **append-only história** | stará história musí byť doslovnou predponou novej | spec 0002 — „periodická konsolidácia bez straty histórie" |
 | **human gate** | do L1, do L3 a pri mazaní zapíše iba človek; agent dostane diff | spec 0002, Q11, Q21 |
-| **zákaz úniku L2 → L3** | právny prameň nesmie niesť IČO, dátum narodenia ani obchodné meno zo subjektov spisu | spec 0002 — „L3 nesmie obsahovať klientsky identifikujúce údaje" |
+| **zákaz úniku L2 → L3** | právny prameň nesmie niesť IČO, dátum narodenia ani obchodné meno zo subjektov spisu; triedi sa podľa **sily zhody** (viď nižšie) | spec 0002 — „L3 nesmie obsahovať klientsky identifikujúce údaje" |
 
 Zápis do L2 agent vykoná sám (to je „udržiavať poriadok v spise" z Q21). Zápis do L1 a L3 iba navrhne.
+
+**Sila zhody pri kontrole úniku.** Falošný poplach a únik nemajú rovnakú cenu — únik je porušenie mlčanlivosti, falošný poplach iba zdržuje. Kontrola preto triedi:
+
+| Sila | Čo to je | Nález |
+|---|---|---|
+| `hard` | IČO (aj písané po trojiciach), dátum narodenia (ISO aj český zápis s bodkami) | **chyba** — blokuje |
+| `strong` | celé meno alebo obchodná firma, aj bez právnej formy | **chyba** — blokuje |
+| `weak` | samotné krátke priezvisko | varovanie na revíziu, neblokuje |
+
+Zhoda sa hľadá na hranici slova a po normalizácii diakritiky, takže „Rada" nechytí „porada" a „Modry Kamen" chytí „Modrý Kámen". Prahy sú pomenované konštanty — **je to rozhodnutie o hranici zodpovednosti, nie technický detail**, a je otvorené na pripomienky.
 
 ### 6. Workflow
 
