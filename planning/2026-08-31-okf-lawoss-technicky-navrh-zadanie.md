@@ -5,6 +5,7 @@
 - **Dátum:** 2026-08-31
 - **Priorita:** prvá implementačná vertikála LAWOSS
 - **Nadväzuje na:** [spec 0014](../specs/0014-okf-1-kanonicky-kontrakt.md), [porovnanie MČ a VŘ](../research/okf-implementacie/porovnanie-a-konsolidacia-2026-08-31.md), [dizajn systém](../docs/design/design-system.md)
+- **Najbližší rozhodovací krok:** [call MČ + VŘ 31. 8. 2026 o 10:30](../meetings/2026-08-31-agenda-okf-architektura.md)
 
 > [!IMPORTANT]
 > Tento súbor eviduje zadanie, overený stav a ďalšiu prácu. Neobsahuje schválenú technickú architektúru ani oprávnenie implementovať produktový kód.
@@ -91,20 +92,39 @@ Tieto vzory sú inšpirácia, nie licencia na kopírovanie dizajnu alebo proprie
 - empty, partial, stale, parse-error, future-version a offline stavy,
 - keyboard, accessibility, reduced motion a SK/CZ lokalizácia.
 
-## Prvé rozhodnutie
+## Poradie rozhodnutí po spresnení MČ
 
-Treba určiť prvý end-to-end vertical slice:
+MČ 31. 8. 2026 spresnil, že dashboard nie je prvý vertical slice. Najprv sa musí s VŘ dohodnúť kanonický kontrakt a architektonická hranica. Potom sa dopracuje celá OKF platforma. Dashboard bude až následný konzument hotového read modelu.
 
-1. **prípadový dashboard**, ktorý číta jeden matter root a rieši celý tok od parsera po UI,
-2. **klientský dashboard**, ktorý agreguje viac prípadov jedného klienta,
-3. **prehľad celej praxe**, ktorý agreguje všetkých klientov a prípady.
+Navrhované poradie:
 
-Odporúčaný je prípadový dashboard. Má najmenší bezpečný scope, overí celý kontrakt a vytvorí základ, z ktorého sa klientský a kancelársky pohľad neskôr iba agregujú.
+1. **spoločný architektonický mandát MČ + VŘ:** file-based kontrakt, klientský workspace, records, vrstvy, human gates a portable Core,
+2. **read-only OKF Core:** detect, parse, inspect, validate a syntetické SK/CZ fixtures,
+3. **LAWOSS server adaptér:** workspace binding, read model, cache, diagnostika, watcher a eventy,
+4. **bezpečný write pipeline:** persisted proposal, diff, human approval, optimistic concurrency, recoverable transaction, audit a recovery,
+5. **onboarding a retrofit:** nový klient, existujúci priečinok, migrácie a Basic subject verification,
+6. **agentové tools:** typed inspect, query, propose a reconcile bez možnosti predstierať approval,
+7. **dashboard a custom views:** prípad, klient a neskôr prehľad praxe.
+
+Prvý platformový end-to-end vertical slice má byť:
+
+```text
+pripojenie priečinka
+-> read-only detekcia
+-> onboarding plan a presný diff
+-> explicitné potvrdenie
+-> recoverable scaffold
+-> validácia
+-> serverový snapshot
+-> audit a okf.changed event
+```
+
+Tento slice overí zdroj pravdy, Core, server, approval aj recovery bez toho, aby UI dashboard vytváral paralelnú interpretáciu.
 
 ## Ďalšie kroky
 
-- [ ] MČ potvrdí prvý vertical slice.
-- [ ] Porovnať tri technické prístupy a odklepnúť odporúčaný.
+- [ ] MČ + VŘ prejdú [agendu callu 31. 8. o 10:30](../meetings/2026-08-31-agenda-okf-architektura.md) a zaznamenajú výsledky D1 až D9.
+- [x] Porovnať tri technické prístupy a pripraviť odporúčaný smer na odklepnutie.
 - [ ] Prejsť návrh po sekciách: architektúra, data flow, write gates, UI/UX, chyby, testy a rollout.
 - [ ] Zapísať schválený technický spec a samostatnú interaktívnu UI vizualizáciu.
 - [ ] Vykonať LAWOSS spec review.
@@ -112,10 +132,11 @@ Odporúčaný je prípadový dashboard. Má najmenší bezpečný scope, overí 
 
 ## Explicitne nerozhodnuté
 
-- prvý dashboardový vertical slice,
 - konečná fyzická hranica L1 kancelárskeho brainu,
 - konkrétny storage engine read modelu,
 - presný shape API a eventov,
 - konkrétne Basic registry providers,
-- či sa PR #24 upraví alebo sa jeho použiteľné časti prenesú do nového core,
+- či VŘ súhlasí, že PR #24 zostane referenčný prototyp a jeho použiteľné koncepty a testy sa prenesú do spoločného Core,
+- výsledky architektonických rozhodnutí D1 až D9 z callu 31. 8. o 10:30,
+- poradie dashboardových pohľadov po dokončení platformy,
 - finálny layout dashboardu a jeho navigácia v session shelli.

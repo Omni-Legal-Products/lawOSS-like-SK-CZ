@@ -1,7 +1,8 @@
-# OKF implementácie — zjednotenie (feature #1)
+# OKF implementácie - zjednotenie (feature #1)
 
-- **Cieľ:** z dvoch reálne používaných implementácií pamäťového/spisového systému (MČ + VŘ) spraviť **jednu zjednotenú OKF špecifikáciu + skills**, ktoré budú základom appky (dashboard spisu renderovaný z markdownov) aj prenositeľného systému mimo nej.
-- **Rozhodnuté na calle 28. 8.** ([zápis](../../meetings/2026-08-28-zapis-sync-call.md), body 5 + akčné body) · nadväzuje na [spec 0002 OKF](../../specs/0002-okf-operacny-system-praxe.md) a [design-system §5](../../docs/design/design-system.md).
+- **Cieľ:** z dvoch reálne používaných implementácií pamäťového/spisového systému (MČ + VŘ) spraviť **jeden zjednotený OKF kontrakt a portable Core**, ktoré budú základom LAWOSS aj práce mimo appky. Dashboard je následná vizualizačná vrstva, nie prvý implementačný krok.
+- **Rozhodnuté na calle 28. 8.:** zjednotenie OKF je prvá feature ([zápis](../../meetings/2026-08-28-zapis-sync-call.md), body 5 + akčné body). Kanonický kontrakt a technická architektúra ešte rozhodnuté nie sú.
+- **Najbližší krok:** [call MČ + VŘ 31. 8. 2026 o 10:30](../../meetings/2026-08-31-agenda-okf-architektura.md), ktorého cieľom je architektonický mandát pred detailným technickým specom.
 
 ## Čo tu je / má byť
 
@@ -16,6 +17,7 @@
 | [`../../assets/diagrams/okf-konsolidacia.html`](../../assets/diagrams/okf-konsolidacia.html) | samostatná interaktívna vizualizácia: čo, prečo, ako, architektúra, ACME simulácia a rozhodnutia | 📝 pripravené na pripomienky |
 | [`../../specs/0014-okf-1-kanonicky-kontrakt.md`](../../specs/0014-okf-1-kanonicky-kontrakt.md) | navrhovaný kanonický kontrakt OKF 1.0 a acceptance criteria | 📝 nie je odklepnuté VŘ ani tímom |
 | [`../../planning/2026-08-31-okf-lawoss-technicky-navrh-zadanie.md`](../../planning/2026-08-31-okf-lawoss-technicky-navrh-zadanie.md) | zadanie technickej integrácie OKF do LAWOSS, overený stav forku, UI/UX scope a otvorené rozhodnutia | 📝 architektonický discovery, bez oprávnenia implementovať |
+| [`../../meetings/2026-08-31-agenda-okf-architektura.md`](../../meetings/2026-08-31-agenda-okf-architektura.md) | 45-minútový prezentačný scenár, rozhodnutia D1 až D9, otázky O1 až O7 a live decision sheet | 🕥 podklad na call 31. 8. o 10:30 |
 
 ## Ako budeme zjednocovať (návrh postupu)
 
@@ -28,7 +30,9 @@
    - vrstvy pamäte L1/L2/L3 a provenance (spec 0002),
    - dvojjurisdikčnosť: čo je spoločné, čo SK/CZ špecifické (názvoslovie neprekladať ticho).
 3. **Kritériá zjednotenia:** prenositeľnosť (funguje v opencode/Claude Code/Codex bez appky) · parsovateľnosť pre UI (deterministický frontmatter/JSON tam, kde z toho appka renderuje — design-system §5) · idempotentné skripty · žiadny zápis bez human gate pri citlivých poliach (ADR 0007).
-4. Výstup `zjednotenie.md` → aktualizácia spec 0002 → skills `novy-spis` v2 (SK + CZ) → parser `lawoss/okf/read.ts` vo forku.
+4. Call MČ + VŘ potvrdí alebo presne upraví kanonický kontrakt a portable Core.
+5. Až potom vznikne detailný technický spec platformy: Core, server adaptér, write pipeline, onboarding, agentové tools, registry providers, testy a rollout.
+6. Dashboard a custom views sa navrhnú nad stabilným serverovým snapshotom, nie priamym parsovaním Markdownu vo fronte.
 
 ## Pre AI agentov, ktorí tu budú pracovať
 

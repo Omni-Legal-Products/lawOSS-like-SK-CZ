@@ -69,7 +69,7 @@
     }
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-columns: minmax(0, 1fr) 320px;
       gap: 28px;
       align-items: end;
     }
@@ -276,11 +276,11 @@
       <div>
         <div class="eyebrow">LAWOSS · otvorený kancelársky formát</div>
         <h1>OKF 1.0<br>VŘ × MČ → spoločný kontrakt</h1>
-        <p class="lead">Detailné porovnanie toho, čo rieši Vojtova pamäť, čo rieši Mariánov systém spisu a ako z nich vzniká prenositeľný základ klientov, prípadov a agentickej pamäte.</p>
+        <p class="lead">Podklad na architektonické zjednotenie: čo rieši Vojtova pamäť, čo rieši Mariánov systém spisu a ako z nich vzniká prenositeľný základ klientov, prípadov, agentickej pamäte a LAWOSS.</p>
       </div>
       <aside class="status">
-        <strong>Návrh na spoločnú revíziu</strong>
-        <span>Pripravil MČ, 31. 8. 2026. Konsolidácia zachytáva prínosy VŘ, ale zatiaľ nepredstavuje jeho ani tímové schválenie.</span>
+        <strong>Podklad na call 31. 8. 2026 o 10:30</strong>
+        <span>Pripravil MČ na spoločnú revíziu s VŘ. Zachytáva prínosy VŘ, ale zatiaľ nepredstavuje jeho ani tímové schválenie.</span>
       </aside>
     </div>
   </header>
@@ -292,7 +292,8 @@
       <button class="tab" role="tab" aria-selected="false" aria-controls="mc" data-tab="mc">03 Návrh MČ</button>
       <button class="tab" role="tab" aria-selected="false" aria-controls="joint" data-tab="joint">04 Konsolidácia</button>
       <button class="tab" role="tab" aria-selected="false" aria-controls="simulation" data-tab="simulation">05 Simulácia ACME</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="decisions" data-tab="decisions">06 Rozhodnutia</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="architecture-lawoss" data-tab="architecture-lawoss">06 Architektúra LAWOSS</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="decisions" data-tab="decisions">07 Rozhodnutia</button>
     </div>
   </nav>
 
@@ -402,7 +403,8 @@
         <div class="stack">
           <div class="layer"><b>Portable CLI</b><p class="muted">Použiteľný bez appky</p></div>
           <div class="layer"><b>Agentový adaptér</b><p class="muted">Typované operácie</p></div>
-          <div class="layer"><b>LAWOSS</b><p class="muted">Onboarding, watcher, UI, approvals</p></div>
+          <div class="layer"><b>LAWOSS server adaptér</b><p class="muted">Workspace, watcher, read model, approvals, audit a providers</p></div>
+          <div class="layer"><b>LAWOSS UI neskôr</b><p class="muted">Setup, review a dashboard ako konzument snapshotu</p></div>
         </div>
       </div>
       <div class="panel-head" style="margin-top:30px"><div><span class="label">Reconciliation</span><h2 style="font-size:1.8rem">Automat zbiera. Človek potvrdzuje právnu pravdu.</h2></div></div>
@@ -429,6 +431,75 @@
       </div>
     </section>
 
+    <section class="panel" id="architecture-lawoss" role="tabpanel">
+      <div class="panel-head"><div><span class="label">Architektonický mandát</span><h2>Portable Core najprv, dashboard až nad stabilnou platformou</h2></div><span class="badge">Na odklepnutie MČ + VŘ</span></div>
+
+      <div class="grid-3">
+        <article class="card flat"><span class="label">Doménová hranica</span><h3>Workspace je klientsky root</h3><p>Jeden LAWOSS workspace predstavuje jedného klienta alebo subjekt. V ňom žijú stabilne identifikované prípady. Názov priečinka nie je identita.</p></article>
+        <article class="card flat"><span class="label">Zdroj pravdy</span><h3>Súbory, nie databáza</h3><p>SQLite môže držať regenerovateľný snapshot, diagnostiku a technické operácie. Klient, prípady, pravda, história a evidence zostávajú v OKF súboroch.</p></article>
+        <article class="card flat"><span class="label">Poradie práce</span><h3>Platforma pred pohľadmi</h3><p>Najprv parser, validator, watcher, návrhy, approval a recoverable writer. Dashboard príde až po overení celého systémového toku.</p></article>
+      </div>
+
+      <div class="architecture">
+        <div class="stack">
+          <div class="layer"><b>Kanonický OKF priečinok</b><p class="muted">AGENTS, CLAUDE mirror, okf.yaml, client, matters, records, findings, evidence</p></div>
+          <div class="layer"><b>Otvorený formát</b><p class="muted">Čitateľný a použiteľný aj bez LAWOSS</p></div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="layer core"><h3>@lawoss/okf-core</h3><p>detect · inspect · parse · validate · plan · reconcile · migrate · apply · project</p></div>
+        <div class="arrow">→</div>
+        <div class="stack">
+          <div class="layer"><b>@lawoss/okf-cli</b><p class="muted">Portable potvrdenie diffu a práca mimo appky</p></div>
+          <div class="layer"><b>Externý agent</b><p class="muted">AGENTS orientácia, typed reads a proposals</p></div>
+          <div class="layer"><b>LAWOSS server</b><p class="muted">Read model, watcher, approvals, audit, recovery a providers</p></div>
+        </div>
+      </div>
+
+      <div class="panel-head" style="margin-top:30px"><div><span class="label">Jediná kanonická cesta zápisu</span><h2 style="font-size:1.8rem">Prompt vysvetľuje. Core a runtime vynucujú.</h2></div></div>
+      <div class="flow" aria-label="Bezpečný OKF write pipeline">
+        <div class="node">Inspect + Plan<small>snapshot, diff, preconditions</small></div><div class="arrow">→</div>
+        <div class="node">Whole-store validate<small>výsledný stav pred zápisom</small></div><div class="arrow">→</div>
+        <div class="node human">Human gate + recheck<small>plan hash, manifest, revision</small></div><div class="arrow">→</div>
+        <div class="node truth">Recoverable apply<small>history, audit, snapshot event</small></div>
+      </div>
+
+      <div class="table-scroll">
+        <table class="matrix">
+          <thead><tr><th>Vrstva</th><th>Zodpovednosť</th><th>Nesmie sa stať</th></tr></thead>
+          <tbody>
+            <tr><td>OKF súbory</td><td>Kanonická identita, prípady, pravda, história, findings a evidence</td><td>Byť ticho prepísané cache alebo providerom</td></tr>
+            <tr><td>OKF Core</td><td>Schéma, parser, validácia, zmenový plán, invariants a recoverable apply</td><td>Importovať React, UI stav alebo proprietárnu databázovú pravdu</td></tr>
+            <tr><td>LAWOSS server</td><td>Workspace scope, watcher, read model, proposal ledger, approval, audit, recovery a providers</td><td>Obísť Core cez všeobecný raw Markdown write</td></tr>
+            <tr><td>Agentový adaptér</td><td>Inspect, query, validate, propose a reconcile cez typed tools</td><td>Vyrobiť si vlastný approval alebo voľne meniť chránenú pravdu</td></tr>
+            <tr><td>LAWOSS UI</td><td>Onboarding, review, recovery a neskôr dashboard nad serverovým snapshotom</td><td>Parsovať kanonický Markdown samostatnou frontendovou implementáciou</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel-head" style="margin-top:30px"><div><span class="label">Tri technické možnosti</span><h2 style="font-size:1.8rem">Prečo odporúčame spoločný Core</h2></div></div>
+      <div class="grid-3">
+        <article class="card vr"><span class="label">Možnosť A</span><h3>PR #24 priamo napojiť</h3><p>Najrýchlejší prototyp, ale zachová legacy parser, matter-only model a slabšie approval a transaction hranice.</p><p class="muted"><strong>Verdikt:</strong> nepoužiť priamo ako kanonický základ.</p></article>
+        <article class="card mc"><span class="label">Možnosť B</span><h3>OKF iba v serveri</h3><p>Jednoduchšie pre LAWOSS, ale externý Codex, Claude alebo OpenCode by nepoužíval rovnakú implementáciu pravidiel.</p><p class="muted"><strong>Verdikt:</strong> zamietnuť pre slabú prenositeľnosť.</p></article>
+        <article class="card joint"><span class="label">Možnosť C</span><h3>Core + CLI + server adaptér</h3><p>Jedna implementácia formátu, validácie a zápisových invariantov pre všetky harness-y. LAWOSS pridáva runtime autoritu a UX.</p><p class="muted"><strong>Verdikt:</strong> odporúčaný smer.</p></article>
+      </div>
+
+      <div class="grid-2" style="margin-top:16px">
+        <article class="card flat"><h3>Z PR #24 zachovať</h3><ul><li>typované records a retrieval summary,</li><li>Truth a append-only History,</li><li>L1/L2/L3 a samostatný lesson,</li><li>marker-scoped projekcie,</li><li>validácie väzieb, freshness a L3 leakage,</li><li>behaviorálne testy a deterministický diff.</li></ul></article>
+        <article class="card flat"><h3>Pre spoločný Core prepracovať</h3><ul><li>anglický machine contract a klientský root,</li><li>robustný YAML parser a preservation unknown fields,</li><li>izoláciu parse chýb po súboroch,</li><li>approval viazaný na actor, plan hash a manifest,</li><li>whole-store validation a optimistic concurrency,</li><li>journal, crash recovery a LAWOSS server adaptér.</li></ul></article>
+      </div>
+
+      <div class="card flat" style="margin-top:16px">
+        <span class="label">Implementačné poradie po odklepe</span>
+        <ol>
+          <li>read-only Core a SK/CZ fixtures,</li>
+          <li>serverový read model, diagnostika, watcher a eventy,</li>
+          <li>persisted proposals, approval a recoverable writer,</li>
+          <li>onboarding, retrofit, migrácia a Basic verification,</li>
+          <li>agentové tools a až potom dashboard a custom views.</li>
+        </ol>
+      </div>
+    </section>
+
     <section class="panel" id="decisions" role="tabpanel">
       <div class="panel-head"><div><span class="label">Spoločná revízia</span><h2>Čo treba potvrdiť pred implementáciou</h2></div><span class="badge">Najprv kontrakt, potom kód</span></div>
       <div class="card">
@@ -437,7 +508,10 @@
         <div class="decision"><span class="decision-id">D3</span><div><h3>Anglický machine contract</h3><p class="impact">Jedna perzistenčná schéma. Lokalizácia žije v ľudskom rozhraní.</p></div><span class="state">na odklepnutie</span></div>
         <div class="decision"><span class="decision-id">D4</span><div><h3>Records ako SSOT, status ako projekcia</h3><p class="impact">Lehota alebo chronologická udalosť nesmie mať dve nezávislé pravdy.</p></div><span class="state">na odklepnutie</span></div>
         <div class="decision"><span class="decision-id">D5</span><div><h3>Risk-based human gates</h3><p class="impact">Observation môže byť automatická. Identita, lehota, stratégia, L1, L3 a mazanie potrebujú človeka.</p></div><span class="state">na odklepnutie</span></div>
-        <div class="decision"><span class="decision-id">D6</span><div><h3>Portable core pred LAWOSS UI</h3><p class="impact">CLI, agent a appka nesmú implementovať tri odlišné protokoly.</p></div><span class="state">na odklepnutie</span></div>
+        <div class="decision"><span class="decision-id">D6</span><div><h3>Jeden plan, validate, approve a apply kontrakt</h3><p class="impact">CLI, agent a LAWOSS nesmú implementovať tri odlišné zápisové protokoly.</p></div><span class="state">na odklepnutie</span></div>
+        <div class="decision"><span class="decision-id">D7</span><div><h3>Runtime approval pre chránené zmeny</h3><p class="impact">AGENTS orientuje, ale neautorizuje. Self-declared approval objekt ani prompt nesmú odomknúť právne významný zápis.</p></div><span class="state">na odklepnutie</span></div>
+        <div class="decision"><span class="decision-id">D8</span><div><h3>PR #24 ako referenčný prototyp</h3><p class="impact">Zachovať koncepty a behaviorálne testy, ale cieľový Core postaviť podľa spoločného kontraktu a app hraníc.</p></div><span class="state">na odklepnutie</span></div>
+        <div class="decision"><span class="decision-id">D9</span><div><h3>Dashboard odložiť za platformu</h3><p class="impact">Najprv Core, read model, watcher, approvals, recovery, onboarding a agentové tools. Dashboard bude neskorší konzument snapshotu.</p></div><span class="state">na odklepnutie</span></div>
       </div>
       <div class="grid-2" style="margin-top:16px">
         <article class="card flat"><h3>Otvorené, ale neblokuje kontrakt</h3><ul><li>fyzické miesto kancelárskeho brainu,</li><li>budúce auto-approve nízkorizikového L2,</li><li>plný lock model pre viac používateľov.</li></ul></article>
@@ -446,7 +520,7 @@
     </section>
   </main>
 
-  <footer><div class="shell"><span>LAWOSS · OKF 1.0 · návrh MČ na spoločnú revíziu s VŘ a tímom</span><span>Zdroj pravdy: spec 0014 a porovnávací podklad v repozitári</span></div></footer>
+  <footer><div class="shell"><span>LAWOSS · OKF 1.0 · podklad na call MČ + VŘ 31. 8. 2026 o 10:30</span><span>Návrh bez tímového schválenia · zdroj: spec 0014 a porovnávací podklad</span></div></footer>
 
   <script>
     const tabs = [...document.querySelectorAll('.tab')];
