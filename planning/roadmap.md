@@ -42,6 +42,7 @@
 - [ ] **OKF ako jadro MVP** - tri vrstvy pamäte, reconciliation s human approval a auditom
 - [ ] **Onboarding spisu a subjektov** - conflict check, AML, sankcie, diskvalifikácie a registre cez MCP
 - [ ] **Základné skills pre spis** - zápis, kontrola čerstvosti, periodická konsolidácia a rollback
+- [ ] **Odklepnúť technický návrh OKF platformy v LAWOSS** - core, server, agentové brány, read model a dashboard klienta/prípadu podľa [zadania 2026-08-31](2026-08-31-okf-lawoss-technicky-navrh-zadanie.md)
 - [ ] **Anonymizácia odložená** - neimplementovať v aktuálnej fáze; zachovať ako budúci voliteľný modul
 - [x] **Tímové rozhodnutia Q01 až Q25** — ✅ IR *(14. 8.)* · ✅ VŘ *(15. 8.)* · 📝 **MČ** pracovné pozície · ✅ **MF** *(17. 8.)* → [súhrn](2026-08-17-stanoviska-timu-Q01-Q25.md)
 - [x] **Synchronizovať fork s upstreamom** — `dev` @ `c5e177a`: fast-forward na origin/dev (+10 našich commitov) + merge upstream fixu #88 *(21. 8. 2026)*

@@ -15,6 +15,7 @@
 | [`porovnanie-a-konsolidacia-2026-08-31.md`](porovnanie-a-konsolidacia-2026-08-31.md) | detailné oddelenie návrhu VŘ, návrhu MČ a nového konsolidovaného kontraktu, vrátane simulácie | 📝 návrh MČ na spoločnú revíziu |
 | [`../../assets/diagrams/okf-konsolidacia.html`](../../assets/diagrams/okf-konsolidacia.html) | samostatná interaktívna vizualizácia: čo, prečo, ako, architektúra, ACME simulácia a rozhodnutia | 📝 pripravené na pripomienky |
 | [`../../specs/0014-okf-1-kanonicky-kontrakt.md`](../../specs/0014-okf-1-kanonicky-kontrakt.md) | navrhovaný kanonický kontrakt OKF 1.0 a acceptance criteria | 📝 nie je odklepnuté VŘ ani tímom |
+| [`../../planning/2026-08-31-okf-lawoss-technicky-navrh-zadanie.md`](../../planning/2026-08-31-okf-lawoss-technicky-navrh-zadanie.md) | zadanie technickej integrácie OKF do LAWOSS, overený stav forku, UI/UX scope a otvorené rozhodnutia | 📝 architektonický discovery, bez oprávnenia implementovať |
 
 ## Ako budeme zjednocovať (návrh postupu)
 

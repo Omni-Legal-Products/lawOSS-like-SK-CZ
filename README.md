@@ -386,10 +386,11 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 | [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
 | [`2026-08-15-odpovedi-VR-Q01-Q25.md`](planning/2026-08-15-odpovedi-VR-Q01-Q25.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
 | [`2026-08-21-paper-cuts-a-rychle-vylepsenia.md`](planning/2026-08-21-paper-cuts-a-rychle-vylepsenia.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
+| [`2026-08-31-okf-lawoss-technicky-navrh-zadanie.md`](planning/2026-08-31-okf-lawoss-technicky-navrh-zadanie.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
 | [`backlog.md`](planning/backlog.md) | `███░░░░░░░░░░░░░░░░░` | 10/71 (14 %) |
 | [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
-| [`roadmap.md`](planning/roadmap.md) | `███████░░░░░░░░░░░░░` | 17/46 (37 %) |
+| [`roadmap.md`](planning/roadmap.md) | `███████░░░░░░░░░░░░░` | 17/47 (36 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -516,6 +517,7 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-17-stanoviska-timu-Q01-Q25.md
 │   ├── 2026-08-21-paper-cuts-a-rychle-vylepsenia.md
 │   ├── 2026-08-27-podklad-call-kickoff-vyvoja.md
+│   ├── 2026-08-31-okf-lawoss-technicky-navrh-zadanie.md
 │   ├── backlog.md
 │   ├── cz-datove-zdroje.md
 │   ├── mcp-repository-inventory.md
@@ -720,10 +722,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**359 commitov** · **236 súborov**
+**360 commitov** · **241 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `0a7787f` | 2026-08-31 | Majo Cuprik | specs: konsolidovať OKF návrhy MČ a VŘ |
 | `c555a15` | 2026-08-29 | Vojtěch Říha | docs: doplniť silu zhody pri kontrole úniku L2→L3 |
 | `d75b892` | 2026-08-29 | Vojtěch Říha | research: vr-pamat snapshot + návrh zjednotenia OKF pamäte (MČ × VŘ) |
 | `425da31` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
@@ -731,12 +734,11 @@ flowchart LR
 | `829cfb3` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `5f89417` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 | `85b890d` | 2026-08-28 | Majo Cuprik | docs: design-system.md (živý, hranaté tokeny, wordmark z loga 11–14, OKF dashboard mapovanie) + predpríprava OKF zjednotenia (mc-novy-spis) a zadanie onboarding/light pre MF |
-| `175877d` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-30 22:20 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-30 22:31 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
