@@ -10,6 +10,11 @@
 | [`mc-novy-spis/`](mc-novy-spis/) | implementácia MČ — skill `novy-spis` (OKF v0.1): profily A/B/C, riadiace súbory, ORSR/RPO audit, retrofit, validácia (`okf-validate.sh`, `okf-freshness.sh`), PROTOKOL ZÁPISU | ✅ nahraté 29. 8. |
 | [`vr-pamat/`](vr-pamat/) | implementácia VŘ — typované záznamy, index, oddelená vrstva poučení; prevádzkové čísla a doložené medzery | ✅ nahraté 29. 8. |
 | [`zjednotenie.md`](zjednotenie.md) | výstup: porovnanie po vrstvách + zjednotený kontrakt + 5 otvorených bodov na call 1. 9. | 📝 návrh 29. 8. — [PR #24 vo forku](https://github.com/Omni-Legal-Products/lawoss/pull/24) |
+| [`stanovisko-mc.md`](stanovisko-mc.md) | odpovede MČ k O1 až O7, vrátane podmienok pre status projekciu a anglického machine contractu | 📝 podklad MČ 29. 8. |
+| [`review-pr24.md`](review-pr24.md) | technická revízia prototypu vo forku, nálezy a odporúčané poradie opráv | 📝 review MČ 29. 8. |
+| [`porovnanie-a-konsolidacia-2026-08-31.md`](porovnanie-a-konsolidacia-2026-08-31.md) | detailné oddelenie návrhu VŘ, návrhu MČ a nového konsolidovaného kontraktu, vrátane simulácie | 📝 návrh MČ na spoločnú revíziu |
+| [`../../assets/diagrams/okf-konsolidacia.html`](../../assets/diagrams/okf-konsolidacia.html) | samostatná interaktívna vizualizácia: čo, prečo, ako, architektúra, ACME simulácia a rozhodnutia | 📝 pripravené na pripomienky |
+| [`../../specs/0014-okf-1-kanonicky-kontrakt.md`](../../specs/0014-okf-1-kanonicky-kontrakt.md) | navrhovaný kanonický kontrakt OKF 1.0 a acceptance criteria | 📝 nie je odklepnuté VŘ ani tímom |
 
 ## Ako budeme zjednocovať (návrh postupu)
 

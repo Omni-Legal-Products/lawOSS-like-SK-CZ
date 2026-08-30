@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>OKF 1.0: VŘ, MČ a konsolidovaný návrh</title>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --navy-2: #15283c;
+      --gold: #c9a24a;
+      --gold-soft: #f5ead0;
+      --paper: #f6f4ef;
+      --surface: #ffffff;
+      --surface-2: #eef1f3;
+      --ink: #14202b;
+      --muted: #5f6b74;
+      --line: #d6d9da;
+      --good: #237a57;
+      --warn: #a96514;
+      --danger: #a23d3d;
+      --vr: #386a8d;
+      --mc: #8b5f20;
+      --joint: #4f6b48;
+      --shadow: 0 18px 45px rgba(13, 27, 42, .12);
+      --radius: 18px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #09131e;
+        --surface: #102131;
+        --surface-2: #172b3e;
+        --ink: #eef3f5;
+        --muted: #afbbc3;
+        --line: #31475a;
+        --gold-soft: #372d1b;
+        --good: #6fc8a1;
+        --warn: #e1ad61;
+        --danger: #ea8f8f;
+        --vr: #78b9e6;
+        --mc: #e0b868;
+        --joint: #9bc18f;
+        --shadow: 0 18px 45px rgba(0, 0, 0, .32);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(201, 162, 74, .11), transparent 32rem),
+        var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    button, select { font: inherit; }
+    a { color: inherit; }
+    .shell { width: min(1440px, calc(100% - 32px)); margin: 0 auto; }
+
+    .hero {
+      background: var(--navy);
+      color: #fff;
+      border-bottom: 4px solid var(--gold);
+      padding: 34px 0 30px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: end;
+    }
+    .eyebrow {
+      color: #e5c777;
+      font-size: .77rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    h1 { max-width: 980px; margin: 8px 0 10px; font-size: clamp(2rem, 4.4vw, 4.7rem); line-height: .98; letter-spacing: -.045em; }
+    .lead { max-width: 880px; margin: 0; color: #cad4dc; font-size: clamp(1rem, 1.4vw, 1.2rem); }
+    .status {
+      width: min(320px, 100%);
+      padding: 16px 18px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 14px;
+      background: rgba(255,255,255,.07);
+    }
+    .status strong { display: block; color: #f1d58b; margin-bottom: 4px; }
+    .status span { color: #d2dbe1; font-size: .9rem; }
+
+    .tabs-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+    .tabs {
+      display: flex;
+      gap: 7px;
+      padding: 12px 0;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+    .tab {
+      flex: 0 0 auto;
+      appearance: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--ink);
+      padding: 9px 14px;
+      cursor: pointer;
+      font-weight: 750;
+      font-size: .9rem;
+    }
+    .tab:hover { border-color: var(--gold); }
+    .tab[aria-selected="true"] { background: var(--navy); color: white; border-color: var(--gold); }
+
+    main { padding: 28px 0 70px; }
+    .panel { display: none; }
+    .panel.active { display: block; animation: reveal .25s ease both; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(5px); } }
+    .panel-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; align-items: end; margin-bottom: 22px; }
+    h2 { margin: 0; font-size: clamp(1.65rem, 2.6vw, 2.6rem); letter-spacing: -.035em; line-height: 1.05; }
+    h3 { margin: 0 0 8px; font-size: 1.05rem; }
+    p { margin: 0 0 12px; }
+    .muted { color: var(--muted); }
+    .badge { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; background: var(--surface); font-size: .8rem; font-weight: 750; }
+    .badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+    .card.flat { box-shadow: none; }
+    .card.vr { border-top: 4px solid var(--vr); }
+    .card.mc { border-top: 4px solid var(--mc); }
+    .card.joint { border-top: 4px solid var(--joint); }
+    .label { display: block; font-size: .72rem; font-weight: 850; letter-spacing: .11em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+    .card ul { padding-left: 18px; margin: 8px 0 0; }
+    .card li + li { margin-top: 6px; }
+
+    .compare-intro { margin-bottom: 18px; }
+    .compare-intro .card { min-height: 190px; }
+    .author { display: flex; align-items: center; gap: 10px; margin-bottom: 13px; }
+    .avatar { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; color: white; font-weight: 900; }
+    .avatar.vr { background: var(--vr); }
+    .avatar.mc { background: var(--mc); }
+    .avatar.joint { background: var(--joint); }
+    .author b { display: block; }
+    .author small { color: var(--muted); }
+
+    .matrix { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; font-size: .89rem; }
+    .matrix th, .matrix td { text-align: left; vertical-align: top; padding: 13px 14px; border-bottom: 1px solid var(--line); }
+    .matrix th { background: var(--surface-2); font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; }
+    .matrix tr:last-child td { border-bottom: 0; }
+    .matrix td:first-child { font-weight: 800; width: 16%; }
+    .matrix td:nth-child(4) { background: color-mix(in srgb, var(--joint) 7%, var(--surface)); }
+    .table-scroll { overflow-x: auto; border-radius: var(--radius); }
+
+    .flow { display: grid; grid-template-columns: repeat(7, minmax(90px, 1fr)); gap: 8px; align-items: center; margin: 20px 0; }
+    .node { min-height: 88px; display: grid; align-content: center; text-align: center; border: 1px solid var(--line); background: var(--surface); border-radius: 13px; padding: 10px; font-size: .82rem; font-weight: 800; }
+    .node small { display: block; color: var(--muted); font-weight: 550; margin-top: 4px; }
+    .arrow { color: var(--gold); font-size: 1.5rem; text-align: center; }
+    .node.human { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+    .node.truth { background: var(--navy); color: white; }
+    .node.truth small { color: #cbd5dc; }
+
+    .tree { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre; overflow-x: auto; background: var(--navy); color: #e9eef1; border-radius: 16px; padding: 18px; line-height: 1.65; font-size: .83rem; }
+    .tree .gold { color: #e5c777; }
+
+    .architecture { display: grid; grid-template-columns: 1fr auto 1.35fr auto 1fr; gap: 12px; align-items: stretch; margin-top: 18px; }
+    .architecture .stack { display: grid; gap: 9px; }
+    .architecture .layer { border: 1px solid var(--line); background: var(--surface); border-radius: 14px; padding: 15px; }
+    .architecture .core { background: var(--navy); color: white; border-color: var(--gold); display: grid; align-content: center; text-align: center; }
+    .architecture .core p { color: #ccd6dd; font-size: .85rem; }
+
+    .stepper { display: grid; grid-template-columns: 310px minmax(0, 1fr); gap: 18px; }
+    .step-list { display: grid; gap: 8px; align-content: start; }
+    .step {
+      appearance: none;
+      display: grid;
+      grid-template-columns: 31px minmax(0, 1fr);
+      gap: 10px;
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      border-radius: 13px;
+      padding: 11px;
+      cursor: pointer;
+    }
+    .step:hover { border-color: var(--gold); }
+    .step[aria-selected="true"] { border-color: var(--gold); box-shadow: inset 4px 0 0 var(--gold); }
+    .step-num { width: 31px; height: 31px; display: grid; place-items: center; border-radius: 9px; background: var(--surface-2); font-weight: 850; }
+    .step b, .step small { display: block; }
+    .step small { color: var(--muted); margin-top: 2px; }
+    .scenario { min-height: 540px; }
+    .scenario-top { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px; }
+    .pill { border-radius: 999px; padding: 5px 9px; background: var(--surface-2); color: var(--muted); font-size: .76rem; font-weight: 800; }
+    .pill.auto { color: var(--good); }
+    .pill.human { color: var(--warn); }
+    .scenario-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-top: 16px; }
+    .mini { border: 1px solid var(--line); border-radius: 13px; padding: 14px; background: var(--surface-2); }
+    .mini b { display: block; margin-bottom: 5px; }
+    .scenario pre { margin: 16px 0 0; overflow: auto; background: var(--navy); color: #edf2f4; border-radius: 14px; padding: 16px; font-size: .8rem; line-height: 1.55; }
+
+    .decision { display: grid; grid-template-columns: 50px minmax(0, 1fr) auto; gap: 14px; align-items: start; border-bottom: 1px solid var(--line); padding: 17px 0; }
+    .decision:last-child { border-bottom: 0; }
+    .decision-id { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--navy); color: white; font-weight: 900; }
+    .decision .impact { color: var(--muted); font-size: .86rem; }
+    .decision .state { color: var(--warn); white-space: nowrap; font-size: .78rem; font-weight: 850; }
+
+    .legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+    .legend span { display: inline-flex; align-items: center; gap: 7px; font-size: .82rem; color: var(--muted); }
+    .dot { width: 10px; height: 10px; border-radius: 3px; }
+    .dot.vr { background: var(--vr); }
+    .dot.mc { background: var(--mc); }
+    .dot.joint { background: var(--joint); }
+    .dot.open { border: 2px solid var(--warn); background: transparent; }
+
+    footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: .84rem; }
+    footer .shell { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .print-note { display: none; }
+
+    @media (max-width: 980px) {
+      .hero-grid, .panel-head { grid-template-columns: 1fr; }
+      .status { width: 100%; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .architecture { grid-template-columns: 1fr; }
+      .architecture > .arrow { transform: rotate(90deg); }
+      .stepper { grid-template-columns: 1fr; }
+      .step-list { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .scenario { min-height: 0; }
+    }
+    @media (max-width: 680px) {
+      .shell { width: min(100% - 20px, 1440px); }
+      .hero { padding-top: 25px; }
+      .flow { grid-template-columns: 1fr; }
+      .flow .arrow { transform: rotate(90deg); }
+      .step-list { grid-template-columns: 1fr; }
+      .scenario-grid { grid-template-columns: 1fr; }
+      .decision { grid-template-columns: 44px minmax(0,1fr); }
+      .decision .state { grid-column: 2; }
+      .card { padding: 16px; }
+      .matrix { min-width: 850px; }
+    }
+    @media print {
+      .tabs-wrap { position: static; }
+      .tabs { display: none; }
+      .panel { display: block !important; break-before: page; }
+      .panel:first-child { break-before: auto; }
+      .card { box-shadow: none; }
+      .step-list { display: none; }
+      .stepper { grid-template-columns: 1fr; }
+      .print-note { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="shell hero-grid">
+      <div>
+        <div class="eyebrow">LAWOSS · otvorený kancelársky formát</div>
+        <h1>OKF 1.0<br>VŘ × MČ → spoločný kontrakt</h1>
+        <p class="lead">Detailné porovnanie toho, čo rieši Vojtova pamäť, čo rieši Mariánov systém spisu a ako z nich vzniká prenositeľný základ klientov, prípadov a agentickej pamäte.</p>
+      </div>
+      <aside class="status">
+        <strong>Návrh na spoločnú revíziu</strong>
+        <span>Pripravil MČ, 31. 8. 2026. Konsolidácia zachytáva prínosy VŘ, ale zatiaľ nepredstavuje jeho ani tímové schválenie.</span>
+      </aside>
+    </div>
+  </header>
+
+  <nav class="tabs-wrap" aria-label="Pohľady na návrh">
+    <div class="shell tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="overview" data-tab="overview">01 Porovnanie</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="vr" data-tab="vr">02 Návrh VŘ</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="mc" data-tab="mc">03 Návrh MČ</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="joint" data-tab="joint">04 Konsolidácia</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="simulation" data-tab="simulation">05 Simulácia ACME</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="decisions" data-tab="decisions">06 Rozhodnutia</button>
+    </div>
+  </nav>
+
+  <main class="shell">
+    <section class="panel active" id="overview" role="tabpanel">
+      <div class="panel-head">
+        <div><span class="label">Rýchla orientácia</span><h2>Dve osi jedného systému</h2></div>
+        <span class="badge">Nie výber víťaza, ale spojenie vrstiev</span>
+      </div>
+      <div class="grid-3 compare-intro">
+        <article class="card vr">
+          <div class="author"><span class="avatar vr">VŘ</span><div><b>Vojta Říha</b><small>Pamäťový engine</small></div></div>
+          <p><strong>Čo:</strong> typované, vybaviteľné a auditovateľné poznatky.</p>
+          <p><strong>Prečo:</strong> voľná pamäť po čase stráca štruktúru a dôvod zmien.</p>
+          <p><strong>Ako:</strong> summary, links, L1/L2/L3, Truth + History, LOAD až EVOLVE.</p>
+        </article>
+        <article class="card mc">
+          <div class="author"><span class="avatar mc">MČ</span><div><b>Marián Čuprík</b><small>Operačný systém spisu</small></div></div>
+          <p><strong>Čo:</strong> klient, viac prípadov, reálne priečinky a workflow.</p>
+          <p><strong>Prečo:</strong> agent sa musí zorientovať aj bez LAWOSS a bez proprietárneho skillu.</p>
+          <p><strong>Ako:</strong> AGENTS, scaffold, retrofit, status, verification, reconciliation.</p>
+        </article>
+        <article class="card joint">
+          <div class="author"><span class="avatar joint">1.0</span><div><b>Konsolidovaný návrh</b><small>Otvorený OKF kontrakt</small></div></div>
+          <p><strong>Čo:</strong> prenositeľná perzistentná pamäť klienta a prípadov.</p>
+          <p><strong>Prečo:</strong> LAWOSS má byť automatizácia nad otvoreným spisom, nie nový dátový ostrov.</p>
+          <p><strong>Ako:</strong> jeden OKF Core, tri adaptéry, risk-based gates a odvodené projekcie.</p>
+        </article>
+      </div>
+
+      <div class="legend"><span><i class="dot vr"></i>prínos VŘ</span><span><i class="dot mc"></i>prínos MČ</span><span><i class="dot joint"></i>konsolidované</span><span><i class="dot open"></i>otvorené rozhodnutie</span></div>
+      <div class="table-scroll">
+        <table class="matrix">
+          <thead><tr><th>Oblasť</th><th>VŘ</th><th>MČ</th><th>Konsolidovaný kontrakt</th><th>Prečo</th></tr></thead>
+          <tbody>
+            <tr><td>Jednotka</td><td>Pamäťový record</td><td>Klient a spis</td><td>Klientsky workspace, prípady a records</td><td>Doména aj granularita</td></tr>
+            <tr><td>Vstup agenta</td><td>Harness config, index</td><td>AGENTS.md + CLAUDE.md</td><td>AGENTS kanonický, CLAUDE mirror, BRAIN odvodený</td><td>Interoperabilita bez LAWOSS</td></tr>
+            <tr><td>Pamäť</td><td>Typ, summary, links</td><td>TP, LL, OQ v MEMORY</td><td>Jeden typovaný záznam = jeden súbor</td><td>Retrieval, validácia, audit</td></tr>
+            <tr><td>Pravda</td><td>Truth + History</td><td>STATUS + MEMORY</td><td>Records sú SSOT, STATUS je projekcia</td><td>Žiadna dvojitá pravda</td></tr>
+            <tr><td>Workflow</td><td>LOAD až EVOLVE</td><td>Init, retrofit, validate, freshness</td><td>Detect, plan, apply, reconcile, render</td><td>Celý životný cyklus</td></tr>
+            <tr><td>Jazyk</td><td>Lokalizovaná schéma</td><td>Zmiešané názvoslovie</td><td>Anglický machine contract, lokalizované zobrazenie</td><td>Jedna schéma pre viac krajín</td></tr>
+            <tr><td>Aplikácia</td><td>Prototyp pamäte</td><td>Požiadavka integrácie</td><td>LAWOSS adaptér nad tým istým core</td><td>Bez proprietárneho SSOT</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="vr" role="tabpanel">
+      <div class="panel-head"><div><span class="label">Vojta Říha</span><h2>Pamäť, ktorá sa dá vybaviť, meniť a kontrolovať</h2></div><span class="badge">Granularita a retrieval</span></div>
+      <div class="grid-3">
+        <article class="card vr"><span class="label">Čo</span><h3>Typovaný záznam</h3><p>Každý poznatok má typ, scope, krátky description alebo summary a väzby. Lesson nie je obyčajná poznámka.</p></article>
+        <article class="card vr"><span class="label">Prečo</span><h3>Konvencia časom zlyhá</h3><p>Keď typ nie je vynútený, pamäť splynie. Agent potom načítava priveľa textu a človek nevie samostatne revidovať poučenia.</p></article>
+        <article class="card vr"><span class="label">Ako</span><h3>Brány v nástroji</h3><p>Zmena Truth bez History sa odmietne. L1, L3 a mazanie potrebujú human gate. Vrstvy majú vlastné pravidlá.</p></article>
+      </div>
+      <div class="flow" aria-label="Vojtov pamäťový cyklus">
+        <div class="node">LOAD<small>relevantné summary</small></div><div class="arrow">→</div>
+        <div class="node">SAVE<small>nový poznatok</small></div><div class="arrow">→</div>
+        <div class="node">LEARN<small>návrh poučenia</small></div><div class="arrow">→</div>
+        <div class="node human">REVIEW + EVOLVE<small>človek rozhodne</small></div>
+      </div>
+      <div class="grid-2">
+        <article class="card flat"><h3>Čo zachovávame bez oslabenia</h3><ul><li>summary ako retrieval hook,</li><li>links medzi poznatkami,</li><li>Truth a append-only History,</li><li>L1/L2/L3,</li><li>samostatný typ lesson,</li><li>nástrojové write gates.</li></ul></article>
+        <article class="card flat"><h3>Čo musí doplniť OKF</h3><ul><li>klientsky a prípadový root,</li><li>AGENTS bootstrap,</li><li>scaffold a retrofit,</li><li>registry verification,</li><li>práca s reálnymi dokumentmi,</li><li>portable umiestnenie pri spise.</li></ul></article>
+      </div>
+    </section>
+
+    <section class="panel" id="mc" role="tabpanel">
+      <div class="panel-head"><div><span class="label">Marián Čuprík</span><h2>Priečinok ako fundamentálny operačný systém praxe</h2></div><span class="badge">Klient, prípady, interoperabilita</span></div>
+      <div class="grid-3">
+        <article class="card mc"><span class="label">Čo</span><h3>Klientský workspace</h3><p>Jeden klient alebo subjekt má spoločnú identitu a viac samostatných prípadov. Každý prípad má vlastný stav a pamäť.</p></article>
+        <article class="card mc"><span class="label">Prečo</span><h3>Inteligencia patrí k dátam</h3><p>Ak agent otvorí priečinok mimo LAWOSS, stále musí vedieť, čo čítať, čo je pravda a kam smie zapisovať.</p></article>
+        <article class="card mc"><span class="label">Ako</span><h3>AGENTS ako bootstrap</h3><p>AGENTS.md je prvý vstup. CLAUDE.md je byte-identický mirror. BRAIN.md je iba regenerovateľný kontext.</p></article>
+      </div>
+      <div class="tree" aria-label="Navrhovaná hierarchia"><span class="gold">ACME s.r.o./</span>
+├── AGENTS.md              <span class="gold">kanonický vstup</span>
+├── CLAUDE.md              mirror
+├── okf.yaml               machine contract
+├── client.md              potvrdená identita
+├── memory/                klientske records
+├── findings/              rozpory a návrhy
+├── evidence/registry/     dôkazy overenia
+└── Prípady/
+    ├── Dodávateľ XY/
+    │   ├── AGENTS.md
+    │   ├── matter.md
+    │   ├── _STATUS.md
+    │   ├── memory/
+    │   └── dokumenty...
+    └── Pracovnoprávna vec/
+        └── vlastný izolovaný L2 kontext</div>
+      <div class="grid-2" style="margin-top:16px">
+        <article class="card flat"><h3>Nový priečinok</h3><p>Výber rootu -> typ subjektu -> verification -> dry-run -> potvrdenie -> scaffold -> validate.</p></article>
+        <article class="card flat"><h3>Existujúci priečinok</h3><p>Read-only detect -> presný migračný plán -> potvrdenie -> iba chýbajúce artefakty -> report. Originály ostávajú.</p></article>
+      </div>
+    </section>
+
+    <section class="panel" id="joint" role="tabpanel">
+      <div class="panel-head"><div><span class="label">OKF 1.0</span><h2>Otvorený kontrakt, jedno jadro, viac rozhraní</h2></div><span class="badge">LAWOSS nie je zdroj pravdy</span></div>
+      <div class="architecture">
+        <div class="stack">
+          <div class="layer"><b>Klientsky priečinok</b><p class="muted">AGENTS, config, identity, cases, records, evidence, findings</p></div>
+          <div class="layer"><b>Kanonická pravda</b><p class="muted">Otvorené súbory, revision, provenance a história</p></div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="layer core"><h3>OKF Core</h3><p>schema · parse · detect · plan · apply · validate · migrate · reconcile · render</p></div>
+        <div class="arrow">→</div>
+        <div class="stack">
+          <div class="layer"><b>Portable CLI</b><p class="muted">Použiteľný bez appky</p></div>
+          <div class="layer"><b>Agentový adaptér</b><p class="muted">Typované operácie</p></div>
+          <div class="layer"><b>LAWOSS</b><p class="muted">Onboarding, watcher, UI, approvals</p></div>
+        </div>
+      </div>
+      <div class="panel-head" style="margin-top:30px"><div><span class="label">Reconciliation</span><h2 style="font-size:1.8rem">Automat zbiera. Človek potvrdzuje právnu pravdu.</h2></div></div>
+      <div class="flow">
+        <div class="node">Source<small>dokument, register</small></div><div class="arrow">→</div>
+        <div class="node">Observation<small>čo systém videl</small></div><div class="arrow">→</div>
+        <div class="node">Finding<small>rozpor + diff</small></div><div class="arrow">→</div>
+        <div class="node human">Human gate<small>prijať, odmietnuť</small></div><div class="arrow">→</div>
+        <div class="node truth">Truth + History<small>kanonický výsledok</small></div>
+      </div>
+      <div class="grid-3">
+        <article class="card joint"><span class="label">Machine contract</span><h3>Anglický a stabilný</h3><p>Názvy systémových súborov, YAML kľúče, enumy, markery a error codes sú rovnaké vo všetkých jurisdikciách.</p></article>
+        <article class="card joint"><span class="label">Human interface</span><h3>Lokalizovaný</h3><p>Finder priečinky, názvy klientov, obsah, status, reporty, CLI hlášky a LAWOSS UI ostávajú prirodzené pre SK alebo CZ používateľa.</p></article>
+        <article class="card joint"><span class="label">Derived context</span><h3>Regenerovateľný</h3><p>BRAIN, INDEX, status bloky a read model sa dajú znovu vytvoriť. Nikdy nesmú byť jediným miestom pravdy.</p></article>
+      </div>
+    </section>
+
+    <section class="panel" id="simulation" role="tabpanel">
+      <div class="panel-head"><div><span class="label">Interaktívny príklad</span><h2>ACME s.r.o. od priečinka po reconciliation</h2></div><span class="badge">Kliknite na krok</span></div>
+      <p class="print-note">Interaktívna simulácia pri tlači zobrazuje prvý krok. Ostatné kroky sú popísané v projektovom Markdown podklade.</p>
+      <div class="stepper">
+        <div class="step-list" role="tablist" aria-label="Kroky simulácie"></div>
+        <article class="card scenario" aria-live="polite"></article>
+      </div>
+    </section>
+
+    <section class="panel" id="decisions" role="tabpanel">
+      <div class="panel-head"><div><span class="label">Spoločná revízia</span><h2>Čo treba potvrdiť pred implementáciou</h2></div><span class="badge">Najprv kontrakt, potom kód</span></div>
+      <div class="card">
+        <div class="decision"><span class="decision-id">D1</span><div><h3>AGENTS.md ako kanonický bootstrap</h3><p class="impact">CLAUDE.md je mirror, BRAIN.md je odvodený. Toto rozhoduje o prenositeľnosti mimo LAWOSS.</p></div><span class="state">na odklepnutie</span></div>
+        <div class="decision"><span class="decision-id">D2</span><div><h3>Klientsky workspace s viacerými prípadmi</h3><p class="impact">Spoločná identita klienta, izolovaný L2 stav každého prípadu.</p></div><span class="state">na odklepnutie</span></div>
+        <div class="decision"><span class="decision-id">D3</span><div><h3>Anglický machine contract</h3><p class="impact">Jedna perzistenčná schéma. Lokalizácia žije v ľudskom rozhraní.</p></div><span class="state">na odklepnutie</span></div>
+        <div class="decision"><span class="decision-id">D4</span><div><h3>Records ako SSOT, status ako projekcia</h3><p class="impact">Lehota alebo chronologická udalosť nesmie mať dve nezávislé pravdy.</p></div><span class="state">na odklepnutie</span></div>
+        <div class="decision"><span class="decision-id">D5</span><div><h3>Risk-based human gates</h3><p class="impact">Observation môže byť automatická. Identita, lehota, stratégia, L1, L3 a mazanie potrebujú človeka.</p></div><span class="state">na odklepnutie</span></div>
+        <div class="decision"><span class="decision-id">D6</span><div><h3>Portable core pred LAWOSS UI</h3><p class="impact">CLI, agent a appka nesmú implementovať tri odlišné protokoly.</p></div><span class="state">na odklepnutie</span></div>
+      </div>
+      <div class="grid-2" style="margin-top:16px">
+        <article class="card flat"><h3>Otvorené, ale neblokuje kontrakt</h3><ul><li>fyzické miesto kancelárskeho brainu,</li><li>budúce auto-approve nízkorizikového L2,</li><li>plný lock model pre viac používateľov.</li></ul></article>
+        <article class="card flat"><h3>Otvorené a blokuje časť implementácie</h3><ul><li>konkrétni Basic providers pre SK a CZ,</li><li>prechodné obdobie legacy formátov,</li><li>pilotná migrácia na jednom súkromnom spise.</li></ul></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell"><span>LAWOSS · OKF 1.0 · návrh MČ na spoločnú revíziu s VŘ a tímom</span><span>Zdroj pravdy: spec 0014 a porovnávací podklad v repozitári</span></div></footer>
+
+  <script>
+    const tabs = [...document.querySelectorAll('.tab')];
+    const panels = [...document.querySelectorAll('.panel')];
+
+    function activateTab(id, shouldScroll = true) {
+      tabs.forEach((tab) => tab.setAttribute('aria-selected', String(tab.dataset.tab === id)));
+      panels.forEach((panel) => panel.classList.toggle('active', panel.id === id));
+      history.replaceState(null, '', '#' + id);
+      if (shouldScroll) document.querySelector('.tabs-wrap').scrollIntoView({ block: 'start', behavior: 'smooth' });
+    }
+
+    tabs.forEach((tab) => tab.addEventListener('click', () => activateTab(tab.dataset.tab)));
+
+    const scenarioSteps = [
+      {
+        title: 'Pripojenie priečinka', short: 'Detect a dry-run', mode: ['automatická analýza', 'human gate pred zápisom'],
+        description: 'LAWOSS iba prečíta existujúci priečinok ACME s.r.o. a rozpozná plain folder. Ukáže presný plán nových súborov. Pôvodné dokumenty nepremenuje ani nepresunie.',
+        what: 'Vznikne klientsky root a prvý prípad.', why: 'Retrofit nesmie poškodiť živý spis.', how: 'detect -> plan -> diff -> confirm -> atomic apply -> validate',
+        code: 'ACME s.r.o./\n+ AGENTS.md\n+ CLAUDE.md\n+ okf.yaml\n+ client.md\n+ memory/ findings/ evidence/\n+ Prípady/Dodávateľ XY/'
+      },
+      {
+        title: 'Basic verification', short: 'Register a evidence', mode: ['automatický zber', 'človek rieši rozdiel'],
+        description: 'Provider overí oficiálny názov, IČO, sídlo, právnu formu, stav a štatutárov. Snapshot sa uloží ako evidence. Odlišné sídlo vytvorí finding, nie silent overwrite.',
+        what: 'Auditovateľná identita subjektu.', why: 'Verejný register môže byť novší ako vstup používateľa.', how: 'provider -> evidence -> compare -> finding -> confirm',
+        code: 'finding: SUBJECT_ADDRESS_MISMATCH\nentered: Bratislava, Stará 1\nregistry: Bratislava, Nová 12\nsource: registry snapshot 2026-08-31\nproposed_change: client.address'
+      },
+      {
+        title: 'Založenie prípadu', short: 'Izolovaný L2 kontext', mode: ['scaffold po potvrdení'],
+        description: 'Prípad Dodávateľ XY dostane vlastný AGENTS, matter, status, memory a findings. Zdieľa klientsku identitu, ale nemieša vlastné rozhodnutia s ďalšími prípadmi.',
+        what: 'Jeden klient, viac samostatných prípadov.', why: 'Klientska identita je spoločná, stratégia nie.', how: 'client scope -> case scope -> parent link',
+        code: 'scope: matter\nclient_ref: ../../client.md\nmatter_id: M-2026-004\nstatus: active\njurisdiction: sk'
+      },
+      {
+        title: 'Nové uznesenie', short: 'Observation a lehota', mode: ['automatická observation', 'human gate pre lehotu'],
+        description: 'Watcher zaregistruje dokument a agent navrhne lehotu. Advokát potvrdí dátum doručenia a výpočet. Až potom sa record stane kanonickou pravdou a zobrazí sa v status projekcii.',
+        what: 'Lehota s dôkazom a zodpovednosťou.', why: 'Automatický výpočet môže byť právne nesprávny.', how: 'file event -> proposed deadline -> lawyer confirm -> record -> render',
+        code: 'type: decision\ntitle: Lehota na vyjadrenie\nstatus: active\nsources:\n  - ../Dokumenty/Uznesenie.pdf\nrevision: 1'
+      },
+      {
+        title: 'Zmena stratégie', short: 'Truth a History', mode: ['chránený L2 zápis'],
+        description: 'Po pokyne klienta sa mení procesná stratégia. Core odmietne zmenu Truth, ak zároveň nepribudne riadok History s aktérom, dôvodom a zdrojom.',
+        what: 'Aktuálna stratégia bez straty minulosti.', why: 'Tím musí vedieť, prečo sa postup zmenil.', how: 'stale check -> diff -> approval -> atomic write',
+        code: '## Truth\nNenamietať miestnu príslušnosť.\n\n## History\n| 2026-08-31 | MČ | changed | pokyn klienta | email-31-08 |'
+      },
+      {
+        title: 'Iný agent', short: 'Prenositeľnosť', mode: ['bez LAWOSS dependency'],
+        description: 'Prípad sa otvorí v Codex, Claude Code alebo OpenCode. Agent začne cez AGENTS.md. Ak nemá bezpečný approval mechanizmus, vytvorí iba proposed finding.',
+        what: 'Rovnaká orientácia v každom harness-e.', why: 'Klientsky spis nesmie byť viazaný na jednu appku.', how: 'AGENTS -> read order -> records -> write protocol',
+        code: '1. Read AGENTS.md\n2. Read matter.md and _STATUS.md\n3. Load INDEX summaries\n4. Open only relevant records\n5. Save unsafe changes to findings/'
+      },
+      {
+        title: 'Reconciliation', short: 'Nový štatutár', mode: ['automatický finding', 'človek mení identitu'],
+        description: 'Opakovaný registry check nájde nového štatutára. Finding ukáže starú a novú hodnotu. Po prijatí sa zvýši revision a doplní história. Pôvodný stav zostane auditovateľný.',
+        what: 'Zosúladenie zdrojov bez last-write-wins.', why: 'Novší zdroj nemusí automaticky znamenať právne správnu zmenu.', how: 'rescan -> evidence -> conflict -> review -> truth + history',
+        code: 'Source -> Observation -> Finding\n                |\n                v\n          Human decision\n                |\n                v\n       Canonical Truth + History'
+      }
+    ];
+
+    const stepList = document.querySelector('.step-list');
+    const scenario = document.querySelector('.scenario');
+
+    function renderScenario(index) {
+      const item = scenarioSteps[index];
+      [...stepList.children].forEach((button, i) => button.setAttribute('aria-selected', String(i === index)));
+      scenario.innerHTML = `
+        <div class="scenario-top">${item.mode.map((mode, i) => `<span class="pill ${i ? 'human' : 'auto'}">${mode}</span>`).join('')}</div>
+        <span class="label">Krok ${index + 1} z ${scenarioSteps.length}</span>
+        <h2 style="font-size:clamp(1.5rem,2.5vw,2.35rem);margin-bottom:12px">${item.title}</h2>
+        <p class="muted">${item.description}</p>
+        <div class="scenario-grid">
+          <div class="mini"><b>Čo</b><span>${item.what}</span></div>
+          <div class="mini"><b>Prečo</b><span>${item.why}</span></div>
+          <div class="mini"><b>Ako</b><span>${item.how}</span></div>
+        </div>
+        <pre>${item.code}</pre>`;
+    }
+
+    scenarioSteps.forEach((item, index) => {
+      const button = document.createElement('button');
+      button.className = 'step';
+      button.setAttribute('role', 'tab');
+      button.setAttribute('aria-selected', String(index === 0));
+      button.innerHTML = `<span class="step-num">${index + 1}</span><span><b>${item.title}</b><small>${item.short}</small></span>`;
+      button.addEventListener('click', () => renderScenario(index));
+      stepList.appendChild(button);
+    });
+
+    renderScenario(0);
+    const requested = location.hash.slice(1);
+    if (panels.some((panel) => panel.id === requested)) activateTab(requested, false);
+  </script>
+</body>
+</html>

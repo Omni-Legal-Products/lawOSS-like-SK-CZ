@@ -441,6 +441,7 @@ lawOSS-like-SK-CZ/
 │       ├── architektura.png
 │       ├── lehota-rozhodovacia-brana.html
 │       ├── lehota-rozhodovacia-brana.png
+│       ├── okf-konsolidacia.html
 │       ├── okf-system.html
 │       ├── okf-system.png
 │       ├── roadmapa.html
@@ -541,6 +542,8 @@ lawOSS-like-SK-CZ/
 │   ├── anonymizacia/
 │   │   └── 2026-08-14-sk-anonymizacne-detektory.md
 │   ├── deep-research/
+│   │   ├── audio/
+│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -610,8 +613,21 @@ lawOSS-like-SK-CZ/
 │   │   │   ├── README.md
 │   │   │   └── SKILL.md
 │   │   ├── vr-pamat/
+│   │   │   ├── priklady/
+│   │   │   │   ├── case_novak_vypoved_najmu.md
+│   │   │   │   ├── feedback_overit_udaje_z_registra.md
+│   │   │   │   ├── reference_najem_po_skonceni.md
+│   │   │   │   └── user_preferencie.md
+│   │   │   ├── sablony/
+│   │   │   │   ├── MEMORY.md
+│   │   │   │   └── zaznam.md
+│   │   │   ├── memory-manager.md
 │   │   │   └── README.md
-│   │   └── README.md
+│   │   ├── porovnanie-a-konsolidacia-2026-08-31.md
+│   │   ├── README.md
+│   │   ├── review-pr24.md
+│   │   ├── stanovisko-mc.md
+│   │   └── zjednotenie.md
 │   ├── onboarding-light/
 │   │   ├── AGENTS.md
 │   │   └── CLAUDE.md
@@ -638,6 +654,7 @@ lawOSS-like-SK-CZ/
 │   ├── 0008-anonymizacia-a-privacy-gate.md
 │   ├── 0009-reconcile-ucenie-z-uprav.md
 │   ├── 0010-zarucena-konverzia.md
+│   ├── 0014-okf-1-kanonicky-kontrakt.md
 │   ├── navrhy.md
 │   ├── prehlad.html
 │   ├── README.md
@@ -703,23 +720,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**356 commitov** · **228 súborov**
+**359 commitov** · **236 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `c555a15` | 2026-08-29 | Vojtěch Říha | docs: doplniť silu zhody pri kontrole úniku L2→L3 |
+| `d75b892` | 2026-08-29 | Vojtěch Říha | research: vr-pamat snapshot + návrh zjednotenia OKF pamäte (MČ × VŘ) |
+| `425da31` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `a90cb6c` | 2026-08-28 | Majo Cuprik | docs: teaser web lawoss.app a oprava zastaranej typografie v Značke |
 | `829cfb3` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `5f89417` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 | `85b890d` | 2026-08-28 | Majo Cuprik | docs: design-system.md (živý, hranaté tokeny, wordmark z loga 11–14, OKF dashboard mapovanie) + predpríprava OKF zjednotenia (mc-novy-spis) a zadanie onboarding/light pre MF |
 | `175877d` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `875f2bd` | 2026-08-28 | Majo Cuprik | Merge pull request #62 from Omni-Legal-Products/design/redesign-plan |
-| `e7baaa2` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `13a2cd6` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 21:53 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-30 22:20 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
