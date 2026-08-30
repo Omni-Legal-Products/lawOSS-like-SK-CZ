@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LAWOSS · OKF dashboard · 6 smerov</title>
+  <style>:root { color-scheme: dark; } [hidden] { display: none !important; }</style>
+</head>
+<body>
+  <div data-testid="demo-marker">Fiktívne dáta · pracovný návrh</div>
+  <nav aria-label="Smery dashboardu">
+    <button data-direction-target="registry">1 · Podací denník</button>
+    <button data-direction-target="timeline">2 · Procesná mapa</button>
+    <button data-direction-target="constellation">3 · Dôkazová konštelácia</button>
+    <button data-direction-target="ledger">4 · Auditný ledger</button>
+    <button data-direction-target="brain">5 · OKF Brain</button>
+    <button data-direction-target="tower">6 · Risk Control Tower</button>
+  </nav>
+  <select data-testid="scenario-select" aria-label="Diagnostický scenár">
+    <option data-scenario="current" value="current">Aktuálny</option>
+    <option data-scenario="empty" value="empty">Prázdny stav</option>
+    <option data-scenario="partial" value="partial">Čiastočné dáta</option>
+    <option data-scenario="stale" value="stale">Neaktuálny návrh</option>
+    <option data-scenario="parse-error" value="parse-error">Chyba záznamu</option>
+    <option data-scenario="future-version" value="future-version">Budúca verzia</option>
+    <option data-scenario="offline" value="offline">Offline</option>
+  </select>
+  <main>
+    <section data-direction="registry" data-testid="direction-1" data-active="true">ALFA STAV s.r.o. · 14. 9. 2026 · base_revision · base_hash</section>
+    <section data-direction="timeline" data-testid="direction-2" data-active="false" hidden>ALFA STAV s.r.o.</section>
+    <section data-direction="constellation" data-testid="direction-3" data-active="false" hidden>ALFA STAV s.r.o.</section>
+    <section data-direction="ledger" data-testid="direction-4" data-active="false" hidden>ALFA STAV s.r.o.</section>
+    <section data-direction="brain" data-testid="direction-5" data-active="false" hidden>ALFA STAV s.r.o.</section>
+    <section data-direction="tower" data-testid="direction-6" data-active="false" hidden>ALFA STAV s.r.o.</section>
+  </main>
+</body>
+</html>
