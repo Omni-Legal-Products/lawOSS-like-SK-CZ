@@ -7,6 +7,15 @@ from pathlib import Path
 
 DIRECTIONS = ("registry", "timeline", "constellation", "ledger", "brain", "tower")
 SCENARIOS = ("current", "empty", "partial", "stale", "parse-error", "future-version", "offline")
+SCENARIO_COPY = {
+    "current": "referenčný",
+    "empty": "žiadna potvrdená",
+    "partial": "čiastočné overenie",
+    "stale": "stale",
+    "parse-error": "OKF_PARSE_002",
+    "future-version": "iba čítanie",
+    "offline": "offline",
+}
 
 
 def require(condition: bool, message: str) -> None:
@@ -28,6 +37,45 @@ def validate_validator_contract() -> None:
         re.search(r"browser_errors\.append", source) is not None
         and re.search(r"require\(not browser_errors", source) is not None,
         "console and page errors must share the full-run error list",
+    )
+    require("direct 200 percent zoom" in source, "full validator must include direct 200 percent zoom coverage")
+
+
+def contrast_ratio(foreground: str, background: str) -> float:
+    def channel(value: int) -> float:
+        normalized = value / 255
+        return normalized / 12.92 if normalized <= 0.04045 else ((normalized + 0.055) / 1.055) ** 2.4
+
+    def luminance(color: str) -> float:
+        channels = [channel(int(color[index : index + 2], 16)) for index in (1, 3, 5)]
+        return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2]
+
+    first, second = sorted((luminance(foreground), luminance(background)), reverse=True)
+    return (first + 0.05) / (second + 0.05)
+
+
+def validate_contrast(html: str) -> None:
+    def token(name: str) -> str:
+        match = re.search(rf"{re.escape(name)}\s*:\s*(#[0-9A-Fa-f]{{6}})", html)
+        require(match is not None, f"missing color token {name}")
+        return match.group(1)
+
+    tertiary = token("--lw-text-tertiary")
+    surfaces = {
+        name: token(name)
+        for name in (
+            "--lw-canvas",
+            "--lw-sidebar",
+            "--lw-surface",
+            "--lw-surface-hover",
+            "--lw-sunken",
+            "--lw-overlay",
+        )
+    }
+    ratios = {name: contrast_ratio(tertiary, color) for name, color in surfaces.items()}
+    require(
+        all(value >= 4.5 for value in ratios.values()),
+        f"tertiary text contrast must be WCAG AA on every dark surface: {ratios}",
     )
 
 
@@ -173,6 +221,18 @@ def validate_static(html_path: Path) -> None:
     require(html.count("@font-face") == 3, "exactly three offline font faces are required")
     require("__FONT_" not in html and "__OFL_LICENSES__" not in html, "font payload markers remain")
     require("data:font/woff2;base64," in html, "offline font payload is missing")
+    for fragment in (
+        "const GATE_DETAILS = Object.freeze(",
+        "const SCENARIO_PROJECTIONS = Object.freeze(",
+        "function renderScenarioProjection(",
+        "function getTopModal(",
+        "function trapModalFocus(",
+        'data-scenario-projection="true"',
+        'data-gate-trigger="registry"',
+    ):
+        require(fragment in html, f"missing final review primitive: {fragment}")
+    require("memory/deadlines/F-2026-018.md:24" not in html, "stale deadline target remains")
+    validate_contrast(html)
 
 
 def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
@@ -248,6 +308,51 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
             require(
                 "návrh, čaká na potvrdenie" in registry["fallbackCopy"],
                 "registry text fallback is missing proposal semantics",
+            )
+
+            data_before_registry_gates = page.evaluate("JSON.stringify(DATA)")
+            registry_gate_expectations = {
+                "F-2026-018": {
+                    "source": "evidence/edelivery/receipt.json:12",
+                    "destination": "findings/deadlines/F-2026-018.md:24",
+                    "before": "deadline: null",
+                    "after": "deadline_candidate: 2026-09-14",
+                    "uncertainty": "trigger",
+                },
+                "F-2026-021": {
+                    "source": "02_podania/Odvolanie - koncept v1.docx",
+                    "destination": "findings/reconciliation/F-2026-021.md:22",
+                    "before": "platba_40: záloha",
+                    "after": "platba_40: zmluvná splátka",
+                    "uncertainty": "platby",
+                },
+            }
+            for record_id, expected in registry_gate_expectations.items():
+                trigger = page.locator(
+                    f'[data-gate-trigger="registry"][data-record-id="{record_id}"]'
+                )
+                require(trigger.count() == 1, f"registry gate trigger missing: {record_id}")
+                trigger.click()
+                gate = page.get_by_test_id("human-gate")
+                require(gate.is_visible(), f"registry gate did not open: {record_id}")
+                for field in ("source", "destination", "before", "after"):
+                    require(
+                        expected[field] in gate.locator(f"[data-gate-{field}]").inner_text(),
+                        f"registry gate {record_id} missing {field}",
+                    )
+                uncertainty = gate.locator("[data-gate-uncertainty]").inner_text().lower()
+                require(expected["uncertainty"] in uncertainty, f"registry gate {record_id} has wrong uncertainty")
+                page.keyboard.press("1")
+                require(page.evaluate("appState.direction") == "registry", "modal must block numeric routing")
+                page.keyboard.press("Escape")
+                require(not gate.is_visible(), f"registry gate did not close: {record_id}")
+                require(
+                    page.evaluate("document.activeElement.dataset.recordId") == record_id,
+                    f"registry gate focus was not restored: {record_id}",
+                )
+            require(
+                page.evaluate("JSON.stringify(DATA)") == data_before_registry_gates,
+                "registry gate interactions must not mutate DATA",
             )
 
             page.evaluate("setDirection('timeline')")
@@ -749,6 +854,18 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
                 "findings/deadlines/f-2026-018.md:24",
             ):
                 require(expected in inspector_text, f"source inspector missing: {expected}")
+            page.keyboard.press("Tab")
+            require(
+                page.evaluate("document.activeElement.closest('[data-testid=\\\"source-inspector\\\"]') !== null"),
+                "source inspector Tab must contain focus",
+            )
+            page.keyboard.press("Shift+Tab")
+            require(
+                page.evaluate("document.activeElement.closest('[data-testid=\\\"source-inspector\\\"]') !== null"),
+                "source inspector Shift+Tab must contain focus",
+            )
+            page.keyboard.press("1")
+            require(page.evaluate("appState.direction") == "timeline", "source inspector must block numeric routing")
             page.keyboard.press("Escape")
             require(not inspector.is_visible(), "Escape must close the top source inspector layer")
             require(shortcut_help.is_visible(), "Escape must preserve the next layer in LIFO order")
@@ -783,6 +900,18 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
             gate_trigger.click()
             gate = page.get_by_test_id("human-gate")
             require(gate.is_visible(), "human gate must open from a compatible request")
+            page.keyboard.press("Shift+Tab")
+            require(
+                page.evaluate("document.activeElement.closest('[data-testid=\\\"human-gate\\\"]') !== null"),
+                "human gate Shift+Tab must contain focus",
+            )
+            page.keyboard.press("Tab")
+            require(
+                page.evaluate("document.activeElement.closest('[data-testid=\\\"human-gate\\\"]') !== null"),
+                "human gate Tab must contain focus",
+            )
+            page.keyboard.press("2")
+            require(page.evaluate("appState.direction") == "brain", "human gate must block numeric routing")
             page.keyboard.press("Escape")
             require(not gate.is_visible() and shortcut_help.is_visible(), "Escape must close gate before shortcut help")
             page.keyboard.press("Escape")
@@ -836,10 +965,20 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
             )
             gate.get_by_role("button", name="Zavrieť human gate").click()
 
+            scenario_snapshots = {}
             for scenario in SCENARIOS:
                 page.evaluate("(id) => setScenario(id)", scenario)
                 require(page.evaluate("document.body.dataset.scenario") == scenario, f"scenario did not render: {scenario}")
                 require(page.locator('.direction-root[data-active="true"]').count() == 1, "scenario must keep one active direction")
+                projection = page.locator('[data-direction="brain"] [data-scenario-projection="true"]')
+                require(projection.is_visible(), f"scenario projection is not visible: {scenario}")
+                projection_text = projection.inner_text().lower()
+                require(SCENARIO_COPY[scenario].lower() in projection_text, f"scenario projection is missing semantics: {scenario}")
+                scenario_snapshots[scenario] = projection_text
+            require(
+                len(set(scenario_snapshots.values())) == len(SCENARIOS),
+                "scenario projections must differ visibly and accessibly",
+            )
             page.evaluate("setScenario('current')")
 
             for direction in DIRECTIONS:
@@ -1059,6 +1198,37 @@ def validate_full(html_path: Path, artifacts: Path) -> None:
                 require(all(print_state.values()), f"print contract failed for {direction}: {print_state}")
                 page.pdf(path=artifacts / f"direction-{direction_index}.pdf", format="A4", landscape=True, margin={"top": "10mm", "right": "10mm", "bottom": "10mm", "left": "10mm"}, print_background=True)
                 page.emulate_media(media="screen")
+            page.set_viewport_size({"width": 720, "height": 900})
+            page.emulate_media(media="screen")
+            page.evaluate("document.documentElement.style.zoom = '2'")
+            page.evaluate("setDirection('registry')")
+            zoom_state = page.evaluate(
+                """() => {
+                    const root = document.querySelector('.direction-root[data-active="true"]');
+                    const controls = [...root.querySelectorAll('button, summary, a, input, select')]
+                        .filter((node) => {
+                            const style = getComputedStyle(node);
+                            return style.display !== 'none' && style.visibility !== 'hidden';
+                        });
+                    return {
+                        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+                        rootVisible: Boolean(root && getComputedStyle(root).display !== 'none'),
+                        readableContent: Boolean(root && root.innerText.trim().length >= 120),
+                        controls: controls.length
+                    };
+                }"""
+            )
+            require(not zoom_state["overflow"], "root overflows at direct 200 percent zoom")
+            require(zoom_state["rootVisible"], "active content is not readable at direct 200 percent zoom")
+            require(zoom_state["readableContent"], "active content is too short at direct 200 percent zoom")
+            require(zoom_state["controls"] > 0, "no operable controls remain at direct 200 percent zoom")
+            zoom_control = page.locator('[data-testid="registry-decision-queue"] details:nth-of-type(3) > summary')
+            zoom_control.press("Enter")
+            require(
+                page.locator('[data-testid="registry-decision-queue"] details:nth-of-type(3)').evaluate("element => element.open"),
+                "registry control is not operable at direct 200 percent zoom",
+            )
+            page.evaluate("document.documentElement.style.zoom = ''")
             require(not browser_errors, f"browser console/page errors: {'; '.join(browser_errors)}")
             require(not external_requests, f"external network request: {'; '.join(external_requests)}")
         finally:
