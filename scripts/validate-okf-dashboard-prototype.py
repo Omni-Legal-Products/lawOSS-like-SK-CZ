@@ -87,6 +87,34 @@ def validate_static(html_path: Path) -> None:
         'data-source-kind="record"',
     ):
         require(fragment in html, f"missing task 4 invariant: {fragment}")
+    for test_id in (
+        "brain-layers",
+        "brain-matter-brief",
+        "brain-layer-detail",
+        "brain-pending-findings",
+        "risk-matrix",
+        "risk-breadcrumb",
+    ):
+        require(f'data-testid="{test_id}"' in html, f"missing task 5 primitive: {test_id}")
+    for fragment in (
+        'data-brain-layer="L1"',
+        'data-brain-layer="L2"',
+        'data-brain-layer="L3"',
+        "function setBrainLayer(layer)",
+        "L2-to-L3 leak kontrola",
+        'data-risk-lens="urgency"',
+        'data-risk-lens="evidence"',
+        'data-risk-lens="data-health"',
+        'data-risk-lens="workload"',
+        "function setRiskLens(id)",
+        "Lehota",
+        "Chýbajúci zdroj",
+        "Stale",
+        "Human gate",
+        "Provider",
+    ):
+        require(fragment in html, f"missing task 5 invariant: {fragment}")
+    require("drag-and-drop" not in html.lower(), "brain must not offer drag-and-drop")
 
 
 def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
@@ -459,12 +487,177 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
                 "DATA changed during graph or ledger interaction",
             )
 
+            page.evaluate("setDirection('brain')")
+            brain_initial = page.evaluate(
+                """() => ({
+                    pressed: [...document.querySelectorAll(
+                        '[data-brain-layer][aria-pressed="true"]'
+                    )].map((button) => button.dataset.brainLayer),
+                    state: appState.brainLayer,
+                    brief: document.querySelector(
+                        '[data-testid="brain-matter-brief"]'
+                    ).textContent,
+                    detail: document.querySelector(
+                        '[data-testid="brain-layer-detail"]'
+                    ).textContent,
+                    pending: document.querySelectorAll(
+                        '[data-testid="brain-pending-findings"] [data-pending-finding]'
+                    ).length
+                })"""
+            )
+            require(brain_initial["pressed"] == ["L2"], "brain must start on L2")
+            require(brain_initial["state"] == "L2", "brain state must start on L2")
+            require(
+                "ALFA STAV s.r.o." in brain_initial["brief"],
+                "brain matter brief must remain visible",
+            )
+            for record_id in ("T-2026-029", "D-2026-011", "Q-2026-004", "TASK-2026-044"):
+                require(record_id in brain_initial["detail"], f"brain L2 missing {record_id}")
+            require(brain_initial["pending"] == 2, "brain must show two pending findings")
+
+            page.evaluate("setBrainLayer('L1')")
+            brain_l1 = page.evaluate(
+                """() => ({
+                    pressed: [...document.querySelectorAll(
+                        '[data-brain-layer][aria-pressed="true"]'
+                    )].map((button) => button.dataset.brainLayer),
+                    detail: document.querySelector(
+                        '[data-testid="brain-layer-detail"]'
+                    ).textContent,
+                    trigger: (() => {
+                        const button = document.querySelector(
+                            '[data-brain-gate-trigger]'
+                        );
+                        return {
+                            recordId: button.dataset.recordId,
+                            gateId: button.dataset.gateId,
+                            text: button.textContent
+                        };
+                    })()
+                })"""
+            )
+            require(brain_l1["pressed"] == ["L1"], "L1 must be aria-pressed")
+            require("human gate" in brain_l1["detail"], "L1 preview must require human gate")
+            require(
+                brain_l1["trigger"]["recordId"] == "F-2026-021",
+                "L1 gate trigger must use a DATA.records ID",
+            )
+            require(brain_l1["trigger"]["gateId"], "L1 gate trigger is missing gate ID")
+            page.evaluate(
+                """() => {
+                    window.__task5GateRequest = null;
+                    document.addEventListener(
+                        'okf:gate-request',
+                        (event) => { window.__task5GateRequest = event.detail; },
+                        { once: true }
+                    );
+                }"""
+            )
+            page.locator("[data-brain-gate-trigger]").click()
+            require(
+                page.evaluate("window.__task5GateRequest")
+                == {
+                    "gateId": "promotion-L1-F-2026-021",
+                    "recordId": "F-2026-021",
+                },
+                "L1 trigger must emit a compatible gate request without writing",
+            )
+
+            page.evaluate("setBrainLayer('L3')")
+            brain_l3 = page.locator('[data-testid="brain-layer-detail"]').inner_text()
+            require("právna kontrola" in brain_l3, "L3 must require legal review")
+            require("L2-to-L3 leak kontrola" in brain_l3, "L3 leak copy is missing")
+
+            page.evaluate("setDirection('tower')")
+            tower_initial = page.evaluate(
+                """() => ({
+                    rows: document.querySelectorAll(
+                        '[data-testid="risk-matrix"] tbody tr'
+                    ).length,
+                    pressed: [...document.querySelectorAll(
+                        '[data-risk-lens][aria-pressed="true"]'
+                    )].map((button) => button.dataset.riskLens),
+                    state: appState.riskLens,
+                    headers: [...document.querySelectorAll(
+                        '[data-testid="risk-matrix"] thead th'
+                    )].map((cell) => cell.textContent.trim()),
+                    portfolio: DATA.portfolio.map((item) => item.client),
+                    rendered: [...document.querySelectorAll(
+                        '[data-testid="risk-matrix"] tbody tr'
+                    )].map((row) => row.dataset.portfolioClient)
+                })"""
+            )
+            require(tower_initial["rows"] == 5, "tower must render five portfolio rows")
+            require(tower_initial["pressed"] == ["urgency"], "tower must start on urgency")
+            require(tower_initial["state"] == "urgency", "tower state must start on urgency")
+            require(
+                tower_initial["headers"][-5:]
+                == ["Lehota", "Chýbajúci zdroj", "Stale", "Human gate", "Provider"],
+                "tower transparent columns are missing or reordered",
+            )
+            require(
+                tower_initial["rendered"] == tower_initial["portfolio"],
+                "tower rows must render DATA.portfolio exactly",
+            )
+            for lens in ("urgency", "evidence", "data-health", "workload"):
+                page.evaluate("(value) => setRiskLens(value)", lens)
+                require(
+                    page.locator(f'[data-risk-lens="{lens}"]').get_attribute("aria-pressed")
+                    == "true",
+                    f"{lens} lens must update aria-pressed",
+                )
+            task_5_sources = page.evaluate(
+                """() => {
+                    const recordIds = new Set(DATA.records.map((record) => record.id));
+                    return [...document.querySelectorAll(
+                        '[data-direction="brain"] [data-source-trigger][data-source-kind="record"], '
+                        + '[data-direction="tower"] [data-source-trigger][data-source-kind="record"]'
+                    )].map((trigger) => ({
+                        id: trigger.dataset.sourceId,
+                        valid: recordIds.has(trigger.dataset.sourceId)
+                    }));
+                }"""
+            )
+            require(task_5_sources, "task 5 must expose typed record source triggers")
+            require(
+                all(source["valid"] for source in task_5_sources),
+                "task 5 source trigger points outside DATA.records",
+            )
+            nav_entries_before = page.evaluate("performance.getEntriesByType('navigation').length")
+            page.locator('[data-portfolio-drilldown="ALFA STAV s.r.o."]').click()
+            page.wait_for_function("window.location.hash === '#registry'")
+            drilldown = page.evaluate(
+                """() => ({
+                    hash: window.location.hash,
+                    direction: appState.direction,
+                    navigationEntries: performance.getEntriesByType('navigation').length,
+                    breadcrumb: document.querySelector(
+                        '[data-testid="risk-breadcrumb"]'
+                    ).textContent,
+                    dataSnapshot: JSON.stringify(DATA)
+                })"""
+            )
+            require(drilldown["hash"] == "#registry", "ALFA drill-down must route to #registry")
+            require(drilldown["direction"] == "registry", "ALFA drill-down must open registry")
+            require(
+                drilldown["navigationEntries"] == nav_entries_before,
+                "ALFA drill-down must not reload the page",
+            )
+            require("Prax" in drilldown["breadcrumb"], "drill-down must preserve breadcrumb to prax")
+            require(drilldown["dataSnapshot"] == initial["dataSnapshot"], "DATA changed in task 5")
+
             if artifacts is not None:
                 artifacts.mkdir(parents=True, exist_ok=True)
                 page.screenshot(path=artifacts / "direction-4-audit-ledger.png")
                 page.evaluate("setDirection('constellation')")
                 page.evaluate("spotlightNode('T-2026-029')")
                 page.screenshot(path=artifacts / "direction-3-evidence-constellation.png")
+                page.evaluate("setDirection('brain')")
+                page.evaluate("setBrainLayer('L2')")
+                page.screenshot(path=artifacts / "direction-5-okf-brain.png")
+                page.evaluate("setDirection('tower')")
+                page.evaluate("setRiskLens('urgency')")
+                page.screenshot(path=artifacts / "direction-6-risk-control-tower.png")
 
             page.evaluate("setDirection('tower')")
             page.wait_for_function("window.location.hash === '#tower'")
