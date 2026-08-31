@@ -79,6 +79,8 @@ Aktuálny overený stav. Prepisuje sa.
 | `decision` | `rozhodnuti` / `rozhodnutie` | L2 | `TP-XXX` | — |
 | `subject` | `subjekt` | L2 | tabuľka Strany | — |
 | `question` | `otazka` | L2 | `OQ-XXX` | — |
+| `subject` (AML) | `subjekt` | L2 | tabuľka Strany | — |
+| `screening` | `provereni` / `preverenie` | L2 | — | — |
 | `rule` | `pravidlo` | **L1** | — | `type: user` |
 | `lesson` | `pouceni` / `poucenie` | **L1** | `LL-XXX` | `type: feedback` |
 | `authority` | `pramen` | **L3** | `# Citations` | `type: reference` |
@@ -129,6 +131,29 @@ Kľúče a hodnoty enumov sú technické identifikátory → bez diakritiky. Ľu
 
 Právne pojmy sa neprekladajú ticho — `lhuty` a `lehoty` sú dve polia jednej schémy, nie preklad jedného.
 
+### 8. AML evidencia
+
+Pribudlo na žiadosť VŘ 31. 8. Ani jedna pôvodná implementácia AML nepokrývala, hoci [spec 0002](../../specs/0002-okf-operacny-system-praxe.md) má celú sekciu „Onboarding subjektov a AML research" vrátane režimov `light` / `medium` / `hard` a periodického rescanu.
+
+Dve veci, ktoré sa nesmú zliať do jednej:
+
+| | `subject` | `screening` |
+|---|---|---|
+| čo to je | **kto to je** — identifikácia podľa § 8 | **čo som k dátumu zistil** — úkon v čase |
+| obsah | rodné číslo, miesto narodenia, pohlavie, občianstvo, pobyt, doklad; pri PO právna forma, sídlo, zápis, konajúce osoby, skutočný majiteľ | dátum, režim, prehľadané registre, PEP, sankcie, pôvod prostriedkov, riziko, záver, platnosť |
+| početnosť | jeden na osobu | **jeden na každé preverenie** — § 9 vyžaduje priebežnú kontrolu, § 16 archiváciu 10 rokov |
+
+**Kde to leží — tým sa uzatvára bod O3.** Identifikácia sa robí raz pri vzniku obchodného vzťahu, nie pri každej kauze, a archivuje sa 10 rokov od skončenia **vzťahu**, nie kauzy. `subject` a `screening` preto žijú v zložke **klienta**; spis na ne odkazuje `[[S-001]]`. Zložka klienta sa hľadá podľa `klient.md` až štyri úrovne nad spisom, takže MČ profil A (klient → oblasť → spis) sedí bez úpravy.
+
+**Citlivé polia.** Rodné číslo, číslo dokladu, trvalý pobyt a dátum narodenia sú v tabuľke označené `sensitive`, čo má dva automatické dôsledky: maskujú sa vo výstupoch pre človeka (`750101/••••`) a **stávajú sa jehlami detektora úniku do L3**. Pridať citlivý údaj a zabudnúť rozšíriť bránu preto nejde — to bola najväčšia hrozba tejto zmeny. Maskovanie nie je bezpečnostné opatrenie; kto má prístup k adresáru, má prístup k údajom.
+
+**Jadro preverenie nevykonáva** — nesie jeho výsledok a stráži lehotu. Volanie registrov, PEP a sankcií patrí skillom a MCP konektorom.
+
+> [!IMPORTANT]
+> **Slovenská povinná sada nie je implementovaná — čaká na MČ.** CZ vychádza z § 8 zák. č. 253/2008 Sb. a je overená proti reálne používanému identifikačnému formuláru. Slovenský predpis je zák. č. 297/2008 Z. z.; jeho požiadavky VŘ neoveril a predstierať ich by bolo tiché prekladanie právnych pojmov medzi jurisdikciami. `AML_REQUIRED.sk` preto zámerne chýba a validátor hlási `AML_RULESET_UNVERIFIED` namiesto toho, aby vynucoval české pravidlá na slovenský spis.
+>
+> **Otázka na MČ:** aká je povinná identifikačná sada podľa slovenského AML pre FO a pre PO? Doplní sa ako jeden riadok do tabuľky.
+
 ## Čo už beží
 
 [PR #24](https://github.com/Omni-Legal-Products/lawoss/pull/24) — `lawoss/okf/`, 70 testov, bez runtime závislostí, mimo pnpm workspace, nula zmenených upstream súborov.
@@ -143,8 +168,10 @@ Hlavička Fáza / Ďalší krok a vlastné sekcie zostávajú advokátovi a nepr
 
 **O2 — migrácia existujúcich spisov.** MČ spisy majú `MEMORY.md` s TP/LL/OQ. Konverzia na typované záznamy môže byť jednorazová a nedeštruktívna (pôvodný súbor zostáva), ale treba potvrdiť, že sa do nej ide.
 
-**O3 — kde žije L1 kancelárie.** L2 patrí do spisu, to je jasné. L1 (pravidlá, poučenia) je nadspisové — potrebuje koreň kancelárie. Návrh: `<koreň spisov>/_kancelaria/pamet/`.
+**O3 — kde žijú nadspisové záznamy.** ✅ **Vyriešené pre AML** (31. 8.): `subject` a `screening` žijú u klienta, spis odkazuje. Zostáva otvorené pre **L1 kancelárie** (pravidlá, poučenia), ktoré sú nad klientom — návrh `<koreň spisov>/_kancelaria/pamet/`.
 
 **O4 — multi-user.** Otvorená otázka zo spec 0002 zostáva otvorená. Append-only história konflikt zmierňuje (dva zápisy sa dajú zliať), ale `## Pravda` je stále last-write-wins.
+
+**O6 — slovenská AML sada.** Povinná identifikačná sada podľa zák. č. 297/2008 Z. z. pre FO a PO. Bez nej sa na slovenských spisoch úplnosť nekontroluje. Patrí MČ.
 
 **O5 — publikovať schému samostatne?** Spec 0002 sa pýta, či OKF vydať ako dokumentovaný štandard. Schéma je v jednej tabuľke, takže je to lacné — ale je to rozhodnutie tímu.
