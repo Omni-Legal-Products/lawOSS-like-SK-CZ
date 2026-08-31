@@ -380,6 +380,34 @@
       body[data-scenario="future-version"] [data-scenario-copy]::after { content: "Workspace používa novšiu verziu kontraktu. Dostupné je iba čítanie."; }
       body[data-scenario="offline"] [data-scenario-copy]::after { content: "Registre sú offline. Lokálne OKF dáta ostávajú čitateľné."; }
     }
+    @layer dialogs {
+      .dialog-scrim { position: fixed; z-index: 30; inset: 0; display: grid; place-items: center; padding: 24px; background: var(--lw-overlay); }
+      .dialog-scrim[hidden] { display: none; }
+      .okf-dialog { width: min(720px, 100%); max-height: min(820px, calc(100vh - 48px)); overflow: auto; border: 1px solid var(--lw-border-strong); box-shadow: 0 24px 72px var(--lw-canvas); background: var(--lw-surface); }
+      .okf-dialog__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 18px 20px; border-bottom: 1px solid var(--lw-border); }
+      .okf-dialog__head h2 { margin: 4px 0 0; font-size: 18px; }
+      .okf-dialog__head small, .okf-dialog dt { color: var(--lw-text-tertiary); font: 9px var(--lw-font-mono); letter-spacing: .07em; text-transform: uppercase; }
+      .okf-dialog__body { padding: 18px 20px 20px; }
+      .source-chain { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; border: 1px solid var(--lw-border-subtle); }
+      .source-chain > div { min-height: 76px; padding: 12px; border-bottom: 1px solid var(--lw-border-subtle); }
+      .source-chain > div:nth-child(odd) { border-right: 1px solid var(--lw-border-subtle); }
+      .source-chain > div:nth-last-child(-n+2) { border-bottom: 0; }
+      .source-chain dd { margin: 7px 0 0; color: var(--lw-text-primary); font-size: 12px; line-height: 1.45; overflow-wrap: anywhere; }
+      .gate-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      .gate-card { padding: 12px; border: 1px solid var(--lw-border-subtle); background: var(--lw-sunken); }
+      .gate-card strong, .gate-card span { display: block; margin-top: 5px; color: var(--lw-text-primary); font-size: 12px; line-height: 1.45; overflow-wrap: anywhere; }
+      .gate-card small { color: var(--lw-text-tertiary); font: 9px var(--lw-font-mono); text-transform: uppercase; }
+      .gate-diff { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--lw-border); }
+      .gate-diff div { padding: 10px; background: var(--lw-sunken); }
+      .gate-diff code { display: block; margin-top: 5px; color: var(--lw-text-primary); white-space: pre-wrap; }
+      .gate-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+      .gate-notice { min-height: 20px; margin: 12px 0 0; color: var(--lw-accent); font-size: 12px; }
+      .gate-stale { margin: 12px 0 0; padding: 12px; border-left: 2px solid var(--lw-warning); color: var(--lw-text-secondary); background: var(--lw-sunken); }
+      .gate-stale[hidden] { display: none; }
+      .gate-stale label { display: block; margin-top: 10px; color: var(--lw-text-secondary); font-size: 12px; }
+      .gate-stale input { width: 100%; margin-top: 5px; padding: 8px; border: 1px solid var(--lw-border); color: var(--lw-text-primary); background: var(--lw-canvas); }
+      @media (max-width: 560px) { .source-chain, .gate-grid { grid-template-columns: 1fr; } .source-chain > div:nth-child(odd) { border-right: 0; } .source-chain > div:nth-last-child(2) { border-bottom: 1px solid var(--lw-border-subtle); } .gate-diff { grid-template-columns: 1fr; } }
+    }
     @layer responsive {
       @media (max-width: 1180px) {
         .lw-shell { grid-template-columns: 164px minmax(0, 1fr); }
@@ -540,7 +568,7 @@
         <section class="change-register" aria-label="Zmeny, ďalší krok a audit">
           <div class="change-column"><h2>Posledné zmeny v spise</h2><strong>Rozsudok doručený 28. 8. 2026</strong><p>Potvrdená udalosť · evidence/edelivery/receipt.json:12</p></div>
           <div class="change-column"><h2>Ďalší krok</h2><strong>Preveriť význam odovzdávacieho protokolu</strong><p class="mono">D-2026-011 · TASK-2026-044</p></div>
-          <div class="change-column"><h2>Audit</h2><strong>Truth potvrdená advokátom</strong><p><button class="source-link" type="button" data-source-trigger data-record-id="AUD-2026-084">audit/2026-08.jsonl:41</button></p></div>
+          <div class="change-column"><h2>Audit</h2><strong>Truth potvrdená advokátom</strong><p><button class="source-link" type="button" data-source-trigger data-source-kind="record" data-source-id="AUD-2026-084">audit/2026-08.jsonl:41</button></p></div>
         </section>
       </section>
       <section class="direction-root" data-direction="timeline" data-testid="direction-2" data-active="false" hidden inert aria-labelledby="timeline-title">
@@ -655,6 +683,18 @@
   </div>
   <div class="persistent-marker" aria-hidden="true">Fiktívne dáta · pracovný návrh</div>
   <aside class="shortcut-popover" data-testid="shortcut-help" hidden aria-labelledby="shortcut-title"><h2 id="shortcut-title">Klávesové skratky</h2><dl><dt>1 až 6</dt><dd>Otvoriť smer</dd><dt>← →</dt><dd>Predchádzajúci alebo ďalší smer</dd><dt>F</dt><dd>Prepnúť prezentačný režim</dd><dt>Esc</dt><dd>Ukončiť prezentáciu alebo otvoriť galériu</dd></dl></aside>
+  <div class="dialog-scrim" data-source-inspector-layer hidden>
+    <aside class="okf-dialog" role="dialog" aria-modal="true" aria-labelledby="source-inspector-title" data-testid="source-inspector" tabindex="-1">
+      <header class="okf-dialog__head"><div><small>Provenance chain</small><h2 id="source-inspector-title">Zdroj hodnoty</h2></div><button type="button" data-source-inspector-close aria-label="Zavrieť zdroj">Zavrieť zdroj</button></header>
+      <div class="okf-dialog__body"><dl class="source-chain"><div><dt>UI hodnota</dt><dd data-source-ui-value></dd></div><div><dt>Read model</dt><dd data-source-read-model></dd></div><div><dt>Kanonický záznam</dt><dd data-source-canonical></dd></div><div><dt>Súbor a riadok</dt><dd data-source-file-line></dd></div><div><dt>Evidence</dt><dd data-source-evidence></dd></div><div><dt>History</dt><dd data-source-history></dd></div></dl></div>
+    </aside>
+  </div>
+  <div class="dialog-scrim" data-human-gate-layer hidden>
+    <aside class="okf-dialog" role="dialog" aria-modal="true" aria-labelledby="human-gate-title" data-testid="human-gate" tabindex="-1">
+      <header class="okf-dialog__head"><div><small>Human gate · iba ukážka</small><h2 id="human-gate-title">Návrh čaká na rozhodnutie</h2></div><button type="button" data-human-gate-close aria-label="Zavrieť human gate">Zavrieť human gate</button></header>
+      <div class="okf-dialog__body"><div class="gate-grid"><div class="gate-card"><small>Zdroj</small><strong data-gate-source></strong></div><div class="gate-card"><small>Locator</small><strong data-gate-locator></strong></div><div class="gate-card gate-diff"><div><small>Predtým</small><code data-gate-before></code></div><div><small>Navrhovaný diff</small><code data-gate-after></code></div></div><div class="gate-card"><small>Pomenovaná neistota</small><span data-gate-uncertainty></span></div><div class="gate-card"><small>Cieľ zápisu</small><span data-gate-destination></span></div><div class="gate-card"><small>Concurrency</small><span>base_revision: 18<br>base_hash: 81aa39f2</span></div><div class="gate-card"><small>Write target</small><span>Po potvrdení by sa zmenil iba kanonický OKF záznam v uvedenom cieli. Tento prototyp nič nezapíše.</span></div></div><div class="gate-stale" data-gate-stale hidden><strong>Proposal stale</strong><p>Podklad sa zmenil: receipt alebo kanonický záznam už nie je na pôvodnej revízii.</p><label for="gate-changed-input">Zmenený podklad<input id="gate-changed-input" name="changed-input" value="evidence/edelivery/receipt.json:12" readonly></label><button type="button" data-gate-action="recalculate">Prepočítať návrh</button></div><div class="gate-actions"><button type="button" data-gate-action="confirm">Potvrdiť</button><button type="button" data-gate-action="edit">Upraviť</button><button type="button" data-gate-action="reject">Odmietnuť</button><button type="button" data-gate-action="defer">Odložiť</button></div><p class="gate-notice" data-gate-notice role="status" aria-live="polite"></p></div>
+    </aside>
+  </div>
   <script>
     const DATA = Object.freeze({
       matter: Object.freeze({
@@ -764,6 +804,14 @@
     const riskMatrixBody = document.querySelector("[data-risk-matrix-body]");
     const riskLensTitle = document.querySelector("[data-risk-lens-title]");
     const riskRationale = document.querySelector("[data-risk-rationale]");
+    const sourceInspectorLayer = document.querySelector("[data-source-inspector-layer]");
+    const sourceInspector = document.querySelector('[data-testid="source-inspector"]');
+    const humanGateLayer = document.querySelector("[data-human-gate-layer]");
+    const humanGate = document.querySelector('[data-testid="human-gate"]');
+    const sourceFields = Object.freeze({ uiValue: document.querySelector("[data-source-ui-value]"), readModel: document.querySelector("[data-source-read-model]"), canonical: document.querySelector("[data-source-canonical]"), fileLine: document.querySelector("[data-source-file-line]"), evidence: document.querySelector("[data-source-evidence]"), history: document.querySelector("[data-source-history]") });
+    const gateFields = Object.freeze({ source: document.querySelector("[data-gate-source]"), locator: document.querySelector("[data-gate-locator]"), before: document.querySelector("[data-gate-before]"), after: document.querySelector("[data-gate-after]"), uncertainty: document.querySelector("[data-gate-uncertainty]"), destination: document.querySelector("[data-gate-destination]"), stale: document.querySelector("[data-gate-stale]"), notice: document.querySelector("[data-gate-notice]") });
+    let sourceInspectorTrigger = null;
+    let humanGateTrigger = null;
     function openGallery() { appState.galleryOpen = true; gallery.hidden = false; }
     function setDirection(direction, updateHash = true) {
       if (!DIRECTIONS.includes(direction)) { openGallery(); return; }
@@ -772,12 +820,66 @@
       directionControls.forEach((control) => { if (control.dataset.directionTarget === direction) control.setAttribute("aria-current", "page"); else control.removeAttribute("aria-current"); });
       gallery.hidden = true;
       if (direction === "tower") {
+        appState.practiceDrilldown = false;
+        document.querySelector("[data-practice-return]").hidden = true;
         document.querySelector("[data-risk-breadcrumb-detail]").textContent = "Portfólio prípadov";
       }
       if (updateHash && window.location.hash !== `#${direction}`) window.location.hash = direction;
     }
-    function setScenario(scenario) { if (!SCENARIOS.includes(scenario)) return; appState.scenario = scenario; document.body.dataset.scenario = scenario; scenarioSelect.value = scenario; }
+    function setScenario(scenario) { if (!SCENARIOS.includes(scenario)) return; appState.scenario = scenario; document.body.dataset.scenario = scenario; scenarioSelect.value = scenario; updateGateScenario(); }
     function setPresentation(enabled) { appState.presentation = enabled; document.body.dataset.presentation = String(enabled); presentationToggle.setAttribute("aria-pressed", String(enabled)); }
+    function getSourceProjection(sourceId, sourceKind) {
+      if (sourceKind === "event") {
+        const event = DATA.events.find((item) => item.id === sourceId);
+        if (!event) return null;
+        const recordId = Object.freeze({ "event-delivery": "T-2026-029", "event-deadline-candidate": "F-2026-018", "event-fact-candidate": "F-2026-021" })[sourceId];
+        const record = DATA.records.find((item) => item.id === recordId);
+        return { item: event, readModel: `DATA.events[id=\"${event.id}\"]`, canonical: record ? `${record.id} · ${record.type}` : "Udalosť je samostatný kanonický event", fileLine: `${event.source}${event.locator ? `:${event.locator}` : ""}`, evidence: event.source, history: `${event.date} · ${event.label} načítaná bez zmeny fixture.` };
+      }
+      const record = DATA.records.find((item) => item.id === sourceId);
+      if (!record) return null;
+      return { item: record, readModel: `DATA.records[id=\"${record.id}\"]`, canonical: `${record.id} · ${record.type} · ${record.status}`, fileLine: `${record.source}:${record.locator}`, evidence: record.source, history: `Auditný reťazec pre ${record.id} je iba na čítanie.` };
+    }
+    function openSourceInspector(sourceId, trigger, sourceKind = trigger?.dataset.sourceKind) {
+      const projection = getSourceProjection(sourceId, sourceKind);
+      if (!projection) return;
+      sourceInspectorTrigger = trigger;
+      sourceFields.uiValue.textContent = trigger?.textContent.trim() || projection.item.label;
+      sourceFields.readModel.textContent = projection.readModel;
+      sourceFields.canonical.textContent = projection.canonical;
+      sourceFields.fileLine.textContent = projection.fileLine;
+      sourceFields.evidence.textContent = projection.evidence;
+      sourceFields.history.textContent = projection.history;
+      sourceInspectorLayer.hidden = false;
+      sourceInspector.querySelector("[data-source-inspector-close]").focus();
+    }
+    function closeSourceInspector() { if (sourceInspectorLayer.hidden) return false; sourceInspectorLayer.hidden = true; sourceInspectorTrigger?.focus(); sourceInspectorTrigger = null; return true; }
+    function updateGateScenario() {
+      const stale = appState.scenario === "stale";
+      const futureVersion = appState.scenario === "future-version";
+      gateFields.stale.hidden = !stale;
+      humanGate.querySelector('[data-gate-action="confirm"]').disabled = stale || futureVersion;
+      humanGate.querySelector('[data-gate-action="edit"]').disabled = stale || futureVersion;
+      humanGate.querySelectorAll("[data-gate-action]").forEach((action) => { if (!["confirm", "edit"].includes(action.dataset.gateAction)) action.disabled = futureVersion; });
+    }
+    function openHumanGate(recordId, trigger = document.activeElement) {
+      const record = DATA.records.find((item) => item.id === recordId);
+      const detail = LEDGER_DETAILS[recordId];
+      if (!record || !detail) return;
+      humanGateTrigger = trigger instanceof HTMLElement ? trigger : null;
+      gateFields.source.textContent = record.label;
+      gateFields.locator.textContent = `${record.source}:${record.locator}`;
+      gateFields.before.textContent = detail.before;
+      gateFields.after.textContent = detail.after;
+      gateFields.uncertainty.textContent = DATA.matter.candidateDeadline.uncertainty;
+      gateFields.destination.textContent = `kanonický OKF záznam ${record.source}:${record.locator}`;
+      gateFields.notice.textContent = "";
+      updateGateScenario();
+      humanGateLayer.hidden = false;
+      humanGate.querySelector("[data-human-gate-close]").focus();
+    }
+    function closeHumanGate() { if (humanGateLayer.hidden) return false; humanGateLayer.hidden = true; humanGateTrigger?.focus(); humanGateTrigger = null; return true; }
+    function announceGateAction() { gateFields.notice.textContent = "Demonštračný stav · nič sa nezapísalo"; }
     function cycleDirection(step) { const currentIndex = DIRECTIONS.indexOf(appState.direction); setDirection(DIRECTIONS[(currentIndex + step + DIRECTIONS.length) % DIRECTIONS.length]); }
     function detailRow(label, value) { const wrapper = document.createElement("div"); wrapper.className = "timeline-detail__row"; const term = document.createElement("dt"); term.textContent = label; const description = document.createElement("dd"); description.textContent = value; wrapper.append(term, description); return wrapper; }
     function renderTimelineDetail(id) {
@@ -1050,19 +1152,28 @@
       if (trigger) drillDownPortfolio(trigger.dataset.portfolioDrilldown);
     });
     document.addEventListener("click", (event) => {
+      const sourceTrigger = event.target.closest("[data-source-trigger]");
+      if (sourceTrigger) { openSourceInspector(sourceTrigger.dataset.sourceId, sourceTrigger); return; }
+      if (event.target.closest("[data-source-inspector-close]")) { closeSourceInspector(); return; }
+      if (event.target.closest("[data-human-gate-close]")) { closeHumanGate(); return; }
+      const action = event.target.closest("[data-gate-action]");
+      if (action && !action.disabled) { announceGateAction(); return; }
       const trigger = event.target.closest("[data-gate-trigger]");
       if (!trigger) return;
+      humanGateTrigger = trigger;
       document.dispatchEvent(new CustomEvent("okf:gate-request", { detail: Object.freeze({ gateId: trigger.dataset.gateId, recordId: trigger.dataset.recordId }) }));
     });
+    document.addEventListener("okf:gate-request", (event) => openHumanGate(event.detail.recordId, humanGateTrigger || document.activeElement));
     document.querySelector("[data-gallery-open]").addEventListener("click", openGallery);
     scenarioSelect.addEventListener("change", (event) => setScenario(event.target.value));
     presentationToggle.addEventListener("click", () => setPresentation(!appState.presentation));
     shortcutToggle.addEventListener("click", () => { const willOpen = shortcutHelp.hidden; shortcutHelp.hidden = !willOpen; shortcutToggle.setAttribute("aria-expanded", String(willOpen)); });
     window.addEventListener("hashchange", routeFromHash);
-    window.addEventListener("keydown", (event) => {
-      const target = event.target;
-      if (target instanceof HTMLElement && (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName))) return;
-      if (/^[1-6]$/.test(event.key)) setDirection(DIRECTIONS[Number(event.key) - 1]); else if (event.key === "ArrowRight") cycleDirection(1); else if (event.key === "ArrowLeft") cycleDirection(-1); else if (event.key.toLowerCase() === "f") setPresentation(!appState.presentation); else if (event.key === "Escape" && appState.presentation) setPresentation(false); else if (event.key === "Escape") openGallery();
+    function isTypingTarget(target) { return target instanceof HTMLElement && (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)); }
+    function closeTopLayerOrPresentation() { if (closeSourceInspector() || closeHumanGate()) return; if (appState.presentation) { setPresentation(false); return; } openGallery(); }
+    document.addEventListener("keydown", (event) => {
+      if (isTypingTarget(event.target)) return;
+      if (/^[1-6]$/.test(event.key)) setDirection(DIRECTIONS[Number(event.key) - 1]); else if (event.key === "ArrowRight") cycleDirection(1); else if (event.key === "ArrowLeft") cycleDirection(-1); else if (event.key.toLowerCase() === "f") setPresentation(!appState.presentation); else if (event.key === "Escape") closeTopLayerOrPresentation();
     });
     setScenario("current"); setTimelineEvent(appState.selectedTimelineEvent); spotlightNode(appState.spotlightNode); setLedgerItem(appState.selectedLedgerItem); setBrainLayer(appState.brainLayer); setRiskLens(appState.riskLens); routeFromHash();
   </script>

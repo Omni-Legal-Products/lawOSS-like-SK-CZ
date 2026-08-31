@@ -38,6 +38,23 @@ def validate_static(html_path: Path) -> None:
         require(f'data-testid="direction-{index}"' in html, f"missing direction test id {index}")
     for scenario in SCENARIOS:
         require(f'data-scenario="{scenario}"' in html, f"missing scenario {scenario}")
+    for fragment in (
+        'data-testid="source-inspector"',
+        'data-testid="human-gate"',
+        'role="dialog"',
+        'aria-modal="true"',
+        "function openSourceInspector(",
+        "function closeSourceInspector(",
+        "function openHumanGate(",
+        "function closeHumanGate(",
+        "function isTypingTarget(",
+        "function closeTopLayerOrPresentation(",
+        "Demonštračný stav · nič sa nezapísalo",
+        "Prepočítať návrh",
+        "base_revision: 18",
+        "base_hash: 81aa39f2",
+    ):
+        require(fragment in html, f"missing task 6 primitive: {fragment}")
     for test_id in (
         "registry-decision-queue",
         "deadline-strip",
@@ -298,7 +315,7 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
 
             data_before_task_4 = page.evaluate("JSON.stringify(DATA)")
             page.evaluate("setDirection('constellation')")
-            page.evaluate("spotlightNode('T-2026-029')")
+            page.locator('[data-testid="graph-node-T-2026-029"]').click()
             graph = page.evaluate(
                 """() => ({
                     selected: [...document.querySelectorAll(
@@ -440,7 +457,7 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
                 )
 
             page.evaluate("setDirection('ledger')")
-            page.evaluate("setLedgerItem('OKF_PARSE_002')")
+            page.locator('[data-testid="ledger-item-OKF_PARSE_002"]').press("Enter")
             ledger = page.evaluate(
                 """() => ({
                     selected: [...document.querySelectorAll(
@@ -562,6 +579,9 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
                 },
                 "L1 trigger must emit a compatible gate request without writing",
             )
+            page.get_by_test_id("human-gate").get_by_role(
+                "button", name="Zavrieť human gate"
+            ).click()
 
             page.evaluate("setBrainLayer('L3')")
             brain_l3 = page.locator('[data-testid="brain-layer-detail"]').inner_text()
@@ -645,6 +665,119 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
             )
             require("Prax" in drilldown["breadcrumb"], "drill-down must preserve breadcrumb to prax")
             require(drilldown["dataSnapshot"] == initial["dataSnapshot"], "DATA changed in task 5")
+
+            page.keyboard.press("2")
+            require(appState := page.evaluate("appState.direction"), "keyboard state is unavailable")
+            require(appState == "timeline", "2 must activate the timeline direction")
+            page.keyboard.press("ArrowRight")
+            require(page.evaluate("appState.direction") == "constellation", "ArrowRight must advance directions")
+            page.keyboard.press("ArrowLeft")
+            require(page.evaluate("appState.direction") == "timeline", "ArrowLeft must return directions")
+            page.keyboard.press("F")
+            require(page.evaluate("appState.presentation") is True, "F must enable presentation mode")
+            page.keyboard.press("Escape")
+            require(page.evaluate("appState.presentation") is False, "Escape must close presentation mode")
+            scenario_select = page.get_by_test_id("scenario-select")
+            scenario_select.focus()
+            page.keyboard.press("1")
+            require(page.evaluate("appState.direction") == "timeline", "typing target must ignore numeric shortcuts")
+
+            source_trigger = page.locator('[data-testid="timeline-detail"] [data-source-trigger]')
+            source_trigger.click()
+            inspector = page.get_by_test_id("source-inspector")
+            require(inspector.is_visible(), "source inspector must open from the timeline trigger")
+            inspector_text = inspector.inner_text().lower()
+            for expected in (
+                "ui hodnota",
+                "read model",
+                "kanonický záznam",
+                "súbor a riadok",
+                "evidence",
+                "history",
+                "findings/deadlines/f-2026-018.md:24",
+            ):
+                require(expected in inspector_text, f"source inspector missing: {expected}")
+            inspector.get_by_role("button", name="Zavrieť zdroj").click()
+            require(page.evaluate("document.activeElement === document.querySelector('[data-testid=\"timeline-detail\"] [data-source-trigger]')"), "source inspector must restore trigger focus")
+
+            page.evaluate("setDirection('brain')")
+            page.evaluate("setBrainLayer('L1')")
+            gate_trigger = page.locator("[data-brain-gate-trigger]")
+            gate_trigger.click()
+            gate = page.get_by_test_id("human-gate")
+            require(gate.is_visible(), "human gate must open from a compatible request")
+            gate_text = gate.inner_text().lower()
+            for expected in (
+                "zdroj",
+                "locator",
+                "navrhovaný diff",
+                "pomenovaná neistota",
+                "cieľ zápisu",
+                "base_revision: 18",
+                "base_hash: 81aa39f2",
+                "tento prototyp nič nezapíše",
+            ):
+                require(expected in gate_text, f"human gate missing: {expected}")
+            for action_name in ("Potvrdiť", "Upraviť", "Odmietnuť", "Odložiť"):
+                gate.get_by_role("button", name=action_name).click()
+                require(
+                    "Demonštračný stav · nič sa nezapísalo" in gate.inner_text(),
+                    f"{action_name} must only announce demo state",
+                )
+            page.evaluate("setScenario('stale')")
+            require(gate.get_by_role("button", name="Potvrdiť").is_disabled(), "stale gate must disable confirmation")
+            require(gate.get_by_role("button", name="Upraviť").is_disabled(), "stale gate must disable editing")
+            require(gate.get_by_role("button", name="Prepočítať návrh").is_visible(), "stale gate must offer recomputation")
+            require(
+                gate.locator('[name="changed-input"]').get_attribute("name")
+                == "changed-input",
+                "stale gate must name the changed input",
+            )
+            page.evaluate("setScenario('future-version')")
+            require(gate.get_by_role("button", name="Potvrdiť").is_disabled(), "future version must remain read-only")
+            require(gate.get_by_role("button", name="Odmietnuť").is_disabled(), "future version must disable write actions")
+            gate.get_by_role("button", name="Zavrieť human gate").click()
+            require(page.evaluate("document.activeElement === document.querySelector('[data-brain-gate-trigger]')"), "human gate must restore trigger focus")
+
+            for scenario in SCENARIOS:
+                page.evaluate("(id) => setScenario(id)", scenario)
+                require(page.evaluate("document.body.dataset.scenario") == scenario, f"scenario did not render: {scenario}")
+                require(page.locator('.direction-root[data-active="true"]').count() == 1, "scenario must keep one active direction")
+            page.evaluate("setScenario('current')")
+
+            for direction in DIRECTIONS:
+                page.evaluate("(id) => setDirection(id)", direction)
+                direction_source = page.locator(
+                    f'[data-direction="{direction}"] [data-source-trigger]'
+                ).first
+                require(
+                    direction_source.count() == 1,
+                    f"{direction} must expose a functional source path",
+                )
+                direction_source.click()
+                require(inspector.is_visible(), f"{direction} source path must open inspector")
+                inspector.get_by_role("button", name="Zavrieť zdroj").click()
+
+            page.evaluate("setDirection('tower')")
+            for lens in ("urgency", "evidence", "data-health", "workload"):
+                page.locator(f'[data-risk-lens="{lens}"]').click()
+                lens_rows = page.locator('[data-testid="risk-matrix"] tbody tr').evaluate_all(
+                    "rows => rows.map((row) => row.dataset.portfolioClient)"
+                )
+                require(
+                    sorted(lens_rows) == sorted(page.evaluate("DATA.portfolio.map((item) => item.client)")),
+                    f"{lens} must retain every portfolio client exactly once",
+                )
+            page.locator('[data-portfolio-drilldown="ALFA STAV s.r.o."]').click()
+            page.locator('[data-practice-return] [data-direction-target="tower"]').click()
+            practice_reset = page.evaluate(
+                """() => ({
+                    direction: appState.direction,
+                    drilldown: appState.practiceDrilldown,
+                    returnHidden: document.querySelector('[data-practice-return]').hidden
+                })"""
+            )
+            require(practice_reset == {"direction": "tower", "drilldown": False, "returnHidden": True}, "return to Tower must clear the stale practice breadcrumb state")
 
             if artifacts is not None:
                 artifacts.mkdir(parents=True, exist_ok=True)
