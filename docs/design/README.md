@@ -15,6 +15,13 @@ Dizajnové rozhodnutia sa robia tu (koordinačné repo); implementácia ide do f
 | 5 | [**Hi-fi prototyp v2**](hifi/lawoss-hifi.html) | živé: Prehľad · Spis + OKF Brain · Kontrola lehoty (brána + pečať) · Konektory + Marketplace · Reconcile; svet „podací denník na tmavom stole“, IBM Plex |
 | — | [Playbook spolupráce](../playbook-spolupraca.md) | ako na tom pracujeme — ľudia aj AI agenti, obe repá |
 
+## OKF dashboard · šesť smerov
+
+- [Klikateľná high-fidelity galéria](hifi/okf-dashboard-directions.html)
+- [Schválený rozsah a hodnotiace kritériá](2026-08-31-okf-dashboard-sest-smerov.md)
+
+Pracovný exploration set nad fiktívnymi dátami. Nejde o finálne tímové rozhodnutie ani o produktovú implementáciu.
+
 Po nasadení Pages je prototyp živý na `omni-legal-products.github.io/lawOSS-like-SK-CZ/docs/design/hifi/lawoss-hifi.html`.
 
 Baseline screenshoty aktuálnej appky (mac + Windows) pribudnú do `baseline/` ako prvá úloha Fázy A.
