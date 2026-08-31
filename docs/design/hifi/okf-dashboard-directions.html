@@ -3,35 +3,312 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
   <title>LAWOSS · OKF dashboard · 6 smerov</title>
-  <style>:root { color-scheme: dark; } [hidden] { display: none !important; }</style>
+  <style>
+    @layer reset, tokens, shell, components, directions, scenarios, responsive, print;
+    @layer tokens {
+      :root {
+        color-scheme: dark;
+        --lw-canvas:#0A0E14; --lw-sidebar:#0A0E14; --lw-surface:#10171F;
+        --lw-surface-hover:#141C26; --lw-sunken:#0C1219;
+        --lw-text-primary:#E9E4DA; --lw-text-secondary:#A8B0BA;
+        --lw-text-tertiary:#75808C; --lw-accent:#C9A24A;
+        --lw-success:#8DBB8F; --lw-warning:#D89A4E;
+        --lw-danger:#D9776B; --lw-info:#7FA3C7;
+        --lw-border-subtle:rgba(233,228,218,.08);
+        --lw-border:rgba(233,228,218,.14);
+        --lw-border-strong:rgba(233,228,218,.26);
+        --lw-overlay:#0A0E14; --lw-focus:rgba(201,162,74,.2);
+        --lw-radius-xs:2px; --lw-radius-md:3px; --lw-radius-lg:4px;
+        --lw-font-ui:"IBM Plex Sans",Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+        --lw-font-mono:"IBM Plex Mono","SFMono-Regular",Consolas,"Liberation Mono",monospace;
+        --lw-font-seal:"Playfair Display",Georgia,serif;
+      }
+    }
+    @layer reset {
+      *, *::before, *::after { box-sizing: border-box; }
+      html { min-width: 320px; background: var(--lw-canvas); }
+      body { margin: 0; min-height: 100vh; color: var(--lw-text-primary); background: var(--lw-canvas); font: 14px/1.5 var(--lw-font-ui); }
+      button, select { color: inherit; font: inherit; }
+      button { cursor: pointer; }
+      [hidden] { display: none !important; }
+      :focus-visible { outline: 2px solid var(--lw-accent); outline-offset: 2px; }
+      ::selection { color: var(--lw-text-primary); background: var(--lw-focus); }
+    }
+    @layer shell {
+      .prototype-bar { position: sticky; top: 0; z-index: 40; display: flex; align-items: center; gap: 10px; min-height: 45px; padding: 7px 14px; border-bottom: 1px solid var(--lw-border); color: var(--lw-text-secondary); background: var(--lw-canvas); }
+      .prototype-bar__marker { font-family: var(--lw-font-mono); font-size: 11px; white-space: nowrap; }
+      .prototype-bar__marker::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 8px; border: 1px dashed var(--lw-accent); }
+      .prototype-bar__nav { display: flex; align-items: center; gap: 2px; margin-left: auto; }
+      .prototype-bar button, .prototype-bar select { min-height: 30px; padding: 4px 9px; border: 1px solid var(--lw-border); border-radius: var(--lw-radius-xs); color: var(--lw-text-secondary); background: var(--lw-sunken); }
+      .prototype-bar button:hover, .prototype-bar select:hover { color: var(--lw-text-primary); border-color: var(--lw-border-strong); }
+      .prototype-bar button[aria-current="page"], .prototype-bar button[aria-pressed="true"] { color: var(--lw-accent); border-color: var(--lw-accent); }
+      .prototype-bar__scenario { display: flex; align-items: center; gap: 7px; margin-left: 6px; color: var(--lw-text-tertiary); font-size: 12px; }
+      .lw-shell { display: grid; grid-template-columns: 216px minmax(0, 1fr); min-height: calc(100vh - 45px); }
+      .lw-sidebar { display: flex; flex-direction: column; padding: 26px 18px 20px; border-right: 1px solid var(--lw-border); background: var(--lw-sidebar); }
+      .lw-brand { margin: 0 8px 28px; }
+      .lw-brand__word { font-weight: 500; letter-spacing: .26em; }
+      .lw-brand__word span { color: inherit; }
+      .lw-brand__sub { margin-top: 4px; color: var(--lw-text-tertiary); font-size: 9px; letter-spacing: .19em; }
+      .lw-nav { display: grid; gap: 2px; }
+      .lw-nav a { display: flex; gap: 10px; align-items: center; padding: 8px 10px; border: 1px solid transparent; color: var(--lw-text-secondary); text-decoration: none; }
+      .lw-nav a:hover { color: var(--lw-text-primary); background: var(--lw-surface-hover); }
+      .lw-nav a[aria-current="page"] { border-color: var(--lw-border); color: var(--lw-text-primary); background: var(--lw-surface); }
+      .lw-nav a[aria-current="page"]::before { content: ""; width: 2px; height: 18px; background: var(--lw-accent); }
+      .lw-sidebar__matter { margin-top: auto; padding: 14px 10px 0; border-top: 1px solid var(--lw-border-subtle); }
+      .lw-sidebar__matter strong { display: block; font-size: 12px; font-weight: 500; }
+      .lw-sidebar__matter span { color: var(--lw-text-tertiary); font: 11px var(--lw-font-mono); }
+      .lw-content { position: relative; min-width: 0; overflow: clip; background: var(--lw-surface); }
+      body[data-presentation="true"] .prototype-bar, body[data-presentation="true"] .lw-sidebar { display: none; }
+      body[data-presentation="true"] .lw-shell { grid-template-columns: 1fr; min-height: 100vh; }
+      body[data-presentation="true"] .persistent-marker { display: block; }
+    }
+    @layer components {
+      .screen-reader-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+      .persistent-marker { display: none; position: fixed; right: 14px; bottom: 12px; z-index: 60; padding: 5px 8px; border: 1px dashed var(--lw-accent); color: var(--lw-accent); background: var(--lw-canvas); font: 10px var(--lw-font-mono); }
+      .mono { font-family: var(--lw-font-mono); }
+      .status-word { display: inline-flex; align-items: center; gap: 7px; color: var(--lw-text-secondary); font-size: 12px; }
+      .status-word::before { content: ""; width: 8px; height: 8px; border: 1px solid currentColor; }
+      .status-word[data-status="confirmed"] { color: var(--lw-success); }
+      .status-word[data-status="confirmed"]::before { background: var(--lw-success); }
+      .status-word[data-status="proposal"] { color: var(--lw-accent); }
+      .status-word[data-status="proposal"]::before { border-style: dashed; }
+      .status-word[data-status="partial"], .status-word[data-status="stale"] { color: var(--lw-warning); }
+      .status-word[data-status="error"] { color: var(--lw-danger); }
+      .source-link { padding: 0; border: 0; border-bottom: 1px dotted var(--lw-border-strong); color: var(--lw-text-secondary); background: transparent; font: 11px var(--lw-font-mono); }
+      .source-link:hover { color: var(--lw-text-primary); border-bottom-color: var(--lw-accent); }
+      .diagram-frame { min-width: 0; overflow: auto; border-top: 1px solid var(--lw-border-strong); border-bottom: 1px solid var(--lw-border); background: var(--lw-sunken); }
+      .diagram-frame svg { display: block; width: 100%; min-width: 560px; height: auto; color: var(--lw-text-secondary); }
+      .diagram-frame svg [data-accent] { color: var(--lw-accent); }
+      .scenario-banner { display: none; padding: 10px 20px; border-bottom: 1px solid var(--lw-border); color: var(--lw-text-secondary); background: var(--lw-sunken); }
+      body:not([data-scenario="current"]) .scenario-banner { display: block; }
+      .shortcut-popover { position: fixed; top: 52px; right: 12px; z-index: 80; width: min(360px, calc(100vw - 24px)); padding: 16px; border: 1px solid var(--lw-border-strong); border-radius: var(--lw-radius-md); background: var(--lw-sunken); }
+      .shortcut-popover h2 { margin: 0 0 10px; font-size: 14px; }
+      .shortcut-popover dl { display: grid; grid-template-columns: 100px 1fr; gap: 7px 12px; margin: 0; color: var(--lw-text-secondary); font-size: 12px; }
+      .shortcut-popover dt { font-family: var(--lw-font-mono); color: var(--lw-accent); }
+      .shortcut-popover dd { margin: 0; }
+      .direction-gallery { position: absolute; inset: 0; z-index: 30; min-height: 100%; padding: 34px 38px 80px; background: var(--lw-overlay); }
+      .gallery-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; max-width: 1280px; margin: 0 auto 28px; }
+      .gallery-head h1 { margin: 0; font-size: clamp(26px, 3vw, 40px); font-weight: 500; letter-spacing: -.02em; }
+      .gallery-head p { max-width: 690px; margin: 8px 0 0; color: var(--lw-text-secondary); }
+      .gallery-head__smoke { color: var(--lw-text-tertiary); font: 11px var(--lw-font-mono); white-space: nowrap; }
+      .gallery-table { max-width: 1280px; margin: 0 auto; border-top: 1px solid var(--lw-border-strong); }
+      .gallery-row { display: grid; grid-template-columns: 74px minmax(170px, .8fr) minmax(240px, 1.35fr) repeat(4, minmax(130px, 1fr)); width: 100%; padding: 0; border: 0; border-bottom: 1px solid var(--lw-border); border-radius: 0; color: var(--lw-text-secondary); text-align: left; background: transparent; }
+      .gallery-row:hover, .gallery-row:focus-visible { background: var(--lw-surface-hover); }
+      .gallery-row[aria-current="page"] { box-shadow: inset 2px 0 var(--lw-accent); }
+      .gallery-cell { min-width: 0; padding: 14px 12px; border-left: 1px solid var(--lw-border-subtle); }
+      .gallery-cell:first-child { border-left: 0; }
+      .gallery-cell b { display: block; margin-bottom: 4px; color: var(--lw-text-primary); font-size: 13px; font-weight: 500; }
+      .gallery-cell small { display: block; margin-bottom: 4px; color: var(--lw-text-tertiary); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+      .gallery-cell span { display: block; font-size: 11.5px; line-height: 1.4; }
+      .gallery-number { color: var(--lw-text-tertiary); font: 12px var(--lw-font-mono); }
+      .mini-diagram { width: 46px; height: 32px; color: var(--lw-text-tertiary); }
+      .mini-diagram path, .mini-diagram line, .mini-diagram rect, .mini-diagram circle { fill: none; stroke: currentColor; stroke-width: 1; }
+      .mini-diagram [data-active] { color: var(--lw-text-secondary); stroke: currentColor; }
+      .gallery-row[aria-current="page"] .gallery-number, .gallery-row[aria-current="page"] .mini-diagram [data-active] { color: var(--lw-accent); }
+    }
+    @layer directions {
+      .direction-root { min-height: calc(100vh - 45px); padding: 30px 38px 70px; background: var(--lw-surface); }
+      .matter-crumb { margin-bottom: 8px; color: var(--lw-text-tertiary); font-size: 12px; }
+      .matter-crumb span { color: var(--lw-text-secondary); }
+      .matter-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 28px; }
+      .matter-head h1 { margin: 0; max-width: 760px; font-size: clamp(22px, 2.2vw, 31px); font-weight: 500; line-height: 1.2; letter-spacing: -.015em; }
+      .matter-head p { margin: 7px 0 0; color: var(--lw-text-secondary); }
+      .direction-label { flex: 0 0 auto; padding: 7px 9px; border: 1px solid var(--lw-border); color: var(--lw-text-tertiary); font: 11px var(--lw-font-mono); }
+      .matter-fields { display: grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); margin: 25px 0 30px; border-top: 1px solid var(--lw-border-strong); border-bottom: 1px solid var(--lw-border); }
+      .matter-field { min-width: 0; padding: 11px 14px 12px 0; }
+      .matter-field + .matter-field { padding-left: 14px; border-left: 1px solid var(--lw-border-subtle); }
+      .matter-field dt { margin-bottom: 3px; color: var(--lw-text-tertiary); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+      .matter-field dd { margin: 0; overflow-wrap: anywhere; font-size: 13px; }
+      .prototype-register { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr); gap: 28px; margin-top: 24px; }
+      .register-block { border-top: 1px solid var(--lw-border-strong); }
+      .register-block h2 { margin: 0; padding: 11px 0; border-bottom: 1px solid var(--lw-border); font-size: 14px; font-weight: 600; }
+      .register-row { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--lw-border-subtle); }
+      .register-row p { margin: 4px 0 0; color: var(--lw-text-tertiary); font-size: 12px; }
+      .empty-deadline { padding: 18px 0; color: var(--lw-text-secondary); }
+      .empty-deadline strong { display: block; color: var(--lw-text-primary); font-weight: 500; }
+    }
+    @layer scenarios {
+      body[data-scenario="empty"] [data-scenario-copy]::after { content: "Žiadna potvrdená budúca lehota. Overte trigger a právny režim kandidátneho návrhu."; }
+      body[data-scenario="partial"] [data-scenario-copy]::after { content: "Čiastočne overené. Register vrátil odlišné sídlo, chýba úplné porovnanie subjektu."; }
+      body[data-scenario="stale"] [data-scenario-copy]::after { content: "Proposal stale. Podklad sa zmenil, zápis je blokovaný. Prepočítajte návrh."; }
+      body[data-scenario="parse-error"] [data-scenario-copy]::after { content: "OKF_PARSE_002. Jeden záznam sa nedá načítať, zvyšok store ostáva dostupný."; }
+      body[data-scenario="future-version"] [data-scenario-copy]::after { content: "Workspace používa novšiu verziu kontraktu. Dostupné je iba čítanie."; }
+      body[data-scenario="offline"] [data-scenario-copy]::after { content: "Registre sú offline. Lokálne OKF dáta ostávajú čitateľné."; }
+    }
+    @layer responsive {
+      @media (max-width: 1180px) {
+        .lw-shell { grid-template-columns: 164px minmax(0, 1fr); }
+        .lw-sidebar { padding-inline: 10px; }
+        .gallery-row { grid-template-columns: 62px minmax(150px, .8fr) minmax(220px, 1.4fr) repeat(2, minmax(140px, 1fr)); }
+        .gallery-cell:nth-child(6), .gallery-cell:nth-child(7) { display: none; }
+        .matter-fields { grid-template-columns: repeat(3, 1fr); }
+      }
+      @media (max-width: 820px) {
+        .prototype-bar { flex-wrap: wrap; }
+        .prototype-bar__nav { order: 3; width: 100%; overflow-x: auto; margin-left: 0; padding-bottom: 2px; }
+        .lw-shell { grid-template-columns: 1fr; }
+        .lw-sidebar { flex-direction: row; align-items: center; gap: 12px; padding: 9px 14px; border-right: 0; border-bottom: 1px solid var(--lw-border); overflow-x: auto; }
+        .lw-brand { margin: 0 10px 0 0; }
+        .lw-brand__sub, .lw-sidebar__matter { display: none; }
+        .lw-nav { display: flex; }
+        .direction-root, .direction-gallery { padding: 24px 20px 60px; }
+        .gallery-head { align-items: flex-start; flex-direction: column; }
+        .gallery-row { grid-template-columns: 58px minmax(150px, .8fr) minmax(220px, 1.2fr); }
+        .gallery-cell:nth-child(n+4) { display: none; }
+        .matter-head { flex-direction: column; }
+        .matter-fields { grid-template-columns: repeat(2, 1fr); }
+        .prototype-register { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 560px) {
+        .prototype-bar__scenario { width: 100%; margin-left: 0; }
+        .prototype-bar__scenario select { flex: 1; min-width: 0; }
+        .gallery-row { grid-template-columns: 50px 1fr; }
+        .gallery-cell:nth-child(n+3) { display: none; }
+        .matter-fields { grid-template-columns: 1fr; }
+        .matter-field + .matter-field { padding-left: 0; border-left: 0; border-top: 1px solid var(--lw-border-subtle); }
+      }
+      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+    }
+    @layer print {
+      @media print {
+        .prototype-bar, .lw-sidebar, .direction-gallery, .shortcut-popover { display: none !important; }
+        .lw-shell { display: block; }
+        .direction-root { min-height: auto; padding: 16mm; }
+        .persistent-marker { display: block; position: fixed; right: 8mm; bottom: 6mm; }
+      }
+    }
+  </style>
 </head>
-<body>
-  <div data-testid="demo-marker">Fiktívne dáta · pracovný návrh</div>
-  <nav aria-label="Smery dashboardu">
-    <button data-direction-target="registry">1 · Podací denník</button>
-    <button data-direction-target="timeline">2 · Procesná mapa</button>
-    <button data-direction-target="constellation">3 · Dôkazová konštelácia</button>
-    <button data-direction-target="ledger">4 · Auditný ledger</button>
-    <button data-direction-target="brain">5 · OKF Brain</button>
-    <button data-direction-target="tower">6 · Risk Control Tower</button>
-  </nav>
-  <select data-testid="scenario-select" aria-label="Diagnostický scenár">
-    <option data-scenario="current" value="current">Aktuálny</option>
-    <option data-scenario="empty" value="empty">Prázdny stav</option>
-    <option data-scenario="partial" value="partial">Čiastočné dáta</option>
-    <option data-scenario="stale" value="stale">Neaktuálny návrh</option>
-    <option data-scenario="parse-error" value="parse-error">Chyba záznamu</option>
-    <option data-scenario="future-version" value="future-version">Budúca verzia</option>
-    <option data-scenario="offline" value="offline">Offline</option>
-  </select>
-  <main>
-    <section data-direction="registry" data-testid="direction-1" data-active="true">ALFA STAV s.r.o. · 14. 9. 2026 · base_revision · base_hash</section>
-    <section data-direction="timeline" data-testid="direction-2" data-active="false" hidden>ALFA STAV s.r.o.</section>
-    <section data-direction="constellation" data-testid="direction-3" data-active="false" hidden>ALFA STAV s.r.o.</section>
-    <section data-direction="ledger" data-testid="direction-4" data-active="false" hidden>ALFA STAV s.r.o.</section>
-    <section data-direction="brain" data-testid="direction-5" data-active="false" hidden>ALFA STAV s.r.o.</section>
-    <section data-direction="tower" data-testid="direction-6" data-active="false" hidden>ALFA STAV s.r.o.</section>
-  </main>
+<body data-scenario="current" data-presentation="false">
+  <header class="prototype-bar" aria-label="Ovládanie prototypu">
+    <span class="prototype-bar__marker" data-testid="demo-marker">Fiktívne dáta · pracovný návrh</span>
+    <button type="button" data-gallery-open>Galéria</button>
+    <nav class="prototype-bar__nav" aria-label="Smery dashboardu">
+      <button type="button" data-direction-target="registry" aria-label="Smer 1, Podací denník">1</button>
+      <button type="button" data-direction-target="timeline" aria-label="Smer 2, Procesná mapa">2</button>
+      <button type="button" data-direction-target="constellation" aria-label="Smer 3, Dôkazová konštelácia">3</button>
+      <button type="button" data-direction-target="ledger" aria-label="Smer 4, Auditný ledger">4</button>
+      <button type="button" data-direction-target="brain" aria-label="Smer 5, OKF Brain">5</button>
+      <button type="button" data-direction-target="tower" aria-label="Smer 6, Risk Control Tower">6</button>
+    </nav>
+    <label class="prototype-bar__scenario">Scenár
+      <select data-testid="scenario-select" aria-label="Diagnostický scenár">
+        <option data-scenario="current" value="current">Aktuálny</option><option data-scenario="empty" value="empty">Prázdny stav</option><option data-scenario="partial" value="partial">Čiastočné dáta</option><option data-scenario="stale" value="stale">Neaktuálny návrh</option><option data-scenario="parse-error" value="parse-error">Chyba záznamu</option><option data-scenario="future-version" value="future-version">Budúca verzia</option><option data-scenario="offline" value="offline">Offline</option>
+      </select>
+    </label>
+    <button type="button" data-testid="presentation-toggle" aria-pressed="false">Prezentácia</button>
+    <button type="button" data-shortcut-toggle aria-expanded="false">Skratky</button>
+  </header>
+  <div class="lw-shell">
+    <aside class="lw-sidebar" aria-label="LAWOSS navigácia">
+      <div class="lw-brand"><div class="lw-brand__word">LAW<span>OSS</span></div><div class="lw-brand__sub">CZECHIA · SLOVAKIA</div></div>
+      <nav class="lw-nav"><a href="#" tabindex="-1">Chat</a><a href="#" aria-current="page" tabindex="-1">Dashboard</a><a href="#" tabindex="-1">Spisy</a><a href="#" tabindex="-1">Konektory</a><a href="#" tabindex="-1">Marketplace</a><a href="#" tabindex="-1">Nastavenia</a></nav>
+      <div class="lw-sidebar__matter"><strong>ALFA STAV s.r.o.</strong><span>18Cb/47/2026</span></div>
+    </aside>
+    <main class="lw-content">
+      <div class="scenario-banner" role="status" aria-live="polite"><span data-scenario-copy></span></div>
+      <section class="direction-gallery" data-testid="direction-gallery" aria-labelledby="gallery-title">
+        <div class="gallery-head"><div><h1 id="gallery-title">Šesť pohľadov na jeden OKF spis</h1><p>Každý smer používa rovnakú fiktívnu pravdu, zdroje a audit. Mení sa iba informačná hierarchia a produktová rola.</p></div><div class="gallery-head__smoke">Případ · lhůta · důkaz · řízení</div></div>
+        <div class="gallery-table" role="list" aria-label="Prezentačné smery">
+          <button class="gallery-row" type="button" role="listitem" data-direction-target="registry"><span class="gallery-cell gallery-number">01<svg class="mini-diagram" viewBox="0 0 46 32" role="img" aria-label="Miniatúra registra"><line x1="2" y1="7" x2="44" y2="7"/><line x1="2" y1="16" x2="44" y2="16"/><line x1="2" y1="25" x2="44" y2="25"/><rect data-active x="3" y="12" width="7" height="7"/></svg></span><span class="gallery-cell"><b>Podací denník</b><span>Ranný pracovný register rozhodnutí a zmien.</span></span><span class="gallery-cell"><small>Téza</small><span>Najprv to, o čom musí advokát rozhodnúť, potom lehoty a zmeny.</span></span><span class="gallery-cell"><small>Používateľ</small><span>Samostatný advokát a malý tím.</span></span><span class="gallery-cell"><small>Silná stránka</small><span>Najmenšia krivka učenia.</span></span><span class="gallery-cell"><small>Trade-off</small><span>Menej strategických vzťahov.</span></span><span class="gallery-cell"><small>Produktová rola</small><span>Domovský prehľad prípadu.</span></span></button>
+          <button class="gallery-row" type="button" role="listitem" data-direction-target="timeline"><span class="gallery-cell gallery-number">02<svg class="mini-diagram" viewBox="0 0 46 32" role="img" aria-label="Miniatúra procesnej osi"><line x1="3" y1="16" x2="43" y2="16"/><circle cx="7" cy="16" r="3"/><circle data-active cx="23" cy="16" r="3"/><circle cx="39" cy="16" r="3"/></svg></span><span class="gallery-cell"><b>Procesná mapa</b><span>Čas, udalosti, trigger a ďalší procesný krok.</span></span><span class="gallery-cell"><small>Téza</small><span>Kde sa vec nachádza, čo ju tam dostalo a čo príde ďalej.</span></span><span class="gallery-cell"><small>Používateľ</small><span>Litigačný tím a handoff.</span></span><span class="gallery-cell"><small>Silná stránka</small><span>Rozlíšenie udalosti a návrhu lehoty.</span></span><span class="gallery-cell"><small>Trade-off</small><span>Slabší mimo procesnej agendy.</span></span><span class="gallery-cell"><small>Produktová rola</small><span>Procesná lens prípadu.</span></span></button>
+          <button class="gallery-row" type="button" role="listitem" data-direction-target="constellation"><span class="gallery-cell gallery-number">03<svg class="mini-diagram" viewBox="0 0 46 32" role="img" aria-label="Miniatúra konštelácie"><line x1="8" y1="8" x2="23" y2="16"/><line x1="23" y1="16" x2="39" y2="7"/><line x1="23" y1="16" x2="35" y2="27"/><circle cx="8" cy="8" r="3"/><circle data-active cx="23" cy="16" r="4"/><circle cx="39" cy="7" r="3"/><circle cx="35" cy="27" r="3"/></svg></span><span class="gallery-cell"><b>Dôkazová konštelácia</b><span>Mapa faktov, findings, subjektov a dôkazov.</span></span><span class="gallery-cell"><small>Téza</small><span>Dôkaz podporuje finding, ktorý sa po potvrdení stáva pravdou.</span></span><span class="gallery-cell"><small>Používateľ</small><span>Komplexný spor a due diligence.</span></span><span class="gallery-cell"><small>Silná stránka</small><span>Sensemaking a provenance.</span></span><span class="gallery-cell"><small>Trade-off</small><span>Graf potrebuje list fallback.</span></span><span class="gallery-cell"><small>Produktová rola</small><span>Dôkazová lens prípadu.</span></span></button>
+          <button class="gallery-row" type="button" role="listitem" data-direction-target="ledger"><span class="gallery-cell gallery-number">04<svg class="mini-diagram" viewBox="0 0 46 32" role="img" aria-label="Miniatúra auditného ledgeru"><rect x="3" y="4" width="40" height="24"/><line x1="14" y1="4" x2="14" y2="28"/><line x1="3" y1="12" x2="43" y2="12"/><line data-active x1="3" y1="20" x2="43" y2="20"/></svg></span><span class="gallery-cell"><b>Auditný ledger</b><span>Integrita, diff, stav a vysvetlenie každej hodnoty.</span></span><span class="gallery-cell"><small>Téza</small><span>Každá hodnota vysvetlí pôvod, schválenie a zmenu v čase.</span></span><span class="gallery-cell"><small>Používateľ</small><span>Partner, reviewer a migrácia.</span></span><span class="gallery-cell"><small>Silná stránka</small><span>Najvyššia auditovateľnosť.</span></span><span class="gallery-cell"><small>Trade-off</small><span>Technickejší každodenný pohľad.</span></span><span class="gallery-cell"><small>Produktová rola</small><span>Kontrolná a auditná lens.</span></span></button>
+          <button class="gallery-row" type="button" role="listitem" data-direction-target="brain"><span class="gallery-cell gallery-number">05<svg class="mini-diagram" viewBox="0 0 46 32" role="img" aria-label="Miniatúra vrstiev pamäte"><rect x="3" y="4" width="40" height="6"/><rect data-active x="7" y="13" width="32" height="6"/><rect x="11" y="22" width="24" height="6"/></svg></span><span class="gallery-cell"><b>OKF Brain</b><span>Truth, rozhodnutia, otázky a vrstvy pamäte.</span></span><span class="gallery-cell"><small>Téza</small><span>Čo systém vie, nevie, naučil sa a kam poznatok patrí.</span></span><span class="gallery-cell"><small>Používateľ</small><span>Handoff a práca s agentom.</span></span><span class="gallery-cell"><small>Silná stránka</small><span>Transparentná agentická pamäť.</span></span><span class="gallery-cell"><small>Trade-off</small><span>Slabší prehľad lehôt a portfólia.</span></span><span class="gallery-cell"><small>Produktová rola</small><span>Pamäťová lens prípadu.</span></span></button>
+          <button class="gallery-row" type="button" role="listitem" data-direction-target="tower"><span class="gallery-cell gallery-number">06<svg class="mini-diagram" viewBox="0 0 46 32" role="img" aria-label="Miniatúra matice rizík"><rect x="3" y="4" width="40" height="24"/><line x1="16" y1="4" x2="16" y2="28"/><line x1="29" y1="4" x2="29" y2="28"/><line x1="3" y1="12" x2="43" y2="12"/><line x1="3" y1="20" x2="43" y2="20"/><rect data-active x="17" y="13" width="11" height="6"/></svg></span><span class="gallery-cell"><b>Risk Control Tower</b><span>Transparentné dôvody pozornosti naprieč praxou.</span></span><span class="gallery-cell"><small>Téza</small><span>Kde sa koncentruje operačné riziko a prečo.</span></span><span class="gallery-cell"><small>Používateľ</small><span>Riadiaci partner a vedúci tímu.</span></span><span class="gallery-cell"><small>Silná stránka</small><span>Najlepší prehľad väčšej praxe.</span></span><span class="gallery-cell"><small>Trade-off</small><span>Signál nesmie predstierať právny záver.</span></span><span class="gallery-cell"><small>Produktová rola</small><span>Domovský prehľad praxe.</span></span></button>
+        </div>
+      </section>
+      <section class="direction-root" data-direction="registry" data-testid="direction-1" data-active="true" aria-labelledby="registry-title">
+        <div class="matter-crumb">Prax / ALFA STAV s.r.o. / <span>Prípad</span></div>
+        <div class="matter-head"><div><h1 id="registry-title">ALFA STAV s.r.o. proti BETA DEVELOPMENT a.s.</h1><p>Po doručení rozsudku, príprava odvolania</p></div><span class="direction-label">01 · Podací denník · úroveň prípad</span></div>
+        <dl class="matter-fields"><div class="matter-field"><dt>Spisová značka</dt><dd class="mono">18Cb/47/2026</dd></div><div class="matter-field"><dt>Súd</dt><dd>Okresný súd Žilina</dd></div><div class="matter-field"><dt>Zodpovedný</dt><dd>JUDr. Martin Novák</dd></div><div class="matter-field"><dt>Validácia</dt><dd><span class="status-word" data-status="partial">čiastočne overené</span></dd></div><div class="matter-field"><dt>Aktívny dokument</dt><dd class="mono">Odvolanie - koncept v1.docx</dd></div></dl>
+        <div class="diagram-frame"><svg viewBox="0 0 900 170" role="img" aria-labelledby="registry-diagram-title registry-diagram-desc"><title id="registry-diagram-title">Spoločný náhľad registra rozhodnutí</title><desc id="registry-diagram-desc">Tri registrové riadky od zdroja cez návrh po miesto zápisu.</desc><g fill="none" stroke="currentColor"><line x1="70" y1="48" x2="830" y2="48"/><line x1="70" y1="86" x2="830" y2="86"/><line x1="70" y1="124" x2="830" y2="124"/><path data-accent stroke="currentColor" stroke-dasharray="5 5" d="M170 48H420L560 86H770"/></g><g fill="currentColor" font-family="var(--lw-font-mono)" font-size="12"><text x="70" y="35">ZDROJ</text><text x="420" y="35">NÁVRH</text><text x="700" y="35">MIESTO ZÁPISU</text><text x="70" y="72">F-2026-018</text><text x="420" y="72">14. 9. 2026</text><text x="700" y="72">memory/deadlines</text></g></svg></div>
+        <div class="prototype-register"><section class="register-block"><h2>Potrebuje vaše rozhodnutie</h2><div class="register-row"><span class="status-word" data-status="proposal">návrh, čaká na potvrdenie</span><div><strong>Modelový návrh termínu odvolania 14. 9. 2026</strong><p>Právne neoverený príklad. Treba potvrdiť trigger, režim a pravidlo posunu.</p><button class="source-link" type="button">findings/deadlines/F-2026-018.md:24</button></div></div></section><section class="register-block"><h2>Potvrdené budúce lehoty</h2><div class="empty-deadline"><strong>Žiadna potvrdená budúca lehota</strong>Najprv overte kandidátny návrh a jeho zdroje.</div></section></div>
+      </section>
+      <section class="direction-root" data-direction="timeline" data-testid="direction-2" data-active="false" hidden inert aria-labelledby="timeline-title"><div class="matter-crumb">Prax / ALFA STAV s.r.o. / <span>Prípad</span></div><div class="matter-head"><div><h1 id="timeline-title">Procesná mapa</h1><p>ALFA STAV s.r.o. · čas, trigger a auditná stopa</p></div><span class="direction-label">02 · úroveň prípad</span></div></section>
+      <section class="direction-root" data-direction="constellation" data-testid="direction-3" data-active="false" hidden inert aria-labelledby="constellation-title"><div class="matter-crumb">Prax / ALFA STAV s.r.o. / <span>Prípad</span></div><div class="matter-head"><div><h1 id="constellation-title">Dôkazová konštelácia</h1><p>ALFA STAV s.r.o. · fakty, findings a pôvodné dôkazy</p></div><span class="direction-label">03 · úroveň prípad</span></div></section>
+      <section class="direction-root" data-direction="ledger" data-testid="direction-4" data-active="false" hidden inert aria-labelledby="ledger-title"><div class="matter-crumb">Prax / ALFA STAV s.r.o. / <span>Prípad</span></div><div class="matter-head"><div><h1 id="ledger-title">Auditný ledger</h1><p>ALFA STAV s.r.o. · integrita, diff a história</p></div><span class="direction-label">04 · úroveň prípad</span></div></section>
+      <section class="direction-root" data-direction="brain" data-testid="direction-5" data-active="false" hidden inert aria-labelledby="brain-title"><div class="matter-crumb">Prax / ALFA STAV s.r.o. / <span>Prípad</span></div><div class="matter-head"><div><h1 id="brain-title">OKF Brain</h1><p>ALFA STAV s.r.o. · truth, otvorené otázky a vrstvy pamäte</p></div><span class="direction-label">05 · úroveň prípad</span></div></section>
+      <section class="direction-root" data-direction="tower" data-testid="direction-6" data-active="false" hidden inert aria-labelledby="tower-title"><div class="matter-crumb"><span>Prax</span></div><div class="matter-head"><div><h1 id="tower-title">Risk Control Tower</h1><p>Päť fiktívnych prípadov · transparentné dôvody pozornosti</p></div><span class="direction-label">06 · úroveň prax</span></div></section>
+    </main>
+  </div>
+  <div class="persistent-marker" aria-hidden="true">Fiktívne dáta · pracovný návrh</div>
+  <aside class="shortcut-popover" data-testid="shortcut-help" hidden aria-labelledby="shortcut-title"><h2 id="shortcut-title">Klávesové skratky</h2><dl><dt>1 až 6</dt><dd>Otvoriť smer</dd><dt>← →</dt><dd>Predchádzajúci alebo ďalší smer</dd><dt>F</dt><dd>Prepnúť prezentačný režim</dd><dt>Esc</dt><dd>Ukončiť prezentáciu alebo otvoriť galériu</dd></dl></aside>
+  <script>
+    const DATA = Object.freeze({
+      matter: Object.freeze({
+        client: "ALFA STAV s.r.o.", title: "ALFA STAV s.r.o. proti BETA DEVELOPMENT a.s.", agenda: "spor zo zmluvy o dielo", fileNumber: "18Cb/47/2026", court: "Okresný súd Žilina", jurisdiction: "Slovensko", owner: "JUDr. Martin Novák, fiktívna osoba", phase: "po doručení rozsudku, príprava odvolania", activeDocument: "02_podania/Odvolanie - koncept v1.docx", lastDecisionId: "D-2026-011",
+        candidateDeadline: Object.freeze({ date: "14. 9. 2026", status: "návrh, čaká na potvrdenie", label: "Modelový návrh termínu odvolania 14. 9. 2026.", trigger: "doručenie rozhodnutia 28. 8. 2026", triggerSource: "evidence/edelivery/receipt.json:12", document: "04_rozhodnutia/Rozsudok.pdf, strana 1", legalBasis: "§ 362 ods. 1 CSP, demonštračný údaj", sourceVersion: "pracovný snapshot označený 2026-08-31", calculationTrace: "deň doručenia sa nezapočíta, model počíta 15 dní do 12. 9. 2026 a posúva koniec na 14. 9. 2026", uncertainty: "treba potvrdiť trigger, aplikovaný právny režim a pravidlo posunu", writePlan: Object.freeze({ base_revision: 18, base_hash: "81aa39f2" }) })
+      }),
+      portfolio: Object.freeze([
+        Object.freeze({ client: "ALFA STAV s.r.o.", matter: "ALFA STAV s.r.o. proti BETA DEVELOPMENT a.s.", status: "príprava odvolania", attention: "kandidátna lehota, partial verification, stale status", owner: "JUDr. Martin Novák", highlighted: true }),
+        Object.freeze({ client: "NOVA ENERGIA s.r.o.", matter: "dodávka technológie", status: "replika žalobcu", attention: "potvrdená lehota 3. 9. 2026", owner: "JUDr. Eva Kováčová", highlighted: false }),
+        Object.freeze({ client: "LIPA DOMOV a.s.", matter: "akvizičná previerka", status: "due diligence", attention: "chýba vlastnícky dokument", owner: "Mgr. Peter Urban", highlighted: false }),
+        Object.freeze({ client: "HORIZONT SERVICES s.r.o.", matter: "pracovný spor", status: "pred pojednávaním", attention: "_STATUS.md neaktualizovaný 12 dní", owner: "JUDr. Martin Novák", highlighted: false }),
+        Object.freeze({ client: "MODRA LOGISTIKA a.s.", matter: "poistná udalosť", status: "dokazovanie", attention: "registry provider je offline", owner: "JUDr. Eva Kováčová", highlighted: false })
+      ]),
+      records: Object.freeze([
+        Object.freeze({ id: "T-2026-029", type: "matter", status: "potvrdená truth", label: "Rozsudok bol doručený 28. 8. 2026 a žaloba bola zamietnutá.", source: "memory/matters/T-2026-029.md", locator: "18" }),
+        Object.freeze({ id: "D-2026-011", type: "decision", status: "aktívne", label: "Pripraviť odvolanie a preveriť význam odovzdávacieho protokolu.", source: "memory/decisions/D-2026-011.md", locator: "21" }),
+        Object.freeze({ id: "TASK-2026-044", type: "úloha", status: "otvorené", label: "Skontrolovať, či je protokol podpísaný protistranou.", source: "_STATUS.md", locator: "48" }),
+        Object.freeze({ id: "Q-2026-004", type: "question", status: "otvorené", label: "Je protokol o odovzdaní podpísaný protistranou?", source: "memory/questions/Q-2026-004.md", locator: "16" }),
+        Object.freeze({ id: "F-2026-018", type: "finding", status: "kandidátna lehota", label: "Modelový návrh termínu odvolania 14. 9. 2026.", source: "findings/deadlines/F-2026-018.md", locator: "24" }),
+        Object.freeze({ id: "DL-2026-007", type: "lehota", status: "potvrdené", label: "Replika žalobcu v prípade NOVA ENERGIA, 3. 9. 2026.", source: "NOVA ENERGIA/memory/deadlines/DL-2026-007.md", locator: "19" }),
+        Object.freeze({ id: "F-2026-020", type: "finding", status: "partial verification", label: "Register vrátil rozdielne sídlo protistrany.", source: "findings/validation/F-2026-020.md", locator: "17" }),
+        Object.freeze({ id: "F-2026-021", type: "finding", status: "čaká na gate", label: "Platba 40 percent bola zmluvná splátka, nie záloha.", source: "findings/reconciliation/F-2026-021.md", locator: "22" }),
+        Object.freeze({ id: "OKF_STALE_001", type: "warning", status: "stale", label: "_STATUS.md je starší než dva nové dokumenty.", source: "_STATUS.md", locator: "3" }),
+        Object.freeze({ id: "OKF_PARSE_002", type: "error", status: "parse-error", label: "Záznam Q-2026-009.md má neuzavretú YAML hodnotu.", source: "memory/questions/Q-2026-009.md", locator: "7" }),
+        Object.freeze({ id: "AUD-2026-084", type: "audit", status: "potvrdené", label: "Advokát potvrdil truth T-2026-029.", source: "audit/2026-08.jsonl", locator: "41" })
+      ]),
+      events: Object.freeze([
+        Object.freeze({ date: "12. 2. 2026", label: "podanie žaloby", status: "potvrdené", source: "02_podania/Zaloba.pdf", locator: null }),
+        Object.freeze({ date: "18. 5. 2026", label: "vyjadrenie protistrany", status: "potvrdené", source: "03_protistrana/Vyjadrenie.pdf", locator: null }),
+        Object.freeze({ date: "24. 8. 2026", label: "vydanie rozsudku", status: "potvrdené", source: "04_rozhodnutia/Rozsudok.pdf", locator: null }),
+        Object.freeze({ date: "28. 8. 2026", label: "doručenie rozsudku", status: "potvrdené", source: "evidence/edelivery/receipt.json", locator: "12" }),
+        Object.freeze({ date: "31. 8. 2026", label: "návrh lehoty", status: "kandidát", source: "findings/deadlines/F-2026-018.md", locator: "24" }),
+        Object.freeze({ date: "31. 8. 2026", label: "návrh L2 faktu", status: "čaká na human gate", source: "findings/reconciliation/F-2026-021.md", locator: "22" })
+      ]),
+      scenarios: Object.freeze([
+        Object.freeze({ id: "current", label: "referenčný stav s kandidátnou lehotou a otvorenými findings" }), Object.freeze({ id: "empty", label: "žiadna potvrdená budúca lehota, s vysvetlením ďalšieho kroku" }), Object.freeze({ id: "partial", label: "čiastočné overenie subjektu s pomenovaním chýbajúcich údajov" }), Object.freeze({ id: "stale", label: "stará projekcia a blokovaný stale write plan" }), Object.freeze({ id: "parse-error", label: "jeden poškodený záznam, zvyšok store zostáva dostupný" }), Object.freeze({ id: "future-version", label: "workspace sa otvorí read-only s vysvetlením verzie" }), Object.freeze({ id: "offline", label: "registre a vzdialené zdroje sú nedostupné, lokálne OKF dáta zostávajú čitateľné" })
+      ])
+    });
+    const DIRECTIONS = Object.freeze(["registry", "timeline", "constellation", "ledger", "brain", "tower"]);
+    const SCENARIOS = Object.freeze(DATA.scenarios.map((scenario) => scenario.id));
+    const appState = { direction: "registry", scenario: "current", galleryOpen: true, presentation: false };
+    const directionRoots = Array.from(document.querySelectorAll(".direction-root"));
+    const directionControls = Array.from(document.querySelectorAll("[data-direction-target]"));
+    const gallery = document.querySelector('[data-testid="direction-gallery"]');
+    const scenarioSelect = document.querySelector('[data-testid="scenario-select"]');
+    const presentationToggle = document.querySelector('[data-testid="presentation-toggle"]');
+    const shortcutHelp = document.querySelector('[data-testid="shortcut-help"]');
+    const shortcutToggle = document.querySelector("[data-shortcut-toggle]");
+    function openGallery() { appState.galleryOpen = true; gallery.hidden = false; }
+    function setDirection(direction, updateHash = true) {
+      if (!DIRECTIONS.includes(direction)) { openGallery(); return; }
+      appState.direction = direction; appState.galleryOpen = false;
+      directionRoots.forEach((root) => { const isActive = root.dataset.direction === direction; root.dataset.active = String(isActive); root.hidden = !isActive; root.inert = !isActive; });
+      directionControls.forEach((control) => { if (control.dataset.directionTarget === direction) control.setAttribute("aria-current", "page"); else control.removeAttribute("aria-current"); });
+      gallery.hidden = true;
+      if (updateHash && window.location.hash !== `#${direction}`) window.location.hash = direction;
+    }
+    function setScenario(scenario) { if (!SCENARIOS.includes(scenario)) return; appState.scenario = scenario; document.body.dataset.scenario = scenario; scenarioSelect.value = scenario; }
+    function setPresentation(enabled) { appState.presentation = enabled; document.body.dataset.presentation = String(enabled); presentationToggle.setAttribute("aria-pressed", String(enabled)); }
+    function cycleDirection(step) { const currentIndex = DIRECTIONS.indexOf(appState.direction); setDirection(DIRECTIONS[(currentIndex + step + DIRECTIONS.length) % DIRECTIONS.length]); }
+    function routeFromHash() { const direction = window.location.hash.slice(1); if (!direction) { openGallery(); return; } if (DIRECTIONS.includes(direction)) setDirection(direction, false); else openGallery(); }
+    directionControls.forEach((control) => control.addEventListener("click", () => setDirection(control.dataset.directionTarget)));
+    document.querySelector("[data-gallery-open]").addEventListener("click", openGallery);
+    scenarioSelect.addEventListener("change", (event) => setScenario(event.target.value));
+    presentationToggle.addEventListener("click", () => setPresentation(!appState.presentation));
+    shortcutToggle.addEventListener("click", () => { const willOpen = shortcutHelp.hidden; shortcutHelp.hidden = !willOpen; shortcutToggle.setAttribute("aria-expanded", String(willOpen)); });
+    window.addEventListener("hashchange", routeFromHash);
+    window.addEventListener("keydown", (event) => {
+      const target = event.target;
+      if (target instanceof HTMLElement && (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName))) return;
+      if (/^[1-6]$/.test(event.key)) setDirection(DIRECTIONS[Number(event.key) - 1]); else if (event.key === "ArrowRight") cycleDirection(1); else if (event.key === "ArrowLeft") cycleDirection(-1); else if (event.key.toLowerCase() === "f") setPresentation(!appState.presentation); else if (event.key === "Escape" && appState.presentation) setPresentation(false); else if (event.key === "Escape") openGallery();
+    });
+    setScenario("current"); routeFromHash();
+  </script>
 </body>
 </html>

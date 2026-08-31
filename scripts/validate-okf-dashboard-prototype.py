@@ -22,6 +22,17 @@ def validate_static(html_path: Path) -> None:
     require("base_revision" in html and "base_hash" in html, "missing concurrency trace")
     require("—" not in html, "em dash is forbidden")
     require(not re.search(r'(?:src|href)=["\']https?://', html), "external request found")
+    for fragment in (
+        "const DATA = Object.freeze(",
+        "const appState =",
+        "function setDirection(",
+        "function setScenario(",
+        'data-testid="direction-gallery"',
+        'data-testid="presentation-toggle"',
+        'data-testid="shortcut-help"',
+        "Případ · lhůta · důkaz · řízení",
+    ):
+        require(fragment in html, f"missing shared primitive: {fragment}")
     for index, direction in enumerate(DIRECTIONS, start=1):
         require(f'data-direction="{direction}"' in html, f"missing direction {direction}")
         require(f'data-testid="direction-{index}"' in html, f"missing direction test id {index}")
