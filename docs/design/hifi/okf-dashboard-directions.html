@@ -296,7 +296,7 @@
     function setScenario(scenario) { if (!SCENARIOS.includes(scenario)) return; appState.scenario = scenario; document.body.dataset.scenario = scenario; scenarioSelect.value = scenario; }
     function setPresentation(enabled) { appState.presentation = enabled; document.body.dataset.presentation = String(enabled); presentationToggle.setAttribute("aria-pressed", String(enabled)); }
     function cycleDirection(step) { const currentIndex = DIRECTIONS.indexOf(appState.direction); setDirection(DIRECTIONS[(currentIndex + step + DIRECTIONS.length) % DIRECTIONS.length]); }
-    function routeFromHash() { const direction = window.location.hash.slice(1); if (!direction) { openGallery(); return; } if (DIRECTIONS.includes(direction)) setDirection(direction, false); else openGallery(); }
+    function routeFromHash() { const direction = window.location.hash.slice(1); if (!direction) { setDirection("registry", false); openGallery(); return; } if (DIRECTIONS.includes(direction)) setDirection(direction, false); else openGallery(); }
     directionControls.forEach((control) => control.addEventListener("click", () => setDirection(control.dataset.directionTarget)));
     document.querySelector("[data-gallery-open]").addEventListener("click", openGallery);
     scenarioSelect.addEventListener("change", (event) => setScenario(event.target.value));
