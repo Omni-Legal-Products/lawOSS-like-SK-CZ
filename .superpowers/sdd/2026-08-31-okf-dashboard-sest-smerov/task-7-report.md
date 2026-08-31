@@ -75,7 +75,7 @@ Carry-over evidence v smoke validátore zahŕňa Space aktiváciu ledger riadku,
 - Artefakty sú uložené iba pod `/tmp`.
 - Neboli použité externé asset requests, storage, fake write ani raw component colors.
 - `git diff --check` prešiel.
-- Commit: `0328e27` (amendnutý po doplnení finálneho hash referenčného záznamu).
+- Implementation commit: `8b6a8c0cfcb7e55d127089a721c75a0841899388`.
 
 ## Concerns
 
