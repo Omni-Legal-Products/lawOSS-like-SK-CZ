@@ -76,12 +76,14 @@ def validate_static(html_path: Path) -> None:
     for fragment in (
         "function spotlightNode(id)",
         "function setLedgerItem(id)",
+        "recordId",
         'data-node-type="document"',
         'data-node-type="evidence"',
         'data-node-type="truth"',
         'data-node-type="decision"',
         'data-node-type="finding"',
         'data-node-type="subject"',
+        'data-relation',
         'data-source-kind="record"',
     ):
         require(fragment in html, f"missing task 4 invariant: {fragment}")
@@ -295,7 +297,27 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
                     })(),
                     fallbackEdges: document.querySelectorAll(
                         '[data-testid="graph-list-fallback"] tbody tr'
-                    ).length
+                    ).length,
+                    svgTuples: [...document.querySelectorAll(
+                        '[data-graph-edge]'
+                    )].map((edge) => [
+                        edge.dataset.from,
+                        edge.dataset.relation,
+                        edge.dataset.to,
+                        edge.dataset.status
+                    ]),
+                    fallbackTuples: [...document.querySelectorAll(
+                        '[data-testid="graph-list-fallback"] tbody tr'
+                    )].map((row) => [
+                        row.dataset.from,
+                        row.dataset.relation,
+                        row.dataset.to,
+                        row.dataset.status
+                    ]),
+                    graphNodeIds: [...document.querySelectorAll(
+                        '[data-graph-node]'
+                    )].map((node) => node.dataset.graphNode),
+                    recordIds: DATA.records.map((record) => record.id)
                 })"""
             )
             require(
@@ -323,6 +345,71 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
                 == page.locator("[data-graph-edge]").count(),
                 "graph fallback and SVG must expose the same edges",
             )
+            require(
+                sorted(graph["svgTuples"]) == sorted(graph["fallbackTuples"]),
+                "graph fallback and SVG must expose identical canonical edge tuples",
+            )
+            require(
+                [
+                    "F-2026-020",
+                    "vyžaduje posúdenie",
+                    "D-2026-011",
+                    "partial",
+                ] in graph["svgTuples"],
+                "F-2026-020 to D-2026-011 must be partial",
+            )
+            graph_source_map = {
+                "DOC-2026-024": "T-2026-029",
+                "EVID-2026-028": "T-2026-029",
+                "SUBJ-2026-002": "F-2026-020",
+                "DOC-2026-031": "F-2026-021",
+                "T-2026-029": "T-2026-029",
+                "D-2026-011": "D-2026-011",
+                "F-2026-021": "F-2026-021",
+                "F-2026-020": "F-2026-020",
+            }
+            require(
+                set(graph["graphNodeIds"]) == set(graph_source_map),
+                "graph node IDs do not match the approved presentation fixture",
+            )
+            require(
+                set(graph_source_map.values()).issubset(set(graph["recordIds"])),
+                "graph source map points outside DATA.records",
+            )
+            graph_sources = page.evaluate(
+                """(nodeIds) => nodeIds.map((id) => {
+                    spotlightNode(id);
+                    const source = document.querySelector(
+                        '[data-graph-detail-source]'
+                    );
+                    return {
+                        graphNode: id,
+                        sourceKind: source.dataset.sourceKind,
+                        sourceId: source.dataset.sourceId,
+                        selected: [...document.querySelectorAll(
+                            '[data-graph-node][aria-pressed="true"]'
+                        )].map((node) => node.dataset.graphNode)
+                    };
+                })""",
+                graph["graphNodeIds"],
+            )
+            for source in graph_sources:
+                require(
+                    source["sourceKind"] == "record",
+                    f"graph trigger for {source['graphNode']} must use record source kind",
+                )
+                require(
+                    source["sourceId"] == graph_source_map[source["graphNode"]],
+                    f"graph trigger for {source['graphNode']} has wrong canonical source ID",
+                )
+                require(
+                    source["sourceId"] in graph["recordIds"],
+                    f"graph trigger source ID is missing from DATA.records: {source['sourceId']}",
+                )
+                require(
+                    source["selected"] == [source["graphNode"]],
+                    f"graph node selection changed presentation ID for {source['graphNode']}",
+                )
 
             page.evaluate("setDirection('ledger')")
             page.evaluate("setLedgerItem('OKF_PARSE_002')")
