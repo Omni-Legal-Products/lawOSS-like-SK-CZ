@@ -576,6 +576,7 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
                 == {
                     "gateId": "promotion-L1-F-2026-021",
                     "recordId": "F-2026-021",
+                    "destination": "memory/office/lessons/L-2026-006.md",
                 },
                 "L1 trigger must emit a compatible gate request without writing",
             )
@@ -683,6 +684,10 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
             require(page.evaluate("appState.direction") == "timeline", "typing target must ignore numeric shortcuts")
 
             source_trigger = page.locator('[data-testid="timeline-detail"] [data-source-trigger]')
+            shortcut_toggle = page.locator("[data-shortcut-toggle]")
+            shortcut_toggle.click()
+            shortcut_help = page.get_by_test_id("shortcut-help")
+            require(shortcut_help.is_visible(), "shortcut help must open")
             source_trigger.click()
             inspector = page.get_by_test_id("source-inspector")
             require(inspector.is_visible(), "source inspector must open from the timeline trigger")
@@ -697,8 +702,22 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
                 "findings/deadlines/f-2026-018.md:24",
             ):
                 require(expected in inspector_text, f"source inspector missing: {expected}")
-            inspector.get_by_role("button", name="Zavrieť zdroj").click()
+            page.keyboard.press("Escape")
+            require(not inspector.is_visible(), "Escape must close the top source inspector layer")
+            require(shortcut_help.is_visible(), "Escape must preserve the next layer in LIFO order")
+            page.keyboard.press("Escape")
+            require(not shortcut_help.is_visible(), "second Escape must close shortcut help")
             require(page.evaluate("document.activeElement === document.querySelector('[data-testid=\"timeline-detail\"] [data-source-trigger]')"), "source inspector must restore trigger focus")
+
+            page.locator('[data-timeline-event="event-filing"]').click()
+            source_trigger.click()
+            filing_inspector = inspector.inner_text()
+            require(
+                "02_podania/Zaloba.pdf:locator neuvedený v OKF zázname"
+                in filing_inspector,
+                "missing event locator must remain explicit in source inspector",
+            )
+            inspector.get_by_role("button", name="Zavrieť zdroj").click()
 
             page.evaluate("setDirection('brain')")
             page.evaluate("setBrainLayer('L1')")
@@ -718,6 +737,11 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
                 "tento prototyp nič nezapíše",
             ):
                 require(expected in gate_text, f"human gate missing: {expected}")
+            require(
+                gate.locator("[data-gate-destination]").inner_text()
+                == "memory/office/lessons/L-2026-006.md",
+                "L1 promotion must preserve its exact gate destination",
+            )
             for action_name in ("Potvrdiť", "Upraviť", "Odmietnuť", "Odložiť"):
                 gate.get_by_role("button", name=action_name).click()
                 require(
@@ -738,6 +762,15 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
             require(gate.get_by_role("button", name="Odmietnuť").is_disabled(), "future version must disable write actions")
             gate.get_by_role("button", name="Zavrieť human gate").click()
             require(page.evaluate("document.activeElement === document.querySelector('[data-brain-gate-trigger]')"), "human gate must restore trigger focus")
+            page.evaluate("setScenario('current')")
+            page.evaluate("setBrainLayer('L3')")
+            page.locator("[data-brain-gate-trigger]").click()
+            require(
+                gate.locator("[data-gate-destination]").inner_text()
+                == "memory/law/CSP/appeals.md",
+                "L3 promotion must preserve its exact gate destination",
+            )
+            gate.get_by_role("button", name="Zavrieť human gate").click()
 
             for scenario in SCENARIOS:
                 page.evaluate("(id) => setScenario(id)", scenario)

@@ -83,7 +83,7 @@
       .diagram-frame svg [data-accent] { color: var(--lw-accent); }
       .scenario-banner { display: none; padding: 10px 20px; border-bottom: 1px solid var(--lw-border); color: var(--lw-text-secondary); background: var(--lw-sunken); }
       body:not([data-scenario="current"]) .scenario-banner { display: block; }
-      .shortcut-popover { position: fixed; top: 52px; right: 12px; z-index: 80; width: min(360px, calc(100vw - 24px)); padding: 16px; border: 1px solid var(--lw-border-strong); border-radius: var(--lw-radius-md); background: var(--lw-sunken); }
+      .shortcut-popover { position: fixed; top: 52px; right: 12px; z-index: 30; width: min(360px, calc(100vw - 24px)); padding: 16px; border: 1px solid var(--lw-border-strong); border-radius: var(--lw-radius-md); background: var(--lw-sunken); }
       .shortcut-popover h2 { margin: 0 0 10px; font-size: 14px; }
       .shortcut-popover dl { display: grid; grid-template-columns: 100px 1fr; gap: 7px 12px; margin: 0; color: var(--lw-text-secondary); font-size: 12px; }
       .shortcut-popover dt { font-family: var(--lw-font-mono); color: var(--lw-accent); }
@@ -722,9 +722,9 @@
         Object.freeze({ id: "AUD-2026-084", type: "audit", status: "potvrdené", label: "Advokát potvrdil truth T-2026-029.", source: "audit/2026-08.jsonl", locator: "41" })
       ]),
       events: Object.freeze([
-        Object.freeze({ id: "event-filing", lane: "Podanie", date: "12. 2. 2026", label: "podanie žaloby", status: "potvrdené", source: "02_podania/Zaloba.pdf", locator: null }),
-        Object.freeze({ id: "event-response", lane: "Dokazovanie", date: "18. 5. 2026", label: "vyjadrenie protistrany", status: "potvrdené", source: "03_protistrana/Vyjadrenie.pdf", locator: null }),
-        Object.freeze({ id: "event-judgment", lane: "Rozhodnutie", date: "24. 8. 2026", label: "vydanie rozsudku", status: "potvrdené", source: "04_rozhodnutia/Rozsudok.pdf", locator: null }),
+        Object.freeze({ id: "event-filing", lane: "Podanie", date: "12. 2. 2026", label: "podanie žaloby", status: "potvrdené", source: "02_podania/Zaloba.pdf", locator: "locator neuvedený v OKF zázname" }),
+        Object.freeze({ id: "event-response", lane: "Dokazovanie", date: "18. 5. 2026", label: "vyjadrenie protistrany", status: "potvrdené", source: "03_protistrana/Vyjadrenie.pdf", locator: "locator neuvedený v OKF zázname" }),
+        Object.freeze({ id: "event-judgment", lane: "Rozhodnutie", date: "24. 8. 2026", label: "vydanie rozsudku", status: "potvrdené", source: "04_rozhodnutia/Rozsudok.pdf", locator: "locator neuvedený v OKF zázname" }),
         Object.freeze({ id: "event-delivery", lane: "Rozhodnutie", date: "28. 8. 2026", label: "doručenie rozsudku", status: "potvrdené", source: "evidence/edelivery/receipt.json", locator: "12" }),
         Object.freeze({ id: "event-deadline-candidate", lane: "Dokazovanie", date: "31. 8. 2026", label: "návrh lehoty", status: "kandidát", source: "findings/deadlines/F-2026-018.md", locator: "24" }),
         Object.freeze({ id: "event-fact-candidate", lane: "Dokazovanie", date: "31. 8. 2026", label: "návrh L2 faktu", status: "čaká na human gate", source: "findings/reconciliation/F-2026-021.md", locator: "22" })
@@ -812,6 +812,14 @@
     const gateFields = Object.freeze({ source: document.querySelector("[data-gate-source]"), locator: document.querySelector("[data-gate-locator]"), before: document.querySelector("[data-gate-before]"), after: document.querySelector("[data-gate-after]"), uncertainty: document.querySelector("[data-gate-uncertainty]"), destination: document.querySelector("[data-gate-destination]"), stale: document.querySelector("[data-gate-stale]"), notice: document.querySelector("[data-gate-notice]") });
     let sourceInspectorTrigger = null;
     let humanGateTrigger = null;
+    const layerStack = [];
+    const layerElements = Object.freeze({ shortcutHelp, sourceInspector: sourceInspectorLayer, humanGate: humanGateLayer });
+    function syncLayerOrder() { layerStack.forEach((layer, index) => { layerElements[layer].style.zIndex = String(40 + index * 2); }); }
+    function pushLayer(layer) { const existing = layerStack.indexOf(layer); if (existing >= 0) layerStack.splice(existing, 1); layerStack.push(layer); syncLayerOrder(); }
+    function removeLayer(layer) { const existing = layerStack.indexOf(layer); if (existing >= 0) layerStack.splice(existing, 1); syncLayerOrder(); }
+    function openShortcutHelp() { shortcutHelp.hidden = false; shortcutToggle.setAttribute("aria-expanded", "true"); pushLayer("shortcutHelp"); }
+    function closeShortcutHelp() { if (shortcutHelp.hidden) return false; shortcutHelp.hidden = true; shortcutToggle.setAttribute("aria-expanded", "false"); removeLayer("shortcutHelp"); return true; }
+    function toggleShortcutHelp() { if (shortcutHelp.hidden) openShortcutHelp(); else closeShortcutHelp(); }
     function openGallery() { appState.galleryOpen = true; gallery.hidden = false; }
     function setDirection(direction, updateHash = true) {
       if (!DIRECTIONS.includes(direction)) { openGallery(); return; }
@@ -834,7 +842,7 @@
         if (!event) return null;
         const recordId = Object.freeze({ "event-delivery": "T-2026-029", "event-deadline-candidate": "F-2026-018", "event-fact-candidate": "F-2026-021" })[sourceId];
         const record = DATA.records.find((item) => item.id === recordId);
-        return { item: event, readModel: `DATA.events[id=\"${event.id}\"]`, canonical: record ? `${record.id} · ${record.type}` : "Udalosť je samostatný kanonický event", fileLine: `${event.source}${event.locator ? `:${event.locator}` : ""}`, evidence: event.source, history: `${event.date} · ${event.label} načítaná bez zmeny fixture.` };
+        return { item: event, readModel: `DATA.events[id=\"${event.id}\"]`, canonical: record ? `${record.id} · ${record.type}` : "Udalosť je samostatný kanonický event", fileLine: `${event.source}:${event.locator}`, evidence: event.source, history: `${event.date} · ${event.label} načítaná bez zmeny fixture.` };
       }
       const record = DATA.records.find((item) => item.id === sourceId);
       if (!record) return null;
@@ -851,9 +859,10 @@
       sourceFields.evidence.textContent = projection.evidence;
       sourceFields.history.textContent = projection.history;
       sourceInspectorLayer.hidden = false;
+      pushLayer("sourceInspector");
       sourceInspector.querySelector("[data-source-inspector-close]").focus();
     }
-    function closeSourceInspector() { if (sourceInspectorLayer.hidden) return false; sourceInspectorLayer.hidden = true; sourceInspectorTrigger?.focus(); sourceInspectorTrigger = null; return true; }
+    function closeSourceInspector() { if (sourceInspectorLayer.hidden) return false; sourceInspectorLayer.hidden = true; removeLayer("sourceInspector"); sourceInspectorTrigger?.focus(); sourceInspectorTrigger = null; return true; }
     function updateGateScenario() {
       const stale = appState.scenario === "stale";
       const futureVersion = appState.scenario === "future-version";
@@ -862,23 +871,24 @@
       humanGate.querySelector('[data-gate-action="edit"]').disabled = stale || futureVersion;
       humanGate.querySelectorAll("[data-gate-action]").forEach((action) => { if (!["confirm", "edit"].includes(action.dataset.gateAction)) action.disabled = futureVersion; });
     }
-    function openHumanGate(recordId, trigger = document.activeElement) {
+    function openHumanGate(recordId, trigger = document.activeElement, destination = "") {
       const record = DATA.records.find((item) => item.id === recordId);
       const detail = LEDGER_DETAILS[recordId];
       if (!record || !detail) return;
       humanGateTrigger = trigger instanceof HTMLElement ? trigger : null;
-      gateFields.source.textContent = record.label;
+      gateFields.source.textContent = `${record.id} · ${record.label}`;
       gateFields.locator.textContent = `${record.source}:${record.locator}`;
       gateFields.before.textContent = detail.before;
       gateFields.after.textContent = detail.after;
       gateFields.uncertainty.textContent = DATA.matter.candidateDeadline.uncertainty;
-      gateFields.destination.textContent = `kanonický OKF záznam ${record.source}:${record.locator}`;
+      gateFields.destination.textContent = destination || `kanonický OKF záznam ${record.source}:${record.locator}`;
       gateFields.notice.textContent = "";
       updateGateScenario();
       humanGateLayer.hidden = false;
+      pushLayer("humanGate");
       humanGate.querySelector("[data-human-gate-close]").focus();
     }
-    function closeHumanGate() { if (humanGateLayer.hidden) return false; humanGateLayer.hidden = true; humanGateTrigger?.focus(); humanGateTrigger = null; return true; }
+    function closeHumanGate() { if (humanGateLayer.hidden) return false; humanGateLayer.hidden = true; removeLayer("humanGate"); humanGateTrigger?.focus(); humanGateTrigger = null; return true; }
     function announceGateAction() { gateFields.notice.textContent = "Demonštračný stav · nič sa nezapísalo"; }
     function cycleDirection(step) { const currentIndex = DIRECTIONS.indexOf(appState.direction); setDirection(DIRECTIONS[(currentIndex + step + DIRECTIONS.length) % DIRECTIONS.length]); }
     function detailRow(label, value) { const wrapper = document.createElement("div"); wrapper.className = "timeline-detail__row"; const term = document.createElement("dt"); term.textContent = label; const description = document.createElement("dd"); description.textContent = value; wrapper.append(term, description); return wrapper; }
@@ -899,11 +909,11 @@
       ] : [
         ["Procesná lane", event.lane],
         ["Stav", event.status],
-        ["Zdroj", `${event.source}${event.locator ? `:${event.locator}` : ""}`],
+        ["Zdroj", `${event.source}:${event.locator}`],
         ["Audit", "Udalosť načítaná z kanonického OKF záznamu, bez zmeny dát."]
       ];
       timelineDetailFields.replaceChildren(...rows.map(([label, value]) => detailRow(label, value)));
-      timelineDetailSource.textContent = `${event.source}${event.locator ? `:${event.locator}` : ""}`;
+      timelineDetailSource.textContent = `${event.source}:${event.locator}`;
       timelineDetailSource.dataset.sourceKind = "event";
       timelineDetailSource.dataset.sourceId = event.id;
     }
@@ -1054,6 +1064,7 @@
       gate.dataset.brainGateTrigger = "";
       gate.dataset.gateId = layer === "L1" ? "promotion-L1-F-2026-021" : "promotion-L3-F-2026-021";
       gate.dataset.recordId = "F-2026-021";
+      gate.dataset.gateDestination = target;
       gate.textContent = "Otvoriť human gate · ukážka bez zápisu";
       preview.append(intro, flow, gate);
       return preview;
@@ -1161,16 +1172,16 @@
       const trigger = event.target.closest("[data-gate-trigger]");
       if (!trigger) return;
       humanGateTrigger = trigger;
-      document.dispatchEvent(new CustomEvent("okf:gate-request", { detail: Object.freeze({ gateId: trigger.dataset.gateId, recordId: trigger.dataset.recordId }) }));
+      document.dispatchEvent(new CustomEvent("okf:gate-request", { detail: Object.freeze({ gateId: trigger.dataset.gateId, recordId: trigger.dataset.recordId, destination: trigger.dataset.gateDestination || "" }) }));
     });
-    document.addEventListener("okf:gate-request", (event) => openHumanGate(event.detail.recordId, humanGateTrigger || document.activeElement));
+    document.addEventListener("okf:gate-request", (event) => openHumanGate(event.detail.recordId, humanGateTrigger || document.activeElement, event.detail.destination));
     document.querySelector("[data-gallery-open]").addEventListener("click", openGallery);
     scenarioSelect.addEventListener("change", (event) => setScenario(event.target.value));
     presentationToggle.addEventListener("click", () => setPresentation(!appState.presentation));
-    shortcutToggle.addEventListener("click", () => { const willOpen = shortcutHelp.hidden; shortcutHelp.hidden = !willOpen; shortcutToggle.setAttribute("aria-expanded", String(willOpen)); });
+    shortcutToggle.addEventListener("click", toggleShortcutHelp);
     window.addEventListener("hashchange", routeFromHash);
     function isTypingTarget(target) { return target instanceof HTMLElement && (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)); }
-    function closeTopLayerOrPresentation() { if (closeSourceInspector() || closeHumanGate()) return; if (appState.presentation) { setPresentation(false); return; } openGallery(); }
+    function closeTopLayerOrPresentation() { const topLayer = layerStack.at(-1); if (topLayer === "humanGate") { closeHumanGate(); return; } if (topLayer === "sourceInspector") { closeSourceInspector(); return; } if (topLayer === "shortcutHelp") { closeShortcutHelp(); return; } if (appState.presentation) { setPresentation(false); return; } openGallery(); }
     document.addEventListener("keydown", (event) => {
       if (isTypingTarget(event.target)) return;
       if (/^[1-6]$/.test(event.key)) setDirection(DIRECTIONS[Number(event.key) - 1]); else if (event.key === "ArrowRight") cycleDirection(1); else if (event.key === "ArrowLeft") cycleDirection(-1); else if (event.key.toLowerCase() === "f") setPresentation(!appState.presentation); else if (event.key === "Escape") closeTopLayerOrPresentation();
