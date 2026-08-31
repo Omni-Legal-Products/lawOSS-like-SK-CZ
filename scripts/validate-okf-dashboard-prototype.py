@@ -60,9 +60,34 @@ def validate_static(html_path: Path) -> None:
         'data-source-id="event-deadline-candidate"',
     ):
         require(fragment in html, f"missing direction invariant: {fragment}")
+    for test_id in (
+        "evidence-graph",
+        "graph-node-T-2026-029",
+        "graph-node-F-2026-020",
+        "graph-list-fallback",
+        "audit-ledger",
+        "ledger-item-OKF_PARSE_002",
+        "ledger-item-OKF_STALE_001",
+        "ledger-diff",
+        "ledger-provenance",
+        "ledger-history",
+    ):
+        require(f'data-testid="{test_id}"' in html, f"missing task 4 primitive: {test_id}")
+    for fragment in (
+        "function spotlightNode(id)",
+        "function setLedgerItem(id)",
+        'data-node-type="document"',
+        'data-node-type="evidence"',
+        'data-node-type="truth"',
+        'data-node-type="decision"',
+        'data-node-type="finding"',
+        'data-node-type="subject"',
+        'data-source-kind="record"',
+    ):
+        require(fragment in html, f"missing task 4 invariant: {fragment}")
 
 
-def validate_smoke(html_path: Path) -> None:
+def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
     try:
         from playwright.sync_api import sync_playwright
     except ImportError as exc:
@@ -74,7 +99,7 @@ def validate_smoke(html_path: Path) -> None:
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
         try:
-            page = browser.new_page()
+            page = browser.new_page(viewport={"width": 1440, "height": 1024})
             page.on("pageerror", lambda error: page_errors.append(str(error)))
             page.goto(html_path.as_uri(), wait_until="load")
 
@@ -241,6 +266,119 @@ def validate_smoke(html_path: Path) -> None:
                 "candidate deadline detail source must use the typed event contract",
             )
 
+            data_before_task_4 = page.evaluate("JSON.stringify(DATA)")
+            page.evaluate("setDirection('constellation')")
+            page.evaluate("spotlightNode('T-2026-029')")
+            graph = page.evaluate(
+                """() => ({
+                    selected: [...document.querySelectorAll(
+                        '[data-graph-node][aria-pressed="true"]'
+                    )].map((item) => item.dataset.graphNode),
+                    state: appState.spotlightNode,
+                    activeEdges: document.querySelectorAll(
+                        '[data-graph-edge][data-path-active="true"]'
+                    ).length,
+                    dimmedEdges: document.querySelectorAll(
+                        '[data-graph-edge][data-path-active="false"]'
+                    ).length,
+                    detail: document.querySelector(
+                        '[data-testid="graph-inspector"]'
+                    ).textContent,
+                    source: (() => {
+                        const source = document.querySelector(
+                            '[data-graph-detail-source]'
+                        );
+                        return {
+                            kind: source.dataset.sourceKind,
+                            id: source.dataset.sourceId
+                        };
+                    })(),
+                    fallbackEdges: document.querySelectorAll(
+                        '[data-testid="graph-list-fallback"] tbody tr'
+                    ).length
+                })"""
+            )
+            require(
+                graph["selected"] == ["T-2026-029"],
+                "graph spotlight must select exactly one node",
+            )
+            require(
+                graph["state"] == "T-2026-029",
+                "graph spotlight did not update state",
+            )
+            require(
+                graph["activeEdges"] > 0 and graph["dimmedEdges"] > 0,
+                "graph spotlight must distinguish path and unrelated edges",
+            )
+            require(
+                "memory/matters/T-2026-029.md:18" in graph["detail"],
+                "graph inspector is missing truth provenance",
+            )
+            require(
+                graph["source"] == {"kind": "record", "id": "T-2026-029"},
+                "graph source must use the typed record contract",
+            )
+            require(
+                graph["fallbackEdges"]
+                == page.locator("[data-graph-edge]").count(),
+                "graph fallback and SVG must expose the same edges",
+            )
+
+            page.evaluate("setDirection('ledger')")
+            page.evaluate("setLedgerItem('OKF_PARSE_002')")
+            ledger = page.evaluate(
+                """() => ({
+                    selected: [...document.querySelectorAll(
+                        '[data-ledger-item][aria-selected="true"]'
+                    )].map((item) => item.dataset.ledgerItem),
+                    state: appState.selectedLedgerItem,
+                    detail: document.querySelector(
+                        '[data-testid="ledger-inspector"]'
+                    ).textContent,
+                    source: (() => {
+                        const source = document.querySelector(
+                            '[data-ledger-detail-source]'
+                        );
+                        return {
+                            kind: source.dataset.sourceKind,
+                            id: source.dataset.sourceId
+                        };
+                    })(),
+                    dataSnapshot: JSON.stringify(DATA)
+                })"""
+            )
+            require(
+                ledger["selected"] == ["OKF_PARSE_002"],
+                "ledger must have exactly one aria-selected row",
+            )
+            require(
+                ledger["state"] == "OKF_PARSE_002",
+                "ledger selection did not update state",
+            )
+            for expected in (
+                "Diff",
+                "Provenance",
+                "Append-only History",
+                "Odporúčaný ďalší krok",
+                "memory/questions/Q-2026-009.md:7",
+            ):
+                require(expected in ledger["detail"], f"ledger detail missing: {expected}")
+            require(
+                ledger["source"] == {"kind": "record", "id": "OKF_PARSE_002"},
+                "ledger source must use the typed record contract",
+            )
+            require(
+                ledger["dataSnapshot"] == data_before_task_4,
+                "DATA changed during graph or ledger interaction",
+            )
+
+            if artifacts is not None:
+                artifacts.mkdir(parents=True, exist_ok=True)
+                page.screenshot(path=artifacts / "direction-4-audit-ledger.png")
+                page.evaluate("setDirection('constellation')")
+                page.evaluate("spotlightNode('T-2026-029')")
+                page.screenshot(path=artifacts / "direction-3-evidence-constellation.png")
+
             page.evaluate("setDirection('tower')")
             page.wait_for_function("window.location.hash === '#tower'")
             tower = page.evaluate(
@@ -306,7 +444,8 @@ def main() -> None:
     html_path = args.html.resolve()
     validate_static(html_path)
     if args.mode in ("smoke", "full"):
-        validate_smoke(html_path)
+        artifacts = args.artifacts.resolve() if args.artifacts else None
+        validate_smoke(html_path, artifacts)
     print(f"OK: {args.mode} validation passed for {args.html}")
 
 

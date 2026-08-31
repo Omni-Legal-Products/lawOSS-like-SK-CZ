@@ -200,6 +200,103 @@
       .timeline-fallback { margin-top: 10px; border-top: 1px solid var(--lw-border); color: var(--lw-text-tertiary); font-size: 11px; }
       .timeline-fallback summary { padding: 8px 0; cursor: pointer; }
       .timeline-fallback ol { margin: 0; padding: 0 0 0 20px; columns: 2; }
+      .constellation-meta { display: grid; grid-template-columns: 1.5fr repeat(3, .8fr); margin: 18px 0 14px; border-top: 1px solid var(--lw-border-strong); border-bottom: 1px solid var(--lw-border); }
+      .constellation-meta div { min-width: 0; padding: 9px 12px; border-left: 1px solid var(--lw-border-subtle); }
+      .constellation-meta div:first-child { padding-left: 0; border-left: 0; }
+      .constellation-meta small { display: block; color: var(--lw-text-tertiary); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+      .constellation-meta strong { display: block; margin-top: 2px; overflow-wrap: anywhere; font-size: 11px; font-weight: 500; }
+      .constellation-shell { display: grid; grid-template-columns: 126px minmax(520px, 1fr) 276px; min-height: 468px; border-top: 1px solid var(--lw-border-strong); border-bottom: 1px solid var(--lw-border); }
+      .constellation-filter { padding: 12px 12px 12px 0; border-right: 1px solid var(--lw-border); }
+      .constellation-filter h2 { margin: 0 0 12px; font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+      .constellation-filter ul { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+      .constellation-filter li { display: flex; align-items: center; gap: 7px; color: var(--lw-text-tertiary); font-size: 10px; }
+      .node-key { width: 9px; height: 9px; border: 1px solid currentColor; }
+      .node-key[data-node-type="evidence"] { transform: rotate(45deg); }
+      .node-key[data-node-type="truth"] { color: var(--lw-success); background: var(--lw-success); }
+      .node-key[data-node-type="decision"] { color: var(--lw-info); border-width: 2px; }
+      .node-key[data-node-type="finding"] { color: var(--lw-accent); border-style: dashed; }
+      .node-key[data-node-type="subject"] { border-radius: var(--lw-radius-full); }
+      .constellation-board { position: relative; min-width: 520px; overflow: hidden; background: var(--lw-sunken); }
+      .constellation-board::before { content: "PROVENANCE PLANE / OKF READ MODEL"; position: absolute; top: 10px; left: 12px; z-index: 2; color: var(--lw-text-tertiary); font: 9px var(--lw-font-mono); letter-spacing: .08em; }
+      .constellation-board svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .constellation-board [data-graph-edge] { fill: none; stroke: var(--lw-text-tertiary); stroke-width: 1.5; transition: opacity 160ms ease, stroke 160ms ease, stroke-width 160ms ease; }
+      .constellation-board [data-graph-edge][data-status="proposal"] { stroke: var(--lw-accent); stroke-dasharray: 7 6; }
+      .constellation-board [data-graph-edge][data-status="partial"] { stroke: var(--lw-warning); stroke-dasharray: 2 5; }
+      .constellation-board [data-graph-edge][data-path-active="true"] { stroke: var(--lw-accent); stroke-width: 3; opacity: 1; }
+      .constellation-board [data-graph-edge][data-path-active="false"] { opacity: .2; }
+      .graph-node { position: absolute; z-index: 3; width: 130px; min-height: 52px; padding: 7px 9px; border: 1px solid var(--lw-border-strong); border-radius: var(--lw-radius-xs); color: var(--lw-text-secondary); text-align: left; background: var(--lw-surface); }
+      .graph-node:hover { border-color: var(--lw-text-secondary); }
+      .graph-node[aria-pressed="true"] { color: var(--lw-text-primary); border-color: var(--lw-accent); box-shadow: inset 2px 0 var(--lw-accent); }
+      .graph-node[data-node-type="evidence"] { border-left-style: double; border-left-width: 4px; }
+      .graph-node[data-node-type="truth"] { border-color: var(--lw-success); }
+      .graph-node[data-node-type="decision"] { border-top: 2px solid var(--lw-info); }
+      .graph-node[data-node-type="finding"] { border-style: dashed; }
+      .graph-node[data-node-type="subject"] { border-radius: var(--lw-radius-lg); }
+      .graph-node small, .graph-node strong { display: block; }
+      .graph-node small { margin-bottom: 3px; color: var(--lw-text-tertiary); font: 9px var(--lw-font-mono); text-transform: uppercase; }
+      .graph-node strong { font: 10.5px/1.25 var(--lw-font-mono); font-weight: 500; }
+      .graph-node[data-node-position="document"] { left: 4%; top: 16%; }
+      .graph-node[data-node-position="receipt"] { left: 5%; top: 64%; }
+      .graph-node[data-node-position="truth"] { left: 39%; top: 32%; }
+      .graph-node[data-node-position="decision"] { right: 5%; top: 14%; }
+      .graph-node[data-node-position="subject"] { left: 38%; bottom: 11%; }
+      .graph-node[data-node-position="register"] { right: 5%; bottom: 9%; }
+      .graph-node[data-node-position="finding"] { right: 7%; top: 50%; }
+      .graph-node[data-node-position="proposal"] { left: 39%; top: 7%; }
+      .graph-inspector { padding: 14px 0 12px 16px; border-left: 1px solid var(--lw-border); background: var(--lw-surface); }
+      .graph-inspector__eyebrow { color: var(--lw-accent); font: 9px var(--lw-font-mono); letter-spacing: .08em; text-transform: uppercase; }
+      .graph-inspector h2 { margin: 6px 0 7px; font: 16px var(--lw-font-mono); font-weight: 500; }
+      .graph-inspector > p { margin: 0 0 14px; color: var(--lw-text-secondary); font-size: 11px; }
+      .graph-inspector dl { margin: 0; border-top: 1px solid var(--lw-border); }
+      .graph-inspector dl div { padding: 8px 0; border-bottom: 1px solid var(--lw-border-subtle); }
+      .graph-inspector dt { color: var(--lw-text-tertiary); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+      .graph-inspector dd { margin: 2px 0 0; color: var(--lw-text-secondary); font-size: 10.5px; overflow-wrap: anywhere; }
+      .graph-inspector .source-link { margin-top: 12px; }
+      .graph-fallback { margin-top: 10px; border-top: 1px solid var(--lw-border-strong); }
+      .graph-fallback summary { padding: 8px 0; color: var(--lw-text-secondary); cursor: pointer; font-size: 11px; }
+      .graph-fallback table, .ledger-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+      .graph-fallback th, .graph-fallback td { padding: 5px 8px; border-top: 1px solid var(--lw-border-subtle); color: var(--lw-text-tertiary); text-align: left; font-size: 10px; overflow-wrap: anywhere; }
+      .graph-fallback th { color: var(--lw-text-secondary); font-weight: 500; }
+      .audit-health { display: grid; grid-template-columns: repeat(5, 1fr); margin: 18px 0 14px; border-top: 1px solid var(--lw-border-strong); border-bottom: 1px solid var(--lw-border); }
+      .health-cell { position: relative; min-width: 0; padding: 9px 11px; border-left: 1px solid var(--lw-border-subtle); }
+      .health-cell:first-child { border-left: 0; }
+      .health-cell small, .health-cell strong { display: block; }
+      .health-cell small { color: var(--lw-text-tertiary); font-size: 8.5px; letter-spacing: .08em; text-transform: uppercase; }
+      .health-cell strong { margin-top: 2px; color: var(--lw-text-secondary); font: 10px var(--lw-font-mono); font-weight: 500; }
+      .health-cell[data-health="error"] { box-shadow: inset 0 -2px var(--lw-danger); }
+      .health-cell[data-health="warning"] { box-shadow: inset 0 -2px var(--lw-warning); }
+      .health-cell[data-health="confirmed"] { box-shadow: inset 0 -2px var(--lw-success); }
+      .ledger-shell { display: grid; grid-template-columns: minmax(590px, 1.45fr) minmax(310px, .8fr); min-height: 558px; border-top: 1px solid var(--lw-border-strong); border-bottom: 1px solid var(--lw-border); }
+      .ledger-list { min-width: 0; overflow-x: auto; border-right: 1px solid var(--lw-border); }
+      .ledger-caption { padding: 8px 10px; color: var(--lw-text-tertiary); font: 9px var(--lw-font-mono); text-align: left; letter-spacing: .06em; }
+      .ledger-table th { padding: 8px 9px; border-top: 1px solid var(--lw-border); border-bottom: 1px solid var(--lw-border); color: var(--lw-text-tertiary); text-align: left; font-size: 9px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+      .ledger-table td { padding: 9px; border-bottom: 1px solid var(--lw-border-subtle); color: var(--lw-text-secondary); font-size: 11px; vertical-align: top; overflow-wrap: anywhere; }
+      .ledger-table tr[data-ledger-item] { cursor: pointer; }
+      .ledger-table tr[data-ledger-item]:hover td { background: var(--lw-surface-hover); }
+      .ledger-table tr[data-ledger-item][aria-selected="true"] td { color: var(--lw-text-primary); background: var(--lw-sunken); }
+      .ledger-table tr[data-ledger-item][aria-selected="true"] td:first-child { box-shadow: inset 2px 0 var(--lw-accent); }
+      .ledger-table tr[data-severity="error"] td:nth-child(2) { color: var(--lw-danger); }
+      .ledger-table tr[data-severity="warning"] td:nth-child(2) { color: var(--lw-warning); }
+      .ledger-table tr[data-severity="proposal"] td:nth-child(2) { color: var(--lw-accent); }
+      .ledger-id { font-family: var(--lw-font-mono); }
+      .ledger-inspector { min-width: 0; background: var(--lw-sunken); }
+      .ledger-inspector__head { padding: 13px 15px 12px; border-bottom: 1px solid var(--lw-border); }
+      .ledger-inspector__head small { color: var(--lw-danger); font: 9px var(--lw-font-mono); letter-spacing: .08em; text-transform: uppercase; }
+      .ledger-inspector__head h2 { margin: 5px 0 3px; font: 15px var(--lw-font-mono); font-weight: 500; }
+      .ledger-inspector__head p { margin: 0; color: var(--lw-text-tertiary); font-size: 10.5px; }
+      .ledger-detail-section { padding: 10px 15px; border-bottom: 1px solid var(--lw-border-subtle); }
+      .ledger-detail-section h3 { margin: 0 0 5px; color: var(--lw-text-tertiary); font-size: 8.5px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
+      .ledger-detail-section p { margin: 0; color: var(--lw-text-secondary); font-size: 11px; line-height: 1.4; overflow-wrap: anywhere; }
+      .ledger-diff { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--lw-border); background: var(--lw-canvas); }
+      .ledger-diff div { min-width: 0; padding: 7px; color: var(--lw-text-secondary); font: 9.5px/1.4 var(--lw-font-mono); overflow-wrap: anywhere; }
+      .ledger-diff div + div { border-left: 1px solid var(--lw-border); }
+      .ledger-diff small { display: block; margin-bottom: 3px; color: var(--lw-text-tertiary); }
+      .ledger-diff [data-diff="after"] { box-shadow: inset 0 2px var(--lw-accent); }
+      .ledger-history { margin: 0; padding: 0; list-style: none; }
+      .ledger-history li { display: grid; grid-template-columns: 90px 1fr; gap: 8px; padding: 4px 0; border-top: 1px dotted var(--lw-border); color: var(--lw-text-secondary); font-size: 9.5px; }
+      .ledger-history time { color: var(--lw-text-tertiary); font-family: var(--lw-font-mono); }
+      .ledger-next { border-left: 2px solid var(--lw-info); }
+      .ledger-inspector .source-link { margin: 11px 15px 13px; }
     }
     @layer scenarios {
       body[data-scenario="empty"] [data-scenario-copy]::after { content: "Žiadna potvrdená budúca lehota. Overte trigger a právny režim kandidátneho návrhu."; }
@@ -235,6 +332,11 @@
         .cover-field:nth-child(3) { border-left: 0; }
         .timeline-shell { grid-template-columns: 1fr; }
         .timeline-detail { position: static; }
+        .constellation-shell { grid-template-columns: 100px minmax(520px, 1fr); overflow-x: auto; }
+        .graph-inspector { grid-column: 1 / -1; padding: 14px 0; border-top: 1px solid var(--lw-border); border-left: 0; }
+        .ledger-shell { grid-template-columns: 1fr; }
+        .ledger-list { border-right: 0; }
+        .ledger-inspector { border-top: 1px solid var(--lw-border-strong); }
       }
       @media (max-width: 560px) {
         .prototype-bar__scenario { width: 100%; margin-left: 0; }
@@ -250,6 +352,12 @@
         .decision-trace { grid-template-columns: 1fr; padding-left: 12px; }
         .trace-arrow { transform: rotate(90deg); }
         .timeline-fallback ol { columns: 1; }
+        .constellation-meta, .audit-health { grid-template-columns: 1fr 1fr; }
+        .constellation-meta div:nth-child(3), .health-cell:nth-child(3) { border-left: 0; }
+        .constellation-shell { grid-template-columns: minmax(520px, 1fr); }
+        .constellation-filter { display: none; }
+        .graph-inspector { grid-column: auto; }
+        .ledger-shell { min-height: 0; }
       }
       @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
     }
@@ -364,8 +472,56 @@
         </div>
         <details class="timeline-fallback"><summary>Textový fallback procesnej mapy</summary><ol><li>12. 2. 2026 · podanie žaloby · potvrdené</li><li>18. 5. 2026 · vyjadrenie protistrany · potvrdené</li><li>24. 8. 2026 · vydanie rozsudku · potvrdené</li><li>28. 8. 2026 · doručenie rozsudku · potvrdené</li><li>návrh vytvorený 31. 8. 2026 · navrhovaný termín 14. 9. 2026 · návrh, čaká na potvrdenie</li><li>31. 8. 2026 · návrh L2 faktu · čaká na human gate</li></ol></details>
       </section>
-      <section class="direction-root" data-direction="constellation" data-testid="direction-3" data-active="false" hidden inert aria-labelledby="constellation-title"><div class="matter-crumb">Prax / ALFA STAV s.r.o. / <span>Prípad</span></div><div class="matter-head"><div><h1 id="constellation-title">Dôkazová konštelácia</h1><p>ALFA STAV s.r.o. · fakty, findings a pôvodné dôkazy</p></div><span class="direction-label">03 · úroveň prípad</span></div></section>
-      <section class="direction-root" data-direction="ledger" data-testid="direction-4" data-active="false" hidden inert aria-labelledby="ledger-title"><div class="matter-crumb">Prax / ALFA STAV s.r.o. / <span>Prípad</span></div><div class="matter-head"><div><h1 id="ledger-title">Auditný ledger</h1><p>ALFA STAV s.r.o. · integrita, diff a história</p></div><span class="direction-label">04 · úroveň prípad</span></div></section>
+      <section class="direction-root" data-direction="constellation" data-testid="direction-3" data-active="false" hidden inert aria-labelledby="constellation-title">
+        <div class="matter-crumb">Prax / ALFA STAV s.r.o. / <span>Prípad</span></div>
+        <div class="matter-head"><div><h1 id="constellation-title">Dôkazová konštelácia</h1><p>ALFA STAV s.r.o. · od pôvodného podkladu po truth a rozhodnutie</p></div><span class="direction-label">03 · úroveň prípad</span></div>
+        <div class="constellation-meta"><div><small>Aktívny spis</small><strong>18Cb/47/2026 · Okresný súd Žilina</strong></div><div><small>Truth</small><strong>1 potvrdená</strong></div><div><small>Otvorené findings</small><strong>2 čakajú na posúdenie</strong></div><div><small>Mapa</small><strong>8 väzieb · 8 uzlov</strong></div></div>
+        <div class="constellation-shell">
+          <aside class="constellation-filter" aria-label="Legenda typov uzlov"><h2>Typ uzla</h2><ul><li><i class="node-key" data-node-type="document"></i>dokument</li><li><i class="node-key" data-node-type="evidence"></i>evidence</li><li><i class="node-key" data-node-type="truth"></i>truth</li><li><i class="node-key" data-node-type="decision"></i>decision</li><li><i class="node-key" data-node-type="finding"></i>finding</li><li><i class="node-key" data-node-type="subject"></i>subject</li></ul></aside>
+          <div class="constellation-board" data-testid="evidence-graph">
+            <svg viewBox="0 0 700 468" role="img" aria-labelledby="graph-title graph-description">
+              <title id="graph-title">Graf pôvodu truth, findings a rozhodnutia</title>
+              <desc id="graph-description">Osem hrán spája pôvodné dokumenty a evidence s potvrdenou truth, otvorenými findings, subjektom a rozhodnutím. Zvýraznená cesta vedie od rozsudku a doručenky cez truth T-2026-029 po rozhodnutie D-2026-011.</desc>
+              <g>
+                <path data-graph-edge="DOC-2026-024|T-2026-029" data-from="DOC-2026-024" data-to="T-2026-029" data-status="confirmed" data-path-active="true" d="M135 108 C230 108 226 178 327 178"/>
+                <path data-graph-edge="EVID-2026-028|T-2026-029" data-from="EVID-2026-028" data-to="T-2026-029" data-status="confirmed" data-path-active="true" d="M140 330 C230 330 234 212 327 204"/>
+                <path data-graph-edge="T-2026-029|D-2026-011" data-from="T-2026-029" data-to="D-2026-011" data-status="confirmed" data-path-active="true" d="M455 190 C530 190 526 102 612 102"/>
+                <path data-graph-edge="DOC-2026-024|F-2026-021" data-from="DOC-2026-024" data-to="F-2026-021" data-status="proposal" data-path-active="false" d="M135 108 C220 108 238 58 327 58"/>
+                <path data-graph-edge="F-2026-021|D-2026-011" data-from="F-2026-021" data-to="D-2026-011" data-status="proposal" data-path-active="false" d="M455 58 C520 58 542 80 612 102"/>
+                <path data-graph-edge="SUBJ-2026-002|F-2026-020" data-from="SUBJ-2026-002" data-to="F-2026-020" data-status="partial" data-path-active="false" d="M455 390 C525 390 538 263 602 263"/>
+                <path data-graph-edge="DOC-2026-031|F-2026-020" data-from="DOC-2026-031" data-to="F-2026-020" data-status="partial" data-path-active="false" d="M602 390 C602 350 602 315 602 288"/>
+                <path data-graph-edge="F-2026-020|D-2026-011" data-from="F-2026-020" data-to="D-2026-011" data-status="partial" data-path-active="false" d="M602 238 C602 193 612 162 612 128"/>
+              </g>
+            </svg>
+            <button class="graph-node" type="button" data-node-position="document" data-graph-node="DOC-2026-024" data-node-type="document" aria-pressed="false"><small>dokument · potvrdené</small><strong>Rozsudok.pdf</strong></button>
+            <button class="graph-node" type="button" data-node-position="receipt" data-graph-node="EVID-2026-028" data-node-type="evidence" aria-pressed="false"><small>evidence · potvrdené</small><strong>doručenka 28. 8.</strong></button>
+            <button class="graph-node" type="button" data-testid="graph-node-T-2026-029" data-node-position="truth" data-graph-node="T-2026-029" data-node-type="truth" aria-pressed="true"><small>truth · potvrdené</small><strong>T-2026-029</strong></button>
+            <button class="graph-node" type="button" data-node-position="decision" data-graph-node="D-2026-011" data-node-type="decision" aria-pressed="false"><small>decision · aktívne</small><strong>D-2026-011</strong></button>
+            <button class="graph-node" type="button" data-node-position="proposal" data-graph-node="F-2026-021" data-node-type="finding" aria-pressed="false"><small>finding · čaká na gate</small><strong>F-2026-021</strong></button>
+            <button class="graph-node" type="button" data-node-position="subject" data-graph-node="SUBJ-2026-002" data-node-type="subject" aria-pressed="false"><small>subject · čiastočne overené</small><strong>BETA DEVELOPMENT</strong></button>
+            <button class="graph-node" type="button" data-node-position="register" data-graph-node="DOC-2026-031" data-node-type="document" aria-pressed="false"><small>dokument · snapshot</small><strong>výpis registra</strong></button>
+            <button class="graph-node" type="button" data-testid="graph-node-F-2026-020" data-node-position="finding" data-graph-node="F-2026-020" data-node-type="finding" aria-pressed="false"><small>finding · partial</small><strong>F-2026-020</strong></button>
+          </div>
+          <aside class="graph-inspector" data-testid="graph-inspector" aria-live="polite"><div class="graph-inspector__eyebrow" data-graph-detail-type>truth · potvrdené</div><h2 data-graph-detail-title>T-2026-029</h2><p data-graph-detail-copy>Rozsudok bol doručený 28. 8. 2026 a žaloba bola zamietnutá.</p><dl><div><dt>Spotlight path</dt><dd data-graph-detail-path>Rozsudok.pdf + doručenka -> T-2026-029 -> D-2026-011</dd></div><div><dt>Kanonický záznam</dt><dd data-graph-detail-record>memory/matters/T-2026-029.md:18</dd></div><div><dt>Stav väzieb</dt><dd data-graph-detail-status>3 potvrdené hrany · plná línia</dd></div></dl><button class="source-link" type="button" data-source-trigger data-source-kind="record" data-source-id="T-2026-029" data-graph-detail-source>memory/matters/T-2026-029.md:18</button></aside>
+        </div>
+        <details class="graph-fallback" data-testid="graph-list-fallback" open><summary>Textový fallback grafu · rovnakých 8 väzieb</summary><table><thead><tr><th>Od</th><th>Vzťah</th><th>Do</th><th>Stav</th></tr></thead><tbody><tr><td>DOC-2026-024</td><td>dokladá</td><td>T-2026-029</td><td>potvrdené</td></tr><tr><td>EVID-2026-028</td><td>dokladá doručenie</td><td>T-2026-029</td><td>potvrdené</td></tr><tr><td>T-2026-029</td><td>informuje</td><td>D-2026-011</td><td>potvrdené</td></tr><tr><td>DOC-2026-024</td><td>podporuje návrh</td><td>F-2026-021</td><td>návrh, čaká na potvrdenie</td></tr><tr><td>F-2026-021</td><td>navrhuje zmenu</td><td>D-2026-011</td><td>čaká na human gate</td></tr><tr><td>SUBJ-2026-002</td><td>má rozpor</td><td>F-2026-020</td><td>čiastočne overené</td></tr><tr><td>DOC-2026-031</td><td>dokladá rozpor</td><td>F-2026-020</td><td>čiastočne overené</td></tr><tr><td>F-2026-020</td><td>vyžaduje posúdenie</td><td>D-2026-011</td><td>otvorené</td></tr></tbody></table></details>
+      </section>
+      <section class="direction-root" data-direction="ledger" data-testid="direction-4" data-active="false" hidden inert aria-labelledby="ledger-title">
+        <div class="matter-crumb">Prax / ALFA STAV s.r.o. / <span>Prípad</span></div>
+        <div class="matter-head"><div><h1 id="ledger-title">Auditný ledger</h1><p>ALFA STAV s.r.o. · kontrolný výpis integrity bez zápisových akcií</p></div><span class="direction-label">04 · úroveň prípad</span></div>
+        <div class="audit-health" aria-label="Stav dátových vrstiev"><div class="health-cell" data-health="confirmed"><small>Schema</small><strong>OKF 1.0 · čitateľná</strong></div><div class="health-cell" data-health="confirmed"><small>Mirror</small><strong>revision 18 · zhodný</strong></div><div class="health-cell" data-health="warning"><small>Freshness</small><strong>OKF_STALE_001</strong></div><div class="health-cell" data-health="warning"><small>Provider</small><strong>partial · register</strong></div><div class="health-cell" data-health="error"><small>Audit</small><strong>1 parse error · store čitateľný</strong></div></div>
+        <div class="ledger-shell">
+          <div class="ledger-list"><table class="ledger-table" data-testid="audit-ledger"><caption class="ledger-caption">LEDGER / 6 otvorených alebo významných záznamov / append-only audit</caption><colgroup><col style="width:21%"><col style="width:13%"><col style="width:25%"><col style="width:17%"><col style="width:24%"></colgroup><thead><tr><th>ID</th><th>Závažnosť</th><th>Súbor</th><th>Stav</th><th>Ďalší krok</th></tr></thead><tbody>
+            <tr data-ledger-item="F-2026-018" data-severity="proposal" tabindex="0" aria-selected="false"><td class="ledger-id">F-2026-018</td><td>návrh</td><td>findings/deadlines</td><td>čaká na potvrdenie</td><td>právne overiť trigger</td></tr>
+            <tr data-ledger-item="F-2026-020" data-severity="warning" tabindex="0" aria-selected="false"><td class="ledger-id">F-2026-020</td><td>warning</td><td>findings/validation</td><td>partial</td><td>porovnať sídlo</td></tr>
+            <tr data-ledger-item="F-2026-021" data-severity="proposal" tabindex="0" aria-selected="false"><td class="ledger-id">F-2026-021</td><td>návrh</td><td>findings/reconciliation</td><td>čaká na gate</td><td>posúdiť význam platby</td></tr>
+            <tr data-testid="ledger-item-OKF_STALE_001" data-ledger-item="OKF_STALE_001" data-severity="warning" tabindex="0" aria-selected="false"><td class="ledger-id">OKF_STALE_001</td><td>warning</td><td>_STATUS.md:3</td><td>stale</td><td>reconcile 2 dokumenty</td></tr>
+            <tr data-testid="ledger-item-OKF_PARSE_002" data-ledger-item="OKF_PARSE_002" data-severity="error" tabindex="0" aria-selected="true"><td class="ledger-id">OKF_PARSE_002</td><td>error</td><td>Q-2026-009.md:7</td><td>parse-error</td><td>opraviť YAML hodnotu</td></tr>
+            <tr data-ledger-item="AUD-2026-084" data-severity="confirmed" tabindex="0" aria-selected="false"><td class="ledger-id">AUD-2026-084</td><td>audit</td><td>2026-08.jsonl:41</td><td>potvrdené</td><td>bez zásahu</td></tr>
+          </tbody></table></div>
+          <aside class="ledger-inspector" data-testid="ledger-inspector" aria-live="polite"><div class="ledger-inspector__head"><small data-ledger-detail-status>error · parse-error</small><h2 data-ledger-detail-title>OKF_PARSE_002</h2><p data-ledger-detail-summary>Záznam Q-2026-009.md má neuzavretú YAML hodnotu. Ostatné záznamy ostávajú čitateľné.</p></div><section class="ledger-detail-section" data-testid="ledger-diff"><h3>Diff</h3><div class="ledger-diff"><div data-diff="before"><small>nájdené</small><span data-ledger-diff-before>status: "otvorené</span></div><div data-diff="after"><small>očakávaný tvar</small><span data-ledger-diff-after>status: "otvorené"</span></div></div></section><section class="ledger-detail-section" data-testid="ledger-provenance"><h3>Provenance</h3><p data-ledger-provenance>UI chyba -> parser questions -> kanonický záznam -> memory/questions/Q-2026-009.md:7</p></section><section class="ledger-detail-section" data-testid="ledger-history"><h3>Append-only History</h3><ol class="ledger-history" data-ledger-history><li><time>31. 8. 09:14</time><span>Parser zaznamenal OKF_PARSE_002.</span></li><li><time>31. 8. 09:14</time><span>Store pokračoval v read-only načítaní ostatných záznamov.</span></li></ol></section><section class="ledger-detail-section ledger-next"><h3>Odporúčaný ďalší krok</h3><p data-ledger-next>Otvorte riadok 7, uzavrite YAML hodnotu a znovu spustite validáciu. Tento prototyp nič nezapisuje.</p></section><button class="source-link" type="button" data-source-trigger data-source-kind="record" data-source-id="OKF_PARSE_002" data-ledger-detail-source>memory/questions/Q-2026-009.md:7</button></aside>
+        </div>
+      </section>
       <section class="direction-root" data-direction="brain" data-testid="direction-5" data-active="false" hidden inert aria-labelledby="brain-title"><div class="matter-crumb">Prax / ALFA STAV s.r.o. / <span>Prípad</span></div><div class="matter-head"><div><h1 id="brain-title">OKF Brain</h1><p>ALFA STAV s.r.o. · truth, otvorené otázky a vrstvy pamäte</p></div><span class="direction-label">05 · úroveň prípad</span></div></section>
       <section class="direction-root" data-direction="tower" data-testid="direction-6" data-active="false" hidden inert aria-labelledby="tower-title"><div class="matter-crumb"><span>Prax</span></div><div class="matter-head"><div><h1 id="tower-title">Risk Control Tower</h1><p>Päť fiktívnych prípadov · transparentné dôvody pozornosti</p></div><span class="direction-label">06 · úroveň prax</span></div></section>
     </main>
@@ -412,7 +568,25 @@
     });
     const DIRECTIONS = Object.freeze(["registry", "timeline", "constellation", "ledger", "brain", "tower"]);
     const SCENARIOS = Object.freeze(DATA.scenarios.map((scenario) => scenario.id));
-    const appState = { direction: "registry", scenario: "current", galleryOpen: true, presentation: false, selectedTimelineEvent: "event-deadline-candidate" };
+    const GRAPH_DETAILS = Object.freeze({
+      "DOC-2026-024": Object.freeze({ type: "document · potvrdené", label: "DOC-2026-024", copy: "Rozsudok zo dňa 24. 8. 2026, strana 1.", source: "04_rozhodnutia/Rozsudok.pdf:1", path: "DOC-2026-024 -> T-2026-029 -> D-2026-011", pathNodes: Object.freeze(["DOC-2026-024", "T-2026-029", "D-2026-011"]), edgeState: "2 potvrdené hrany · plná línia" }),
+      "EVID-2026-028": Object.freeze({ type: "evidence · potvrdené", label: "EVID-2026-028", copy: "Elektronická doručenka potvrdzuje doručenie 28. 8. 2026.", source: "evidence/edelivery/receipt.json:12", path: "EVID-2026-028 -> T-2026-029 -> D-2026-011", pathNodes: Object.freeze(["EVID-2026-028", "T-2026-029", "D-2026-011"]), edgeState: "2 potvrdené hrany · plná línia" }),
+      "T-2026-029": Object.freeze({ type: "truth · potvrdené", label: "T-2026-029", copy: "Rozsudok bol doručený 28. 8. 2026 a žaloba bola zamietnutá.", source: "memory/matters/T-2026-029.md:18", path: "Rozsudok.pdf + doručenka -> T-2026-029 -> D-2026-011", pathNodes: Object.freeze(["DOC-2026-024", "EVID-2026-028", "T-2026-029", "D-2026-011"]), edgeState: "3 potvrdené hrany · plná línia" }),
+      "D-2026-011": Object.freeze({ type: "decision · aktívne", label: "D-2026-011", copy: "Pripraviť odvolanie a preveriť význam odovzdávacieho protokolu.", source: "memory/decisions/D-2026-011.md:21", path: "Rozsudok.pdf + doručenka -> T-2026-029 -> D-2026-011", pathNodes: Object.freeze(["DOC-2026-024", "EVID-2026-028", "T-2026-029", "D-2026-011"]), edgeState: "3 potvrdené hrany · plná línia" }),
+      "F-2026-021": Object.freeze({ type: "finding · čaká na gate", label: "F-2026-021", copy: "Platba 40 percent bola zmluvná splátka, nie záloha.", source: "findings/reconciliation/F-2026-021.md:22", path: "Rozsudok.pdf -> F-2026-021 -> D-2026-011", pathNodes: Object.freeze(["DOC-2026-024", "F-2026-021", "D-2026-011"]), edgeState: "2 návrhové hrany · prerušovaná línia" }),
+      "SUBJ-2026-002": Object.freeze({ type: "subject · čiastočne overené", label: "BETA DEVELOPMENT a.s.", copy: "Sídlo subjektu sa nezhoduje s posledným registry snapshotom.", source: "findings/validation/F-2026-020.md:17", path: "SUBJ-2026-002 + výpis registra -> F-2026-020 -> D-2026-011", pathNodes: Object.freeze(["SUBJ-2026-002", "DOC-2026-031", "F-2026-020", "D-2026-011"]), edgeState: "3 čiastočné hrany · bodkovaná línia" }),
+      "DOC-2026-031": Object.freeze({ type: "document · registry snapshot", label: "DOC-2026-031", copy: "Lokálny snapshot výpisu registra použitý na porovnanie sídla.", source: "findings/validation/F-2026-020.md:17", path: "výpis registra + SUBJ-2026-002 -> F-2026-020 -> D-2026-011", pathNodes: Object.freeze(["SUBJ-2026-002", "DOC-2026-031", "F-2026-020", "D-2026-011"]), edgeState: "3 čiastočné hrany · bodkovaná línia" }),
+      "F-2026-020": Object.freeze({ type: "finding · čiastočne overené", label: "F-2026-020", copy: "Register vrátil rozdielne sídlo protistrany.", source: "findings/validation/F-2026-020.md:17", path: "SUBJ-2026-002 + výpis registra -> F-2026-020 -> D-2026-011", pathNodes: Object.freeze(["SUBJ-2026-002", "DOC-2026-031", "F-2026-020", "D-2026-011"]), edgeState: "3 čiastočné hrany · bodkovaná línia" })
+    });
+    const LEDGER_DETAILS = Object.freeze({
+      "F-2026-018": Object.freeze({ status: "návrh · čaká na potvrdenie", summary: "Modelový návrh termínu odvolania 14. 9. 2026 nie je potvrdená právna lehota.", before: "deadline: null", after: "deadline_candidate: 2026-09-14", provenance: "UI návrh -> deadline read model -> F-2026-018 -> findings/deadlines/F-2026-018.md:24", history: Object.freeze(["31. 8. 09:02|Agent vytvoril kandidátny výpočet voči revision 18.", "31. 8. 09:02|Human gate ostal otvorený bez zápisu."]), next: "Overte trigger, právny režim a pravidlo posunu. Potom otvorte human gate." }),
+      "F-2026-020": Object.freeze({ status: "warning · partial verification", summary: "Register vrátil odlišné sídlo protistrany.", before: "sídlo: Žilina", after: "registry_snapshot: Bratislava", provenance: "UI warning -> subject comparison -> F-2026-020 -> findings/validation/F-2026-020.md:17", history: Object.freeze(["31. 8. 09:06|Registry snapshot načítaný lokálne.", "31. 8. 09:06|Rozpor označený ako partial, bez prepisu truth."]), next: "Porovnajte identifikátor subjektu a aktuálny výpis. Rozdiel potom právne posúďte." }),
+      "F-2026-021": Object.freeze({ status: "návrh · čaká na gate", summary: "Navrhovaná interpretácia platby čaká na vecné posúdenie advokátom.", before: "platba_40: záloha", after: "platba_40: zmluvná splátka", provenance: "UI návrh -> reconciliation read model -> F-2026-021 -> findings/reconciliation/F-2026-021.md:22", history: Object.freeze(["31. 8. 09:09|Agent navrhol L2 fakt.", "31. 8. 09:09|Návrh bol zaradený do human gate."]), next: "Skontrolujte zmluvu, faktúru a odovzdávací protokol pred rozhodnutím o návrhu." }),
+      "OKF_STALE_001": Object.freeze({ status: "warning · stale", summary: "_STATUS.md je starší než dva nové dokumenty a projekcia vyžaduje reconciliation.", before: "status_revision: 16", after: "workspace_revision: 18", provenance: "UI freshness -> status mirror -> OKF_STALE_001 -> _STATUS.md:3", history: Object.freeze(["30. 8. 16:22|Do spisu pribudol dokument revision 17.", "31. 8. 08:41|Do spisu pribudol dokument revision 18.", "31. 8. 08:42|Freshness kontrola zaznamenala stale status."]), next: "Porovnajte dva nové dokumenty s _STATUS.md a pripravte reconciliation návrh." }),
+      "OKF_PARSE_002": Object.freeze({ status: "error · parse-error", summary: "Záznam Q-2026-009.md má neuzavretú YAML hodnotu. Ostatné záznamy ostávajú čitateľné.", before: "status: \"otvorené", after: "status: \"otvorené\"", provenance: "UI chyba -> parser questions -> kanonický záznam -> memory/questions/Q-2026-009.md:7", history: Object.freeze(["31. 8. 09:14|Parser zaznamenal OKF_PARSE_002.", "31. 8. 09:14|Store pokračoval v read-only načítaní ostatných záznamov."]), next: "Otvorte riadok 7, uzavrite YAML hodnotu a znovu spustite validáciu. Tento prototyp nič nezapisuje." }),
+      "AUD-2026-084": Object.freeze({ status: "audit · potvrdené", summary: "Advokát potvrdil truth T-2026-029. Auditná udalosť je append-only.", before: "T-2026-029: pending", after: "T-2026-029: confirmed", provenance: "UI truth -> audit event -> AUD-2026-084 -> audit/2026-08.jsonl:41", history: Object.freeze(["31. 8. 09:18|Advokát otvoril provenance truth.", "31. 8. 09:19|Advokát potvrdil T-2026-029."]), next: "Bez zásahu. Pri kontrole použite auditný locator a pôvodné evidence." })
+    });
+    const appState = { direction: "registry", scenario: "current", galleryOpen: true, presentation: false, selectedTimelineEvent: "event-deadline-candidate", spotlightNode: "T-2026-029", selectedLedgerItem: "OKF_PARSE_002" };
     const directionRoots = Array.from(document.querySelectorAll(".direction-root"));
     const directionControls = Array.from(document.querySelectorAll("[data-direction-target]"));
     const gallery = document.querySelector('[data-testid="direction-gallery"]');
@@ -425,6 +599,22 @@
     const timelineDetailDate = document.querySelector("[data-timeline-detail-date]");
     const timelineDetailFields = document.querySelector("[data-timeline-detail-fields]");
     const timelineDetailSource = document.querySelector("[data-timeline-detail-source]");
+    const graphDetailType = document.querySelector("[data-graph-detail-type]");
+    const graphDetailTitle = document.querySelector("[data-graph-detail-title]");
+    const graphDetailCopy = document.querySelector("[data-graph-detail-copy]");
+    const graphDetailPath = document.querySelector("[data-graph-detail-path]");
+    const graphDetailRecord = document.querySelector("[data-graph-detail-record]");
+    const graphDetailStatus = document.querySelector("[data-graph-detail-status]");
+    const graphDetailSource = document.querySelector("[data-graph-detail-source]");
+    const ledgerDetailStatus = document.querySelector("[data-ledger-detail-status]");
+    const ledgerDetailTitle = document.querySelector("[data-ledger-detail-title]");
+    const ledgerDetailSummary = document.querySelector("[data-ledger-detail-summary]");
+    const ledgerDiffBefore = document.querySelector("[data-ledger-diff-before]");
+    const ledgerDiffAfter = document.querySelector("[data-ledger-diff-after]");
+    const ledgerProvenance = document.querySelector("[data-ledger-provenance]");
+    const ledgerHistory = document.querySelector("[data-ledger-history]");
+    const ledgerNext = document.querySelector("[data-ledger-next]");
+    const ledgerDetailSource = document.querySelector("[data-ledger-detail-source]");
     function openGallery() { appState.galleryOpen = true; gallery.hidden = false; }
     function setDirection(direction, updateHash = true) {
       if (!DIRECTIONS.includes(direction)) { openGallery(); return; }
@@ -470,9 +660,74 @@
       });
       renderTimelineDetail(id);
     }
+    function spotlightNode(id) {
+      const detail = GRAPH_DETAILS[id];
+      if (!detail) return;
+      appState.spotlightNode = id;
+      document.querySelectorAll("[data-graph-node]").forEach((node) => {
+        node.setAttribute("aria-pressed", String(node.dataset.graphNode === id));
+      });
+      document.querySelectorAll("[data-graph-edge]").forEach((edge) => {
+        const isActive = detail.pathNodes.includes(edge.dataset.from) && detail.pathNodes.includes(edge.dataset.to);
+        edge.dataset.pathActive = String(isActive);
+      });
+      graphDetailType.textContent = detail.type;
+      graphDetailTitle.textContent = detail.label;
+      graphDetailCopy.textContent = detail.copy;
+      graphDetailPath.textContent = detail.path;
+      graphDetailRecord.textContent = detail.source;
+      graphDetailStatus.textContent = detail.edgeState;
+      graphDetailSource.textContent = detail.source;
+      graphDetailSource.dataset.sourceKind = "record";
+      graphDetailSource.dataset.sourceId = id;
+    }
+    function renderLedgerDetail(id) {
+      const record = DATA.records.find((item) => item.id === id);
+      const detail = LEDGER_DETAILS[id];
+      if (!record || !detail) return;
+      ledgerDetailStatus.textContent = detail.status;
+      ledgerDetailTitle.textContent = id;
+      ledgerDetailSummary.textContent = detail.summary;
+      ledgerDiffBefore.textContent = detail.before;
+      ledgerDiffAfter.textContent = detail.after;
+      ledgerProvenance.textContent = detail.provenance;
+      const historyRows = detail.history.map((entry) => {
+        const [date, event] = entry.split("|");
+        const item = document.createElement("li");
+        const time = document.createElement("time");
+        const copy = document.createElement("span");
+        time.textContent = date;
+        copy.textContent = event;
+        item.append(time, copy);
+        return item;
+      });
+      ledgerHistory.replaceChildren(...historyRows);
+      ledgerNext.textContent = detail.next;
+      ledgerDetailSource.textContent = `${record.source}:${record.locator}`;
+      ledgerDetailSource.dataset.sourceKind = "record";
+      ledgerDetailSource.dataset.sourceId = id;
+    }
+    function setLedgerItem(id) {
+      if (!LEDGER_DETAILS[id]) return;
+      appState.selectedLedgerItem = id;
+      document.querySelectorAll("[data-ledger-item]").forEach((row) => {
+        row.setAttribute("aria-selected", String(row.dataset.ledgerItem === id));
+      });
+      renderLedgerDetail(id);
+    }
     function routeFromHash() { const direction = window.location.hash.slice(1); if (!direction) { setDirection("registry", false); openGallery(); return; } if (DIRECTIONS.includes(direction)) setDirection(direction, false); else openGallery(); }
     directionControls.forEach((control) => control.addEventListener("click", () => setDirection(control.dataset.directionTarget)));
     document.querySelectorAll("[data-timeline-event]").forEach((event) => event.addEventListener("click", () => setTimelineEvent(event.dataset.timelineEvent)));
+    document.querySelectorAll("[data-graph-node]").forEach((node) => node.addEventListener("click", () => spotlightNode(node.dataset.graphNode)));
+    document.querySelectorAll("[data-ledger-item]").forEach((row) => {
+      row.addEventListener("click", () => setLedgerItem(row.dataset.ledgerItem));
+      row.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          setLedgerItem(row.dataset.ledgerItem);
+        }
+      });
+    });
     document.querySelector("[data-gallery-open]").addEventListener("click", openGallery);
     scenarioSelect.addEventListener("change", (event) => setScenario(event.target.value));
     presentationToggle.addEventListener("click", () => setPresentation(!appState.presentation));
@@ -483,7 +738,7 @@
       if (target instanceof HTMLElement && (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName))) return;
       if (/^[1-6]$/.test(event.key)) setDirection(DIRECTIONS[Number(event.key) - 1]); else if (event.key === "ArrowRight") cycleDirection(1); else if (event.key === "ArrowLeft") cycleDirection(-1); else if (event.key.toLowerCase() === "f") setPresentation(!appState.presentation); else if (event.key === "Escape" && appState.presentation) setPresentation(false); else if (event.key === "Escape") openGallery();
     });
-    setScenario("current"); setTimelineEvent(appState.selectedTimelineEvent); routeFromHash();
+    setScenario("current"); setTimelineEvent(appState.selectedTimelineEvent); spotlightNode(appState.spotlightNode); setLedgerItem(appState.selectedLedgerItem); routeFromHash();
   </script>
 </body>
 </html>
