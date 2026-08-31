@@ -54,6 +54,10 @@ def validate_static(html_path: Path) -> None:
         "Rozhodnutie",
         "§ 362 ods. 1 CSP · demonštračný údaj",
         "Žiadna potvrdená budúca lehota",
+        "návrh vytvorený 31. 8. 2026",
+        "navrhovaný termín 14. 9. 2026",
+        'data-source-kind="event"',
+        'data-source-id="event-deadline-candidate"',
     ):
         require(fragment in html, f"missing direction invariant: {fragment}")
 
@@ -147,7 +151,17 @@ def validate_smoke(html_path: Path) -> None:
                     detail: document.querySelector(
                         '[data-testid="timeline-detail"]'
                     ).textContent,
-                    state: appState.selectedTimelineEvent
+                    state: appState.selectedTimelineEvent,
+                    source: (() => {
+                        const source = document.querySelector(
+                            '[data-timeline-detail-source]'
+                        );
+                        return {
+                            kind: source.dataset.sourceKind,
+                            id: source.dataset.sourceId,
+                            path: source.textContent
+                        };
+                    })()
                 })"""
             )
             require(
@@ -162,16 +176,70 @@ def validate_smoke(html_path: Path) -> None:
                 "evidence/edelivery/receipt.json:12" in delivery["detail"],
                 "delivery detail is missing source provenance",
             )
+            require(
+                delivery["source"]
+                == {
+                    "kind": "event",
+                    "id": "event-delivery",
+                    "path": "evidence/edelivery/receipt.json:12",
+                },
+                "delivery detail source must use the typed event contract",
+            )
 
             page.locator('[data-testid="event-deadline-candidate"]').click()
-            deadline_detail = page.locator('[data-testid="timeline-detail"]').inner_text()
+            deadline = page.evaluate(
+                """() => {
+                    const source = document.querySelector(
+                        '[data-timeline-detail-source]'
+                    );
+                    return {
+                        card: document.querySelector(
+                            '[data-testid="event-deadline-candidate"]'
+                        ).textContent,
+                        detail: document.querySelector(
+                            '[data-testid="timeline-detail"]'
+                        ).textContent,
+                        fallback: document.querySelector(
+                            '.timeline-fallback'
+                        ).textContent,
+                        source: {
+                            kind: source.dataset.sourceKind,
+                            id: source.dataset.sourceId,
+                            path: source.textContent
+                        }
+                    };
+                }"""
+            )
             for expected in (
                 "§ 362 ods. 1 CSP · demonštračný údaj",
                 "pracovný snapshot označený 2026-08-31",
                 "deň doručenia sa nezapočíta",
                 "treba potvrdiť trigger, aplikovaný právny režim a pravidlo posunu",
             ):
-                require(expected in deadline_detail, f"timeline detail missing: {expected}")
+                require(expected in deadline["detail"], f"timeline detail missing: {expected}")
+            for surface, copy in (
+                ("candidate card", deadline["card"]),
+                ("candidate detail", deadline["detail"]),
+                ("timeline fallback", deadline["fallback"]),
+            ):
+                for expected in (
+                    "návrh vytvorený 31. 8. 2026",
+                    "navrhovaný termín 14. 9. 2026",
+                    "návrh, čaká na potvrdenie",
+                ):
+                    require(
+                        expected in copy,
+                        f"{surface} is missing candidate deadline semantics: {expected}",
+                    )
+            require(
+                deadline["source"]
+                == {
+                    "kind": "event",
+                    "id": "event-deadline-candidate",
+                    "path": "findings/deadlines/F-2026-018.md:24",
+                },
+                "candidate deadline detail source must use the typed event contract",
+            )
 
             page.evaluate("setDirection('tower')")
             page.wait_for_function("window.location.hash === '#tower'")

@@ -357,12 +357,12 @@
               <button class="timeline-event event-fact" type="button" data-timeline-event="event-fact-candidate" data-kind="candidate" aria-selected="false"><time>31. 8. 2026</time><b>návrh L2 faktu</b><small>čaká na human gate</small></button>
               <button class="timeline-event event-judgment" type="button" data-timeline-event="event-judgment" data-kind="confirmed" aria-selected="false"><time>24. 8. 2026</time><b>vydanie rozsudku</b><small>potvrdené</small></button>
               <button class="timeline-event event-delivery" type="button" data-testid="event-delivery" data-timeline-event="event-delivery" data-kind="confirmed" aria-selected="false"><time>28. 8. 2026</time><b>doručenie rozsudku</b><small>potvrdené</small></button>
-              <button class="timeline-event event-deadline" type="button" data-testid="event-deadline-candidate" data-timeline-event="event-deadline-candidate" data-kind="candidate" aria-selected="true"><time>14. 9. 2026</time><b>kandidátna lehota</b><small>návrh, čaká na potvrdenie</small></button>
+              <button class="timeline-event event-deadline" type="button" data-testid="event-deadline-candidate" data-timeline-event="event-deadline-candidate" data-kind="candidate" aria-selected="true"><time>návrh vytvorený 31. 8. 2026</time><b>navrhovaný termín 14. 9. 2026</b><small>návrh, čaká na potvrdenie</small></button>
             </div>
           </section>
-          <aside class="timeline-detail" data-testid="timeline-detail" aria-live="polite"><div class="timeline-detail__head"><small data-timeline-detail-status>návrh, čaká na potvrdenie</small><h2 data-timeline-detail-title>Kandidátna lehota · 14. 9. 2026</h2><p data-timeline-detail-date>Vypočítaný návrh, nie potvrdená právna lehota</p></div><dl data-timeline-detail-fields></dl><div class="timeline-detail__action"><button class="source-link" type="button" data-source-trigger data-record-id="F-2026-018" data-timeline-detail-source>findings/deadlines/F-2026-018.md:24</button></div></aside>
+          <aside class="timeline-detail" data-testid="timeline-detail" aria-live="polite"><div class="timeline-detail__head"><small data-timeline-detail-status>návrh, čaká na potvrdenie</small><h2 data-timeline-detail-title>navrhovaný termín 14. 9. 2026</h2><p data-timeline-detail-date>návrh vytvorený 31. 8. 2026 · navrhovaný termín 14. 9. 2026 · vypočítaný návrh, nie potvrdená právna lehota</p></div><dl data-timeline-detail-fields></dl><div class="timeline-detail__action"><button class="source-link" type="button" data-source-trigger data-source-kind="event" data-source-id="event-deadline-candidate" data-timeline-detail-source>findings/deadlines/F-2026-018.md:24</button></div></aside>
         </div>
-        <details class="timeline-fallback"><summary>Textový fallback procesnej mapy</summary><ol><li>12. 2. 2026 · podanie žaloby · potvrdené</li><li>18. 5. 2026 · vyjadrenie protistrany · potvrdené</li><li>24. 8. 2026 · vydanie rozsudku · potvrdené</li><li>28. 8. 2026 · doručenie rozsudku · potvrdené</li><li>31. 8. 2026 · návrh lehoty · kandidát</li><li>31. 8. 2026 · návrh L2 faktu · čaká na human gate</li></ol></details>
+        <details class="timeline-fallback"><summary>Textový fallback procesnej mapy</summary><ol><li>12. 2. 2026 · podanie žaloby · potvrdené</li><li>18. 5. 2026 · vyjadrenie protistrany · potvrdené</li><li>24. 8. 2026 · vydanie rozsudku · potvrdené</li><li>28. 8. 2026 · doručenie rozsudku · potvrdené</li><li>návrh vytvorený 31. 8. 2026 · navrhovaný termín 14. 9. 2026 · návrh, čaká na potvrdenie</li><li>31. 8. 2026 · návrh L2 faktu · čaká na human gate</li></ol></details>
       </section>
       <section class="direction-root" data-direction="constellation" data-testid="direction-3" data-active="false" hidden inert aria-labelledby="constellation-title"><div class="matter-crumb">Prax / ALFA STAV s.r.o. / <span>Prípad</span></div><div class="matter-head"><div><h1 id="constellation-title">Dôkazová konštelácia</h1><p>ALFA STAV s.r.o. · fakty, findings a pôvodné dôkazy</p></div><span class="direction-label">03 · úroveň prípad</span></div></section>
       <section class="direction-root" data-direction="ledger" data-testid="direction-4" data-active="false" hidden inert aria-labelledby="ledger-title"><div class="matter-crumb">Prax / ALFA STAV s.r.o. / <span>Prípad</span></div><div class="matter-head"><div><h1 id="ledger-title">Auditný ledger</h1><p>ALFA STAV s.r.o. · integrita, diff a história</p></div><span class="direction-label">04 · úroveň prípad</span></div></section>
@@ -443,8 +443,8 @@
       if (!event) return;
       const isDeadline = id === "event-deadline-candidate";
       timelineDetailStatus.textContent = isDeadline ? DATA.matter.candidateDeadline.status : event.status;
-      timelineDetailTitle.textContent = isDeadline ? `Kandidátna lehota · ${DATA.matter.candidateDeadline.date}` : event.label;
-      timelineDetailDate.textContent = isDeadline ? "Vypočítaný návrh, nie potvrdená právna lehota" : `${event.date} · ${event.lane}`;
+      timelineDetailTitle.textContent = isDeadline ? `navrhovaný termín ${DATA.matter.candidateDeadline.date}` : event.label;
+      timelineDetailDate.textContent = isDeadline ? `návrh vytvorený ${event.date} · navrhovaný termín ${DATA.matter.candidateDeadline.date} · vypočítaný návrh, nie potvrdená právna lehota` : `${event.date} · ${event.lane}`;
       const rows = isDeadline ? [
         ["Trigger", `${DATA.matter.candidateDeadline.trigger} · ${DATA.matter.candidateDeadline.triggerSource}`],
         ["Dokument", DATA.matter.candidateDeadline.document],
@@ -460,7 +460,8 @@
       ];
       timelineDetailFields.replaceChildren(...rows.map(([label, value]) => detailRow(label, value)));
       timelineDetailSource.textContent = `${event.source}${event.locator ? `:${event.locator}` : ""}`;
-      timelineDetailSource.dataset.recordId = isDeadline ? "F-2026-018" : id;
+      timelineDetailSource.dataset.sourceKind = "event";
+      timelineDetailSource.dataset.sourceId = event.id;
     }
     function setTimelineEvent(id) {
       appState.selectedTimelineEvent = id;
