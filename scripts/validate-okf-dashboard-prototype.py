@@ -132,6 +132,30 @@ def validate_static(html_path: Path) -> None:
     ):
         require(fragment in html, f"missing task 5 invariant: {fragment}")
     require("drag-and-drop" not in html.lower(), "brain must not offer drag-and-drop")
+    for fragment in (
+        "@font-face",
+        'font-family: "IBM Plex Sans"',
+        'font-family: "IBM Plex Mono"',
+        'font-family: "Playfair Display"',
+        "font-display: swap",
+        "OFL-1.1",
+        "IBM Plex Sans",
+        "IBM Plex Mono",
+        "Playfair Display",
+        "@media (max-width: 1100px)",
+        "@media (max-width: 700px)",
+        "@media (prefers-reduced-motion: reduce)",
+        "@media print",
+        "@page { size: A4 landscape; margin: 10mm; }",
+        "[data-animated]",
+        "0.01ms",
+        ".diagram-scroll",
+        "print-thesis",
+    ):
+        require(fragment in html, f"missing task 7 invariant: {fragment}")
+    require(html.count("@font-face") == 3, "exactly three offline font faces are required")
+    require("__FONT_" not in html and "__OFL_LICENSES__" not in html, "font payload markers remain")
+    require("data:font/woff2;base64," in html, "offline font payload is missing")
 
 
 def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
@@ -503,6 +527,12 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
                 ledger["dataSnapshot"] == data_before_task_4,
                 "DATA changed during graph or ledger interaction",
             )
+            page.locator('[data-testid="ledger-item-OKF_STALE_001"]').press("Space")
+            require(
+                page.evaluate("appState.selectedLedgerItem") == "OKF_STALE_001",
+                "Space must activate the focused ledger row",
+            )
+            page.locator('[data-testid="ledger-item-OKF_PARSE_002"]').press("Enter")
 
             page.evaluate("setDirection('brain')")
             brain_initial = page.evaluate(
@@ -722,9 +752,17 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
             page.evaluate("setDirection('brain')")
             page.evaluate("setBrainLayer('L1')")
             gate_trigger = page.locator("[data-brain-gate-trigger]")
+            shortcut_toggle.click()
+            require(shortcut_help.is_visible(), "shortcut help must open before gate LIFO check")
             gate_trigger.click()
             gate = page.get_by_test_id("human-gate")
             require(gate.is_visible(), "human gate must open from a compatible request")
+            page.keyboard.press("Escape")
+            require(not gate.is_visible() and shortcut_help.is_visible(), "Escape must close gate before shortcut help")
+            page.keyboard.press("Escape")
+            require(not shortcut_help.is_visible(), "second Escape must close shortcut help after gate")
+            gate_trigger.click()
+            require(gate.is_visible(), "human gate must reopen after LIFO check")
             gate_text = gate.inner_text().lower()
             for expected in (
                 "zdroj",
@@ -881,6 +919,122 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
             browser.close()
 
 
+def validate_full(html_path: Path, artifacts: Path) -> None:
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError as exc:
+        raise AssertionError("Playwright is required for full validation") from exc
+
+    screenshots = artifacts / "screenshots"
+    screenshots.mkdir(parents=True, exist_ok=True)
+    page_errors: list[str] = []
+    external_requests: list[str] = []
+    viewports = ((1440, 1024), (1280, 800), (1024, 768), (390, 844))
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=True)
+        try:
+            page = browser.new_page(viewport={"width": 1440, "height": 1024})
+            page.on("pageerror", lambda error: page_errors.append(str(error)))
+            page.on(
+                "request",
+                lambda request: external_requests.append(request.url)
+                if request.url.startswith(("http://", "https://"))
+                else None,
+            )
+            page.goto(html_path.as_uri(), wait_until="load")
+            require(not page_errors, f"runtime page error: {'; '.join(page_errors)}")
+            require(not external_requests, f"external network request: {'; '.join(external_requests)}")
+            font_check = page.evaluate(
+                """async () => {
+                    await document.fonts.ready;
+                    const samples = [
+                        ['IBM Plex Sans', 'Žluťoučký kôň'],
+                        ['IBM Plex Mono', '18Cb/47/2026'],
+                        ['Playfair Display', 'LAWOSS']
+                    ];
+                    return samples.map(([font, glyphs]) => ({ font, glyphs, loaded: document.fonts.check(`14px "${font}"`, glyphs) }));
+                }"""
+            )
+            require(all(item["loaded"] for item in font_check), f"offline font glyph smoke failed: {font_check}")
+            page.emulate_media(reduced_motion="reduce")
+            reduced = page.evaluate(
+                """() => [...document.querySelectorAll('[data-animated]')].map((node) => {
+                    const style = getComputedStyle(node);
+                    return { animation: style.animationDuration, transition: style.transitionDuration };
+                })"""
+            )
+            require(reduced, "reduced-motion needs at least one intentional motion element")
+            require(
+                all(
+                    value in ("0s", "0.01ms", "1e-05s")
+                    for item in reduced
+                    for value in (item["animation"], item["transition"])
+                ),
+                f"reduced-motion duration is not neutralized: {reduced}",
+            )
+            page.emulate_media(media="screen")
+            for direction_index, direction in enumerate(DIRECTIONS, start=1):
+                page.evaluate("(id) => setDirection(id)", direction)
+                for width, height in viewports:
+                    page.emulate_media(media="screen")
+                    page.set_viewport_size({"width": width, "height": height})
+                    layout = page.evaluate(
+                        """() => {
+                            const width = window.innerWidth;
+                            const active = document.querySelector('.direction-root[data-active="true"]');
+                            const direction = active?.dataset.direction;
+                            const fallback = direction === 'timeline' ? active.querySelector('.timeline-fallback') : active.querySelector('.graph-fallback');
+                            return {
+                            roots: document.querySelectorAll('.direction-root[data-active="true"]').length,
+                            overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+                            diagrams: [...document.querySelectorAll('.diagram-scroll')].every((node) => node.scrollWidth >= node.clientWidth),
+                            shellVisible: getComputedStyle(document.querySelector('.prototype-bar')).display !== 'none',
+                            printSummaryHidden: [...document.querySelectorAll('.print-summary')].every((node) => getComputedStyle(node).display === 'none'),
+                            tabletRail: width <= 1100 ? getComputedStyle(document.querySelector('.lw-sidebar')).flexDirection === 'row' : true,
+                            inspectorOverlay: width <= 1100 ? getComputedStyle(document.querySelector('.dialog-scrim')).position === 'fixed' : true,
+                            diagramScrollBound: [...document.querySelectorAll('.diagram-scroll')].every((node) => ['auto', 'scroll'].includes(getComputedStyle(node).overflowX)),
+                            mobileFallback: width > 700 || !['timeline', 'constellation'].includes(direction) || getComputedStyle(fallback).display !== 'none'
+                            };
+                        }"""
+                    )
+                    require(layout["roots"] == 1, f"{direction} has no single active root at {width}x{height}")
+                    require(not layout["overflow"], f"root overflows at {direction} {width}x{height}")
+                    require(layout["diagrams"], f"diagram scroll contract failed at {direction} {width}x{height}")
+                    require(layout["shellVisible"], f"screen shell is hidden at {direction} {width}x{height}")
+                    require(layout["printSummaryHidden"], f"print summary leaked into screen at {direction} {width}x{height}")
+                    require(layout["tabletRail"], f"sidebar did not collapse to a top rail at {direction} {width}x{height}")
+                    require(layout["inspectorOverlay"], f"source inspector is not a fixed overlay at {direction} {width}x{height}")
+                    require(layout["diagramScrollBound"], f"diagram scrolling is not locally bounded at {direction} {width}x{height}")
+                    require(layout["mobileFallback"], f"mobile text fallback is hidden at {direction} {width}x{height}")
+                    page.screenshot(path=screenshots / f"direction-{direction_index}-{width}x{height}.png")
+                page.set_viewport_size({"width": 1440, "height": 1024})
+                page.emulate_media(media="print")
+                print_state = page.evaluate(
+                    """() => {
+                        const root = document.querySelector('.direction-root[data-active="true"]');
+                        const thesis = root.querySelector('[data-print-thesis]');
+                        const marker = document.querySelector('.persistent-marker');
+                        return {
+                            activeVisible: Boolean(root && getComputedStyle(root).display !== 'none'),
+                            titleVisible: Boolean(root?.querySelector('h1') && getComputedStyle(root.querySelector('h1')).display !== 'none'),
+                            thesisVisible: Boolean(thesis && getComputedStyle(thesis).display !== 'none'),
+                            markerVisible: Boolean(marker && getComputedStyle(marker).display !== 'none'),
+                            shellHidden: getComputedStyle(document.querySelector('.prototype-bar')).display === 'none',
+                            dialogsHidden: [...document.querySelectorAll('.dialog-scrim, .shortcut-popover')].every((node) => getComputedStyle(node).display === 'none')
+                        };
+                    }"""
+                )
+                require(all(print_state.values()), f"print contract failed for {direction}: {print_state}")
+                page.pdf(path=artifacts / f"direction-{direction_index}.pdf", format="A4", landscape=True, margin={"top": "10mm", "right": "10mm", "bottom": "10mm", "left": "10mm"}, print_background=True)
+                page.emulate_media(media="screen")
+            require(not page_errors, f"runtime page error: {'; '.join(page_errors)}")
+            require(not external_requests, f"external network request: {'; '.join(external_requests)}")
+        finally:
+            browser.close()
+    require(len(list(screenshots.glob("*.png"))) == 24, "full validation must create 24 PNG screenshots")
+    require(len(list(artifacts.glob("direction-*.pdf"))) == 6, "full validation must create 6 PDFs")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--html", type=Path, required=True)
@@ -892,6 +1046,9 @@ def main() -> None:
     if args.mode in ("smoke", "full"):
         artifacts = args.artifacts.resolve() if args.artifacts else None
         validate_smoke(html_path, artifacts)
+    if args.mode == "full":
+        require(args.artifacts is not None, "--mode full requires --artifacts")
+        validate_full(html_path, args.artifacts.resolve())
     print(f"OK: {args.mode} validation passed for {args.html}")
 
 
