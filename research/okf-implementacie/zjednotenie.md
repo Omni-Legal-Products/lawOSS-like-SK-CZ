@@ -149,10 +149,24 @@ Dve veci, ktoré sa nesmú zliať do jednej:
 
 **Jadro preverenie nevykonáva** — nesie jeho výsledok a stráži lehotu. Volanie registrov, PEP a sankcií patrí skillom a MCP konektorom.
 
-> [!IMPORTANT]
-> **Slovenská povinná sada nie je implementovaná — čaká na MČ.** CZ vychádza z § 8 zák. č. 253/2008 Sb. a je overená proti reálne používanému identifikačnému formuláru. Slovenský predpis je zák. č. 297/2008 Z. z.; jeho požiadavky VŘ neoveril a predstierať ich by bolo tiché prekladanie právnych pojmov medzi jurisdikciami. `AML_REQUIRED.sk` preto zámerne chýba a validátor hlási `AML_RULESET_UNVERIFIED` namiesto toho, aby vynucoval české pravidlá na slovenský spis.
+**Dve jurisdikcie, dve sady — overené 31. 8. 2026 z doslovného znenia.** CZ z § 5 ods. 1 zák. č. 253/2008 Sb., SK z § 7 ods. 1 zák. č. 297/2008 Z. z. (Slov-Lex, znenie k 17. 8. 2026).
+
+| Údaj o fyzickej osobe | 🇨🇿 § 5 | 🇸🇰 § 7 |
+|---|---|---|
+| miesto narodenia | **áno** | nie |
+| pohlavie | len ak nebolo pridelené rodné číslo | nie |
+| orgán vydávajúci doklad + platnosť | **áno** | nie |
+| označenie registra a číslo zápisu u PO | nie | **áno** |
+| adresa skutočného miesta výkonu činnosti | nie | **áno, ak je odlišná** |
+
+Ten istý záznam prejde slovenskou kontrolou a v českej mu chýbajú tri polia. **Preložiť jednu sadu na druhú by teda bola vecná chyba, nie len terminologická** — presne to, čo `AGENTS.md` zakazuje.
+
+Rodné číslo má v oboch predpisoch náhradu, ale rôznu: CZ „datum narození **a pohlaví**", SK len dátum narodenia. Modeluje sa ako vetva, nie ako ďalšie povinné polia.
+
+> [!NOTE]
+> Pri overovaní SK sady sa ukázalo, že **česká sada bola ukotvená na nesprávnom ustanovení**. § 8 zák. č. 253/2008 Sb. upravuje *vykonanie* identifikácie (fyzická prítomnosť, overenie z dokladu); výpočet identifikačných údajov je v **§ 5**. Sada navyše vyžadovala právnu formu a zápis v registri u PO, ktoré § 5 nežiada. Opravené.
 >
-> **Otázka na MČ:** aká je povinná identifikačná sada podľa slovenského AML pre FO a pre PO? Doplní sa ako jeden riadok do tabuľky.
+> Vynucuje sa **zákonné minimum**, nie kancelárske zvyklosti — formulár kancelárie môže žiadať viac a také polia zostávajú voliteľné.
 
 ## Čo už beží
 
@@ -172,6 +186,6 @@ Hlavička Fáza / Ďalší krok a vlastné sekcie zostávajú advokátovi a nepr
 
 **O4 — multi-user.** Otvorená otázka zo spec 0002 zostáva otvorená. Append-only história konflikt zmierňuje (dva zápisy sa dajú zliať), ale `## Pravda` je stále last-write-wins.
 
-**O6 — slovenská AML sada.** Povinná identifikačná sada podľa zák. č. 297/2008 Z. z. pre FO a PO. Bez nej sa na slovenských spisoch úplnosť nekontroluje. Patrí MČ.
+**O6 — slovenská AML sada.** ✅ **Vyriešené 31. 8.** — overené z § 7 ods. 1 zák. č. 297/2008 Z. z. (Slov-Lex, znenie k 17. 8. 2026) a doplnené. Pri tom sa opravila aj česká sada, ktorá bola ukotvená na § 8 namiesto § 5. **Prosím MČ o kontrolu slovenskej vetvy** — je to výklad predpisu inej jurisdikcie, než v akej pôsobím.
 
 **O5 — publikovať schému samostatne?** Spec 0002 sa pýta, či OKF vydať ako dokumentovaný štandard. Schéma je v jednej tabuľke, takže je to lacné — ale je to rozhodnutie tímu.
