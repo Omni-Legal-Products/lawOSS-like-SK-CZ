@@ -38,6 +38,24 @@ def validate_static(html_path: Path) -> None:
         require(f'data-testid="direction-{index}"' in html, f"missing direction test id {index}")
     for scenario in SCENARIOS:
         require(f'data-scenario="{scenario}"' in html, f"missing scenario {scenario}")
+    for test_id in (
+        "registry-decision-queue",
+        "deadline-strip",
+        "timeline-diagram",
+        "event-delivery",
+        "event-deadline-candidate",
+        "text-fallback",
+    ):
+        require(f'data-testid="{test_id}"' in html, f"missing direction primitive: {test_id}")
+    for fragment in (
+        "function setTimelineEvent(id)",
+        "Podanie",
+        "Dokazovanie",
+        "Rozhodnutie",
+        "§ 362 ods. 1 CSP · demonštračný údaj",
+        "Žiadna potvrdená budúca lehota",
+    ):
+        require(fragment in html, f"missing direction invariant: {fragment}")
 
 
 def validate_smoke(html_path: Path) -> None:
@@ -83,6 +101,77 @@ def validate_smoke(html_path: Path) -> None:
                 initial["registryCurrent"] == initial["registryControls"],
                 "initial registry controls do not match aria-current",
             )
+
+            page.evaluate("setDirection('registry')")
+            registry = page.evaluate(
+                """() => ({
+                    activeRoots: [...document.querySelectorAll(
+                        '.direction-root[data-active="true"]'
+                    )].map((root) => root.dataset.direction),
+                    decisionRows: document.querySelectorAll(
+                        '[data-testid="registry-decision-queue"] details'
+                    ).length,
+                    candidateCopy: document.querySelector(
+                        '[data-testid="deadline-strip"]'
+                    ).textContent,
+                    fallbackCopy: document.querySelector(
+                        '[data-testid="text-fallback"]'
+                    ).textContent
+                })"""
+            )
+            require(
+                registry["activeRoots"] == ["registry"],
+                "registry interaction must leave exactly one active root",
+            )
+            require(registry["decisionRows"] == 3, "registry queue must have 3 rows")
+            require(
+                "Žiadna potvrdená budúca lehota" in registry["candidateCopy"],
+                "registry must show the confirmed deadline empty state",
+            )
+            require(
+                "návrh, čaká na potvrdenie" in registry["fallbackCopy"],
+                "registry text fallback is missing proposal semantics",
+            )
+
+            page.evaluate("setDirection('timeline')")
+            require(
+                page.locator("[data-timeline-event]").count() == 6,
+                "timeline must render all six fixture events",
+            )
+            page.locator('[data-testid="event-delivery"]').click()
+            delivery = page.evaluate(
+                """() => ({
+                    selected: [...document.querySelectorAll(
+                        '[data-timeline-event][aria-selected="true"]'
+                    )].map((item) => item.dataset.timelineEvent),
+                    detail: document.querySelector(
+                        '[data-testid="timeline-detail"]'
+                    ).textContent,
+                    state: appState.selectedTimelineEvent
+                })"""
+            )
+            require(
+                delivery["selected"] == ["event-delivery"],
+                "delivery click must select exactly the delivery event",
+            )
+            require(
+                delivery["state"] == "event-delivery",
+                "delivery click did not update timeline state",
+            )
+            require(
+                "evidence/edelivery/receipt.json:12" in delivery["detail"],
+                "delivery detail is missing source provenance",
+            )
+
+            page.locator('[data-testid="event-deadline-candidate"]').click()
+            deadline_detail = page.locator('[data-testid="timeline-detail"]').inner_text()
+            for expected in (
+                "§ 362 ods. 1 CSP · demonštračný údaj",
+                "pracovný snapshot označený 2026-08-31",
+                "deň doručenia sa nezapočíta",
+                "treba potvrdiť trigger, aplikovaný právny režim a pravidlo posunu",
+            ):
+                require(expected in deadline_detail, f"timeline detail missing: {expected}")
 
             page.evaluate("setDirection('tower')")
             page.wait_for_function("window.location.hash === '#tower'")
