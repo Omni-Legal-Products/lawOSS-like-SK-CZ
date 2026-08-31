@@ -43,7 +43,7 @@ Platia pre **každú** úlohu, netreba ich opakovať:
 |---|---|
 | N5 jeden pokazený záznam zhodí store | ✅ **hotové** (commit `a4b540e`) — v úlohe 6 zostáva len premenovať kód na `PARSE_ERROR` |
 | N7 `L3_LEAK` falošné nálezy | ✅ **hotové** (commit `55159fb`) — celé slovo, meno → `warning`, identifikátory → `error`. Kryje väčšinu O7. |
-| N6 čiarka v zozname | ❌ otvorené — **úloha 1** |
+| N6 čiarka v zozname | ✅ **hotové 1. 9.** (commit `1a42187`) — úloha 1 dokončená |
 | N2 duplicitné sekcie | ❌ otvorené — **úloha 2** |
 | N3 štvrtá brána mimo zápisu | ❌ otvorené — **úloha 3** |
 | N4 `Approval` self-declared | ❌ otvorené — **úloha 4** |
@@ -79,7 +79,13 @@ Tieto tri úlohy sa dajú robiť **hneď a bez ohľadu na výsledok callu**. Rob
 
 ---
 
-### Úloha 1: Čiarka v zoznamovom poli ticho rozbíja dáta (N6) 🔴
+### ✅ Úloha 1: Čiarka v zoznamovom poli ticho rozbíja dáta (N6) 🔴 — HOTOVÉ
+
+> **Dokončené 1. 9. 2026, commit [`1a42187`](https://github.com/Omni-Legal-Products/lawoss/commit/1a42187).** 166/166 testov, typecheck čistý.
+>
+> **Čo plán nepredvídal:** testy odhalili druhú vadu tej istej triedy, ktorú nález N6 nepomenoval — `emit()` neescapoval úvodzovku **vnútri položky zoznamu**, takže hodnota `Firma "Alfa", s.r.o.` sa pri čítaní predčasne uzavrela. Oprava parsera bez opravy zápisu by problém nevyriešila. Opravené v tom istom commite.
+>
+> **Druhá vec, na ktorú si dať pozor pri podobných úlohách:** prvá verzia `splitList` rozbila existujúce testy `record-aml.test.ts`, lebo medzeru medzi čiarkou a úvodzovkou (`["a", "b"]`) brala ako súčasť hodnoty. Pri zmene parsera vždy spusti **celú** sadu, nie len nový súbor.
 
 Najzávažnejší nález. `emit()` zapíše `["Doprava, s.r.o."]`, `parseScalar()` to rozdelí na **každej** čiarke a vznikne `["\"Doprava", "s.r.o.\""]` — bez chyby a bez varovania. Trafí to každé slovenské aj české obchodné meno, teda najbežnejší legitímny vstup do poľa `strany:`.
 
@@ -93,7 +99,7 @@ Overené 1. 9. 2026: dva subjekty sa pri prvom read-modify-write cykle zmenia na
 - Consumes: nič nové
 - Produces: `parseRecord` / `serializeRecord` round-trip zachová čiarku vo vnútri položky zoznamu. Signatúry sa nemenia.
 
-- [ ] **Krok 1: Napíš padajúci test**
+- [x] **Krok 1: Napíš padajúci test**
 
 Vytvor `lawoss/okf/tests/record-lists.test.ts`:
 
@@ -173,7 +179,7 @@ test("ciarka prezije aj v poli zdroje a oblast_prava", () => {
 });
 ```
 
-- [ ] **Krok 2: Spusti test a over, že padá**
+- [x] **Krok 2: Spusti test a over, že padá**
 
 ```bash
 cd ~/Projects/lawoss/_worktrees/feat-okf-pamat/lawoss/okf
@@ -182,7 +188,7 @@ node --test tests/record-lists.test.ts
 
 Očakávané: padnú testy s čiarkou. Prvý ukáže `["\"Doprava", "s.r.o.\"", …]` namiesto dvoch položiek. Testy bez čiarky prejdú — to je správne, nesmieš rozbiť existujúce správanie.
 
-- [ ] **Krok 3: Implementuj rozdeľovanie, ktoré rešpektuje úvodzovky**
+- [x] **Krok 3: Implementuj rozdeľovanie, ktoré rešpektuje úvodzovky**
 
 V `lawoss/okf/src/record.ts` pridaj nad `parseScalar`:
 
@@ -243,7 +249,7 @@ A v `parseScalar` nahraď vetvu pre zoznam:
 
 `unquote` sa na položky už nevolá — `splitList` ich vracia rozbalené.
 
-- [ ] **Krok 4: Spusti testy**
+- [x] **Krok 4: Spusti testy**
 
 ```bash
 node --test tests/record-lists.test.ts && node --test 'tests/**/*.test.ts' && ./node_modules/.bin/tsc -p tsconfig.json --noEmit
@@ -251,7 +257,7 @@ node --test tests/record-lists.test.ts && node --test 'tests/**/*.test.ts' && ./
 
 Očakávané: všetko zelené, 0 fail, typecheck exit 0.
 
-- [ ] **Krok 5: Commit**
+- [x] **Krok 5: Commit**
 
 ```bash
 git add lawoss/okf/src/record.ts lawoss/okf/tests/record-lists.test.ts
