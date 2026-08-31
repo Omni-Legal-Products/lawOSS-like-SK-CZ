@@ -14,6 +14,23 @@ def require(condition: bool, message: str) -> None:
         raise AssertionError(message)
 
 
+def validate_validator_contract() -> None:
+    source = Path(__file__).read_text(encoding="utf-8")
+    require(
+        re.search(r'page\.on\(\s*["\']console["\']', source) is not None,
+        "full validator must register browser console events",
+    )
+    require(
+        re.search(r'message\.type\s*==\s*["\']error["\']', source) is not None,
+        "full validator must collect console error events",
+    )
+    require(
+        re.search(r"browser_errors\.append", source) is not None
+        and re.search(r"require\(not browser_errors", source) is not None,
+        "console and page errors must share the full-run error list",
+    )
+
+
 def validate_static(html_path: Path) -> None:
     html = html_path.read_text(encoding="utf-8")
     require("Fiktívne dáta · pracovný návrh" in html, "missing demo marker")
@@ -739,15 +756,24 @@ def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
             require(not shortcut_help.is_visible(), "second Escape must close shortcut help")
             require(page.evaluate("document.activeElement === document.querySelector('[data-testid=\"timeline-detail\"] [data-source-trigger]')"), "source inspector must restore trigger focus")
 
-            page.locator('[data-timeline-event="event-filing"]').click()
-            source_trigger.click()
-            filing_inspector = inspector.inner_text()
+            for event_id, expected_source in (
+                ("event-filing", "02_podania/Zaloba.pdf:locator neuvedený v OKF zázname"),
+                ("event-response", "03_protistrana/Vyjadrenie.pdf:locator neuvedený v OKF zázname"),
+                ("event-judgment", "04_rozhodnutia/Rozsudok.pdf:locator neuvedený v OKF zázname"),
+            ):
+                page.locator(f'[data-timeline-event="{event_id}"]').click()
+                source_trigger.click()
+                sentinel_inspector = inspector.inner_text()
+                require(
+                    expected_source in sentinel_inspector,
+                    f"{event_id} must expose its explicit missing locator in source inspector",
+                )
+                inspector.get_by_role("button", name="Zavrieť zdroj").click()
+            page.locator('[data-timeline-event="event-fact-candidate"]').click()
             require(
-                "02_podania/Zaloba.pdf:locator neuvedený v OKF zázname"
-                in filing_inspector,
-                "missing event locator must remain explicit in source inspector",
+                source_trigger.inner_text() == "findings/reconciliation/F-2026-021.md:22",
+                "event-fact-candidate locator 22 must remain unchanged",
             )
-            inspector.get_by_role("button", name="Zavrieť zdroj").click()
 
             page.evaluate("setDirection('brain')")
             page.evaluate("setBrainLayer('L1')")
@@ -927,14 +953,20 @@ def validate_full(html_path: Path, artifacts: Path) -> None:
 
     screenshots = artifacts / "screenshots"
     screenshots.mkdir(parents=True, exist_ok=True)
-    page_errors: list[str] = []
+    browser_errors: list[str] = []
     external_requests: list[str] = []
     viewports = ((1440, 1024), (1280, 800), (1024, 768), (390, 844))
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
         try:
             page = browser.new_page(viewport={"width": 1440, "height": 1024})
-            page.on("pageerror", lambda error: page_errors.append(str(error)))
+            page.on("pageerror", lambda error: browser_errors.append(f"pageerror: {error}"))
+            page.on(
+                "console",
+                lambda message: browser_errors.append(f"console: {message.text}")
+                if message.type == "error"
+                else None,
+            )
             page.on(
                 "request",
                 lambda request: external_requests.append(request.url)
@@ -942,7 +974,7 @@ def validate_full(html_path: Path, artifacts: Path) -> None:
                 else None,
             )
             page.goto(html_path.as_uri(), wait_until="load")
-            require(not page_errors, f"runtime page error: {'; '.join(page_errors)}")
+            require(not browser_errors, f"browser console/page errors: {'; '.join(browser_errors)}")
             require(not external_requests, f"external network request: {'; '.join(external_requests)}")
             font_check = page.evaluate(
                 """async () => {
@@ -1027,7 +1059,7 @@ def validate_full(html_path: Path, artifacts: Path) -> None:
                 require(all(print_state.values()), f"print contract failed for {direction}: {print_state}")
                 page.pdf(path=artifacts / f"direction-{direction_index}.pdf", format="A4", landscape=True, margin={"top": "10mm", "right": "10mm", "bottom": "10mm", "left": "10mm"}, print_background=True)
                 page.emulate_media(media="screen")
-            require(not page_errors, f"runtime page error: {'; '.join(page_errors)}")
+            require(not browser_errors, f"browser console/page errors: {'; '.join(browser_errors)}")
             require(not external_requests, f"external network request: {'; '.join(external_requests)}")
         finally:
             browser.close()
@@ -1042,6 +1074,7 @@ def main() -> None:
     parser.add_argument("--artifacts", type=Path)
     args = parser.parse_args()
     html_path = args.html.resolve()
+    validate_validator_contract()
     validate_static(html_path)
     if args.mode in ("smoke", "full"):
         artifacts = args.artifacts.resolve() if args.artifacts else None
