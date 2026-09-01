@@ -42,8 +42,9 @@
 - [ ] **OKF ako jadro MVP** - tri vrstvy pamäte, reconciliation s human approval a auditom
 - [ ] **Onboarding spisu a subjektov** - conflict check, AML, sankcie, diskvalifikácie a registre cez MCP
 - [ ] **Základné skills pre spis** - zápis, kontrola čerstvosti, periodická konsolidácia a rollback
-- [ ] **Zjednotiť OKF architektúru MČ + VŘ** - rozhodnutia D1 až D9 na [calle 1. 9. 2026 o 10:30](../meetings/2026-08-31-agenda-okf-architektura.md), potom detailný technický spec
-- [ ] **Odklepnúť technický návrh OKF platformy v LAWOSS** - portable Core, server, agentové brány, read model, recovery a až následne dashboard podľa [zadania 2026-08-31](2026-08-31-okf-lawoss-technicky-navrh-zadanie.md)
+- [x] **Zjednotiť OKF architektúru MČ + VŘ** — na [calle 1. 9. 2026](../meetings/2026-09-01-zapis-okf-architektura.md) schválené: anglické jadro (O6/D4), `AGENTS.md` bootstrap (D2), klientsky workspace (D3), lehoty z OKF; zamietnuté: write pipeline a gates (D6/D7); otvorené: D8/PR #24, CLI, SQLite, vrstvy L1–L3
+- [ ] **Testovacie varianty OKF skillu (1/2/3)** — MČ + VŘ dopracujú a otestujú na reálnych podkladoch (nový spis + konsolidácia existujúceho); paralelne s technickým specom → [zápis 1. 9.](../meetings/2026-09-01-zapis-okf-architektura.md)
+- [ ] **Odklepnúť technický návrh OKF platformy v LAWOSS** - portable Core, server, read model, recovery a až následne dashboard podľa [zadania 2026-08-31](2026-08-31-okf-lawoss-technicky-navrh-zadanie.md); prepracovať podľa výsledkov callu 1. 9. (bez approval pipeline, otvorený bod `L3_LEAK`)
 - [ ] **Anonymizácia odložená** - neimplementovať v aktuálnej fáze; zachovať ako budúci voliteľný modul
 - [x] **Tímové rozhodnutia Q01 až Q25** — ✅ IR *(14. 8.)* · ✅ VŘ *(15. 8.)* · 📝 **MČ** pracovné pozície · ✅ **MF** *(17. 8.)* → [súhrn](2026-08-17-stanoviska-timu-Q01-Q25.md)
 - [x] **Synchronizovať fork s upstreamom** — `dev` @ `c5e177a`: fast-forward na origin/dev (+10 našich commitov) + merge upstream fixu #88 *(21. 8. 2026)*

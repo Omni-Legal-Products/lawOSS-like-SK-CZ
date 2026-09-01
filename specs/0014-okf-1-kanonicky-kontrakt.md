@@ -1,6 +1,6 @@
 # Spec 0014: OKF 1.0 - kanonický otvorený kontrakt klienta a prípadov
 
-- **Stav:** návrh na spoločnú revíziu MČ + VŘ, nie je odklepnuté
+- **Stav:** čiastočne schválené na [calle 1. 9. 2026](../meetings/2026-09-01-zapis-okf-architektura.md) — viď blok „Stav po calle" nižšie; zvyšok je návrh
 - **Navrhol:** Marián Čuprík (MČ) · 2026-08-31
 - **Konsoliduje:** implementáciu MČ `mc-novy-spis`, návrh a prevádzkové skúsenosti Vojtu Říhu (VŘ), [spec 0002](0002-okf-operacny-system-praxe.md) a pracovnú diskusiu MČ z 30. až 31. 8. 2026
 - **Prínos VŘ:** typované záznamy, retrieval summary, väzby, `Truth` + append-only `History`, vrstvy L1/L2/L3, cyklus LOAD/SAVE/LEARN/REVIEW/EVOLVE a brány v nástroji
@@ -12,6 +12,23 @@
 
 > [!IMPORTANT]
 > Tento dokument je **návrh MČ pripravený na spoločnú revíziu s VŘ a tímom**. Zachytáva schválenia MČ z pracovnej diskusie, ale nepredstavuje súhlas VŘ ani tímové rozhodnutie. Pôvodné implementácie zostávajú zachované ako samostatné zdroje a ich autorstvo sa nemení.
+
+## Stav po calle 1. 9. 2026
+
+Podľa [zápisu z callu MČ + VŘ + MF](../meetings/2026-09-01-zapis-okf-architektura.md):
+
+| Časť kontraktu | Stav |
+|---|---|
+| Anglický machine contract, lokalizácia na výstupe (O6/D4) | ✅ **schválené** |
+| `AGENTS.md` kanonický bootstrap + `CLAUDE.md` mirror (D2) | ✅ **schválené** |
+| Klientsky workspace s viacerými prípadmi (D3) | ✅ **schválené** |
+| Lehoty a chronológia renderované z OKF v `_STATUS.md` | ✅ **schválené v princípe** (podmienky MČ k O1 sa dorozhodnú písomne) |
+| Typované záznamy a vrstvy | 🟡 bez námietok; terminológiu L1/L2/L3 treba písomne zosúladiť s ústnou definíciou z callu |
+| `plan → validate → approve → apply` pipeline a risk-based human gates (D6/D7) | ❌ **zamietnuté na calle** — úpravy robí človek v markdownoch alebo agent na pokyn; otvorený zostáva rozsah vs. kontrola `L3_LEAK` zo spec 0002 |
+| `okf-cli` | ⏳ otvorené — MČ preferuje čisté markdowny bez ďalšieho nástroja |
+| SQLite read model, postavenie PR #24 (D8), migrácia (O2), multi-user (O4), publikácia štandardu (O5) | ⏳ otvorené |
+
+Sekcie tohto specu týkajúce sa write pipeline a approval brán sa prepracujú podľa výsledku otvoreného bodu c) zo zápisu; do vyriešenia ich čítaj ako **neplatný návrh**, nie kontrakt.
 
 ## 1. Problém
 

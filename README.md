@@ -390,7 +390,7 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 | [`backlog.md`](planning/backlog.md) | `███░░░░░░░░░░░░░░░░░` | 10/71 (14 %) |
 | [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
-| [`roadmap.md`](planning/roadmap.md) | `███████░░░░░░░░░░░░░` | 17/48 (35 %) |
+| [`roadmap.md`](planning/roadmap.md) | `███████░░░░░░░░░░░░░` | 18/49 (37 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -515,7 +515,8 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-27-zapis-quick-call.md
 │   ├── 2026-08-28-agenda-call-dizajn.md
 │   ├── 2026-08-28-zapis-sync-call.md
-│   └── 2026-08-31-agenda-okf-architektura.md
+│   ├── 2026-08-31-agenda-okf-architektura.md
+│   └── 2026-09-01-zapis-okf-architektura.md
 ├── planning/
 │   ├── 2026-08-12-mcp-repository-rollout-plan.md
 │   ├── 2026-08-12-rozhodovacie-otazky-timu.md
@@ -731,23 +732,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**380 commitov** · **247 súborov**
+**382 commitov** · **251 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `ca819a4` | 2026-09-01 | Majo Cuprik | docs: opraviť dátum callu na 1. 9. 2026, doplniť MF ako účastníka a slot pre onboarding |
+| `be146a4` | 2026-09-01 | Majo Cuprik | specs: zaevidovať osobné OKF dashboardy |
 | `afe86fa` | 2026-09-01 | Majo Cuprik | feat: dokončiť akceptáciu OKF dashboardu |
 | `8d23fba` | 2026-08-31 | Majo Cuprik | docs: sprístupniť šesť smerov OKF dashboardu |
 | `9f712b0` | 2026-08-31 | Majo Cuprik | fix: spevniť kontrolu udalostí a browser chýb |
 | `0772ce3` | 2026-08-31 | Majo Cuprik | docs: zaznamenať finálny commit Task 7 |
 | `8b6a8c0` | 2026-08-31 | Majo Cuprik | fix: dokončiť responzívny a offline OKF prototyp |
 | `b8ba5ab` | 2026-08-31 | Majo Cuprik | fix: spevniť gate a vrstvy dashboardu |
-| `34133c6` | 2026-08-31 | Majo Cuprik | feat: pridať zdroje, brány a bezpečné ovládanie |
-| `cc859d2` | 2026-08-31 | Majo Cuprik | feat: doplniť OKF Brain a partnerský risk prehľad |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-01 07:22 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-01 12:23 UTC<!-- /AUTO:UPDATED --></sub>
 </div>

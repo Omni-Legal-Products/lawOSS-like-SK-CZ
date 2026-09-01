@@ -2,6 +2,8 @@
 
 > [!NOTE]
 > Súbor si ponecháva pôvodný názov `2026-08-31-…` podľa dátumu, na ktorý bol call omylom pôvodne ohlásený, aby sa nerozbili už rozposlané odkazy. Správny termín callu je **utorok 1. 9. 2026 o 10:30 CEST** (potvrdené v Telegrame 31. 8.).
+>
+> **Call prebehol — výsledky sú v [zápise z 1. 9.](2026-09-01-zapis-okf-architektura.md).** Rozhodovací list nižšie zostáva ako podklad; smerodajné sú výsledky v zápise.
 
 - **Určené pre:** Marián Čuprík (MČ) + Vojta Říha (VŘ) + Martin Friedrich (MF)
 - **Pripravil:** MČ s AI asistenciou

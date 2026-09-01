@@ -2,7 +2,8 @@
 
 - **Cieľ:** z dvoch reálne používaných implementácií pamäťového/spisového systému (MČ + VŘ) spraviť **jeden zjednotený OKF kontrakt a portable Core**, ktoré budú základom LAWOSS aj práce mimo appky. Dashboard je následná vizualizačná vrstva, nie prvý implementačný krok.
 - **Rozhodnuté na calle 28. 8.:** zjednotenie OKF je prvá feature ([zápis](../../meetings/2026-08-28-zapis-sync-call.md), body 5 + akčné body). Kanonický kontrakt a technická architektúra ešte rozhodnuté nie sú.
-- **Najbližší krok:** [call MČ + VŘ + MF 1. 9. 2026 o 10:30](../../meetings/2026-08-31-agenda-okf-architektura.md), ktorého cieľom je architektonický mandát pred detailným technickým specom.
+- **Call 1. 9. 2026 prebehol** — výsledky v [zápise](../../meetings/2026-09-01-zapis-okf-architektura.md): schválené anglické jadro, `AGENTS.md` bootstrap, klientsky workspace a lehoty z OKF; zamietnutá write pipeline a gates; otvorené D8/PR #24, CLI, SQLite a terminológia vrstiev.
+- **Najbližší krok:** testovacie varianty OKF skillu (MČ + VŘ) + paralelne technický spec; ďalší call **pondelok 7. 9. 2026 o 10:00**.
 
 ## Čo tu je / má byť
 
