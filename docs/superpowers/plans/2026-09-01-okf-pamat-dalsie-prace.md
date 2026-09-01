@@ -55,7 +55,17 @@ Platia pre **každú** úlohu, netreba ich opakovať:
 
 ## D1 — Brána rozhodnutia (call 1. 9. 2026, 10:30)
 
-**Toto nie je úloha na implementáciu. Je to brána.** Úlohy 5 a vyššie sa nesmú začať, kým nie je rozhodnuté.
+**Toto nie je úloha na implementáciu. Je to brána.**
+
+Po čiastočnom rozhodnutí z 1. 9. (O6, viď nižšie) už brána **neblokuje paušálne**. Čo je odblokované a čo nie:
+
+| Úlohy | Stav brány |
+|---|---|
+| 4 (`Approval`), 6 (drobnosti), 7 (súbeh) | ✅ **odblokované** — na O1 ani O6 nezávisia |
+| 8 (angličtina), 10 (migrácia), 17–21 (fáza 3b) | ✅ **odblokované** rozhodnutím O6 |
+| 5 (`init`) | ⊘ **zrušená** rozhodnutím O6 |
+| 11, 12, 13 (drift, odkazy, SSOT lehôt) | ⛔ **stále blokované** — závisia od O1, ktoré rozhodnuté nie je |
+| 14 (konfigurovateľné prahy) | ⛔ **stále blokované** — závisí od O7 |
 
 Na hlasovanie idú body O1–O7 podľa [`stanovisko-mc.md`](../../../research/okf-implementacie/stanovisko-mc.md). Pre kód sú rozhodujúce dva:
 
