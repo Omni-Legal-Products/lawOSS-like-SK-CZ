@@ -46,7 +46,7 @@ Platia pre **každú** úlohu, netreba ich opakovať:
 | N7 `L3_LEAK` falošné nálezy | ✅ **hotové** (commit `55159fb`) — celé slovo, meno → `warning`, identifikátory → `error`. Kryje väčšinu O7. |
 | N6 čiarka v zozname | ✅ **hotové 1. 9.** (commit `1a42187`) — úloha 1 dokončená |
 | N2 duplicitné sekcie | ✅ **hotové 1. 9.** (commit `2e071a8`) — úloha 2 dokončená |
-| N3 štvrtá brána mimo zápisu | ❌ otvorené — **úloha 3** |
+| N3 štvrtá brána mimo zápisu | ✅ **hotové 1. 9.** (commit `1ba3d71`) — úloha 3 dokončená, **fáza 1 uzavretá** |
 | N4 `Approval` self-declared | ❌ otvorené — **úloha 4** |
 | N1 `init` nezaloží adresár | ⊘ **zaniká** rozhodnutím O6 — jeden `memory/`, jurisdikcia je hodnota poľa. Rieši sa zrušením `detect()` v úlohe 8. |
 | N8 drobnosti | ❌ otvorené — **úloha 6** |
@@ -543,7 +543,15 @@ git commit -m "fix: render nesmie pripájať duplicitné sekcie do _STATUS.md (N
 
 ---
 
-### Úloha 3: Štvrtá brána nie je v ceste zápisu (N3) 🟡
+### ✅ Úloha 3: Štvrtá brána nie je v ceste zápisu (N3) 🟡 — HOTOVÉ
+
+> **Dokončené 1. 9. 2026, commit [`1ba3d71`](https://github.com/Omni-Legal-Products/lawoss/commit/1ba3d71).** 185/185 testov, typecheck čistý. **Fáza 1 je tým uzavretá.**
+>
+> **Odchýlka od zadania, ktorá zadanie opravuje:** plán predpisoval `readStore`, teda iba spis. AML subjekty však žijú **u klienta** a prameň sa zapisuje v spise — brána by tak nevidela práve tie identifikátory, kvôli ktorým existuje. Kontrola preto číta `readScope`. Ak by niekto zadanie čítal doslova, vyrobil by bránu, ktorá v reálnej štruktúre nechytí nič.
+>
+> **E2E test kodifikoval starý tok** — zapisoval unikajúci prameň, aby ho potom odhalila validácia. Prepísaný na silnejšie tvrdenie: zápis padne a na disku nevznikne nič.
+>
+> Overené spustením všetkých štyroch brán naraz; každá odmietla a žiadny odmietnutý zápis nič nevytvoril. **Tvrdenie „štyri brány v nástroji" v `zjednotenie.md` je odteraz pravdivé.**
 
 `zjednotenie.md` tvrdí štyri brány „v nástroji, nie v prompte". Tri naozaj sú. Kontrola úniku L2→L3 žije iba v `okf-memory validate` — `applyRecordWrite` ju nevolá, takže prameň s IČO klienta na disk prejde a chytí ho až samostatný beh validácie.
 
@@ -557,7 +565,7 @@ Buď sa brána doplní, alebo `zjednotenie.md` prestane tvrdiť, že sú štyri.
 **Interfaces:**
 - Produces: `export class LeakBlockedError extends Error` zo `store.ts`. `applyRecordWrite` ju vyhodí, keď by zápis vytvoril L3 záznam s `error` nálezom kódu `L3_LEAK`.
 
-- [ ] **Krok 1: Napíš padajúci test**
+- [x] **Krok 1: Napíš padajúci test**
 
 Vytvor `lawoss/okf/tests/write-gate-leak.test.ts`:
 
@@ -635,7 +643,7 @@ test("zapis do L2 sa kontrolou uniku nezdrzuje", () => {
 });
 ```
 
-- [ ] **Krok 2: Spusti test a over, že padá**
+- [x] **Krok 2: Spusti test a over, že padá**
 
 ```bash
 node --test tests/write-gate-leak.test.ts
@@ -643,7 +651,7 @@ node --test tests/write-gate-leak.test.ts
 
 Očakávané: import `LeakBlockedError` zlyhá.
 
-- [ ] **Krok 3: Implementuj**
+- [x] **Krok 3: Implementuj**
 
 V `lawoss/okf/src/store.ts` doplň `import { validateStore } from "./validate.ts";`, triedu a kontrolu v `applyRecordWrite` hneď po `authorize`:
 
@@ -674,7 +682,7 @@ export function applyRecordWrite(dir: string, diff: WriteDiff, approval: Approva
 }
 ```
 
-- [ ] **Krok 4: Exportuj a spusti testy**
+- [x] **Krok 4: Exportuj a spusti testy**
 
 V `lawoss/okf/src/index.ts` pridaj `LeakBlockedError` do exportu zo `store.ts`.
 
@@ -682,7 +690,7 @@ V `lawoss/okf/src/index.ts` pridaj `LeakBlockedError` do exportu zo `store.ts`.
 node --test 'tests/**/*.test.ts' && ./node_modules/.bin/tsc -p tsconfig.json --noEmit
 ```
 
-- [ ] **Krok 5: Commit**
+- [x] **Krok 5: Commit**
 
 ```bash
 git add lawoss/okf/src/store.ts lawoss/okf/src/index.ts lawoss/okf/tests/write-gate-leak.test.ts
