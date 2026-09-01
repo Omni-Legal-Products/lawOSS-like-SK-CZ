@@ -36,6 +36,7 @@ Platia pre **každú** úlohu, netreba ich opakovať:
 | [`stanovisko-mc.md`](../../../research/okf-implementacie/stanovisko-mc.md) (MČ, 29. 8.) | podmienky k O1, nové body O6 a O7 |
 | [`zjednotenie.md`](../../../research/okf-implementacie/zjednotenie.md) (VŘ, 29.–31. 8.) | otvorené body O1–O5 |
 | [PR #64](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/64) | spec 0014 kanonický kontrakt, agenda callu |
+| skill `/legal` a jeho 14 agentov (VŘ, prevádzka) | schémy záznamov pre dôkaznú vrstvu, úlohy a provenance L3 — **fáza 3b** |
 
 **Stav nálezov k 1. 9. 2026** — over pred začatím, časť je už hotová:
 
@@ -47,7 +48,7 @@ Platia pre **každú** úlohu, netreba ich opakovať:
 | N2 duplicitné sekcie | ❌ otvorené — **úloha 2** |
 | N3 štvrtá brána mimo zápisu | ❌ otvorené — **úloha 3** |
 | N4 `Approval` self-declared | ❌ otvorené — **úloha 4** |
-| N1 `init` nezaloží adresár | ❌ otvorené — **úloha 5**, závisí od D1 |
+| N1 `init` nezaloží adresár | ⊘ **zaniká** rozhodnutím O6 — jeden `memory/`, jurisdikcia je hodnota poľa. Rieši sa zrušením `detect()` v úlohe 8. |
 | N8 drobnosti | ❌ otvorené — **úloha 6** |
 
 ---
@@ -66,10 +67,53 @@ Na hlasovanie idú body O1–O7 podľa [`stanovisko-mc.md`](../../../research/ok
 ```
 D1 rozhodnuté dňa: ____________
 O1: ÁNO / NIE / s podmienkami: ____________
-O6 kanonická angličtina: ÁNO / NIE
+O6 kanonická angličtina: ✅ ÁNO — stanovisko VŘ 1. 9. 2026, zhoda s návrhom MČ
 O7 konfigurovateľné prahy: ÁNO / NIE
 Ostatné (O2–O5): ____________
 ```
+
+### ✅ O6 — rozhodnuté: jadro stojí na anglických kľúčoch
+
+**Stanovisko VŘ z 1. 9. 2026:** systém stojí primárne na anglických kľúčoch, nie na českých ani slovenských. Tým sa prijíma návrh MČ zo [`stanovisko-mc.md`](../../../research/okf-implementacie/stanovisko-mc.md).
+
+> [!NOTE]
+> Zhodli sa na tom obaja autori pôvodných implementácií. **Formálne potvrdenie tímom patrí do zápisu z callu** — tento riadok je stanovisko VŘ, nie zápis hlasovania. Ak sa na calle rozhodlo inak, prepíš ho a označ dátum.
+
+**Čo z toho plynie pre poradie prác:**
+
+| Úloha | Dopad |
+|---|---|
+| **5** (`init` nezaloží adresár, N1) | ❌ **zaniká** — priečinok je jeden `memory/`, jurisdikcia je hodnota poľa. Neopravuj `detect()`, zruš ho. |
+| **8** (kanonická angličtina) | ✅ **aktívna a povinná**, robí sa **spolu s úlohou 10**, nie dvakrát |
+| **10** (migrácia) | migruje sa **rovno na anglickú schému**, nie na lokalizovanú a potom znova |
+| **17–21** (nové typy z `/legal`) | zakladajú sa **rovno anglicky** — `claim`, `evidence`, `task`, nie `tvrzeni`/`dukaz`/`ukol` |
+
+Mapovacia tabuľka vo `schema.ts` zostáva — prestáva byť perzistenčnou schémou a stáva sa i18n vrstvou pre výstup. Renderované tabuľky v `_STATUS.md` a hlášky CLI zostávajú v jazyku používateľa.
+
+---
+
+## Kanonické prefixy identifikátorov (normatívne)
+
+Vyplýva z O6 a **rieši kolíziu**, ktorá by inak vznikla pri migrácii: MČ navrhoval `D-` pre *decision*, `fact-analyzer` v `/legal` používa `D-` pre *dôkaz*. Pod anglickými kľúčmi je odpoveď jednoznačná — **dôkaz je `evidence`, teda `E-`**.
+
+| Typ (kanonický) | Prefix | Poznámka |
+|---|---|---|
+| `matter` | `M-` | |
+| `subject` | `S-` | |
+| `screening` | `SC-` | `S-` je obsadené subjektom |
+| `decision` | `D-` | podľa návrhu MČ |
+| `question` | `Q-` | |
+| `task` | `T-` | nový typ, úloha 19 |
+| `claim` | `C-` | nový typ, úloha 17 |
+| `evidence` | `E-` | nový typ, úloha 17 |
+| `rule` | `R-` | |
+| `lesson` | `L-` | |
+| `authority` | `A-` | |
+
+**Prefix nie je dekorácia.** Ploché `R-001` po roku nič nehovorí a v `INDEX.md` sa netriedi podľa významu — to je dôvod, prečo ho MČ do O2 pýtal.
+
+> [!WARNING]
+> **Typ `event` sa zámerne nezavádza.** `fact-analyzer` má `E-XXX` pre *udalosť*, ale udalosti už nesie append-only `## History` v každom zázname a v projekcii Chronológia. Samostatný typ by pridal tretie miesto pre tú istú pravdu a zároveň by kolidoval s `evidence`. Ak sa raz ukáže, že udalosť potrebuje vlastnú právnu kvalifikáciu a väzby na dôkazy, otvor to ako nový bod — nie potichu pri migrácii.
 
 ---
 
@@ -629,9 +673,13 @@ git commit -m "feat: kontrola úniku L2→L3 je v ceste zápisu, nie iba vo vali
 
 **Poznámka:** neinteraktívne potvrdenie je zámerné — interaktívny prompt sa v agentovom behu odklikne cez `yes |`. Hranicou je to, že meno musí do príkazu zadať človek.
 
-### Úloha 5: `init` nezaloží adresár pamäte a jurisdikcia sa háda (N1)
+### ❌ Úloha 5: `init` nezaloží adresár pamäte a jurisdikcia sa háda (N1) — ZRUŠENÁ
 
-⚠️ **Závisí od D1/O6.** Ak O6 prejde, **táto úloha zaniká** — adresár je jeden `memory/` a jurisdikcia je hodnota poľa, nie názov priečinka. Vtedy preskoč na úlohu 8.
+> **Zrušená 1. 9. 2026 rozhodnutím O6.** Priečinok je jeden `memory/` a jurisdikcia je hodnota poľa, nie názov adresára — celá trieda chýb N1 zaniká z definície. **Neopravuj `detect()`, zruš ho** v rámci úlohy 8.
+>
+> Zadanie nižšie zostáva zapísané len ako doklad, čo sa zrušilo a prečo. **Nevykonávaj ho.** Ak by sa O6 na calle prekvapivo otočilo, toto je hotové zadanie na obnovenie.
+
+~~Pôvodné zadanie:~~
 
 **Files:** `lawoss/okf/src/cli.ts`, `lawoss/okf/src/store.ts`, test `lawoss/okf/tests/init-jurisdiction.test.ts`
 
@@ -675,7 +723,9 @@ L1 záznamy (`rule`, `lesson`) žijú v `_kancelaria/`; `readScope` ich číta a
 
 ### Úloha 10: Migrácia existujúcich spisov (O2)
 
-`TP-XXX → decision`, `LL-XXX → lesson`, `OQ-XXX → question`. Pôvodný `MEMORY.md` zostáva **nedotknutý** — konverzia je čítanie → zápis. Idempotentné, žiadne mazanie ani presuny. Id nesie prefix odvodený z typu (`D-`, `L-`, `Q-`, `S-`, `A-`), nie ploché `R-`. `LL → lesson` je L1, takže migračný skript beží **ako človek** s jedným súhrnným diffom na odklep. Súčasťou je injektáž markerov do `_STATUS.md`. **Najprv pilot na jednom reálnom spise, až potom dávka.**
+`TP-XXX → decision`, `LL-XXX → lesson`, `OQ-XXX → question`. Pôvodný `MEMORY.md` zostáva **nedotknutý** — konverzia je čítanie → zápis. Idempotentné, žiadne mazanie ani presuny. Id nesie prefix **podľa normatívnej tabuľky vyššie** — nie ploché `R-` a nie ad-hoc písmená. Migruje sa **rovno na anglickú schému** (O6), nie na lokalizovanú a potom znova.
+
+⚠️ **Skontroluj kolíziu pred spustením dávky.** Ak spis prešiel cez `/legal` a `fact-analyzer`, môže už obsahovať `D-XXX` v zmysle *dôkaz*. Pod novou schémou je `D-` *decision* a dôkaz je `E-`. Migračný skript musí staré `D-XXX` rozpoznať podľa obsahu záznamu (dôkaz má typ dôkazu podľa § 125–131 o. s. ř.) a premapovať na `E-`, nie ich ticho nechať. `LL → lesson` je L1, takže migračný skript beží **ako človek** s jedným súhrnným diffom na odklep. Súčasťou je injektáž markerov do `_STATUS.md`. **Najprv pilot na jednom reálnom spise, až potom dávka.**
 
 ### Úloha 11: Oprava maskovania driftu cez `sync` (O1, podmienka 2 MČ)
 
@@ -701,7 +751,169 @@ Väčšina O7 je **hotová** (celé slovo, meno → `warning`, identifikátory �
 
 ### Úloha 16: Parser pre UI a dashboard spisu
 
-Posledná v poradí podľa MČ. `lawoss/okf/read.ts` ako vstup pre appku, dashboard renderovaný z markdownov (design-system §5). **Nezačínaj pred dokončením úlohy 10** — dashboard nad nemigrovanými dátami nemá čo zobraziť.
+Podľa poradia MČ posledná zo základnej sady. `lawoss/okf/read.ts` ako vstup pre appku, dashboard renderovaný z markdownov (design-system §5). **Nezačínaj pred dokončením úlohy 10** — dashboard nad nemigrovanými dátami nemá čo zobraziť.
+
+> [!NOTE]
+> Úlohy **17–21 (fáza 3b)** sú z pohľadu MČ poradia dodatok. Dajú sa robiť **pred aj po** úlohe 16 — sú to nové typy záznamov, dashboard ich buď zobrazí, alebo nie. Ak sa robia po nej, počítaj s tým, že parser aj dashboard budú potrebovať doplnenie o `claim`, `evidence` a `task`. **Lacnejšie je urobiť ich skôr** a dashboard postaviť rovno nad úplnou sadou typov.
+
+---
+
+## Fáza 3b — prenos z `/legal` (VŘ), aby bol systém plne prenositeľný
+
+Zdroj: skill `/legal` a jeho 14 agentov v praxi VŘ. **Kritérium výberu bolo jediné —
+zanechá to typovaný artefakt v priečinku spisu, alebo to žije iba v prompte agenta?**
+Prenositeľnosť podľa Q10 je vlastnosť súborov na disku; cudzí harness (opencode, Codex,
+Cursor) tvoje agenty nemá, ale priečinok spisu otvorí.
+
+Podľa tohto kritéria sa neberie menu, dispatch cez Task tool, redline OOXML ani persony
+agentov. Berú sa **schémy záznamov**, ktoré sú dnes zahrabané vnútri agentov.
+
+Všetky nové typy sa zakladajú **rovno anglicky** (O6) a s prefixmi z normatívnej tabuľky.
+
+---
+
+### Úloha 17: Typy `claim` a `evidence` — dôkazná vrstva
+
+OKF dnes nesie stav veci, rozhodnutia a subjekty, ale **nemá čím zachytiť, kto čo tvrdí
+a čím to dokazuje**. `fact-analyzer` to má vyriešené typovanými záznamami s krížovými
+odkazmi — presne tvar OKF, len pre vrstvu, ktorá chýba.
+
+**Files:** `lawoss/okf/src/schema.ts`, `src/record.ts` (rozhranie), test `lawoss/okf/tests/claims-evidence.test.ts`
+
+**Interfaces — Produces:** dva nové `RecordType` vo vrstve **L2**: `claim` (prefix `C-`) a `evidence` (prefix `E-`).
+
+**Polia `claim`** (predloha: `T-XXX` v `fact-analyzer.md`):
+
+| kanonické | čo to je |
+|---|---|
+| `claimed_by` | odkaz na `S-` — kto tvrdí |
+| `claimed_at` | kedy bolo tvrdené |
+| `claimed_in` | kde — v žalobe, replike, výpovedi |
+| `legal_question` | k akej právnej otázke smeruje |
+| `burden_of_proof` | kto musí preukázať |
+| `supporting_evidence` | zoznam `E-` |
+| `contradicting_evidence` | zoznam `E-` |
+| `proof_status` | `proven` / `unproven` / `disputed` |
+| `credibility` | `high` / `medium` / `low` |
+
+**Polia `evidence`** (predloha: `D-XXX`):
+
+| kanonické | čo to je |
+|---|---|
+| `evidence_kind` | druh dôkazu — hodnota je **jurisdikčná**, viď upozornenie nižšie |
+| `origin_date` | dátum vzniku |
+| `author` | kto listinu vytvoril |
+| `formal_requirements` | podpis, pečiatka |
+| `proves` | zoznam `C-` |
+| `evidence_strength` | `direct` / `indirect` |
+| `reliability` | `high` / `medium` / `low` |
+| `objection` | kto namieta a čo |
+| `procedural_status` | `proposed` / `taken` |
+
+> [!WARNING]
+> **`evidence_kind` sa neprekladá.** `fact-analyzer` viaže druhy dôkazu na § 125–131
+> o. s. ř. (listina, výsluch svedka, znalecký posudok, výsluch účastníka, ohliadka).
+> Slovenský ekvivalent je Civilný sporový poriadok, nie o. s. ř., a členenie sa nemusí
+> kryť. **Kľúč je anglický, hodnoty a ich právne ukotvenie sú jurisdikčné** — rovnaká
+> disciplína ako pri AML sadách. SK vetvu neodhaduj; nechaj `[OVERIŤ — MČ]` a ohlás to
+> ako `AML_RULESET_UNVERIFIED` robí pri AML.
+
+**Akceptačné kritériá:**
+- `LAYER_OF.claim === "L2"`, `LAYER_OF.evidence === "L2"`.
+- Round-trip oboch typov cez `parseRecord`/`serializeRecord` bez straty (test pre každé nové pole).
+- `validateStore` hlási rozbitý odkaz, keď `supporting_evidence` ukazuje na neexistujúce `E-`, a naopak `proves` na neexistujúce `C-`.
+- **Obojsmerná konzistencia:** ak `C-001.supporting_evidence` obsahuje `E-007`, potom `E-007.proves` musí obsahovať `C-001`. Rozpor je nález `LINK_ASYMMETRY` (warning) — jednosmerne vedená väzba sa po pár mesiacoch rozíde.
+- Identifikátory z `evidence` **nie sú** jehly detektora únikov (sú to údaje o listinách, nie o klientovi) — over testom, že pridanie `evidence` záznamu nespôsobí `L3_LEAK` falošný nález.
+
+---
+
+### Úloha 18: Projekcia matice tvrdenie × dôkaz a dôkazné bremeno
+
+Matica z `fact-analyzer` je **deterministická projekcia** z `C-` a `E-` záznamov — presne
+to, čo už vie render machinery pre lehoty. Nová mechanika netreba, iba nový blok.
+
+**Files:** `lawoss/okf/src/render.ts`, test `lawoss/okf/tests/render-matrix.test.ts`
+
+**Interfaces — Consumes:** typy `claim` a `evidence` z úlohy 17. **Produces:** nový `BlockName` `"evidence_matrix"`, marker `okf:render:evidence_matrix`.
+
+**Akceptačné kritériá:**
+- Blok je **marker-only** (ako `records` po úlohe 2) — sám sa do `_STATUS.md` nepridáva.
+- Riadky sú `C-`, stĺpce `E-`, bunka nesie silu väzby; legenda sa renderuje pod tabuľkou.
+- Pod maticou sa renderuje **dôkazné bremeno**: pre každé `C-` stĺpce „kto nesie bremeno / stav preukázania".
+- Render je **idempotentný** a lokalizovaný — hlavičky v jazyku používateľa, marker kanonický.
+- Prázdna množina `C-` nechá blok prázdny, nie rozbitý.
+- ⚠️ **Nepočítaj právny záver.** `proof_status` je hodnota, ktorú zapísal advokát; projekcia ju **zobrazuje**, neodvodzuje z počtu dôkazov. Odvodzovať „3 dôkazy = preukázané" je presne ten druh tichej právnej domnienky, ktorý nástroj robiť nesmie.
+
+---
+
+### Úloha 19: Typ `task` — a koniec troch paralelných pamätí
+
+`legal-orchestrator` má `LT-XXX` s overiteľnými akceptačnými kritériami, závislosťami
+a stavom. OKF má `question` (otvorená otázka), ale **nemá úlohu**; §5 „Otvorené úlohy"
+v `_STATUS.md` je dodnes ručná tabuľka.
+
+**Files:** `lawoss/okf/src/schema.ts`, `src/render.ts`, test `lawoss/okf/tests/task-type.test.ts`
+
+**Interfaces — Produces:** `RecordType` `task` (prefix `T-`), vrstva **L2**.
+
+**Polia:** `assignee`, `depends_on` (zoznam `T-`), `acceptance` (zoznam overiteľných kritérií), `priority`, `state` (`pending` / `in_progress` / `done` / `blocked`), `due`.
+
+**Akceptačné kritériá:**
+- Cyklus v `depends_on` je nález `TASK_CYCLE` (error) — inak sa plán zacyklí a nikto si toho nevšimne.
+- `state: blocked` bez neuzavretej závislosti je nález (warning) — blokovaná úloha bez blokátora je zabudnutá úloha.
+- `due` v minulosti pri `state != done` je warning; **nemieša sa s `deadlines`** — procesná lehota a interná úloha nie sú to isté a zámena je nebezpečná.
+- §5 `_STATUS.md` sa renderuje z `T-` záznamov (marker-only blok, rovnaká disciplína ako úloha 18).
+
+> [!IMPORTANT]
+> **Súčasťou tejto úlohy je zrušenie konkurenčných pamätí.** Dnes v jednom spise môžu
+> žiť **tri**: `pamet/` (OKF), `_memory.md` + obsidiánový mirror (`memory-manager`)
+> a `lrd.json` + `progress.txt` + `LEARNINGS.md` + `facts/` + `research/` + `strategy/`
+> (`legal-orchestrator`). To je presne tá dvojitá — tu dokonca trojitá — pravda, kvôli
+> ktorej OKF vzniká.
+>
+> **Kritérium:** po tejto úlohe `legal-orchestrator` a `memory-manager` zapisujú do OKF
+> záznamov, nie do vlastných súborov. `progress.txt` nahrádza `## History` v zázname,
+> `LEARNINGS.md` nahrádza L1 `lesson`, `lrd.json` nahrádzajú `T-` záznamy. Staré súbory
+> sa **nemažú** (rovnaká disciplína ako pri `MEMORY.md` v úlohe 10) — len sa do nich
+> prestane písať a v `BRAIN.md` sa označia ako archív.
+
+---
+
+### Úloha 20: `subject` o procesné postavenie a spôsobilosť
+
+`fact-analyzer` má v `U-XXX` tri veci, ktoré OKF `subject` nemá a bez ktorých sa nedá
+pripraviť podanie: procesné postavenie, zastúpenie a spôsobilosť byť účastníkom.
+
+**Files:** `lawoss/okf/src/schema.ts`, test doplniť do `lawoss/okf/tests/schema-aml.test.ts`
+
+**Polia:** `procedural_role` (žalobca / žalovaný / vedľajší účastník / …), `representation` (advokát a plná moc), `legal_capacity` (spôsobilosť byť účastníkom), `capacity_notes` (opatrovník, insolvencia, likvidácia).
+
+**Akceptačné kritériá:**
+- Polia sú **voliteľné** — nevstupujú do AML povinnej sady, tá vychádza zo zákona a nie z procesnej roly.
+- `procedural_role` **nie je** to isté ako existujúce `role` (klient / protistrana). Jedno je vzťah ku kancelárii, druhé postavenie v konaní; ten istý subjekt môže byť klient **a** žalovaný. Test to musí ustrážiť, inak ich niekto zlúči.
+- `capacity_notes` obsahujúce „insolvencia" pri subjekte v role klienta → warning s odkazom na kontrolu konfliktu záujmov.
+
+---
+
+### Úloha 21: `authority` o časovú platnosť a kontrolu citácie
+
+Šesť „železných pravidiel" z `legal-researcher` je v skutočnosti **validačný kontrakt
+pre vrstvu L3**, ktorý v OKF nie je. Dve sú strojovo vynutiteľné hneď.
+
+**Files:** `lawoss/okf/src/schema.ts`, `src/validate.ts`, test `lawoss/okf/tests/authority-validity.test.ts`
+
+**Polia:** `effective_from`, `effective_to` (časová platnosť predpisu), `verified_at` (kedy overené), `verified_against` (proti čomu — URL alebo názov databázy).
+
+**Akceptačné kritériá:**
+- Nález `AUTHORITY_STALE` (warning), keď `effective_to` je v minulosti — citácia zrušeného znenia.
+- Nález `AUTHORITY_UNVERIFIED` (warning), keď `authority` nemá `verified_at` ani `verified_against`. **Prameň bez stopy overenia je dohad, nie prameň.**
+- Kontrola citačného formátu: `§ X ods. Y písm. z) zák. č. A/RRRR Sb.` (CZ) a slovenský ekvivalent `Z. z.` Nesúlad je warning, nie chyba — formátov je v praxi viac a blokovať by otravovalo.
+- ⚠️ **Nekontroluj, či predpis existuje.** To by znamenalo sieťové volanie zo `validate`, a jadro je zámerne bez sieťovej plochy. Overenie patrí skillom a MCP konektorom; sem sa zapisuje iba **výsledok** overenia — rovnaká deľba ako pri `screening`.
+
+Táto úloha zároveň **dopĺňa dieru v pôvodnej implementácii**: spec 0002 žiada, aby L3
+niesla „jurisdikciu a **časovú platnosť**". Jurisdikcia tam je od začiatku, časová
+platnosť nie — bez nej systém nerozozná zastaranú citáciu, a to je chyba, ktorá sa
+v podaní pozná neskoro.
 
 ---
 
@@ -721,4 +933,6 @@ Posledná v poradí podľa MČ. `lawoss/okf/read.ts` ako vstup pre appku, dashbo
 - **Salvia MCP má vyčerpaný tarif** (3 000 volaní za obdobie). Českú legislatívu ber cez `https://krajta.slv.cz/<rok>/<číslo>/par_<N>`.
 - **Overené právne ukotvenie AML sád** (nemeň bez nového overenia): CZ výpočet identifikačných údajov je **§ 5** zák. č. 253/2008 Sb., nie § 8 — ten upravuje vykonanie identifikácie. SK je § 7 ods. 1 zák. č. 297/2008 Z. z. Sady sa vecne líšia; detaily v `README.md` balíčka.
 - **`bun` ani `corepack` na vývojovom stroji nie sú.** Používaj `node --test` a `npx -y pnpm@11.4.0`.
+- **Schémy pre fázu 3b nájdeš v `/legal`**, nie v tomto repe: `~/.claude/agents/fact-analyzer.md` (typy `U-`/`E-`/`T-`/`D-`, matica, dôkazné bremeno), `~/.claude/agents/legal-orchestrator.md` (`LT-XXX`, štruktúra pamäte), `~/.claude/agents/legal-researcher.md` (železné pravidlá, citačné formáty). Sú to súbory VŘ mimo gitu — ak k nim nemáš prístup, vyžiadaj si ich, neodhaduj obsah.
+- **Prefix `D-` je `decision`, nie dôkaz.** Staré spisy prejdené cez `/legal` môžu mať `D-XXX` v zmysle dôkaz; pod novou schémou je dôkaz `E-`. Viď upozornenie v úlohe 10.
 - **Git guardrail hook grepuje text príkazu.** Skript alebo heredoc, ktorý len spomína zakázaný vzor, sa zablokuje — súbory s takým obsahom zapisuj cez nástroj na zápis súborov, nie cez `cat` heredoc v shelli.
