@@ -48,7 +48,7 @@ Platia pre **každú** úlohu, netreba ich opakovať:
 | N2 duplicitné sekcie | ✅ **hotové 1. 9.** (commit `2e071a8`) — úloha 2 dokončená |
 | N3 štvrtá brána mimo zápisu | ✅ **hotové 1. 9.** (commit `1ba3d71`) — úloha 3 dokončená, **fáza 1 uzavretá** |
 | N4 `Approval` self-declared | ✅ **hotové 1. 9.** (commit `4614bc4`) — úloha 4 dokončená |
-| N1 `init` nezaloží adresár | ⊘ **zaniká** rozhodnutím O6 — jeden `memory/`, jurisdikcia je hodnota poľa. Rieši sa zrušením `detect()` v úlohe 8. |
+| N1 `init` nezaloží adresár | ✅ **vyriešené 1. 9.** úlohou 8 — `detect()` zrušený, jeden `memory/`, jurisdikcia je hodnota poľa |
 | N8 drobnosti | ❌ otvorené — **úloha 6** |
 
 ---
@@ -765,7 +765,17 @@ git commit -m "feat: kontrola úniku L2→L3 je v ceste zápisu, nie iba vo vali
 
 **Akceptačné kritériá:** `applyRecordWrite` prečíta záznam z disku tesne pred zápisom; ak sa jeho `updated` líši od `diff.before.updated`, odmietne zápis `ConcurrentWriteError`. Test: dva `planWrite` z toho istého východiskového stavu, druhý `applyRecordWrite` musí padnúť.
 
-### Úloha 8: Kanonická angličtina v jadre (O6)
+### ✅ Úloha 8: Kanonická angličtina v jadre (O6) — HOTOVÉ
+
+> **Dokončené 1. 9. 2026, commity [`f0fc1a0`](https://github.com/Omni-Legal-Products/lawoss/commit/f0fc1a0) a nasl.** 220/220 testov, typecheck čistý.
+>
+> Na disku: `type: decision`, `deadlines:`, `status: active`, `## Truth` / `## History`, jeden `memory/`. Jurisdikcia je hodnota poľa — **N1 tým zaniklo z definície, `detect()` je zrušený.** Český a slovenský záznam môžu ležať v jednom priečinku.
+>
+> Stĺpce `cz`/`sk` zostali ako **popisky**: `fieldKey` → `fieldLabel`, `typeKey` → `typeLabel`; `canonicalType` a `canonicalField(kľúč, jurisdikcia)` zanikli. Hlášky validátora hovoria „chýba: místo narození", súbor nesie `birth_place`.
+>
+> **Migrácia 18 testových súborov.** Testy, ktoré kodifikovali lokalizovanú perzistenciu, sú prepísané na nový kontrakt, nie zmazané. Nový `canonical-en.test.ts` drží kontrakt ako celok.
+>
+> **Ukážka na reálnom spise odhalila vadu, ktorú testy nezachytili:** `AML_INCOMPLETE` hlásilo chýbajúce rodné číslo aj pri **protistrane**, hoci § 5 ukladá identifikovať klienta, zástupcu a UBO. Pri každom spore by teda validácia hlásila nález, ktorý advokát nemá ako odstrániť. Opravené; kontrola beží len pri rolách `client`, `representative`, `ubo`.
 
 ⚠️ **Iba ak D1/O6 prešlo.** Veľká zmena; robí sa **spolu s migráciou** (úloha 10), nie dvakrát.
 
