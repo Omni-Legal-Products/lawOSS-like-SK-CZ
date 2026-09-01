@@ -49,7 +49,7 @@ Platia pre **každú** úlohu, netreba ich opakovať:
 | N3 štvrtá brána mimo zápisu | ✅ **hotové 1. 9.** (commit `1ba3d71`) — úloha 3 dokončená, **fáza 1 uzavretá** |
 | N4 `Approval` self-declared | ✅ **hotové 1. 9.** (commit `4614bc4`) — úloha 4 dokončená |
 | N1 `init` nezaloží adresár | ✅ **vyriešené 1. 9.** úlohou 8 — `detect()` zrušený, jeden `memory/`, jurisdikcia je hodnota poľa |
-| N8 drobnosti | ❌ otvorené — **úloha 6** |
+| N8 drobnosti | ✅ **hotové 1. 9.** (commit `a5a2824`) — úloha 6 dokončená |
 
 ---
 
@@ -749,7 +749,15 @@ git commit -m "feat: kontrola úniku L2→L3 je v ceste zápisu, nie iba vo vali
 - `applyRecordWrite` odmietne zápis SK záznamu do `pamet/` a naopak — mix jurisdikcií v jednom spise je chyba, nie stav.
 - Test: SK spis end-to-end od `init --sk` po `sync --apply`; v `_STATUS.md` sa nesmie objaviť `## Lhůty` ani hlavička `| Datum |`.
 
-### Úloha 6: Drobnosti z N5 a N8
+### ✅ Úloha 6: Drobnosti z N5 a N8 — HOTOVÉ
+
+> **Dokončené 1. 9. 2026, commit [`a5a2824`](https://github.com/Omni-Legal-Products/lawoss/commit/a5a2824).** 233/233 testov, typecheck čistý. **Review PR #24 je tým vyčerpané — všetkých osem nálezov N1–N8 uzavretých.**
+>
+> Bod 3 nebol kozmetika: `planWrite` teraz odmietne zmenu obsahu bez posunu `updated`, čo doteraz chytal až `STALE_UPDATED` po zápise. Audit riadok v CLI preto posúva `updated` na deň schválenia — je to zmena obsahu ako každá iná.
+>
+> **Opravená regresia, ktorú zaviedlo O6:** kanonické názvy typov unikali do výstupu pre človeka. `read`, `INDEX.md` aj projekcia ukazujú „rozhodnutí" a „prameň", nie „decision" a „authority". Súbor nesie kľúč, rozhranie popisok — presne to, čo O6 sľubovalo.
+>
+> `ERROR PARSE_ERROR` vo výpise kokce, ale meno kódu navrhol MČ v review a formát nálezov je „SEVERITY CODE id: správa". Konzistencia s ostatnými kódmi je viac než estetika jedného riadku.
 
 **Files:** `lawoss/okf/src/store.ts`, `src/render.ts`, `src/write.ts`, `src/cli.ts`, `tests/parse-errors.test.ts`
 
