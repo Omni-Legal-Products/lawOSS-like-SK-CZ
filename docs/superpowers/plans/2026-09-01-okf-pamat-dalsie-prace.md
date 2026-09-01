@@ -799,7 +799,13 @@ git commit -m "feat: kontrola úniku L2→L3 je v ceste zápisu, nie iba vo vali
 
 ## Fáza 3 — migrácia, konfigurácia, publikácia
 
-### Úloha 9: `_kancelaria/` — koreň L1 a domov L3 (O3 + O3b)
+### ✅ Úloha 9: `_kancelaria/` — koreň L1 a domov L3 (O3 + O3b) — HOTOVÉ
+
+> **Hotové 2. 9. 2026, commit [`43eea47`](https://github.com/Omni-Legal-Products/lawoss/commit/43eea47).** `readScope` číta tri úrovne: spis, klient, kancelária. **O3b zodpovedané:** prameň patrí kancelárii, nie spisu — inak sa ten istý judikát skopíruje do desiatich spisov a kontrola úniku beží desaťkrát nad tým istým textom.
+>
+> Zostáva mimo tohto repa: `okf-validate.sh` a `okf-freshness.sh` (MČ) o `_kancelaria/` nevedia. Priečinok nemá `_STATUS.md` ani kartu veci, takže by ho nemali považovať za spis — **patrí to overiť s MČ**, cudziu implementáciu som nemenil.
+
+#### Pôvodné zadanie
 
 L1 záznamy (`rule`, `lesson`) žijú v `_kancelaria/`; `readScope` ich číta ako tretiu úroveň. `okf-validate.sh` a `okf-freshness.sh` `_kancelaria/` nepovažujú za spis (nemá `_STATUS.md` ani `spis.md`). **O3b:** rozhodnúť a implementovať, kam patrí L3 — návrh MČ je `_kancelaria/pramene/`, aby sa ten istý judikát nekopíroval do desiatich spisov a `L3_LEAK` sa nekontroloval desaťkrát.
 
@@ -1044,7 +1050,11 @@ v podaní pozná neskoro.
 
 ---
 
-### Úloha 22: Typovaná položka histórie — udalosť dostane druh, nie vlastný typ
+### ✅ Úloha 22: Typovaná položka histórie — udalosť dostane druh, nie vlastný typ — HOTOVÉ
+
+> **Hotové 2. 9. 2026, commit `43eea47`.** Spätne kompatibilné; riadok bez druhu sa číta aj píše ako doteraz. `sameEntry` porovnáva aj `kind` — bez toho by append-only záruka mala dieru, presne ako zadanie predpokladalo.
+
+#### Pôvodné zadanie
 
 Uzatvára rozbor `event` vyššie. `TimelineEntry.text` je dnes voľný text, takže projekcia
 Chronológia nevie odlíšiť doručenie od pojednávania a nedá sa ani filtrovať, ani použiť
