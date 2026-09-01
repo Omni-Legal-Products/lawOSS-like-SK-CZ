@@ -2,7 +2,7 @@
 
 - **Cieľ:** z dvoch reálne používaných implementácií pamäťového/spisového systému (MČ + VŘ) spraviť **jeden zjednotený OKF kontrakt a portable Core**, ktoré budú základom LAWOSS aj práce mimo appky. Dashboard je následná vizualizačná vrstva, nie prvý implementačný krok.
 - **Rozhodnuté na calle 28. 8.:** zjednotenie OKF je prvá feature ([zápis](../../meetings/2026-08-28-zapis-sync-call.md), body 5 + akčné body). Kanonický kontrakt a technická architektúra ešte rozhodnuté nie sú.
-- **Najbližší krok:** [call MČ + VŘ 31. 8. 2026 o 10:30](../../meetings/2026-08-31-agenda-okf-architektura.md), ktorého cieľom je architektonický mandát pred detailným technickým specom.
+- **Najbližší krok:** [call MČ + VŘ + MF 1. 9. 2026 o 10:30](../../meetings/2026-08-31-agenda-okf-architektura.md), ktorého cieľom je architektonický mandát pred detailným technickým specom.
 
 ## Čo tu je / má byť
 
@@ -17,7 +17,7 @@
 | [`../../assets/diagrams/okf-konsolidacia.html`](../../assets/diagrams/okf-konsolidacia.html) | samostatná interaktívna vizualizácia: čo, prečo, ako, architektúra, ACME simulácia a rozhodnutia | 📝 pripravené na pripomienky |
 | [`../../specs/0014-okf-1-kanonicky-kontrakt.md`](../../specs/0014-okf-1-kanonicky-kontrakt.md) | navrhovaný kanonický kontrakt OKF 1.0 a acceptance criteria | 📝 nie je odklepnuté VŘ ani tímom |
 | [`../../planning/2026-08-31-okf-lawoss-technicky-navrh-zadanie.md`](../../planning/2026-08-31-okf-lawoss-technicky-navrh-zadanie.md) | zadanie technickej integrácie OKF do LAWOSS, overený stav forku, UI/UX scope a otvorené rozhodnutia | 📝 architektonický discovery, bez oprávnenia implementovať |
-| [`../../meetings/2026-08-31-agenda-okf-architektura.md`](../../meetings/2026-08-31-agenda-okf-architektura.md) | 45-minútový prezentačný scenár, rozhodnutia D1 až D9, otázky O1 až O7 a live decision sheet | 🕥 podklad na call 31. 8. o 10:30 |
+| [`../../meetings/2026-08-31-agenda-okf-architektura.md`](../../meetings/2026-08-31-agenda-okf-architektura.md) | 45-minútový prezentačný scenár, rozhodnutia D1 až D9, otázky O1 až O7 a live decision sheet | 🕥 podklad na call 1. 9. 2026 o 10:30 |
 
 ## Ako budeme zjednocovať (návrh postupu)
 

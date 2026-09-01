@@ -5,7 +5,7 @@
 - **Dátum:** 2026-08-31
 - **Priorita:** prvá implementačná vertikála LAWOSS
 - **Nadväzuje na:** [spec 0014](../specs/0014-okf-1-kanonicky-kontrakt.md), [porovnanie MČ a VŘ](../research/okf-implementacie/porovnanie-a-konsolidacia-2026-08-31.md), [dizajn systém](../docs/design/design-system.md)
-- **Najbližší rozhodovací krok:** [call MČ + VŘ 31. 8. 2026 o 10:30](../meetings/2026-08-31-agenda-okf-architektura.md)
+- **Najbližší rozhodovací krok:** [call MČ + VŘ + MF 1. 9. 2026 o 10:30](../meetings/2026-08-31-agenda-okf-architektura.md)
 
 > [!IMPORTANT]
 > Tento súbor eviduje zadanie, overený stav a ďalšiu prácu. Neobsahuje schválenú technickú architektúru ani oprávnenie implementovať produktový kód.
@@ -123,7 +123,7 @@ Tento slice overí zdroj pravdy, Core, server, approval aj recovery bez toho, ab
 
 ## Ďalšie kroky
 
-- [ ] MČ + VŘ prejdú [agendu callu 31. 8. o 10:30](../meetings/2026-08-31-agenda-okf-architektura.md) a zaznamenajú výsledky D1 až D9.
+- [ ] MČ + VŘ + MF prejdú [agendu callu 1. 9. 2026 o 10:30](../meetings/2026-08-31-agenda-okf-architektura.md) a zaznamenajú výsledky D1 až D9.
 - [x] Porovnať tri technické prístupy a pripraviť odporúčaný smer na odklepnutie.
 - [ ] Prejsť návrh po sekciách: architektúra, data flow, write gates, UI/UX, chyby, testy a rollout.
 - [ ] Zapísať schválený technický spec a samostatnú interaktívnu UI vizualizáciu.
@@ -137,6 +137,6 @@ Tento slice overí zdroj pravdy, Core, server, approval aj recovery bez toho, ab
 - presný shape API a eventov,
 - konkrétne Basic registry providers,
 - či VŘ súhlasí, že PR #24 zostane referenčný prototyp a jeho použiteľné koncepty a testy sa prenesú do spoločného Core,
-- výsledky architektonických rozhodnutí D1 až D9 z callu 31. 8. o 10:30,
+- výsledky architektonických rozhodnutí D1 až D9 z callu 1. 9. 2026 o 10:30,
 - poradie dashboardových pohľadov po dokončení platformy,
 - finálny layout dashboardu a jeho navigácia v session shelli.

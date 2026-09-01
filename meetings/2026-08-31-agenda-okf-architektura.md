@@ -1,8 +1,11 @@
-# Agenda: call 31. 8. 2026 o 10:30 - zjednotenie OKF architektúry
+# Agenda: call 1. 9. 2026 o 10:30 - zjednotenie OKF architektúry
 
-- **Určené pre:** Marián Čuprík (MČ) + Vojta Říha (VŘ)
+> [!NOTE]
+> Súbor si ponecháva pôvodný názov `2026-08-31-…` podľa dátumu, na ktorý bol call omylom pôvodne ohlásený, aby sa nerozbili už rozposlané odkazy. Správny termín callu je **utorok 1. 9. 2026 o 10:30 CEST** (potvrdené v Telegrame 31. 8.).
+
+- **Určené pre:** Marián Čuprík (MČ) + Vojta Říha (VŘ) + Martin Friedrich (MF)
 - **Pripravil:** MČ s AI asistenciou
-- **Čas:** 31. 8. 2026 o 10:30 CEST
+- **Čas:** 1. 9. 2026 o 10:30 CEST
 - **Odporúčaná dĺžka:** 45 minút
 - **Stav podkladu:** návrh MČ na spoločnú revíziu, nič v tomto dokumente ešte nie je rozhodnutím VŘ ani tímu
 - **Hlavný prezentačný podklad:** [OKF 1.0: VŘ, MČ a konsolidovaný návrh](../assets/diagrams/okf-konsolidacia.html#overview)
@@ -141,6 +144,14 @@ Otvoriť [05 Simulácia ACME](../assets/diagrams/okf-konsolidacia.html#simulatio
 
 Otvoriť [07 Rozhodnutia](../assets/diagrams/okf-konsolidacia.html#decisions) a zaznamenať každú odpoveď nižšie.
 
+### 45 až 55 min (rozšírenie pre MF): onboarding, light verzia a poradie merge
+
+Doplnené 1. 9. — MF je účastníkom callu a má hotový akčný bod z 28. 8.:
+
+1. MF predstaví [návrh one-click onboardingu, Fáza 1](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/blob/agent/one-click-onboarding/meetings/2026-08-28-lawoss-one-click-onboarding-design.md) *(zatiaľ iba na vetve `agent/one-click-onboarding` bez PR — dohodnúť otvorenie PR, nech je návrh viditeľný na review)*,
+2. krátky stav druhého akčného bodu MF z 28. 8.: test OKF na testovacom foldri na Macu,
+3. dohoda o poradí merge koordinačných PR: #63 (zjednotenie VŘ) → #64 (konsolidácia + spec 0014) → #66 (plán ďalších prác, brána D1).
+
 ## Rozhodovací list na živé doplnenie
 
 | ID | Rozhodnutie | Výsledok callu | Presná úprava alebo dôkaz | Vlastník |
@@ -165,7 +176,7 @@ Na calle nerozoberať ako problémy CI workflow ani samostatný lockfile. V [tec
 
 ## Čo zapísať bezprostredne po calle
 
-1. nový zápis `meetings/2026-08-31-zapis-okf-architektura.md` s účastníkmi, zdrojom a presnými výsledkami D1 až D9,
+1. nový zápis `meetings/2026-09-01-zapis-okf-architektura.md` s účastníkmi, zdrojom a presnými výsledkami D1 až D9,
 2. aktualizáciu stavu a presných zmien v [spec 0014](../specs/0014-okf-1-kanonicky-kontrakt.md), bez prepisovania autorstva VŘ,
 3. pri schválenom architektonickom smere ADR alebo explicitné označenie, že ide stále iba o návrh,
 4. rozhodnutie o poradí koordinačných PR #64 a #63,
