@@ -1,0 +1,1259 @@
+#!/opt/homebrew/opt/python@3.14/bin/python3.14
+from __future__ import annotations
+
+import argparse
+import re
+from pathlib import Path
+
+DIRECTIONS = ("registry", "timeline", "constellation", "ledger", "brain", "tower")
+SCENARIOS = ("current", "empty", "partial", "stale", "parse-error", "future-version", "offline")
+SCENARIO_COPY = {
+    "current": "referenčný",
+    "empty": "žiadna potvrdená",
+    "partial": "čiastočné overenie",
+    "stale": "stale",
+    "parse-error": "OKF_PARSE_002",
+    "future-version": "iba čítanie",
+    "offline": "offline",
+}
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise AssertionError(message)
+
+
+def validate_validator_contract() -> None:
+    source = Path(__file__).read_text(encoding="utf-8")
+    require(
+        re.search(r'page\.on\(\s*["\']console["\']', source) is not None,
+        "full validator must register browser console events",
+    )
+    require(
+        re.search(r'message\.type\s*==\s*["\']error["\']', source) is not None,
+        "full validator must collect console error events",
+    )
+    require(
+        re.search(r"browser_errors\.append", source) is not None
+        and re.search(r"require\(not browser_errors", source) is not None,
+        "console and page errors must share the full-run error list",
+    )
+    require("direct 200 percent zoom" in source, "full validator must include direct 200 percent zoom coverage")
+
+
+def contrast_ratio(foreground: str, background: str) -> float:
+    def channel(value: int) -> float:
+        normalized = value / 255
+        return normalized / 12.92 if normalized <= 0.04045 else ((normalized + 0.055) / 1.055) ** 2.4
+
+    def luminance(color: str) -> float:
+        channels = [channel(int(color[index : index + 2], 16)) for index in (1, 3, 5)]
+        return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2]
+
+    first, second = sorted((luminance(foreground), luminance(background)), reverse=True)
+    return (first + 0.05) / (second + 0.05)
+
+
+def validate_contrast(html: str) -> None:
+    def token(name: str) -> str:
+        match = re.search(rf"{re.escape(name)}\s*:\s*(#[0-9A-Fa-f]{{6}})", html)
+        require(match is not None, f"missing color token {name}")
+        return match.group(1)
+
+    tertiary = token("--lw-text-tertiary")
+    surfaces = {
+        name: token(name)
+        for name in (
+            "--lw-canvas",
+            "--lw-sidebar",
+            "--lw-surface",
+            "--lw-surface-hover",
+            "--lw-sunken",
+            "--lw-overlay",
+        )
+    }
+    ratios = {name: contrast_ratio(tertiary, color) for name, color in surfaces.items()}
+    require(
+        all(value >= 4.5 for value in ratios.values()),
+        f"tertiary text contrast must be WCAG AA on every dark surface: {ratios}",
+    )
+
+
+def validate_static(html_path: Path) -> None:
+    html = html_path.read_text(encoding="utf-8")
+    require("Fiktívne dáta · pracovný návrh" in html, "missing demo marker")
+    require("ALFA STAV s.r.o." in html, "missing reference matter")
+    require("14. 9. 2026" in html, "missing candidate deadline")
+    require("base_revision" in html and "base_hash" in html, "missing concurrency trace")
+    require("—" not in html, "em dash is forbidden")
+    require(not re.search(r'(?:src|href)=["\']https?://', html), "external request found")
+    for fragment in (
+        "const DATA = Object.freeze(",
+        "const appState =",
+        "function setDirection(",
+        "function setScenario(",
+        'data-testid="direction-gallery"',
+        'data-testid="presentation-toggle"',
+        'data-testid="shortcut-help"',
+        "Případ · lhůta · důkaz · řízení",
+    ):
+        require(fragment in html, f"missing shared primitive: {fragment}")
+    for index, direction in enumerate(DIRECTIONS, start=1):
+        require(f'data-direction="{direction}"' in html, f"missing direction {direction}")
+        require(f'data-testid="direction-{index}"' in html, f"missing direction test id {index}")
+    for scenario in SCENARIOS:
+        require(f'data-scenario="{scenario}"' in html, f"missing scenario {scenario}")
+    for fragment in (
+        'data-testid="source-inspector"',
+        'data-testid="human-gate"',
+        'role="dialog"',
+        'aria-modal="true"',
+        "function openSourceInspector(",
+        "function closeSourceInspector(",
+        "function openHumanGate(",
+        "function closeHumanGate(",
+        "function isTypingTarget(",
+        "function closeTopLayerOrPresentation(",
+        "Demonštračný stav · nič sa nezapísalo",
+        "Prepočítať návrh",
+        "base_revision: 18",
+        "base_hash: 81aa39f2",
+    ):
+        require(fragment in html, f"missing task 6 primitive: {fragment}")
+    for test_id in (
+        "registry-decision-queue",
+        "deadline-strip",
+        "timeline-diagram",
+        "event-delivery",
+        "event-deadline-candidate",
+        "text-fallback",
+    ):
+        require(f'data-testid="{test_id}"' in html, f"missing direction primitive: {test_id}")
+    for fragment in (
+        "function setTimelineEvent(id)",
+        "Podanie",
+        "Dokazovanie",
+        "Rozhodnutie",
+        "§ 362 ods. 1 CSP · demonštračný údaj",
+        "Žiadna potvrdená budúca lehota",
+        "návrh vytvorený 31. 8. 2026",
+        "navrhovaný termín 14. 9. 2026",
+        'data-source-kind="event"',
+        'data-source-id="event-deadline-candidate"',
+    ):
+        require(fragment in html, f"missing direction invariant: {fragment}")
+    for test_id in (
+        "evidence-graph",
+        "graph-node-T-2026-029",
+        "graph-node-F-2026-020",
+        "graph-list-fallback",
+        "audit-ledger",
+        "ledger-item-OKF_PARSE_002",
+        "ledger-item-OKF_STALE_001",
+        "ledger-diff",
+        "ledger-provenance",
+        "ledger-history",
+    ):
+        require(f'data-testid="{test_id}"' in html, f"missing task 4 primitive: {test_id}")
+    for fragment in (
+        "function spotlightNode(id)",
+        "function setLedgerItem(id)",
+        "recordId",
+        'data-node-type="document"',
+        'data-node-type="evidence"',
+        'data-node-type="truth"',
+        'data-node-type="decision"',
+        'data-node-type="finding"',
+        'data-node-type="subject"',
+        'data-relation',
+        'data-source-kind="record"',
+    ):
+        require(fragment in html, f"missing task 4 invariant: {fragment}")
+    for test_id in (
+        "brain-layers",
+        "brain-matter-brief",
+        "brain-layer-detail",
+        "brain-pending-findings",
+        "risk-matrix",
+        "risk-breadcrumb",
+    ):
+        require(f'data-testid="{test_id}"' in html, f"missing task 5 primitive: {test_id}")
+    for fragment in (
+        'data-brain-layer="L1"',
+        'data-brain-layer="L2"',
+        'data-brain-layer="L3"',
+        "function setBrainLayer(layer)",
+        "L2-to-L3 leak kontrola",
+        'data-risk-lens="urgency"',
+        'data-risk-lens="evidence"',
+        'data-risk-lens="data-health"',
+        'data-risk-lens="workload"',
+        "function setRiskLens(id)",
+        "Lehota",
+        "Chýbajúci zdroj",
+        "Stale",
+        "Human gate",
+        "Provider",
+    ):
+        require(fragment in html, f"missing task 5 invariant: {fragment}")
+    require("drag-and-drop" not in html.lower(), "brain must not offer drag-and-drop")
+    for fragment in (
+        "@font-face",
+        'font-family: "IBM Plex Sans"',
+        'font-family: "IBM Plex Mono"',
+        'font-family: "Playfair Display"',
+        "font-display: swap",
+        "OFL-1.1",
+        "IBM Plex Sans",
+        "IBM Plex Mono",
+        "Playfair Display",
+        "@media (max-width: 1100px)",
+        "@media (max-width: 700px)",
+        "@media (prefers-reduced-motion: reduce)",
+        "@media print",
+        "@page { size: A4 landscape; margin: 10mm; }",
+        "[data-animated]",
+        "0.01ms",
+        ".diagram-scroll",
+        "print-thesis",
+    ):
+        require(fragment in html, f"missing task 7 invariant: {fragment}")
+    require(html.count("@font-face") == 3, "exactly three offline font faces are required")
+    require("__FONT_" not in html and "__OFL_LICENSES__" not in html, "font payload markers remain")
+    require("data:font/woff2;base64," in html, "offline font payload is missing")
+    for fragment in (
+        "const GATE_DETAILS = Object.freeze(",
+        "const SCENARIO_PROJECTIONS = Object.freeze(",
+        "function renderScenarioProjection(",
+        "function getTopModal(",
+        "function trapModalFocus(",
+        'data-scenario-projection="true"',
+        'data-gate-trigger="registry"',
+    ):
+        require(fragment in html, f"missing final review primitive: {fragment}")
+    require("memory/deadlines/F-2026-018.md:24" not in html, "stale deadline target remains")
+    validate_contrast(html)
+
+
+def validate_smoke(html_path: Path, artifacts: Path | None = None) -> None:
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError as exc:
+        raise AssertionError(
+            "Playwright is required for smoke and full validation"
+        ) from exc
+
+    page_errors: list[str] = []
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=True)
+        try:
+            page = browser.new_page(viewport={"width": 1440, "height": 1024})
+            page.on("pageerror", lambda error: page_errors.append(str(error)))
+            page.goto(html_path.as_uri(), wait_until="load")
+
+            initial = page.evaluate(
+                """() => ({
+                    galleryOpen: !document.querySelector(
+                        '[data-testid="direction-gallery"]'
+                    ).hidden,
+                    activeRoots: [...document.querySelectorAll(
+                        '.direction-root[data-active="true"]'
+                    )].map((root) => root.dataset.direction),
+                    registryControls: document.querySelectorAll(
+                        '[data-direction-target="registry"]'
+                    ).length,
+                    registryCurrent: document.querySelectorAll(
+                        '[data-direction-target="registry"][aria-current="page"]'
+                    ).length,
+                    dataSnapshot: JSON.stringify(DATA)
+                })"""
+            )
+            require(initial["galleryOpen"], "gallery is not open on initial load")
+            require(
+                initial["activeRoots"] == ["registry"],
+                "initial load must have exactly one active registry root",
+            )
+            require(initial["registryControls"] > 0, "registry controls are missing")
+            require(
+                initial["registryCurrent"] == initial["registryControls"],
+                "initial registry controls do not match aria-current",
+            )
+
+            page.evaluate("setDirection('registry')")
+            registry = page.evaluate(
+                """() => ({
+                    activeRoots: [...document.querySelectorAll(
+                        '.direction-root[data-active="true"]'
+                    )].map((root) => root.dataset.direction),
+                    decisionRows: document.querySelectorAll(
+                        '[data-testid="registry-decision-queue"] details'
+                    ).length,
+                    candidateCopy: document.querySelector(
+                        '[data-testid="deadline-strip"]'
+                    ).textContent,
+                    fallbackCopy: document.querySelector(
+                        '[data-testid="text-fallback"]'
+                    ).textContent
+                })"""
+            )
+            require(
+                registry["activeRoots"] == ["registry"],
+                "registry interaction must leave exactly one active root",
+            )
+            require(registry["decisionRows"] == 3, "registry queue must have 3 rows")
+            require(
+                "Žiadna potvrdená budúca lehota" in registry["candidateCopy"],
+                "registry must show the confirmed deadline empty state",
+            )
+            require(
+                "návrh, čaká na potvrdenie" in registry["fallbackCopy"],
+                "registry text fallback is missing proposal semantics",
+            )
+
+            data_before_registry_gates = page.evaluate("JSON.stringify(DATA)")
+            registry_gate_expectations = {
+                "F-2026-018": {
+                    "source": "evidence/edelivery/receipt.json:12",
+                    "destination": "findings/deadlines/F-2026-018.md:24",
+                    "before": "deadline: null",
+                    "after": "deadline_candidate: 2026-09-14",
+                    "uncertainty": "trigger",
+                },
+                "F-2026-021": {
+                    "source": "02_podania/Odvolanie - koncept v1.docx",
+                    "destination": "findings/reconciliation/F-2026-021.md:22",
+                    "before": "platba_40: záloha",
+                    "after": "platba_40: zmluvná splátka",
+                    "uncertainty": "platby",
+                },
+            }
+            for record_id, expected in registry_gate_expectations.items():
+                trigger = page.locator(
+                    f'[data-gate-trigger="registry"][data-record-id="{record_id}"]'
+                )
+                require(trigger.count() == 1, f"registry gate trigger missing: {record_id}")
+                trigger.click()
+                gate = page.get_by_test_id("human-gate")
+                require(gate.is_visible(), f"registry gate did not open: {record_id}")
+                for field in ("source", "destination", "before", "after"):
+                    require(
+                        expected[field] in gate.locator(f"[data-gate-{field}]").inner_text(),
+                        f"registry gate {record_id} missing {field}",
+                    )
+                uncertainty = gate.locator("[data-gate-uncertainty]").inner_text().lower()
+                require(expected["uncertainty"] in uncertainty, f"registry gate {record_id} has wrong uncertainty")
+                page.keyboard.press("1")
+                require(page.evaluate("appState.direction") == "registry", "modal must block numeric routing")
+                page.keyboard.press("Escape")
+                require(not gate.is_visible(), f"registry gate did not close: {record_id}")
+                require(
+                    page.evaluate("document.activeElement.dataset.recordId") == record_id,
+                    f"registry gate focus was not restored: {record_id}",
+                )
+            require(
+                page.evaluate("JSON.stringify(DATA)") == data_before_registry_gates,
+                "registry gate interactions must not mutate DATA",
+            )
+
+            page.evaluate("setDirection('timeline')")
+            require(
+                page.locator("[data-timeline-event]").count() == 6,
+                "timeline must render all six fixture events",
+            )
+            page.locator('[data-testid="event-delivery"]').click()
+            delivery = page.evaluate(
+                """() => ({
+                    selected: [...document.querySelectorAll(
+                        '[data-timeline-event][aria-selected="true"]'
+                    )].map((item) => item.dataset.timelineEvent),
+                    detail: document.querySelector(
+                        '[data-testid="timeline-detail"]'
+                    ).textContent,
+                    state: appState.selectedTimelineEvent,
+                    source: (() => {
+                        const source = document.querySelector(
+                            '[data-timeline-detail-source]'
+                        );
+                        return {
+                            kind: source.dataset.sourceKind,
+                            id: source.dataset.sourceId,
+                            path: source.textContent
+                        };
+                    })()
+                })"""
+            )
+            require(
+                delivery["selected"] == ["event-delivery"],
+                "delivery click must select exactly the delivery event",
+            )
+            require(
+                delivery["state"] == "event-delivery",
+                "delivery click did not update timeline state",
+            )
+            require(
+                "evidence/edelivery/receipt.json:12" in delivery["detail"],
+                "delivery detail is missing source provenance",
+            )
+            require(
+                delivery["source"]
+                == {
+                    "kind": "event",
+                    "id": "event-delivery",
+                    "path": "evidence/edelivery/receipt.json:12",
+                },
+                "delivery detail source must use the typed event contract",
+            )
+
+            page.locator('[data-testid="event-deadline-candidate"]').click()
+            deadline = page.evaluate(
+                """() => {
+                    const source = document.querySelector(
+                        '[data-timeline-detail-source]'
+                    );
+                    return {
+                        card: document.querySelector(
+                            '[data-testid="event-deadline-candidate"]'
+                        ).textContent,
+                        detail: document.querySelector(
+                            '[data-testid="timeline-detail"]'
+                        ).textContent,
+                        fallback: document.querySelector(
+                            '.timeline-fallback'
+                        ).textContent,
+                        source: {
+                            kind: source.dataset.sourceKind,
+                            id: source.dataset.sourceId,
+                            path: source.textContent
+                        }
+                    };
+                }"""
+            )
+            for expected in (
+                "§ 362 ods. 1 CSP · demonštračný údaj",
+                "pracovný snapshot označený 2026-08-31",
+                "deň doručenia sa nezapočíta",
+                "treba potvrdiť trigger, aplikovaný právny režim a pravidlo posunu",
+            ):
+                require(expected in deadline["detail"], f"timeline detail missing: {expected}")
+            for surface, copy in (
+                ("candidate card", deadline["card"]),
+                ("candidate detail", deadline["detail"]),
+                ("timeline fallback", deadline["fallback"]),
+            ):
+                for expected in (
+                    "návrh vytvorený 31. 8. 2026",
+                    "navrhovaný termín 14. 9. 2026",
+                    "návrh, čaká na potvrdenie",
+                ):
+                    require(
+                        expected in copy,
+                        f"{surface} is missing candidate deadline semantics: {expected}",
+                    )
+            require(
+                deadline["source"]
+                == {
+                    "kind": "event",
+                    "id": "event-deadline-candidate",
+                    "path": "findings/deadlines/F-2026-018.md:24",
+                },
+                "candidate deadline detail source must use the typed event contract",
+            )
+
+            data_before_task_4 = page.evaluate("JSON.stringify(DATA)")
+            page.evaluate("setDirection('constellation')")
+            page.locator('[data-testid="graph-node-T-2026-029"]').click()
+            graph = page.evaluate(
+                """() => ({
+                    selected: [...document.querySelectorAll(
+                        '[data-graph-node][aria-pressed="true"]'
+                    )].map((item) => item.dataset.graphNode),
+                    state: appState.spotlightNode,
+                    activeEdges: document.querySelectorAll(
+                        '[data-graph-edge][data-path-active="true"]'
+                    ).length,
+                    dimmedEdges: document.querySelectorAll(
+                        '[data-graph-edge][data-path-active="false"]'
+                    ).length,
+                    detail: document.querySelector(
+                        '[data-testid="graph-inspector"]'
+                    ).textContent,
+                    source: (() => {
+                        const source = document.querySelector(
+                            '[data-graph-detail-source]'
+                        );
+                        return {
+                            kind: source.dataset.sourceKind,
+                            id: source.dataset.sourceId
+                        };
+                    })(),
+                    fallbackEdges: document.querySelectorAll(
+                        '[data-testid="graph-list-fallback"] tbody tr'
+                    ).length,
+                    svgTuples: [...document.querySelectorAll(
+                        '[data-graph-edge]'
+                    )].map((edge) => [
+                        edge.dataset.from,
+                        edge.dataset.relation,
+                        edge.dataset.to,
+                        edge.dataset.status
+                    ]),
+                    fallbackTuples: [...document.querySelectorAll(
+                        '[data-testid="graph-list-fallback"] tbody tr'
+                    )].map((row) => [
+                        row.dataset.from,
+                        row.dataset.relation,
+                        row.dataset.to,
+                        row.dataset.status
+                    ]),
+                    graphNodeIds: [...document.querySelectorAll(
+                        '[data-graph-node]'
+                    )].map((node) => node.dataset.graphNode),
+                    recordIds: DATA.records.map((record) => record.id)
+                })"""
+            )
+            require(
+                graph["selected"] == ["T-2026-029"],
+                "graph spotlight must select exactly one node",
+            )
+            require(
+                graph["state"] == "T-2026-029",
+                "graph spotlight did not update state",
+            )
+            require(
+                graph["activeEdges"] > 0 and graph["dimmedEdges"] > 0,
+                "graph spotlight must distinguish path and unrelated edges",
+            )
+            require(
+                "memory/matters/T-2026-029.md:18" in graph["detail"],
+                "graph inspector is missing truth provenance",
+            )
+            require(
+                graph["source"] == {"kind": "record", "id": "T-2026-029"},
+                "graph source must use the typed record contract",
+            )
+            require(
+                graph["fallbackEdges"]
+                == page.locator("[data-graph-edge]").count(),
+                "graph fallback and SVG must expose the same edges",
+            )
+            require(
+                sorted(graph["svgTuples"]) == sorted(graph["fallbackTuples"]),
+                "graph fallback and SVG must expose identical canonical edge tuples",
+            )
+            require(
+                [
+                    "F-2026-020",
+                    "vyžaduje posúdenie",
+                    "D-2026-011",
+                    "partial",
+                ] in graph["svgTuples"],
+                "F-2026-020 to D-2026-011 must be partial",
+            )
+            graph_source_map = {
+                "DOC-2026-024": "T-2026-029",
+                "EVID-2026-028": "T-2026-029",
+                "SUBJ-2026-002": "F-2026-020",
+                "DOC-2026-031": "F-2026-020",
+                "T-2026-029": "T-2026-029",
+                "D-2026-011": "D-2026-011",
+                "F-2026-021": "F-2026-021",
+                "F-2026-020": "F-2026-020",
+            }
+            require(
+                set(graph["graphNodeIds"]) == set(graph_source_map),
+                "graph node IDs do not match the approved presentation fixture",
+            )
+            require(
+                set(graph_source_map.values()).issubset(set(graph["recordIds"])),
+                "graph source map points outside DATA.records",
+            )
+            graph_sources = page.evaluate(
+                """(nodeIds) => nodeIds.map((id) => {
+                    spotlightNode(id);
+                    const source = document.querySelector(
+                        '[data-graph-detail-source]'
+                    );
+                    return {
+                        graphNode: id,
+                        sourceKind: source.dataset.sourceKind,
+                        sourceId: source.dataset.sourceId,
+                        selected: [...document.querySelectorAll(
+                            '[data-graph-node][aria-pressed="true"]'
+                        )].map((node) => node.dataset.graphNode)
+                    };
+                })""",
+                graph["graphNodeIds"],
+            )
+            for source in graph_sources:
+                require(
+                    source["sourceKind"] == "record",
+                    f"graph trigger for {source['graphNode']} must use record source kind",
+                )
+                require(
+                    source["sourceId"] == graph_source_map[source["graphNode"]],
+                    f"graph trigger for {source['graphNode']} has wrong canonical source ID",
+                )
+                require(
+                    source["sourceId"] in graph["recordIds"],
+                    f"graph trigger source ID is missing from DATA.records: {source['sourceId']}",
+                )
+                require(
+                    source["selected"] == [source["graphNode"]],
+                    f"graph node selection changed presentation ID for {source['graphNode']}",
+                )
+
+            page.evaluate("setDirection('ledger')")
+            page.locator('[data-testid="ledger-item-OKF_PARSE_002"]').press("Enter")
+            ledger = page.evaluate(
+                """() => ({
+                    selected: [...document.querySelectorAll(
+                        '[data-ledger-item][aria-selected="true"]'
+                    )].map((item) => item.dataset.ledgerItem),
+                    state: appState.selectedLedgerItem,
+                    detail: document.querySelector(
+                        '[data-testid="ledger-inspector"]'
+                    ).textContent,
+                    source: (() => {
+                        const source = document.querySelector(
+                            '[data-ledger-detail-source]'
+                        );
+                        return {
+                            kind: source.dataset.sourceKind,
+                            id: source.dataset.sourceId
+                        };
+                    })(),
+                    dataSnapshot: JSON.stringify(DATA)
+                })"""
+            )
+            require(
+                ledger["selected"] == ["OKF_PARSE_002"],
+                "ledger must have exactly one aria-selected row",
+            )
+            require(
+                ledger["state"] == "OKF_PARSE_002",
+                "ledger selection did not update state",
+            )
+            for expected in (
+                "Diff",
+                "Provenance",
+                "Append-only History",
+                "Odporúčaný ďalší krok",
+                "memory/questions/Q-2026-009.md:7",
+            ):
+                require(expected in ledger["detail"], f"ledger detail missing: {expected}")
+            require(
+                ledger["source"] == {"kind": "record", "id": "OKF_PARSE_002"},
+                "ledger source must use the typed record contract",
+            )
+            require(
+                ledger["dataSnapshot"] == data_before_task_4,
+                "DATA changed during graph or ledger interaction",
+            )
+            page.locator('[data-testid="ledger-item-OKF_STALE_001"]').press("Space")
+            require(
+                page.evaluate("appState.selectedLedgerItem") == "OKF_STALE_001",
+                "Space must activate the focused ledger row",
+            )
+            page.locator('[data-testid="ledger-item-OKF_PARSE_002"]').press("Enter")
+
+            page.evaluate("setDirection('brain')")
+            brain_initial = page.evaluate(
+                """() => ({
+                    pressed: [...document.querySelectorAll(
+                        '[data-brain-layer][aria-pressed="true"]'
+                    )].map((button) => button.dataset.brainLayer),
+                    state: appState.brainLayer,
+                    brief: document.querySelector(
+                        '[data-testid="brain-matter-brief"]'
+                    ).textContent,
+                    detail: document.querySelector(
+                        '[data-testid="brain-layer-detail"]'
+                    ).textContent,
+                    pending: document.querySelectorAll(
+                        '[data-testid="brain-pending-findings"] [data-pending-finding]'
+                    ).length
+                })"""
+            )
+            require(brain_initial["pressed"] == ["L2"], "brain must start on L2")
+            require(brain_initial["state"] == "L2", "brain state must start on L2")
+            require(
+                "ALFA STAV s.r.o." in brain_initial["brief"],
+                "brain matter brief must remain visible",
+            )
+            for record_id in ("T-2026-029", "D-2026-011", "Q-2026-004", "TASK-2026-044"):
+                require(record_id in brain_initial["detail"], f"brain L2 missing {record_id}")
+            require(brain_initial["pending"] == 2, "brain must show two pending findings")
+
+            page.evaluate("setBrainLayer('L1')")
+            brain_l1 = page.evaluate(
+                """() => ({
+                    pressed: [...document.querySelectorAll(
+                        '[data-brain-layer][aria-pressed="true"]'
+                    )].map((button) => button.dataset.brainLayer),
+                    detail: document.querySelector(
+                        '[data-testid="brain-layer-detail"]'
+                    ).textContent,
+                    trigger: (() => {
+                        const button = document.querySelector(
+                            '[data-brain-gate-trigger]'
+                        );
+                        return {
+                            recordId: button.dataset.recordId,
+                            gateId: button.dataset.gateId,
+                            text: button.textContent
+                        };
+                    })()
+                })"""
+            )
+            require(brain_l1["pressed"] == ["L1"], "L1 must be aria-pressed")
+            require("human gate" in brain_l1["detail"], "L1 preview must require human gate")
+            require(
+                brain_l1["trigger"]["recordId"] == "F-2026-021",
+                "L1 gate trigger must use a DATA.records ID",
+            )
+            require(brain_l1["trigger"]["gateId"], "L1 gate trigger is missing gate ID")
+            page.evaluate(
+                """() => {
+                    window.__task5GateRequest = null;
+                    document.addEventListener(
+                        'okf:gate-request',
+                        (event) => { window.__task5GateRequest = event.detail; },
+                        { once: true }
+                    );
+                }"""
+            )
+            page.locator("[data-brain-gate-trigger]").click()
+            require(
+                page.evaluate("window.__task5GateRequest")
+                == {
+                    "gateId": "promotion-L1-F-2026-021",
+                    "recordId": "F-2026-021",
+                    "destination": "memory/office/lessons/L-2026-006.md",
+                },
+                "L1 trigger must emit a compatible gate request without writing",
+            )
+            page.get_by_test_id("human-gate").get_by_role(
+                "button", name="Zavrieť human gate"
+            ).click()
+
+            page.evaluate("setBrainLayer('L3')")
+            brain_l3 = page.locator('[data-testid="brain-layer-detail"]').inner_text()
+            require("právna kontrola" in brain_l3, "L3 must require legal review")
+            require("L2-to-L3 leak kontrola" in brain_l3, "L3 leak copy is missing")
+
+            page.evaluate("setDirection('tower')")
+            tower_initial = page.evaluate(
+                """() => ({
+                    rows: document.querySelectorAll(
+                        '[data-testid="risk-matrix"] tbody tr'
+                    ).length,
+                    pressed: [...document.querySelectorAll(
+                        '[data-risk-lens][aria-pressed="true"]'
+                    )].map((button) => button.dataset.riskLens),
+                    state: appState.riskLens,
+                    headers: [...document.querySelectorAll(
+                        '[data-testid="risk-matrix"] thead th'
+                    )].map((cell) => cell.textContent.trim()),
+                    portfolio: DATA.portfolio.map((item) => item.client),
+                    rendered: [...document.querySelectorAll(
+                        '[data-testid="risk-matrix"] tbody tr'
+                    )].map((row) => row.dataset.portfolioClient)
+                })"""
+            )
+            require(tower_initial["rows"] == 5, "tower must render five portfolio rows")
+            require(tower_initial["pressed"] == ["urgency"], "tower must start on urgency")
+            require(tower_initial["state"] == "urgency", "tower state must start on urgency")
+            require(
+                tower_initial["headers"][-5:]
+                == ["Lehota", "Chýbajúci zdroj", "Stale", "Human gate", "Provider"],
+                "tower transparent columns are missing or reordered",
+            )
+            require(
+                tower_initial["rendered"] == tower_initial["portfolio"],
+                "tower rows must render DATA.portfolio exactly",
+            )
+            for lens in ("urgency", "evidence", "data-health", "workload"):
+                page.evaluate("(value) => setRiskLens(value)", lens)
+                require(
+                    page.locator(f'[data-risk-lens="{lens}"]').get_attribute("aria-pressed")
+                    == "true",
+                    f"{lens} lens must update aria-pressed",
+                )
+            task_5_sources = page.evaluate(
+                """() => {
+                    const recordIds = new Set(DATA.records.map((record) => record.id));
+                    return [...document.querySelectorAll(
+                        '[data-direction="brain"] [data-source-trigger][data-source-kind="record"], '
+                        + '[data-direction="tower"] [data-source-trigger][data-source-kind="record"]'
+                    )].map((trigger) => ({
+                        id: trigger.dataset.sourceId,
+                        valid: recordIds.has(trigger.dataset.sourceId)
+                    }));
+                }"""
+            )
+            require(task_5_sources, "task 5 must expose typed record source triggers")
+            require(
+                all(source["valid"] for source in task_5_sources),
+                "task 5 source trigger points outside DATA.records",
+            )
+            nav_entries_before = page.evaluate("performance.getEntriesByType('navigation').length")
+            page.locator('[data-portfolio-drilldown="ALFA STAV s.r.o."]').click()
+            page.wait_for_function("window.location.hash === '#registry'")
+            drilldown = page.evaluate(
+                """() => ({
+                    hash: window.location.hash,
+                    direction: appState.direction,
+                    navigationEntries: performance.getEntriesByType('navigation').length,
+                    breadcrumb: document.querySelector(
+                        '[data-testid="risk-breadcrumb"]'
+                    ).textContent,
+                    dataSnapshot: JSON.stringify(DATA)
+                })"""
+            )
+            require(drilldown["hash"] == "#registry", "ALFA drill-down must route to #registry")
+            require(drilldown["direction"] == "registry", "ALFA drill-down must open registry")
+            require(
+                drilldown["navigationEntries"] == nav_entries_before,
+                "ALFA drill-down must not reload the page",
+            )
+            require("Prax" in drilldown["breadcrumb"], "drill-down must preserve breadcrumb to prax")
+            require(drilldown["dataSnapshot"] == initial["dataSnapshot"], "DATA changed in task 5")
+
+            page.keyboard.press("2")
+            require(appState := page.evaluate("appState.direction"), "keyboard state is unavailable")
+            require(appState == "timeline", "2 must activate the timeline direction")
+            page.keyboard.press("ArrowRight")
+            require(page.evaluate("appState.direction") == "constellation", "ArrowRight must advance directions")
+            page.keyboard.press("ArrowLeft")
+            require(page.evaluate("appState.direction") == "timeline", "ArrowLeft must return directions")
+            page.keyboard.press("F")
+            require(page.evaluate("appState.presentation") is True, "F must enable presentation mode")
+            page.keyboard.press("Escape")
+            require(page.evaluate("appState.presentation") is False, "Escape must close presentation mode")
+            scenario_select = page.get_by_test_id("scenario-select")
+            scenario_select.focus()
+            page.keyboard.press("1")
+            require(page.evaluate("appState.direction") == "timeline", "typing target must ignore numeric shortcuts")
+
+            source_trigger = page.locator('[data-testid="timeline-detail"] [data-source-trigger]')
+            shortcut_toggle = page.locator("[data-shortcut-toggle]")
+            shortcut_toggle.click()
+            shortcut_help = page.get_by_test_id("shortcut-help")
+            require(shortcut_help.is_visible(), "shortcut help must open")
+            source_trigger.click()
+            inspector = page.get_by_test_id("source-inspector")
+            require(inspector.is_visible(), "source inspector must open from the timeline trigger")
+            inspector_text = inspector.inner_text().lower()
+            for expected in (
+                "ui hodnota",
+                "read model",
+                "kanonický záznam",
+                "súbor a riadok",
+                "evidence",
+                "history",
+                "findings/deadlines/f-2026-018.md:24",
+            ):
+                require(expected in inspector_text, f"source inspector missing: {expected}")
+            page.keyboard.press("Tab")
+            require(
+                page.evaluate("document.activeElement.closest('[data-testid=\\\"source-inspector\\\"]') !== null"),
+                "source inspector Tab must contain focus",
+            )
+            page.keyboard.press("Shift+Tab")
+            require(
+                page.evaluate("document.activeElement.closest('[data-testid=\\\"source-inspector\\\"]') !== null"),
+                "source inspector Shift+Tab must contain focus",
+            )
+            page.keyboard.press("1")
+            require(page.evaluate("appState.direction") == "timeline", "source inspector must block numeric routing")
+            page.keyboard.press("Escape")
+            require(not inspector.is_visible(), "Escape must close the top source inspector layer")
+            require(shortcut_help.is_visible(), "Escape must preserve the next layer in LIFO order")
+            page.keyboard.press("Escape")
+            require(not shortcut_help.is_visible(), "second Escape must close shortcut help")
+            require(page.evaluate("document.activeElement === document.querySelector('[data-testid=\"timeline-detail\"] [data-source-trigger]')"), "source inspector must restore trigger focus")
+
+            for event_id, expected_source in (
+                ("event-filing", "02_podania/Zaloba.pdf:locator neuvedený v OKF zázname"),
+                ("event-response", "03_protistrana/Vyjadrenie.pdf:locator neuvedený v OKF zázname"),
+                ("event-judgment", "04_rozhodnutia/Rozsudok.pdf:locator neuvedený v OKF zázname"),
+            ):
+                page.locator(f'[data-timeline-event="{event_id}"]').click()
+                source_trigger.click()
+                sentinel_inspector = inspector.inner_text()
+                require(
+                    expected_source in sentinel_inspector,
+                    f"{event_id} must expose its explicit missing locator in source inspector",
+                )
+                inspector.get_by_role("button", name="Zavrieť zdroj").click()
+            page.locator('[data-timeline-event="event-fact-candidate"]').click()
+            require(
+                source_trigger.inner_text() == "findings/reconciliation/F-2026-021.md:22",
+                "event-fact-candidate locator 22 must remain unchanged",
+            )
+
+            page.evaluate("setDirection('brain')")
+            page.evaluate("setBrainLayer('L1')")
+            gate_trigger = page.locator("[data-brain-gate-trigger]")
+            shortcut_toggle.click()
+            require(shortcut_help.is_visible(), "shortcut help must open before gate LIFO check")
+            gate_trigger.click()
+            gate = page.get_by_test_id("human-gate")
+            require(gate.is_visible(), "human gate must open from a compatible request")
+            page.keyboard.press("Shift+Tab")
+            require(
+                page.evaluate("document.activeElement.closest('[data-testid=\\\"human-gate\\\"]') !== null"),
+                "human gate Shift+Tab must contain focus",
+            )
+            page.keyboard.press("Tab")
+            require(
+                page.evaluate("document.activeElement.closest('[data-testid=\\\"human-gate\\\"]') !== null"),
+                "human gate Tab must contain focus",
+            )
+            page.keyboard.press("2")
+            require(page.evaluate("appState.direction") == "brain", "human gate must block numeric routing")
+            page.keyboard.press("Escape")
+            require(not gate.is_visible() and shortcut_help.is_visible(), "Escape must close gate before shortcut help")
+            page.keyboard.press("Escape")
+            require(not shortcut_help.is_visible(), "second Escape must close shortcut help after gate")
+            gate_trigger.click()
+            require(gate.is_visible(), "human gate must reopen after LIFO check")
+            gate_text = gate.inner_text().lower()
+            for expected in (
+                "zdroj",
+                "locator",
+                "navrhovaný diff",
+                "pomenovaná neistota",
+                "cieľ zápisu",
+                "base_revision: 18",
+                "base_hash: 81aa39f2",
+                "tento prototyp nič nezapíše",
+            ):
+                require(expected in gate_text, f"human gate missing: {expected}")
+            require(
+                gate.locator("[data-gate-destination]").inner_text()
+                == "memory/office/lessons/L-2026-006.md",
+                "L1 promotion must preserve its exact gate destination",
+            )
+            for action_name in ("Potvrdiť", "Upraviť", "Odmietnuť", "Odložiť"):
+                gate.get_by_role("button", name=action_name).click()
+                require(
+                    "Demonštračný stav · nič sa nezapísalo" in gate.inner_text(),
+                    f"{action_name} must only announce demo state",
+                )
+            page.evaluate("setScenario('stale')")
+            require(gate.get_by_role("button", name="Potvrdiť").is_disabled(), "stale gate must disable confirmation")
+            require(gate.get_by_role("button", name="Upraviť").is_disabled(), "stale gate must disable editing")
+            require(gate.get_by_role("button", name="Prepočítať návrh").is_visible(), "stale gate must offer recomputation")
+            require(
+                gate.locator('[name="changed-input"]').get_attribute("name")
+                == "changed-input",
+                "stale gate must name the changed input",
+            )
+            page.evaluate("setScenario('future-version')")
+            require(gate.get_by_role("button", name="Potvrdiť").is_disabled(), "future version must remain read-only")
+            require(gate.get_by_role("button", name="Odmietnuť").is_disabled(), "future version must disable write actions")
+            gate.get_by_role("button", name="Zavrieť human gate").click()
+            require(page.evaluate("document.activeElement === document.querySelector('[data-brain-gate-trigger]')"), "human gate must restore trigger focus")
+            page.evaluate("setScenario('current')")
+            page.evaluate("setBrainLayer('L3')")
+            page.locator("[data-brain-gate-trigger]").click()
+            require(
+                gate.locator("[data-gate-destination]").inner_text()
+                == "memory/law/CSP/appeals.md",
+                "L3 promotion must preserve its exact gate destination",
+            )
+            gate.get_by_role("button", name="Zavrieť human gate").click()
+
+            scenario_snapshots = {}
+            for scenario in SCENARIOS:
+                page.evaluate("(id) => setScenario(id)", scenario)
+                require(page.evaluate("document.body.dataset.scenario") == scenario, f"scenario did not render: {scenario}")
+                require(page.locator('.direction-root[data-active="true"]').count() == 1, "scenario must keep one active direction")
+                projection = page.locator('[data-direction="brain"] [data-scenario-projection="true"]')
+                require(projection.is_visible(), f"scenario projection is not visible: {scenario}")
+                projection_text = projection.inner_text().lower()
+                require(SCENARIO_COPY[scenario].lower() in projection_text, f"scenario projection is missing semantics: {scenario}")
+                scenario_snapshots[scenario] = projection_text
+            require(
+                len(set(scenario_snapshots.values())) == len(SCENARIOS),
+                "scenario projections must differ visibly and accessibly",
+            )
+            page.evaluate("setScenario('current')")
+
+            for direction in DIRECTIONS:
+                page.evaluate("(id) => setDirection(id)", direction)
+                direction_source = page.locator(
+                    f'[data-direction="{direction}"] [data-source-trigger]'
+                ).first
+                require(
+                    direction_source.count() == 1,
+                    f"{direction} must expose a functional source path",
+                )
+                direction_source.click()
+                require(inspector.is_visible(), f"{direction} source path must open inspector")
+                inspector.get_by_role("button", name="Zavrieť zdroj").click()
+
+            page.evaluate("setDirection('tower')")
+            for lens in ("urgency", "evidence", "data-health", "workload"):
+                page.locator(f'[data-risk-lens="{lens}"]').click()
+                lens_rows = page.locator('[data-testid="risk-matrix"] tbody tr').evaluate_all(
+                    "rows => rows.map((row) => row.dataset.portfolioClient)"
+                )
+                require(
+                    sorted(lens_rows) == sorted(page.evaluate("DATA.portfolio.map((item) => item.client)")),
+                    f"{lens} must retain every portfolio client exactly once",
+                )
+            page.locator('[data-portfolio-drilldown="ALFA STAV s.r.o."]').click()
+            page.locator('[data-practice-return] [data-direction-target="tower"]').click()
+            practice_reset = page.evaluate(
+                """() => ({
+                    direction: appState.direction,
+                    drilldown: appState.practiceDrilldown,
+                    returnHidden: document.querySelector('[data-practice-return]').hidden
+                })"""
+            )
+            require(practice_reset == {"direction": "tower", "drilldown": False, "returnHidden": True}, "return to Tower must clear the stale practice breadcrumb state")
+
+            if artifacts is not None:
+                artifacts.mkdir(parents=True, exist_ok=True)
+                page.screenshot(path=artifacts / "direction-4-audit-ledger.png")
+                page.evaluate("setDirection('constellation')")
+                page.evaluate("spotlightNode('T-2026-029')")
+                page.screenshot(path=artifacts / "direction-3-evidence-constellation.png")
+                page.evaluate("setDirection('brain')")
+                page.evaluate("setBrainLayer('L2')")
+                page.screenshot(path=artifacts / "direction-5-okf-brain.png")
+                page.evaluate("setDirection('tower')")
+                page.evaluate("setRiskLens('urgency')")
+                page.screenshot(path=artifacts / "direction-6-risk-control-tower.png")
+
+            page.evaluate("setDirection('tower')")
+            page.wait_for_function("window.location.hash === '#tower'")
+            tower = page.evaluate(
+                """() => ({
+                    activeRoots: [...document.querySelectorAll(
+                        '.direction-root[data-active="true"]'
+                    )].map((root) => root.dataset.direction),
+                    inactiveSafe: [...document.querySelectorAll(
+                        '.direction-root[data-active="false"]'
+                    )].every((root) => root.hidden && root.inert),
+                    towerControls: document.querySelectorAll(
+                        '[data-direction-target="tower"]'
+                    ).length,
+                    towerCurrent: document.querySelectorAll(
+                        '[data-direction-target="tower"][aria-current="page"]'
+                    ).length
+                })"""
+            )
+            require(
+                tower["activeRoots"] == ["tower"],
+                "tower routing must leave exactly one active tower root",
+            )
+            require(tower["inactiveSafe"], "inactive roots are not hidden and inert")
+            require(tower["towerControls"] > 0, "tower controls are missing")
+            require(
+                tower["towerCurrent"] == tower["towerControls"],
+                "tower controls do not match aria-current",
+            )
+
+            page.evaluate("window.location.hash = '#invalid'")
+            page.wait_for_function(
+                "!document.querySelector('[data-testid=\"direction-gallery\"]').hidden"
+            )
+            final_state = page.evaluate(
+                """() => {
+                    const isDeepFrozen = (value) => {
+                        if (value === null || typeof value !== 'object') return true;
+                        return Object.isFrozen(value)
+                            && Object.values(value).every(isDeepFrozen);
+                    };
+                    return {
+                        dataSnapshot: JSON.stringify(DATA),
+                        dataFrozen: isDeepFrozen(DATA)
+                    };
+                }"""
+            )
+            require(not page_errors, f"runtime page error: {'; '.join(page_errors)}")
+            require(
+                final_state["dataSnapshot"] == initial["dataSnapshot"],
+                "DATA changed during routing smoke",
+            )
+            require(final_state["dataFrozen"], "DATA is not deeply frozen")
+        finally:
+            browser.close()
+
+
+def validate_full(html_path: Path, artifacts: Path) -> None:
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError as exc:
+        raise AssertionError("Playwright is required for full validation") from exc
+
+    screenshots = artifacts / "screenshots"
+    screenshots.mkdir(parents=True, exist_ok=True)
+    browser_errors: list[str] = []
+    external_requests: list[str] = []
+    viewports = ((1440, 1024), (1280, 800), (1024, 768), (390, 844))
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=True)
+        try:
+            page = browser.new_page(viewport={"width": 1440, "height": 1024})
+            page.on("pageerror", lambda error: browser_errors.append(f"pageerror: {error}"))
+            page.on(
+                "console",
+                lambda message: browser_errors.append(f"console: {message.text}")
+                if message.type == "error"
+                else None,
+            )
+            page.on(
+                "request",
+                lambda request: external_requests.append(request.url)
+                if request.url.startswith(("http://", "https://"))
+                else None,
+            )
+            page.goto(html_path.as_uri(), wait_until="load")
+            require(not browser_errors, f"browser console/page errors: {'; '.join(browser_errors)}")
+            require(not external_requests, f"external network request: {'; '.join(external_requests)}")
+            font_check = page.evaluate(
+                """async () => {
+                    await document.fonts.ready;
+                    const samples = [
+                        ['IBM Plex Sans', 'Žluťoučký kôň'],
+                        ['IBM Plex Mono', '18Cb/47/2026'],
+                        ['Playfair Display', 'LAWOSS']
+                    ];
+                    return samples.map(([font, glyphs]) => ({ font, glyphs, loaded: document.fonts.check(`14px "${font}"`, glyphs) }));
+                }"""
+            )
+            require(all(item["loaded"] for item in font_check), f"offline font glyph smoke failed: {font_check}")
+            page.emulate_media(reduced_motion="reduce")
+            reduced = page.evaluate(
+                """() => [...document.querySelectorAll('[data-animated]')].map((node) => {
+                    const style = getComputedStyle(node);
+                    return { animation: style.animationDuration, transition: style.transitionDuration };
+                })"""
+            )
+            require(reduced, "reduced-motion needs at least one intentional motion element")
+            require(
+                all(
+                    value in ("0s", "0.01ms", "1e-05s")
+                    for item in reduced
+                    for value in (item["animation"], item["transition"])
+                ),
+                f"reduced-motion duration is not neutralized: {reduced}",
+            )
+            page.emulate_media(media="screen")
+            for direction_index, direction in enumerate(DIRECTIONS, start=1):
+                page.evaluate("(id) => setDirection(id)", direction)
+                for width, height in viewports:
+                    page.emulate_media(media="screen")
+                    page.set_viewport_size({"width": width, "height": height})
+                    layout = page.evaluate(
+                        """() => {
+                            const width = window.innerWidth;
+                            const active = document.querySelector('.direction-root[data-active="true"]');
+                            const direction = active?.dataset.direction;
+                            const fallback = direction === 'timeline' ? active.querySelector('.timeline-fallback') : active.querySelector('.graph-fallback');
+                            return {
+                            roots: document.querySelectorAll('.direction-root[data-active="true"]').length,
+                            overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+                            diagrams: [...document.querySelectorAll('.diagram-scroll')].every((node) => node.scrollWidth >= node.clientWidth),
+                            shellVisible: getComputedStyle(document.querySelector('.prototype-bar')).display !== 'none',
+                            printSummaryHidden: [...document.querySelectorAll('.print-summary')].every((node) => getComputedStyle(node).display === 'none'),
+                            tabletRail: width <= 1100 ? getComputedStyle(document.querySelector('.lw-sidebar')).flexDirection === 'row' : true,
+                            inspectorOverlay: width <= 1100 ? getComputedStyle(document.querySelector('.dialog-scrim')).position === 'fixed' : true,
+                            diagramScrollBound: [...document.querySelectorAll('.diagram-scroll')].every((node) => ['auto', 'scroll'].includes(getComputedStyle(node).overflowX)),
+                            mobileFallback: width > 700 || !['timeline', 'constellation'].includes(direction) || getComputedStyle(fallback).display !== 'none'
+                            };
+                        }"""
+                    )
+                    require(layout["roots"] == 1, f"{direction} has no single active root at {width}x{height}")
+                    require(not layout["overflow"], f"root overflows at {direction} {width}x{height}")
+                    require(layout["diagrams"], f"diagram scroll contract failed at {direction} {width}x{height}")
+                    require(layout["shellVisible"], f"screen shell is hidden at {direction} {width}x{height}")
+                    require(layout["printSummaryHidden"], f"print summary leaked into screen at {direction} {width}x{height}")
+                    require(layout["tabletRail"], f"sidebar did not collapse to a top rail at {direction} {width}x{height}")
+                    require(layout["inspectorOverlay"], f"source inspector is not a fixed overlay at {direction} {width}x{height}")
+                    require(layout["diagramScrollBound"], f"diagram scrolling is not locally bounded at {direction} {width}x{height}")
+                    require(layout["mobileFallback"], f"mobile text fallback is hidden at {direction} {width}x{height}")
+                    page.screenshot(path=screenshots / f"direction-{direction_index}-{width}x{height}.png")
+                page.set_viewport_size({"width": 1440, "height": 1024})
+                page.emulate_media(media="print")
+                print_state = page.evaluate(
+                    """() => {
+                        const root = document.querySelector('.direction-root[data-active="true"]');
+                        const thesis = root.querySelector('[data-print-thesis]');
+                        const marker = document.querySelector('.persistent-marker');
+                        return {
+                            activeVisible: Boolean(root && getComputedStyle(root).display !== 'none'),
+                            titleVisible: Boolean(root?.querySelector('h1') && getComputedStyle(root.querySelector('h1')).display !== 'none'),
+                            thesisVisible: Boolean(thesis && getComputedStyle(thesis).display !== 'none'),
+                            markerVisible: Boolean(marker && getComputedStyle(marker).display !== 'none'),
+                            shellHidden: getComputedStyle(document.querySelector('.prototype-bar')).display === 'none',
+                            dialogsHidden: [...document.querySelectorAll('.dialog-scrim, .shortcut-popover')].every((node) => getComputedStyle(node).display === 'none')
+                        };
+                    }"""
+                )
+                require(all(print_state.values()), f"print contract failed for {direction}: {print_state}")
+                page.pdf(path=artifacts / f"direction-{direction_index}.pdf", format="A4", landscape=True, margin={"top": "10mm", "right": "10mm", "bottom": "10mm", "left": "10mm"}, print_background=True)
+                page.emulate_media(media="screen")
+            page.set_viewport_size({"width": 720, "height": 900})
+            page.emulate_media(media="screen")
+            page.evaluate("document.documentElement.style.zoom = '2'")
+            page.evaluate("setDirection('registry')")
+            zoom_state = page.evaluate(
+                """() => {
+                    const root = document.querySelector('.direction-root[data-active="true"]');
+                    const controls = [...root.querySelectorAll('button, summary, a, input, select')]
+                        .filter((node) => {
+                            const style = getComputedStyle(node);
+                            return style.display !== 'none' && style.visibility !== 'hidden';
+                        });
+                    return {
+                        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+                        rootVisible: Boolean(root && getComputedStyle(root).display !== 'none'),
+                        readableContent: Boolean(root && root.innerText.trim().length >= 120),
+                        controls: controls.length
+                    };
+                }"""
+            )
+            require(not zoom_state["overflow"], "root overflows at direct 200 percent zoom")
+            require(zoom_state["rootVisible"], "active content is not readable at direct 200 percent zoom")
+            require(zoom_state["readableContent"], "active content is too short at direct 200 percent zoom")
+            require(zoom_state["controls"] > 0, "no operable controls remain at direct 200 percent zoom")
+            zoom_control = page.locator('[data-testid="registry-decision-queue"] details:nth-of-type(3) > summary')
+            zoom_control.press("Enter")
+            require(
+                page.locator('[data-testid="registry-decision-queue"] details:nth-of-type(3)').evaluate("element => element.open"),
+                "registry control is not operable at direct 200 percent zoom",
+            )
+            page.evaluate("document.documentElement.style.zoom = ''")
+            require(not browser_errors, f"browser console/page errors: {'; '.join(browser_errors)}")
+            require(not external_requests, f"external network request: {'; '.join(external_requests)}")
+        finally:
+            browser.close()
+    require(len(list(screenshots.glob("*.png"))) == 24, "full validation must create 24 PNG screenshots")
+    require(len(list(artifacts.glob("direction-*.pdf"))) == 6, "full validation must create 6 PDFs")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--html", type=Path, required=True)
+    parser.add_argument("--mode", choices=("static", "smoke", "full"), default="static")
+    parser.add_argument("--artifacts", type=Path)
+    args = parser.parse_args()
+    html_path = args.html.resolve()
+    validate_validator_contract()
+    validate_static(html_path)
+    if args.mode in ("smoke", "full"):
+        artifacts = args.artifacts.resolve() if args.artifacts else None
+        validate_smoke(html_path, artifacts)
+    if args.mode == "full":
+        require(args.artifacts is not None, "--mode full requires --artifacts")
+        validate_full(html_path, args.artifacts.resolve())
+    print(f"OK: {args.mode} validation passed for {args.html}")
+
+
+if __name__ == "__main__":
+    main()
