@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>LAWOSS OKF osobné dashboardy, varianty 1 až 3</title>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;padding:34px;background:#eef1f4;color:#0d1b2a;font-family:IBM Plex Sans,system-ui,sans-serif}
+  .page{width:min(1400px,100%);margin:0 auto}
+  .kicker{font:600 11px IBM Plex Mono,ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#786326}
+  h1{font-size:clamp(28px,4vw,50px);line-height:1.02;letter-spacing:-.035em;margin:8px 0 12px}
+  .subtitle{font-size:15px;line-height:1.55;color:#42586e}
+  .prototype-note{display:flex;justify-content:space-between;gap:16px;align-items:center;margin:0 0 24px;padding:10px 14px;border:1px solid rgba(13,27,42,.18);background:#fff;font:600 10px IBM Plex Mono,ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+  .prototype-note a{color:#786326}
+  :root{--navy:#0d1b2a;--canvas:#0a0e14;--surface:#10171f;--surface2:#132538;--ink:#f6f7f9;--muted:#9aa6b2;--soft:#7a8ba0;--gold:#e4c979;--rule:rgba(246,247,249,.14);--warn:#e6b65d;--ok:#7fb292}
+  .intro{max-width:920px;margin-bottom:24px}.intro strong{color:#0d1b2a}
+  .preset-stack{display:grid;gap:28px}
+  .preset{border:2px solid transparent;border-radius:10px;background:#0b1118;overflow:hidden;cursor:pointer;transition:border-color .16s ease,transform .16s ease}
+  .preset:hover,.preset.selected{border-color:#c9a24a;transform:translateY(-2px)}
+  .preset-label{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;background:#0d1b2a;border-bottom:1px solid var(--rule);color:var(--ink)}
+  .preset-label b{font:600 13px IBM Plex Sans,sans-serif}.preset-label span{font:500 9px IBM Plex Mono,monospace;letter-spacing:.12em;color:var(--gold)}
+  .app{height:510px;display:grid;grid-template-columns:150px 1fr;background:var(--surface);color:var(--ink);font-family:IBM Plex Sans,system-ui,sans-serif}
+  .rail{background:var(--canvas);border-right:1px solid var(--rule);padding:18px 12px;display:flex;flex-direction:column}
+  .brand{font:600 12px IBM Plex Mono,monospace;letter-spacing:.2em;margin:2px 4px 20px}.brand i{color:var(--gold);font-style:normal}.nav{display:grid;gap:4px}.nav div{font-size:10px;color:var(--muted);padding:8px 9px;border:1px solid transparent}.nav .on{color:var(--ink);border-color:var(--rule);background:var(--surface);border-left:2px solid var(--gold)}
+  .person{margin-top:auto;border-top:1px solid var(--rule);padding:12px 6px 0;font-size:9px;color:var(--muted)}
+  .sheet{min-width:0;padding:18px 22px 22px;overflow:hidden}
+  .topline{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--rule);padding-bottom:10px;margin-bottom:14px}
+  .crumb{font-size:9px;color:var(--muted)}.actions{display:flex;gap:6px}.actions span{border:1px solid var(--rule);padding:5px 7px;font:500 8px IBM Plex Mono,monospace;color:var(--muted)}.actions .gold{color:var(--gold);border-color:#c9a24a}
+  .eyebrow{font:500 7px IBM Plex Mono,monospace;letter-spacing:.13em;color:var(--soft);text-transform:uppercase}.h{font-size:21px;line-height:1.1;font-weight:500;margin:4px 0}.sub{font-size:9px;color:var(--muted)}
+  .rule{border-top:1px solid var(--rule)}.mono{font-family:IBM Plex Mono,monospace}.gold-text{color:var(--gold)}
+  .command-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:12px;margin-top:14px}.hero{border-top:2px solid var(--gold);padding:12px 0 8px}.hero .big{font-size:32px;font-weight:500;letter-spacing:-.03em}.hero .big small{font-size:10px;color:var(--gold);letter-spacing:0;margin-left:7px}.hero-path{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);position:relative}.hero-path:before{content:"";position:absolute;left:8%;right:8%;top:15px;border-top:1px solid #c9a24a}.stage{z-index:1;text-align:center;font-size:8px;color:var(--muted)}.stage i{display:block;width:9px;height:9px;border:2px solid #c9a24a;background:var(--surface);border-radius:50%;margin:11px auto 7px}.stage.done i{background:#c9a24a}.stage strong{display:block;color:var(--ink);font-size:9px}.side-metrics{border-left:1px solid var(--rule);padding-left:12px;display:grid}.metric{padding:8px 0;border-bottom:1px solid var(--rule)}.metric b{font-size:15px}.metric span{display:block;font-size:8px;color:var(--muted);margin-top:2px}.decision-band{margin-top:12px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr}.decision{padding:10px 12px}.decision+ .decision{border-left:1px solid var(--rule)}.decision b{font-size:9px;display:block;margin:3px 0}.decision small{font-size:8px;color:var(--muted)}
+  .focus-wrap{max-width:760px;margin:18px auto 0}.focus-count{font:500 8px IBM Plex Mono,monospace;color:var(--gold);letter-spacing:.12em}.focus-title{font-size:36px;line-height:1.08;letter-spacing:-.035em;font-weight:400;margin:12px 0 8px;max-width:620px}.focus-meta{font-size:10px;color:var(--muted);max-width:580px;line-height:1.55}.focus-actions{display:flex;gap:8px;margin-top:18px}.focus-actions span{padding:8px 12px;border:1px solid var(--rule);font-size:9px}.focus-actions .primary{background:#c9a24a;color:#0d1b2a;border-color:#c9a24a;font-weight:600}.quiet-stats{margin-top:34px;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,1fr)}.quiet-stat{padding:12px 10px 8px 0}.quiet-stat+ .quiet-stat{padding-left:12px;border-left:1px solid var(--rule)}.quiet-stat b{font-size:14px}.quiet-stat span{display:block;font-size:8px;color:var(--muted);margin-top:3px}.next-list{margin-top:22px}.next-row{display:grid;grid-template-columns:70px 1fr 100px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:9px}.next-row span:first-child,.next-row span:last-child{color:var(--muted)}
+  .ops-head{display:grid;grid-template-columns:1fr repeat(4,100px);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-top:12px}.ops-cell{padding:9px 10px;border-left:1px solid var(--rule)}.ops-cell:first-child{border-left:0}.ops-cell b{font-size:11px}.ops-cell span{display:block;font-size:7px;color:var(--muted);margin-top:2px}.ops-body{display:grid;grid-template-columns:1fr 230px;min-height:310px}.register{padding-right:12px}.register-head,.register-row{display:grid;grid-template-columns:62px 1fr 100px 94px;align-items:center}.register-head{font:500 7px IBM Plex Mono,monospace;color:var(--soft);padding:9px 0;border-bottom:1px solid var(--rule)}.register-row{font-size:8px;padding:9px 0;border-bottom:1px solid var(--rule)}.register-row b{font-size:9px}.register-row small{display:block;color:var(--muted);font-size:7px;margin-top:2px}.detail{border-left:1px solid var(--rule);padding:12px}.detail h4{font-size:12px;margin:4px 0 8px}.detail dl{margin:0}.detail dt{font:500 7px IBM Plex Mono,monospace;color:var(--soft);margin-top:9px}.detail dd{font-size:8px;margin:2px 0 0;color:var(--muted);line-height:1.45}.audit{margin-top:12px;padding-top:9px;border-top:1px solid var(--rule);font:400 7px IBM Plex Mono,monospace;color:var(--soft);line-height:1.7}
+  .why{padding:13px 16px;background:#f6f7f9;color:#0d1b2a;display:grid;grid-template-columns:130px 1fr;gap:14px;font-size:12px}.why b{font-size:12px}.why span{color:#42586e;line-height:1.45}
+  @media(max-width:900px){.app{grid-template-columns:105px 1fr;height:470px}.rail{padding:12px 7px}.sheet{padding:14px}.ops-body{grid-template-columns:1fr}.detail{display:none}.command-grid{grid-template-columns:1fr}.side-metrics{display:none}.focus-title{font-size:28px}}
+</style>
+</head>
+<body>
+<main class="page">
+<div class="prototype-note"><span>Fiktívne dáta · pracovný návrh · natívny LAWOSS cieľ</span><a href="lawoss-okf-personal-dashboard-presets-4-6.html">Varianty 4 až 6 →</a></div>
+<div class="intro">
+  <span class="kicker">LAWOSS · OKF read model · osobný dashboard</span>
+  <h1>Prehľad, varianty 1 až 3</h1>
+  <p class="subtitle">Rovnaký spis, rovnaké OKF dáta, rovnaká natívna navigácia. Vyberáme iba informačnú hierarchiu a vizuálnu osobnosť.</p>
+</div>
+
+<div style="margin:0 0 22px;padding:13px 16px;border-left:3px solid #c9a24a;background:rgba(201,162,74,.08)">
+  <strong>Dátový kontrakt:</strong> kanonické OKF súbory iba na čítanie → typovaný LAWOSS read model → zvolený osobný UI preset. Dashboard konfigurácia uchováva iba layout a výber widgetov, nikdy právne fakty.
+</div>
+
+<div class="preset-stack">
+  <section class="preset" id="visual-command-center" data-choice="command-center" tabindex="0">
+    <div class="preset-label"><b>1. Visual Command Center</b><span>VIZUÁLNY · ROZHODOVANIE</span></div>
+    <div class="app">
+      <aside class="rail"><div class="brand">LAW<i>OSS</i></div><div class="nav"><div>Chat</div><div class="on">Prehľad</div><div>Spisy</div><div>Lehoty</div><div>Konektory</div></div><div class="person">JUDr. Martin Novák<br>osobný preset</div></aside>
+      <main class="sheet">
+        <div class="topline"><span class="crumb">Prax / ALFA STAV s.r.o. / 18Cb/47/2026</span><div class="actions"><span>Upraviť dashboard</span><span class="gold">Spis</span></div></div>
+        <span class="eyebrow">Dnes potrebuje pozornosť</span><h3 class="h">Prípad v jednom obraze</h3><p class="sub">Najskôr rozhodnutie, potom proces a riziko.</p>
+        <div class="command-grid"><section class="hero"><span class="eyebrow">Kandidátna lehota</span><div class="big">14. 9. 2026 <small>čaká na potvrdenie</small></div><div class="hero-path"><div class="stage done"><i></i><strong>Doručené</strong>28. 8.</div><div class="stage done"><i></i><strong>Vyhodnotené</strong>31. 8.</div><div class="stage"><i></i><strong>Human gate</strong>teraz</div><div class="stage"><i></i><strong>Odvolanie</strong>14. 9.</div></div></section><aside class="side-metrics"><div class="metric"><b>2</b><span>návrhy na rozhodnutie</span></div><div class="metric"><b>4 / 5</b><span>zdroje pripravené</span></div><div class="metric"><b class="gold-text">1 rozpor</b><span>sídlo protistrany</span></div></aside></div>
+        <div class="decision-band"><div class="decision"><span class="eyebrow">Ďalší krok</span><b>Preveriť odovzdávací protokol</b><small>TASK-2026-044 · otvorené</small></div><div class="decision"><span class="eyebrow">Potvrdená truth</span><b>Rozsudok doručený 28. 8.</b><small>T-2026-029 · 3 zdroje</small></div></div>
+      </main>
+    </div>
+    <div class="why"><b>Signature</b><span>Jeden dominantný procesný pás ukazuje, kde sa spis nachádza a čo má advokát urobiť. Ostatné údaje sú podriadené rozhodnutiu.</span></div>
+  </section>
+
+  <section class="preset" id="minimal-focus" data-choice="minimal-focus" tabindex="0">
+    <div class="preset-label"><b>2. Minimal Focus</b><span>POKOJNÝ · ĎALŠÍ KROK</span></div>
+    <div class="app">
+      <aside class="rail"><div class="brand">LAW<i>OSS</i></div><div class="nav"><div>Chat</div><div class="on">Prehľad</div><div>Spisy</div><div>Lehoty</div><div>Konektory</div></div><div class="person">JUDr. Martin Novák<br>osobný preset</div></aside>
+      <main class="sheet">
+        <div class="topline"><span class="crumb">Prax / ALFA STAV s.r.o. / 18Cb/47/2026</span><div class="actions"><span>Upraviť dashboard</span><span class="gold">Spis</span></div></div>
+        <div class="focus-wrap"><span class="focus-count">01 · TERAZ</span><h3 class="focus-title">Potvrďte alebo upravte kandidátnu lehotu na odvolanie.</h3><p class="focus-meta">Rozsudok bol doručený 28. 8. 2026. Model navrhuje 14. 9. 2026. Pred zápisom treba potvrdiť trigger, právny režim a pravidlo posunu.</p><div class="focus-actions"><span class="primary">Otvoriť rozhodovaciu bránu</span><span>Zobraziť zdroje</span></div>
+        <div class="quiet-stats"><div class="quiet-stat"><b>14. 9.</b><span>kandidátna lehota</span></div><div class="quiet-stat"><b>2</b><span>otvorené návrhy</span></div><div class="quiet-stat"><b>1</b><span>dátový rozpor</span></div><div class="quiet-stat"><b>4 / 5</b><span>zdroje dostupné</span></div></div>
+        <div class="next-list"><div class="next-row"><span>potom</span><b>Preveriť význam odovzdávacieho protokolu</b><span>TASK-2026-044</span></div><div class="next-row"><span>potom</span><b>Posúdiť klasifikáciu platby 40 percent</b><span>F-2026-021</span></div></div></div>
+      </main>
+    </div>
+    <div class="why"><b>Signature</b><span>Dashboard sa správa ako čistý pracovný stôl. Ukazuje jednu najdôležitejšiu vetu a ďalšie veci odhaľuje až podľa potreby.</span></div>
+  </section>
+
+  <section class="preset" id="information-dense" data-choice="information-dense" tabindex="0">
+    <div class="preset-label"><b>3. Information Dense</b><span>OPERATÍVNY · MAXIMUM KONTEXTU</span></div>
+    <div class="app">
+      <aside class="rail"><div class="brand">LAW<i>OSS</i></div><div class="nav"><div>Chat</div><div class="on">Prehľad</div><div>Spisy</div><div>Lehoty</div><div>Konektory</div></div><div class="person">JUDr. Martin Novák<br>osobný preset</div></aside>
+      <main class="sheet">
+        <div class="topline"><span class="crumb">Prax / ALFA STAV s.r.o. / 18Cb/47/2026</span><div class="actions"><span>Filter</span><span>Stĺpce</span><span class="gold">Upraviť dashboard</span></div></div>
+        <span class="eyebrow">Operačný register</span><h3 class="h">ALFA STAV s.r.o. proti BETA DEVELOPMENT a.s.</h3>
+        <div class="ops-head"><div class="ops-cell"><span>Fáza</span><b>Príprava odvolania</b></div><div class="ops-cell"><span>Lehota</span><b class="gold-text">14. 9.</b></div><div class="ops-cell"><span>Findings</span><b>3</b></div><div class="ops-cell"><span>Úlohy</span><b>4 / 2</b></div><div class="ops-cell"><span>Freshness</span><b>rev. 18</b></div></div>
+        <div class="ops-body"><section class="register"><div class="register-head"><span>ID</span><span>Záznam</span><span>Stav</span><span>Zdroj</span></div><div class="register-row"><span class="mono">F-018</span><span><b>Kandidátna lehota na odvolanie</b><small>trigger 28. 8. · návrh 14. 9.</small></span><span class="gold-text">needs review</span><span class="mono">L24</span></div><div class="register-row"><span class="mono">F-021</span><span><b>Platba 40 percent ako splátka</b><small>klasifikácia čaká na gate</small></span><span class="gold-text">proposal</span><span class="mono">L22</span></div><div class="register-row"><span class="mono">T-029</span><span><b>Rozsudok doručený 28. 8.</b><small>potvrdené tromi zdrojmi</small></span><span style="color:var(--ok)">confirmed</span><span class="mono">L18</span></div><div class="register-row"><span class="mono">F-020</span><span><b>Rozdielne sídlo protistrany</b><small>register snapshot sa nezhoduje</small></span><span style="color:var(--warn)">partial</span><span class="mono">L17</span></div><div class="register-row"><span class="mono">TASK-044</span><span><b>Preveriť odovzdávací protokol</b><small>vlastník Martin Novák</small></span><span>open</span><span class="mono">_STATUS</span></div></section><aside class="detail"><span class="eyebrow">Vybraný záznam</span><h4>F-2026-018</h4><dl><dt>NÁVRH</dt><dd>deadline.date = 2026-09-14</dd><dt>PROVENANCE</dt><dd>Rozsudok.pdf, strana 1<br>receipt.json:12</dd><dt>NEISTOTA</dt><dd>Potvrdiť trigger a pravidlo posunu.</dd></dl><div class="audit">09:14 parser<br>09:15 source linked<br>09:17 human gate queued</div></aside></div>
+      </main>
+    </div>
+    <div class="why"><b>Signature</b><span>Právnik vidí register, stav, zdroj aj detail súčasne. Variant je určený pre power usera, audit a intenzívnu prácu so spisom.</span></div>
+  </section>
+</div>
+</main>
+</body>
+</html>

@@ -469,17 +469,23 @@ lawOSS-like-SK-CZ/
 ├── docs/
 │   ├── design/
 │   │   ├── hifi/
-│   │   │   └── lawoss-hifi.html
+│   │   │   ├── lawoss-hifi.html
+│   │   │   ├── lawoss-okf-personal-dashboard-presets-1-3.html
+│   │   │   ├── lawoss-okf-personal-dashboard-presets-4-6.html
+│   │   │   └── okf-dashboard-directions.html
 │   │   ├── 2026-08-23-audit-sucasnej-appky.md
 │   │   ├── 2026-08-23-dizajnovy-jazyk-lawoss.md
 │   │   ├── 2026-08-23-ia-screen-plan-a-komponenty.md
 │   │   ├── 2026-08-23-implementacny-plan-fazy-A-D.md
 │   │   ├── 2026-08-27-dizajn-system-je-legalwork.md
+│   │   ├── 2026-08-31-okf-dashboard-sest-smerov.md
 │   │   ├── design-system.md
 │   │   └── README.md
 │   ├── superpowers/
 │   │   ├── plans/
-│   │   │   └── 2026-08-12-lawoss-zakladna-produktova-doktrina.md
+│   │   │   ├── 2026-08-12-lawoss-zakladna-produktova-doktrina.md
+│   │   │   ├── 2026-08-31-okf-dashboard-sest-smerov.md
+│   │   │   └── 2026-09-01-lawoss-okf-osobne-dashboardy.md
 │   │   └── specs/
 │   │       └── 2026-08-12-lawoss-zakladna-produktova-doktrina-design.md
 │   ├── templates/
@@ -645,6 +651,7 @@ lawOSS-like-SK-CZ/
 │   │   └── 2026-08-15-lhoty-cz-pravidla-vypoctu.md
 │   └── sk-datove-zdroje/
 ├── scripts/
+│   ├── validate-okf-dashboard-prototype.py
 │   └── validate-skills.mjs
 ├── specs/
 │   ├── 0001-transkripcia.md
@@ -658,6 +665,7 @@ lawOSS-like-SK-CZ/
 │   ├── 0009-reconcile-ucenie-z-uprav.md
 │   ├── 0010-zarucena-konverzia.md
 │   ├── 0014-okf-1-kanonicky-kontrakt.md
+│   ├── 0015-lawoss-okf-osobne-dashboardy.md
 │   ├── navrhy.md
 │   ├── prehlad.html
 │   ├── README.md
@@ -723,23 +731,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**361 commitov** · **242 súborov**
+**380 commitov** · **247 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
-| `984071b` | 2026-08-31 | Majo Cuprik | planning: otvoriť technický návrh OKF v LAWOSS |
-| `0a7787f` | 2026-08-31 | Majo Cuprik | specs: konsolidovať OKF návrhy MČ a VŘ |
-| `c555a15` | 2026-08-29 | Vojtěch Říha | docs: doplniť silu zhody pri kontrole úniku L2→L3 |
-| `d75b892` | 2026-08-29 | Vojtěch Říha | research: vr-pamat snapshot + návrh zjednotenia OKF pamäte (MČ × VŘ) |
-| `425da31` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `a90cb6c` | 2026-08-28 | Majo Cuprik | docs: teaser web lawoss.app a oprava zastaranej typografie v Značke |
-| `829cfb3` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `5f89417` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
+| `afe86fa` | 2026-09-01 | Majo Cuprik | feat: dokončiť akceptáciu OKF dashboardu |
+| `8d23fba` | 2026-08-31 | Majo Cuprik | docs: sprístupniť šesť smerov OKF dashboardu |
+| `9f712b0` | 2026-08-31 | Majo Cuprik | fix: spevniť kontrolu udalostí a browser chýb |
+| `0772ce3` | 2026-08-31 | Majo Cuprik | docs: zaznamenať finálny commit Task 7 |
+| `8b6a8c0` | 2026-08-31 | Majo Cuprik | fix: dokončiť responzívny a offline OKF prototyp |
+| `b8ba5ab` | 2026-08-31 | Majo Cuprik | fix: spevniť gate a vrstvy dashboardu |
+| `34133c6` | 2026-08-31 | Majo Cuprik | feat: pridať zdroje, brány a bezpečné ovládanie |
+| `cc859d2` | 2026-08-31 | Majo Cuprik | feat: doplniť OKF Brain a partnerský risk prehľad |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-30 22:55 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-01 07:22 UTC<!-- /AUTO:UPDATED --></sub>
 </div>

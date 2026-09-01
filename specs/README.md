@@ -21,6 +21,7 @@ Kandidáti na **v1** — evidencia nápadov, ktoré dozreli z brainstormingu
 | 0008 | [Lokálny anonymizačný gate pred externým LLM](0008-anonymizacia-a-privacy-gate.md) | MF | návrh | V1.1 / P1 | privacy gate pred externým routingom; samostatný local-service/sidecar |
 | 0011 | [Rozširujúca vrstva LAWOSS — UI architektúra a konektory](0011-rozsirujuca-vrstva-ui-a-konektory.md) | MČ | [PR #55](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/55) — **otvorený** | V1 podpora | settings tab „LAWOSS" · spis wizard · connector registry (tri vrstvy MCP, BYO) |
 | 0014 | [**OKF 1.0: kanonický otvorený kontrakt**](0014-okf-1-kanonicky-kontrakt.md) | MČ *(konsoliduje prínosy VŘ)* | návrh na spoločnú revíziu | **V1** | `AGENTS.md` bootstrap, klient -> viac prípadov, typovaná pamäť, verification a reconciliation |
+| 0015 | [**LAWOSS osobné dashboardy nad OKF**](0015-lawoss-okf-osobne-dashboardy.md) | MČ | návrh na spoločnú revíziu | po odklepnutí OKF 1.0 | šesť UI presetov nad jedným read modelom, natívne v `/prehlad` |
 
 > [!NOTE]
 > **Zaradenie do verzií je návrh, nie rozhodnutie.** Scope V1 sa odklepáva **v stredu 12. 8. 2026** → [agenda a odôvodnenie](../meetings/2026-08-12-agenda-mvp.md).

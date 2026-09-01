@@ -1,5 +1,8 @@
 # OKF dashboard: šesť high-fidelity smerov
 
+> [!WARNING]
+> Tento dokument zachováva pôvodný exploration set informačných smerov. Zadanie bolo 2026-09-01 spresnené na šesť rôznych UI a UX podôb tej istej obrazovky nad rovnakým OKF read modelom. Aktuálny návrh je [spec 0015](../../specs/0015-lawoss-okf-osobne-dashboardy.md) a nové [varianty 1 až 3](hifi/lawoss-okf-personal-dashboard-presets-1-3.html) a [4 až 6](hifi/lawoss-okf-personal-dashboard-presets-4-6.html). Pôvodný artefakt zostáva zachovaný ako história návrhu.
+
 - **Stav:** schválený rozsah na vytvorenie prezentačných návrhov, nie tímové rozhodnutie o finálnom layoute
 - **Zadal:** Marián Čuprík (MČ) · 2026-08-31
 - **Rozsah:** šesť porovnateľných dashboardov nad rovnakým syntetickým OKF datasetom, s jedným detailným referenčným prípadom
