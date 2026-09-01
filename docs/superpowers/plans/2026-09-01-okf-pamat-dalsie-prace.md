@@ -45,7 +45,7 @@ Platia pre **každú** úlohu, netreba ich opakovať:
 | N5 jeden pokazený záznam zhodí store | ✅ **hotové** (commit `a4b540e`) — v úlohe 6 zostáva len premenovať kód na `PARSE_ERROR` |
 | N7 `L3_LEAK` falošné nálezy | ✅ **hotové** (commit `55159fb`) — celé slovo, meno → `warning`, identifikátory → `error`. Kryje väčšinu O7. |
 | N6 čiarka v zozname | ✅ **hotové 1. 9.** (commit `1a42187`) — úloha 1 dokončená |
-| N2 duplicitné sekcie | ❌ otvorené — **úloha 2** |
+| N2 duplicitné sekcie | ✅ **hotové 1. 9.** (commit `2e071a8`) — úloha 2 dokončená |
 | N3 štvrtá brána mimo zápisu | ❌ otvorené — **úloha 3** |
 | N4 `Approval` self-declared | ❌ otvorené — **úloha 4** |
 | N1 `init` nezaloží adresár | ⊘ **zaniká** rozhodnutím O6 — jeden `memory/`, jurisdikcia je hodnota poľa. Rieši sa zrušením `detect()` v úlohe 8. |
@@ -122,8 +122,34 @@ Vyplýva z O6 a **rieši kolíziu**, ktorá by inak vznikla pri migrácii: MČ n
 
 **Prefix nie je dekorácia.** Ploché `R-001` po roku nič nehovorí a v `INDEX.md` sa netriedi podľa významu — to je dôvod, prečo ho MČ do O2 pýtal.
 
-> [!WARNING]
-> **Typ `event` sa zámerne nezavádza.** `fact-analyzer` má `E-XXX` pre *udalosť*, ale udalosti už nesie append-only `## History` v každom zázname a v projekcii Chronológia. Samostatný typ by pridal tretie miesto pre tú istú pravdu a zároveň by kolidoval s `evidence`. Ak sa raz ukáže, že udalosť potrebuje vlastnú právnu kvalifikáciu a väzby na dôkazy, otvor to ako nový bod — nie potichu pri migrácii.
+### Prečo sa nezavádza typ `event` — a čo namiesto neho
+
+Rozbor proti **aktuálnemu buildu** (stav po úlohe 2, 177 testov), nie proti zámeru.
+
+**Udalosť dnes nesú tri mechanizmy, ktoré už fungujú:**
+
+| Mechanizmus | Čo robí |
+|---|---|
+| `TimelineEntry { date, text }` v `## História` každého záznamu | primárny nosič; **append-only je vynútené** (`assertAppendOnly`), zmena Pravdy bez stopy je nemožná (`assertTruthTraced`) |
+| render blok `timeline` | zlúči históriu **všetkých** záznamov, zoradí podľa dátumu a vykreslí `\| Dátum \| Udalosť \| Záznam \|` do §4; každý riadok nesie odkaz na zdrojový záznam, takže provenance sa nestráca |
+| `deadlines` na zázname | dátumové dôsledky udalosti (lehota z doručenia) |
+
+**Čo tieto tri mechanizmy nedokážu.** `TimelineEntry` je voľný text, takže neunesie právnu kvalifikáciu, väzby na dôkazy, účastníkov ani status sporné/nesporné. A hlavne **nemá identitu** — je to riadok vnútri cudzieho záznamu, nedá sa naň odkázať `[[…]]`.
+
+**Kedy to prekáža:** práve vtedy, keď sa udalosť stane spornou. „Výpoveď bola doručená 12. 6." je v spore bežná otázka — a v tej chvíli potrebuje dôkazy a status preukázania.
+
+> [!IMPORTANT]
+> **Sporná udalosť je tvrdenie.** „Bolo doručené 12. 6." je presne to, čo modeluje `claim`: niekto to tvrdí, niekto nesie bremeno, dôkazy to podporujú alebo vyvracajú, a má to `proof_status`. Samostatný typ `event` by pre sporné udalosti duplikoval `claim` a pre nesporné duplikoval `TimelineEntry`. **Preto nevzniká** — nie kvôli kolízii prefixu, tá je len dôsledok.
+
+**Výsledné pravidlo — kam udalosť patrí:**
+
+| Udalosť | Kam |
+|---|---|
+| nesporná (doručenie, ktoré nikto nespochybňuje) | `TimelineEntry` v `## História` |
+| **sporná** (potrebuje dôkaz a status preukázania) | `claim` (`C-`) + väzby na `evidence` (`E-`) — úloha 17 |
+| lehota, ktorá z nej plynie | `deadlines` na zázname |
+
+**Jedna medzera zostáva**, a nepokrýva ju ani jedno z toho: `TimelineEntry.text` je netypovaný. Chronológia preto nevie odlíšiť doručenie od pojednávania a nedá sa filtrovať ani použiť na výpočet lehôt. Rieši to **úloha 22** — malá aditívna zmena, nie nový typ.
 
 ---
 
@@ -322,7 +348,13 @@ Do tela commitu napíš, že `emit()` zapisoval zoznamy v hranatých zátvorkác
 
 ---
 
-### Úloha 2: Render pripája duplicitné sekcie namiesto vyplnenia existujúcich (N2) 🔴
+### ✅ Úloha 2: Render pripája duplicitné sekcie namiesto vyplnenia existujúcich (N2) 🔴 — HOTOVÉ
+
+> **Dokončené 1. 9. 2026, commit [`2e071a8`](https://github.com/Omni-Legal-Products/lawoss/commit/2e071a8).** 177/177 testov, typecheck čistý.
+>
+> Overené na šablóne `mc-novy-spis`: pred opravou mala po `sync --apply` **päť** nadpisov, po oprave zostávajú **dva** a `sync` skončí `KONFLIKT` s exit 1 bez dotyku súboru. S markermi vnútri sekcií render prejde a je idempotentný.
+>
+> **Nad rámec zadania:** zhoda sa hľadá na **celý** nadpis vrátane číslovania (`## 3. Lehoty`), takže vlastná sekcia advokáta typu „Lehoty a termíny klienta" poplach nespustí. Bez toho by kontrakt otravoval na legitímnom obsahu.
 
 Bez markerov `appendBlock` pripojí novú sekciu na koniec. Na šablóne `mc-novy-spis` tak vznikne `## 3. Lehoty` (ručná, prázdna) **aj** `## Lehoty` (renderovaná) — presne tá dvojitá pravda, ktorú má O1 odstrániť.
 
@@ -339,7 +371,7 @@ MČ žiada (podmienka 1 k O1): keď render nájde nadpis Lehoty/Chronológia **b
 **Interfaces:**
 - Produces: `export class RenderConflictError extends Error` z `render.ts`, re-exportovaná z `index.ts`. `renderStatus(existing, records, j)` ju vyhodí, keď existuje nadpis bloku bez markerov.
 
-- [ ] **Krok 1: Napíš padajúci test**
+- [x] **Krok 1: Napíš padajúci test**
 
 Vytvor `lawoss/okf/tests/render-conflict.test.ts`:
 
@@ -423,7 +455,7 @@ test("uplne prazdny subor dostane sekcie doplnene", () => {
 });
 ```
 
-- [ ] **Krok 2: Spusti test a over, že padá**
+- [x] **Krok 2: Spusti test a over, že padá**
 
 ```bash
 node --test tests/render-conflict.test.ts
@@ -431,7 +463,7 @@ node --test tests/render-conflict.test.ts
 
 Očakávané: import `RenderConflictError` zlyhá, takže padne celý súbor. Po pridaní triedy padnú prvé dva testy na tom, že sa výnimka nevyhadzuje.
 
-- [ ] **Krok 3: Implementuj**
+- [x] **Krok 3: Implementuj**
 
 V `lawoss/okf/src/render.ts` pridaj nad `renderStatus`:
 
@@ -488,13 +520,13 @@ export function renderStatus(
 }
 ```
 
-- [ ] **Krok 4: Zachyť výnimku v CLI a uprav starý test**
+- [x] **Krok 4: Zachyť výnimku v CLI a uprav starý test**
 
 V `lawoss/okf/src/cli.ts` doplň import `RenderConflictError` z `./render.ts` a obaľ telo vetvy `case "sync"` do `try { … } catch (e) { if (e instanceof RenderConflictError) return { code: 1, out: \`KONFLIKT: ${e.message}\` }; throw e; }`.
 
 V `lawoss/okf/tests/render.test.ts` uprav test „chybajuci blok sa doplni aj s markermi" — má očakávať doplnenie iba blokov `deadlines` a `timeline`. Pridaj k nemu komentár, že `records` je odteraz marker-only podľa podmienky MČ k O1.
 
-- [ ] **Krok 5: Spusti testy**
+- [x] **Krok 5: Spusti testy**
 
 ```bash
 node --test 'tests/**/*.test.ts' && ./node_modules/.bin/tsc -p tsconfig.json --noEmit
@@ -502,7 +534,7 @@ node --test 'tests/**/*.test.ts' && ./node_modules/.bin/tsc -p tsconfig.json --n
 
 Očakávané: 0 fail, typecheck exit 0.
 
-- [ ] **Krok 6: Commit**
+- [x] **Krok 6: Commit**
 
 ```bash
 git add lawoss/okf/src/render.ts lawoss/okf/src/cli.ts lawoss/okf/tests/
@@ -924,6 +956,43 @@ Táto úloha zároveň **dopĺňa dieru v pôvodnej implementácii**: spec 0002 
 niesla „jurisdikciu a **časovú platnosť**". Jurisdikcia tam je od začiatku, časová
 platnosť nie — bez nej systém nerozozná zastaranú citáciu, a to je chyba, ktorá sa
 v podaní pozná neskoro.
+
+---
+
+### Úloha 22: Typovaná položka histórie — udalosť dostane druh, nie vlastný typ
+
+Uzatvára rozbor `event` vyššie. `TimelineEntry.text` je dnes voľný text, takže projekcia
+Chronológia nevie odlíšiť doručenie od pojednávania a nedá sa ani filtrovať, ani použiť
+na odvodenie lehoty. **Riešením nie je nový typ záznamu, ale voliteľný druh na existujúcej
+položke** — udalosť si identitu nezaslúži, kým sa nestane spornou (vtedy je z nej `claim`).
+
+**Files:** `lawoss/okf/src/record.ts` (`TimelineEntry`, `parseTimeline`, `serializeRecord`), `lawoss/okf/src/write.ts` (`sameEntry`), `src/render.ts`, test `lawoss/okf/tests/timeline-kind.test.ts`
+
+**Interfaces — Produces:**
+
+```typescript
+export interface TimelineEntry {
+  readonly date: string;
+  readonly text: string;
+  /** Druh udalosti. Voliteľný — staré záznamy ho nemajú a musia ďalej fungovať. */
+  readonly kind?: string;
+}
+```
+
+Serializácia: `- 2026-09-01 [dorucenie] — text`. Dnešný parser je
+`/^-\s*(\d{4}-\d{2}-\d{2})\s*[—-]\s*(.*)$/`; stačí doplniť voliteľnú skupinu
+`(?:\[([a-z_]+)\]\s*)?` medzi dátum a pomlčku.
+
+**Akceptačné kritériá:**
+- **Spätná kompatibilita:** riadok bez `[...]` sa načíta ako doteraz, `kind` je `undefined`. Test nad existujúcimi fixture súbormi to musí ustrážiť.
+- Round-trip so `kind` aj bez neho.
+- ⚠️ **`sameEntry` vo `write.ts` musí porovnávať aj `kind`.** Dnes porovnáva iba `date` a `text` — bez doplnenia by šlo ticho prepísať druh existujúcej udalosti a `assertAppendOnly` by to pustil. To je diera v append-only záruke, nie kozmetika.
+- Render Chronológie zobrazí druh vo vlastnom stĺpci; riadky bez druhu nechá prázdne, nie „—".
+- Slovník druhov je **jurisdikčný a otvorený** — `dorucenie`, `podanie`, `pojednavanie`, `rozhodnutie`, `vyzva`, `hovor`, `email`. Neznámy druh je warning `UNKNOWN_EVENT_KIND`, nie chyba; advokátovi sa nebráni zapísať niečo, čo slovník nepozná.
+
+**Čo do tejto úlohy nepatrí:** odvodzovanie lehôt z druhu udalosti. Že z `dorucenie`
+plynie lehota, je právny záver a počíta ho `lhuta.py` / skill, nie pamäť. Sem patrí iba
+údaj, z ktorého sa dá počítať.
 
 ---
 
