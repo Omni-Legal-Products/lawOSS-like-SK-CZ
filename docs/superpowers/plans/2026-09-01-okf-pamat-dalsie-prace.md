@@ -924,7 +924,21 @@ odkazmi — presne tvar OKF, len pre vrstvu, ktorá chýba.
 
 ---
 
-### Úloha 18: Projekcia matice tvrdenie × dôkaz a dôkazné bremeno
+### ✅ Úloha 18: Projekcia matice tvrdenie × dôkaz a dôkazné bremeno — HOTOVÉ
+
+> **Dokončené 2. 9. 2026, commit [`ef1fb80`](https://github.com/Omni-Legal-Products/lawoss/commit/ef1fb80).** 265/265 testov, typecheck čistý.
+>
+> Overené na reálnom spise z insolvenčného registra (incidenčný spor o pravosť pohľadávky): dve tvrdenia, tri dôkazy, matica aj bremeno sedia, validácia čistá.
+>
+> ```
+> | Tvrzení | E-001 | E-002 | E-003 | Stav |
+> | C-001   | ✓✓    | –     | –     | prokázáno |
+> | C-002   | –     | ✓✓    | ~     | prokázáno |
+> ```
+>
+> Pribudlo `valueLabel` — hodnoty enumov sa na disku držia kanonicky anglicky, človeku sa ukazujú v jeho jazyku. Dokončuje to deľbu, ktorú zaviedlo O6 pre kľúče.
+>
+> `MARKER_ONLY` je exportované, aby test odvodzoval zoznam z kódu a nie z vlastnej kópie — pri pridaní ďalšieho marker-only bloku tak nezostane pozadu. Bez toho by test `render.test.ts` pri každom novom bloku ticho zlyhal na niečom, čo je v poriadku.
 
 Matica z `fact-analyzer` je **deterministická projekcia** z `C-` a `E-` záznamov — presne
 to, čo už vie render machinery pre lehoty. Nová mechanika netreba, iba nový blok.
