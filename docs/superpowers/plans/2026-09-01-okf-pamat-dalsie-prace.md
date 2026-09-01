@@ -47,7 +47,7 @@ Platia pre **každú** úlohu, netreba ich opakovať:
 | N6 čiarka v zozname | ✅ **hotové 1. 9.** (commit `1a42187`) — úloha 1 dokončená |
 | N2 duplicitné sekcie | ✅ **hotové 1. 9.** (commit `2e071a8`) — úloha 2 dokončená |
 | N3 štvrtá brána mimo zápisu | ✅ **hotové 1. 9.** (commit `1ba3d71`) — úloha 3 dokončená, **fáza 1 uzavretá** |
-| N4 `Approval` self-declared | ❌ otvorené — **úloha 4** |
+| N4 `Approval` self-declared | ✅ **hotové 1. 9.** (commit `4614bc4`) — úloha 4 dokončená |
 | N1 `init` nezaloží adresár | ⊘ **zaniká** rozhodnutím O6 — jeden `memory/`, jurisdikcia je hodnota poľa. Rieši sa zrušením `detect()` v úlohe 8. |
 | N8 drobnosti | ❌ otvorené — **úloha 6** |
 
@@ -708,7 +708,17 @@ git commit -m "feat: kontrola úniku L2→L3 je v ceste zápisu, nie iba vo vali
 >
 > **Prvý krok každej z týchto úloh je preto rozpísať ju do krokov podľa vzoru úloh 1–3** (padajúci test s kódom → beh → implementácia s kódom → beh → commit) a až potom začať. Akceptačné kritériá sú záväzné zadanie, nie inšpirácia.
 
-### Úloha 4: `Approval` je self-declared — CLI ako jediná zápisová hranica (N4)
+### ✅ Úloha 4: `Approval` je self-declared — CLI ako jediná zápisová hranica (N4) — HOTOVÉ
+
+> **Dokončené 1. 9. 2026, commit [`4614bc4`](https://github.com/Omni-Legal-Products/lawoss/commit/4614bc4).** 197/197 testov, typecheck čistý.
+>
+> **Kde je hranica v skutočnosti.** Kontrola v kóde ňou byť nemôže — knižnica nevie rozlíšiť, kto ju volá, a to sa nedá opraviť. Hranicou je, že **schválenie sa zapisuje do append-only histórie** záznamu spolu s dôvodom: agent, ktorý si napíše `by: "agent"`, bránu prejde, ale **podpíše sa pod to navždy a viditeľne**. Napísané takto rovno do `SKILL.md` aj `README.md` — predstierať kryptografickú záruku by bolo horšie než ju nemať.
+>
+> **Poradie, na ktorom záleží:** audit riadok sa pridáva **až potom**, čo návrh prešiel bránami. Keby sa pridal skôr, história by rástla pri každom zápise a brána atomicity pravdy by bola splnená vždy — teda by neplatila. Stráži to samostatný test.
+>
+> Navyše: `authorize()` overuje, že čas schválenia je čas. A pri ukážke vyšlo najavo „Nový **záznamu**" — slovenčina skloňuje inak pri vytvorení a pri zmene; opravené s testom.
+>
+> Napĺňa aj bod **„audit trail — kto/kedy/čo zapísal (immutable log)"** zo sekcie *Čo treba doplniť pre produkt* v spec 0002.
 
 `authorize()` prejde pri akomkoľvek neprázdnom `{ by, at }`. Knižničný volajúci si súhlas vyrobí sám, takže human gate je konvencia API, nie hranica. Dnes to nehorí, lebo CLI zápis záznamov vôbec nemá — a to je práve dôvod, prečo sa to má doplniť teraz, kým je plocha malá.
 
