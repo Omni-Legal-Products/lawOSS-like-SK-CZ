@@ -767,7 +767,11 @@ git commit -m "feat: kontrola úniku L2→L3 je v ceste zápisu, nie iba vo vali
 - `planWrite` pri `update` odmietne zápis, ak sa `truth` alebo história zmenili a `updated` zostalo. Dnes to chytí až `STALE_UPDATED` vo `validate`; logickejšie je to pri zápise.
 - `okf-memory init` berie default jurisdikcie zo `spis.md`, nie z prepínača.
 
-### Úloha 7: Optimistická kontrola súbehu cez `zmena:` (O4, dodatok MČ)
+### ✅ Úloha 7: Optimistická kontrola súbehu cez `zmena:` (O4, dodatok MČ) — HOTOVÉ
+
+> **Hotové 2. 9. 2026, commit [`f6bcae3`](https://github.com/Omni-Legal-Products/lawoss/commit/f6bcae3).** `updated` slúži ako verzia; zápis z prekonaného východiska padne `ConcurrentWriteError` a súbor sa nezmení.
+
+#### Pôvodné zadanie
 
 **Files:** `lawoss/okf/src/store.ts`, test `lawoss/okf/tests/concurrency.test.ts`
 
@@ -957,7 +961,11 @@ to, čo už vie render machinery pre lehoty. Nová mechanika netreba, iba nový 
 
 ---
 
-### Úloha 19: Typ `task` — a koniec troch paralelných pamätí
+### ✅ Úloha 19: Typ `task` — a koniec troch paralelných pamätí — HOTOVÉ
+
+> **Hotové 2. 9. 2026, commit `f6bcae3`.** Kontroly `TASK_CYCLE` (chyba), `TASK_BLOCKED_WITHOUT_BLOCKER`, `TASK_OVERDUE`; vlastný marker-only blok. `due` sa vedome nemieša s `deadlines` — zmeškaný interný termín sa dá dohnať, zmeškaná lehota nie, a test to stráži. `BRAIN.md` aj `SKILL.md` teraz hovoria, že `memory/` je jediné miesto zápisu a staršie `_memory.md`, `lrd.json`, `progress.txt` či `facts/` sa čítajú ako archív.
+
+#### Pôvodné zadanie
 
 `legal-orchestrator` má `LT-XXX` s overiteľnými akceptačnými kritériami, závislosťami
 a stavom. OKF má `question` (otvorená otázka), ale **nemá úlohu**; §5 „Otvorené úlohy"
@@ -990,7 +998,11 @@ v `_STATUS.md` je dodnes ručná tabuľka.
 
 ---
 
-### Úloha 20: `subject` o procesné postavenie a spôsobilosť
+### ✅ Úloha 20: `subject` o procesné postavenie a spôsobilosť — HOTOVÉ
+
+> **Hotové 2. 9. 2026, commit `f6bcae3`.** Polia sú voliteľné a do AML sady nevstupujú. `CAPACITY_CONFLICT_CHECK` upozorní na insolvenciu klienta — nie zákaz, ale vec, ktorú si má advokát všimnúť skôr než protistrana.
+
+#### Pôvodné zadanie
 
 `fact-analyzer` má v `U-XXX` tri veci, ktoré OKF `subject` nemá a bez ktorých sa nedá
 pripraviť podanie: procesné postavenie, zastúpenie a spôsobilosť byť účastníkom.
@@ -1006,7 +1018,11 @@ pripraviť podanie: procesné postavenie, zastúpenie a spôsobilosť byť úča
 
 ---
 
-### Úloha 21: `authority` o časovú platnosť a kontrolu citácie
+### ✅ Úloha 21: `authority` o časovú platnosť a kontrolu citácie — HOTOVÉ
+
+> **Hotové 2. 9. 2026, commit `f6bcae3`.** `AUTHORITY_STALE`, `AUTHORITY_UNVERIFIED`, `CITATION_INCOMPLETE`. Kontrola beží nad textom, nie nad registrom — jadro sieťovú plochu nemá. Zavrelo to dieru, ktorú spec 0002 výslovne žiadal.
+
+#### Pôvodné zadanie
 
 Šesť „železných pravidiel" z `legal-researcher` je v skutočnosti **validačný kontrakt
 pre vrstvu L3**, ktorý v OKF nie je. Dve sú strojovo vynutiteľné hneď.
