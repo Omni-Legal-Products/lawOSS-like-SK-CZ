@@ -850,7 +850,26 @@ Všetky nové typy sa zakladajú **rovno anglicky** (O6) a s prefixmi z normatí
 
 ---
 
-### Úloha 17: Typy `claim` a `evidence` — dôkazná vrstva
+### ✅ Úloha 17: Typy `claim` a `evidence` — dôkazná vrstva — HOTOVÉ
+
+> **Dokončené 2. 9. 2026, commit [`0fa9dfb`](https://github.com/Omni-Legal-Products/lawoss/commit/0fa9dfb).** 249/249 testov, typecheck čistý.
+>
+> ⚠️ **Pri overovaní sa ukázalo, že `fact-analyzer` má dve nepresnosti**, ktoré by sa inak preniesli do produktu. Overené 2. 9. 2026 v plnom znení zák. č. 99/1963 Sb.:
+>
+> | `fact-analyzer` uvádza | Skutočnosť |
+> |---|---|
+> | „Listina (§ 125)" | **§ 125 je demonštratívny výpočet** dôkazných prostriedkov („zejména… a jiné listiny"); listinu upravuje **§ 129** |
+> | „Ohledani (§ 129)" | ohliadku upravuje **§ 130** |
+>
+> Ostatné sedeli: § 126 svedok, § 127 znalecký posudok (+ § 127a pri posudku predloženom účastníkom), § 131 výsluch účastníkov. **Toto patrí opraviť aj v samotnom `/legal`** — pozri poznámku nižšie.
+>
+> `LINK_ASYMMETRY` je implementované ako varovanie a overené na reálnom spise. Údaje z dôkazu sa vedome **nestávajú jehlami** detektora únikov — dôkaz nesie údaje o listine, nie o klientovi; keby sa jeho autor stal jehlou, každý prameň citujúci ISDS by spadol.
+
+### 📌 Vedľajší nález: opraviť `/legal`
+
+`~/.claude/agents/fact-analyzer.md` (mimo tohto repa, u VŘ) uvádza pri type `DUKAZ (D-XXX)` nesprávne ustanovenia: listina má byť § 129 (nie § 125) a ohliadka § 130 (nie § 129). Agent podľa toho označuje druhy dôkazov v spisoch. **Opraviť pri najbližšej práci s `/legal`** — do OKF sa to už neprenieslo, ale v pôvodnom skille to zostáva.
+
+### Pôvodné zadanie úlohy 17
 
 OKF dnes nesie stav veci, rozhodnutia a subjekty, ale **nemá čím zachytiť, kto čo tvrdí
 a čím to dokazuje**. `fact-analyzer` to má vyriešené typovanými záznamami s krížovými
