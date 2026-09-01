@@ -2,7 +2,7 @@
 
 - **Prítomní:** MČ · VŘ · MF *(IR neprítomný — tento zápis + Telegram post sú pre neho; jeho požiadavka na lehoty je pokrytá, viď rozhodnutie 4)*
 - **Podklady:** [agenda](2026-08-31-agenda-okf-architektura.md) · [prezentácia](../assets/diagrams/okf-konsolidacia.html) · [spec 0014](../specs/0014-okf-1-kanonicky-kontrakt.md) · [zjednotenie.md](../research/okf-implementacie/zjednotenie.md) (PR #63) · [stanovisko MČ](../research/okf-implementacie/stanovisko-mc.md) · plán ďalších prác (PR #66)
-- **Zdroj:** transkript callu + AI sumarizácia (lokálne u MČ), zapísané 2026-09-01. *(Pozn.: AI sumarizácia chybne uvádza ďalší call o 10:30 a rozpisuje MCP ako „Metacognitive Prompts" — smerodajný je transkript.)*
+- **Zdroj:** [transkript callu](2026-09-01-transkript-okf-call.txt) (v repe) + AI sumarizácia (lokálne u MČ), zapísané 2026-09-01. *(Pozn.: AI sumarizácia chybne uvádza ďalší call o 10:30 a rozpisuje MCP ako „Metacognitive Prompts" — smerodajný je transkript.)*
 
 > [!NOTE]
 > Call sa neriadil striktne rozhodovacím listom D1–D9 z agendy — prebehol voľnejšie. Výsledky sú do listu premietnuté nižšie; body, ktoré na calle reálne nezazneli, sú poctivo označené ako otvorené, nie dohlasované dodatočne.

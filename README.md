@@ -516,6 +516,7 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-28-agenda-call-dizajn.md
 │   ├── 2026-08-28-zapis-sync-call.md
 │   ├── 2026-08-31-agenda-okf-architektura.md
+│   ├── 2026-09-01-transkript-okf-call.txt
 │   └── 2026-09-01-zapis-okf-architektura.md
 ├── planning/
 │   ├── 2026-08-12-mcp-repository-rollout-plan.md
@@ -732,10 +733,11 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**382 commitov** · **251 súborov**
+**383 commitov** · **252 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `fbb1dc7` | 2026-09-01 | Majo Cuprik | docs: zápis z callu 1. 9. — anglické jadro schválené, gates zamietnuté, akčné body do 7. 9. |
 | `ca819a4` | 2026-09-01 | Majo Cuprik | docs: opraviť dátum callu na 1. 9. 2026, doplniť MF ako účastníka a slot pre onboarding |
 | `be146a4` | 2026-09-01 | Majo Cuprik | specs: zaevidovať osobné OKF dashboardy |
 | `afe86fa` | 2026-09-01 | Majo Cuprik | feat: dokončiť akceptáciu OKF dashboardu |
@@ -743,12 +745,11 @@ flowchart LR
 | `9f712b0` | 2026-08-31 | Majo Cuprik | fix: spevniť kontrolu udalostí a browser chýb |
 | `0772ce3` | 2026-08-31 | Majo Cuprik | docs: zaznamenať finálny commit Task 7 |
 | `8b6a8c0` | 2026-08-31 | Majo Cuprik | fix: dokončiť responzívny a offline OKF prototyp |
-| `b8ba5ab` | 2026-08-31 | Majo Cuprik | fix: spevniť gate a vrstvy dashboardu |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-01 12:23 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-01 12:27 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
