@@ -1,0 +1,13 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",          "title": "01 · Architektúra",        "x": 0,    "y": 0,   "w": 1200, "h": 760 },
+    { "file": "NovySpis.dc.html",      "title": "02 · Dialóg Nový spis",     "x": 1300, "y": 0,   "w": 1000, "h": 760 },
+    { "file": "NastaveniaOKF.dc.html", "title": "03 · Nastavenia → Spisy",   "x": 0,    "y": 900, "w": 1200, "h": 760 },
+    { "file": "SkillCLI.dc.html",      "title": "04 · Skill a CLI",          "x": 1300, "y": 900, "w": 1200, "h": 760 }
+  ],
+  "annotations": [
+    { "id": "citaj-poradie", "x": 0, "y": -150, "w": 420, "text": "Čítaj v poradí 01 → 04.\n01 odpovedá na „ako to sedí na opencode“ a kde je OKF.\n02 a 03 sú vstupy v UI. 04 je to, čo beží pod nimi.\nZónové odznaky (zelená / žltá / červená) hovoria, čo sa dotkne upstreamu." },
+    { "id": "prehlad-neskor", "x": 1300, "y": -110, "w": 380, "text": "Prehľad podľa laptop mockupu ide ako ďalší canvas — potrebuje najprv reálne dáta z OKF, inak by v ňom boli zase vymyslené čísla." }
+  ],
+  "launch": { "view": "canvas" }
+}

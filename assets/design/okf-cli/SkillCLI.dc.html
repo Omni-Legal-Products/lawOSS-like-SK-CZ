@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #0a0e14; color: #e9e4da; font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 13.5px; line-height: 1.5; }
+    a { color: #c9a24a; } a:hover { color: #e3c46e; }
+    .mono { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; }
+    .sc { font-variant-caps: all-small-caps; letter-spacing: 0.09em; color: #75808c; font-weight: 500; font-size: 12.5px; }
+    .step { border: 1px solid rgba(233,228,218,0.14); border-radius: 3px; background: #10171f; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; flex: 1 1 0; min-width: 0; }
+    .step b { font-weight: 500; }
+    .step small { font-size: 12px; color: #a8b0ba; }
+    .arrow { display: flex; align-items: center; color: #75808c; flex: 0 0 auto; }
+  </style>
+</helmet>
+<div style="width: 1200px; height: 760px; box-sizing: border-box; padding: 44px 48px; background: #0a0e14; display: flex; flex-direction: column; gap: 22px;">
+
+  <div style="display: flex; flex-direction: column; gap: 6px;">
+    <span class="sc">04 · Skill a CLI</span>
+    <div style="font-size: 26px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.15;">To isté, čo dialóg — ale z chatu a pre existujúce priečinky.</div>
+    <div style="color: #a8b0ba; max-width: 86ch;">Dialóg je iba pohodlný vstup. Pod ním je skill, ktorý opencode číta z priečinka workspace, a CLI, ktoré robí skutočnú prácu. Vďaka tomu vie to isté spraviť aj Claude Code alebo Codex, keď otvoria priečinok mimo LAWOSS.</div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 22px; flex: 1 1 auto; min-height: 0;">
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <span class="sc">V session — čo vidí advokát</span>
+      <div style="border: 1px solid rgba(233,228,218,0.14); border-radius: 3px; background: #10171f; display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0;">
+        <div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; flex: 1 1 auto;">
+          <div style="align-self: flex-end; max-width: 78%; padding: 8px 12px; border-radius: 8px; background: rgba(233,228,218,0.07); font-size: 13.5px;">Priečinok „Dodávateľ XY“ mám už dlho. Sprav z neho spis.</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; max-width: 92%;">
+            <div style="font-size: 12.5px; color: #75808c; display: flex; align-items: center; gap: 6px;"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#c9a24a" stroke-width="1.5"><path d="M6 1v3M6 8v3M1 6h3M8 6h3"/></svg>Používam skill /novy-spis · režim retrofit</div>
+            <div style="font-size: 13.5px;">Prečítal som priečinok iba na čítanie. Nie je v ňom AGENTS.md ani okf.yaml, dokumenty sú v podpriečinkoch bez jednotnej štruktúry. Toto je plán — nič som nezmenil:</div>
+            <pre class="mono" style="margin: 0; padding: 10px 12px; background: #0c1219; border: 1px solid rgba(233,228,218,0.08); border-radius: 3px; font-size: 12px; line-height: 1.55; color: #a8b0ba; white-space: pre;">+ AGENTS.md            (nový)
++ CLAUDE.md            (mirror)
++ okf.yaml             (nový)
++ matter.md            (z názvu priečinka, potvrdiť)
++ _STATUS.md           (projekcia, generovaná)
++ memory/              (prázdny)
+= existujúce podpriečinky      — bez zmeny</pre>
+            <div style="display: flex; gap: 8px;">
+              <div style="height: 30px; padding: 0 14px; display: flex; align-items: center; background: #e9e4da; color: #0a0e14; border-radius: 8px; font-weight: 500; font-size: 13px;">Použiť plán</div>
+              <div style="height: 30px; padding: 0 14px; display: flex; align-items: center; border: 1px solid rgba(233,228,218,0.14); border-radius: 8px; color: #a8b0ba; font-size: 13px;">Upraviť</div>
+              <div style="height: 30px; padding: 0 14px; display: flex; align-items: center; color: #75808c; font-size: 13px;">Zahodiť</div>
+            </div>
+          </div>
+        </div>
+        <div style="border-top: 1px solid rgba(233,228,218,0.08); padding: 10px 14px; display: flex; align-items: center; gap: 10px; color: #5c6875; font-size: 13px;">
+          <span>Describe your task…</span>
+          <span style="margin-left: auto; font-size: 11.5px; color: #75808c;">Run task</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <span class="sc">Pod kapotou — čo beží</span>
+
+      <div style="border: 1px solid rgba(233,228,218,0.14); border-radius: 3px; background: #10171f; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;"><b style="font-weight: 500;">Skill</b><span class="mono" style="font-size: 11px; color: #8dbb8f;">.opencode/skills/novy-spis/SKILL.md</span></div>
+        <div style="font-size: 12.5px; color: #a8b0ba;">Text pre agenta: kedy sa použiť, čo je pravda, kam smie písať, ktoré kroky sú brány. Nič neimplementuje — volá CLI.</div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <div class="step"><b>detect</b><small>čo v priečinku je</small></div>
+        <div class="arrow"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 6h11M8 2l4 4-4 4"/></svg></div>
+        <div class="step"><b>plan</b><small>presný diff</small></div>
+        <div class="arrow"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 6h11M8 2l4 4-4 4"/></svg></div>
+        <div class="step" style="border-color: rgba(201,162,74,0.55); background: rgba(201,162,74,0.08);"><b style="color: #c9a24a;">brána</b><small>advokát potvrdí</small></div>
+        <div class="arrow"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 6h11M8 2l4 4-4 4"/></svg></div>
+        <div class="step"><b>apply</b><small>iba chýbajúce</small></div>
+        <div class="arrow"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 6h11M8 2l4 4-4 4"/></svg></div>
+        <div class="step"><b>validate</b><small>report</small></div>
+      </div>
+
+      <div style="border: 1px solid rgba(233,228,218,0.14); border-radius: 3px; background: #10171f; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;"><b style="font-weight: 500;">CLI</b><span class="mono" style="font-size: 11px; color: #8dbb8f;">okf · prenosné, bez appky</span></div>
+        <div style="font-size: 12.5px; color: #a8b0ba;">Jedna implementácia schémy, validácie a zápisových pravidiel. LAWOSS ju neduplikuje — server ju v Fáze B iba obalí typovanými nástrojmi.</div>
+      </div>
+
+      <div style="border: 1px solid rgba(201,162,74,0.55); border-radius: 3px; background: rgba(201,162,74,0.12); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; flex: 1 1 auto;">
+        <b style="font-weight: 500;">Prečo to prežije sync s upstreamom</b>
+        <div style="font-size: 12.5px; color: #a8b0ba;">Skill je súbor v priečinku workspace. CLI je samostatný balík. Dialóg a tab sú v <span class="mono">apps/app/src/lawoss/</span>. Upstream z toho nevlastní nič — merge nemá s čím kolidovať.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
