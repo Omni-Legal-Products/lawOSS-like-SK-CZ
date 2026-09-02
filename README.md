@@ -386,10 +386,10 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 | [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
 | [`2026-08-15-odpovedi-VR-Q01-Q25.md`](planning/2026-08-15-odpovedi-VR-Q01-Q25.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
 | [`2026-08-21-paper-cuts-a-rychle-vylepsenia.md`](planning/2026-08-21-paper-cuts-a-rychle-vylepsenia.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
-| [`backlog.md`](planning/backlog.md) | `███░░░░░░░░░░░░░░░░░` | 10/71 (14 %) |
+| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 10/81 (12 %) |
 | [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
-| [`roadmap.md`](planning/roadmap.md) | `███████░░░░░░░░░░░░░` | 17/46 (37 %) |
+| [`roadmap.md`](planning/roadmap.md) | `████████░░░░░░░░░░░░` | 22/52 (42 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -515,6 +515,7 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-17-stanoviska-timu-Q01-Q25.md
 │   ├── 2026-08-21-paper-cuts-a-rychle-vylepsenia.md
 │   ├── 2026-08-27-podklad-call-kickoff-vyvoja.md
+│   ├── 2026-09-02-zapis-sedenie-fork-okf-faza-a.md
 │   ├── backlog.md
 │   ├── cz-datove-zdroje.md
 │   ├── mcp-repository-inventory.md
@@ -703,23 +704,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**356 commitov** · **228 súborov**
+**358 commitov** · **229 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `b5993c1` | 2026-09-02 | Majo Cuprik | chore: aktualizácia projektových súborov po sedení 2. 9. — zápis, roadmapa (sync, Experimenty, OKF Fáza A, updater), backlog forku |
+| `425da31` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `a90cb6c` | 2026-08-28 | Majo Cuprik | docs: teaser web lawoss.app a oprava zastaranej typografie v Značke |
 | `829cfb3` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `5f89417` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 | `85b890d` | 2026-08-28 | Majo Cuprik | docs: design-system.md (živý, hranaté tokeny, wordmark z loga 11–14, OKF dashboard mapovanie) + predpríprava OKF zjednotenia (mc-novy-spis) a zadanie onboarding/light pre MF |
 | `175877d` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `875f2bd` | 2026-08-28 | Majo Cuprik | Merge pull request #62 from Omni-Legal-Products/design/redesign-plan |
-| `e7baaa2` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `13a2cd6` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 21:53 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-02 12:07 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
