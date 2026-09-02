@@ -14,6 +14,19 @@ Dozreté položky majú vlastnú špecifikáciu v [specs/](../specs/).
 - [ ] 🔍 **Prijatie veci + subjektový research** - conflict check, AML, sankcie, diskvalifikácie a registre cez MCP
 - [ ] 🧩 **Základné skills pre prácu so spisom** - zápis, čerstvosť, audit a pravidelná reconciliácia
 
+## 🧪 Fork — po sedení 2. 9. (viď [zápis](2026-09-02-zapis-sedenie-fork-okf-faza-a.md))
+
+- [ ] 🗂️ **OKF nastavenia v natívnom Settings** — tab *Spisy (OKF)*: predvolené OKF pri založení, jurisdikcia, koreň klientov, brány *(MČ; návrh v `assets/design/okf-cli/NastaveniaOKF.png`)*
+- [ ] ➕ **Nový spis na upstream „Add folder“** — jeden 🟡 riadok, vzor ako uvítacia obrazovka *(MČ)*
+- [ ] 🧪 **Test Fázy A naživo** na testovacom workspace — inštalácia skillu, session s požiadavkou, `okf validate` *(tím)*
+- [ ] 🖥️ **Fáza B — server adaptér** s typovanými bránami; presunie beh CLI zo stroja advokáta na server *(po schválení kontraktu OKF 1.0)*
+- [ ] 🪟 **Windows**: `okf` CLI je TypeScript práve kvôli tomu, ale beh cez `node`/`bun` v zabalenej appke nie je garantovaný — riešiť vo Fáze B alebo sidecarom
+- [ ] 🌐 **i18n stránok `lawoss/**`** — texty sú natvrdo po slovensky; keď MF dorobí onboarding, previesť do `sk.ts` / `cs.ts`
+- [ ] 📋 **PATCHES.md diera** — `i18n/index.ts`, `app-root.tsx`, `scripts/i18n-audit.mjs`, druhé vloženie v `app-sidebar.tsx`
+- [ ] 🔗 **`lawoss.app/update`** — presmerovanie na release assets; kým nie sú releasy, netreba
+- [ ] 📊 **Prehľad podľa laptop mockupu** — až s reálnymi dátami z OKF, inak zase fiktívne čísla
+- [ ] 📜 **AGENTS.md forku vs. prax syncu** — tagy vs. `upstream/dev`; rozhodnúť a zapísať
+
 ## Kandidáti na v1 (majú spec)
 
 - [ ] 📁 **OKF — operačný systém advokátskej praxe** → [spec 0002](../specs/0002-okf-operacny-system-praxe.md) *(vysoká priorita, jadro odlíšenia)*

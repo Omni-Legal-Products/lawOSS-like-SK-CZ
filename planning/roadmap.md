@@ -29,11 +29,17 @@
 ## Fáza 1 — Fork & MVP (Q4 2026)
 
 - [x] **Založiť fork** [Omni-Legal-Products/lawoss](https://github.com/Omni-Legal-Products/lawoss) z [eigenweltlabs/legalwork](https://github.com/eigenweltlabs/legalwork)
-- [ ] Nastaviť `upstream` remote a rytmus synchronizácie pri ich releasoch
-- [ ] Založiť `PATCHES.md` — evidencia každého zásahu do upstream súborov
-- [ ] Rebranding: `apps/desktop/electron-builder.yml` (`appId`, `productName`, URL schéma) + runtime identifikátory v `apps/desktop/electron/main.mjs` + ikona *(overené 2026-08-12: tri miesta; zmena `appId` mení macOS bundle identitu — keychain, Launchpad, TCC)*
+- [x] **Nastaviť `upstream` remote a synchronizáciu** — sync PR #16 (27. 8.) a #25 (1. 9.), `dev` je 0 commitov za upstreamom *(rytmus: z `upstream/dev` na dátumovej vetve; AGENTS.md forku hovorí o release tagoch — zosúladiť)*
+- [x] Založiť `PATCHES.md` — evidencia každého zásahu do upstream súborov *(existuje; 3 súbory bez záznamu, viď [zápis 2. 9.](2026-09-02-zapis-sedenie-fork-okf-faza-a.md))*
+- [ ] Rebranding: `productName`, ikony, wordmark a znak z lawoss.app **hotové**; `appId` zámerne ostáva `com.eigenweltlabs.legalwork` (kontinuita keychain/user-data — zmena len s ADR) → `apps/desktop/electron-builder.yml` (`appId`, `productName`, URL schéma) + runtime identifikátory v `apps/desktop/electron/main.mjs` + ikona *(overené 2026-08-12: tri miesta; zmena `appId` mení macOS bundle identitu — keychain, Launchpad, TCC)*
 - [ ] Doplniť podpisové tajomstvá do GitHub Secrets forku
 - [ ] **SK + CZ lokalizácia rozhrania** — ani jeden z 12 podporovaných jazykov; čistý príspevok do upstreamu
+- [x] **Experimenty v sidebare** — jediná LAWOSS položka (menu), všetko rozpracované pod ňou, zvyšok appky vanilla → lawoss PR #26 · #28 · #33
+- [x] **OKF Fáza A** — `okf` CLI (`lawoss/okf`), skill `/novy-spis`, stránka *Nový spis (OKF)* → lawoss PR #30, [spec 0013](../specs/0013-okf-cli-a-profily-veci.md)
+- [ ] **OKF do natívnych Settings a na „Add folder“** *(MČ)*; test naživo *(tím)*
+- [ ] **OKF Fáza B** — server adaptér s typovanými bránami (jeden 🟡 mount v `server.ts`)
+- [x] Updater forku presmerovaný z upstream feedu na `lawoss.app/update` + GitHub releases forku → lawoss PR #32
+- [ ] Zriadiť `lawoss.app/update` (presmerovanie na release assets, ako to má upstream na svojej doméne) — až pri prvom release
 - [ ] Prvý SK MCP server integrovaný *(registrácia v configu, bez zásahu do jadra)*
 - [ ] UI/CLI prepínač *(VŘ)*
 - [ ] **macOS ako hlavná platforma** - natívne integrácie viesť bez požiadavky na úplnú paritu s Windows *(MČ · MF · VŘ)*
