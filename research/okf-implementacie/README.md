@@ -8,8 +8,8 @@
 | Priečinok | Čo | Stav |
 |---|---|---|
 | [`mc-novy-spis/`](mc-novy-spis/) | implementácia MČ — skill `novy-spis` (OKF v0.1): profily A/B/C, riadiace súbory, ORSR/RPO audit, retrofit, validácia (`okf-validate.sh`, `okf-freshness.sh`), PROTOKOL ZÁPISU | ✅ nahraté 29. 8. |
-| `vr-pamat/` | implementácia VŘ — jeho pamäťový systém | ⏳ nahrá VŘ |
-| `zjednotenie.md` | výstup: porovnanie + zjednotený kontrakt | ⏳ vznikne spolu |
+| [`vr-pamat/`](vr-pamat/) | implementácia VŘ — typované záznamy, index, oddelená vrstva poučení; prevádzkové čísla a doložené medzery | ✅ nahraté 29. 8. |
+| [`zjednotenie.md`](zjednotenie.md) | výstup: porovnanie po vrstvách + zjednotený kontrakt + 5 otvorených bodov na call 1. 9. | 📝 návrh 29. 8. — [PR #24 vo forku](https://github.com/Omni-Legal-Products/lawoss/pull/24) |
 
 ## Ako budeme zjednocovať (návrh postupu)
 
