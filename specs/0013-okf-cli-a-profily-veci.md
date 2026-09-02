@@ -1,6 +1,6 @@
 # Spec 0013: OKF CLI, Fáza A v LAWOSS a profily vecí
 
-- **Stav:** návrh
+- **Stav:** návrh · Fáza A implementovaná vo forku (PR #30)
 - **Navrhol:** Marián Čuprík (MČ) · 2026-09-02 · *spracoval Claude Code na pokyn MČ*
 - **Nadväzuje na:** [spec 0002 OKF](0002-okf-operacny-system-praxe.md) · [OKF 1.0 konsolidácia (MČ + VŘ + MF, call 1. 9.)](../docs/okf-konsolidacia.html) · [one-click onboarding (MF, 28. 8.)](../docs/superpowers/specs/2026-08-28-lawoss-one-click-onboarding-design.md)
 - **Grafické návrhy:** [canvas na preklikanie](https://claude.ai/code/artifact/a761284b-d9c9-4058-9f96-9bb1eaf70597) · zdroje v [`assets/design/okf-cli/`](../assets/design/okf-cli/)
@@ -131,6 +131,13 @@ Jeden klient s miešanou prácou už ide: `Prípady/` má každý svoj typ, a k 
 | profily | `corporate` + `registration` ako prvé — najčastejšia nesporová práca, MCP hotové | IP, HR, insolvencie až keď budú treba |
 
 Nestavať šesť profilov naraz.
+
+## Čo sa zistilo pri implementácii (doplnené 2026-09-02 večer)
+
+1. **Profily nie sú nový nápad — sú zovšeobecnením toho, čo MČ už má.** Skill `novy-spis` (v0.4.0) má Profil A (klient → spis), Profil B (projekt) a **Profil C — korporátny klient** („firma = jeden spis s tematickým členením 1–6, nie ploché kauzy“), plus C-Z pre zahraničnú firmu. `matter.type` + `matter.mode` z §6 je ten istý inštinkt, zapísaný do schémy namiesto do skillu.
+2. **Existujú dve generácie OKF a treba ich rozlišovať.** *OKF v0.1* je formát (Google Open Knowledge Format: Markdown + YAML frontmatter s povinným `type:`, rezervovaný `index.md`) — na ňom stojí skill aj jeho `scripts/`. *OKF 1.0* z konsolidácie 1. 9. je kancelársky kontrakt nad tým (`okf.yaml`, `client.md`, `memory/` records, `evidence/registry/`). Kontrakt 1.0 tím ešte neschválil, preto CLI vo Fáze A stojí na v0.1 — rozhranie piatich príkazov ostane, vnútro sa vymení, keď 1.0 sadne.
+3. **`scripts/` skillu sú de facto CLI v0** (1 097 riadkov bash, s testami). Nový `okf` ich nekopíruje, ale prepisuje do TypeScriptu s nulovými závislosťami — jeden dôvod je Windows (fork ho buildí), druhý beh v prehliadači (náhľad v appke používa to isté jadro).
+4. **Fáza A je vo forku** — [lawoss PR #30](https://github.com/Omni-Legal-Products/lawoss/pull/30): `lawoss/okf` (CLI, 14 testov vrátane pravidla prenositeľnosti), `lawoss/skills/novy-spis`, stránka *Nový spis (OKF)* pod Experimentmi. Nula zásahov do upstream súborov.
 
 ## Otvorené otázky
 
