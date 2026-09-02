@@ -16,17 +16,23 @@
 
 Platia pre **každú** úlohu, netreba ich opakovať:
 
-- **Pracovný adresár:** `lawoss/okf/` vo forku `Omni-Legal-Products/lawoss`, vetva `feat/okf-pamat`, worktree `~/Projects/lawoss/_worktrees/feat-okf-pamat`.
+- **Pracovný adresár:** `lawoss/okf-pamat/` vo forku `Omni-Legal-Products/lawoss`, vetva `feat/okf-pamat`, worktree `~/Projects/lawoss/_worktrees/feat-okf-pamat`.
 - **Testy:** `pnpm test` = `node --test 'tests/**/*.test.ts'`. Pred commitom musí byť **0 fail** a `pnpm typecheck` exit 0.
 - **Inštalácia:** `pnpm install --ignore-workspace --frozen-lockfile`. Nikdy `npm` ani `yarn`.
 - **TDD bez výnimky:** test najprv, spusti ho, over že padá zo správneho dôvodu, až potom implementácia.
-- **Zóny:** píš iba do `lawoss/okf/**` a `.github/workflows/ci-okf-pamat.yml`. Zmena akéhokoľvek upstream súboru = riadok do `PATCHES.md` v tom istom PR. Nové LAWOSS súbory záznam nepotrebujú.
+- **Zóny:** píš iba do `lawoss/okf-pamat/**` a `.github/workflows/ci-okf-pamat.yml`. Zmena akéhokoľvek upstream súboru = riadok do `PATCHES.md` v tom istom PR. Nové LAWOSS súbory záznam nepotrebujú.
 - **Commit správy po slovensky**, formát `typ: čo` (`feat:`, `fix:`, `docs:`, `test:`, `chore:`).
 - **Žiadne klientske dáta** v testoch ani v commitoch — fixture sú vymyslené.
 - **Cudziu implementáciu nemeníš.** `research/okf-implementacie/mc-novy-spis/` je referenčný snapshot MČ; pripomienky patria do `zjednotenie.md`, nie do jeho súborov.
 - **Históriu neprepisuj** (žiadne vynútené pretlačenie vetvy) a nikdy nepíš priamo do `dev` ani do `main`.
 
 ---
+
+> [!WARNING]
+> **Cesty sa 2. 9. 2026 zmenili.** Jadro sa presunulo z `lawoss/okf/` do
+> `lawoss/okf-pamat/`, lebo na `dev` pristála Fáza A od MČ a založila vlastné
+> `lawoss/okf/`. Všetky cesty v tomto pláne sú už prepísané. **`lawoss/okf/` je
+> odteraz cudzí adresár — nesahaj doň.**
 
 ## Odkiaľ úlohy pochádzajú
 
@@ -64,8 +70,9 @@ Po čiastočnom rozhodnutí z 1. 9. (O6, viď nižšie) už brána **neblokuje p
 | 4 (`Approval`), 6 (drobnosti), 7 (súbeh) | ✅ **odblokované** — na O1 ani O6 nezávisia |
 | 8 (angličtina), 10 (migrácia), 17–21 (fáza 3b) | ✅ **odblokované** rozhodnutím O6 |
 | 5 (`init`) | ⊘ **zrušená** rozhodnutím O6 |
-| 11, 12, 13 (drift, odkazy, SSOT lehôt) | ⛔ **stále blokované** — závisia od O1, ktoré rozhodnuté nie je |
-| 14 (konfigurovateľné prahy) | ⛔ **stále blokované** — závisí od O7 |
+| 11, 12, 13 (drift, odkazy, SSOT lehôt) | 🟡 **O1 schválené v princípe, podmienky nie** — dorozhodnúť písomne pred 7. 9. |
+| 14 (konfigurovateľné prahy) | ⛔ **blokované** — O7 neprerokované; navyše závisí od osudu kontroly únikov (bod c) |
+| 3, 4 (brána úniku, `Approval`) | ⚠️ **hotové, ale dotknuté zamietnutím D6/D7** — rozbor nižšie |
 
 Na hlasovanie idú body O1–O7 podľa [`stanovisko-mc.md`](../../../research/okf-implementacie/stanovisko-mc.md). Pre kód sú rozhodujúce dva:
 
@@ -75,12 +82,93 @@ Na hlasovanie idú body O1–O7 podľa [`stanovisko-mc.md`](../../../research/ok
 **Po calle zapíš rozhodnutie sem** (aby ho ďalší agent nemusel dohľadávať):
 
 ```
-D1 rozhodnuté dňa: ____________
-O1: ÁNO / NIE / s podmienkami: ____________
-O6 kanonická angličtina: ✅ ÁNO — stanovisko VŘ 1. 9. 2026, zhoda s návrhom MČ
-O7 konfigurovateľné prahy: ÁNO / NIE
-Ostatné (O2–O5): ____________
+D1 rozhodnuté dňa: 2026-09-01
+O1: ÁNO v princípe — render lehôt a chronológie v _STATUS.md schválený;
+    podmienky MČ (markery do existujúcich sekcií, oprava maskovania driftu,
+    SSOT lehôt, markdown odkazy) sa na calle neprerokovali → dorozhodnúť písomne
+O6 kanonická angličtina: ÁNO — odblokuje úlohu 8, trieda chýb N1 zaniká
+O7 konfigurovateľné prahy: neprerokované na calle → otvorené
+O2 migrácia: neprerokované priamo; pilot = akčný bod „konsolidácia reálneho spisu"
+O3: AML u klienta bez námietok; _kancelaria/ neprerokované
+O4: neprerokované (dodatok zmena: nezaznel)
+O5: neprerokované
+D8 / PR #24: na calle preskočené → vyriešené technicky 2. 9., viď nižšie
+Mandát: testovacie skilly (varianty 1/2/3) + technický spec PARALELNE
 ```
+
+> [!IMPORTANT]
+> Zdroj: [komentár MČ k tomuto PR](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/66#issuecomment-5493899679) z 1. 9. 2026 a [zápis z callu](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/blob/spec/okf-1-konsolidacia/meetings/2026-09-01-zapis-okf-architektura.md). Ďalší call **7. 9. 2026 o 10:00**.
+
+### ⚠️ Zamietnutie D6/D7 — rozbor po úlohách (VŘ, 2. 9. 2026)
+
+MČ na calle zamietol `plan → validate → approve → apply` aj risk-based human
+gates: **úpravy robí človek v markdownoch alebo agent na pokyn.** V komentári
+označil za dotknuté **úlohy 3, 4, 11 a časť 14**. Zamietnutie prijímam. Po
+rozbore každej z nich sa však dopad nekryje s tým výpočtom — rozdiel je vecný,
+preto ho píšem sem a nie potichu do kódu.
+
+**Rozlíšenie, na ktorom to stojí:** approval ceremónia odpovedá na otázku *kto
+to odklepne*. Obsahová kontrola odpovedá na otázku *čo v tom súbore je*.
+Zamietnutie mierilo na prvé. Druhé sa mu podobá len tvarom — oboje vie povedať
+„nie", ale z úplne iného dôvodu.
+
+| Úloha | Čo naozaj robí | Dopad zamietnutia | Návrh |
+|---|---|---|---|
+| **3** — brána úniku L2→L3 v ceste zápisu | odmietne zapísať **prameň**, ktorý nesie IČO alebo rodné číslo klienta | **žiadny** — nikoho sa nepýta na súhlas, pozerá sa na obsah | **ponechať** (viď námietka) |
+| **4** — CLI `write` a audit riadok | `--approve-as` pri každom zápise do L1/L3 | **áno — a už je odstránený**, [PR #31](https://github.com/Omni-Legal-Products/lawoss/pull/31) ho ruší trvalým poverením | ceremónia preč, **audit riadok ponechať** |
+| **11** — maskovanie driftu cez `sync` | `sync --apply` sa dotkne `_STATUS.md`, freshness zhasne na zelenú | **žiadny** — je to o `mtime`, o schvaľovaní tam nie je nič | ponechať; blokuje ju **O1**, nie D6/D7 |
+| **14** — konfigurovateľné prahy | prahy do `_kancelaria/okf.config` | **odvodený** — stojí a padá s osudom kontroly únikov | rozhodnúť **až po bode c** |
+
+**Úloha 4 je zaujímavá tým, že zamietnutie D6/D7 už bolo naplnené skôr, než
+padlo.** PR #31 zavádza **trvalé poverenie**: advokát raz písomne zapíše do
+`_kancelaria/okf.config`, čo smie agent zapisovať sám, a potvrdzovanie
+jednotlivých zápisov zmizne. To je doslova „agent na pokyn" — pokyn je udelený
+vopred a je dohľadateľný. **#31 teda ide rovnakým smerom ako zamietnutie, nie
+proti nemu.** Čo z úlohy 4 zostáva, nie je ceremónia, ale **záznam**: riadok
+histórie s menom, dôvodom a dátumom. Ten neschvaľuje nič — dokladá, kto zápis
+kryl. Spisová evidencia, nie brána.
+
+#### Námietka k bodu c — kontrola `L3_LEAK` má zostať
+
+MČ nechal otvorené, či sa zamietnutie vzťahuje aj na kontrolu úniku. **Namietam,
+aby sa nevzťahovalo**, z týchto dôvodov:
+
+1. **Nie je to human gate.** Nikoho sa nepýta, nič nepredkladá na odklep,
+   nemá stav „čaká na schválenie". Je to to isté ako odmietnuť zápis záznamu
+   bez povinného poľa — kontrola tvaru dát, len s vyššou cenou omylu.
+2. **Chráni mlčanlivosť, nie proces.** V ČR **[§ 21 zák. č. 85/1996 Sb.](https://krajta.slv.cz/1996/85/par_21)**
+   (overené 2. 9. 2026 v plnom znení), na SK ustanovenie, ktoré MČ uvádza ako
+   § 23 — slovenskú úpravu som neoveroval, doplní MČ. Povinnosť mlčanlivosti
+   nie je pracovný postup, ktorý sa dá zjednodušiť; je to zákonná povinnosť
+   advokáta a porušenie je kárne postihnuteľné.
+3. **Nedopadá na prácu so spisom.** Kontrola beží **iba nad vrstvou L3**, teda
+   nad tým, čo je určené na zdieľanie mimo spis. V L2, kde klientske údaje
+   patria a majú byť úplné, nespúšťa nič — doložené testom
+   `zapis do L2 sa kontrolou uniku nezdrzuje`.
+4. **Už je kalibrovaná presne tak, ako O7 žiadalo.** Identifikátor (IČO, dátum
+   narodenia) = chyba a blokuje. Celé meno alebo firma = chyba. **Samotné krátke
+   priezvisko = iba varovanie, nebráni ničomu.** Falošný poplach a únik nemajú
+   rovnakú cenu a schéma to už rozlišuje.
+5. **Cena chyby je asymetrická.** Zbytočne odmietnutý prameň stojí jedno
+   preformulovanie vety. Rodné číslo klienta v zdieľanej vrstve sa nedá vziať
+   späť.
+
+Ak MČ trvá na zrušení, je to jeho rozhodnutie o jeho spec 0002 a rešpektujem
+ho — ale potom nech **`zjednotenie.md` prestane tvrdiť štyri brány** a nech sa
+riziko zapíše tam, kde ho uvidí ďalší advokát, nie iba do commit správy.
+
+#### D8 / PR #24 — vyriešené technicky, rozhodnutie zostáva
+
+Bod sa na calle preskočil. **2. 9. sa medzitým vyriešil sám:** Fáza A od MČ
+(`84256f6`) založila vlastné `lawoss/okf-pamat/` a PR #24 spadol do konfliktu. Ukázalo
+sa, že nejde o dve konkurenčné implementácie — `@lawoss/okf` (binárka `okf`)
+**zakladá** priečinok spisu, `@lawoss/okf-pamat` (binárka `okf-memory`) **vedie
+pamäť** vnútri neho. Kolidovali tri cesty, prekryv príkazov je jediné slovo
+`validate` a každý validuje niečo iné.
+
+Jadro presunuté do `lawoss/okf-pamat/`, **bez jedinej zmeny kódu**. Oba PR sú
+`mergeable: true`, CI zelené. Na 7. 9. tak zostáva už len otázka, či sa balíčky
+majú dlhodobo zliať do jedného — a tá nič neblokuje.
 
 ### ✅ O6 — rozhodnuté: jadro stojí na anglických kľúčoch
 
@@ -172,8 +260,8 @@ Najzávažnejší nález. `emit()` zapíše `["Doprava, s.r.o."]`, `parseScalar(
 Overené 1. 9. 2026: dva subjekty sa pri prvom read-modify-write cykle zmenia na štyri zmrzačené reťazce.
 
 **Files:**
-- Modify: `lawoss/okf/src/record.ts` (funkcia `parseScalar`, pridať `splitList`)
-- Test: `lawoss/okf/tests/record-lists.test.ts` (nový)
+- Modify: `lawoss/okf-pamat/src/record.ts` (funkcia `parseScalar`, pridať `splitList`)
+- Test: `lawoss/okf-pamat/tests/record-lists.test.ts` (nový)
 
 **Interfaces:**
 - Consumes: nič nové
@@ -181,7 +269,7 @@ Overené 1. 9. 2026: dva subjekty sa pri prvom read-modify-write cykle zmenia na
 
 - [x] **Krok 1: Napíš padajúci test**
 
-Vytvor `lawoss/okf/tests/record-lists.test.ts`:
+Vytvor `lawoss/okf-pamat/tests/record-lists.test.ts`:
 
 ```typescript
 import { test } from "node:test";
@@ -270,7 +358,7 @@ Očakávané: padnú testy s čiarkou. Prvý ukáže `["\"Doprava", "s.r.o.\"", 
 
 - [x] **Krok 3: Implementuj rozdeľovanie, ktoré rešpektuje úvodzovky**
 
-V `lawoss/okf/src/record.ts` pridaj nad `parseScalar`:
+V `lawoss/okf-pamat/src/record.ts` pridaj nad `parseScalar`:
 
 ```typescript
 /**
@@ -340,7 +428,7 @@ Očakávané: všetko zelené, 0 fail, typecheck exit 0.
 - [x] **Krok 5: Commit**
 
 ```bash
-git add lawoss/okf/src/record.ts lawoss/okf/tests/record-lists.test.ts
+git add lawoss/okf-pamat/src/record.ts lawoss/okf-pamat/tests/record-lists.test.ts
 git commit -m "fix: čiarka v zoznamovom poli už nerozbíja záznam (N6)"
 ```
 
@@ -363,17 +451,17 @@ Overené 1. 9. 2026 na šablóne so sekciami `## 3. Lehoty` a `## 4. Chronológi
 MČ žiada (podmienka 1 k O1): keď render nájde nadpis Lehoty/Chronológia **bez** markerov, nesmie ticho pripojiť duplikát — nech skončí chybou s odkazom na retrofit.
 
 **Files:**
-- Modify: `lawoss/okf/src/render.ts`
-- Modify: `lawoss/okf/src/cli.ts` (zachytiť novú výnimku a vypísať ju čitateľne)
-- Modify: `lawoss/okf/tests/render.test.ts` (existujúci test kodifikuje staré správanie)
-- Test: `lawoss/okf/tests/render-conflict.test.ts` (nový)
+- Modify: `lawoss/okf-pamat/src/render.ts`
+- Modify: `lawoss/okf-pamat/src/cli.ts` (zachytiť novú výnimku a vypísať ju čitateľne)
+- Modify: `lawoss/okf-pamat/tests/render.test.ts` (existujúci test kodifikuje staré správanie)
+- Test: `lawoss/okf-pamat/tests/render-conflict.test.ts` (nový)
 
 **Interfaces:**
 - Produces: `export class RenderConflictError extends Error` z `render.ts`, re-exportovaná z `index.ts`. `renderStatus(existing, records, j)` ju vyhodí, keď existuje nadpis bloku bez markerov.
 
 - [x] **Krok 1: Napíš padajúci test**
 
-Vytvor `lawoss/okf/tests/render-conflict.test.ts`:
+Vytvor `lawoss/okf-pamat/tests/render-conflict.test.ts`:
 
 ```typescript
 import { test } from "node:test";
@@ -465,7 +553,7 @@ Očakávané: import `RenderConflictError` zlyhá, takže padne celý súbor. Po
 
 - [x] **Krok 3: Implementuj**
 
-V `lawoss/okf/src/render.ts` pridaj nad `renderStatus`:
+V `lawoss/okf-pamat/src/render.ts` pridaj nad `renderStatus`:
 
 ```typescript
 export class RenderConflictError extends Error {}
@@ -522,9 +610,9 @@ export function renderStatus(
 
 - [x] **Krok 4: Zachyť výnimku v CLI a uprav starý test**
 
-V `lawoss/okf/src/cli.ts` doplň import `RenderConflictError` z `./render.ts` a obaľ telo vetvy `case "sync"` do `try { … } catch (e) { if (e instanceof RenderConflictError) return { code: 1, out: \`KONFLIKT: ${e.message}\` }; throw e; }`.
+V `lawoss/okf-pamat/src/cli.ts` doplň import `RenderConflictError` z `./render.ts` a obaľ telo vetvy `case "sync"` do `try { … } catch (e) { if (e instanceof RenderConflictError) return { code: 1, out: \`KONFLIKT: ${e.message}\` }; throw e; }`.
 
-V `lawoss/okf/tests/render.test.ts` uprav test „chybajuci blok sa doplni aj s markermi" — má očakávať doplnenie iba blokov `deadlines` a `timeline`. Pridaj k nemu komentár, že `records` je odteraz marker-only podľa podmienky MČ k O1.
+V `lawoss/okf-pamat/tests/render.test.ts` uprav test „chybajuci blok sa doplni aj s markermi" — má očakávať doplnenie iba blokov `deadlines` a `timeline`. Pridaj k nemu komentár, že `records` je odteraz marker-only podľa podmienky MČ k O1.
 
 - [x] **Krok 5: Spusti testy**
 
@@ -537,7 +625,7 @@ Očakávané: 0 fail, typecheck exit 0.
 - [x] **Krok 6: Commit**
 
 ```bash
-git add lawoss/okf/src/render.ts lawoss/okf/src/cli.ts lawoss/okf/tests/
+git add lawoss/okf-pamat/src/render.ts lawoss/okf-pamat/src/cli.ts lawoss/okf-pamat/tests/
 git commit -m "fix: render nesmie pripájať duplicitné sekcie do _STATUS.md (N2)"
 ```
 
@@ -558,16 +646,16 @@ git commit -m "fix: render nesmie pripájať duplicitné sekcie do _STATUS.md (N
 Buď sa brána doplní, alebo `zjednotenie.md` prestane tvrdiť, že sú štyri. **Doplň ju** — tvrdenie je správne, chýba mu implementácia.
 
 **Files:**
-- Modify: `lawoss/okf/src/store.ts` (`applyRecordWrite`)
-- Modify: `lawoss/okf/src/index.ts` (export novej výnimky)
-- Test: `lawoss/okf/tests/write-gate-leak.test.ts` (nový)
+- Modify: `lawoss/okf-pamat/src/store.ts` (`applyRecordWrite`)
+- Modify: `lawoss/okf-pamat/src/index.ts` (export novej výnimky)
+- Test: `lawoss/okf-pamat/tests/write-gate-leak.test.ts` (nový)
 
 **Interfaces:**
 - Produces: `export class LeakBlockedError extends Error` zo `store.ts`. `applyRecordWrite` ju vyhodí, keď by zápis vytvoril L3 záznam s `error` nálezom kódu `L3_LEAK`.
 
 - [x] **Krok 1: Napíš padajúci test**
 
-Vytvor `lawoss/okf/tests/write-gate-leak.test.ts`:
+Vytvor `lawoss/okf-pamat/tests/write-gate-leak.test.ts`:
 
 ```typescript
 import { test } from "node:test";
@@ -653,7 +741,7 @@ Očakávané: import `LeakBlockedError` zlyhá.
 
 - [x] **Krok 3: Implementuj**
 
-V `lawoss/okf/src/store.ts` doplň `import { validateStore } from "./validate.ts";`, triedu a kontrolu v `applyRecordWrite` hneď po `authorize`:
+V `lawoss/okf-pamat/src/store.ts` doplň `import { validateStore } from "./validate.ts";`, triedu a kontrolu v `applyRecordWrite` hneď po `authorize`:
 
 ```typescript
 export class LeakBlockedError extends Error {}
@@ -684,7 +772,7 @@ export function applyRecordWrite(dir: string, diff: WriteDiff, approval: Approva
 
 - [x] **Krok 4: Exportuj a spusti testy**
 
-V `lawoss/okf/src/index.ts` pridaj `LeakBlockedError` do exportu zo `store.ts`.
+V `lawoss/okf-pamat/src/index.ts` pridaj `LeakBlockedError` do exportu zo `store.ts`.
 
 ```bash
 node --test 'tests/**/*.test.ts' && ./node_modules/.bin/tsc -p tsconfig.json --noEmit
@@ -693,7 +781,7 @@ node --test 'tests/**/*.test.ts' && ./node_modules/.bin/tsc -p tsconfig.json --n
 - [x] **Krok 5: Commit**
 
 ```bash
-git add lawoss/okf/src/store.ts lawoss/okf/src/index.ts lawoss/okf/tests/write-gate-leak.test.ts
+git add lawoss/okf-pamat/src/store.ts lawoss/okf-pamat/src/index.ts lawoss/okf-pamat/tests/write-gate-leak.test.ts
 git commit -m "feat: kontrola úniku L2→L3 je v ceste zápisu, nie iba vo validate (N3)"
 ```
 
@@ -722,7 +810,7 @@ git commit -m "feat: kontrola úniku L2→L3 je v ceste zápisu, nie iba vo vali
 
 `authorize()` prejde pri akomkoľvek neprázdnom `{ by, at }`. Knižničný volajúci si súhlas vyrobí sám, takže human gate je konvencia API, nie hranica. Dnes to nehorí, lebo CLI zápis záznamov vôbec nemá — a to je práve dôvod, prečo sa to má doplniť teraz, kým je plocha malá.
 
-**Files:** `lawoss/okf/src/cli.ts` (nový príkaz `write`), `lawoss/okf/SKILL.md`, test `lawoss/okf/tests/cli-write.test.ts`
+**Files:** `lawoss/okf-pamat/src/cli.ts` (nový príkaz `write`), `lawoss/okf-pamat/SKILL.md`, test `lawoss/okf-pamat/tests/cli-write.test.ts`
 
 **Akceptačné kritériá:**
 - `okf-memory write <spis> --file <cesta.md> --reason "…"` vypíše diff a **nič nezapíše**.
@@ -741,7 +829,7 @@ git commit -m "feat: kontrola úniku L2→L3 je v ceste zápisu, nie iba vo vali
 
 ~~Pôvodné zadanie:~~
 
-**Files:** `lawoss/okf/src/cli.ts`, `lawoss/okf/src/store.ts`, test `lawoss/okf/tests/init-jurisdiction.test.ts`
+**Files:** `lawoss/okf-pamat/src/cli.ts`, `lawoss/okf-pamat/src/store.ts`, test `lawoss/okf-pamat/tests/init-jurisdiction.test.ts`
 
 **Akceptačné kritériá:**
 - `okf-memory init <spis> --sk --apply` vytvorí `pamat/` **a** `BRAIN.md`, v tomto poradí.
@@ -759,7 +847,7 @@ git commit -m "feat: kontrola úniku L2→L3 je v ceste zápisu, nie iba vo vali
 >
 > `ERROR PARSE_ERROR` vo výpise kokce, ale meno kódu navrhol MČ v review a formát nálezov je „SEVERITY CODE id: správa". Konzistencia s ostatnými kódmi je viac než estetika jedného riadku.
 
-**Files:** `lawoss/okf/src/store.ts`, `src/render.ts`, `src/write.ts`, `src/cli.ts`, `tests/parse-errors.test.ts`
+**Files:** `lawoss/okf-pamat/src/store.ts`, `src/render.ts`, `src/write.ts`, `src/cli.ts`, `tests/parse-errors.test.ts`
 
 **Akceptačné kritériá:**
 - Kód nálezu `PARSE` premenovaný na **`PARSE_ERROR`** (zosúladenie s review N5).
@@ -773,7 +861,7 @@ git commit -m "feat: kontrola úniku L2→L3 je v ceste zápisu, nie iba vo vali
 
 #### Pôvodné zadanie
 
-**Files:** `lawoss/okf/src/store.ts`, test `lawoss/okf/tests/concurrency.test.ts`
+**Files:** `lawoss/okf-pamat/src/store.ts`, test `lawoss/okf-pamat/tests/concurrency.test.ts`
 
 **Akceptačné kritériá:** `applyRecordWrite` prečíta záznam z disku tesne pred zápisom; ak sa jeho `updated` líši od `diff.before.updated`, odmietne zápis `ConcurrentWriteError`. Test: dva `planWrite` z toho istého východiskového stavu, druhý `applyRecordWrite` musí padnúť.
 
@@ -817,6 +905,8 @@ L1 záznamy (`rule`, `lesson`) žijú v `_kancelaria/`; `readScope` ich číta a
 
 ### Úloha 11: Oprava maskovania driftu cez `sync` (O1, podmienka 2 MČ)
 
+> **Stav 2. 9. 2026:** O1 schválené v princípe, **podmienky nie** — dorozhodnúť písomne pred 7. 9. Zamietnutie D6/D7 sa jej podľa rozboru vyššie **netýka** (je to o `mtime`, nie o schvaľovaní); ak to MČ vidí inak, patrí to do jeho odpovede.
+
 `okf-freshness.sh` porovnáva mtime `_STATUS.md` s najnovším obsahovým súborom. Keď agent pridá dokument a potom spustí `sync --apply`, súboru sa dotkne stroj a freshness zhasne na zelenú, hoci §6 nikto nedoplnil. **Detektor driftu prestane detegovať práve v okamihu, keď zapneme projekciu.**
 
 Stačí jedno riešenie, v poradí preferencie MČ: `sync` obnoví pôvodný mtime, keď sa zmenil iba obsah medzi markermi; alebo `human_updated:` vo frontmatteri; alebo freshness porovnáva voči `spis.md`. Test musí ukázať, že po `sync --apply` freshness stále hlási drift v §6.
@@ -831,6 +921,10 @@ Po zjednotení sú lehoty na troch miestach: `spis.md` frontmatter, pole `lehoty
 
 ### Úloha 14: Konfigurovateľné prahy kontroly únikov (O7)
 
+> **Stav 2. 9. 2026:** O7 na calle neprerokované. Navyše **závisí od bodu c** — ak kontrola únikov padne, padá s ňou aj jej konfigurácia. Nezačínaj pred odpoveďou MČ.
+>
+> Súbor `_kancelaria/okf.config` **už existuje** — zaviedol ho PR #31 pre trvalé poverenie. Prahy sa doň len doplnia, nový mechanizmus sa nevyrába.
+
 Väčšina O7 je **hotová** (celé slovo, meno → `warning`, identifikátory → `error`). Zostáva konfigurácia: prahy do `_kancelaria/okf.config`, **nie k jednotlivému zápisu** — per-zápis prepínač je presne to, čo agent zapne, aby prešiel. Vypnutie musí byť vedomé a s dôvodom v konfigu. Hranica „rodné číslo do zdieľateľnej vrstvy" zostáva tvrdá a nekonfigurovateľná.
 
 ### Úloha 15: Publikovať schému ako štandard (O5)
@@ -839,7 +933,7 @@ Väčšina O7 je **hotová** (celé slovo, meno → `warning`, identifikátory �
 
 ### Úloha 16: Parser pre UI a dashboard spisu
 
-Podľa poradia MČ posledná zo základnej sady. `lawoss/okf/read.ts` ako vstup pre appku, dashboard renderovaný z markdownov (design-system §5). **Nezačínaj pred dokončením úlohy 10** — dashboard nad nemigrovanými dátami nemá čo zobraziť.
+Podľa poradia MČ posledná zo základnej sady. `lawoss/okf-pamat/read.ts` ako vstup pre appku, dashboard renderovaný z markdownov (design-system §5). **Nezačínaj pred dokončením úlohy 10** — dashboard nad nemigrovanými dátami nemá čo zobraziť.
 
 > [!NOTE]
 > Úlohy **17–21 (fáza 3b)** sú z pohľadu MČ poradia dodatok. Dajú sa robiť **pred aj po** úlohe 16 — sú to nové typy záznamov, dashboard ich buď zobrazí, alebo nie. Ak sa robia po nej, počítaj s tým, že parser aj dashboard budú potrebovať doplnenie o `claim`, `evidence` a `task`. **Lacnejšie je urobiť ich skôr** a dashboard postaviť rovno nad úplnou sadou typov.
@@ -877,7 +971,9 @@ Všetky nové typy sa zakladajú **rovno anglicky** (O6) a s prefixmi z normatí
 
 ### 📌 Vedľajší nález: opraviť `/legal`
 
-`~/.claude/agents/fact-analyzer.md` (mimo tohto repa, u VŘ) uvádza pri type `DUKAZ (D-XXX)` nesprávne ustanovenia: listina má byť § 129 (nie § 125) a ohliadka § 130 (nie § 129). Agent podľa toho označuje druhy dôkazov v spisoch. **Opraviť pri najbližšej práci s `/legal`** — do OKF sa to už neprenieslo, ale v pôvodnom skille to zostáva.
+`~/.claude/agents/fact-analyzer.md` (mimo tohto repa, u VŘ) uvádzal pri type `DUKAZ (D-XXX)` nesprávne ustanovenia: listina má byť § 129 (nie § 125) a ohliadka § 130 (nie § 129). Agent podľa toho označoval druhy dôkazov v spisoch. Do OKF sa to neprenieslo.
+
+> ✅ **Opravené 2. 9. 2026.** Obe čísla prepísané, znovu overené v plnom znení: [§ 129](https://krajta.slv.cz/1963/99/par_129) je dôkaz listinou, § 130 ohliadka. Ostatné v súbore sedeli (§ 126 svedok, § 127 znalec, § 131 výsluch účastníka).
 
 ### Pôvodné zadanie úlohy 17
 
@@ -885,7 +981,7 @@ OKF dnes nesie stav veci, rozhodnutia a subjekty, ale **nemá čím zachytiť, k
 a čím to dokazuje**. `fact-analyzer` to má vyriešené typovanými záznamami s krížovými
 odkazmi — presne tvar OKF, len pre vrstvu, ktorá chýba.
 
-**Files:** `lawoss/okf/src/schema.ts`, `src/record.ts` (rozhranie), test `lawoss/okf/tests/claims-evidence.test.ts`
+**Files:** `lawoss/okf-pamat/src/schema.ts`, `src/record.ts` (rozhranie), test `lawoss/okf-pamat/tests/claims-evidence.test.ts`
 
 **Interfaces — Produces:** dva nové `RecordType` vo vrstve **L2**: `claim` (prefix `C-`) a `evidence` (prefix `E-`).
 
@@ -953,7 +1049,7 @@ odkazmi — presne tvar OKF, len pre vrstvu, ktorá chýba.
 Matica z `fact-analyzer` je **deterministická projekcia** z `C-` a `E-` záznamov — presne
 to, čo už vie render machinery pre lehoty. Nová mechanika netreba, iba nový blok.
 
-**Files:** `lawoss/okf/src/render.ts`, test `lawoss/okf/tests/render-matrix.test.ts`
+**Files:** `lawoss/okf-pamat/src/render.ts`, test `lawoss/okf-pamat/tests/render-matrix.test.ts`
 
 **Interfaces — Consumes:** typy `claim` a `evidence` z úlohy 17. **Produces:** nový `BlockName` `"evidence_matrix"`, marker `okf:render:evidence_matrix`.
 
@@ -977,7 +1073,7 @@ to, čo už vie render machinery pre lehoty. Nová mechanika netreba, iba nový 
 a stavom. OKF má `question` (otvorená otázka), ale **nemá úlohu**; §5 „Otvorené úlohy"
 v `_STATUS.md` je dodnes ručná tabuľka.
 
-**Files:** `lawoss/okf/src/schema.ts`, `src/render.ts`, test `lawoss/okf/tests/task-type.test.ts`
+**Files:** `lawoss/okf-pamat/src/schema.ts`, `src/render.ts`, test `lawoss/okf-pamat/tests/task-type.test.ts`
 
 **Interfaces — Produces:** `RecordType` `task` (prefix `T-`), vrstva **L2**.
 
@@ -1013,7 +1109,7 @@ v `_STATUS.md` je dodnes ručná tabuľka.
 `fact-analyzer` má v `U-XXX` tri veci, ktoré OKF `subject` nemá a bez ktorých sa nedá
 pripraviť podanie: procesné postavenie, zastúpenie a spôsobilosť byť účastníkom.
 
-**Files:** `lawoss/okf/src/schema.ts`, test doplniť do `lawoss/okf/tests/schema-aml.test.ts`
+**Files:** `lawoss/okf-pamat/src/schema.ts`, test doplniť do `lawoss/okf-pamat/tests/schema-aml.test.ts`
 
 **Polia:** `procedural_role` (žalobca / žalovaný / vedľajší účastník / …), `representation` (advokát a plná moc), `legal_capacity` (spôsobilosť byť účastníkom), `capacity_notes` (opatrovník, insolvencia, likvidácia).
 
@@ -1033,7 +1129,7 @@ pripraviť podanie: procesné postavenie, zastúpenie a spôsobilosť byť úča
 Šesť „železných pravidiel" z `legal-researcher` je v skutočnosti **validačný kontrakt
 pre vrstvu L3**, ktorý v OKF nie je. Dve sú strojovo vynutiteľné hneď.
 
-**Files:** `lawoss/okf/src/schema.ts`, `src/validate.ts`, test `lawoss/okf/tests/authority-validity.test.ts`
+**Files:** `lawoss/okf-pamat/src/schema.ts`, `src/validate.ts`, test `lawoss/okf-pamat/tests/authority-validity.test.ts`
 
 **Polia:** `effective_from`, `effective_to` (časová platnosť predpisu), `verified_at` (kedy overené), `verified_against` (proti čomu — URL alebo názov databázy).
 
@@ -1061,7 +1157,7 @@ Chronológia nevie odlíšiť doručenie od pojednávania a nedá sa ani filtrov
 na odvodenie lehoty. **Riešením nie je nový typ záznamu, ale voliteľný druh na existujúcej
 položke** — udalosť si identitu nezaslúži, kým sa nestane spornou (vtedy je z nej `claim`).
 
-**Files:** `lawoss/okf/src/record.ts` (`TimelineEntry`, `parseTimeline`, `serializeRecord`), `lawoss/okf/src/write.ts` (`sameEntry`), `src/render.ts`, test `lawoss/okf/tests/timeline-kind.test.ts`
+**Files:** `lawoss/okf-pamat/src/record.ts` (`TimelineEntry`, `parseTimeline`, `serializeRecord`), `lawoss/okf-pamat/src/write.ts` (`sameEntry`), `src/render.ts`, test `lawoss/okf-pamat/tests/timeline-kind.test.ts`
 
 **Interfaces — Produces:**
 
