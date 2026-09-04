@@ -485,6 +485,8 @@ lawOSS-like-SK-CZ/
 │   ├── agent-plugins.md
 │   ├── brand-concept.md
 │   ├── glossary.md
+│   ├── lawoss-okf-review-checklist.md
+│   ├── lawoss-training-okf-review.md
 │   ├── lawoss-web-teaser.md
 │   ├── mcp-repository-workflow.md
 │   ├── metodika-kvality-skillov.md
@@ -704,23 +706,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**358 commitov** · **229 súborov**
+**361 commitov** · **231 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `41b30fc` | 2026-09-04 | Majo Cuprik | Merge pull request #73 from Omni-Legal-Products/docs/training-okf-review |
+| `d5d8bf0` | 2026-09-04 | Martin Friedrich | docs: add training and OKF review handoff |
+| `bf00036` | 2026-09-02 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `b5993c1` | 2026-09-02 | Majo Cuprik | chore: aktualizácia projektových súborov po sedení 2. 9. — zápis, roadmapa (sync, Experimenty, OKF Fáza A, updater), backlog forku |
 | `425da31` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `a90cb6c` | 2026-08-28 | Majo Cuprik | docs: teaser web lawoss.app a oprava zastaranej typografie v Značke |
 | `829cfb3` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `5f89417` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
-| `85b890d` | 2026-08-28 | Majo Cuprik | docs: design-system.md (živý, hranaté tokeny, wordmark z loga 11–14, OKF dashboard mapovanie) + predpríprava OKF zjednotenia (mc-novy-spis) a zadanie onboarding/light pre MF |
-| `175877d` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `875f2bd` | 2026-08-28 | Majo Cuprik | Merge pull request #62 from Omni-Legal-Products/design/redesign-plan |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-02 12:07 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-04 18:03 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
