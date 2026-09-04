@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #0a0e14; color: #e9e4da; font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 14px; line-height: 1.5; }
+    a { color: #c9a24a; } a:hover { color: #e3c46e; }
+    .mono { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; }
+  </style>
+</helmet>
+<div style="width: 1000px; height: 760px; box-sizing: border-box; background: #0a0e14; position: relative; display: flex; align-items: center; justify-content: center;">
+
+  <div style="position: absolute; inset: 0; display: flex;">
+    <div style="width: 256px; border-right: 1px solid rgba(233,228,218,0.08); background: #0a0e14; padding: 56px 8px; display: flex; flex-direction: column; gap: 2px; opacity: 0.35;">
+      <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; font-size: 14px;"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#e9e4da" stroke-width="1.5"><path d="M2 3h5l1.5 1.5H14v9H2z"/><path d="M8 7v4M6 9h4"/></svg>Add folder</div>
+      <div style="padding: 8px 12px; font-size: 14px;">New Task</div>
+      <div style="padding: 8px 12px; font-size: 14px;">Memory Drive</div>
+      <div style="padding: 8px 12px; font-size: 14px;">Workflows</div>
+    </div>
+    <div style="flex: 1; opacity: 0.35;"></div>
+  </div>
+  <div style="position: absolute; inset: 0; background: rgba(10,14,20,0.55);"></div>
+
+  <div style="position: relative; width: 576px; box-sizing: border-box; background: #141c26; border-radius: 25px; box-shadow: 0 14px 36px -14px rgba(0,0,0,0.7); border: 1px solid rgba(233,228,218,0.1); padding: 24px; display: flex; flex-direction: column; gap: 24px; font-size: 14px;">
+
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <div style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em;">Nový spis</div>
+      <div style="color: #a8b0ba;">Založíme priečinok klienta tak, aby sa v ňom vyznal agent aj bez LAWOSS. Originály ostávajú, pridáva sa iba to, čo chýba.</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 12px; font-weight: 500; color: #75808c; letter-spacing: 0.06em; text-transform: uppercase;">Ako založiť</div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+        <div style="border: 1px solid rgba(201,162,74,0.55); background: rgba(201,162,74,0.12); border-radius: 8px; padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start;">
+          <svg width="16" height="16" viewBox="0 0 16 16" style="margin-top: 3px; flex: 0 0 auto;"><circle cx="8" cy="8" r="7" fill="none" stroke="#c9a24a" stroke-width="1.5"/><circle cx="8" cy="8" r="3.5" fill="#c9a24a"/></svg>
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <div style="font-weight: 500;">Spis podľa OKF</div>
+            <div style="font-size: 12.5px; color: #a8b0ba;">AGENTS.md, okf.yaml, client.md, memory/, Prípady/. Predvolené.</div>
+          </div>
+        </div>
+        <div style="border: 1px solid rgba(233,228,218,0.14); border-radius: 8px; padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start;">
+          <svg width="16" height="16" viewBox="0 0 16 16" style="margin-top: 3px; flex: 0 0 auto;"><circle cx="8" cy="8" r="7" fill="none" stroke="#75808c" stroke-width="1.5"/></svg>
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <div style="font-weight: 500;">Obyčajný priečinok</div>
+            <div style="font-size: 12.5px; color: #a8b0ba;">Presne to, čo robí LegalWork dnes. Nič navyše.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-size: 12px; font-weight: 500; color: #75808c; letter-spacing: 0.06em; text-transform: uppercase;">Koreňový priečinok</div>
+        <div style="display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border: 1px solid rgba(233,228,218,0.14); border-radius: 8px; background: #0c1219;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#a8b0ba" stroke-width="1.5"><path d="M2 3h5l1.5 1.5H14v9H2z"/></svg>
+          <span class="mono" style="font-size: 12.5px; color: #5c6875;">[vybrať priečinok]</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-size: 12px; font-weight: 500; color: #75808c; letter-spacing: 0.06em; text-transform: uppercase;">Typ subjektu</div>
+        <div style="display: flex; align-items: center; justify-content: space-between; height: 36px; padding: 0 12px; border: 1px solid rgba(233,228,218,0.14); border-radius: 8px; background: #0c1219;">
+          <span>Právnická osoba</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#a8b0ba" stroke-width="1.5"><path d="M2 4l4 4 4-4"/></svg>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-size: 12px; font-weight: 500; color: #75808c; letter-spacing: 0.06em; text-transform: uppercase;">Jurisdikcia</div>
+        <div style="display: flex; gap: 6px;">
+          <div style="flex: 1; height: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(201,162,74,0.55); background: rgba(201,162,74,0.12); border-radius: 8px; font-weight: 500;">Slovensko</div>
+          <div style="flex: 1; height: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(233,228,218,0.14); border-radius: 8px; color: #a8b0ba;">Česko</div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-size: 12px; font-weight: 500; color: #75808c; letter-spacing: 0.06em; text-transform: uppercase;">Overenie</div>
+        <div style="display: flex; align-items: center; justify-content: space-between; height: 36px; padding: 0 12px; border: 1px solid rgba(233,228,218,0.14); border-radius: 8px;">
+          <span style="font-size: 13px;">ORSR · RPO pri založení</span>
+          <div style="width: 30px; height: 16px; border-radius: 8px; background: #e9e4da; position: relative;"><div style="position: absolute; top: 2px; right: 2px; width: 12px; height: 12px; border-radius: 50%; background: #0a0e14;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <div style="font-size: 12px; font-weight: 500; color: #75808c; letter-spacing: 0.06em; text-transform: uppercase;">Čo vznikne — dry-run</div>
+        <span style="font-size: 12px; color: #8dbb8f;">nič sa ešte nezapísalo</span>
+      </div>
+      <pre class="mono" style="margin: 0; padding: 12px 14px; background: #0c1219; border: 1px solid rgba(233,228,218,0.08); border-radius: 8px; font-size: 12px; line-height: 1.55; color: #a8b0ba; white-space: pre;">[Klient]/
+├── AGENTS.md          kanonický vstup
+├── CLAUDE.md          mirror
+├── okf.yaml           machine contract
+├── client.md          potvrdená identita
+├── memory/            klientske records
+├── findings/          rozpory a návrhy
+├── evidence/registry/ dôkazy overenia
+└── Prípady/</pre>
+    </div>
+
+    <div style="margin: 0 -24px -24px; padding: 16px 24px; border-top: 1px solid rgba(233,228,218,0.08); background: rgba(233,228,218,0.03); border-radius: 0 0 25px 25px; display: flex; justify-content: flex-end; gap: 8px;">
+      <div style="height: 36px; padding: 0 16px; display: flex; align-items: center; border: 1px solid rgba(233,228,218,0.14); border-radius: 8px; color: #a8b0ba;">Zrušiť</div>
+      <div style="height: 36px; padding: 0 16px; display: flex; align-items: center; background: #e9e4da; color: #0a0e14; border-radius: 8px; font-weight: 500;">Založiť spis</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
