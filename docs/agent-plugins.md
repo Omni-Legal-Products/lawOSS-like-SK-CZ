@@ -16,7 +16,7 @@ codex plugin add lawoss-legal-lab --marketplace <marketplace-name>
 
 For testing a branch, replace `main` with the branch name. For reproducible legal workflows, prefer a reviewed tag or commit SHA over an unpinned moving branch.
 
-In the Codex desktop app, restart the app after adding or changing a local/repository marketplace, open Plugins, select **LAWOSS Plugins**, and install **LAWOSS Legal**.
+In the Codex desktop app, restart the app after adding or changing a local/repository marketplace, open Plugins, select **LAWOSS Plugins**, and install **LAWOSS Legal**. Install **LAWOSS Legal Lab** only when you are testing an anonymized proposal.
 
 ## Scope
 
@@ -34,6 +34,8 @@ The skills require:
 
 Use **LAWOSS Legal Lab** for new workflow and research-method suggestions. It is intentionally separate from the stable plugin.
 
+The lab includes **lawoss-paper-research**, which structures an anonymized legal-science research question into research questions, method, source map, evidence, citation handoff, paper outline, and a synthetic test.
+
 The recommended promotion flow is:
 
 1. Capture the idea in the lab.
@@ -43,7 +45,7 @@ The recommended promotion flow is:
 5. Submit the proposal for LAWOSS review.
 6. Promote it into **LAWOSS Legal** only after review and acceptance.
 
-The lab must not contain confidential client information, privileged material, credentials, bearer tokens, unpublished case material, or matter-specific deadlines. The capture skill does not open GitHub issues, modify repositories, or create legal conclusions automatically.
+The lab must not contain confidential client information, privileged material, credentials, bearer tokens, unpublished case material, or matter-specific deadlines. Lab skills do not open GitHub issues, modify repositories, or create legal conclusions automatically.
 
 Legal-methodology proposals belong in LAWOSS review. Agent Plugins upstream is appropriate for portable-format, interoperability, or cross-client concerns.
 
