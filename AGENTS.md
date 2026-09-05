@@ -87,6 +87,23 @@ git push -u origin spec/nazov-veci
 gh pr create --fill
 ```
 
+### Kto merguje — záväzné pravidlo ([ADR 0011](decisions/0011-proces-zmien-a-mergovania.md))
+
+> [!IMPORTANT]
+> **Platí pre ľudí aj AI agentov.** Rozhodnuté na calle 18. 8. 2026.
+
+**Každý si merguje svoje PR a nesie zaň zodpovednosť.** Žiadna vstupná brána — kontrola je **následná**. Keď niekto zlúči nezmysel, upozorní sa naňho a **revertne sa to bežným PR**, bez drámy.
+
+Čo z toho **nevyplýva**:
+
+- **Merge nie je odklep.** Kto zlúči vlastný spec alebo ADR, tým ho nespravil rozhodnutím tímu — rozhodnutím sa stáva až vyjadrením ostatných na calle alebo v PR. **Ticho nie je súhlas.**
+- **Väčšiu zmenu ohlás v Telegrame** *(topic General CHAT)* — nie na schválenie, ale aby dvaja neprepisovali ten istý súbor.
+- **Vo forku [`lawoss`](https://github.com/Omni-Legal-Products/lawoss) brána zostáva** — tam je povinný review technicky vynútený. Koordinačné repo sú dokumenty, fork je kód, ktorý sa distribuuje advokátom.
+
+**Kód skillov, pluginov a modulov do tohto repa nepatrí** — patrí do samostatných repozitárov organizácie (ADR 0005, ADR 0008). Tu žijú len skripty automatizácií tohto repa (`.github/`).
+
+---
+
 ### Aby ste si nešliapali po nohách
 
 - **Ohlás sa v Telegrame** (topic *General CHAT*), keď ideš robiť väčšiu zmenu — „idem prepisovať specs/0002".
@@ -135,7 +152,10 @@ assets/       obrázky, diagramy, brand
 | **`lawOSS-like-SK-CZ`** *(toto)* | nápady, ADR, špecifikácie, rešerše, zápisy — **zdroj pravdy pre rozhodnutia** | issues typu „appka padá pri OCR", implementačné úlohy |
 | **[`lawoss`](https://github.com/Omni-Legal-Products/lawoss)** *(fork)* | kód, implementačné issues a PR, buildy, releases | rozhodovanie o tom, *či* sa funkcia postaví |
 
-### Pravidlo toku
+### Pravidlo toku — záväzné pre ľudí aj AI agentov
+
+> [!IMPORTANT]
+> Toto nie je odporúčanie, ale **proces, ktorý tím schválil**. Agent, ktorý dostane nápad či feature na spracovanie, ho **vedie touto cestou** — nezakladá spec bez záznamu v koši, nezakladá issue vo forku bez odklepnutého specu, nezačína implementáciu bez issue.
 
 1. **Nápad** → [`planning/napady.md`](planning/napady.md) + riadok do [`specs/navrhy.md`](specs/navrhy.md). Žije tu.
 2. **Rozhodnutie** *(call, ADR alebo odklep v PR)* → tu. **Nikdy vo forku.**

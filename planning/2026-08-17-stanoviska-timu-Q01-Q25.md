@@ -7,7 +7,7 @@
 ![IR](https://img.shields.io/badge/IR-25%2F25-brightgreen)
 ![VŘ](https://img.shields.io/badge/V%C5%98-25%2F25-brightgreen)
 ![MČ](https://img.shields.io/badge/M%C4%8C-pracovn%C3%A9%20stanovisk%C3%A1-yellow)
-![MF](https://img.shields.io/badge/MF-ADR%200007%20schv%C3%A1len%C3%A9%20%C2%B7%20Q%20%C4%8Dakaj%C3%BA-lightgrey)
+![MF](https://img.shields.io/badge/MF-25%2F25-brightgreen)
 
 </div>
 
@@ -19,7 +19,7 @@
 >
 > **Čo to je:** [25 rozhodovacích otázok](2026-08-12-rozhodovacie-otazky-timu.md) pokrýva riadenie produktu, release model, prvú iteráciu, pamäť, AML, dáta, platformy, regulované workflowy a open source. Každý člen tímu odpovedá formou *možnosť + dôvod + podmienka + vlastníctvo ďalšieho kroku*.
 >
-> **Stav odpovedí:** IR ([plné znenie](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/26), 14. 8.) a VŘ ([plné znenie](2026-08-15-odpovedi-VR-Q01-Q25.md), 15. 8.) odpovedali kompletne. **Stanoviská MČ sú pracovné** — vznikli v hlasových diskusiách 15.–17. 8. a finálne ich podá do PR #26. **MF** zatiaľ na otázky neodpovedal; jeho známe pozície vyplývajú z posudkov ADR 0007 a z jeho starších návrhov.
+> **Stav odpovedí:** IR ([plné znenie](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/26), 14. 8.) a VŘ ([plné znenie](2026-08-15-odpovedi-VR-Q01-Q25.md), 15. 8.) odpovedali kompletne. **Stanoviská MČ sú pracovné** — vznikli v hlasových diskusiách 15.–17. 8. a finálne ich podá do PR #26. **MF** odpovedal 17. 8. jednotným návrhom ([komentár v PR #26](https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/26)) — „reverzibilný, local-first MVP s povinnou ľudskou verifikáciou a technicky vynútenými hranicami agenta".
 
 ## Kto je kto
 
@@ -38,31 +38,31 @@
 
 | # | Otázka (skrátene) | IR | VŘ | MČ *(prac.)* | MF | Stav |
 |---|---|---|---|---|---|---|
-| Q01 | Product owner | A — MČ | A — MČ | A — prijíma | 🕐 | ✅ zhoda troch |
-| Q02 | Upstream sync | A + `PATCHES.md`, dodá automat | A, rolu neberie, review CZ vrstvy | A — maintainer/reviewer doriešiť | 🕐 | ✅ smer jasný, mená otvorené |
-| Q03 | Release approval | súhlas; SK právny sign-off berie | súhlas; **CZ právny sign-off berie** | súhlas; technika + release security | 🕐 | ✅ |
-| Q04 | `dev` ako default | A | A | A | 🕐 | ✅ |
-| Q05 | Review minimum | áno, záväzne | áno, záväzne; katalóg lehôt = kód | áno, záväzne; všetci 4 môžu review/merge | 🕐 | ✅ |
-| Q06 | Čo vydávame | A → C; červená čiara: bez nepodpísaných binárok | A → C; **rovnaká červená čiara** | A → C; tlak na rýchle verejné MVP | 🕐 | ✅ s napätím rýchlosť × podpis |
-| Q07 | Prvé tri vertikály | trojica z odporúčania; lehoty náhradník | ⚡ **lehoty do trojice** namiesto onboardingu | rozhodne ako PO; sympatie k lehotám | 🕐 | ⚡ jediná vecná odchýlka IR×VŘ |
-| Q08 | MVP billing | B | B + export dôležitejší než vlastná fakturácia | B | 🕐 | ✅ |
-| Q09 | Anonymizácia mimo V1 | áno, odložiť | áno + pomenovaný spúšťač návratu | áno + spúšťače | 🕐 | ✅ |
-| Q10 | Obsah L1/L2/L3 | zjednodušená definícia | + typované záznamy, vrstva „poučení z chyb" | + provenance a verzovanie; brain/OKF v súboroch | 🕐 | ✅ komplementárne doplnky |
-| Q11 | Povýšenie poznatku | len človek, vždy | len človek + **distribúcia schváleného** | len človek; vzťah k YOLO doriešiť | 🕐 | ✅ (pozri kolíziu K2) |
-| Q12 | Periodicita reconciliation | kombinácia | kombinácia | kombinácia | 🕐 | ✅ |
-| Q13 | Metriky reconciliation | zoznam + 2 kľúčové čísla | + metrika štýlu (čo advokát prepísal) | zoznam + rovnaké 2 čísla | 🕐 | ✅ |
-| Q14 | Režimy preverovania | podmienka: menovcov potvrdzuje človek | + kontrolný dotaz na známy pozitívny prípad | navrhol obsah light/medium/hard | 🕐 | ✅ MČ vlastní spec |
-| Q15 | AML: vlajková vs. OKF | B vnútri, A navonok | B vnútri, A navonok | B vnútri, A navonok | 🕐 | ✅ |
-| Q16 | Lokálnosť klientskych dát | lokálne bez výnimky | lokálne; opora § 21 CZ zák. o advokácii | **local-first**; cloud sync je vec používateľa | 🕐 | ✅ |
-| Q17 | Lokálny index vs. RAG | lokálne ako default | lokálne ako default | ⚡ ide ďalej: **OKF/Markdown-first, žiadny centrálny RAG** | 🕐 | ✅ smer; MČ ostrejšie |
-| Q18 | Platformy | mac + Windows rovnocenne; testuje Windows | Windows podporuje, testovať nevie; CZ nástroje neutrálne | multiplatformové jadro **bez povinnej parity** | 🕐 | ✅ s nuansou parity |
-| Q19 | Poľsko v architektúre | A schémy, B integrácie | A schémy, B integrácie; PL mapa do 20. 8. | A schémy, B integrácie + modularita jurisdikcií | 🕐 | ✅ |
-| Q20 | Sign-off roly | navrhol konkrétne rozdelenie | prijíma + dopĺňa CZ stranu | **odložiť na spoločný call** — roly sa neprideľujú v neprítomnosti | 🕐 | 🕐 agenda na call |
+| Q01 | Product owner | A — MČ | A — MČ | A — prijíma | A — MČ | ✅ zhoda 4/4 |
+| Q02 | Upstream sync | A + `PATCHES.md`, dodá automat | A, rolu neberie, review CZ vrstvy | A — maintainer/reviewer doriešiť | A + `PATCHES.md` | ✅ smer jasný, mená otvorené |
+| Q03 | Release approval | súhlas; SK právny sign-off berie | súhlas; **CZ právny sign-off berie** | súhlas; technika + release security | súhlas s minimom | ✅ |
+| Q04 | `dev` ako default | A | A | A | A | ✅ |
+| Q05 | Review minimum | áno, záväzne | áno, záväzne; katalóg lehôt = kód | áno, záväzne; všetci 4 môžu review/merge | áno, záväzne | ✅ |
+| Q06 | Čo vydávame | A → C; červená čiara: bez nepodpísaných binárok | A → C; **rovnaká červená čiara** | A → C; tlak na rýchle verejné MVP | A → C | ✅ s napätím rýchlosť × podpis |
+| Q07 | Prvé tri vertikály | trojica z odporúčania; lehoty náhradník | ⚡ **lehoty do trojice** namiesto onboardingu | rozhodne ako PO; sympatie k lehotám | ⚡ **lehoty do trojice** | ⚡ VŘ + MF: lehoty dnu · IR: náhradník → rozhodne MČ |
+| Q08 | MVP billing | B | B + export dôležitejší než vlastná fakturácia | B | B | ✅ |
+| Q09 | Anonymizácia mimo V1 | áno, odložiť | áno + pomenovaný spúšťač návratu | áno + spúšťače | áno + spúšťače | ✅ |
+| Q10 | Obsah L1/L2/L3 | zjednodušená definícia | + typované záznamy, vrstva „poučení z chyb" | + provenance a verzovanie; brain/OKF v súboroch | súhlas + vlastník, provenance a retencia každej vrstvy | ✅ komplementárne doplnky |
+| Q11 | Povýšenie poznatku | len človek, vždy | len človek + **distribúcia schváleného** | len človek; vzťah k YOLO doriešiť | len človek; **YOLO to neodomyká** | ✅ (pozri kolíziu K2) |
+| Q12 | Periodicita reconciliation | kombinácia | kombinácia | kombinácia | kombinácia | ✅ |
+| Q13 | Metriky reconciliation | zoznam + 2 kľúčové čísla | + metrika štýlu (čo advokát prepísal) | zoznam + rovnaké 2 čísla | súhlas so zoznamom | ✅ |
+| Q14 | Režimy preverovania | podmienka: menovcov potvrdzuje človek | + kontrolný dotaz na známy pozitívny prípad | navrhol obsah light/medium/hard | zachovať režimy; menovcov vždy človek | ✅ MČ vlastní spec |
+| Q15 | AML: vlajková vs. OKF | B vnútri, A navonok | B vnútri, A navonok | B vnútri, A navonok | B vnútri, A navonok | ✅ |
+| Q16 | Lokálnosť klientskych dát | lokálne bez výnimky | lokálne; opora § 21 CZ zák. o advokácii | **local-first**; cloud sync je vec používateľa | local-first | ✅ |
+| Q17 | Lokálny index vs. RAG | lokálne ako default | lokálne ako default | ⚡ ide ďalej: **OKF/Markdown-first, žiadny centrálny RAG** | áno; OKF/Markdown-first | ✅ smer; MČ ostrejšie |
+| Q18 | Platformy | mac + Windows rovnocenne; testuje Windows | Windows podporuje, testovať nevie; CZ nástroje neutrálne | multiplatformové jadro **bez povinnej parity** | multiplatformové jadro bez nútenej parity | ✅ s nuansou parity |
+| Q19 | Poľsko v architektúre | A schémy, B integrácie | A schémy, B integrácie; PL mapa do 20. 8. | A schémy, B integrácie + modularita jurisdikcií | A schémy, B integrácie | ✅ |
+| Q20 | Sign-off roly | navrhol konkrétne rozdelenie | prijíma + dopĺňa CZ stranu | **odložiť na spoločný call** — roly sa neprideľujú v neprítomnosti | návrh rozdelenia; potvrdiť na calle | 🕐 agenda na call |
 | Q21 | Human-in-the-loop | striktný trojstupňový model | + **hranica v nástroji, nie v prompte** | ⚡ konfigurovateľná autonómia vrátane YOLO | schválil ADR 0007 | ⚡ kolízia K2 |
-| Q22 | Všetko zadarmo | áno; platené moduly odmieta | áno; rovnaký dôvod | áno; licenčná ochrana pred prevzatím = samostatná téma | 🕐 | ✅ |
-| Q23 | Čo publikujeme | všetko s vyjasnenou licenciou | + CZ balík; výhrada ku korpusu komentárov | upstream case-by-case; publikovanie širšie | 🕐 | ✅ po oddelení upstream/publikovanie |
-| Q24 | Záväznosť doktríny | **A — záväzná** | **A — záväzná** | ⚡ *(prac.)* case-by-case rámec | 🕐 | ⚡ kolízia K1 |
-| Q25 | Otvorené formáty | A; Word nie druhá kategória | A; + **merateľný DOCX round-trip test** | A — jeho vlastný návrh | 🕐 | ✅ so sprísnením VŘ |
+| Q22 | Všetko zadarmo | áno; platené moduly odmieta | áno; rovnaký dôvod | áno; licenčná ochrana pred prevzatím = samostatná téma | áno | ✅ |
+| Q23 | Čo publikujeme | všetko s vyjasnenou licenciou | + CZ balík; výhrada ku korpusu komentárov | upstream case-by-case; publikovanie širšie | súhlas; datasety len s licenciou | ✅ po oddelení upstream/publikovanie |
+| Q24 | Záväznosť doktríny | **A — záväzná** | **A — záväzná** | ⚡ *(prac.)* case-by-case rámec | **A s odľahčenou výnimkou** | ⚡ K1 — IR+VŘ+MF za záväznú; MČ (prac.) case-by-case |
+| Q25 | Otvorené formáty | A; Word nie druhá kategória | A; + **merateľný DOCX round-trip test** | A — jeho vlastný návrh | A + merateľný DOCX round-trip | ✅ so sprísnením VŘ |
 
 ---
 
@@ -70,6 +70,8 @@
 
 - **ADR 0007 (agent-first architektúra) je prijaté.** MF ho po druhom posúdení **schválil 16. 8.** — potvrdil zapracovanie svojich troch požiadaviek (povinná ľudská verifikácia pred použitím výstupu v právnej službe, oddelenie recenzenta architektúry od zodpovedného advokáta, technické vylúčenie podpisovania a konania navonok agentom). PR #19 **zlúčený 17. 8.** ADR 0007 je odteraz platný rámec pre Q11 a Q21.
 - **IR a VŘ sa zhodli na 24 z 25 otázok.** Jediná vecná odchýlka je poradie vertikál v Q07 — a nie je to spor o hodnote, ale o cene (viď nižšie).
+- **MF odpovedal 17. 8. na všetkých 25 otázok** jednotným návrhom vrátane stanovísk ku všetkým trom kolíziám. V Q07 sa pridal k VŘ (lehoty do trojice), v Q24 k IR a VŘ (záväzná doktrína, s odľahčenou výnimkou), v Q21 za tvrdé technicky vynútené hranice. Zároveň potvrdil **ADR 0003** (voľba LegalWork — potvrdenie visel od 6. 8., reálne dané už 9. 8., zaevidované v PR #12).
+- **MF 17. 8. sám zlúčil šesť svojich PR** (#2, #4, #8, #9, #11, #12) — vrátane **specu 0006 (orchestrátor)** a **veľkého prepisu specu 0005 (lehoty → auditovateľný alfa workflow)** bez odklepu tímom, a pridania Codex skillov a pluginov priamo do koordinačného repa. Obsahovo idú zmeny v smere odpovedí tímu; **procesne to ale odhalilo dieru v pravidlách** — kto smie čo mergovať zatiaľ nie je záväzne dohodnuté. Rieši [návrh ADR 0011](../decisions/0011-proces-zmien-a-mergovania.md).
 - **Issues vo forku [`lawoss`](https://github.com/Omni-Legal-Products/lawoss) boli vypnuté — od 17. 8. sú zapnuté.** Implementačné chyby a úpravy z testovania (issue #47) tak už majú kam smerovať.
 
 ---
@@ -161,11 +163,15 @@ Tieto pozície sa dajú zmieriť, ale vyžaduje to explicitné rozhodnutie — v
 
 ## Tri kolízie, ktoré treba explicitne rozseknúť
 
-### K1 · Q24: záväzná doktrína (IR + VŘ) vs. case-by-case (MČ, pracovne)
+### K1 · Q24: záväzná doktrína (IR + VŘ + MF) vs. case-by-case (MČ, pracovne)
+
+> **Stav 17. 8.:** MF sa pridal k záväznej doktríne, ale s **odľahčenou výnimkou** (krátke písomné odôvodnenie + mitigácia + časové obmedzenie namiesto plného ADR) — čo je presne kompromisná cesta navrhnutá nižšie. Zostáva potvrdenie MČ.
 
 IR a VŘ hlasovali za doktrínu ako záväzný meter s písomnou výnimkou; pracovné stanovisko MČ sa posunulo k pragmatickému posudzovaniu prípad od prípadu. Pikantné je, že **A bolo pôvodné odporúčanie samotného MČ** — a MF práve schválil ADR 0007, ktoré je pilierom doktríny. Ak MČ na case-by-case trvá, malo by to byť vedomé rozhodnutie so zdôvodnením; kompromisná cesta je doktrína záväzná + nízkonákladová výnimka (krátke písomné odôvodnenie namiesto plného ADR).
 
 ### K2 · Q21: konfigurovateľná autonómia / YOLO (MČ) vs. hranica v nástroji (VŘ) a ADR 0007 (MF schválil)
+
+> **Stav 17. 8.:** MF odpovedal presne v duchu delenia nižšie — „nastaviteľná autonómia iba vnútri veci; hard boundaries technicky nedostupné a **povýšenie pamäte vždy ľudské**". Tým sa aj otvorená položka povýšenia pamäti kloní k tvrdým hraniciam (IR, VŘ aj MF zhodne). Zostáva potvrdenie MČ.
 
 Riešiteľné rozdelením na dve roviny, ktoré sa dnes zlievajú:
 
@@ -178,6 +184,8 @@ Otvorená ostáva jedna položka: **povýšenie pamäti (Q11)** — IR aj VŘ ho
 
 ### K3 · Q06: rýchle verejné MVP (MČ) vs. červené čiary na nepodpísané buildy (IR + VŘ)
 
+> **Stav 17. 8.:** MF odpovedal zhodne s cestou nižšie (verejný kód od začiatku, verejné binárky až po podpise). K3 je prakticky vyriešená — na calle stačí formálne potvrdiť.
+
 Obe strany chcú to isté — dostať LAWOSS medzi advokátov. Cesta, ktorá rešpektuje obe: verejný je od začiatku **kód + návod**; podpisový a notarizačný proces (macOS aj Windows) sa rieši **skoro, ako súčasť M-brán**, nie až „raz"; nepodpísané buildy výhradne interne so zreteľným varovaním.
 
 ---
@@ -186,12 +194,13 @@ Obe strany chcú to isté — dostať LAWOSS medzi advokátov. Cesta, ktorá re�
 
 | Čo | Kto | Poznámka |
 |---|---|---|
-| Odpovede na Q01–Q25 | **MF** | jediný bez odpovedí; jeho posudok ADR 0007 už časť Q21 fakticky pokrýva |
+| ~~Odpovede na Q01–Q25~~ | ~~MF~~ | **hotové 17. 8.** — jednotný návrh v PR #26 |
 | Finálne podanie odpovedí do PR #26 | **MČ** | pracovné stanoviská v tomto dokumente → formát `Qxx: možnosť, dôvod, podmienka, ownership` |
-| Rozhodnutie Q07 (poradie vertikál) | **MČ** ako PO | jediná vecná odchýlka IR × VŘ |
+| Rozhodnutie Q07 (poradie vertikál) | **MČ** ako PO | VŘ + MF: lehoty do trojice · IR: náhradník, ale súhlasí s vedomou zámenou |
 | Kolízie K1–K3 | **MČ + tím** | ideálne na najbližšom calle |
 | Q20 rozdelenie sign-off rolí | **celý tím na calle** | MF sa musí k svojej roli prihlásiť osobne |
-| 7 starších draftov (#2, #4, #8–#12) | **MF** | jediné otvorené PR po upratovaní 17. 8. (okrem draftu #39); časť v konflikte s `main` |
+| ~~7 starších draftov MF~~ | ~~MF~~ | **6 zlúčených 17. 8. autorom** (procesná otázka → ADR 0011); otvorené drafty #10 a #53 |
+| Odklepnúť [návrh ADR 0011](../decisions/0011-proces-zmien-a-mergovania.md) — kto čo merguje a ako sa integrujú funkcie | **celý tím na calle 21. 8.** | reakcia na samostatné mergovanie specov |
 | Dokončiť draft #39 (SAK compliance balík) | **IR** | označený ako draft na revíziu |
 | MCP konsolidácia — zber a benchmark | **všetci** | issue #45, zatiaľ reagoval len MČ |
 | ~~Revízia PR od IR a MČ~~ | — | **hotové 17. 8.** — zlúčených 16 PR (podklady IR #33–#38 + #42, dokumenty MČ #13, #14, #16, #27, #51, #52 a ďalšie) |
