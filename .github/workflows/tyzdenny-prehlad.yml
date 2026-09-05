@@ -44,13 +44,13 @@ jobs:
           # --- čo sa za posledný týždeň zlúčilo ---
           od=$(date -u -d '7 days ago' +%Y-%m-%d)
           zlucene=$(gh pr list --repo "$REPO" --state merged --limit 50 --json number,title,mergedAt \
-                     --jq --arg od "$od" '[.[] | select(.mergedAt >= $od)] | length')
+                     | jq --arg od "$od" '[.[] | select(.mergedAt >= $od)] | length')
 
           # --- nápady podľa stavu (z evidencie) ---
           napady=$(grep -oE '^\| [0-9]+ \|.*' specs/navrhy.md 2>/dev/null \
                    | grep -oE '(💭 \*\*nápad\*\*|📝 \*\*spec\*\*|✅ \*\*odklepnuté\*\*|🔨 \*\*implementuje sa\*\*|✔️ \*\*hotové\*\*|⏸️ \*\*odložené\*\*|❌ \*\*zamietnuté\*\*)' \
                    | sed 's/\*\*//g' | sort | uniq -c | sort -rn \
-                   | awk '{n=$1; $1=""; sub(/^ /,""); printf "• %s — %s\n", $0, n}')
+                   | awk '{n=$1; $1=""; sub(/^ /,""); printf "• %s — %s\n", $0, n}' || true)
 
           {
             echo "sprava<<EOF"
