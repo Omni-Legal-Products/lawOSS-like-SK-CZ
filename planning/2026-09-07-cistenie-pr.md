@@ -22,7 +22,7 @@
 
 **Vetvy.** Vo forku zmazaných 11 zlúčených vetiev. Zostáva osem: tri patria otvoreným PR (`#13`, `#14`, `#15`) a štyri sú zrkadlá upstreamu (`claude/*`, `fix/recorder-plus-button`) — tie sa mazať nemajú, po syncu by sa aj tak vrátili.
 
-**Stav po čistení:** koordinačné repo **10 otvorených PR** (bolo 18), fork **3** (boli 4 plus reťaz). Všetky zostávajúce sú v skupine 2 a 3 nižšie, teda čakajú na obsahovú prácu alebo na vyjadrenie autora.
+**Stav po čistení:** koordinačné repo **11 otvorených PR** (bolo 18; sedem zlúčených, #64 znovu otvorené), fork **3** (boli 4 plus reťaz). Všetky zostávajúce sú v skupine 2 a 3 nižšie, teda čakajú na obsahovú prácu alebo na vyjadrenie autora.
 
 ---
 
