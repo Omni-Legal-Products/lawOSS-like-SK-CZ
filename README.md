@@ -477,7 +477,9 @@ lawOSS-like-SK-CZ/
 │   │   └── README.md
 │   ├── superpowers/
 │   │   ├── plans/
-│   │   │   └── 2026-08-12-lawoss-zakladna-produktova-doktrina.md
+│   │   │   ├── 2026-08-12-lawoss-zakladna-produktova-doktrina.md
+│   │   │   ├── 2026-09-01-okf-pamat-dalsie-prace.md
+│   │   │   └── 2026-09-02-okf-nasadenie-do-aplikacie.md
 │   │   └── specs/
 │   │       └── 2026-08-12-lawoss-zakladna-produktova-doktrina-design.md
 │   ├── templates/
@@ -509,6 +511,7 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-27-zapis-quick-call.md
 │   ├── 2026-08-28-agenda-call-dizajn.md
 │   ├── 2026-08-28-zapis-sync-call.md
+│   ├── 2026-09-07-okf-podklad-vr.md
 │   └── 2026-09-07-zapis-tyzdenne-stretnutie.md
 ├── planning/
 │   ├── podklady-2026-09-06/
@@ -560,6 +563,7 @@ lawOSS-like-SK-CZ/
 │   │   ├── 2026-08-07-feature-ideas-telegram.md
 │   │   ├── 2026-08-14-orchestracia-human-gates-vzory.md
 │   │   ├── 2026-08-14-spisovy-destilat-l2-pamat.md
+│   │   ├── 2026-09-03-feature-ideas-telegram.md
 │   │   └── README.md
 │   ├── inspiracie/
 │   │   ├── 2026-08-13-editory-docx-superdoc-vs-eigenpal.md
@@ -619,8 +623,19 @@ lawOSS-like-SK-CZ/
 │   │   │   ├── README.md
 │   │   │   └── SKILL.md
 │   │   ├── vr-pamat/
+│   │   │   ├── priklady/
+│   │   │   │   ├── case_novak_vypoved_najmu.md
+│   │   │   │   ├── feedback_overit_udaje_z_registra.md
+│   │   │   │   ├── reference_najem_po_skonceni.md
+│   │   │   │   └── user_preferencie.md
+│   │   │   ├── sablony/
+│   │   │   │   ├── MEMORY.md
+│   │   │   │   └── zaznam.md
+│   │   │   ├── memory-manager.md
 │   │   │   └── README.md
-│   │   └── README.md
+│   │   ├── okf-vs-open-knowledge-format.md
+│   │   ├── README.md
+│   │   └── zjednotenie.md
 │   ├── onboarding-light/
 │   │   ├── AGENTS.md
 │   │   └── CLAUDE.md
@@ -712,18 +727,18 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**366 commitov** · **236 súborov**
+**395 commitov** · **249 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `b75fd62` | 2026-09-07 | Majo Cuprik | Merge pull request #71 from Omni-Legal-Products/research/telegram-zber-2026-09-03 |
+| `3746b1f` | 2026-09-07 | Majo Cuprik | Merge pull request #70 from Omni-Legal-Products/meetings/2026-09-07-okf-podklad-vr |
+| `6778639` | 2026-09-07 | Majo Cuprik | Merge pull request #69 from Omni-Legal-Products/research/okf-vs-open-knowledge-format |
+| `286c3fe` | 2026-09-07 | Majo Cuprik | Merge pull request #68 from Omni-Legal-Products/plan/okf-nasadenie-do-aplikacie |
+| `c805c94` | 2026-09-07 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
+| `e0d49ef` | 2026-09-07 | Majo Cuprik | Merge pull request #66 from Omni-Legal-Products/plan/okf-dalsie-prace |
+| `f393a2b` | 2026-09-07 | Majo Cuprik | Merge pull request #63 from Omni-Legal-Products/feat/vr-pamat-zjednotenie |
 | `7bc7aee` | 2026-09-07 | Majo Cuprik | Merge pull request #65 from Omni-Legal-Products/fix/tyzdenny-prehlad-jq |
-| `64ec58a` | 2026-09-07 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `c903064` | 2026-09-07 | Marián Čuprík | docs: zápis z callu 7. 9., dopady na OKF a appku, plán čistenia PR |
-| `6ae94be` | 2026-09-04 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `41b30fc` | 2026-09-04 | Majo Cuprik | Merge pull request #73 from Omni-Legal-Products/docs/training-okf-review |
-| `d5d8bf0` | 2026-09-04 | Martin Friedrich | docs: add training and OKF review handoff |
-| `bf00036` | 2026-09-02 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `b5993c1` | 2026-09-02 | Majo Cuprik | chore: aktualizácia projektových súborov po sedení 2. 9. — zápis, roadmapa (sync, Experimenty, OKF Fáza A, updater), backlog forku |
 <!-- /AUTO:ACTIVITY -->
 
 ---
