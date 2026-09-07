@@ -6,6 +6,26 @@
 
 ---
 
+## Výsledok — 7. 9. 2026 večer
+
+**Fork `lawoss`.** Zlúčené `#24 → #31 → #35`, potom `#23` (hranaté rohy) a `#36` (marketplace katalóg). Pri merge sa stali dve veci, ktoré stoja za zapamätanie:
+
+1. **`#35` sa zlúčil do svojej pôvodnej bázy, nie do `dev`.** Po merge `#31` sa základňa `#35` automaticky nepretargetovala, takže jeho obsah (Obsidian vault, konformita s OKF v0.2) v `dev` chýbal. Naprávalo sa to cez [#37](https://github.com/Omni-Legal-Products/lawoss/pull/37), ktorý tú deltu doniesol. **Poučenie: pri stohovanej reťazi treba každý ďalší PR pretargetovať ručne.**
+2. **CI odhalil vadu, ktorá tam ležala od 4. 9.** — test `isir-nalezy` padal, lebo brána `assertUpdatedBumped` odmietla druhú zmenu obsahu v ten istý deň. Pri schválenom zápise do L1/L3 totiž CLI opečiatkuje `updated` dňom schválenia, takže druhá zmena už nemá čo posunúť. Je to presne vada pomenovaná v [podklade zo 6. 9.](2026-09-06-rozhodovaci-podklad-mc.md) („záznam sa nedá zmeniť dvakrát v ten istý deň"). Nikto si toho nevšimol, lebo `#31` aj `#35` mierili na vetvy, nad ktorými sa workflow `okf-pamat` nespúšťa.
+
+   Opravené v `2c8db57`: brána zmenu pustí, keď `updated` už nesie dnešok; zablokovaná zostáva zmena, ktorá `updated` nechá v minulosti. Doplnený regresný test s dnešným dátumom, aby výsledok nezávisel od dňa, keď beží CI. 415/415 testov prejde.
+
+**Koordinačné repo.** Zlúčená celá skupina 1 (`#65`, `#63`, `#66`, `#68`, `#69`, `#70`, `#71`).
+
+> [!WARNING]
+> **`#64` sa zavrelo ako vedľajší efekt.** Mazanie vetvy pri merge `#63` odstránilo `feat/vr-pamat-zjednotenie`, na ktorej `#64` stálo — GitHub ho preto automaticky zavrel. Vetva bola obnovená, `#64` znovu otvorené a pretargetované na `main`. Je teraz v stave `CONFLICTING`, lebo obsah `#63` je už v `main`; konflikt sa vyrieši pri prepise podľa R11.
+
+**Vetvy.** Vo forku zmazaných 11 zlúčených vetiev. Zostáva osem: tri patria otvoreným PR (`#13`, `#14`, `#15`) a štyri sú zrkadlá upstreamu (`claude/*`, `fix/recorder-plus-button`) — tie sa mazať nemajú, po syncu by sa aj tak vrátili.
+
+**Stav po čistení:** koordinačné repo **10 otvorených PR** (bolo 18), fork **3** (boli 4 plus reťaz). Všetky zostávajúce sú v skupine 2 a 3 nižšie, teda čakajú na obsahovú prácu alebo na vyjadrenie autora.
+
+---
+
 ## Koordinačné repo — `lawOSS-like-SK-CZ`
 
 ### Skupina 1 — zlúčiť tak, ako sú *(čisté prírastky, bez konfliktu, call ich potvrdil alebo sú to záznamy v čase)*
