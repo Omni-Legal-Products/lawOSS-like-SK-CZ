@@ -508,8 +508,11 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-18-zapis-sync-call.md
 │   ├── 2026-08-27-zapis-quick-call.md
 │   ├── 2026-08-28-agenda-call-dizajn.md
-│   └── 2026-08-28-zapis-sync-call.md
+│   ├── 2026-08-28-zapis-sync-call.md
+│   └── 2026-09-07-zapis-tyzdenne-stretnutie.md
 ├── planning/
+│   ├── podklady-2026-09-06/
+│   │   └── report-B-zamer-a-odchylky.md
 │   ├── 2026-08-12-mcp-repository-rollout-plan.md
 │   ├── 2026-08-12-rozhodovacie-otazky-timu.md
 │   ├── 2026-08-14-stav-odpovedi-timu.md
@@ -518,6 +521,9 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-21-paper-cuts-a-rychle-vylepsenia.md
 │   ├── 2026-08-27-podklad-call-kickoff-vyvoja.md
 │   ├── 2026-09-02-zapis-sedenie-fork-okf-faza-a.md
+│   ├── 2026-09-06-rozhodovaci-podklad-mc.md
+│   ├── 2026-09-07-cistenie-pr.md
+│   ├── 2026-09-07-dopady-callu-na-okf-a-appku.md
 │   ├── backlog.md
 │   ├── cz-datove-zdroje.md
 │   ├── mcp-repository-inventory.md
@@ -706,23 +712,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**361 commitov** · **231 súborov**
+**363 commitov** · **236 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `c903064` | 2026-09-07 | Marián Čuprík | docs: zápis z callu 7. 9., dopady na OKF a appku, plán čistenia PR |
+| `6ae94be` | 2026-09-04 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `41b30fc` | 2026-09-04 | Majo Cuprik | Merge pull request #73 from Omni-Legal-Products/docs/training-okf-review |
 | `d5d8bf0` | 2026-09-04 | Martin Friedrich | docs: add training and OKF review handoff |
 | `bf00036` | 2026-09-02 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `b5993c1` | 2026-09-02 | Majo Cuprik | chore: aktualizácia projektových súborov po sedení 2. 9. — zápis, roadmapa (sync, Experimenty, OKF Fáza A, updater), backlog forku |
 | `425da31` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `a90cb6c` | 2026-08-28 | Majo Cuprik | docs: teaser web lawoss.app a oprava zastaranej typografie v Značke |
-| `829cfb3` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `5f89417` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-04 18:03 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-07 10:02 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
