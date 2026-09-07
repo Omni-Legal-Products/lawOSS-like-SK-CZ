@@ -727,18 +727,18 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**397 commitov** · **249 súborov**
+**400 commitov** · **249 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `ebb8418` | 2026-09-07 | Marián Čuprík | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
+| `42f457b` | 2026-09-07 | Marián Čuprík | docs: oprava počtu otvorených PR po znovuotvorení #64 |
+| `a6d3320` | 2026-09-07 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `e4a85de` | 2026-09-07 | Marián Čuprík | docs: výsledok čistenia PR — zlúčená skupina 1 aj reťaz vo forku |
 | `1999584` | 2026-09-07 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `b75fd62` | 2026-09-07 | Majo Cuprik | Merge pull request #71 from Omni-Legal-Products/research/telegram-zber-2026-09-03 |
 | `3746b1f` | 2026-09-07 | Majo Cuprik | Merge pull request #70 from Omni-Legal-Products/meetings/2026-09-07-okf-podklad-vr |
 | `6778639` | 2026-09-07 | Majo Cuprik | Merge pull request #69 from Omni-Legal-Products/research/okf-vs-open-knowledge-format |
-| `286c3fe` | 2026-09-07 | Majo Cuprik | Merge pull request #68 from Omni-Legal-Products/plan/okf-nasadenie-do-aplikacie |
-| `c805c94` | 2026-09-07 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `e0d49ef` | 2026-09-07 | Majo Cuprik | Merge pull request #66 from Omni-Legal-Products/plan/okf-dalsie-prace |
 <!-- /AUTO:ACTIVITY -->
 
 ---
