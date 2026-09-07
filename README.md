@@ -712,23 +712,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**363 commitov** · **236 súborov**
+**366 commitov** · **236 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `7bc7aee` | 2026-09-07 | Majo Cuprik | Merge pull request #65 from Omni-Legal-Products/fix/tyzdenny-prehlad-jq |
+| `64ec58a` | 2026-09-07 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `c903064` | 2026-09-07 | Marián Čuprík | docs: zápis z callu 7. 9., dopady na OKF a appku, plán čistenia PR |
 | `6ae94be` | 2026-09-04 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `41b30fc` | 2026-09-04 | Majo Cuprik | Merge pull request #73 from Omni-Legal-Products/docs/training-okf-review |
 | `d5d8bf0` | 2026-09-04 | Martin Friedrich | docs: add training and OKF review handoff |
 | `bf00036` | 2026-09-02 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `b5993c1` | 2026-09-02 | Majo Cuprik | chore: aktualizácia projektových súborov po sedení 2. 9. — zápis, roadmapa (sync, Experimenty, OKF Fáza A, updater), backlog forku |
-| `425da31` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `a90cb6c` | 2026-08-28 | Majo Cuprik | docs: teaser web lawoss.app a oprava zastaranej typografie v Značke |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-07 10:02 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-07 13:41 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
