@@ -38,18 +38,18 @@
 <div class="hero"><div class="wrap">
   <h1>📋 Prehľad návrhov a funkcií</h1>
   <p>Všetko, čo je v evidencii — od surového nápadu po hotovú funkciu.</p>
-  <div class="gen">Generované z <code>specs/navrhy.md</code> · 2026-08-14 19:58 UTC · <b>33 položiek</b></div>
+  <div class="gen">Generované z <code>specs/navrhy.md</code> · 2026-09-01 07:22 UTC · <b>51 položiek</b></div>
 </div></div>
 
 <div class="wrap">
   <div class="filtre">
-    <button class="f" data-f="nápad" style="--c:#7d8ca8">💭 nápad <b>17</b></button>
-    <button class="f" data-f="spec" style="--c:#c9a24a">📝 spec <b>11</b></button>
+    <button class="f" data-f="nápad" style="--c:#7d8ca8">💭 nápad <b>32</b></button>
+    <button class="f" data-f="spec" style="--c:#c9a24a">📝 spec <b>14</b></button>
     <button class="f" data-f="odklepnuté" style="--c:#1f9d55">✅ odklepnuté <b>4</b></button>
     <button class="f" data-f="odložené" style="--c:#c98a1a">⏸️ odložené <b>1</b></button>
   </div>
   <main>
-<section class="skupina" data-stav="nápad"><h2 style="--c:#7d8ca8">💭 nápad <span class="pocet">17</span></h2><p class="vysvetl">zapísané, nerozpracované</p><div class="karta" data-stav="nápad">
+<section class="skupina" data-stav="nápad"><h2 style="--c:#7d8ca8">💭 nápad <span class="pocet">32</span></h2><p class="vysvetl">zapísané, nerozpracované</p><div class="karta" data-stav="nápad">
   <div class="hlava"><span class="cislo">#5</span><span class="kto">MČ · 2026-07-29</span></div>
   <div class="nazov">💭 Hybrid routing</div>
   <div class="popis">lokálny model pre OKF, subscription pre rešerš, anonymizácia pred assessmentom</div>
@@ -133,8 +133,83 @@
   <div class="hlava"><span class="cislo">#33</span><span class="kto">MČ · 2026-08-14</span></div>
   <div class="nazov">💭 Ako ochrániť know-how pred komerčným prevzatím</div>
   <div class="popis">čo bráni tomu, aby niekto na našej appke staval platené školenia, add-ony či hosting</div><div class="pozn">⚠️ strategická otázka, patrí na samostatné ADR · MIT to nebráni vedome</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#34</span><span class="kto">VŘ · 2026-08-15</span></div>
+  <div class="nazov">💭 DOCX round-trip s testovacím korpusom a vizuálnou kontrolou</div>
+  <div class="popis">podmienka IR „Word nesmie byť druhá kategória&quot; prevedená na merateľnú požiadavku; 9 zdokumentovaných spôsobov, ako sa rozbije .docx → PDF, ktoré textová kontrola nenájde (pdftotext vráti správny text aj z rozsypaného layoutu)</div><div class="pozn">podmienka k Q25, čaká na odklep</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#35</span><span class="kto">VŘ · 2026-08-15</span></div>
+  <div class="nazov">💭 Kontrolný dotaz (canary) pri sankčnom screeningu</div>
+  <div class="popis">sankčné API bez kľúča vracia prázdny výsledok aj pre zjavne sankcionovanú osobu; bez dotazu na známy pozitívny prípad znamená „čistý výsledok&quot; len „dotaz neprešiel&quot;</div><div class="pozn">podmienka k Q14 a k metodike AML</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#37</span><span class="kto">VŘ · 2026-08-15</span></div>
+  <div class="nazov">💭 Typované záznamy pamäte + oddelená vrstva „poučenie z chyby&quot;</div>
+  <div class="popis">netypovaná pamäť po pár mesiacoch splynie v hromadu a nedá sa revidovať; to, čo sa model naučil zle, je iná kategória než obsah spisu a maže sa inak</div><div class="pozn">doplnok k spec 0002, z vyše roka prevádzky</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#38</span><span class="kto">VŘ · 2026-08-15</span></div>
+  <div class="nazov">💭 Metrika „koľko z návrhu advokát prepísal a v čom&quot;</div>
+  <div class="popis">nie metrika správnosti, ale štýlu; keď číslo neklesá, prompt layer sa neučí</div><div class="pozn">doplnok k Q13 a spec 0003</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#39</span><span class="kto">VŘ · 2026-08-15</span></div>
+  <div class="nazov">💭 Export do existujúcich spisových a fakturačných systémov</div>
+  <div class="popis">české kancelárie ich väčšinou už majú (u VŘ Evolio); keby sa malo voliť medzi vlastným billingom a dobrým exportom, prednosť má export</div><div class="pozn">mení ťažisko Q08 z „čo staviame&quot; na „s čím sa spájame&quot;</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#40</span><span class="kto">VŘ · 2026-08-15</span></div>
+  <div class="nazov">💭 Distribúcia schváleného poznatku ku všetkým agentom</div>
+  <div class="popis">povýšenie nie je len otázka súhlasu; doložený prípad, keď subagent bez prístupu k zdieľanej pamäti zopakoval judikát už vyhodnotený ako problematický</div><div class="pozn">doplnok k Q11 a k reconciliation</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#41</span><span class="kto">IR · 2026-08-14</span></div>
+  <div class="nazov">💭 Automat na upstream sync s konfliktným reportom</div>
+  <div class="popis">viazaný na PATCHES.md, aby sync vedel zopakovať hocikto; automat pri konflikte nič nerozhoduje sám</div><div class="pozn">rieši otvorený bod „kto vlastní sync&quot; (Q02)</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#42</span><span class="kto">MČ · 2026-08-17</span></div>
+  <div class="nazov">💭 stella/folio ako DOCX motor a testovacia latka</div>
+  <div class="popis">Apache-2.0 engine zachovávajúci tracked changes; lacný win pre merateľný round-trip (#34), kandidát k #29/#31</div><div class="pozn">lacný win</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#43</span><span class="kto">MČ · 2026-08-17</span></div>
+  <div class="nazov">💭 stella/anonymize ako engine pre spec 0008</div>
+  <div class="popis">deterministická lokálna PII detekcia (Rust, Apache-2.0); pri otvorení anonymizácie nestavať vlastný engine</div><div class="pozn">viaže sa na spúšťače Q09</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#44</span><span class="kto">MČ · 2026-08-17</span></div>
+  <div class="nazov">💭 Governance podľa org stella</div>
+  <div class="popis">CLA pred prvým externým contributorom + reusable workflows (audit branch protection, pr-lint) ako vzor</div><div class="pozn">lacný win</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#45</span><span class="kto">MČ · 2026-08-18</span></div>
+  <div class="nazov">💭 Samoúdržba nástrojovej plochy</div>
+  <div class="popis">CLI, skilly a ich verzie — tlačidlo + kontrola pri štarte, či zapnuté integrácie (napr. gog CLI pre Gmail/Workspace) sedia so svojím repom; aktualizuje sa integrácia ako celok (binárka + skill + konfig), s pinom, rollbackom a audit záznamom. Konkretizuje #23</div><div class="pozn">reálna potreba MČ · lacný prvý krok k #23</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#46</span><span class="kto">MČ (s VŘ) · 2026-08-18</span></div>
+  <div class="nazov">💭 Jednoklikové stiahnutie a indexácia právnych korpusov</div>
+  <div class="popis">distribúcia cez Hugging Face/torrent namiesto Google Drive; appka stiahne, rozbalí, naindexuje a prepojí. Cieľom je najmenej technicky zdatný používateľ</div><div class="pozn">z callu 18. 8.</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#47</span><span class="kto">MČ (zdroj VŘ) · 2026-08-19</span></div>
+  <div class="nazov">💭 Komentárový korpus VŘ ako zabudovaný zdroj v CZ verzii</div>
+  <div class="popis">94 repozitárov, Apache-2.0, ~94 MB, markdown podľa systematiky zákonov; sedí na OKF/Markdown-first. Podmienka: „navigácia → dooverenie v primárnom prameni&quot; musí niesť produkt</div><div class="pozn">rieši aj asymetriu SK × CZ</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#48</span><span class="kto">MČ · 2026-08-21</span></div>
+  <div class="nazov">💭 Opencode sync pipeline + verifikačná brána</div>
+  <div class="popis">dva oddelené sync procesy (opencode verzie, legalwork upstream), typový diff nových SDK releaseov, smoke test pred každým bumpom, drift detection; naše zmeny len ako pluginy/overlay, aby fork zostal vždy jednoducho updatovateľný</div><div class="pozn">rozvíja #41 a #45 · overené: SDK 1.17→1.18 diff je čisto additívny</div>
+</div>
+<div class="karta" data-stav="nápad">
+  <div class="hlava"><span class="cislo">#51</span><span class="kto">VŘ (zapísal MČ) · 2026-08-27</span></div>
+  <div class="nazov">💭 TUI</div>
+  <div class="popis">terminálová alternatíva k Electron appke — popri desktopovej appke aj Terminal User Interface; LAWOSS doména (OKF, skills, prompty, MCP) je prenositeľná, opencode je CLI harness; prvý krok už existuje (OKF spis v opencode/Claude Code bez appky)</div><div class="pozn">z quick callu 27. 8.</div>
 </div></section>
-<section class="skupina" data-stav="spec"><h2 style="--c:#c9a24a">📝 spec <span class="pocet">11</span></h2><p class="vysvetl">rozpísané do špecifikácie</p><div class="karta" data-stav="spec">
+<section class="skupina" data-stav="spec"><h2 style="--c:#c9a24a">📝 spec <span class="pocet">14</span></h2><p class="vysvetl">rozpísané do špecifikácie</p><div class="karta" data-stav="spec">
   <div class="hlava"><span class="cislo">#1</span><span class="kto">MČ · 2026-07-29</span></div>
   <div class="nazov">📝 Transkripcia (hovory, porady, diktát → do spisu)</div>
   
@@ -188,6 +263,21 @@
   <div class="hlava"><span class="cislo">#26</span><span class="kto">MČ · 2026-08-07</span></div>
   <div class="nazov">📝 Zaručená konverzia</div>
   <div class="popis">listinný ↔ elektronický dokument so zachovaním právnych účinkov; advokát je oprávnená osoba. MČ si na to stavia aj vlastnú aplikáciu</div><div class="pozn">vyčlenené do vlastného specu 2026-08-12 po rešerši · NIE V1, NIE V2 — vyžaduje SOAP integráciu na štátny register, mandátny certifikát a platenú kvalifikovanú validačnú službu</div>
+</div>
+<div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#34</span><span class="kto">MČ · 2026-08-11</span></div>
+  <div class="nazov">📝 Reconcile</div>
+  <div class="popis">učenie z úprav advokáta — porovnanie AI draftu s finálom, najmenšia zmena inštrukcií; rebrík umiestnenia nad OKF (spis → kancelária → komunita) s anonymizačnou bránou (nadväzuje na #27). Inšpirácia: skill Jeffa Su (koncept, nie text — platený kurz bez licencie)</div><div class="pozn">V2 kandidát — konkretizuje #21</div>
+</div>
+<div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#52</span><span class="kto">MČ (konsoliduje prínosy VŘ) · 2026-08-31</span></div>
+  <div class="nazov">📝 OKF 1.0 ako otvorený kontrakt klienta a prípadov - AGENTS.md ako kanonický vstup, klientsky workspace s viacerými prípadmi, typované records, Truth + History, Basic verification, reconciliation a jeden portable core pre CLI, agentov aj LAWOSS</div>
+  <div class="pozn">návrh na spoločnú revíziu, nie je odklepnuté VŘ ani tímom</div>
+</div>
+<div class="karta" data-stav="spec">
+  <div class="hlava"><span class="cislo">#53</span><span class="kto">MČ · 2026-09-01</span></div>
+  <div class="nazov">📝 Osobné LAWOSS dashboardy nad OKF - šesť vizuálne a UX odlišných presetov tej istej natívnej obrazovky /prehlad; osobný layout zobrazuje jeden typovaný read model a nikdy neukladá právne fakty</div>
+  <div class="pozn">návrh na spoločnú revíziu, nie je odklepnuté tímom</div>
 </div></section>
 <section class="skupina" data-stav="odklepnuté"><h2 style="--c:#1f9d55">✅ odklepnuté <span class="pocet">4</span></h2><p class="vysvetl">tím schválil, môže sa stavať</p><div class="karta" data-stav="odklepnuté">
   <div class="hlava"><span class="cislo">#11</span><span class="kto">MČ (podnet VŘ) · 2026-08-06</span></div>

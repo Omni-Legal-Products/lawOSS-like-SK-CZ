@@ -386,10 +386,11 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 | [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
 | [`2026-08-15-odpovedi-VR-Q01-Q25.md`](planning/2026-08-15-odpovedi-VR-Q01-Q25.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
 | [`2026-08-21-paper-cuts-a-rychle-vylepsenia.md`](planning/2026-08-21-paper-cuts-a-rychle-vylepsenia.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
+| [`2026-08-31-okf-lawoss-technicky-navrh-zadanie.md`](planning/2026-08-31-okf-lawoss-technicky-navrh-zadanie.md) | `███░░░░░░░░░░░░░░░░░` | 1/6 (17 %) |
 | [`backlog.md`](planning/backlog.md) | `███░░░░░░░░░░░░░░░░░` | 10/71 (14 %) |
 | [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
-| [`roadmap.md`](planning/roadmap.md) | `███████░░░░░░░░░░░░░` | 17/46 (37 %) |
+| [`roadmap.md`](planning/roadmap.md) | `███████░░░░░░░░░░░░░` | 18/49 (37 %) |
 | [`workshopy.md`](planning/workshopy.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/3 (0 %) |
 <!-- /AUTO:PROGRESS -->
 
@@ -441,6 +442,7 @@ lawOSS-like-SK-CZ/
 │       ├── architektura.png
 │       ├── lehota-rozhodovacia-brana.html
 │       ├── lehota-rozhodovacia-brana.png
+│       ├── okf-konsolidacia.html
 │       ├── okf-system.html
 │       ├── okf-system.png
 │       ├── roadmapa.html
@@ -467,17 +469,23 @@ lawOSS-like-SK-CZ/
 ├── docs/
 │   ├── design/
 │   │   ├── hifi/
-│   │   │   └── lawoss-hifi.html
+│   │   │   ├── lawoss-hifi.html
+│   │   │   ├── lawoss-okf-personal-dashboard-presets-1-3.html
+│   │   │   ├── lawoss-okf-personal-dashboard-presets-4-6.html
+│   │   │   └── okf-dashboard-directions.html
 │   │   ├── 2026-08-23-audit-sucasnej-appky.md
 │   │   ├── 2026-08-23-dizajnovy-jazyk-lawoss.md
 │   │   ├── 2026-08-23-ia-screen-plan-a-komponenty.md
 │   │   ├── 2026-08-23-implementacny-plan-fazy-A-D.md
 │   │   ├── 2026-08-27-dizajn-system-je-legalwork.md
+│   │   ├── 2026-08-31-okf-dashboard-sest-smerov.md
 │   │   ├── design-system.md
 │   │   └── README.md
 │   ├── superpowers/
 │   │   ├── plans/
-│   │   │   └── 2026-08-12-lawoss-zakladna-produktova-doktrina.md
+│   │   │   ├── 2026-08-12-lawoss-zakladna-produktova-doktrina.md
+│   │   │   ├── 2026-08-31-okf-dashboard-sest-smerov.md
+│   │   │   └── 2026-09-01-lawoss-okf-osobne-dashboardy.md
 │   │   └── specs/
 │   │       └── 2026-08-12-lawoss-zakladna-produktova-doktrina-design.md
 │   ├── templates/
@@ -506,7 +514,10 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-18-zapis-sync-call.md
 │   ├── 2026-08-27-zapis-quick-call.md
 │   ├── 2026-08-28-agenda-call-dizajn.md
-│   └── 2026-08-28-zapis-sync-call.md
+│   ├── 2026-08-28-zapis-sync-call.md
+│   ├── 2026-08-31-agenda-okf-architektura.md
+│   ├── 2026-09-01-transkript-okf-call.txt
+│   └── 2026-09-01-zapis-okf-architektura.md
 ├── planning/
 │   ├── 2026-08-12-mcp-repository-rollout-plan.md
 │   ├── 2026-08-12-rozhodovacie-otazky-timu.md
@@ -515,6 +526,7 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-17-stanoviska-timu-Q01-Q25.md
 │   ├── 2026-08-21-paper-cuts-a-rychle-vylepsenia.md
 │   ├── 2026-08-27-podklad-call-kickoff-vyvoja.md
+│   ├── 2026-08-31-okf-lawoss-technicky-navrh-zadanie.md
 │   ├── backlog.md
 │   ├── cz-datove-zdroje.md
 │   ├── mcp-repository-inventory.md
@@ -541,6 +553,8 @@ lawOSS-like-SK-CZ/
 │   ├── anonymizacia/
 │   │   └── 2026-08-14-sk-anonymizacne-detektory.md
 │   ├── deep-research/
+│   │   ├── audio/
+│   │   │   └── 2026-07-10-mikeoss-research-podcast-sk.m4a
 │   │   ├── 2026-07-10-open-source-legaltech-EU-mcp-anonymizacia.md
 │   │   ├── 2026-07-10-zdroje.md
 │   │   ├── README.md
@@ -610,8 +624,21 @@ lawOSS-like-SK-CZ/
 │   │   │   ├── README.md
 │   │   │   └── SKILL.md
 │   │   ├── vr-pamat/
+│   │   │   ├── priklady/
+│   │   │   │   ├── case_novak_vypoved_najmu.md
+│   │   │   │   ├── feedback_overit_udaje_z_registra.md
+│   │   │   │   ├── reference_najem_po_skonceni.md
+│   │   │   │   └── user_preferencie.md
+│   │   │   ├── sablony/
+│   │   │   │   ├── MEMORY.md
+│   │   │   │   └── zaznam.md
+│   │   │   ├── memory-manager.md
 │   │   │   └── README.md
-│   │   └── README.md
+│   │   ├── porovnanie-a-konsolidacia-2026-08-31.md
+│   │   ├── README.md
+│   │   ├── review-pr24.md
+│   │   ├── stanovisko-mc.md
+│   │   └── zjednotenie.md
 │   ├── onboarding-light/
 │   │   ├── AGENTS.md
 │   │   └── CLAUDE.md
@@ -626,6 +653,7 @@ lawOSS-like-SK-CZ/
 │   │   └── 2026-08-15-lhoty-cz-pravidla-vypoctu.md
 │   └── sk-datove-zdroje/
 ├── scripts/
+│   ├── validate-okf-dashboard-prototype.py
 │   └── validate-skills.mjs
 ├── specs/
 │   ├── 0001-transkripcia.md
@@ -638,6 +666,8 @@ lawOSS-like-SK-CZ/
 │   ├── 0008-anonymizacia-a-privacy-gate.md
 │   ├── 0009-reconcile-ucenie-z-uprav.md
 │   ├── 0010-zarucena-konverzia.md
+│   ├── 0014-okf-1-kanonicky-kontrakt.md
+│   ├── 0015-lawoss-okf-osobne-dashboardy.md
 │   ├── navrhy.md
 │   ├── prehlad.html
 │   ├── README.md
@@ -703,23 +733,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**356 commitov** · **228 súborov**
+**383 commitov** · **252 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
-| `a90cb6c` | 2026-08-28 | Majo Cuprik | docs: teaser web lawoss.app a oprava zastaranej typografie v Značke |
-| `829cfb3` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `5f89417` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
-| `85b890d` | 2026-08-28 | Majo Cuprik | docs: design-system.md (živý, hranaté tokeny, wordmark z loga 11–14, OKF dashboard mapovanie) + predpríprava OKF zjednotenia (mc-novy-spis) a zadanie onboarding/light pre MF |
-| `175877d` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `875f2bd` | 2026-08-28 | Majo Cuprik | Merge pull request #62 from Omni-Legal-Products/design/redesign-plan |
-| `e7baaa2` | 2026-08-28 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `13a2cd6` | 2026-08-28 | Majo Cuprik | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
+| `fbb1dc7` | 2026-09-01 | Majo Cuprik | docs: zápis z callu 1. 9. — anglické jadro schválené, gates zamietnuté, akčné body do 7. 9. |
+| `ca819a4` | 2026-09-01 | Majo Cuprik | docs: opraviť dátum callu na 1. 9. 2026, doplniť MF ako účastníka a slot pre onboarding |
+| `be146a4` | 2026-09-01 | Majo Cuprik | specs: zaevidovať osobné OKF dashboardy |
+| `afe86fa` | 2026-09-01 | Majo Cuprik | feat: dokončiť akceptáciu OKF dashboardu |
+| `8d23fba` | 2026-08-31 | Majo Cuprik | docs: sprístupniť šesť smerov OKF dashboardu |
+| `9f712b0` | 2026-08-31 | Majo Cuprik | fix: spevniť kontrolu udalostí a browser chýb |
+| `0772ce3` | 2026-08-31 | Majo Cuprik | docs: zaznamenať finálny commit Task 7 |
+| `8b6a8c0` | 2026-08-31 | Majo Cuprik | fix: dokončiť responzívny a offline OKF prototyp |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-08-28 21:53 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-01 12:27 UTC<!-- /AUTO:UPDATED --></sub>
 </div>

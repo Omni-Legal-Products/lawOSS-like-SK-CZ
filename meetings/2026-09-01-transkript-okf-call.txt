@@ -1,0 +1,374 @@
+00:00:00 Vojta Říha
+U toho, že Jak sme tam měli tú dvojjazyčnosť, Tak vlastne do toho přibyl ten třetí jazyk V podobie angličtiny, Aby to dobře parovalo Tie hodnoty, Ktoré tam budú v tom, Stromie a Tým pádem ten strom, Ako takovej S těma údajema toho OKF-ka, Toho kompletního spisu Se dal, Pro toho agenta dobře číst A pak zároveň to bolo vždycky, Zobraziteľný ešte markdownu pro človeka.
+00:00:32 Vojta Říha
+Takže, aby to vlastne bylo, Aby sa to dalo dosť, Dobře provozovať, pretože ono, Akme tam budeme propojovať po tej technický Stránce vlastne, Dva jazyky, Nebude tam jeden nosnej technický Jazyk, tak pak, By ten spis mohol byť, Vlastne ako veľký guláš, Pramborečka taková, na místo toho, aby to, Bolo pro nej přehledný. To je jenom ako... S tým si si už setkal asi taký, že proste Nebolo to toho, aby si mal operačný systém Ve slovenštine, tak ho máš v angličtine.
+00:01:03 Vojta Říha
+Že jo? Tak, pretože pak je to ľahšie nastavovanie všechno. Ale to je taková, ako perlička, Jenom, ako technická pomocná, jo? Pro ten spis, jako takovej, Pretože, vlastne, Aby si to, ty vrstvy, Ako takoví, oni Dost sami o sobe dokážu fungovať, jo? Jeden je tam Problém, aby to čítal dobře Dáme. Ty chceš primárne, aby ti niekto pomáhal s tým čtením a v tomto ohľadu asi nejvíc pak zafungovala tá posledná uprava, na ktorú sme narazili.
+00:01:39 Vojta Říha
+No,
+00:01:40 Speaker 2
+Ja som sa na to práve pozeral, tiež mi to prišlo také, že to musíme proste vyriešiť aj túto, tie jazykové veci, hej, lebo v podstate máme systém presne, hej, memory, memory je pre niekoho, že to čo je. Proste niekto, ale Ja stále som toho názoru, že Ja to chcem robiť pro moderných advokátom, Nie pre nejakých takých, čo, Si prečitajú memory a sa Pýtajú sami seba, čo to znamená. Takže nechcel by som úplne.
+00:02:10 Speaker 2
+Komplikovať ten systém len preto, Aby som sa prispôsobil im. Ale v podstate ten underlying systém By mal byť podľa mňa v angličtine, A potom tie Jednotlivé proste, Neviem, ako to spraviť, ale proste Malo by to byť jednotné. Proste vždy, keď budeme robiť úpravy, opravy a podobne, nemôžeme proste robiť úpravy pre každý jeden jazyk. Proste musí to byť jednotné a tie preklady musia byť na úrovni klienta, hej? Nená úrovni proste vytvárania toho systému.
+00:02:41 Speaker 2
+Ten systém musí byť jednotný pre každého. Pre agentov alebo pre AI je to viac mi jedno, že v jakom je to jazyku. A ideálne by, keby to bolo proste po angličtine. Ale systém musí byť v angličtine a len v rámci toho klienta bude... Bude taký ten preklad v dvoch, Aby proste pochopil, že o čo ide. No, Takto. V podstate, V podstate.
+00:03:11 Speaker 2
+Ty si tam navrhoval Taký ten,
+00:03:16 Speaker 2
+Respektíve ja som tam mal nejaký, ja som tam, Hodil svoj systém, hej, že ako, To vlastne u mňa funguje. A vlastne si si tam nahodil aj nejaké ďalšie, ako keby tie AML veci, hej, ten screening a podobne. A v podstate ja som si to ako keby zobral, lebo ja mám niečo podobné len až v ďalšom kroku, hej. Ale teoreticky by sme tam mohli dať ako medzikrok, respektíve pri tom zakladaní nového spisu, otázku, hej. Či chceš urobiť nejaký basic, alebo chceš urobiť nejaký advanced.
+00:03:50 Speaker 2
+A potom už je len otázka, že ako Tieto veci vyriešiť, hej, lebo V podstate my to riešime, Kombináciou skillov a skilly a MCP, hej. To znamená, že to musí byť, Na začiatku v rámci toho Onboardingu asi nejakým spôsobom Vyriešené, hej. Alebo, Proste Pri výbere jurisdikcie By malo vybrať nejaké, Základné MCP-čka a upraviť Základné skíly, hej, prispôsobiť Vlastne tej jurisdikcii. Vlastne by boli okamžite prispôsobený ten skill tej jurisdikcii a napojené na tie databázy jednotlivé.
+00:04:27 Speaker 2
+Neviem, niečo v tom zmysle.
+00:04:30 Vojta Říha
+Tak, toto dáva zmysel s tým, že u toho designu, aby ten backend bola v podstate angličtina a to si vždy môžeme odpichnúť, Ať už budeme mať akúkoľvek technickú zmieru.
+00:04:48 Speaker 2
+No dobre, keď si otvoríte ten artefakt, Claude, čo vytvoril, Kde vlastne tam je aj ako keby, ty si to nemôžeš otvoriť, Vojta, Martin, Tam vlastne na začiatku máme ako keby tie veci ako keby pred tým kolom, Aby sme si ma ako keby dojednali.
+00:05:10 Speaker 2
+Ja tam mám vlastne...
+00:05:13 Martin Friedrich
+Čo si šiel cez Clauda? Len tak za zábavu sa pýtal.
+00:05:18 Speaker 2
+No, lebo Vojta tiež pracuje s Claudom a viac menej, začal som to robiť s Claudom, že nechcem to už zmeniť, ale napríklad, čo som robil včera, nejaké dashboardy, lebo ma napadlo, že v podstate by sme mohli tam implementovať takú funkcionalitu, že v podstate tie OKF súbory, ktoré má, že človek si otvorí nejaký spis alebo klienta, tak má tam proste v root priečinku tieto OKF súbory. Tak prečo by sme neurobili také, že si.
+00:05:49 Speaker 2
+Niekto klikne a sa mu zobrazí Grafické zobrazenie tých informácií, Ktoré sú v tých súboroch. Proste nemusí si kliknúť, Na ten súbor a prečítať si ho, Ale jednoducho proste By bol tam súbor, ktorý by, Vygeneroval nejaký dashboard, Ktorý by mu ukazoval, že keď je Napríklad určitom klientovi, Tak mu vygeneruje dashboard z tých root Markdown súborov, Ktoré sú pri tom klientovi A vlastne bude tam, A je pekne graficky zobrazené, že kde čo ako je, a keď sa klikne na ten spis konkrétny, tak mu proste vygeneruje dashboard z tých informácií, ktoré tam sú.
+00:06:26 Speaker 2
+A vlastne, aby graficky vždy mal tú možnosť, nie len, že klikám na jednotlivé súbory, alebo sa pýtam agenta, že aký je stav, ale len klikne, nech sa mu vygeneruje dashboard z tých Markdown súborov, ktoré sú tam. A vytvoril som nejakých pár, asi šest variant, že ako by to mohlo vyzerať. Len mám taký pocit, že ma celkom Codex úplne nepochopil, že čo, Chcem, ale môžete si to potom Pozrieť a som to potom aj, V PR-ku V 64-ke.
+00:06:57 Speaker 2
+Uploadol, hej, takže, Napríklad na toto som použil Codex A hej, nech si tieto veci mi pripraví, lebo Čo sa týka tých dizajnov a UI, tak mi pripadá lepší, Momentálne Codex. Kombinujem to, hej, ale čo sa týka, Ako tých práce, V tom repozitári a v tých repozitároch, tak mám urobený projekt v cloud Code a vlastne cez to, cez to, čo robím, takže odpoviem na tvoju otázku.
+00:07:23 Martin Friedrich
+OK.
+00:07:27 Vojta Říha
+Ja taký kombinujem cloud Code s Codexom, takže všetko je tak, no. Jak říkáš, to UI je lepší od Codexu a na tú rychlou backendovú práci je pravde vlastne niekde rýchlejší cloud, než codex v webhastu. Áno.
+00:07:44 Speaker 2
+Codex veľa premyšľa, Príliš veľa testuje a validuje A také proste to potrebujem, Mať rýchlo urobené.
+00:07:54 Speaker 2
+Ale takto Ako tie veľké architektonické veci, Idem cez Fable, Aby proste sme to mali Pokope. Že už potom, keď budeme robiť konkrétne, Implementácie tých features, Čo už by som chcel začať robiť ako do tej, Aplikácie, tak už to budem implementovať Mám. Ten Oh My Pie sa mi strašne, veľmi sa mi osvedčil ten Oh My Pie, ty kokos, normálne Luna, Martin, je nevyčerpateľná v podstate, ja to používam na high a keď do toho dám ako advisora, Able alebo Sol, ja mám v podstate nastavený aj jeden, aj druhý, tak on pro každom turnie, ten advisor sa pozrie, čo urobil, pozrie sa na plán a mu proste normálne ho opraví a Luna, že á, jasné.
+00:08:42 Speaker 2
+Tak to ešte opravím. A v podstate Úplne krásne mi takto to ide. Na mém 9 hodín mi to ide. Proste mi tam rieši veci, Opravuje sa. Úplne brutál to je. A ja to nemám ani goal, Nastavený. Proste úplne krása To je. Takže keď, Budete robiť, Tak odporúčam ten Oh My Pie nastaviť. Ten advisor, Kto robí commity, kto robí proste samotné. Ako perfektne to je nastavené. Takže vyskúšajte si potom len taký akože sidenote.
+00:09:15 Speaker 2
+Ako som písal, ja som si nastavil v Codexe Sol ako orchestrátora a adjudikátora a ako robotníka Lumu, takže aj tak. Ja to rád oddelujem a to z toho dôvodu, že ja si myslím, že na programovanie potrebuješ mať ináč nastavené tie teploty, hej. Ten ako keby Nastavený ten samotný model, Tú jeho invenciu, alebo Proste spôsob, akým sa, akým rieši.
+00:09:48 Speaker 2
+Otázky, hej. Vlastne v ten, Knowledge work mám, Lepšiu skúsenosť, hej, proste v Codexe, Akože v aplikácii, Alebo v Claude aplikácii A paradoxne, keď proste program, Programatické veci riešim, Tak mám speciálne, napríklad v Oh My Pie som si, Nastavil tie temperatures, Špeciálne na Programovanie, hej. To znamená, že preto ja to tak striedam, že tieto jednotlivé. No rôzny potrebujem možno aj trošku Taký ako keby uvoľnenejší ten model, Aby sa zamýšľal nad rôznymi.
+00:10:18 Speaker 2
+Smermi, ale zase u programov Ja potrebujem práve úplne ako keby Striktné veci, takže tam to je úplne, inak nastavené. Snažím sa tak nejak toto. Dobre, ale poďme teraz k tomu OKF. Dobre.
+00:10:35 Speaker 2
+Čo sa týka tých, Jednotlivých Ako keby skriptov, Čo si tam dal, Vojta, Tak vlastne, Bude to fungovať tak, Aspoň ja som to pochopil, Že Tie... Alebo jak to máš ty urobené? Jak to máš teraz ty spravené u seba? Ak to máš tak spravené?
+00:11:02 Vojta Říha
+Tak lebo ono to obsalo tú mojú struktúru. Áno. A ja mám vždycky pamäť v prípadu a to je v podstate pamäť toho projektu. Si predstavíš, tak tam je to takový súhrn, když to řeknú právnym jazykem, Tak je to spisový prehľad, opravdu stručný a pak ide do podrobností A tie už sú v tom Obsidianu a tam už to má provázaný. Čili tato struktúra, ktorá tam túto vec sa snaží nejakým spôsobom kopírovať zase programaticky, aby to prepisovalo,
+00:11:41 Vojta Říha
+Pretože ten Obsidian biežne umožňuje väčšiu voľnosť, že to neni strojovne vždy stejný, S tom nastavením, pretože každý z nám prípad ukáže byť iný. A tady je to právo rúzne, ja nedelám ako jeden obor. Takže tady je to, odpovídá to vlastne na tú základnú vec, Čili zase spisový prehľad, to je v tom projektu, Ako takovým, a pak ešte tedy ten konkrétny,
+00:12:13 Vojta Říha
+Už tie podrobnosti, ktoré sú v tom daném prípadu. Takže ať už to riešiš ako názory súdu, první, druhá instance, Prípravné řízenie v trestu, výpovedi svedkov, Nejaké disproporce, čili aby si tam... Vždycky týhle jednotlivý rozpory nebo stěžejní události zhromaždili a mohol z toho potom ucelenie čísť a nebolo to proste jenom zahlcený tým spisem a nebolo tam totálny kontext.
+00:12:45 Vojta Říha
+Takže všechno, čo sa naučíš v prúbiehu toho prípadu, tak ty ho naučíš a on ti to potom bude moci... Výborne interpretovať a na to tie ľudia dohľadávať práve to právo a hľadať tie vazby, ktoré by si třeba ešte nevidel.
+00:13:21 Speaker 2
+Root priečinka, alebo proste či už klienta, alebo jedných z tých caseov musí byť Agents.md, ktorý vlastne bude taký rozcesník. Áno, ale to je ten spisový prehľad v podstate. Hej, no ale musí to byť Agents.md, musí sa to volať Agents.md a ten bude vlastne znamenať spisový prehľad v rámci spisu. Ale napríklad Agents.md, ktorý bude napríklad v roote klienta, Tak bude obsahovať Nie spisový prehľad, ale.
+00:13:51 Speaker 2
+Ako keby prehľad jednotlivých Spisov, že kde sa nachádzajú, Aby proste agent išiel Do toho spisu a pozrel sa, Do Agents.md toho jednotlivého spisu. To znamená taký naozaj index, Ako keby, index, Tých súborov A toho systému. A teraz Ja tam mám, Nejaké proste tiež, Nejaké názvoslovie, nejakú nomenklatúru. Memory, index, status A podobné, hej. Proste sme si povedali,
+00:14:23 Speaker 2
+Že to bude asi pravdepodobne jednotné, A budeme to mať jednotné, v tom zmysle, Že to bude asi anglické, hej. Status, memory, index a podobné, Tam nebudeme mať žiadne, že, Prípad, spís a podobné, hej. To sú proste veci, ktoré nemôžeme mať. A v rámci tých jednotlivých, Súborov musíme mať Proste tú štruktúru, Ako by to máme, Pripravené. A ja vlastne, ja, Vlastne, Ja to mám takto, hej. Neviem, prečo tu ma neposlal Ten prehľad.
+00:14:56 Speaker 2
+Počkať. Ja si to stiahnem A skúsim vám to poslať, ty vole. Open file.
+00:15:04 Speaker 2
+A da.
+00:15:09 Speaker 2
+HTML.
+00:15:12 Speaker 2
+Čekaj sekúnda, ja vám to pošlem, aby ste si to otvorili, Alebo respektive aspoň, aby Martin sa ti mohol otvoriť.
+00:15:21 Speaker 2
+Tak, neviem, či vám to načíta to, ale vám to posielam teraz do telegramu.
+00:15:31 Speaker 2
+Keď vám to dojde, tak povedzte.
+00:15:36 Speaker 2
+Je to normálne HTML, takže si to viete pozrieť.
+00:15:40 Speaker 2
+Martin, máš to?
+00:15:43 Vojta Říha
+Ja to teda vidím.
+00:15:46 Speaker 2
+Hej, takže Máme, v podstate on mi tam vytvoril To porovnanie. A v podstate, Sme riešili Granularitu, alebo tie jednotlivé, Časti toho OKF systému. A v podstate, Ja som tam čisto riešil Ako keby technicky, jak sa to Bude vytvoriť. Ako keby zapisovať a Vojto tam riešil vlastne tie jednotlivé úrovne tých zápisov, hej, toto tu nám musíme vyriešiť, hej, len v podstate základ je, keď si pozriete návrh MC, keď si kliknite na trojku, tak vlastne ja som tam navrhol taký, že ako by to cca mohlo vyzerať, hej, tak si pozrite.
+00:16:37 Speaker 2
+Agents.md a Cloud.md ako mirror, Respektíve, dokým Anthropic sa, Neznormálnie a nebude Začať požívať iba.
+00:16:48 Speaker 2
+Potom sú tam vlastne Client.md a v rámci, Memory sú ako keby Klientské veci, ktoré sa týkajú, Toho jednotlivého klienta A potom nejaké ako keby findings, A registrové veci A až potom sú ako keby jednotlivé Case. A v rámci tých caseov máš zase Agents.md, meter, status, memory, dokumenty A podobne. Takže Toto by trebalo vytvoriť,
+00:17:18 Speaker 2
+On mi to aj navrhol, že vlastne Mali by sme vytvoriť taký nejaký, OKF Core Systém, ktorý by bol prenositeľný Teda medzi tými jednotlivými, A tieto veci musíme mať proste Zjednotené. Už ako keby, Ten systém máme rozpracovaný dobre, čo sa tam má zapisovať a ako sa to tam bude zapisovať. Treba už len vytvoriť ten OKF Core systém, ktorý bude tam zaintegrovaný a budeme tieto veci vedieť pre. Ono mi tam navrhovalo aj nejaké CLI vytvoriť, lenže ja nie som úplne s tým stotožnený, že budeme zase vytvárať niečo.
+00:17:59 Speaker 2
+To musí byť čisto všetko zaznamenané v rámci jednotlivých markdown fájlov a musí to byť prenositeľné na 100%, hej, medzi jednotlivými vecami, hej. Takže keď si pozriete tie návrhy a ten konsolidovaný návrh, že ako to celé má fungovať, tak vlastne tak si to vlastne predstavujem, hej. Bude to anglické, hej. Bude to v podstate lokálne v rámci priečinkov a budú to súbory a ešte jedna taká ako keby vec nad tým, ma ešte napadlo, že vytvoriť nejaký brain ako MD, ktorý by proste pri nejakej rekonciliácii spisu alebo klienta.
+00:18:52 Speaker 2
+videl vyťahnuť nejaké najdôležitejšie veci, ktoré môžu byť použiteľné aj pri, dajme tomu, nejakých ďalších veciach. Vytvárať nejaký taký centrálny systém. Ale toho tu asi nie som úplne istý, že ako by to fungovalo, hlavne keď sa toho tam nafúkne strašne veľa.
+00:19:13 Vojta Říha
+No ono, to je práve to kouzlo, pretože tam si dostávame do úrovne jednak. S týma Wikilinkami, ktorí Sa tam môžu dostat, I do grafických částí A Tým pádem vlastne, Pri tým Knowledge Work, tak je to Brutálne o kontextu. Takže my, když Tú Harnessu, Nastavíme dobře tak, Aby sme dávkovali, Výborným spôsobem ten kontext,
+00:19:44 Vojta Říha
+Aby sa v tom nikdy Nestratil, nestratil ten cíl. Tak si on bude schopný, díky tomu propojení, ktorý tam bude mít, Když to bude třeba ohromný, tak on si nájde tie správne vazby. Že on nebude proste chodiť na slepo. No, to je len...
+00:20:00 Speaker 2
+On mi navrhol napríklad aj nejakú SQLite, ako databázu, Na tieto zdroje právdy, alebo na tieto historické veci. A mne to pripadá, že Už to príliš je to komplikované Tým pádom, hej. Keď sa proste bude vytvárať Aj databázový Systém, hej. Ale Na druhej strane, SQLite, Som si pozrel, že to je strašne lightweight a rýchle, A vedia s tým agenti.
+00:20:30 Speaker 2
+Pracovať, hej. To je len proste spôsob, Uloženia údajov, hej. Jak ty máš Obsidiane vlastne tie worktrees, A tieto veci, tak vlastne, SQLite je, Iba obdoba niečoho takého. Obyčajná tabulka, kde tieto veci budú zapisovať. A budú tam kanonické pravidla, Ktoré bude agent dodržiavať, Keď pristupí k tej databáze.
+00:20:52 Speaker 2
+A druhá vec, Ktorá ma tak napadla, Som sa zamyslel nad tým, že vlastne tie modely Sa vždy zlepšujú. Vlastne tým, že, Urobíme ten constraint, Že mu presne dáme, Kde musíš ísť, čo musíš brať do úvahy A podobne, tak mu ako keby, Zamedzíme takúto invenciu. Alebo taký ten, ako keby, Spôsob Rozmýšľať out of the box. Takže som premyšľal, že či by sme tam Nedali takú možnosť,
+00:21:23 Speaker 2
+Že proste agent Bude pracovať mimo OKF systému. Takže proste môžeš si vybrať, Budem pracovať constraint OKF, Alebo proste si odkliknem, Že poďme teraz riešiť, ako keby, Sme nemali prístup k tomu A poďme sa, Ako keby nejaký brainstorming Mimo tohto.
+00:21:43 Vojta Říha
+No určite, to pak sa dá vyriešiť tak, môžeš mať náš OKF, anebo si napojíš svoj Obsidian, dáš si cestu a nekladú sa ti žiadne meze.
+00:21:57 Speaker 2
+Keď máš systém ako napríklad OpenCode, ktorý funguje na Agents.md, tak vlastne okamžite musíš mať switch, kde povieš, že nečítaj si Agents.md. Alebo bude tam switch, že z Agents.md prečítaj iba toto, ale nechoď ďalej, alebo niečo v tom zmysle, ale proste choď a neber do uvahy žiadne veci, alebo zober do uvahy iba určité veci. Len tak ako keby filozofické zamyslenie nad tým, že neconstrainovať tie modely, lebo to, čo som aj načítal už dlhodobo, čo proste aj zistujem, tak...
+00:22:37 Speaker 2
+Však aj ten Boris Černý to hovoril, že vlastne tým, že constrainuješ ten model veľa inštrukciami, Takými obmedzeniami a guardrailsami, tak ho obmedzuješ aj v tej inteligencii. Lebo čím sú novšie tie modely, tak vedia tieto veci si sami, ako keby doriešiť sami. Ja tu mám aj tú skúsenosť s tým GPT Pro, že vlastne veľakrát, keď dám do GPT Pro dobrý prompt, A bez nejakého extra konkrétneho kontextu, Tak on nájde také veci, čo proste.
+00:23:08 Speaker 2
+By som asi možno ani nevedel Nájsť, keby som išiel Iba tým svojim smerom a bral Iba ten kontext, alebo keby som mu dal Iba ten kontext. Preto ma, Trošku ako keby som sa, Zamyslel nad tým, že ten OKF systém Je super, lebo proste agent má vždy, Kontext, len aby sme Nešli úplne do takých, Detailov, alebo aby mal, Mať možnosť užívateľ, Či ideme do tých detailov alebo neideme. Ideme pracovať ako keby čistý model a s pár informáciami z toho spisu alebo o klientovi.
+00:23:43 Speaker 2
+Ja.
+00:23:43 Vojta Říha
+Som za, pokud to klidne ať to ide i vyprout to OKF-ko a řekneme si proste, teď pracuj tabula rasa, nebo pracuj si proste s údajami, ktoré sú inde počítači.
+00:24:02 Speaker 2
+Dobre, dobre, dobre. To musíme dať ako one, ale v podstate, keď si pozriete tie konsolidačné, konsolidáciu a tú samotnú architektúru tej konsolidácie, ktorá z toho vzišla, tak keď vám to dáva zmysel, tak by sme mohli začať, hej, ešte si to prezrite poriadne, hej, dať si to prezrieť agentom, nech vám to vysvetlí, že ako to má celé fungovať, ale... V podstate takto by to malo fungovať a vlastne invokovať ten OKF systém.
+00:24:32 Speaker 2
+A bude asi pravdepodobne, s veľkou pravdepodobnosťou sú, že buď to bude skillom, Alebo to bude automaticky. To je ešte také rozhodnutie, čo musíme urobiť.
+00:24:44 Vojta Říha
+Ja bych možná operatívne, bych to nechal na skill, Pretože to je tvarovateľnejší i pro toho uživatele. Ako, keďže bude chcít, tak si to môže donastaviť, eventuálne... A vlastne bude to pre nej významný, pretože už si môžeš dneska upraviť ten systémový prompt pro Clauda, pro Agents.md, tak nemusíme to všem cpáť, ale ten užívateľ, ktorý skutečne bude super užívateľ, môže to oceniť, pretože nikto iný ti nenechá do toho systémového promptu sahnúť.
+00:25:24 Speaker 2
+No ako systémový prompt bude určite editovateľný a bude tam nejaký základ, default, to si môžem predstaviť, tam nejaké tie odporúčania asi pravdepodobne budú, ale hej v rámci toho systémového promptu ja som tam chcel dať proste, že používaj OKF systém, vlastne tú možnosť, že proste keď niekto si to zapne, tak mu to bude automaticky generovať, hej. Vlastne keď si vygeneruje nový prípad, hej. Sme tam, počujeme sa.
+00:25:55 Speaker 2
+Haló, haló?
+00:25:59 Speaker 2
+Ja ťa počujem. Dobre. Takže, že vlastne, keď sa bude nový prípad robiť, Takže proste automatickom vygenerujete, Súbory, hej. Lebo proste bez toho Veľa tých features asi nebude Fungovať, hej. Lebo proste keď Chceš mať napríklad to Sledovanie lehôt a podobne, tak ja som, Mal predstavu takú, Že v podstate každé jedna Tá informácia sa bude ťahať Z tých markdownov. By sme nemali, hej, lebo napríklad aj čo Igor Chcel, tie lehoty, vlastne to sme si.
+00:26:29 Speaker 2
+Odsúhlasili, že lehoty Chcete, ako keby, aby to bolo niekde, Niekde proste Ako feature, tak mňa napadla, Proste, že OK, dobre, super, Lenže tie lehoty by boli Súčasťou toho OKF systému, hej. To znamená, že by sa nevytváral nejaký, Individuálny systém Na sledovanie lehot, ale proste by sa to Všetko vyťahlo z tých Súborov, ktoré sa generujú. A keď to ste keď niekto, Si povie, že idem to robiť Alebo bastlí tam, alebo si to vypne Alebo podobne, tak vlastne.
+00:27:01 Speaker 2
+Tieto funkcionality, Nebude mať a to musíme nejakým spôsobom V tom interfejsi, ako mu dať Najavo, hej, alebo podobne, hej. Vlastne, Musíme premyšľať nad Tým užívateľom, čo chce, Akože default vanilla systém, O tom pravda, že nad tým Človekom, ktorý to bude, Ktorý si to bude, ako keby chcieť Upravovať, no asi tak. Že asi naozaj ten Nejaký default a možno advanced system To bude musieť mať akože integrovaný.
+00:27:31 Speaker 2
+Lebo ja napríklad, Chcem, aby to bolo také, že Out of the box, aby to bolo proste funkčné. Proste presne tá funkcionalita, Ktorú tam chceme mať, hej, proste ten OKF, Spisový systém A tá perzistentná pamäť, Aby tam proste bola ako, Ako integrovaná feature, Ako proste feature, ktorú budem vedieť Odprezentovať. A na to, Bude napojené, keď si pozriete, Potom tie Jednotlivé systémy, Ktoré Som vám poslal, tak vlastne.
+00:28:03 Speaker 2
+Alebo proste skríny, tak uvidíte, že vlastne, Z toho OKF systému, z tých jednotlivých, Súborov, on bude skladať dashboardy. Vlastne na prvý pohľad sa človek Je to také, že Ako keby je to pre tých obyčajných ľudí, Ale je to také ako jej marketingový nástroj. Pozri, máš OKF Systém, ale to nie sú súbory v, Priečinku, ale je to Proste pre agenta, je to niečo, Čo on si vie proste pozrieť a, ukážu ti to vie pekne vizualizovať.
+00:28:35 Speaker 2
+Na prvý pohľad graficky, Ja som napríklad taký človek, že na prvý, Pohľad, keď mám niečo graficky zobrazené, tak viem to lepšie pochopiť, ako, Budem si čítať jednotlivé proste súbory.
+00:28:52 Speaker 2
+Neviem, či vás tu vidím. Tu mám, ale... Keď si pozriete... Keď si pozriete PR64, Pull request 64 pošlem tu link. Tak tam sú vlastne varianty. Tých dizajnov.
+00:29:15 Speaker 2
+Neviem, prečo to neukazuje vám.
+00:29:34 Speaker 2
+Vidíte to?
+00:29:45 Speaker 2
+Neviem, či to nebudem musieť opraviť tie odkazy, lebo mi sa mi zdá, že hej, File not found 404. Dobre, počkajte, hej.
+00:29:57 Vojta Říha
+Hej, švejku, ďakujem všech, ja to možná stihol i dokonca.
+00:30:02 Speaker 2
+Mne to super power vytvorilo vlastne tie jednotlivé tieto a dal som tam vlastne ten skill na diagramy, hej, aby to pekne ukazovalo. Lenže on mi tam dal rôzne, ako keby hovorím, že varianty a neviem, či ma úplne pochopil, že čo chcem, hej, ale toto asi bude taká, ako keby add-on, ktorý si budú môcť, ako keby vizuálne pozrieť tie OKF informácie, keď si to pozriete. Asi to nevidno.
+00:30:32 Speaker 2
+Ja to mám na localhoste, jasné, to preto nevidno. Musím, nech si to vytvorí HTML.
+00:30:41 Speaker 2
+No dobre, takže pokračujeme ďalej, čo máme vlastne v tom rozhodnutí. Takže Agents.md a Cloud Mirror bude vlastne kanonický bootstrap, index, V rámci každého jedného priečinku, hej, a vlastne to je to základ tej prenositeľnosti. Otázka len otvorená bol ten Brain.md, čo som navrhol, ten taký všeobecný.
+00:31:11 Speaker 2
+Ako keby nejaká perzistentná, ako keby právna pamäť, Ale to si môžeme dať ako nejaký add-on taktiež.
+00:31:25 Speaker 2
+Klientský workspace s viacerými prípadmi, Spoločná identita klienta, izolovaný L2 stav každého prípadu, To ja s tým súhlasím, neviem ako vy. Tie L1, L2, L3... To návrhol Vojta.
+00:31:43 Vojta Říha
+To, čo si mi osvedčil, Pretože to Brain.md, čo si říkal, Tak to ja to mám takhle podstletím, Nech funguje môj Cloud.md, Nebo Agents.md v kodexu A tam de facto Mám celý ten popis, Z tých rolí A ako všim mi pomáha, že jo. Takže to mám v tom Brain.md A tam si napísujú třeba jenom určitý Sekvence, aby to nebylo Jako rozsáhlý. Aby ten súbor nemiel príliš řádku, takže si snažím držať tu nejakých 300, maximálne 500 řádku víc ne, víc tam proste toho bejt nemá.
+00:32:19 Speaker 2
+Moja ideja o Brain.md bolo niečo také, že všetko obsahujúce, že vlastne ako keby jeden súbor do ktorého, alebo jeden proste súborový systém, kde by sa, Zo všetkých spisov, zo všetkých prípadov, od všetkých klientov zapisovali keby nejaké zaujímavé zistenia.
+00:32:39 Vojta Říha
+No tak to pak je, no tak svojím zpôsobom to vyplní ten celý Obsidian, kterej si tam takhle udeláš a napr. pojíš, Pretože fakt to funguje, ale ako ten Brain.md, ako ten second brain v podstate, kde to potrebuješ, ale bez toho, aby to byli tie odkazy, no moc funkčný není. No odkazy budú na MD.
+00:33:06 Speaker 2
+Na rôzne markdowny, hej, to znamená, že bude, dáme tomu nejaké zistenie, bla, a tam bude odkaz na Agents.md tohto prípadu a v rámci toho Agents.md bude proste odkaz na, hej, a proste tie odkazy budú, bude sa to proste tak reťaziť, hej, že vlastne, keď bude nejaké zistenie v rámci Brain.md, niečo tu vôležité zapísané, tak v podstate on si bude vedieť, dohľadať, že ten zdroj toho zistenia, kde to bude, odkiaľ to je, hej, že vlastne... Je to, presne ako hovoríš, Obsidian štýl, akurát je to, nepotrebuješ na to interfejs Obsidianu, ale proste bude to v rámci tých markdownov, to znamená absolútne prenositeľné.
+00:33:49 Speaker 2
+A viem sa presne, že keď si niekto toto naotvorí v obsidiane, tak sa mu presne načítajú všetky tie prepojenia. Presne, tam je také, ako bude fungovať. Dobre, tak môžeme to dať ako ďalší feature, že vlastne niečo také bude fungovať. Takže ten, a ten teda, Tie druhy, tých L1, L2, Vedel by si to nejak? Lebo ja napríklad to nevám, tak toto na rozdelené, Ako keby tie kvality.
+00:34:17 Vojta Říha
+Takhle, tak, L3, to je tá najnižší úroveň, Což je ako tá nepodrobnejší. L2 už ako říkáme, Co je to Za klienta, co má za prípady. A L1 Říkáme ako, Kompletní rozdelení tých, Širší práce a jak tú práci Provádime. A tam sú Třeba operační workflows. Akým spôsobom s tým môžeš, Pracovať a čoho si vyvarovať, Když vytváříš, Nejaké dokumenty,
+00:34:48 Vojta Říha
+Nebo naopak vyhľadáváš judikatúru, Čo si dáváš na blacklist, Čo si ti podařilo a nepodařilo Vyvarovať a čo dává smysl, A čo nedává. Takže to sú, V podstate...
+00:35:02 Speaker 2
+Agents.md? Hej, hej, hej, tým je to podrobnejšie. Chápam.
+00:35:08 Vojta Říha
+Áno, áno, áno, presne tak, proste, když si úplne Na prípadu, tak tam je úplne všechno U toho klienta, a když si vejš, Tak tam je menej tie informácie A spíše, jak má pracovať. No, ale v podstate.
+00:35:20 Speaker 2
+Je to ten, ako keby workflow. Klient, Prípad, hej, Že vlastne klient, ako keby Respektive L1 je To, Klient, L2 jednotlivý prípad a L3 už sú ako keby možno ešte väčšie podrobnosti Alebo niečo v tom zmysle.
+00:35:40 Vojta Říha
+To je ako jedna z tých cez, V prípade sa tam dá dať klienti L4 a to by bolo úplne nejnižší, Ale L1 je na spôsob, Jak má spracovávať a pracovať s tými údajmi, Čo sa má vyvarovať a čo má naopak dělať, Aby skrátka si dal... Pokud možno jednoduchý prompt a dostal tú konečnú odpoveď, aby si to nejvíc agenský spracovaný a ako pak si pak tam nemusel dodelávať prakticky nic.
+00:36:13 Vojta Říha
+Jako v môjom prípade, ja tam maximálne dodelávam ako formatovanie inú bloku, potom sa to prečtu a to je jediná vec a to mám schováne, aby som to vôbec prečítal, tak všetko.
+00:36:24 Speaker 2
+OK, OK, OK. Dobre, však ten systém, to si navrhneme podľa tých návrhov. Anglicky machine contract sme sa dohodli, že bude jedna vlastne tá schéma, ktorá bude jasná v anglištine a lokalizácia už potom bude na tej úrovni toho klienta, kde vlastne budú presne tie zásady, že z ktorých súborov čo a ako to bude prezentované. A potom vlastne tie lehoty alebo chronologické zápisy takto budú v rámci tých statusov, status, status MD.
+00:37:01 Speaker 2
+To máme schválené a potom ja si myslím, že tie risk-based human gates, tak to by som nechal na človeku, ktorý si proste vykliká v tých markdownoch a môže si to tam upravovať manuálne, asi by som tam nedával nejaký špeciálny systém, že ešte bude systém sledovať a vyzývať a podobné.
+00:37:29 Speaker 2
+Zapisuje sa to a keď si bude chcieť Určité veci upraviť, Tak si to upraví. A keď v priebehu Práce so spisom zistí, že niečo je Zle zapísané, tak proste nechá agenta, Nech to upraviť.
+00:37:43 Speaker 2
+Takže akože speciálny systém, By som asi na to nevytváral.
+00:37:48 Speaker 2
+To znamená, Validate, apply a Proste všelijaké tie hluposti. Asi by som tam Nič tieto veci nerešil.
+00:37:58 Speaker 2
+Čo tam je? Referenčný prototyp Z PR24. To vlastne čo bolo?
+00:38:06 Speaker 2
+Musím sa pozrieť Na to. Pri mne som úplne Zabudol. Aha, to sú tie Dashboardy. To Ešte stále nefunkčné. Hej, už je funkčné. Takže keď si reloadnete ten, Pull request 604, Tak už aj tie varianty, By mali byť funkčné. Ale pozrite si na tú specifikáciu, že vlastne asi ako by mali vyzerať Tie osobné dashboardy a toto asi budeme potom ešte upravovať. Ale hovorím, že idea je tá, že vlastne niekto si bude môcť graficky nechať.
+00:38:42 Speaker 2
+Zobraziť to, čo je napísané v tých jednotlivých markdownoch. A ako si Obsidian človek vie graficky zobraziť prepojenia, Tak tu si bude vedieť graficky zobraziť. To, čo potrebuje vedieť, hej, to znamená, budú tam lehoty, bude tam nejaký timeline toho systému a podobné, hej.
+00:39:04 Speaker 2
+Dobre, takže asi pravdepodobne tu ten core, OKF core, potrebujeme už definitívne doriešiť. To znamená, že pripraviť si ako testovacie, testovacie skilly. Ktoré si budeme môcť otestovať Na našich prípadoch. Ja si proste otvorím V rámci nejaký jednoduchší Prípad a otestujem Si aj jednu.
+00:39:34 Speaker 2
+Tvoje tie varianty a uvidíme. Ale myslím, že Už to máme tak celkom ako keby, Zjednotené. Mohli by sme to Už začať vytvoriť nejak variant, 1, variant 2, variant 3, A otestovať to na reálnych súboroch. Teda môžete.
+00:39:52 Speaker 2
+Ja teda v kodexe si to vyskúšam, pravda, že? Vojta, ty si to vyskúšaj. Máš už ten Cloud Team? Teams? S DPA-čkou?
+00:40:03 Vojta Říha
+Ja mám pořád ten max, Svoj teda.
+00:40:07 Speaker 2
+Možno tak max môžeš mať, ale môžeš to mať aj v rámci tímu. Takže už aj s DPA-čkou.
+00:40:14 Vojta Říha
+Ne, tak to som ešte, Na to nepřepnul, Len to napríklad hodím na ICO. Tak to ešte prohodím.
+00:40:22 Speaker 2
+Ak chceš fungovať takto Na live prípadoch, Tak by som odporúčal, aby sme To tu mali aj my poriešené. Potom prídu otázky blbé, A budeme sa o ne vyhovárať. Takže aby sme to mali, Aspoň takto vyriešené. Teraz nerieším, To, že do budúcnosti by som Chcel integrovať aj možnosť. Preto som vám postoval Ten Perplexity, kde vlastne Orchestrátor používa lokálne modely. Na určité veci, hej.
+00:40:53 Speaker 2
+A potom tam je ten security guard, Ktorý proste robí tú medzivrstvu Anonymizačnú, hej. To je, myslím, že to je, to Martin Bude chcieť riešiť, respektuje to je Martinová domena, tie anonymizačné veci. Ale to sme povedali, že to až neskôr, Hej, že, To ma tak zaujalo, hej, ale hovorím, že V budúcnosti by sme toto nám mohli Vyriešiť. Dobre, takže.
+00:41:19 Speaker 2
+Takže tak, no máte všetky vlastne tie veci, tie výstupy, ktoré som aj posielal, Aj tie návrhy, ktoré sme jednotlivé dali.
+00:41:28 Speaker 2
+Myslím, že ďalší postup bude, že ja to dám nejak dokopy, Pošlem záznam z tejto porady, dopracujeme s Vojtom tie jednotlivé varianty, Tých OKF systému v rámci nejakého skillu, aby sme si to vedeli odskúšať, Každý jeden z nás. Vychytať nejaké bugy, čo nám tam Proste vadí a podobne. Ale ideálne by bolo, keby to bol nejaký No proste nejaký, ja si to skúsim Na nejakých vlastných veciach, Čo som ja riešil pre seba.
+00:42:00 Speaker 2
+Alebo pre vlastnú rodinu. Ale zatiaľ to ešte Nedám do nejakého, ako keby, Aj keby som, možno to aj vyskúšam, Aj na nejakých klientských veciach. Ale proste potrebné, aby sme to dokončili A aby sme si to vyskúšali. Znamená, že vytvorenie nového spisu Je všetko. Vy generujete súbory A potom ako Že ako keby Konsolidácia už reálneho spisu, Kde už sú aj súbory, PDF-ka, Doxigy, všetko a vytvorenie Vlastne OKF systému z toho.
+00:42:32 Speaker 2
+Vlastne ako to bude fungovať. Takže asi To tu nájde ďalší postup.
+00:42:38 Speaker 2
+Tak a Martin vlastne, Ty by si mal, Premyslieť ten Onboarding systém na ten OKF. By to aj vyzeralo nejak Graficky. Scény z toho možno nejakých, Diagramov a podobne, Alebo reálnych nejakých videí, Alebo proste ukážok Toho interface potom, keď to dokončíme. Premyslieť na tieto veci.
+00:43:05 Speaker 2
+Poďme na to, ten OKF, Nejak dokončiť. A Martin, tiež si to vyskúšaj. Dúfam, že aj Igor sa k tomu pridá, A že aj on si to pozrie, lebo on hovoril, že on má Nejaké špeciálne systémy vymyslené, Ale že ako by to fungovalo.
+00:43:19 Speaker 2
+Ako tam integrovať Aj potom aj to, čo si hovoril, Tie IML Veci, lebo napríklad hovorím, Že ja to mám speciálny skill, Ale mohli by sme to integrovať do toho, Iniciácie toho nového spisu, kde vlastne by sa Spýtal na subjekt a podobne, Ale už to predpoklá, že Už človek má napojené tie databázy. Ešte vidíš, ešte sa zamyslíte nad tými MCP a skillmi, že ako to bude vyriešené, ale predpokladám, že to budeme riešiť tak, ako to majú už teraz v tom legal worku, že vlastne to je samostatný ako keby nástroj a tam si vlastne budeme mať vlastný Low OSS marketplace, ktorý bude na cloud, codex a možno aj nejaký iný OpenCode a vlastne tam budeme mať všetky MCP servery naše základné a všetky skilly naše základné.
+00:44:10 Speaker 2
+A budeme ich updatovať a vlastne tie marketplaces fungujú tak, že tam sa to potom dá pekne updatovať.
+00:44:17 Martin Friedrich
+Myslíš si, že by sme mali ponúknuť nejaký základný na...
+00:44:22 Speaker 2
+To je ten marketplace, o čom hovorím teraz. Že vlastne bude Low OSS marketplace. V rámci toho marketplaces budú naše akoby defaultné veci, ktoré sa proste načítajú vždy.
+00:44:34 Martin Friedrich
+Lebo keď myslíš, že to je marketplace, mám predstavu, že musíš si ešte niečo sťahovať.
+00:44:40 Speaker 2
+Nie, nie, ako Ty si môžeš, hej, Lebo keď sa pozrieš v tom Legal Work, tak oni tam majú tiež Skilly, MCP A plugin Marketplace. Marketplace znamená iba to, že vlastne, To je ako keby, Manažovaný GitHub repozitár, Kde vlastne rôzne Repozitáre môžu byť, ktoré môžu byť Automaticky updatované. To znamená, Je to taký jednotný systém, používajú Viaceré... V tom svete to používa aj Codex a je to lepšie na updatovanie, že nemusíš manuálne updatovať repozitár, len v rámci toho Marketplace máš viac repozitárov, ktoré sa vedia potom automaticky updatovať.
+00:45:22 Speaker 2
+Viem si predstaviť, že v tom Marketplace mi napríklad bolo aj CLI pre ľudí, ktorí používajú Apple Reminders, Apple Notes alebo... Alebo CLI na Google, hej, Google Workspace, alebo proste Outlook a podobne, až do vlastne tieto veci by sme tam dali ako v základe, hej, to sa budeme ako keby o tom baviť, len zamyslieť sa nad tým, hej, aby sme čo najmenej mali nejakých proprietárnych veci a čo najviac sa držali vlastne toho legal worku, ako to tam funguje, hej, toho OpenCode.
+00:45:55 Martin Friedrich
+Ale nejaké základné MCPčka na SlowLex, judikatúru, to asi bude naše.
+00:46:03 Speaker 2
+Kukaj, jasné. To budú také, že môžu si to pozrieť. V podstate ja som, Tam dal repozitár Do tej organizácie, Kde sú tie veci, len ešte nie sú updatnuté. Ale musíme, To urobiť tak, že Musí to byť ako keby lokálny, MCP server. Takže ja to asi prerobím Na lokálne potom. Normálny stdio by to nebolo Cez...
+00:46:37 Vojta Říha
+No a ako jenom takhle, pri tom rozsahu tých dát, Jenom, když to enormne zatíží počítač toho uživateľa, Pretože ja teda neviem, aby mu to tam fungovalo správne, Pretože to si nedovedu predstaviť, když si vezmu, Že biežná operačná pamieť, u niekterejch môže byť 8 GB RAM-ky, Tak ako akmile tam rozbehneme takovýhle program, tak mu... Razem zabereme pôlovinu operačného systému, že jo?
+00:47:09 Vojta Říha
+Tohto operačného pamätia, ktorého má. No, toto som neriešil.
+00:47:17 Speaker 2
+Také to technická vec je nič. To je dobrý, dobrý, dobrý pomáha.
+00:47:21 Vojta Říha
+Riť si, pokud tam bude na lokále, tak Pak zase, že málo kto má Vybavený počítač, takhle dobře, pretože Jenom mám porovnanie, mám M5 Macbooka, 24 giga RAMky a 1000 giga disku. Jasný, a pak mám starýho Macbooka M1, Ale to je pořád dobrej počítač, Ale zase, ten proste umře.
+00:47:52 Vojta Říha
+Ja som spustil maximálne 3 jadrá, Teda 3 procesy, Pretože pak už proste odrovnávam ten počítač. Byl som taký schopný tam na to mít Třeba takových Patnáct terminálových okien otevřených, Ale nebolo to dobré. Takže pak o nich Si budú ľíviť, no ale Používatelia budú říkať, My tady máme tú aplikáciu Spustenú a už nespustím Word Vedľa toho, pretože ten jede strašne,
+00:48:22 Vojta Říha
+ti.
+00:48:23 Speaker 2
+Operačnú pamäť. Neviem, ja neviem. Ja toto tu asi nikdy nerieš.
+00:48:31 Vojta Říha
+Ja jenom konstatuju, to pak môžeme odladiť pri tých testech a říkať si, Hele, jak to funguje na tom a tom stroji, aby sme to měli, Ne, jako málo náročný, to neříkám, ale aby proste, pokud ťa řekneme, Hele, chcete vlastný MCP, tak ale musíte mať špecifikáciu. Jinak tady máte MCP, ktorý vám odporúčam, ktorý vám bude fungovať. Tak pozri, ja neviem, koľko tie MCP zaberajú operačne v pamäti,
+00:48:58 Speaker 2
+Keď sú načítané.
+00:49:00 Vojta Říha
+No, veľa. Pokud je to u právnych zdrojov, tak to môže byť, Tak sa bavíme klidne o takových 50-60 GB a je to šílený. Takže ja to nerozhodím na lokálu pořádne.
+00:49:15 Vojta Říha
+Mne to nikdy nefungovalo na lokálnym disku a na lokálnym počítači. Fakt ne. Takže asi to dělám špatne, to je možný, Ale ja som to pořád nikdy nerozhodil.
+00:49:28 Speaker 2
+No, ja mám práve tie webové na vlastnom serveri, hej, to znamená, že je to len volanie, hej, takže nemám to rozbehnuté.
+00:49:38 Speaker 2
+Ale, ako čo, vieš, ja nebudem poskytovať niekomu, hej. No to určite aj.
+00:49:46 Speaker 2
+Vám to môžem poskytnúť, hej, lebo viem, že toto, ale ako verejnosti určite ne, hej, to všetko je akoby...
+00:49:55 Speaker 2
+Myslím, že keby sme dal nejaké základné, keď si niekto vyberie, Že bude tam česká legislatíva, slovenská legislatíva, Európska legislatíva a nejaká judikatúra česká, slovenská, Tak si myslím, že to asi nepojde. Keď si rozbehá vlastne...
+00:50:16 Martin Friedrich
+Môžeme rád...
+00:50:24 Martin Friedrich
+Claudom, Codexom, kodexom, Mám ich strašne veľa, Nie žijem ja už tak veľa, a som ochotný.
+00:50:32 Speaker 2
+Sa o nich podeliť. Tak ja neviem práve.
+00:50:37 Vojta Říha
+To by chcelo, ako, Jestli to funguje, tak ja si nechám Určite rád poradiť, Pretože mi sa to zatiaľ teda s mojima schopnosťmi Nepovedlo, a to neverím, že Sú akí akní vôbec, Asi spíš myslím naopak, ale Tady bych chcel, ako, říct, že, By to bolo fajn, aby sme Rovnou tí uživatele Řekli, hele, môžete Mít vlastný MCPčko, ale Potrebujete počítač. Aby pak nebyli Sklamaní, že jo. Pretože ono, ten Open source je tady v tomto ohľade fajn, ale povedať rovnou.
+00:51:08 Vojta Říha
+U tý anonymity, Tých MCPčiek, Že to je nejnáročnejší Čas, že vždyť si vezmi jenom kodeks systému, Má na tom postavenou povesť. Jenom to, že to dokážu provozovať, to vyhledávanie v tých datech. A vždycky pán Řehák, když som túto otázku otevřel, Tak mi povedal, ne, nerobte to, že jo. Inak oni na to používajú open source, A vždycky ešte má ten klasický argument boomerovský, A už to děláme 25 let.
+00:51:39 Vojta Říha
+Takže ja neviem, tak len, Jenom viem proste, že to dokáže byť veľký oríšok, Takže povedať si, fajn, tady dostanete 10 tisíc, Zákonu, judikátov a ty rozbiehnete na každém počítači. To si myslím, že asi je OK. A pak je otázka tý selenkce.
+00:51:58 Martin Friedrich
+No, zase v Gigagramy, to je pravda. To je toto neuťahá. Ja mám 24, rovnako. Ja mám taký systém ako ma Vojta.
+00:52:12 Vojta Říha
+Takže, ja len konstatuju, že toto môže byť problém.
+00:52:17 Martin Friedrich
+No, ale nevieme to.
+00:52:19 Speaker 2
+To je dobrá Ako keby vec. To treba od začiatku Riešiť. Ja som na to absolútne nemyslel. Ja mám 32 giga RAM A ja som v pohode. Lenže, Je pravda, že kdo má Ako z môjho pohľadu, Je to málo. Lenže Z pohľadu ako keby bežných aj väčšiny Advokátov je to asi dosť. A asi treba aj na to, Myslieť. Napríklad teraz som si Zapol Low OSS. Neviem, či ste si, Už ten fork aj kompilovali a spustili. Ale zabera 631 MB, hej?
+00:52:52 Speaker 2
+MB, hej? Ale nemám tam napojené žiadne tieto konektory, hej? A asi pravdepodobne to teraz začnem skúšať, keď si to tak nadhodil, lebo asi by to trebalo vyskúšať.
+00:53:15 Martin Friedrich
+Keď tam hodí lokálneho AI, tak v podstate každý skončil. No tak to jo,
+00:53:23 Speaker 2
+Určite. No jasne, to asi ani netreba predávať ľuďom obyčajným, že možno lokálne AI, to proste ne. Ja teraz, čo poviem do Južnej Korei, aj do Japonska. Tak už som dal Hermesovi robiť, nech checkuje, bazáre a všetko. A rozmyslím, že si tam zoberiem, keď tam proste nájdem niečo 64-gigové.
+00:53:55 Speaker 2
+Alebo 128-gigové Mac Studio, nejakú M2 alebo M4, no. Teď bude za nejakú dobrú cenu.
+00:54:05 Vojta Říha
+To by bolo určite, pretože to urobí hrozné práce.
+00:54:09 Speaker 2
+No. Takže ja nejdem si teraz úplne odnoviť, lebo som si specifikoval, že ten M5 Max, M5 Studio, Mac Studio zo 128 GB RAMky a 1 TB disk a nebol som úplne spokojný s tým, čo som videl na obrazovke, tie čísla, hej, ten počet, počet z tých... To bolo koľko? 40 eur? Čo? Základ je... 2700 a 2800.
+00:54:41 Speaker 2
+To je, máš 36 GB RAM, A myslím, že 512 GB vo 1 terabajt, hej. A keď si tam, nasypeš, lebo keď chceš 128 GB, tak musíš Ísť, myslím, že na Ultra. To znamená, Že tam si na úrovni Desiatok tisíc, hej. Už, To je šialené, hej. Takže ja...
+00:55:08 Vojta Říha
+Ja som si pozeral na Alze, na tú nejväčšiu špecifikáciu a oni chcú asi, Či počtu na Koruny 330 tisíc Alebo tak nejak, včetne DPH, Takže nejakých cirka, to je koľko? 11-12 tisíc eur, možno 13?
+00:55:25 Martin Friedrich
+Tak, ako zadajú. V pohode, no to máme.
+00:55:32 Vojta Říha
+Určite, určite. Ja třeba viem, to mi říkal pán Řehák z Codexisu, tak ja pošiel ešte jednu stránku, oni si nakúpili na tie virtuálne mašiny, aby měli, má nejaký šrot z tie staré servery a na nich to necháme behať. Jako tie virtuálne mašiny a tie sú za, nie sú tak do 40-50 tisíc, no, ako s nejväčším množstvím ramky.
+00:56:01 Vojta Říha
+Ale zase to je na to, ako máte skrivenie, kde to musíte myť, musíte myť hosting, že jo? Oni ponúkajú hosting, ale to je takový to, ako Chcete myť vlastní MCP-čko, tak si tady kúpte vlastný server.
+00:56:14 Speaker 2
+No ono, pozri, ja mám na tom mojom serveri Docela silné judikatúrne MCP-čko, ktoré mi proste robí V pozadí, ukládá veci, hej, GBbajty dát. A nezabera toľko veľa RAMky a ide to proste. Ja mám tam iba 12 GB RAM na tom serveri a proste tento MCPčko mi proste bere možno nejaké 2 GB alebo tak iba a to je len ale to je brutálne MCPčko hej keď si pozrieš tú architektúru to proste robí veľa toho hej aj v pozádi má asi 3-4 workery čo proste každú noc pracujú a prehľadávajú a upravujú takže ako musíme sa na to pozrieť a ináč troška som klamal.
+00:56:58 Speaker 2
+Ohľadom tej ceny, tak som si teraz specifikoval na Apple M5 Max Studio, 18-jadrové CPU, 40-jadrové GPU, 128 GB RAM a 1 TB disk a vychádza to iba 6189 z DPH. Takže celkovo ako jak zadarmo.
+00:57:24 Vojta Říha
+Ale mne to práve, mne to teďka naštvalo, my sme to měli v jednej majetkový podstate, my sme měli veľký, veľkú skriň a ešte nejaký brutálny počítač s nejakým veľkým AMD procesorem, a to mi je tak ľúto, že som ho prodal za pár šupu, že som si to sám nevzel, ale proste, nejde to, niektoré veci sú neprekročiteľné.
+00:57:43 Speaker 2
+No, ako, ja to šialujem, dikulós, a renovovať aj prečo nad tým. Ja ten svoj Mac Studio by som možno predal za nejakých 2000 eur, ale to by som musel, ty vole, priplatiť 3,5 až 4000 za nový. No neviem, či sa to niekedy zlepší, chlapci.
+00:58:08 Vojta Říha
+To sa koniec lepší.
+00:58:11 Speaker 2
+Preto pozerám bazáre v Koreji a v Japonsku, že by som proste zobral nejakú M2 Ultra z 128 GB a proste na tom fičal, hej. Aspoň takto. No a v každom prípade Tu zase hlúposti trepem. Odložte si ten, skompilujte Si ten fork, Kľudne môžete updatnúť, A pozrite si, že keď si tam Napojíte nejaké vlastné MCPčka, Že koľko vám to zaberie RAMky. A možno to nebude až také zlé, hej. Kľudne pozri, vieš, napríklad nemusíme.
+00:58:43 Speaker 2
+Tam mať také zložité MCPčko, Aké mám ja, ale môžeme dať naozaj, Niečo menšie. Ja skúsim Napríklad ten SlowLex môj. Lebo ten SlowLex, čo ja mám urobený, Tak je urobený tak, že vždy ťaha Live data, hej. To znamená, že Neuklada, hej, že nie je to, Náročné, hej, na pamäť. Takže môžeme proste si, Povedať, že opäť základ bude nejaký, 5 MCP-čiek, hej. A keď bude chcieť mať niekto Ako keby na to kapacitu, Tak ináč ako, že, Keď ste taký technický, Vojta,
+00:59:16 Speaker 2
+Tak prečo nedorobiť feature, Kde proste by tá aplikácia Sledovala, Základ. Ďakujem za pozornosť.
+00:59:48 Speaker 2
+My to môžeme sa smieť na tom A dávať si všetké fičúrky Na svojich macOS Mašinách, ale Ak to bude Igor potom Kompilovať na Windowse, To akože, wow. Treba sa aj nad týmto zamyslieť. Je to nice to have, Ale zase, aby sme to neprekomplikovali. Ale dobrá Idea a treba na to myslieť. Takže super, Vojta, ďakujem za to. Porozmýšľajme nad tým. A Martin, tiež ty pozri, hej.
+01:00:18 Speaker 2
+Či vlastne, keď si napojíš, Tie svoje lokálne servre vo tom Low OSS, Či akoľko ti to zaberie RAMky. Či to je niečo také katastrofálne, Alebo či je to... A že či to vlastne Funguje a keď ti to zapneš, A začneš to používať. Či až vtedy, To nejak nezačne používať nejak veľa RAMky. OK. Hej. Napoj tam, Naozaj judikatúru, SlowLex. To, čo máš ty vytvorené. Aspoň to porovnáme.
+01:00:45 Speaker 2
+Dobre chlapci, tak hodinka je za nami, takže nechcem to naťahovať. Máme úlohy rozhodené, ja potom pošlám zase nejaký resumé, nejaký sumár toho, čo sme prebrali, Aj s úlohami, s prehľadom, aby sme to mali niekde zaevidované a teda môžeme si dať call, ja neviem, streda. OK, streda zajtra.
+01:01:16 Vojta Říha
+To je z litra, ale nebudem v príští týden. No,
+01:01:22 Speaker 2
+Môžeme, môžeme teda kľudne Aj budúci týždeň. Môžeme budúci týždeň, ale skôr.
+01:01:28 Martin Friedrich
+Ako v stredu, no. Dajme v piatok, ale povedzme v pondelok do obede. Ok.
+01:01:36 Vojta Říha
+Hej.
+01:01:39 Speaker 2
+V pondelok?
+01:01:43 Vojta Říha
+V pondelok, jo, ja môžem. 7.
+01:01:48 Speaker 2
+Takže o koľke? 7. o? 10.30.
+01:01:53 Martin Friedrich
+10.30? Dúfam, kalendár.
+01:01:57 Speaker 2
+Od 10. Môžeme od 10. Môže byť. OK, 10. Od 10. do 11. 7. septembra. A dúfam, že sa pridá aj Igor. A už budeme mať v dispozícii všetky tie veci. Takže už to konečne začneme stavať. Ja som trošku aj na LinkedIne niečo sa snažil teasovať, ale videli ste, dostal som docela čočku. Ja som to vedel. Dosť naklad. Od koho? Od Marketákov a dizajnerov.
+01:02:30 Speaker 2
+Aha, to som sa nevedel. Tak už som ho si aj prestal. Ale veľa variantov som vám aj poslal. To ma bude fajn. Len som chcel trošku Teasovať to. A neviem, či ste videli, Ale som vám poslal aj, už máme Aj web stránku. Máte už aj E-maily, takže keď to chcete Používať, alebo dať čo. Ja som to Rozbehal, lúsoval na service, e-mailový, Server, takže aj kalendáre Fungujú, aj e-maily, aj.
+01:03:02 Speaker 2
+Reminders. Takže keď si Chcete, tak len dajte vedieť, ja vám pošlám, Vygenerujem heslo, Lebo proste dávam prístup, nech si to vygenerujete. Môžete to sa pohrať s tým.
+01:03:14 Vojta Říha
+OK.
+01:03:16 Speaker 2
+No, dobré, chlapci, tak Rád som vás počul a Vidíme sa, počujeme sa, V pondelok a kľudne píšte pre bežnej, Že aké máte skúsenosti s tými vecami.
+01:03:29 Speaker 2
+Tak jo, tak super. Dobre, dobré, chlapci, zatím. Čaute. Čau, čau.

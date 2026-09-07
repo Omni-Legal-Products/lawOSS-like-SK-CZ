@@ -9,3 +9,6 @@ research/deep-research/audio/
 
 # Izolovane pracovne stromy agentov
 .worktrees/
+
+# Docasne pracovne artefakty Superpowers skillov
+.superpowers/
