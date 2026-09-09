@@ -386,6 +386,7 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 | [`2026-08-12-mcp-repository-rollout-plan.md`](planning/2026-08-12-mcp-repository-rollout-plan.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/46 (0 %) |
 | [`2026-08-15-odpovedi-VR-Q01-Q25.md`](planning/2026-08-15-odpovedi-VR-Q01-Q25.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
 | [`2026-08-21-paper-cuts-a-rychle-vylepsenia.md`](planning/2026-08-21-paper-cuts-a-rychle-vylepsenia.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
+| [`2026-09-09-realizacia-lawoss-a-spolupraca-ai.md`](planning/2026-09-09-realizacia-lawoss-a-spolupraca-ai.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/35 (0 %) |
 | [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 10/81 (12 %) |
 | [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
@@ -527,6 +528,10 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-09-06-rozhodovaci-podklad-mc.md
 │   ├── 2026-09-07-cistenie-pr.md
 │   ├── 2026-09-07-dopady-callu-na-okf-a-appku.md
+│   ├── 2026-09-09-audit-realizacie-lawoss.html
+│   ├── 2026-09-09-audit-realizacie-lawoss.md
+│   ├── 2026-09-09-realizacia-lawoss-a-spolupraca-ai.html
+│   ├── 2026-09-09-realizacia-lawoss-a-spolupraca-ai.md
 │   ├── backlog.md
 │   ├── cz-datove-zdroje.md
 │   ├── mcp-repository-inventory.md
@@ -727,23 +732,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**400 commitov** · **249 súborov**
+**403 commitov** · **253 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `ce0354b` | 2026-09-09 | Majo Cuprik | Merge pull request #75 from Omni-Legal-Products/docs/plan-realizacie-ai-2026-09-09 |
+| `99e76d2` | 2026-09-09 | Marián Čuprík | docs: navrhnúť realizáciu LAWOSS a spoluprácu s AI |
+| `5aa993f` | 2026-09-07 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `ebb8418` | 2026-09-07 | Marián Čuprík | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 | `42f457b` | 2026-09-07 | Marián Čuprík | docs: oprava počtu otvorených PR po znovuotvorení #64 |
 | `a6d3320` | 2026-09-07 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `e4a85de` | 2026-09-07 | Marián Čuprík | docs: výsledok čistenia PR — zlúčená skupina 1 aj reťaz vo forku |
 | `1999584` | 2026-09-07 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `b75fd62` | 2026-09-07 | Majo Cuprik | Merge pull request #71 from Omni-Legal-Products/research/telegram-zber-2026-09-03 |
-| `3746b1f` | 2026-09-07 | Majo Cuprik | Merge pull request #70 from Omni-Legal-Products/meetings/2026-09-07-okf-podklad-vr |
-| `6778639` | 2026-09-07 | Majo Cuprik | Merge pull request #69 from Omni-Legal-Products/research/okf-vs-open-knowledge-format |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-07 13:58 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-09 14:31 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
