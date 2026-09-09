@@ -1,0 +1,144 @@
+<!doctype html><html lang="sk" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>Audit podkladov pre realizáciu LAWOSS</title><style>:root{color-scheme:light dark;--bg:#f7f5ef;--paper:#fff;--fg:#182430;--muted:#586674;--line:#d8dcd9;--gold:#876820;--code:#f0f2f3}html[data-theme=dark]{--bg:#0d1b2a;--paper:#142433;--fg:#e9e4da;--muted:#bac4cd;--line:#354350;--gold:#dfbc69;--code:#0b1825}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.7 system-ui,-apple-system,sans-serif}a{color:var(--gold);text-underline-offset:3px;overflow-wrap:anywhere}header{padding:30px 5vw 25px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;align-items:center}header span{font-size:15px;letter-spacing:.12em;font-weight:650}button{font:inherit;background:var(--paper);color:var(--fg);border:1px solid var(--line);padding:7px 13px;cursor:pointer}.layout{display:grid;grid-template-columns:235px minmax(0,1040px);gap:42px;max-width:1390px;margin:auto;padding:38px 30px 90px}nav{position:sticky;top:20px;align-self:start;font-size:13px;max-height:90vh;overflow:auto}nav a{display:block;padding:7px 8px;border-bottom:1px solid var(--line);color:var(--muted);text-decoration:none}nav a:hover,nav a:focus{color:var(--gold)}main{min-width:0}h1{font-size:clamp(30px,4vw,44px);line-height:1.18;letter-spacing:-.03em;margin:0 0 30px}h2{font-size:26px;line-height:1.25;margin:55px 0 20px;padding-top:18px;border-top:2px solid var(--gold);scroll-margin-top:20px}h3{font-size:20px;margin:32px 0 12px}p,li{overflow-wrap:anywhere}li{margin:7px 0}pre{padding:20px;background:var(--code);border:1px solid var(--line);overflow:auto;font-size:13px;line-height:1.55}code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em}p code,li code,td code{background:var(--code);padding:1px 4px}.table-wrap{overflow:auto;margin:22px 0;border:1px solid var(--line)}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{padding:12px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);min-width:120px}th{background:var(--paper);font-weight:650}tr:last-child td{border-bottom:0}blockquote{margin:24px 0;border-left:3px solid var(--gold);padding:0 20px;color:var(--muted)}footer{padding:22px 5vw;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}@media(max-width:850px){.layout{grid-template-columns:1fr;padding:24px 16px;gap:20px}nav{position:static;max-height:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}nav a{font-size:12px}header{padding:20px 16px}th,td{min-width:145px;padding:10px}h2{font-size:24px}}@media print{nav,button{display:none}.layout{display:block;padding:0}header{padding:0 0 12px}body{background:white;color:black;font-size:10pt}h1{font-size:24pt}h2{font-size:16pt;break-after:avoid}h3{break-after:avoid}.table-wrap{overflow:visible}table{font-size:8.5pt}th,td{min-width:0;padding:6px}pre{white-space:pre-wrap;font-size:8pt}a{color:inherit}footer{display:none}}</style></head><body><header><span>LAWOSS / PLÁNOVANIE · 09. 09. 2026</span><button id="theme" type="button" aria-label="Prepnúť svetlú alebo tmavú tému">Tmavá téma</button></header><div class="layout"><nav aria-label="Obsah dokumentu"><a href="#cast-1">1. Revízie a zdroje</a><a href="#cast-2">2. Dátový kontrakt: potvrdený integračný problém</a><a href="#cast-3">3. UI a marketplace</a><a href="#cast-4">4. CI a ochrana vetvy</a><a href="#cast-5">5. Vydanie a upstream</a><a href="#cast-6">6. Kontrolné príkazy pre aktualizovanie tohto snapshotu</a></nav><main><h1>Audit podkladov pre realizáciu LAWOSS</h1>
+<p>Overené 9. 9. 2026. Dopĺňa <a href="2026-09-09-realizacia-lawoss-a-spolupraca-ai.html">realizačný plán</a>. Výsledky platia pre uvedené revízie a čas kontroly. Audit nepridelil úlohy, nezmenil kód aplikácie a nespustil vydanie.</p>
+<h2 id="cast-1">1. Revízie a zdroje</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zdroj</th>
+<th>Revízia/stav</th>
+<th>Spôsob</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Omni-Legal-Products/lawoss</code></td>
+<td><code>dev</code> = <code>ec0f4c108e17c53152a01b327c57c1b59dfd69f2</code></td>
+<td>GitHub API, fetch, git show</td>
+</tr>
+<tr>
+<td><code>Omni-Legal-Products/lawOSS-like-SK-CZ</code></td>
+<td><code>main</code> = <code>5aa993f48dd3b4a055fcaf6a67027e2b680c9c5b</code></td>
+<td>fetch, git log</td>
+</tr>
+<tr>
+<td><code>Omni-Legal-Products/lawoss-marketplace</code></td>
+<td><code>main</code> = <code>d9631fb39ccc70055a0767a24d270b319baf774f</code>, public</td>
+<td>GitHub API a manifesty</td>
+</tr>
+<tr>
+<td>Oprava druhého zápisu v deň</td>
+<td><code>2c8db57</code> je predkom produktového <code>dev</code></td>
+<td><code>git merge-base --is-ancestor 2c8db57 origin/dev</code>, exit 0</td>
+</tr>
+<tr>
+<td>Lokálny produktový checkout</td>
+<td>iná vetva než <code>dev</code>, čistá pri kontrole</td>
+<td><code>git status</code>, <code>git branch --show-current</code></td>
+</tr>
+</tbody></table></div>
+<p>Koordinačný návrh bol uložený do samostatnej worktree a vetvy <code>docs/plan-realizacie-ai-2026-09-09</code> od <code>origin/main</code>. Pôvodné checkouty ostali nezmenené.</p>
+<h2 id="cast-2">2. Dátový kontrakt: potvrdený integračný problém</h2>
+<p>Samostatný audit exportoval presnú revíziu produktu do dočasného priečinka a pracoval výhradne so syntetickými údajmi. Samostatné sady prešli: <strong><code>lawoss/okf</code> 14/14; <code>lawoss/okf-pamat</code> 415/415</strong>. Celá používateľská cesta napriek tomu neprejde:</p>
+<ol>
+<li><code>okf apply spis</code> vytvorí štruktúru podľa aktuálnej šablóny.</li>
+<li><code>okf-memory init --apply</code> bez jurisdikcie v karte použije default <code>cz</code>.</li>
+<li><code>okf-memory sync --apply</code> skončí exit 1 na sekcii Lehoty bez potrebných markerov.</li>
+<li>Starý <code>okf validate</code> hlási chybu pri <code>BRAIN.md</code>.</li>
+<li>Spis vytvorený samotným pamäťovým nástrojom starý validátor tiež odmieta: <code>BRAIN.md</code>, <code>_STATUS.md</code> a <code>memory/index.md</code> nespĺňajú jeho očakávania.</li>
+</ol>
+<p>To odôvodňuje W1/W2 a spoločný integračný test. Počet passing tests v oddelených balíkoch nie je dôkaz kompatibility. Čítačka musí vracať diagnostiku; neskryť nečitateľné záznamy ako nulový stav.</p>
+<p>Potvrdené v kóde:</p>
+<ul>
+<li><a href="https://github.com/Omni-Legal-Products/lawoss/blob/ec0f4c108e17c53152a01b327c57c1b59dfd69f2/lawoss/okf/templates/spis/spis.md">Zakladacia karta</a> nemá <code>jurisdiction</code>, má natvrdo meno advokáta, <code>lehoty: []</code> a odkaz na <code>MEMORY.md</code>.</li>
+<li><a href="https://github.com/Omni-Legal-Products/lawoss/blob/ec0f4c108e17c53152a01b327c57c1b59dfd69f2/lawoss/okf/templates/spis/AGENTS.md">Pokyny vytvoreného spisu</a> prikazujú dvojitý zápis lehôt a používajú starú pamäťovú štruktúru.</li>
+<li><a href="https://github.com/Omni-Legal-Products/lawoss/blob/ec0f4c108e17c53152a01b327c57c1b59dfd69f2/lawoss/okf-pamat/src/index.ts">Pamäťové verejné API</a> už exportuje <code>readStore</code>, <code>readScope</code>, <code>validateStore</code>, <code>syncStatus</code> a ďalšie použiteľné funkcie.</li>
+<li><a href="https://github.com/Omni-Legal-Products/lawoss/blob/ec0f4c108e17c53152a01b327c57c1b59dfd69f2/pnpm-workspace.yaml">Workspace konfigurácia</a> zahŕňa <code>apps/*</code> a <code>packages/*</code>, nie <code>lawoss/*</code>. Samotná zmena tohto zoznamu ešte nedokazuje úspešné zabalenie servera.</li>
+<li><a href="https://github.com/Omni-Legal-Products/lawoss/blob/ec0f4c108e17c53152a01b327c57c1b59dfd69f2/lawoss/okf-pamat/src/schema.ts">Schema</a> stále obsahuje slovenské <code>EVENT_KINDS</code>; kompatibilita starých záznamov už musí byť súčasť zmeny.</li>
+</ul>
+<h2 id="cast-3">3. UI a marketplace</h2>
+<p><code>NovySpisPage</code> upsertuje skill a CLI resource, otvorí session a uloží prompt draft. Neoveruje výsledné vytvorenie spisu. Kontrola cesty <code>startsWith</code> je iba UI pomôcka; nie dostatočná serverová hranica prístupu.</p>
+<p><code>PrehladPage</code> a <code>LehotyPage</code> nemajú napojenie na pamäť; obsahujú pevné ukážkové údaje. Registry experimentov stále uvádza marketplace ako fiktívny návrh, hoci má reálne interakcie nad lokálnym katalógom. <code>onboarding-state.ts</code> persistuje iba <code>lane</code> a <code>step</code>. Úplnú obnovu konfigurácie tým nemožno vyhlásiť za hotovú.</p>
+<p><code>claude-plugin-bundle.ts</code> používa existujúci GitHub import a načítava plugin komponenty. Serverové <code>installCloudPlugin</code> je dostupné cez existujúci endpoint s kontrolami oprávnení. Integrácia sa má napojiť sem, nie duplikovať importér.</p>
+<p>Aktuálny verejný marketplace má <strong>15 balíkov, 14 so skillom, 0 s <code>mcpServers</code> alebo vlastným <code>.mcp.json</code> v kontrolovaných plugin manifestoch</strong>. Setup dokumentácia výslovne rozlišuje inštaláciu skillu, zostavenie servera a vlastné nasadenie. <a href="https://github.com/Omni-Legal-Products/lawoss-marketplace/blob/d9631fb39ccc70055a0767a24d270b319baf774f/.claude-plugin/marketplace.json">Manifest</a>, <a href="https://github.com/Omni-Legal-Products/lawoss-marketplace/blob/d9631fb39ccc70055a0767a24d270b319baf774f/plugins/slovlex/docs/SETUP.md">príklad setup návodu</a>.</p>
+<p><code>releases.json</code> stále obsahuje <code>visibility: private</code>; živé GitHub API potvrdzuje public. Ide o drift metadát. Kontrola nerobila OAuth ani živé volania právnych registrov.</p>
+<p>Upstream <code>reload-fingerprint.ts</code> sleduje config, agents, skills, commands, plugins a mcp. Tento mechanizmus sám neposkytuje aktuálny snapshot obsahu spisu.</p>
+<h2 id="cast-4">4. CI a ochrana vetvy</h2>
+<p>Pre <code>ec0f4c1</code> GitHub Actions vykonal a úspešne dokončil:</p>
+<ul>
+<li><a href="https://github.com/Omni-Legal-Products/lawoss/actions/runs/34130210022">LegalWork Tests — run 34130210022</a>: <code>legalwork-tests (ubuntu-latest)</code> a <code>legalwork-tests (macos-14)</code>; app/server/desktop testy, Electron IPC typecheck a app e2e podľa workflow.</li>
+<li><a href="https://github.com/Omni-Legal-Products/lawoss/actions/runs/34130209875">OKF pamäť — run 34130209875</a>: typecheck a testy Ubuntu/macOS.</li>
+<li><a href="https://github.com/Omni-Legal-Products/lawoss/actions/runs/34130209919">i18n — run 34130209919</a>: úspešný audit.</li>
+</ul>
+<p>Workflow pre <code>legalwork-ui-mcp</code> sa na tento diff nespúšťal podľa path filtra; nejde o zlyhaný job. Z úspechu CI nevyplýva balenie, notarizácia ani fungovanie aktualizácie desktopového inštalátora.</p>
+<p>Živá ochrana <code>dev</code>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Kontrola</th>
+<th>Stav</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Počet required review</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Zneplatnenie starého review</td>
+<td>zapnuté</td>
+</tr>
+<tr>
+<td>Vyriešenie konverzácií</td>
+<td>povinné</td>
+</tr>
+<tr>
+<td>Required status checks</td>
+<td><strong>žiadne (<code>null</code>)</strong></td>
+</tr>
+<tr>
+<td>Vynútenie pre administrátorov</td>
+<td><strong>vypnuté</strong></td>
+</tr>
+<tr>
+<td>Code owner review / last push approval</td>
+<td>vypnuté</td>
+</tr>
+</tbody></table></div>
+<p>Odporúčanie plánu D9 je doplniť vynucovanie existujúcich užitočných kontrol. Kontrola s path filtrom sa nesmie stať required bez zabezpečenia, že vie dokončiť výsledok aj pre nesúvisiaci PR. Žiadna ochrana sa počas auditu nemenila.</p>
+<h2 id="cast-5">5. Vydanie a upstream</h2>
+<ul>
+<li>Fork pri kontrole nemal žiadny GitHub release ani predchádzajúci beh Alpha/Release workflowov.</li>
+<li>Kontrolované LAWOSS update cesty vracali 404. Bez publikovaného prvého release to znamená chýbajúcu distribučnú cestu; nie je to meranie existujúcej produkčnej služby.</li>
+<li>Alpha workflowy macOS aj Windows zostavujú URL <code>https://github.com/eigenweltlabs/legalwork/releases/download/${releaseTag}</code>, hoci upload používajú cez <code>$GITHUB_REPOSITORY</code>. To je konkrétna chyba, ktorú treba opraviť pred prvou alpha distribúciou.</li>
+<li><a href="https://github.com/Omni-Legal-Products/lawoss/blob/ec0f4c108e17c53152a01b327c57c1b59dfd69f2/.github/workflows/alpha-macos-aarch64.yml#L248">macOS alpha workflow</a>, <a href="https://github.com/Omni-Legal-Products/lawoss/blob/ec0f4c108e17c53152a01b327c57c1b59dfd69f2/.github/workflows/alpha-windows-x64.yml#L297">Windows alpha workflow</a>.</li>
+<li><code>productName</code> je LAWOSS, ale <code>appId</code> je <code>com.eigenweltlabs.legalwork</code>, protokol <code>legalwork</code> a viaceré ďalšie identifikátory zostávajú upstreamové. Existujúci <code>PATCHES.md</code> to vysvetľuje kontinuitou dát/keychain; súbežná inštalácia a migrácia identity vyžadujú vlastné rozhodnutie a test.</li>
+<li><code>PATCHES.md</code> má 14 riadkov. Odporúčanie „pod desať, kde sa dá“ je cieľ údržby, nie automatický zákaz feature; kontrolovať najmä úplnosť evidencie zásahov.</li>
+<li>Pravidlo syncu je presný upstream release tag, nie náhodný <code>upstream/dev</code>. Lokálne upstream refs boli pri audite staršie než live GitHub; pred plánovaním syncu fetchnúť a nanovo vypočítať delta. Žiadny sync sa teraz nevykonal.</li>
+</ul>
+<p>Prvý kandidát potrebuje dôkaz podpísania/notarizácie podľa zvoleného kanála, kontrolu manifestu a hashov a čistú inštaláciu. In-place update sa dá overiť až s dvoma po sebe idúcimi testovacími verziami; dnes starší LAWOSS release neexistuje. Oddeliť test programu od testu distribúcie. Podpisové tajomstvá sa neskúmali ani nevypisovali.</p>
+<p>Alpha workflowy vytvárajú verejné prereleases a aktualizujú rolling pointer; manuálne spustenie nie je súkromný test. <code>Release App</code> má voľby <code>draft</code>, <code>publish_npm</code> a ďalšie publikačné kroky; pre review treba explicitne zvoliť draft a vypnúť nezamýšľané publikovanie. Static builder publish owner/repo na overenom <code>origin/dev</code> už správne uvádza <code>Omni-Legal-Products/lawoss</code>; starší lokálny checkout nie je podklad na opačné tvrdenie.</p>
+<h2 id="cast-6">6. Kontrolné príkazy pre aktualizovanie tohto snapshotu</h2>
+<p>Príkazy sa spúšťajú v príslušnom produktovom repe, bez zápisov do klientskych spisov:</p>
+<pre><code class="language-sh">git fetch origin
+git rev-parse origin/dev
+git merge-base --is-ancestor 2c8db57 origin/dev
+gh api repos/Omni-Legal-Products/lawoss/branches/dev/protection
+gh run view 34130210022 -R Omni-Legal-Products/lawoss --json headSha,conclusion,jobs
+gh api &#39;repos/Omni-Legal-Products/lawoss/releases?per_page=5&#39; --jq length
+gh api repos/Omni-Legal-Products/lawoss-marketplace --jq &#39;{visibility,default_branch,pushed_at}&#39;
+git show origin/dev:apps/app/src/lawoss/experiments/registry.ts
+git show origin/dev:lawoss/okf/templates/spis/spis.md
+git show origin/dev:lawoss/okf-pamat/src/index.ts
+</code></pre>
+<p>Reprodukcia integračného problému a presné testovacie príkazy sú doplnené nižšie. Oprava sa musí overiť na novom head SHA; tento historický záznam sa neprepisuje na „zelené“ bez dôkazu.</p>
+<h3>Syntetická reprodukcia</h3>
+<p>Audit používal čistý export produktu do dočasného priečinka. Fixture počas auditu ležala v <code>/var/folders/0f/c88qjz9j7q1c93sdnqvy02040000gn/T/tmp.NHnAzzWCce/fixture</code>; táto dočasná cesta sa nemusí zachovať. Z exportovaného koreňa produktu možno vytvoriť novú:</p>
+<pre><code class="language-sh">fixture=$(mktemp -d)
+node lawoss/okf/bundle/okf.js apply spis &quot;$fixture&quot; --title &quot;Synteticka vec&quot; --klient &quot;Test klient&quot; --date 2026-09-09
+node lawoss/okf-pamat/bin/okf-memory.ts init &quot;$fixture&quot; --apply
+node lawoss/okf-pamat/bin/okf-memory.ts sync &quot;$fixture&quot; --apply
+node lawoss/okf/bundle/okf.js validate &quot;$fixture&quot;
+node lawoss/okf-pamat/bin/okf-memory.ts validate &quot;$fixture&quot;
+</code></pre>
+<p>Očakávané historické výsledky: sync exit 1 (sekcia Lehoty bez markerov), starý validate exit 1 (BRAIN.md), pamäťový validate exit 0. Surové <code>.ts</code> CLI vyžaduje kompatibilný Node runtime; tento postup nie je prísľub podpory všetkých Node verzií.</p>
+<p>Samostatné sady z príslušných adresárov: <code>bun test test/</code> pre <code>lawoss/okf</code>, <code>node --test &#39;tests/**/*.test.ts&#39;</code> pre <code>lawoss/okf-pamat</code>. Prvá sada overuje 14 testov, druhá 415. Presný existujúci testovací príkaz sa má pred následnou implementáciou porovnať s package manifestom aktuálneho headu.</p>
+<p>Dodatočná integračná prekážka: <code>apps/server/tsconfig.json</code> používa <code>rootDir: src</code>, zatiaľ čo <code>okf-pamat</code> exportuje surový TypeScript mimo serverového koreňa a <code>okf</code> nemá vlastné exports. Potrebné je vyriešiť skutočný build/import; samotné pridanie balíkov do workspace nestačí.</p>
+</main></div><footer>Pracovný návrh pre koordinátora · overené zdroje a neistoty sú uvedené v dokumente · <a href="2026-09-09-audit-realizacie-lawoss.md">Markdown zdroj</a></footer><script>document.getElementById('theme').addEventListener('click',()=>{const dark=document.documentElement.dataset.theme!=='dark';document.documentElement.dataset.theme=dark?'dark':'light';document.getElementById('theme').textContent=dark?'Svetlá téma':'Tmavá téma';});</script></body></html>
