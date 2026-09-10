@@ -10,6 +10,6 @@ Implementácia vo vetve produktu `fix/unified-experiments-shell`:
 - Husté registre sa prispôsobujú šírke obsahového panelu, nie iba šírke okna.
 - Nové funkcie sa integrujú cez existujúci shell; nevytvára sa paralelný layout ani backend.
 
-Overenie: TypeScript, produkčný build, 12 existujúcich testov experimentov, prehliadačová cesta Experimenty → Lehoty → Workflows → rovnaké Lehoty. Testovací profil bez pracovných priečinkov; operácie nad reálnym spisom a Electron smoke test zostávajú na overenie pred vydaním.
+Overenie: TypeScript, produkčný build, 12 existujúcich testov experimentov, prehliadačová cesta Experimenty → Lehoty → Workflows → rovnaké Lehoty. Následne prešiel aj smoke test nainštalovaného Electron buildu: existujúci priečinok a relácia → Experimenty so zachovaným sidebarom. Funkčnosť právnych operácií nad spisom tým nie je overená. [Zápis, preview a otvorené body](../../planning/2026-09-10-zapis-logo-sidebar-a-sync.md).
 
-Šesť alternatív identity: [vektorové návrhy](../../assets/brand/loga-2026-09-10/README.md). Implementácia shellu nie je závislá od výberu víťazného loga.
+Šesť alternatív identity: [vektorové návrhy](../../assets/brand/loga-2026-09-10/README.md). MČ následne vybral B; tento variant je integrovaný do publikovaného preview.

@@ -26,6 +26,10 @@
 
 ---
 
+## Stav appky a najbližší sync
+
+[Zápis 10. 9. 2026: logo B, jednotný sidebar, preview a podklad na sync 11. 9.](planning/2026-09-10-zapis-logo-sidebar-a-sync.md) · [HTML](planning/2026-09-10-zapis-logo-sidebar-a-sync.html). Implementácia je v PR #39; preview je dostupný, merge čaká na review.
+
 ## ✨ Postavené na myšlienke MikeOSS
 
 <table>
