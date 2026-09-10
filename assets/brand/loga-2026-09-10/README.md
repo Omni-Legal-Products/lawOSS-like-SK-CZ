@@ -29,3 +29,17 @@ Farebné porovnanie, nie schválená zmena globálnych tokenov:
 - Svetlejšie, sýtejšie zlato: [#F2C744](portikus-bright-gold.svg).
 
 Finálny odtieň sa vyberie vizuálne. Pôvodné súbory zostávajú zachované ako zdroj.
+
+## Korekcia MČ — kovové zlato a jednoduchší tvar
+
+MČ výslovne vybral kovové zlato s odleskami a požaduje zjednodušenie SVG. Nové alternatívy: `column-simple-metal.svg` (jeden súvislý stĺp) a `portico-simple-metal.svg` (tri pevné stĺpy a dva priečniky). Odstránený kruh a jemné vnútorné línie. Oba tvary majú mono verziu. Kovový efekt je výlučne gradient výplne, bez filtrov, žiary a tieňov. Finálny symbol stále nie je vybraný.
+
+## Preferované referencie dodané MČ
+
+MČ počas pripomienkovania 10. 9. poskytol dva pôvodné obrázky z 28. 8. a označil oba pozitívne („toto vyzera super“, „aj toto“). Nejde o výber jediného víťaza.
+
+- [A — zlatý nápis](preferred-a-original.png): portikus v otvorenom kruhu, výrazná hlavica, tri pevné zvislé línie, zlatý wordmark.
+- [B — biely nápis a podtitul](preferred-b-original.png): jednoduchší stĺp v kruhu, biely wordmark, CZECHIA SLOVAKIA AND BEYOND.
+- Originály sú zachované bez zásahu. `preferred-a-mark.svg` a `preferred-b-mark.svg` sú pracovné prekreslenia symbolov na kontrolu, nie vyhlásenie pixelovej zhody alebo finálne schválenie. Obe majú mono verziu.
+
+Tieto referencie spresňujú predchádzajúcu požiadavku na zjednodušenie: kruh sa zachováva, zjednodušujú sa jemné detaily. Farba má byť kovové zlato s odleskami. Verzie bez kruhu zostávajú len v archíve.
