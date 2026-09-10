@@ -90,6 +90,7 @@ Kto čo navrhol, v akom je to stave a kde to žije
 | 47 | **Komentárový korpus VŘ ako zabudovaný zdroj v CZ verzii** — 94 repozitárov, Apache-2.0, ~94 MB, markdown podľa systematiky zákonov; sedí na OKF/Markdown-first. Podmienka: „navigácia → dooverenie v primárnom prameni" musí niesť produkt | **MČ** *(zdroj VŘ)* | 2026-08-19 | 💭 **nápad** · rieši aj asymetriu SK × CZ | [zberný kôš #47](../planning/napady.md) |
 | 48 | **Opencode sync pipeline + verifikačná brána** — dva oddelené sync procesy (opencode verzie, legalwork upstream), typový diff nových SDK releaseov, smoke test pred každým bumpom, drift detection; naše zmeny len ako pluginy/overlay, aby fork zostal vždy jednoducho updatovateľný | **MČ** | 2026-08-21 | 💭 **nápad** · rozvíja #41 a #45 · overené: SDK 1.17→1.18 diff je čisto additívny | [zberný kôš #48](../planning/napady.md) |
 | 51 | **TUI — terminálová alternatíva k Electron appke** — popri desktopovej appke aj Terminal User Interface; LAWOSS doména (OKF, skills, prompty, MCP) je prenositeľná, opencode je CLI harness; prvý krok už existuje (OKF spis v opencode/Claude Code bez appky) | **VŘ** *(zapísal MČ)* | 2026-08-27 | 💭 **nápad** · z quick callu 27. 8. | [zberný kôš #51](../planning/napady.md) |
+| 52 | **Funkčná UI vrstva LAWOSS** — onboarding setup ledger, založenie OKF spisu s dry-run plánom, read-only spisový prehľad a riadený Marketplace/konektory v existujúcom dizajnovom jazyku | **MF** | 2026-09-09 | 📝 **spec** · podklad na call | [spec](2026-09-09-ui-funkcne-navrhy-lawoss.md) |
 
 ### Legenda stavov
 
