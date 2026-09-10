@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-label="LAWOSS">
+  <!-- Portico in a ring. Monoline to match the wordmark: same butt caps and
+       miter joins, no fills, so the two read as one drawing at any size.
+       The centre column is drawn as a column (two shafts on a base), the
+       flanking pair thinner and shorter, as in the brand reference. -->
+  <g fill="none" stroke="#D4AF37" stroke-width="3" stroke-linecap="butt" stroke-linejoin="miter">
+    <circle cx="48" cy="48" r="33.5"/>
+    <path d="M22.5 30.5h51"/>
+    <path d="M27.5 38.5h41"/>
+    <path d="M40.5 43h15"/>
+    <path d="M44.5 43v27.5"/>
+    <path d="M51.5 43v27.5"/>
+    <path d="M39 70.5h18"/>
+    <path d="M33.5 43v24"/>
+    <path d="M62.5 43v24"/>
+  </g>
+</svg>
