@@ -43,3 +43,7 @@ MČ počas pripomienkovania 10. 9. poskytol dva pôvodné obrázky z 28. 8. a oz
 - Originály sú zachované bez zásahu. `preferred-a-mark.svg` a `preferred-b-mark.svg` sú pracovné prekreslenia symbolov na kontrolu, nie vyhlásenie pixelovej zhody alebo finálne schválenie. Obe majú mono verziu.
 
 Tieto referencie spresňujú predchádzajúcu požiadavku na zjednodušenie: kruh sa zachováva, zjednodušujú sa jemné detaily. Farba má byť kovové zlato s odleskami. Verzie bez kruhu zostávajú len v archíve.
+
+## Finálny výber MČ — variant B
+
+MČ výslovne rozhodol: „B je spravne, integruj to a updatni aj app“. Variant B je vybraný pre aplikáciu. Znak: portikus v otvorenom kruhu, pevné zvislé línie, kovové zlato s odleskami. Wordmark je biely; rozšírené logo nesie CZECHIA SLOVAKIA AND BEYOND. Kompaktný sidebar a desktopová ikona používajú primerane skrátenú zostavu. Produkčný vektor je `lawoss/brand/lawoss-mark.svg` v produkte, ikony sa generujú z neho.
