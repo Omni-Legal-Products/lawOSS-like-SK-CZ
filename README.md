@@ -546,9 +546,15 @@ lawOSS-like-SK-CZ/
 │   │   └── skills/
 │   │       ├── judikatura-citation-builder/
 │   │       │   └── SKILL.md
+│   │       ├── lawoss-citations/
+│   │       │   └── SKILL.md
+│   │       ├── lawoss-law-drift/
+│   │       │   └── SKILL.md
 │   │       ├── lawoss-source-coverage/
 │   │       │   └── SKILL.md
-│   │       └── lawoss-spec-review/
+│   │       ├── lawoss-spec-review/
+│   │       │   └── SKILL.md
+│   │       └── lawoss-workflow-router/
 │   │           └── SKILL.md
 │   └── lawoss-legal-lab/
 │       └── skills/
@@ -732,23 +738,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**403 commitov** · **253 súborov**
+**413 commitov** · **256 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `9b12715` | 2026-09-10 | BiggusDicckkus | Merge pull request #53 from Omni-Legal-Products/codex/pr10-stable-workflows |
+| `c3ae1e9` | 2026-09-09 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `ce0354b` | 2026-09-09 | Majo Cuprik | Merge pull request #75 from Omni-Legal-Products/docs/plan-realizacie-ai-2026-09-09 |
 | `99e76d2` | 2026-09-09 | Marián Čuprík | docs: navrhnúť realizáciu LAWOSS a spoluprácu s AI |
 | `5aa993f` | 2026-09-07 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `ebb8418` | 2026-09-07 | Marián Čuprík | Merge branch 'main' of https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ |
 | `42f457b` | 2026-09-07 | Marián Čuprík | docs: oprava počtu otvorených PR po znovuotvorení #64 |
 | `a6d3320` | 2026-09-07 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `e4a85de` | 2026-09-07 | Marián Čuprík | docs: výsledok čistenia PR — zlúčená skupina 1 aj reťaz vo forku |
-| `1999584` | 2026-09-07 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-09 14:31 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-10 11:59 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
