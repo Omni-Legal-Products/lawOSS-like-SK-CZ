@@ -8,6 +8,18 @@
 
 ## Časť A — Register rozhodnutí zo 6. 9. po calle
 
+> [!NOTE]
+> **Stav po calle 11. 9. 2026** *(VŘ neprítomný, [zápis](../meetings/2026-09-11-zapis-sync-call.md))*
+> — **R1 vrstvy:** MČ ich výslovne delegoval na VŘ; písomná veta naďalej neexistuje, teraz bez termínu.
+> — **R2 poverenie, R3 `L3_LEAK`:** nezaznelo, ostávajú na VŘ.
+> — **R4 kontrakt spisu:** dve z ôsmich trení vyriešené rozhodnutím MČ — anglické strojové názvy *(padá spor `klient.md` × `client.md`)* a `_kancelaria` → `Office`. Šesť zostáva.
+> — **R6 meno:** potvrdene otvorené a nie je to blokátor.
+> — **Nové pravidlo:** strojová vrstva po anglicky, obsah zápisov v jazyku advokáta. Z toho priamo vyplýva premenovanie `EVENT_KINDS`.
+> — **RAM (rozhodnutia 13–14 zo 7. 9.):** **prekonané** — rozpočet ~4 GB a jednotná metodika merania padli ako blokátor, ostáva len ukazovateľ spotreby.
+> — **Termín bety 16. 9.:** **nepotvrdený**; nahradila ho vstupná podmienka alfy *(Anthropic · preklad · odstránené komerčné prvky · základné OKF)*.
+> — **C a I (katalóg, workspace riadok, OKF tab):** nepohli sa.
+
+
 | # | Rozhodnutie | Stav | Poznámka |
 |---|---|---|---|
 | **R1** | Význam vrstiev L1/L2/L3 | 🟡 **ústne uzavreté, písomne nie** | Na calle sa o vrstvách vecne nehovorilo; MČ ich v závere označil za vyriešené. Vetu treba zapísať, kód VŘ na nej stojí. |
