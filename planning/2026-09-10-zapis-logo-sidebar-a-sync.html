@@ -1,0 +1,157 @@
+<!doctype html><html lang="sk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><title>LAWOSS — zápis 10. 9. a sync 11. 9. 2026</title><style>:root{color-scheme:light dark;--bg:#f7f5ef;--paper:#fff;--fg:#182430;--muted:#586674;--line:#d8dcd9;--gold:#876820;--code:#f0f2f3}html[data-theme=dark]{--bg:#0d1b2a;--paper:#142433;--fg:#e9e4da;--muted:#bac4cd;--line:#354350;--gold:#dfbc69;--code:#0b1825}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.7 system-ui,-apple-system,sans-serif}a{color:var(--gold);text-underline-offset:3px;overflow-wrap:anywhere}header{padding:30px 5vw 25px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;align-items:center}header span{font-size:15px;letter-spacing:.12em;font-weight:650}button{font:inherit;background:var(--paper);color:var(--fg);border:1px solid var(--line);padding:7px 13px;cursor:pointer}.layout{display:grid;grid-template-columns:235px minmax(0,1040px);gap:42px;max-width:1390px;margin:auto;padding:38px 30px 90px}nav{position:sticky;top:20px;align-self:start;font-size:13px;max-height:90vh;overflow:auto}nav a{display:block;padding:7px 8px;border-bottom:1px solid var(--line);color:var(--muted);text-decoration:none}nav a:hover,nav a:focus{color:var(--gold)}main{min-width:0}h1{font-size:clamp(30px,4vw,44px);line-height:1.18;letter-spacing:-.03em;margin:0 0 30px}h2{font-size:26px;line-height:1.25;margin:55px 0 20px;padding-top:18px;border-top:2px solid var(--gold);scroll-margin-top:20px}h3{font-size:20px;margin:32px 0 12px}p,li{overflow-wrap:anywhere}li{margin:7px 0}pre{padding:20px;background:var(--code);border:1px solid var(--line);overflow:auto;font-size:13px;line-height:1.55}code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em}p code,li code,td code{background:var(--code);padding:1px 4px}.table-wrap{overflow:auto;margin:22px 0;border:1px solid var(--line)}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{padding:12px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);min-width:120px}th{background:var(--paper);font-weight:650}tr:last-child td{border-bottom:0}blockquote{margin:24px 0;border-left:3px solid var(--gold);padding:0 20px;color:var(--muted)}footer{padding:22px 5vw;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}@media(max-width:850px){.layout{grid-template-columns:1fr;padding:24px 16px;gap:20px}nav{position:static;max-height:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}nav a{font-size:12px}header{padding:20px 16px}th,td{min-width:145px;padding:10px}h2{font-size:24px}}@media print{nav,button{display:none}.layout{display:block;padding:0}header{padding:0 0 12px}body{background:white;color:black;font-size:10pt}h1{font-size:24pt}h2{font-size:16pt;break-after:avoid}h3{break-after:avoid}.table-wrap{overflow:visible}table{font-size:8.5pt}th,td{min-width:0;padding:6px}pre{white-space:pre-wrap;font-size:8pt}a{color:inherit}footer{display:none}}</style></head><body><header><span>LAWOSS / ODOVZDANIE · 10. 09. 2026</span><button type="button" id="theme">Tmavá téma</button></header><div class="layout"><nav aria-label="Obsah"><a href="#cast-1">Aktuálny výsledok</a><a href="#cast-2">Rozhodnutia MČ a priebeh práce</a><a href="#cast-3">Čo sa implementovalo</a><a href="#cast-4">Overenie a jeho hranice</a><a href="#cast-5">Publikovanie a Telegram</a><a href="#cast-6">Podklad na sync call — 11. 9. 2026</a><a href="#cast-7">Zdroje a dátum kontroly</a></nav><main><h1>Zápis 10. 9. 2026 — logo B, jednotný sidebar a príprava sync callu</h1>
+<p><strong>Stav k 10. 9. 2026.</strong> Zadanie a výber identity: MČ v pracovnej konverzácii. Zápis zachytáva vykonanú prácu; časť pre call je návrh programu, nie zápis už uskutočneného stretnutia. MČ oznámil sync call na <strong>11. 9. 2026</strong>; čas a účasť tu nie sú potvrdené.</p>
+<h2 id="cast-1">Aktuálny výsledok</h2>
+<p>Logo B je integrované do aplikácie, hlavná navigácia a Experimenty používajú jeden shell a testovací macOS build je publikovaný. Produktový PR <strong>#39 je OPEN a vyžaduje review</strong>; koordinačný PR <strong>#76 je OPEN</strong>. Publikovaný preview nie je merge do <code>dev</code> ani stabilné notarizované vydanie.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Podklad</th>
+<th>Odkaz / identifikátor</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Implementácia</td>
+<td><a href="https://github.com/Omni-Legal-Products/lawoss/pull/39">lawoss PR #39</a>, <code>fix/unified-experiments-shell</code></td>
+</tr>
+<tr>
+<td>Rozhodnutie a vizuálne zdroje</td>
+<td><a href="https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/pull/76">koordinačný PR #76</a>, <code>design/unified-shell-and-six-logos</code></td>
+</tr>
+<tr>
+<td>Stiahnutie appky</td>
+<td><a href="https://github.com/Omni-Legal-Products/lawoss/releases/tag/preview/logo-b-sidebar-20260910">Preview — logo B a jednotný sidebar</a></td>
+</tr>
+<tr>
+<td>Presný commit publikovaného buildu</td>
+<td><code>1b544a7fd2d730d9832b88793c1731b101798678</code></td>
+</tr>
+<tr>
+<td>Verzia v aplikácii</td>
+<td><code>0.1.18-lawoss.local.20260910</code></td>
+</tr>
+<tr>
+<td>ZIP</td>
+<td><code>LAWOSS-0.1.18-logo-B-mac-arm64.zip</code>, 302 360 756 bajtov</td>
+</tr>
+<tr>
+<td>SHA-256 ZIP</td>
+<td><code>73f93ccb4d72349d72bb530d09b925c499d8ab1d36666acc812ecb99e00cfbaa</code></td>
+</tr>
+</tbody></table></div>
+<p>Neskoršie dokumentačné commity v PR nemenia obsah už publikovaného ZIP. Pre reprodukciu používajte uvedený build commit, nie pohyblivý HEAD vetvy.</p>
+<h2 id="cast-2">Rozhodnutia MČ a priebeh práce</h2>
+<ol>
+<li>Pôvodný hlavný sidebar a samostatný experimentálny sidebar pôsobili ako dve aplikácie. MČ požadoval jeden súvislý spôsob navigácie pred integráciou ďalších funkcií.</li>
+<li>Vzniklo šesť alternatív identity a evidencia skorších stĺpových návrhov. MČ odmietol komplikované SVG a plochý žltý odtieň; požadoval jednoduchší grécky/rímsky stĺp a kovové zlato s odleskami.</li>
+<li>MČ dodal dve pôvodné obrazové referencie a následne výslovne vybral <strong>B</strong>. Platná identita: zlatý portikus v otvorenom kruhu, biely wordmark LAWOSS; marketingový lockup používa podtitul <strong>CZECHIA SLOVAKIA AND BEYOND</strong>. Malá ikona používa samotný znak. Staršie varianty sú archív, nie rovnocenné finálne možnosti.</li>
+<li>MČ autorizoval integráciu, aktualizáciu lokálnej appky, publikáciu stiahnuteľného buildu a oznámenie tímu cez Telegram.</li>
+</ol>
+<p>Zdroje: <a href="https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/blob/design/unified-shell-and-six-logos/assets/brand/loga-2026-09-10/README.md">evidencia loga a originálov</a>, <a href="https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/blob/design/unified-shell-and-six-logos/docs/design/design-system.md">dizajnový systém</a>, <a href="https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/blob/design/unified-shell-and-six-logos/docs/design/2026-09-10-jednotny-shell.md">jednotný shell</a>.</p>
+<h2 id="cast-3">Čo sa implementovalo</h2>
+<ul>
+<li>Experimentálne stránky renderuje existujúci <code>SessionRoute</code> vo svojom hlavnom paneli. Priečinky, relácie a ovládanie aplikácie zostávajú v spoločnom sidebare.</li>
+<li>Samostatný ľavý rail experimentov a návrat „Späť do aplikácie“ nahradila navigácia nad obsahom.</li>
+<li>Experimenty majú rovnaké odsadenie ikony a textu ako ostatné položky. Opravené je zachovanie experimentálnej URL a návrat z pomocných panelov na rovnaký experiment.</li>
+<li>Hustejšie obrazovky reagujú na šírku obsahového panelu. Nové funkcie majú využívať existujúci shell.</li>
+<li>B je zapojené do sidebaru, desktopových ikon a faviconov. Produkt má spoločný SVG master a skript na generovanie ikon. Vlastné firemné názvy a logá zostávajú podporované.</li>
+<li>Identita aplikácie <code>com.eigenweltlabs.legalwork</code> zostala zachovaná pre kontinuitu profilu. Existujúca aplikácia a profil boli pred lokálnou výmenou zálohované.</li>
+</ul>
+<p>Táto práca nepridáva backend nových funkcií, nedokončuje OKF integráciu a nepotvrdzuje pripravenosť všetkých experimentov na produkciu. Nasadenie novej identity na živý web lawoss.app nebolo súčasťou tohto vydania.</p>
+<h2 id="cast-4">Overenie a jeho hranice</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Overenie</th>
+<th>Výsledok</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TypeScript a produkčný renderer/desktop build</td>
+<td>Prešli; desktop zahŕňa renderer, Word add-in, sidecary a kontroly bridge/závislostí/pluginov</td>
+</tr>
+<tr>
+<td>Testy experimentov</td>
+<td>12 úspešných</td>
+</tr>
+<tr>
+<td>Desktop testy</td>
+<td>104 úspešných, 1 preskočený, 0 zlyhaní</td>
+</tr>
+<tr>
+<td>CI buildu v PR #39</td>
+<td>Linux, macOS a i18n audit úspešné na uvedenom build commite</td>
+</tr>
+<tr>
+<td>Navigácia v prehliadači</td>
+<td>Experimenty → Lehoty → Workflows → návrat na rovnaké Lehoty; jeden sidebar a zhodné odsadenie</td>
+</tr>
+<tr>
+<td>Nainštalovaný Electron na macOS arm64</td>
+<td>Existujúci priečinok a relácia sa načítali; relácia → Experimenty zachováva sidebar</td>
+</tr>
+<tr>
+<td>Distribučný ZIP</td>
+<td>Po rozbalení prešlo <code>codesign --verify --deep --strict</code>; GitHub digest zodpovedá lokálnemu SHA-256; verejný download odpovedal HTTP 200</td>
+</tr>
+<tr>
+<td>Windows / Intel Mac</td>
+<td>Runtime neoverený; v tomto preview nie sú tieto binárky</td>
+</tr>
+<tr>
+<td>Podpis a updater</td>
+<td>Ad-hoc podpis, bez Apple notarizácie; stabilný updater sa nemení</td>
+</tr>
+</tbody></table></div>
+<p>Smoke test navigácie nie je overenie spracovania reálneho právneho prípadu. Do verejného repozitára išla iba čistá ukážka UI; pracovné profily, zálohy a screenshot s klientskymi údajmi neboli publikované.</p>
+<h2 id="cast-5">Publikovanie a Telegram</h2>
+<p>Preview obsahuje ZIP, <code>SHA256SUMS.txt</code> a release notes s inštalačnými obmedzeniami. Odkaz je aj v oboch PR. Oznámenie odoslal existujúci GitHub Actions workflow cez bota do topicu <strong>GitHub · App / LAWOSS APP GH (293)</strong>; nejde o priamy Telegram MCP konektor v Codexe.</p>
+<p><a href="https://github.com/Omni-Legal-Products/lawoss/actions/runs/34466275079">Notifikačný workflow run 34466275079</a> skončil úspešne a potvrdil prijatie správy Telegram API. Oznámenie bolo viditeľné aj v desktopovom Telegrame. To potvrdzuje doručenie, nie prečítanie jednotlivými členmi tímu.</p>
+<h2 id="cast-6">Podklad na sync call — 11. 9. 2026</h2>
+<p><strong>Navrhovaný cieľ:</strong> prevziať vizuálny základ, určiť reviewerov a dohodnúť prvú integrovanú používateľskú cestu. Nejde o nový prísľub termínu dodania.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Poradie</th>
+<th>Navrhovaná téma</th>
+<th>Potrebný výstup</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1 · 5 min</td>
+<td>Demo B a jednotnej navigácie na preview</td>
+<td>Konkrétne pripomienky alebo akceptácia vizuálneho výsledku</td>
+</tr>
+<tr>
+<td>2 · 5 min</td>
+<td>Produktový PR #39 a koordinačný PR #76</td>
+<td>Reviewer a podmienky merge; vlastníka určí tím</td>
+</tr>
+<tr>
+<td>3 · 5 min</td>
+<td>Distribúcia</td>
+<td>Vlastník notarizácie, platformovej matice a overenia updatera; preview samo tieto body neuzatvára</td>
+</tr>
+<tr>
+<td>4 · 10 min</td>
+<td>Začiatok integrácie nových funkcií</td>
+<td>Vybrať jednu cestu, vstupy/výstupy a akceptačný scenár podľa <a href="https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/blob/design/unified-shell-and-six-logos/planning/2026-09-09-realizacia-lawoss-a-spolupraca-ai.md">realizačného plánu</a></td>
+</tr>
+<tr>
+<td>5 · 5 min</td>
+<td>Rozdelenie práce</td>
+<td>Gestor, implementátor, reviewer a preberajúci pre každý schválený balík; termíny potvrdiť na calle</td>
+</tr>
+</tbody></table></div>
+<p>Historický <a href="https://github.com/Omni-Legal-Products/lawOSS-like-SK-CZ/blob/design/unified-shell-and-six-logos/planning/2026-09-09-audit-realizacie-lawoss.md">audit z 9. 9.</a> uvádzal problém spoločnej cesty OKF → pamäť → sync. V tejto dizajnovej práci sa neopravoval ani znovu nereprodukoval; pred plánovaním integrácie treba overiť aktuálny stav. Návrh prvej cesty z plánu: nastaviť kanceláriu → založiť SK/CZ spis → zapísať záznam → zobraziť stav a zdroj → pokračovať po reštarte.</p>
+<h3>Akčné body na uzavretie</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Tím: prideliť review PR #39 a vykonať merge až po schválení a zelených kontrolách.</li>
+<li><input disabled="" type="checkbox"> Tím: prejsť PR #76 a potvrdiť spoločný referenčný bod pre ďalšie obrazovky.</li>
+<li><input disabled="" type="checkbox"> Tím: otestovať preview a zapisovať reprodukovateľné chyby do produktu; nemenovať preview stabilným vydaním.</li>
+<li><input disabled="" type="checkbox"> Vlastník na určenie: dokončiť notarizáciu, platformové testy a overiť aktualizácie pred stabilným vydaním.</li>
+<li><input disabled="" type="checkbox"> Vlastník na určenie: znovu overiť spoločný OKF kontrakt a navrhnúť prvý schválený integračný balík.</li>
+<li><input disabled="" type="checkbox"> Koordinátor: po calle doplniť skutočné rozhodnutia, vlastníkov a termíny do samostatného zápisu stretnutia.</li>
+</ul>
+<h2 id="cast-7">Zdroje a dátum kontroly</h2>
+<p>Stav PR, release, presný tag/commit, digest a doručenie: GitHub CLI/API a notifikačný log, overené 10. 9. 2026. Lokálne testy a smoke scenáre: vykonané v tejto pracovnej konverzácii 10. 9. 2026. Výber B a dátum callu: výslovné vyjadrenia MČ v konverzácii. HTML verzia: <a href="2026-09-10-zapis-logo-sidebar-a-sync.html">otvoriť podklad</a>.</p>
+</main></div><footer>Podklad na sync 11. 9. 2026. Návrhy programu nie sú rozhodnutiami stretnutia.</footer><script>const root=document.documentElement,button=document.getElementById('theme');function theme(dark){root.dataset.theme=dark?'dark':'light';button.textContent=dark?'Svetlá téma':'Tmavá téma';button.setAttribute('aria-label',button.textContent)}theme(matchMedia('(prefers-color-scheme: dark)').matches);button.onclick=()=>theme(root.dataset.theme!=='dark');</script></body></html>

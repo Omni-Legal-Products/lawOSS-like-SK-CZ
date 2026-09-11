@@ -2,6 +2,8 @@
 
 > v1 (tmavý SaaS dashboard s kartami) bola 23. 8. zamietnutá MČ; v2 = LegalWork + LAWOSS vrstva pre 4 tentpoles, svet „podací denník na tmavom stole“.
 
+Aktualizácia 10. 9.: [logo B, jednotný shell a odovzdanie na sync](../../planning/2026-09-10-zapis-logo-sidebar-a-sync.md).
+
 Dizajnové rozhodnutia sa robia tu (koordinačné repo); implementácia ide do forku až po odklepe. Poradie čítania:
 
 | # | Dokument | Čo odpovedá |

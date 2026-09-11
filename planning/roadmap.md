@@ -2,6 +2,10 @@
 
 > Checkboxy v tomto priečinku automaticky napájajú progress bary v README.
 
+## Aktualizácia 10. 9. 2026
+
+Logo B a jednotný sidebar sú implementované v PR #39 a dostupné ako macOS arm64 preview. Merge, stabilná distribúcia a integrácia nových funkcií zostávajú otvorené. [Zápis a akčné body na sync 11. 9.](2026-09-10-zapis-logo-sidebar-a-sync.md).
+
 ## Fáza 0 — Príprava a plánovanie (Q3 2026)
 
 - [x] Založiť plánovacie repo a štruktúru

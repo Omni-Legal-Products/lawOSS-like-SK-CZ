@@ -63,7 +63,7 @@ Charakteristika litier (overené z návrhov 11–14, 2026-08-29): **tenký geome
 
 - Finál = **prekresliť do SVG kriviek** (lettering) — appka ani web nepotrebujú font ako závislosť.
 - Najbližšie voľné fonty na pracovné použitie (prezentácie, dokumenty), *kým lettering nie je*: **Julius Sans One** alebo **Montserrat Thin/Light s rozšíreným trackingom** — priečku `A` má oboje, čiže len aproximácia; označovať ako pracovnú náhradu. *(neoverené voči licencii použitia v logu — lettering to rieši)*
-- Delenie farieb `LAW` biele + `OSS` zlaté (brand-concept) sa vo wordmarku návrhov 11–14 nepoužíva — celý biely, zlatý je podtitul. **Na rozhodnutie pri finalizácii loga** (brand-concept vs. nové logo).
+- Delenie farieb `LAW` biele + `OSS` zlaté (brand-concept) sa vo wordmarku návrhov 11–14 nepoužíva — celý biely, zlatý je podtitul. **Rozhodnutie MČ 10. 9. 2026: variant B — zlatý portikus v otvorenom kruhu, biely wordmark a podtitul CZECHIA SLOVAKIA AND BEYOND.** [Originál a evidencia](../../assets/brand/loga-2026-09-10/README.md). Kovový odlesk patrí do značky; UI token `--lw-accent` ostáva samostatný.
 
 ## 4 · Komponenty a vzory
 
