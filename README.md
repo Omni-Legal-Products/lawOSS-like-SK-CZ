@@ -387,7 +387,7 @@ Detailný harmonogram: [planning/timeline.md](planning/timeline.md) · Backlog: 
 | [`2026-08-15-odpovedi-VR-Q01-Q25.md`](planning/2026-08-15-odpovedi-VR-Q01-Q25.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
 | [`2026-08-21-paper-cuts-a-rychle-vylepsenia.md`](planning/2026-08-21-paper-cuts-a-rychle-vylepsenia.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/4 (0 %) |
 | [`2026-09-09-realizacia-lawoss-a-spolupraca-ai.md`](planning/2026-09-09-realizacia-lawoss-a-spolupraca-ai.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/35 (0 %) |
-| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 10/81 (12 %) |
+| [`backlog.md`](planning/backlog.md) | `██░░░░░░░░░░░░░░░░░░` | 10/84 (12 %) |
 | [`cz-datove-zdroje.md`](planning/cz-datove-zdroje.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/10 (0 %) |
 | [`mcp-repository-inventory.md`](planning/mcp-repository-inventory.md) | `░░░░░░░░░░░░░░░░░░░░` | 0/6 (0 %) |
 | [`roadmap.md`](planning/roadmap.md) | `████████░░░░░░░░░░░░` | 22/52 (42 %) |
@@ -740,23 +740,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**418 commitov** · **258 súborov**
+**420 commitov** · **258 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `c088687` | 2026-09-11 | Marián Čuprík | planning: evidovať odložené položky z brandingového passu |
+| `ade8436` | 2026-09-11 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `f76dc62` | 2026-09-11 | Marián Čuprík | docs: zápis zo sync callu 11. 9. — jazyková nezávislosť OKF, compliance, alfa |
 | `1f1235d` | 2026-09-10 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `88294f9` | 2026-09-10 | BiggusDicckkus | Merge pull request #74 from Omni-Legal-Products/codex/functional-ui-proposals |
 | `a0a4dd9` | 2026-09-10 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `9b12715` | 2026-09-10 | BiggusDicckkus | Merge pull request #53 from Omni-Legal-Products/codex/pr10-stable-workflows |
 | `c3ae1e9` | 2026-09-09 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
-| `ce0354b` | 2026-09-09 | Majo Cuprik | Merge pull request #75 from Omni-Legal-Products/docs/plan-realizacie-ai-2026-09-09 |
-| `99e76d2` | 2026-09-09 | Marián Čuprík | docs: navrhnúť realizáciu LAWOSS a spoluprácu s AI |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-11 08:47 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-11 09:25 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
