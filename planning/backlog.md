@@ -25,6 +25,8 @@ Dozreté položky majú vlastnú špecifikáciu v [specs/](../specs/).
 - [ ] 📋 **PATCHES.md diera** — `i18n/index.ts`, `app-root.tsx`, `scripts/i18n-audit.mjs`, druhé vloženie v `app-sidebar.tsx`
 - [ ] 🔗 **`lawoss.app/update`** — presmerovanie na release assets; kým nie sú releasy, netreba
 - [ ] 📊 **Prehľad podľa laptop mockupu** — až s reálnymi dátami z OKF, inak zase fiktívne čísla
+- [ ] 🧠 **Čo si vziať z LegalMemory pre OKF rozhranie** *(z callu 11. 9.)* — ich pamäťový subsystém sa v alfe **skrýva, nie zahadzuje**. Graf väzieb, karty zdrojov a spôsob citovania sú použiteľná inšpirácia pre naše OKF; **základ ale zostáva `okf-pamat` a `okf` CLI**, nie ich riešenie. Samostatné prezretie ~25 zdrojových súborov *(MČ)*.
+- [ ] 🍏 **Notarizácia macOS a podpis Windows** — odložené 11. 9.; do zriadenia Apple Developer účtu si **alfa testeri aplikáciu kompilujú sami**. Odomkne to zriadenie účtu *(otvorené aj vo Fáze 0 roadmapy)*.
 - [ ] 📜 **AGENTS.md forku vs. prax syncu** — tagy vs. `upstream/dev`; rozhodnúť a zapísať
 
 ## Kandidáti na v1 (majú spec)
@@ -91,6 +93,7 @@ Rozbehnuté 21. 8. → [report](2026-08-21-paper-cuts-a-rychle-vylepsenia.md) ·
 
 ## Rozhodnúť
 
+- [ ] 🆔 **`appId` aplikácie — `com.eigenweltlabs.legalwork` → vlastný LAWOSS identifikátor** *(odložené 2026-09-11 pri brandingovom passe)*. Dnes zámerne nezmenený: mení identitu bundle na macOS, teda **keychain, Launchpad a TCC povolenia**, a existujúce profily by prestali byť viditeľné. Potrebuje **samostatné ADR s migračným plánom** pre už nainštalované appky (MČ, MF). Bez neho LAWOSS a LegalWork nemôžu na jednom stroji koexistovať. Evidované aj v `PATCHES.md` forku a v [spec branding passu](https://github.com/Omni-Legal-Products/lawoss/blob/dev/docs/superpowers/specs/2026-09-11-branding-pass-a-alfa-spec.md).
 - [x] ✅ **Voľba základu — rozhodnuté 2026-08-06: LegalWork** → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md) *(nahrádza [ADR 0002](../decisions/0002-preco-forkujeme-mikeoss.md); MF potvrdené 2026-08-09)*
 - [x] ✅ **Licencia — MIT**, vyplýva z voľby základu (LegalWork je MIT) → [ADR 0003](../decisions/0003-legal-work-ako-zaklad.md)
 - [ ] ⚠️ **Doplniť súbory `LICENSE`, `NOTICE`, `CONTRIBUTING`** — repo je verejné, ale **bez `LICENSE` platí „all rights reserved"** *(MČ do 2026-08-08)*
