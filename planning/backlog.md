@@ -25,6 +25,9 @@ Dozreté položky majú vlastnú špecifikáciu v [specs/](../specs/).
 - [ ] 📋 **PATCHES.md diera** — `i18n/index.ts`, `app-root.tsx`, `scripts/i18n-audit.mjs`, druhé vloženie v `app-sidebar.tsx`
 - [ ] 🔗 **`lawoss.app/update`** — presmerovanie na release assets; kým nie sú releasy, netreba
 - [ ] 📊 **Prehľad podľa laptop mockupu** — až s reálnymi dátami z OKF, inak zase fiktívne čísla
+- [ ] 🎙️ **Vlastná transkripcia namiesto ich recordera** *(MČ, 11. 9.)* — ich recorder sa v brandingovom passe skrýva; MČ má vlastnú transkripčnú aplikáciu, ktorá ho nahradí. **Vylepšenie až po alfe**, do nej stačí, že ich plocha nie je vidieť.
+- [ ] ✍️ **Autogram: autorizácia a podpisovanie priamo v LAWOSS** *(MČ, 11. 9.)* — MČ má vlastnú macOS aplikáciu Autogram s integrovaným podpisovaním cez mobil (QR, NFC) a detekciou bezpečnostných prvkov. Cieľ je priniesť autorizáciu do appky → [spec 0007](../specs/0007-podpisovanie-a-zarucena-konverzia.md).
+- [ ] 🔐 **ZaKo (zaručená konverzia) ako teaser v UI** *(MČ, 11. 9.)* — plnú funkčnosť blokuje povolenie MIRRI na napojenie na centrálny register EZZK, ale **plocha sa dá ukázať v rozhraní už teraz** ako ukážka smeru → [spec 0010](../specs/0010-zarucena-konverzia.md). Pozor: teaser nesmie vyzerať ako hotová funkcia.
 - [ ] 🧠 **Čo si vziať z LegalMemory pre OKF rozhranie** *(z callu 11. 9.)* — ich pamäťový subsystém sa v alfe **skrýva, nie zahadzuje**. Graf väzieb, karty zdrojov a spôsob citovania sú použiteľná inšpirácia pre naše OKF; **základ ale zostáva `okf-pamat` a `okf` CLI**, nie ich riešenie. Samostatné prezretie ~25 zdrojových súborov *(MČ)*.
 - [ ] 🍏 **Notarizácia macOS a podpis Windows** — odložené 11. 9.; do zriadenia Apple Developer účtu si **alfa testeri aplikáciu kompilujú sami**. Odomkne to zriadenie účtu *(otvorené aj vo Fáze 0 roadmapy)*.
 - [ ] 📜 **AGENTS.md forku vs. prax syncu** — tagy vs. `upstream/dev`; rozhodnúť a zapísať
