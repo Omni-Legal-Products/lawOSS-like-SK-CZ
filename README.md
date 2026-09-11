@@ -513,7 +513,8 @@ lawOSS-like-SK-CZ/
 │   ├── 2026-08-28-agenda-call-dizajn.md
 │   ├── 2026-08-28-zapis-sync-call.md
 │   ├── 2026-09-07-okf-podklad-vr.md
-│   └── 2026-09-07-zapis-tyzdenne-stretnutie.md
+│   ├── 2026-09-07-zapis-tyzdenne-stretnutie.md
+│   └── 2026-09-11-zapis-sync-call.md
 ├── planning/
 │   ├── podklady-2026-09-06/
 │   │   └── report-B-zamer-a-odchylky.md
@@ -739,23 +740,23 @@ flowchart LR
 ## 📈 Aktivita
 
 <!-- AUTO:ACTIVITY -->
-**416 commitov** · **257 súborov**
+**418 commitov** · **258 súborov**
 
 | Commit | Dátum | Autor | Správa |
 |---|---|---|---|
+| `f76dc62` | 2026-09-11 | Marián Čuprík | docs: zápis zo sync callu 11. 9. — jazyková nezávislosť OKF, compliance, alfa |
+| `1f1235d` | 2026-09-10 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `88294f9` | 2026-09-10 | BiggusDicckkus | Merge pull request #74 from Omni-Legal-Products/codex/functional-ui-proposals |
 | `a0a4dd9` | 2026-09-10 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `9b12715` | 2026-09-10 | BiggusDicckkus | Merge pull request #53 from Omni-Legal-Products/codex/pr10-stable-workflows |
 | `c3ae1e9` | 2026-09-09 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 | `ce0354b` | 2026-09-09 | Majo Cuprik | Merge pull request #75 from Omni-Legal-Products/docs/plan-realizacie-ai-2026-09-09 |
 | `99e76d2` | 2026-09-09 | Marián Čuprík | docs: navrhnúť realizáciu LAWOSS a spoluprácu s AI |
-| `94af7a3` | 2026-09-09 | Martin Friedrich | specs: pridať funkčné UI návrhy LAWOSS |
-| `5aa993f` | 2026-09-07 | github-actions[bot] | docs: auto-update README a prehľad návrhov [skip ci] |
 <!-- /AUTO:ACTIVITY -->
 
 ---
 
 <div align="center">
 <sub>Sekcie označené 🤖 sa aktualizujú automaticky GitHub Action pri každom pushi — needitujte ich ručne.<br/>
-<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-10 12:05 UTC<!-- /AUTO:UPDATED --></sub>
+<b>Posledná automatická aktualizácia:</b> <!-- AUTO:UPDATED -->2026-09-11 08:47 UTC<!-- /AUTO:UPDATED --></sub>
 </div>
