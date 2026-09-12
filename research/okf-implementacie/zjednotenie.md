@@ -81,6 +81,9 @@ Aktuálny overený stav. Prepisuje sa.
 | `question` | `otazka` | L2 | `OQ-XXX` | — |
 | `subject` (AML) | `subjekt` | L2 | tabuľka Strany | — |
 | `screening` | `provereni` / `preverenie` | L2 | — | — |
+| `task` | `ukol` / `úloha` | L2 | tabuľka Otvorené úlohy | — |
+| `claim` | `tvrzeni` / `tvrdenie` | L2 | tabuľka Fakty veci | — |
+| `evidence` | `dukaz` / `dôkaz` | L2 | tabuľka Kľúčové dokumenty | — |
 | `rule` | `pravidlo` | **L1** | — | `type: user` |
 | `lesson` | `pouceni` / `poucenie` | **L1** | `LL-XXX` | `type: feedback` |
 | `authority` | `pramen` | **L3** | `# Citations` | `type: reference` |
@@ -88,6 +91,23 @@ Aktuálny overený stav. Prepisuje sa.
 `lesson` je samostatný typ, nie podtyp poznámky — [návrh #37](../../specs/navrhy.md). Poučenie z chyby sa maže inak než obsah spisu.
 
 Vrstva sa **neurčuje ručne, vyplýva z typu**. Nedá sa omylom založiť právny prameň ako spisový záznam.
+
+#### Vrstvy pamäte jednou vetou *(VŘ, 12. 9. 2026 — rozhodnutie z callu 11. 9., že definícia vrstiev je na VŘ)*
+
+- **L1 — kancelária** (`Office/memory/`): pravidlá a poučenia, ktoré platia naprieč spismi; zdieľané celou kanceláriou; zapisuje **človek** (agent iba navrhne, zápis vyžaduje `--approve-as`).
+- **L2 — spis** (`Spisy/<vec>/memory/`, subjekty a preverenia u klienta): fakty veci, rozhodnutia, subjekty, úlohy, otázky, tvrdenia a dôkazy jednej veci; **agent zapisuje sám** pod trvalým poverením advokáta z `Office/okf.config` (`standing_authorization`, `expires_at`, `scope`), každý zápis je v append-only histórii záznamu.
+- **L3 — pramene** (`Office/memory/`): právne autority (zákon, judikát, komentár) s prameňom a overením; zdieľané; **bez klientskych údajov** — brána úniku odmietne prameň, v ktorom je IČO, rodné číslo, dátum narodenia alebo meno klienta z ktoréhokoľvek spisu v dosahu.
+
+Jedna veta pre onboarding a marketplace: *kancelária sa učí (L1), spis si pamätá (L2), pramene sa zdieľajú bez klienta (L3).*
+
+#### Jazykovo neutrálne názvoslovie *(rozhodnutie 1 z callu 11. 9.)*
+
+- **Strojová vrstva je anglická**: kľúče záznamu (`id`, `type`, `layer`, `jurisdiction`, `deadlines`, …), typy (`matter`, `subject`, …), druhy udalostí v histórii (`delivery`, `filing`, `hearing`, `decision`, `request`, `call`, `email` — [lawoss#60](https://github.com/Omni-Legal-Products/lawoss/pull/60); staré slovenské hodnoty sa čítajú cez aliasy), názvy priečinkov systému (`Office/`, `memory/`, `index.md`, `log.md`) a markery `<!-- okf:render:… -->`.
+- **Obsah je v jazyku advokáta**: pravda záznamu, história, názvy vecí a klientov, `_STATUS.md` mimo markerov. Jurisdikcia (`cz`/`sk`) je povinná na karte veci aj v zázname ([lawoss#54](https://github.com/Omni-Legal-Products/lawoss/pull/54), [lawoss#56](https://github.com/Omni-Legal-Products/lawoss/pull/56)); tichý default neexistuje.
+- **Popisky pre človeka** (CZ/SK) sú tabuľkou v schéme (`VALUE_LABELS`, `fieldLabel`), nie v dátach — ten istý spis sa dá čítať z Prahy aj z Bratislavy bez konverzie. Poľština sa doplní ďalším stĺpcom tabuľky, nie ďalšou sadou kľúčov.
+- Kde to ešte nie je neutrálne: názvy priečinkov `AK/`, `Spisy/` a karta `spis.md`/`klient.md` sú slovenské (Fáza A, MČ) — ponechané, kým sa nerozhodne o názvoch priečinkov pre CZ vault (`AK/` je zhodné v oboch jazykoch, `Spisy/` = `Spisy/`).
+
+Detail pravidiel: [`lawoss/okf-pamat/README.md`](https://github.com/Omni-Legal-Products/lawoss/blob/dev/lawoss/okf-pamat/README.md) a `AGENTNI-ZAPISY.md` (trvalé poverenie).
 
 ### 5. Protokol zápisu
 
